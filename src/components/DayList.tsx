@@ -1,5 +1,7 @@
 import { slugOf } from "@/lib/programme-detail";
 import { Link } from "@tanstack/react-router";
+import { SaveButton } from "@/components/SaveButton";
+import { AddToCalendar } from "@/components/AddToCalendar";
 import {
   TRACKS,
   TYPE_NAME,
@@ -92,6 +94,8 @@ export function DayList({
                   >
                     Full details
                   </Link>
+                  <AddToCalendar p={p} c={c} />
+                  <SaveButton p={p} c={c} />
                 </div>
               </li>
             );

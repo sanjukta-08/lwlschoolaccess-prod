@@ -1,5 +1,8 @@
 import { Link } from "@tanstack/react-router";
 
+import { AddToCalendar } from "@/components/AddToCalendar";
+import { SaveButton } from "@/components/SaveButton";
+import { countdownLabel, decideLabel } from "@/lib/shortlist";
 import { PageJump } from "@/components/PageJump";
 import { ProfileImpact } from "@/components/ProfileImpact";
 import { ProgrammeTestimonials } from "@/components/ProgrammeTestimonials";
@@ -76,6 +79,8 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
             >
               {next ? `Apply for ${monthOf(next.d)} →` : "Apply now →"}
             </a>
+            {next ? <SaveButton p={p} c={next} variant="wide" /> : null}
+            {next ? <AddToCalendar p={p} c={next} size="md" /> : null}
             {next ? (
               <p className="text-[0.86rem] text-ink-soft">
                 Next cohort starts <b className="text-ink">{fmtLong(next.d)}</b>
@@ -85,6 +90,24 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
               </p>
             ) : null}
           </div>
+
+          {next ? (
+            <p className="mt-4 flex flex-wrap items-center gap-2 text-[0.78rem]">
+              {countdownLabel(next.d) ? (
+                <span className="rounded-lg bg-gold/12 px-2.5 py-1 font-bold text-gold">
+                  {countdownLabel(next.d)}
+                </span>
+              ) : null}
+              {decideLabel(next.d) ? (
+                <span className="rounded-lg bg-crimson/8 px-2.5 py-1 font-bold text-crimson">
+                  {decideLabel(next.d)}
+                </span>
+              ) : null}
+              <span className="rounded-lg bg-paper/70 px-2.5 py-1 font-mono text-ink-soft">
+                Cohorts of {d.cohortSize}
+              </span>
+            </p>
+          ) : null}
 
           <div className="mt-8 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
             {[
@@ -275,6 +298,10 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
                 >
                   Apply for this cohort
                 </a>
+                <div className="flex items-center justify-between gap-2">
+                  <AddToCalendar p={p} c={c} />
+                  <SaveButton p={p} c={c} />
+                </div>
               </div>
             );
           })}
@@ -378,15 +405,20 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
               {next ? `next cohort ${fmtShort(next.d)}` : "dates on request"}
             </small>
           </div>
-          <a
-            href={p.apply}
-            target="_blank"
-            rel="noopener"
-            className="rounded-full px-6 py-3 text-[0.9rem] font-bold text-paper no-underline transition-[filter] hover:brightness-110"
-            style={{ background: track.color }}
-          >
-            Apply now →
-          </a>
+          <div className="flex items-center gap-2.5">
+            {next ? (
+              <SaveButton p={p} c={next} variant="wide" className="hidden sm:inline-flex" />
+            ) : null}
+            <a
+              href={p.apply}
+              target="_blank"
+              rel="noopener"
+              className="rounded-full px-6 py-3 text-[0.9rem] font-bold text-paper no-underline transition-[filter] hover:brightness-110"
+              style={{ background: track.color }}
+            >
+              Apply now →
+            </a>
+          </div>
         </div>
       </div>
     </main>

@@ -9,6 +9,7 @@ import { CounsellorCard } from "@/components/CounsellorCard";
 import { FaqAccordion, FAQS } from "@/components/FaqAccordion";
 import { HowItWorks, WhyLwl } from "@/components/HowItWorks";
 import { TrendingTop5 } from "@/components/TrendingTop5";
+import { SavedStrip } from "@/components/SavedStrip";
 import { ProfilePathway } from "@/components/ProfilePathway";
 import {
   Accordion,
@@ -223,6 +224,7 @@ function FinderPage() {
 
           <main className="min-w-0 space-y-6">
             <TrendingTop5 state={state} variant="strip" />
+            <SavedStrip />
 
             <section id="all-programmes" className="scroll-mt-6">
               <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">

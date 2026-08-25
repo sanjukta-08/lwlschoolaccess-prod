@@ -14,6 +14,9 @@ import {
 import type { Entry, MonthGroup, TypeGroup } from "@/lib/finder";
 import { slugOf } from "@/lib/programme-detail";
 import { Link } from "@tanstack/react-router";
+import { SaveButton } from "@/components/SaveButton";
+import { AddToCalendar } from "@/components/AddToCalendar";
+import { countdownLabel } from "@/lib/shortlist";
 
 function CohortRow({
   p,
@@ -80,11 +83,19 @@ function CohortRow({
           <span className="rounded-md bg-gold/12 px-2 py-0.5 text-[0.62rem] font-bold tracking-[0.06em] uppercase text-gold">
             Starting soon
           </span>
+        ) : countdownLabel(c.d) ? (
+          <span className="rounded-md bg-gold/12 px-2 py-0.5 text-[0.62rem] font-bold tracking-[0.06em] uppercase text-gold">
+            {countdownLabel(c.d)}
+          </span>
         ) : (
           <span className="hidden rounded-md bg-track-fin/10 px-2 py-0.5 text-[0.62rem] font-bold tracking-[0.06em] uppercase text-track-fin sm:inline">
             Applications open
           </span>
         )}
+        <span className="flex items-center gap-1.5">
+          <AddToCalendar p={p} c={c} />
+          <SaveButton p={p} c={c} />
+        </span>
       </span>
     </Link>
   );

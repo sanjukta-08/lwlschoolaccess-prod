@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { CalendarControls } from "@/components/CalendarControls";
 import { MonthSections, TypeSections } from "@/components/CohortRows";
+import { SavedStrip } from "@/components/SavedStrip";
 import { TRACKS, isSoon } from "@/lib/programmes";
 import {
   DEFAULT_SEARCH,
@@ -89,6 +90,7 @@ function CalendarPage() {
       />
 
       <section className="mx-auto max-w-[1000px] px-5 pb-14">
+        <SavedStrip />
         {!entries.length ? (
           <p className="py-14 text-center text-[0.92rem] text-ink-faint">
             Nothing matches those filters — try clearing one, or search for something
