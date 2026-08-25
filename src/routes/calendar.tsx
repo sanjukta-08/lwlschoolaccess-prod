@@ -89,6 +89,7 @@ function CalendarPage() {
       />
 
       <section className="mx-auto max-w-[1000px] px-5 pb-14">
+        <SavedStrip />
         {!entries.length ? (
           <p className="py-14 text-center text-[0.92rem] text-ink-faint">
             Nothing matches those filters — try clearing one, or search for something
