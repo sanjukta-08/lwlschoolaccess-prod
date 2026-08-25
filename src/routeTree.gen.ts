@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as FinderRouteImport } from './routes/finder'
+import { Route as ProfileBuildingRouteImport } from './routes/profile-building'
 import { Route as ProgrammesSlugRouteImport } from './routes/programmes.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -29,6 +30,11 @@ const FinderRoute = FinderRouteImport.update({
   path: '/finder',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfileBuildingRoute = ProfileBuildingRouteImport.update({
+  id: '/profile-building',
+  path: '/profile-building',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProgrammesSlugRoute = ProgrammesSlugRouteImport.update({
   id: '/programmes/$slug',
   path: '/programmes/$slug',
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/calendar': typeof CalendarRoute
   '/finder': typeof FinderRoute
+  '/profile-building': typeof ProfileBuildingRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/calendar': typeof CalendarRoute
   '/finder': typeof FinderRoute
+  '/profile-building': typeof ProfileBuildingRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,29 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/calendar': typeof CalendarRoute
   '/finder': typeof FinderRoute
+  '/profile-building': typeof ProfileBuildingRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/calendar' | '/finder' | '/programmes/$slug'
+  fullPaths:
+    '/' | '/calendar' | '/finder' | '/profile-building' | '/programmes/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/calendar' | '/finder' | '/programmes/$slug'
-  id: '__root__' | '/' | '/calendar' | '/finder' | '/programmes/$slug'
+  to: '/' | '/calendar' | '/finder' | '/profile-building' | '/programmes/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/calendar'
+    | '/finder'
+    | '/profile-building'
+    | '/programmes/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CalendarRoute: typeof CalendarRoute
   FinderRoute: typeof FinderRoute
+  ProfileBuildingRoute: typeof ProfileBuildingRoute
   ProgrammesSlugRoute: typeof ProgrammesSlugRoute
 }
 
@@ -92,6 +109,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FinderRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profile-building': {
+      id: '/profile-building'
+      path: '/profile-building'
+      fullPath: '/profile-building'
+      preLoaderRoute: typeof ProfileBuildingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/programmes/$slug': {
       id: '/programmes/$slug'
       path: '/programmes/$slug'
@@ -106,6 +130,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CalendarRoute: CalendarRoute,
   FinderRoute: FinderRoute,
+  ProfileBuildingRoute: ProfileBuildingRoute,
   ProgrammesSlugRoute: ProgrammesSlugRoute,
 }
 export const routeTree = rootRouteImport

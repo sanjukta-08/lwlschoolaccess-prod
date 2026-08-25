@@ -28,6 +28,13 @@ export function SiteHeader() {
           >
             Full calendar
           </Link>
+          <Link
+            to="/profile-building"
+            className={linkCls}
+            activeProps={{ className: "text-ink" }}
+          >
+            Profile building
+          </Link>
           <Link to="/" hash="pathways" className={`hidden sm:block ${linkCls}`}>
             Pathways
           </Link>

@@ -143,6 +143,12 @@ export function ProfilePathway({ onOpen }: { onOpen: (id: string) => void }) {
             Plan my child&apos;s pathway
           </a>
           <Link
+            to="/profile-building"
+            className="rounded-full border-[1.5px] border-line bg-paper px-6 py-3 text-[0.88rem] font-semibold text-ink-soft no-underline hover:border-ink-soft hover:text-ink"
+          >
+            How profile building works →
+          </Link>
+          <Link
             to="/calendar"
             search={DEFAULT_SEARCH}
             className="rounded-full border-[1.5px] border-line bg-paper px-6 py-3 text-[0.88rem] font-semibold text-ink-soft no-underline hover:border-ink-soft hover:text-ink"
