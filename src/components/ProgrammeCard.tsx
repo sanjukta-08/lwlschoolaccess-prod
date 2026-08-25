@@ -3,10 +3,10 @@ import {
   TYPE_NAME,
   cohortGrades,
   feeOf,
-  fmtLong,
   fmtShort,
   isSoon,
   dualTime,
+  shortTime,
 } from "@/lib/programmes";
 import type { Match } from "@/lib/finder";
 
@@ -14,15 +14,67 @@ type Props = {
   match: Match;
   index?: number;
   label?: string | null;
+  compact?: boolean;
+  showType?: boolean;
   onOpen: (id: string) => void;
 };
 
-export function ProgrammeCard({ match, index = 0, label, onOpen }: Props) {
+export function ProgrammeCard({
+  match,
+  index = 0,
+  label,
+  compact = false,
+  showType = false,
+  onOpen,
+}: Props) {
   const { p, next, others } = match;
   const track = TRACKS[p.tracks[0]!];
   const [lo, hi] = cohortGrades(p, next);
   const fee = feeOf(p, next);
   const discounted = fee.r && fee.r !== fee.e;
+
+  if (compact) {
+    return (
+      <div
+        role="button"
+        tabIndex={0}
+        aria-label={`View ${p.name}`}
+        onClick={() => onOpen(p.id)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onOpen(p.id);
+          }
+        }}
+        className="flex cursor-pointer flex-wrap items-center gap-x-4 gap-y-1.5 rounded-xl border border-line bg-paper px-4 py-3 transition-colors hover:border-ink-soft/40 hover:bg-wash"
+      >
+        <span className="text-base" aria-hidden style={{ color: track.color }}>
+          {track.ic}
+        </span>
+        <span className="min-w-[10rem] flex-1">
+          <b className="block text-[0.92rem] font-bold text-ink">{p.name}</b>
+          <small className="mt-0.5 block text-[0.74rem] text-ink-faint">
+            {TYPE_NAME[p.type]} · G{lo}–{hi} · {p.dur}
+          </small>
+        </span>
+        <span className="font-mono text-[0.74rem] text-ink-soft">{fmtShort(next.d)}</span>
+        <span className="hidden font-mono text-[0.74rem] text-ink-faint md:inline">
+          {shortTime(p.time)}
+        </span>
+        <span className="font-serif text-[1rem] font-semibold">{fee.e}</span>
+        <a
+          href={p.apply}
+          target="_blank"
+          rel="noopener"
+          onClick={(e) => e.stopPropagation()}
+          className="rounded-lg px-3 py-1.5 text-[0.78rem] font-bold text-paper no-underline transition-[filter] hover:brightness-110"
+          style={{ background: track.color }}
+        >
+          Apply
+        </a>
+      </div>
+    );
+  }
 
   return (
     <article
@@ -54,7 +106,7 @@ export function ProgrammeCard({ match, index = 0, label, onOpen }: Props) {
         </span>
       ) : null}
 
-      <div className="surface-track flex items-center justify-between gap-3 border-b px-5 py-3">
+      <div className="surface-track flex items-center justify-between gap-3 border-b px-5 py-2.5">
         <span
           className="inline-flex items-center gap-2 text-[0.76rem] font-bold"
           style={{ color: track.color }}
@@ -66,72 +118,67 @@ export function ProgrammeCard({ match, index = 0, label, onOpen }: Props) {
           className="font-mono text-[0.66rem] font-semibold whitespace-nowrap opacity-85"
           style={{ color: track.color }}
         >
-          {TYPE_NAME[p.type]} · G{lo}–{hi}
+          {showType ? `${TYPE_NAME[p.type]} · ` : ""}G{lo}–{hi}
         </span>
       </div>
 
-      <div className="flex flex-1 flex-col gap-3 px-5 pt-4 pb-5">
+      <div className="flex flex-1 flex-col gap-2.5 px-5 pt-3.5 pb-4">
         <div className="flex items-start justify-between gap-3">
-          <h3 className="font-serif text-[1.3rem] leading-tight font-semibold">{p.name}</h3>
+          <h3 className="font-serif text-[1.2rem] leading-tight font-semibold">{p.name}</h3>
           {isSoon(next.d) ? (
-            <span className="mt-1 flex-none rounded-md bg-gold px-2 py-[3px] text-[0.66rem] font-bold tracking-wide text-paper uppercase">
-              Starting soon
+            <span className="mt-1 flex-none rounded-md bg-gold px-2 py-[3px] text-[0.62rem] font-bold tracking-wide text-paper uppercase">
+              Soon
             </span>
           ) : null}
         </div>
 
-        <p className="clamp-3 text-[0.88rem] text-ink-soft">{p.tag}</p>
+        <p className="clamp-2 text-[0.85rem] text-ink-soft">{p.tag}</p>
 
-        <dl className="flex flex-col gap-[7px] rounded-xl bg-wash px-3.5 py-3 text-[0.85rem]">
-          {[
-            ["Starts", fmtLong(next.d)],
-            ["Length", p.dur],
-            ["Live on", dualTime(p.time)],
-          ].map(([k, v]) => (
-            <div key={k} className="flex items-baseline gap-2.5">
-              <dt className="mono-label flex-none basis-[74px] text-ink-faint">{k}</dt>
-              <dd className="text-ink">{v}</dd>
-            </div>
-          ))}
-        </dl>
+        <p
+          className="flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg bg-wash px-3 py-2 font-mono text-[0.72rem] text-ink-soft"
+          title={`Live on ${dualTime(p.time)}`}
+        >
+          <span className="font-semibold text-ink">{fmtShort(next.d)}</span>
+          <span className="text-ink-faint">·</span>
+          <span>{p.dur}</span>
+          <span className="text-ink-faint">·</span>
+          <span>{shortTime(p.time)}</span>
+        </p>
 
-        <div className="flex flex-wrap items-baseline gap-2.5 pt-0.5">
-          <span className="font-serif text-[1.32rem] font-semibold">{fee.e}</span>
+        <div className="flex flex-wrap items-baseline gap-2.5">
+          <span className="font-serif text-[1.24rem] font-semibold">{fee.e}</span>
           {discounted ? (
             <>
-              <span className="text-[0.82rem] text-ink-faint line-through">{fee.r}</span>
-              <span className="rounded-[5px] border border-gold px-[7px] py-0.5 text-[0.7rem] font-bold tracking-wide text-gold uppercase">
+              <span className="text-[0.8rem] text-ink-faint line-through">{fee.r}</span>
+              <span className="rounded-[5px] border border-gold px-[6px] py-0.5 text-[0.66rem] font-bold tracking-wide text-gold uppercase">
                 Early bird
               </span>
             </>
           ) : null}
         </div>
 
-        {p.badge ? (
-          <p className="text-[0.78rem] font-semibold text-track-fin">✓ {p.badge}</p>
-        ) : null}
-
         {others.length ? (
-          <p className="flex flex-wrap items-center gap-[7px] text-[0.75rem] text-ink-faint">
-            <b className="font-semibold text-ink-soft">Also starts</b>
-            {others.map((o) => (
+          <p className="flex flex-wrap items-center gap-[6px] text-[0.72rem] text-ink-faint">
+            <b className="font-semibold text-ink-soft">Also</b>
+            {others.slice(0, 2).map((o) => (
               <span
                 key={o.d}
-                className="rounded-md border border-line bg-wash px-2 py-0.5 font-mono text-[0.7rem] text-ink-soft"
+                className="rounded-md border border-line bg-wash px-1.5 py-0.5 font-mono text-[0.68rem] text-ink-soft"
               >
                 {fmtShort(o.d)}
               </span>
             ))}
+            {others.length > 2 ? <span>+{others.length - 2} more</span> : null}
           </p>
         ) : null}
 
-        <div className="mt-auto flex items-center gap-2.5 pt-1.5">
+        <div className="mt-auto flex items-center gap-3 pt-2">
           <a
             href={p.apply}
             target="_blank"
             rel="noopener"
             onClick={(e) => e.stopPropagation()}
-            className="flex-1 rounded-xl px-4 py-2.5 text-center text-[0.88rem] font-bold text-paper no-underline transition-[filter] hover:brightness-110"
+            className="flex-1 rounded-xl px-4 py-2 text-center text-[0.85rem] font-bold text-paper no-underline transition-[filter] hover:brightness-110"
             style={{ background: track.color }}
           >
             Apply now
@@ -142,7 +189,7 @@ export function ProgrammeCard({ match, index = 0, label, onOpen }: Props) {
               e.stopPropagation();
               onOpen(p.id);
             }}
-            className="flex-none rounded-xl border-[1.5px] border-line px-4 py-2.5 text-[0.82rem] font-semibold text-ink-soft transition-colors hover:border-ink-soft hover:text-ink"
+            className="flex-none text-[0.8rem] font-semibold text-ink-faint underline decoration-line underline-offset-4 transition-colors hover:text-crimson"
           >
             Details
           </button>
