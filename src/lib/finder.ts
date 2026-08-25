@@ -168,4 +168,46 @@ export const typeCounts = (state: FinderSearch, types: string[]) =>
 export const isDefaultSearch = (s: FinderSearch) =>
   s.grade === "all" && s.interest === "all" && s.month === "all" && s.type === "all" && !s.q;
 
+export type MatchGroup = {
+  key: string;
+  label: string;
+  sub: string;
+  rows: Match[];
+};
+
+/** Group results either by category (default) or by the month they start. */
+export function groupMatches(matches: Match[], sort: string): MatchGroup[] {
+  if (sort === "month") {
+    const byMonth = new Map<string, Match[]>();
+    matches.forEach((m) => {
+      const key = m.next.d.slice(0, 7);
+      const list = byMonth.get(key);
+      if (list) list.push(m);
+      else byMonth.set(key, [m]);
+    });
+    return Array.from(byMonth.keys())
+      .sort()
+      .map((key) => {
+        const rows = byMonth.get(key)!;
+        return {
+          key,
+          label: new Date(key + "-01T00:00:00").toLocaleDateString("en-GB", {
+            month: "long",
+            year: "numeric",
+          }),
+          sub: "Cohorts opening this month",
+          rows,
+        };
+      });
+  }
+
+  return TYPE_ORDER.map((t) => ({
+    key: t,
+    label: TYPES[t].label,
+    sub: TYPE_BLURB[t],
+    rows: matches.filter((m) => m.p.type === t),
+  })).filter((g) => g.rows.length > 0);
+}
+
 export type { TypeKey };
+
