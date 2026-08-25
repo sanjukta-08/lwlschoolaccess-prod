@@ -6,6 +6,7 @@ import {
   typeCounts,
   type FinderSearch,
 } from "@/lib/finder";
+import { regionOptions } from "@/lib/regions";
 
 type Props = {
   state: FinderSearch;
@@ -98,6 +99,18 @@ export function FinderPanel({
             />
           </Field>
 
+          <Field label="Where you are">
+            <BoxSelect
+              value={state.region}
+              onChange={(v) => onChange({ region: v })}
+              options={regionOptions()}
+              label="Location"
+            />
+            <p className="mt-1.5 text-[0.72rem] leading-snug text-ink-faint">
+              Live online — we only show cohorts that meet at a sensible local hour.
+            </p>
+          </Field>
+
           <Field label="Type">
             <div className="flex flex-col gap-1">
               {typeKeys.map((key) => {
@@ -177,6 +190,13 @@ export function FinderPanel({
           onChange={(v) => onChange({ month: v })}
           options={monthOptions()}
           label="Start month"
+        />
+        , joinable from{" "}
+        <SentenceSelect
+          value={state.region}
+          onChange={(v) => onChange({ region: v })}
+          options={regionOptions()}
+          label="Location"
         />
         .
       </p>
