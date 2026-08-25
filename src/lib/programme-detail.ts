@@ -528,6 +528,216 @@ const derivedFaqs = (p: Programme): Faq[] => [
   },
 ];
 
+
+/* ---------- hand-written skills + finished project for the flagships ---------- */
+
+const WRITTEN_OUTCOME: Record<string, Pick<ProgrammeDetail, "skills" | "project">> = {
+  fdf: {
+    skills: [
+      "Clinical case reasoning",
+      "Differential diagnosis basics",
+      "Reading and summarising clinical papers",
+      "Medical ethics argument",
+      "Presenting a case to adults",
+      "Writing for a specialist reader",
+    ],
+    project: {
+      title: "A pre-med capstone, presented on Demo Day",
+      body: "Your child picks one of four project tracks and builds it across the fellowship with their Harvard student mentor — a clinical case study, a public-health brief, a research review or a health-tech concept — then defends it live on Demo Day.",
+      proof: [
+        "A written capstone your child can attach to applications",
+        "A recorded Demo Day presentation for the portfolio",
+        "Written mentor feedback from a Harvard student mentor",
+        "16+ solved clinical cases to talk about in interviews",
+      ],
+    },
+  },
+  jdf: {
+    skills: [
+      "Anatomy and physiology fundamentals",
+      "Symptom-to-system thinking",
+      "Note-taking from a live expert",
+      "Speaking about medicine accurately",
+      "Team case discussion",
+    ],
+    project: {
+      title: "A first medical case write-up",
+      body: "The fellowship closes with your child presenting a case they have worked through themselves — the first genuine piece of medical work in the profile, and the natural bridge into the Future Doctors Fellowship.",
+      proof: [
+        "A case write-up in your child's own words",
+        "Named completion certificate",
+        "A clear yes or no on medicine as a direction",
+      ],
+    },
+  },
+  flf: {
+    skills: [
+      "FIRAC case analysis",
+      "Statutory and case reading",
+      "Cross-examination and rebuttal",
+      "Legal writing structure",
+      "LSAT-style logical reasoning",
+      "Advocacy under time pressure",
+    ],
+    project: {
+      title: "A written brief plus a live moot",
+      body: "Your child prepares a legal brief on a real problem and then argues it in a live moot court against peers, with a mentor sitting as bench — the closest a school student gets to actual advocacy.",
+      proof: [
+        "A written legal brief for the portfolio",
+        "A mooting record and judge feedback",
+        "AI-and-the-law reading notes worth quoting in interviews",
+      ],
+    },
+  },
+  finlit: {
+    skills: [
+      "Three-statement financial modelling",
+      "Valuation basics",
+      "Fraud and red-flag analysis",
+      "Market and industry research",
+      "AI tools for financial analysis",
+      "Pitching numbers to a room",
+    ],
+    project: {
+      title: "An investment case, defended live",
+      body: "The fellowship ends with your child building and presenting an investment or valuation case on a real company — the work an analyst does in week one of the job.",
+      proof: [
+        "A valuation or investment deck",
+        "A working spreadsheet model",
+        "A recorded pitch for the portfolio",
+      ],
+    },
+  },
+  ail: {
+    skills: [
+      "Python fundamentals",
+      "Prompt and model evaluation",
+      "Building with no-code and AI tools",
+      "Product thinking and scoping",
+      "Documenting work in a repo",
+      "Demoing to non-technical adults",
+    ],
+    project: {
+      title: "A working AI build, with a repo and a demo",
+      body: "Your child ships something that actually runs — an AI tool or agent solving a problem they chose — documented in a public repository with a short demo video anyone can open.",
+      proof: [
+        "A working prototype with a public link or repo",
+        "A two-minute demo video",
+        "A written build log showing the decisions made",
+      ],
+    },
+  },
+  rpf: {
+    skills: [
+      "Literature review and search",
+      "Research question design",
+      "Method selection and limitations",
+      "Academic citation and referencing",
+      "Editing to journal standard",
+      "Working to a supervisor's brief",
+    ],
+    project: {
+      title: "A publishable research paper",
+      body: "Your child writes a full paper with a research mentor, from question to submission, aimed at a student-appropriate journal or preprint venue — the strongest single line available to a school student.",
+      proof: [
+        "A submitted or published paper with a permanent link",
+        "A supervisor's letter or written reference",
+        "A citable title for the CV and Common App",
+      ],
+    },
+  },
+  irf: {
+    skills: [
+      "Field research and interviews",
+      "Impact measurement",
+      "Stakeholder writing",
+      "Project management",
+      "Data presentation",
+    ],
+    project: {
+      title: "An impact project with numbers attached",
+      body: "The fellowship pairs research with real-world action, so your child finishes with a documented initiative — what they did, who it affected and what changed, measured rather than described.",
+      proof: [
+        "A research-backed impact report",
+        "Numbers you can quote on an application",
+        "Letters from the people or organisations involved",
+      ],
+    },
+  },
+  fef: {
+    skills: [
+      "Customer discovery interviews",
+      "MVP building with AI and no-code",
+      "Unit economics and pricing",
+      "Investor pitching",
+      "Iterating on user feedback",
+    ],
+    project: {
+      title: "A launched MVP and an investor pitch",
+      body: "Your child takes one idea from interview to validated MVP with real users, then delivers a live investor pitch — a venture that exists rather than a business plan in a drawer.",
+      proof: [
+        "A live product or service link",
+        "First users, sign-ups or revenue",
+        "A pitch deck and recorded pitch",
+      ],
+    },
+  },
+  fcf: {
+    skills: [
+      "Systems thinking",
+      "Stakeholder research",
+      "Campaign and project design",
+      "Team facilitation",
+      "Public advocacy",
+    ],
+    project: {
+      title: "A launched social impact project",
+      body: "Your child designs and runs a real social impact project in their own community, ending with a presentation of what changed and what it cost to get there.",
+      proof: [
+        "A live project with documented outcomes",
+        "Photos, numbers and testimonials",
+        "A leadership story with evidence behind it",
+      ],
+    },
+  },
+  ydf: {
+    skills: [
+      "Rebuttal structure",
+      "Impromptu speaking",
+      "Evidence and sourcing",
+      "Judging your own weaknesses",
+      "Composure under cross-examination",
+    ],
+    project: {
+      title: "A recorded final debate",
+      body: "The fellowship closes with a full adjudicated debate, recorded, so your child leaves with footage of themselves arguing well — the most useful thing for interview practice later.",
+      proof: [
+        "Recorded speeches for the portfolio",
+        "Adjudicator feedback in writing",
+        "A debate record to build tournament entries on",
+      ],
+    },
+  },
+  mun: {
+    skills: [
+      "Researching a country brief fast",
+      "Public speaking without notes",
+      "Negotiation and caucusing",
+      "Resolution and clause drafting",
+      "Parliamentary procedure",
+    ],
+    project: {
+      title: "A position paper and a passed resolution",
+      body: "Your child represents a country in committee, writes the position paper, builds alliances in caucus and works a resolution through to a vote — the whole diplomatic cycle in one conference.",
+      proof: [
+        "A submitted position paper",
+        "Resolution drafts your child helped write",
+        "Delegate award or committee recognition",
+      ],
+    },
+  },
+};
+
 const uniq = (xs: string[]) => Array.from(new Set(xs));
 
 const derivedSkills = (p: Programme): string[] =>
@@ -561,8 +771,8 @@ export const detailFor = (p: Programme): ProgrammeDetail => {
     ageLabel: w.ageLabel ?? `Grades ${p.g[0]}–${p.g[1]} (${p.g[0] + 5}–${p.g[1] + 5})`,
     doSteps: w.doSteps ?? derivedSteps(p),
     takeaways: w.takeaways ?? TAKEAWAYS[p.type],
-    skills: w.skills ?? derivedSkills(p),
-    project: w.project ?? derivedProject(p),
+    skills: w.skills ?? WRITTEN_OUTCOME[p.id]?.skills ?? derivedSkills(p),
+    project: w.project ?? WRITTEN_OUTCOME[p.id]?.project ?? derivedProject(p),
     mentorTitle: w.mentorTitle ?? "Live mentors, every single session",
     mentorBody:
       w.mentorBody ??
