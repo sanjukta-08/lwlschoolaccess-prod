@@ -79,6 +79,8 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
             >
               {next ? `Apply for ${monthOf(next.d)} →` : "Apply now →"}
             </a>
+            {next ? <SaveButton p={p} c={next} variant="wide" /> : null}
+            {next ? <AddToCalendar p={p} c={next} size="md" /> : null}
             {next ? (
               <p className="text-[0.86rem] text-ink-soft">
                 Next cohort starts <b className="text-ink">{fmtLong(next.d)}</b>
@@ -88,6 +90,24 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
               </p>
             ) : null}
           </div>
+
+          {next ? (
+            <p className="mt-4 flex flex-wrap items-center gap-2 text-[0.78rem]">
+              {countdownLabel(next.d) ? (
+                <span className="rounded-lg bg-gold/12 px-2.5 py-1 font-bold text-gold">
+                  {countdownLabel(next.d)}
+                </span>
+              ) : null}
+              {decideLabel(next.d) ? (
+                <span className="rounded-lg bg-crimson/8 px-2.5 py-1 font-bold text-crimson">
+                  {decideLabel(next.d)}
+                </span>
+              ) : null}
+              <span className="rounded-lg bg-paper/70 px-2.5 py-1 font-mono text-ink-soft">
+                Cohorts of {d.cohortSize}
+              </span>
+            </p>
+          ) : null}
 
           <div className="mt-8 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
             {[
