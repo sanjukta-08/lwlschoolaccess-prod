@@ -31,11 +31,11 @@ const str = (v: unknown, fallback: string) =>
 
 /** Plain validator — search params are always strings with safe defaults. */
 export const validateFinderSearch = (raw: Record<string, unknown>): FinderSearch => ({
-  grade: str(raw.grade, "all"),
-  interest: str(raw.interest, "all"),
-  month: str(raw.month, "all"),
-  type: str(raw.type, "all"),
-  q: str(raw.q, "").slice(0, 80),
+  grade: str(raw["grade"], "all"),
+  interest: str(raw["interest"], "all"),
+  month: str(raw["month"], "all"),
+  type: str(raw["type"], "all"),
+  q: str(raw["q"], "").slice(0, 80),
 });
 
 export const BANDS: Record<string, [number, number]> = {

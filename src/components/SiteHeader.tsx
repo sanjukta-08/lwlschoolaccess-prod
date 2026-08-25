@@ -1,15 +1,17 @@
 import { Link } from "@tanstack/react-router";
+import { DEFAULT_SEARCH } from "@/lib/finder";
 
 export function SiteHeader() {
   return (
     <header className="relative z-50">
       <div className="mx-auto flex max-w-[1100px] items-center justify-between gap-4 px-5 py-5">
-        <Link to="/" className="font-serif text-[1.2rem] font-semibold no-underline">
+        <Link to="/" search={DEFAULT_SEARCH} className="font-serif text-[1.2rem] font-semibold no-underline">
           Learn with Leaders<span className="text-crimson">.</span>
         </Link>
         <nav className="flex items-center gap-1 text-[0.85rem] font-semibold">
           <Link
             to="/"
+            search={DEFAULT_SEARCH}
             className="rounded-full px-3 py-2 text-ink-soft transition-colors hover:text-ink"
             activeProps={{ className: "text-ink" }}
             activeOptions={{ exact: true }}
@@ -18,6 +20,7 @@ export function SiteHeader() {
           </Link>
           <Link
             to="/calendar"
+            search={DEFAULT_SEARCH}
             className="rounded-full px-3 py-2 text-ink-soft transition-colors hover:text-ink"
             activeProps={{ className: "text-ink" }}
           >

@@ -16,7 +16,7 @@ export type TypeKey =
   | "comp"
   | "intern"
   | "conf";
-export type Fee = { e: string; r: string };
+export type Fee = { e: string; r: string | null };
 
 export type Cohort = {
   d: string;
@@ -35,7 +35,7 @@ export type Programme = {
   dur: string;
   time: string;
   feeE: string;
-  feeR: string;
+  feeR: string | null;
   badge?: string;
   site: string;
   apply: string;
