@@ -118,7 +118,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
               ["Length", p.dur],
               ["Cohort size", d.cohortSize],
               ["Eligibility", d.ageLabel],
-              ["Live sessions", dualTime(p.time)],
+              ["Live sessions", `${dualTime(p.time)} · live on Zoom`],
             ].map(([k, v]) => (
               <div
                 key={k}
