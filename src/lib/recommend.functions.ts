@@ -62,6 +62,8 @@ const promptFor = (a: FitAnswers, rows: unknown) => {
     "- instead: one honest alternative from the list, phrased 'Consider X if ...'.",
     "- intro: one warm sentence summarising the direction you would take.",
     "Write in plain British English a busy parent can skim.",
+    "",
+    'Reply with JSON only: {"intro": string, "picks": [{"id": string, "why": string, "outcome": string, "commitment": string, "instead": string}]}',
   ].join("\n");
 };
 
@@ -78,19 +80,21 @@ export const recommendProgrammes = createServerFn({ method: "POST" })
 
     try {
       const { createLovableAiGatewayProvider } = await import("./ai-gateway.server");
-      const { streamText, Output } = await import("ai");
+      const { streamText } = await import("ai");
       const gateway = createLovableAiGatewayProvider(key);
       const rows = fitPayload(cands);
       const result = streamText({
         model: gateway("google/gemini-3.7-flash"),
-        output: Output.object({ schema: ResultSchema }),
         prompt: promptFor(answers, rows),
       });
-      const out = await result.output;
+      const text = await result.text;
+      const json = text.slice(text.indexOf("{"), text.lastIndexOf("}") + 1);
+      const parsed = ResultSchema.safeParse(JSON.parse(json));
+      if (!parsed.success) return fallback;
       const allowed = new Set(rows.map((r) => r.id));
-      const picks = out.picks.filter((p) => allowed.has(p.id)).slice(0, 3);
+      const picks = parsed.data.picks.filter((p) => allowed.has(p.id)).slice(0, 3);
       if (picks.length < 1) return fallback;
-      return { intro: out.intro, picks, source: "ai" };
+      return { intro: parsed.data.intro, picks, source: "ai" };
     } catch (err) {
       console.error("recommendProgrammes failed", err);
       return fallback;
