@@ -41,9 +41,6 @@ const PARTNERS = [
   "Harvard Model Congress",
   "Harvard MUN Team",
   "Yale mentors",
-  "Cartier",
-  "Allianz Partners",
-  "Jiva Ag",
   "Greenvan",
 ];
 
