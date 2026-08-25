@@ -9,6 +9,7 @@ import { CounsellorCard } from "@/components/CounsellorCard";
 import { FaqAccordion, FAQS } from "@/components/FaqAccordion";
 import { HowItWorks, WhyLwl } from "@/components/HowItWorks";
 import { TrendingTop5 } from "@/components/TrendingTop5";
+import { SavedStrip } from "@/components/SavedStrip";
 import { ProfilePathway } from "@/components/ProfilePathway";
 import {
   Accordion,
