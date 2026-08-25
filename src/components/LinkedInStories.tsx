@@ -56,7 +56,15 @@ export function LinkedInStories() {
               ) : null}
 
               <footer className="mt-auto flex items-center justify-between gap-3 border-t border-line pt-3.5 text-[0.76rem] text-ink-faint">
-                <span>👍 ❤️ 🎉 {p.reactions}</span>
+                <span className="flex items-center gap-1.5">
+                  <span aria-hidden className="flex items-center">
+                    <span className="h-3.5 w-3.5 rounded-full border-[1.5px] border-paper bg-crimson" />
+                    <span className="-ml-1 h-3.5 w-3.5 rounded-full border-[1.5px] border-paper bg-gold" />
+                    <span className="-ml-1 h-3.5 w-3.5 rounded-full border-[1.5px] border-paper bg-ink" />
+                  </span>
+                  {p.reactions} reactions
+                </span>
+
                 <span>{p.comments} comments</span>
               </footer>
             </article>
