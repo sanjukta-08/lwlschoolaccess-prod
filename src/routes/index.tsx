@@ -9,6 +9,8 @@ import { HeroStats } from "@/components/HeroStats";
 import { CounsellorCard } from "@/components/CounsellorCard";
 import { FaqAccordion, FAQS } from "@/components/FaqAccordion";
 import { HowItWorks, WhyLwl } from "@/components/HowItWorks";
+import { TrendingTop5 } from "@/components/TrendingTop5";
+import { ProfilePathway } from "@/components/ProfilePathway";
 import { TRACKS, TYPE_NAME } from "@/lib/programmes";
 import {
   BAND_LABEL,
@@ -245,6 +247,7 @@ function FinderPage() {
         </div>
       </section>
 
+      <ProfilePathway onOpen={setDetailId} />
       <CounsellorCard />
       <HowItWorks />
       <WhyLwl />

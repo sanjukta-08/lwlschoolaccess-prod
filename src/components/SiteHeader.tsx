@@ -24,7 +24,7 @@ export function SiteHeader() {
             className="rounded-full px-3 py-2 text-ink-soft transition-colors hover:text-ink"
             activeProps={{ className: "text-ink" }}
           >
-            Calendar
+            Full calendar
           </Link>
           <Link
             to="/"
