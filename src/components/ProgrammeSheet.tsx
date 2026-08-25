@@ -1,4 +1,7 @@
 import { useEffect } from "react";
+import { Link } from "@tanstack/react-router";
+
+import { slugOf } from "@/lib/programme-detail";
 import {
   PROGRAMMES,
   TRACKS,
@@ -172,6 +175,15 @@ export function ProgrammeSheet({
               >
                 Apply now
               </a>
+              <Link
+                to="/programmes/$slug"
+                params={{ slug: slugOf(p) }}
+                onClick={onClose}
+                className="rounded-xl border-[1.5px] px-5 py-3 text-[0.88rem] font-semibold no-underline"
+                style={{ borderColor: `color-mix(in srgb, ${track.color} 40%, #fff)`, color: track.color }}
+              >
+                See full details →
+              </Link>
               <a
                 href={p.site}
                 target="_blank"
