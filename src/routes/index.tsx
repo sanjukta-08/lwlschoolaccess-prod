@@ -97,11 +97,13 @@ function HomePage() {
                 ["426+", "Students published"],
                 ["5–12", "Grades covered"],
               ].map(([v, l]) => (
-                <div key={l} className="flex flex-1 flex-col items-center px-6 py-1.5">
+                <div key={l} className="flex flex-1 flex-col items-center px-5 py-1.5">
                   <dt className="font-serif text-[1.6rem] leading-none font-semibold">
                     {v}
                   </dt>
-                  <dd className="mono-label mt-1.5 text-ink-faint">{l}</dd>
+                  <dd className="mono-label mt-1.5 whitespace-nowrap text-ink-faint">
+                    {l}
+                  </dd>
                 </div>
               ))}
             </dl>
