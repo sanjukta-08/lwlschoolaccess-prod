@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { ProgrammeSheet } from "@/components/ProgrammeSheet";
@@ -66,6 +66,15 @@ function CalendarPage() {
             them, search by keyword, and tap any row for full details. Times shown in
             Dubai time (GMT+4) with US Eastern alongside.
           </p>
+          <div className="mt-4">
+            <Link
+              to="/calendar-month"
+              search={DEFAULT_SEARCH}
+              className="inline-block rounded-full border-[1.5px] border-line bg-paper px-4 py-2 text-[0.82rem] font-semibold text-ink-soft no-underline hover:border-ink-soft hover:text-ink"
+            >
+              Switch to month grid view
+            </Link>
+          </div>
         </section>
       </div>
 
