@@ -315,7 +315,7 @@ export type ProfileImpact = {
   verifiable: string[];
   story: string;
   purpose: string;
-  next?: Programme;
+  next?: Programme | undefined;
 };
 
 const NEXT_BY_TRACK: Partial<Record<TrackKey, string>> = {
