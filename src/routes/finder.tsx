@@ -2,6 +2,9 @@ import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
 import { stripSearchParams } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
+
+const GRADE_LO = Math.min(...PROGRAMMES.map((p) => p.g[0]));
+const GRADE_HI = Math.max(...PROGRAMMES.map((p) => p.g[1]));
 import { FinderPanel } from "@/components/FinderPanel";
 import { ProgrammeCard } from "@/components/ProgrammeCard";
 import { ResultGroup } from "@/components/ResultGroup";
@@ -18,7 +21,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { TRACKS, TYPE_NAME } from "@/lib/programmes";
+import { PROGRAMMES, TRACKS, TYPE_NAME } from "@/lib/programmes";
 import {
   BAND_LABEL,
   DEFAULT_SEARCH,
@@ -177,7 +180,7 @@ function FinderPage() {
             <div>
               <span className="mono-label mb-2 inline-flex items-center gap-2 text-crimson">
                 <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
-                38 programmes · Grades 5–12
+                {PROGRAMMES.length} programmes · Grades {GRADE_LO}–{GRADE_HI}
               </span>
               <h1 className="max-w-[22em] font-serif text-[clamp(1.7rem,4vw,2.5rem)] leading-[1.12] font-medium tracking-tight">
                 Find the programme that{" "}
@@ -188,7 +191,7 @@ function FinderPage() {
               {[
                 ["Harvard & Yale mentors", "Taught by leaders"],
                 ["Live on Zoom", "Dubai + US Eastern"],
-                ["Grades 5–12", "38 programmes"],
+                [`Grades ${GRADE_LO}–${GRADE_HI}`, `${PROGRAMMES.length} programmes`],
               ].map(([top, sub]) => (
                 <li
                   key={top}
@@ -309,6 +312,7 @@ function FinderPage() {
                     compact={state.density === "compact"}
                     showType={state.sort === "month" || currentKey === "all"}
                     labelTop={narrowed && activeGroup.rows.length > 1}
+                    region={state.region}
                   />
 
                   {remaining > 0 ? (
@@ -344,6 +348,7 @@ function FinderPage() {
                           key={m.p.id}
                           match={m}
                           index={i}
+                          region={state.region}
                         />
                       ))}
                     </div>
