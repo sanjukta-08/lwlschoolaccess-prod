@@ -7,6 +7,8 @@ import {
   type FinderSearch,
 } from "@/lib/finder";
 import { regionOptions } from "@/lib/regions";
+import { DEFAULT_FIT } from "@/lib/fit";
+import { Link } from "@tanstack/react-router";
 
 type Props = {
   state: FinderSearch;
@@ -79,6 +81,17 @@ export function FinderPanel({
     return (
       <div className="rounded-2xl border border-line bg-paper p-4 shadow-soft">
         <div className="space-y-4">
+          <Link
+            to="/fit"
+            search={DEFAULT_FIT}
+            className="block rounded-xl border border-gold/45 bg-gold/8 px-4 py-3 no-underline transition-colors hover:bg-gold/14"
+          >
+            <b className="block text-[0.86rem] font-bold text-ink">Not sure where to start?</b>
+            <small className="block text-[0.76rem] text-ink-soft">
+              Answer 5 questions → 3 matched programmes
+            </small>
+          </Link>
+
           {search}
 
           <Field label="Grade">

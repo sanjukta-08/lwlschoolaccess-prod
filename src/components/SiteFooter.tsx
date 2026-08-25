@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { DEFAULT_SEARCH } from "@/lib/finder";
+import { DEFAULT_FIT } from "@/lib/fit";
 import { REACH } from "@/lib/social-proof";
 import logoAsset from "@/assets/lwl-logo.png.asset.json";
 import { WingMark } from "@/components/WingMark";
@@ -33,6 +34,9 @@ export function SiteFooter({ note }: { note?: string }) {
 
           <nav className={colCls} aria-label="Programmes">
             <span className="mono-label text-gold">Programmes</span>
+            <Link to="/fit" search={DEFAULT_FIT} className={`${linkCls} font-bold text-gold hover:text-gold`}>
+              Find the right fit (quiz)
+            </Link>
             <Link to="/finder" search={DEFAULT_SEARCH} className={linkCls}>
               Programme Finder
             </Link>

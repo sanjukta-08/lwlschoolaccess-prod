@@ -1,4 +1,5 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
+import { DEFAULT_FIT } from "@/lib/fit";
 import { SiteHeader } from "@/components/SiteHeader";
 import { HowItWorks } from "@/components/HowItWorks";
 import { Suspense, lazy } from "react";
@@ -90,6 +91,18 @@ function HomePage() {
                 Browse the full calendar
               </Link>
             </div>
+            <p className="mt-4 text-[0.88rem] text-ink-soft">
+              Not sure which one fits?{" "}
+              <Link
+                to="/fit"
+                search={DEFAULT_FIT}
+                className="font-bold text-crimson-deep underline decoration-gold decoration-2 underline-offset-4"
+              >
+                Answer 5 questions and we'll match three
+              </Link>
+              .
+            </p>
+
             <dl className="mx-auto mt-11 grid max-w-[820px] grid-cols-2 items-stretch divide-gold-line/70 rounded-[20px] border border-gold-line bg-paper/70 px-4 py-5 shadow-soft sm:flex sm:px-6 sm:divide-x">
               {[
                 [String(PROGRAMMES.length), "Programmes"],

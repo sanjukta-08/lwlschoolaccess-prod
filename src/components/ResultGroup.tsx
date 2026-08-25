@@ -8,6 +8,7 @@ type Props = {
   labelTop?: boolean;
   hideHeader?: boolean;
   rows?: Match[];
+  region?: string;
 };
 
 export function ResultGroup({
@@ -17,6 +18,7 @@ export function ResultGroup({
   labelTop = false,
   hideHeader = false,
   rows,
+  region = "all",
 }: Props) {
   const list = rows ?? group.rows;
 
@@ -42,6 +44,7 @@ export function ResultGroup({
               match={m}
               compact
               showType={showType}
+              region={region}
             />
           ))}
         </div>
@@ -53,6 +56,7 @@ export function ResultGroup({
               match={m}
               index={i}
               showType={showType}
+              region={region}
               label={labelTop && i < 2 ? (i === 0 ? "Best match" : "Great fit") : null}
             />
           ))}
