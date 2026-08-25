@@ -4,6 +4,12 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { ProgrammeLanding } from "@/components/ProgrammeLanding";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { detailFor, programmeBySlug } from "@/lib/programme-detail";
+import {
+  profileImpactFor,
+  projectsFor,
+  ratingFor,
+  testimonialsFor,
+} from "@/lib/programme-proof";
 import { TRACKS, TYPE_NAME, feeOf, fmtLong, isPast } from "@/lib/programmes";
 
 export const Route = createFileRoute("/programmes/$slug")({
