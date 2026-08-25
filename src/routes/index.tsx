@@ -223,7 +223,8 @@ function HomePage() {
             Delivered with <em className="text-crimson-deep">partners</em> students
             recognise
           </h2>
-          <div className="mt-6 flex flex-wrap justify-center gap-x-8 gap-y-3">
+          <PartnerLogos />
+          <div className="mt-7 flex flex-wrap justify-center gap-x-8 gap-y-3">
             {PARTNERS.map((n) => (
               <span key={n} className="font-serif text-[1.02rem] font-semibold text-ink-soft">
                 {n}
