@@ -9,6 +9,8 @@ import {
   shortTime,
 } from "@/lib/programmes";
 import type { Match } from "@/lib/finder";
+import { slugOf } from "@/lib/programme-detail";
+import { Link } from "@tanstack/react-router";
 
 type Props = {
   match: Match;
@@ -35,18 +37,11 @@ export function ProgrammeCard({
 
   if (compact) {
     return (
-      <div
-        role="button"
-        tabIndex={0}
+      <Link
+        to="/programmes/$slug"
+        params={{ slug: slugOf(p) }}
         aria-label={`View ${p.name}`}
-        onClick={() => onOpen(p.id)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            onOpen(p.id);
-          }
-        }}
-        className="flex cursor-pointer flex-wrap items-center gap-x-4 gap-y-1.5 rounded-xl border border-line bg-paper px-4 py-3 transition-colors hover:border-ink-soft/40 hover:bg-wash"
+        className="flex flex-wrap items-center gap-x-4 gap-y-1.5 rounded-xl border border-line bg-paper px-4 py-3 no-underline transition-colors hover:border-ink-soft/40 hover:bg-wash"
       >
         <span className="text-base" aria-hidden style={{ color: track.color }}>
           {track.ic}
@@ -72,29 +67,22 @@ export function ProgrammeCard({
         >
           Apply
         </a>
-      </div>
+      </Link>
     );
   }
 
   return (
-    <article
-      role="button"
-      tabIndex={0}
+    <Link
+      to="/programmes/$slug"
+      params={{ slug: slugOf(p) }}
       aria-label={`View ${p.name}`}
-      onClick={() => onOpen(p.id)}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onOpen(p.id);
-        }
-      }}
       style={
         {
           "--sp": track.color,
           animationDelay: `${Math.min(index * 40, 320)}ms`,
         } as React.CSSProperties
       }
-      className="relative flex animate-in cursor-pointer flex-col overflow-hidden rounded-lg border border-line bg-paper shadow-soft transition-all duration-150 fade-in slide-in-from-bottom-2 hover:-translate-y-[3px] hover:shadow-lift"
+      className="relative flex animate-in flex-col overflow-hidden rounded-lg border border-line bg-paper text-ink no-underline shadow-soft transition-all duration-150 fade-in slide-in-from-bottom-2 hover:-translate-y-[3px] hover:shadow-lift"
     >
       {label ? (
         <span
@@ -186,15 +174,16 @@ export function ProgrammeCard({
           <button
             type="button"
             onClick={(e) => {
+              e.preventDefault();
               e.stopPropagation();
               onOpen(p.id);
             }}
             className="flex-none text-[0.8rem] font-semibold text-ink-faint underline decoration-line underline-offset-4 transition-colors hover:text-crimson"
           >
-            Details
+            Quick look
           </button>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }
