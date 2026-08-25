@@ -99,8 +99,20 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         </div>
       </section>
 
+      <PageJump
+        items={[
+          { id: "overview", label: "Overview" },
+          { id: "skills", label: "Skills" },
+          { id: "projects", label: "Projects" },
+          { id: "profile", label: "Profile impact" },
+          { id: "reviews", label: "Reviews" },
+          { id: "dates", label: "Dates & fees" },
+          { id: "faq", label: "FAQs" },
+        ]}
+      />
+
       {/* What they'll do */}
-      <section className="mx-auto max-w-[1000px] px-5 pt-12">
+      <section id="overview" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
         <h2 className="font-serif text-[clamp(1.45rem,3.4vw,1.9rem)] font-medium">
           What your child will{" "}
           <em className="text-crimson-deep italic">actually do</em>
@@ -127,60 +139,35 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
             </div>
           ))}
         </div>
+      </section>
 
-        <h2 className="mt-12 font-serif text-[clamp(1.45rem,3.4vw,1.9rem)] font-medium">
+      {/* Skills */}
+      <section id="skills" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
+        <h2 className="font-serif text-[clamp(1.45rem,3.4vw,1.9rem)] font-medium">
           Skills your child will <em className="text-crimson-deep italic">gain</em>
         </h2>
         <p className="mt-2 max-w-[40em] text-[0.92rem] text-ink-soft">
-          Named, practised skills — the ones that show up later in essays, interviews
-          and the next programme.
+          Named, practised skills — grouped the way universities read them, and each one
+          tied to how it is used in this {kind.toLowerCase()}.
         </p>
-        <ul className="mt-5 grid list-none gap-2.5 p-0 sm:grid-cols-2 lg:grid-cols-3">
-          {d.skills.map((s) => (
-            <li
-              key={s}
-              className="flex items-start gap-2.5 rounded-xl border border-line bg-paper px-4 py-3 text-[0.88rem] font-semibold shadow-soft"
-            >
-              <span className="mt-[1px] font-bold" style={{ color: track.color }} aria-hidden>
-                ▸
-              </span>
-              {s}
-            </li>
-          ))}
-        </ul>
+        <SkillMatrix programme={p} color={track.color} />
+      </section>
 
-        <h2 className="mt-12 font-serif text-[clamp(1.45rem,3.4vw,1.9rem)] font-medium">
-          The project they <em className="text-crimson-deep italic">finish with</em>
+      {/* Projects */}
+      <section id="projects" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
+        <h2 className="font-serif text-[clamp(1.45rem,3.4vw,1.9rem)] font-medium">
+          Projects they <em className="text-crimson-deep italic">finish with</em>
         </h2>
-        <div
-          className="mt-5 rounded-[20px] border-[1.5px] p-6"
-          style={{
-            borderColor: `color-mix(in srgb, ${track.color} 28%, #fff)`,
-            background: `color-mix(in srgb, ${track.color} 6%, #fff)`,
-          }}
-        >
-          <b className="font-serif text-[1.12rem] font-semibold">{d.project.title}</b>
-          <p className="mt-2 max-w-[46em] text-[0.9rem] text-ink-soft">{d.project.body}</p>
-          <p className="mt-5 font-mono text-[0.7rem] font-semibold tracking-wide text-ink-faint uppercase">
-            What you end up holding
-          </p>
-          <ul className="mt-2.5 grid list-none gap-2 p-0 sm:grid-cols-2">
-            {d.project.proof.map((x) => (
-              <li key={x} className="flex items-start gap-2 text-[0.88rem] text-ink-soft">
-                <span className="mt-[1px] font-bold text-track-fin" aria-hidden>
-                  ✓
-                </span>
-                {x}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <p className="mt-2 max-w-[40em] text-[0.92rem] text-ink-soft">
+          Sample briefs from recent cohorts — the actual work that comes out of the
+          programme, not a syllabus.
+        </p>
+        <ProjectShowcase programme={p} color={track.color} />
 
-        <h2 className="mt-12 font-serif text-[clamp(1.45rem,3.4vw,1.9rem)] font-medium">
-          What they'll <em className="text-crimson-deep italic">take away</em>
-        </h2>
-
-        <div className="mt-5 flex flex-wrap gap-2.5">
+        <h3 className="mt-10 font-serif text-[1.2rem] font-semibold">
+          What they'll take away
+        </h3>
+        <div className="mt-4 flex flex-wrap gap-2.5">
           {d.takeaways.map((t) => (
             <span
               key={t}
@@ -193,13 +180,27 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
             </span>
           ))}
         </div>
+      </section>
 
-        <Link
-          to="/profile-building"
-          className="mt-4 inline-block text-[0.85rem] font-semibold text-crimson no-underline hover:text-crimson-deep"
-        >
-          How this fits into profile building →
-        </Link>
+      {/* Profile impact */}
+      <section id="profile" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
+        <h2 className="font-serif text-[clamp(1.45rem,3.4vw,1.9rem)] font-medium">
+          How this strengthens their{" "}
+          <em className="text-crimson-deep italic">university profile</em>
+        </h2>
+        <p className="mt-2 max-w-[40em] text-[0.92rem] text-ink-soft">
+          The point isn't the certificate. It's the line a family can honestly write
+          afterwards — and the artefact sitting behind it.
+        </p>
+        <ProfileImpact programme={p} color={track.color} />
+      </section>
+
+      {/* Reviews */}
+      <section id="reviews" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
+        <h2 className="font-serif text-[clamp(1.45rem,3.4vw,1.9rem)] font-medium">
+          What families <em className="text-crimson-deep italic">say</em>
+        </h2>
+        <ProgrammeTestimonials programme={p} color={track.color} />
 
         {p.badge ? (
           <div className="mt-9 flex flex-wrap items-center gap-4 rounded-[18px] border border-line bg-wash px-6 py-5">
@@ -216,6 +217,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
           </div>
         ) : null}
       </section>
+
 
       {/* Cohorts */}
       <section className="mx-auto max-w-[1000px] px-5 pt-12">
