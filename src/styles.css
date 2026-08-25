@@ -213,6 +213,9 @@
   --color-crimson: var(--crimson);
   --color-crimson-deep: var(--crimson-deep);
   --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-gold-soft: var(--gold-soft);
+  --color-gold-line: var(--gold-line);
 
   --color-track-med: var(--track-med);
   --color-track-law: var(--track-law);
