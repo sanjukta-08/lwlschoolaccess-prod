@@ -405,15 +405,20 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
               {next ? `next cohort ${fmtShort(next.d)}` : "dates on request"}
             </small>
           </div>
-          <a
-            href={p.apply}
-            target="_blank"
-            rel="noopener"
-            className="rounded-full px-6 py-3 text-[0.9rem] font-bold text-paper no-underline transition-[filter] hover:brightness-110"
-            style={{ background: track.color }}
-          >
-            Apply now →
-          </a>
+          <div className="flex items-center gap-2.5">
+            {next ? (
+              <SaveButton p={p} c={next} variant="wide" className="hidden sm:inline-flex" />
+            ) : null}
+            <a
+              href={p.apply}
+              target="_blank"
+              rel="noopener"
+              className="rounded-full px-6 py-3 text-[0.9rem] font-bold text-paper no-underline transition-[filter] hover:brightness-110"
+              style={{ background: track.color }}
+            >
+              Apply now →
+            </a>
+          </div>
         </div>
       </div>
     </main>
