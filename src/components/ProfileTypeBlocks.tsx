@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { PROGRAMMES, TYPES, type TypeKey } from "@/lib/programmes";
 import { TYPE_PROFILE } from "@/lib/profile-building";
-import { programmePath } from "@/lib/programme-detail";
+import { slugOf } from "@/lib/programme-detail";
 
 const ORDER: TypeKey[] = ["fel", "prog", "comp", "intern", "conf"];
 
@@ -79,7 +79,8 @@ export function ProfileTypeBlocks() {
                     {list.map((p) => (
                       <Link
                         key={p.id}
-                        to={programmePath(p)}
+                        to="/programmes/$slug"
+                        params={{ slug: slugOf(p) }}
                         className="rounded-xl border border-line bg-wash px-3 py-2 text-[0.82rem] font-semibold text-ink no-underline transition-colors hover:border-ink-soft"
                       >
                         {p.name}
