@@ -12,14 +12,17 @@ export function SiteFooter({ note }: { note?: string }) {
       <div className="mx-auto max-w-[1100px]">
         <div className="grid gap-10 md:grid-cols-[1.2fr_repeat(4,1fr)]">
           <div>
-            <img
-              src={logoAsset.url}
-              alt="Learn With Leaders"
-              width={160}
-              height={80}
-              loading="lazy"
-              className="h-9 w-auto brightness-0 invert"
-            />
+            <div className="flex items-center gap-3">
+              <img
+                src={logoAsset.url}
+                alt="Learn With Leaders"
+                width={160}
+                height={80}
+                loading="lazy"
+                className="h-9 w-auto brightness-0 invert"
+              />
+              <WingMark size={18} tone="gold" />
+            </div>
             <p className="mt-4 max-w-[24em] text-[0.82rem] text-paper/60">
               Live programmes mentored by students and alumni of the world's most
               selective universities. Families in {REACH.countries} countries and{" "}
