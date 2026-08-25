@@ -16,6 +16,8 @@ export type FinderSearch = {
   month: string;
   type: string;
   q: string;
+  view: string;
+  status: string;
 };
 
 export const DEFAULT_SEARCH: FinderSearch = {
@@ -24,6 +26,8 @@ export const DEFAULT_SEARCH: FinderSearch = {
   month: "all",
   type: "all",
   q: "",
+  view: "list",
+  status: "all",
 };
 
 const str = (v: unknown, fallback: string) =>
@@ -36,6 +40,8 @@ export const validateFinderSearch = (raw: Record<string, unknown>): FinderSearch
   month: str(raw["month"], "all"),
   type: str(raw["type"], "all"),
   q: str(raw["q"], "").slice(0, 80),
+  view: str(raw["view"], "list") === "grid" ? "grid" : "list",
+  status: str(raw["status"], "all") === "soon" ? "soon" : "all",
 });
 
 export const BANDS: Record<string, [number, number]> = {

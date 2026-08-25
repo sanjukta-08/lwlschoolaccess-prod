@@ -158,7 +158,7 @@ export function ProgrammeSheet({
             </section>
 
             <p className="text-[0.8rem] text-ink-faint">
-              All times US Eastern (ET). Fees correct at time of publishing — confirm on
+              Times shown in Dubai time (GMT+4) with US Eastern alongside. Fees correct at time of publishing — confirm on
               the programme page.
             </p>
 
