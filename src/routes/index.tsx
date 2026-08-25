@@ -1,6 +1,8 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { HowItWorks, WhyLwl } from "@/components/HowItWorks";
+import { LinkedInGlyph, StoryGallery } from "@/components/StoryGallery";
+import { APPROVED_STORIES } from "@/lib/social-proof";
 import {
   PROGRAMMES,
   TOTAL_COHORTS,
