@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { REACH } from "@/lib/social-proof";
 import logoAsset from "@/assets/lwl-logo.png.asset.json";
+import { WingMark } from "@/components/WingMark";
 
 const colCls = "flex flex-col gap-2 text-[0.82rem] text-paper/70";
 const linkCls = "no-underline text-paper/70 transition-colors hover:text-paper";
