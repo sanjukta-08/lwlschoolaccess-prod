@@ -884,3 +884,51 @@ export const TYPE_ORDER: TypeKey[] = ["fel", "prog", "comp", "intern", "conf"];
 
 export const TOTAL_COHORTS = PROGRAMMES.reduce((n, p) => n + p.cohorts.length, 0);
 
+
+export const TYPE_IC: Record<TypeKey, string> = {
+  fel: "🎓",
+  prog: "📚",
+  comp: "🏆",
+  intern: "💼",
+  conf: "🌐",
+};
+
+/** Editorially chosen flagships — the five a parent should look at first. */
+export const TRENDING: { id: string; why: string }[] = [
+  { id: "fdf", why: "The most asked-about pathway for future medics — clinical cases, live mentors, capstone." },
+  { id: "ail", why: "Build and ship a real AI product; the fastest-moving skill on any application." },
+  { id: "flf", why: "Moot court and legal reasoning — ideal first step for a law-curious teenager." },
+  { id: "irf", why: "Harvard Student Agencies mentors and a published research paper in four months." },
+  { id: "finlit", why: "Investing, valuation and fraud detection — finance fluency that lasts." },
+];
+
+/** Grade-band pathway for profile building. */
+export const PATHWAY: {
+  key: string;
+  band: string;
+  title: string;
+  goal: string;
+  ids: string[];
+}[] = [
+  {
+    key: "explore",
+    band: "Grades 5–7",
+    title: "Explore widely",
+    goal: "Try two or three fields, get comfortable speaking and presenting, and find what genuinely holds their attention.",
+    ids: ["onw", "ydp", "yrp"],
+  },
+  {
+    key: "deepen",
+    band: "Grades 8–10",
+    title: "Go deep, gather evidence",
+    goal: "Commit to one or two interests, finish a mentor-led fellowship, and start collecting real work — projects, papers, pitches.",
+    ids: ["jdf", "fef", "yrp"],
+  },
+  {
+    key: "prove",
+    band: "Grades 11–12",
+    title: "Make it application-ready",
+    goal: "Publish, compete and intern so the profile shows proof — a paper, an award or real work experience with a named organisation.",
+    ids: ["rpf", "irf", "fd1"],
+  },
+];
