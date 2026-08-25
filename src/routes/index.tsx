@@ -15,6 +15,7 @@ import {
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { slugOf } from "@/lib/programme-slug";
 import { SiteFooter } from "@/components/SiteFooter";
+import { PartnerLogos } from "@/components/PartnerLogos";
 
 const TITLE = "Learn with Leaders — Harvard & Yale-mentored programmes, Grades 5–12";
 const DESC =
