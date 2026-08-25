@@ -67,18 +67,39 @@ export const familyOf = (skill: string): SkillFamily => {
 
 export type GroupedSkill = { skill: string; family: SkillFamily; how: string };
 
-const HOW_BY_FAMILY: Record<SkillFamily, (p: Programme) => string> = {
-  think: (p) => `Practised on live problems in every ${p.type === "comp" ? "round" : "session"}, not taught as theory.`,
-  communicate: () => "Rehearsed out loud in front of a mentor and peers, then corrected on the spot.",
-  build: (p) => `Applied directly to the work your child hands in across ${p.dur.toLowerCase()}.`,
-  people: () => "Built through real deadlines, small-team work and written mentor feedback.",
+const HOW_VARIANTS: Record<SkillFamily, ((p: Programme) => string)[]> = {
+  think: [
+    (p) => `Practised on live problems in every ${p.type === "comp" ? "round" : "session"} — never taught as theory.`,
+    () => "Mentors make your child justify each step out loud before moving on.",
+    (p) => `Applied to unfamiliar ${TRACKS[p.tracks[0]!].label.toLowerCase()} material, not rehearsed examples.`,
+  ],
+  communicate: [
+    () => "Rehearsed in front of a mentor and peers, then corrected on the spot.",
+    () => "Written up each week and marked the way a specialist reader would mark it.",
+    () => "Tested in the final presentation, where the work has to stand on its own.",
+  ],
+  build: [
+    (p) => `Used directly on the work your child hands in across ${p.dur.toLowerCase()}.`,
+    () => "Learnt by building the real artefact, not by following a tutorial.",
+    () => "Refined through revision rounds until the output is portfolio-ready.",
+  ],
+  people: [
+    () => "Built through real deadlines and written mentor feedback.",
+    () => "Practised in small-team work with students your child has never met.",
+    () => "Held to a professional standard — the brief, the deadline, the follow-up.",
+  ],
 };
 
-export const groupedSkills = (p: Programme): GroupedSkill[] =>
-  detailFor(p).skills.map((skill) => {
+export const groupedSkills = (p: Programme): GroupedSkill[] => {
+  const seen: Record<string, number> = {};
+  return detailFor(p).skills.map((skill) => {
     const family = familyOf(skill);
-    return { skill, family, how: HOW_BY_FAMILY[family](p) };
+    const n = seen[family] ?? 0;
+    seen[family] = n + 1;
+    const variants = HOW_VARIANTS[family];
+    return { skill, family, how: variants[n % variants.length]!(p) };
   });
+};
 
 /* ---------------- sample projects ---------------- */
 
