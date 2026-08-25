@@ -1,6 +1,9 @@
 import {
   PROGRAMMES,
   TRACKS,
+  TYPES,
+  TYPE_BLURB,
+  TYPE_ORDER,
   cohortGrades,
   isPast,
   upcomingProgrammes,
@@ -18,6 +21,8 @@ export type FinderSearch = {
   q: string;
   view: string;
   status: string;
+  sort: string;
+  density: string;
 };
 
 export const DEFAULT_SEARCH: FinderSearch = {
@@ -28,6 +33,8 @@ export const DEFAULT_SEARCH: FinderSearch = {
   q: "",
   view: "list",
   status: "all",
+  sort: "cat",
+  density: "comfy",
 };
 
 const str = (v: unknown, fallback: string) =>
@@ -42,7 +49,10 @@ export const validateFinderSearch = (raw: Record<string, unknown>): FinderSearch
   q: str(raw["q"], "").slice(0, 80),
   view: str(raw["view"], "list") === "grid" ? "grid" : "list",
   status: str(raw["status"], "all") === "soon" ? "soon" : "all",
+  sort: str(raw["sort"], "cat") === "month" ? "month" : "cat",
+  density: str(raw["density"], "comfy") === "compact" ? "compact" : "comfy",
 });
+
 
 export const BANDS: Record<string, [number, number]> = {
   b57: [5, 7],
