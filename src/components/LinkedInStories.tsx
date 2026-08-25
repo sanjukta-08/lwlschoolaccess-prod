@@ -39,7 +39,10 @@ export function LinkedInStories() {
                 <div className="min-w-0">
                   <div className="truncate text-[0.9rem] font-bold text-ink">{p.name}</div>
                   <div className="truncate text-[0.76rem] text-ink-faint">{p.role}</div>
-                  <div className="mono-label mt-0.5 text-ink-faint">{p.when} · 🌐</div>
+                  <div className="mono-label mt-0.5 text-ink-faint">
+                    {p.when} · Public
+                  </div>
+
                 </div>
                 <LinkedInGlyph />
               </header>
