@@ -23,6 +23,7 @@ export type FinderSearch = {
   status: string;
   sort: string;
   density: string;
+  calView: string;
 };
 
 export const DEFAULT_SEARCH: FinderSearch = {
