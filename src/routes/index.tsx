@@ -277,3 +277,39 @@ function FinderPage() {
     </div>
   );
 }
+
+function Segmented({
+  legend,
+  value,
+  onChange,
+  options,
+}: {
+  legend: string;
+  value: string;
+  onChange: (value: string) => void;
+  options: { value: string; label: string }[];
+}) {
+  return (
+    <div className="flex items-center gap-2">
+      <span className="mono-label text-ink-faint">{legend}</span>
+      <div className="inline-flex gap-0.5 rounded-full border border-line bg-paper p-1">
+        {options.map((o) => {
+          const on = value === o.value;
+          return (
+            <button
+              key={o.value}
+              type="button"
+              aria-pressed={on}
+              onClick={() => onChange(o.value)}
+              className={`rounded-full px-3 py-1 text-[0.76rem] font-semibold transition-colors ${
+                on ? "bg-ink text-paper" : "text-ink-soft hover:text-ink"
+              }`}
+            >
+              {o.label}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
