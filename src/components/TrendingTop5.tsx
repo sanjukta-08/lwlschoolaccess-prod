@@ -1,3 +1,6 @@
+import { Link } from "@tanstack/react-router";
+
+import { slugOf } from "@/lib/programme-detail";
 import {
   PROGRAMMES,
   TRACKS,
@@ -84,6 +87,13 @@ export function TrendingTop5({ onOpen }: { onOpen: (id: string) => void }) {
                     >
                       Apply
                     </a>
+                    <Link
+                      to="/programmes/$slug"
+                      params={{ slug: slugOf(p) }}
+                      className="rounded-xl border-[1.5px] border-line bg-paper px-4 py-2.5 text-[0.82rem] font-semibold text-ink-soft no-underline hover:border-ink-soft hover:text-ink"
+                    >
+                      Full details
+                    </Link>
                     <button
                       type="button"
                       onClick={() => onOpen(p.id)}
