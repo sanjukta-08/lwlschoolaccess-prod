@@ -1,6 +1,12 @@
 import { Link } from "@tanstack/react-router";
 
+import { PageJump } from "@/components/PageJump";
+import { ProfileImpact } from "@/components/ProfileImpact";
+import { ProgrammeTestimonials } from "@/components/ProgrammeTestimonials";
+import { ProjectShowcase } from "@/components/ProjectShowcase";
+import { SkillMatrix } from "@/components/SkillMatrix";
 import { DEFAULT_SEARCH } from "@/lib/finder";
+
 import { detailFor, relatedProgrammes, slugOf } from "@/lib/programme-detail";
 import {
   TRACKS,
@@ -220,7 +226,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
 
 
       {/* Cohorts */}
-      <section className="mx-auto max-w-[1000px] px-5 pt-12">
+      <section id="dates" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
         <h2 className="font-serif text-[clamp(1.45rem,3.4vw,1.9rem)] font-medium">
           Upcoming <em className="text-crimson-deep italic">cohorts</em>
         </h2>
@@ -292,7 +298,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       </section>
 
       {/* FAQ */}
-      <section className="mx-auto max-w-[760px] px-5 pt-12">
+      <section id="faq" className="mx-auto max-w-[760px] scroll-mt-32 px-5 pt-12">
         <h2 className="text-center font-serif text-[clamp(1.45rem,3.4vw,1.9rem)] font-medium">
           Parents usually <em className="text-crimson-deep italic">ask</em>
         </h2>
