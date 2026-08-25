@@ -309,7 +309,7 @@
 }
 
 @utility header-blur {
-  background: color-mix(in srgb, var(--paper) 94%, transparent);
+  background: var(--paper);
   backdrop-filter: saturate(140%) blur(12px);
   -webkit-backdrop-filter: saturate(140%) blur(12px);
   border-bottom: 1px solid var(--gold-line);
