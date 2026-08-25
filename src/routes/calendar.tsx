@@ -83,8 +83,9 @@ function CalendarPage() {
             The cohort <em className="text-crimson-deep">calendar</em>
           </h1>
           <p className="mt-3 max-w-[38em] text-[0.98rem] text-ink-soft">
-            Every start date, month by month. Filter the calendar the same way you filter
-            the finder, then tap a date to see who starts when.
+            Every cohort in one view, July 2026 to April 2027. Search by name or keyword,
+            switch to the month grid, and tap any row for full details. Times shown in
+            Dubai time (GMT+4) with US Eastern alongside.
           </p>
         </section>
       </div>
