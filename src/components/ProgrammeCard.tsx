@@ -119,12 +119,30 @@ export function ProgrammeCard({
       <div className="flex flex-1 flex-col gap-2.5 px-5 pt-3.5 pb-4">
         <div className="flex items-start justify-between gap-3">
           <h3 className="font-serif text-[1.2rem] leading-tight font-semibold">{p.name}</h3>
-          {isSoon(next.d) ? (
-            <span className="mt-1 flex-none rounded-md bg-gold px-2 py-[3px] text-[0.62rem] font-bold tracking-wide text-paper uppercase">
-              Soon
-            </span>
-          ) : null}
+          <span className="mt-0.5 flex flex-none items-center gap-1.5">
+            {isSoon(next.d) ? (
+              <span className="rounded-md bg-gold px-2 py-[3px] text-[0.62rem] font-bold tracking-wide text-paper uppercase">
+                Soon
+              </span>
+            ) : null}
+            <SaveButton p={p} c={next} />
+          </span>
         </div>
+
+        {countdownLabel(next.d) || decideLabel(next.d) ? (
+          <p className="flex flex-wrap items-center gap-1.5 text-[0.7rem] font-bold">
+            {countdownLabel(next.d) ? (
+              <span className="rounded-md bg-gold/12 px-2 py-0.5 text-gold">
+                {countdownLabel(next.d)}
+              </span>
+            ) : null}
+            {decideLabel(next.d) ? (
+              <span className="rounded-md bg-crimson/8 px-2 py-0.5 text-crimson">
+                {decideLabel(next.d)}
+              </span>
+            ) : null}
+          </p>
+        ) : null}
 
         <p className="clamp-2 text-[0.85rem] text-ink-soft">{p.tag}</p>
 
