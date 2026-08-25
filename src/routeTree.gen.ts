@@ -15,6 +15,7 @@ import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as CalendarMonthRouteImport } from './routes/calendar-month'
 import { Route as FinderRouteImport } from './routes/finder'
 import { Route as ProfileBuildingRouteImport } from './routes/profile-building'
+import { Route as ShortlistRouteImport } from './routes/shortlist'
 import { Route as ProgrammesSlugRouteImport } from './routes/programmes.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -47,6 +48,11 @@ const ProfileBuildingRoute = ProfileBuildingRouteImport.update({
   path: '/profile-building',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShortlistRoute = ShortlistRouteImport.update({
+  id: '/shortlist',
+  path: '/shortlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProgrammesSlugRoute = ProgrammesSlugRouteImport.update({
   id: '/programmes/$slug',
   path: '/programmes/$slug',
@@ -60,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/calendar-month': typeof CalendarMonthRoute
   '/finder': typeof FinderRoute
   '/profile-building': typeof ProfileBuildingRoute
+  '/shortlist': typeof ShortlistRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
 }
 export interface FileRoutesByTo {
@@ -69,6 +76,7 @@ export interface FileRoutesByTo {
   '/calendar-month': typeof CalendarMonthRoute
   '/finder': typeof FinderRoute
   '/profile-building': typeof ProfileBuildingRoute
+  '/shortlist': typeof ShortlistRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
 }
 export interface FileRoutesById {
@@ -79,6 +87,7 @@ export interface FileRoutesById {
   '/calendar-month': typeof CalendarMonthRoute
   '/finder': typeof FinderRoute
   '/profile-building': typeof ProfileBuildingRoute
+  '/shortlist': typeof ShortlistRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
 }
 export interface FileRouteTypes {
@@ -90,6 +99,7 @@ export interface FileRouteTypes {
     | '/calendar-month'
     | '/finder'
     | '/profile-building'
+    | '/shortlist'
     | '/programmes/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -99,6 +109,7 @@ export interface FileRouteTypes {
     | '/calendar-month'
     | '/finder'
     | '/profile-building'
+    | '/shortlist'
     | '/programmes/$slug'
   id:
     | '__root__'
@@ -108,6 +119,7 @@ export interface FileRouteTypes {
     | '/calendar-month'
     | '/finder'
     | '/profile-building'
+    | '/shortlist'
     | '/programmes/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -118,6 +130,7 @@ export interface RootRouteChildren {
   CalendarMonthRoute: typeof CalendarMonthRoute
   FinderRoute: typeof FinderRoute
   ProfileBuildingRoute: typeof ProfileBuildingRoute
+  ShortlistRoute: typeof ShortlistRoute
   ProgrammesSlugRoute: typeof ProgrammesSlugRoute
 }
 
@@ -165,6 +178,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileBuildingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/shortlist': {
+      id: '/shortlist'
+      path: '/shortlist'
+      fullPath: '/shortlist'
+      preLoaderRoute: typeof ShortlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/programmes/$slug': {
       id: '/programmes/$slug'
       path: '/programmes/$slug'
@@ -182,6 +202,7 @@ const rootRouteChildren: RootRouteChildren = {
   CalendarMonthRoute: CalendarMonthRoute,
   FinderRoute: FinderRoute,
   ProfileBuildingRoute: ProfileBuildingRoute,
+  ShortlistRoute: ShortlistRoute,
   ProgrammesSlugRoute: ProgrammesSlugRoute,
 }
 export const routeTree = rootRouteImport
