@@ -92,6 +92,8 @@ export function DayList({
                   >
                     Full details
                   </Link>
+                  <AddToCalendar p={p} c={c} />
+                  <SaveButton p={p} c={c} />
                 </div>
               </li>
             );
