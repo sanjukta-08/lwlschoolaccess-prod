@@ -88,16 +88,18 @@ function HomePage() {
                 Browse the full calendar
               </Link>
             </div>
-            <dl className="mt-11 flex flex-wrap justify-center gap-x-10 gap-y-5">
+            <dl className="mx-auto mt-11 flex max-w-[820px] flex-wrap items-stretch justify-center divide-gold-line/70 rounded-[20px] border border-gold-line bg-paper/70 px-6 py-5 shadow-soft sm:divide-x">
               {[
                 [String(PROGRAMMES.length), "Programmes"],
                 [String(TOTAL_COHORTS), "Upcoming cohorts"],
                 ["426+", "Students published"],
                 ["5–12", "Grades covered"],
               ].map(([v, l]) => (
-                <div key={l} className="flex flex-col items-center">
-                  <dt className="font-serif text-[1.6rem] font-semibold">{v}</dt>
-                  <dd className="mono-label text-ink-faint">{l}</dd>
+                <div key={l} className="flex flex-1 flex-col items-center px-6 py-1.5">
+                  <dt className="font-serif text-[1.6rem] leading-none font-semibold">
+                    {v}
+                  </dt>
+                  <dd className="mono-label mt-1.5 text-ink-faint">{l}</dd>
                 </div>
               ))}
             </dl>
@@ -105,15 +107,14 @@ function HomePage() {
         </div>
       </div>
 
-      <section id="pathways" className="scroll-mt-20 px-5 pt-14 pb-8">
+      <section id="pathways" className="scroll-mt-24 px-5 pt-14 pb-8">
         <div className="mx-auto max-w-[1100px]">
-          <h2 className="text-center font-serif text-[clamp(1.6rem,3.8vw,2.2rem)] font-medium">
+          <SectionHeading
+            eyebrow="Where to begin"
+            sub="Every interest has a route — from a first taste to flagship fellowships. Tap one to see what fits your child."
+          >
             Pick a <em className="text-crimson-deep">pathway</em>
-          </h2>
-          <p className="mx-auto mt-2.5 max-w-[40em] text-center text-[0.92rem] text-ink-soft">
-            Every interest has a route — from a first taste to flagship fellowships. Tap
-            one to see what fits your child.
-          </p>
+          </SectionHeading>
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {(Object.keys(TRACKS) as TrackKey[]).map((k) => {
               const t = TRACKS[k];
