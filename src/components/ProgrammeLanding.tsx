@@ -8,6 +8,8 @@ import { ProfileImpact } from "@/components/ProfileImpact";
 import { ProgrammeTestimonials } from "@/components/ProgrammeTestimonials";
 import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { SkillMatrix } from "@/components/SkillMatrix";
+import { LinkedInGlyph, StoryGallery } from "@/components/StoryGallery";
+import { storiesForTracks } from "@/lib/social-proof";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 
 import { detailFor, relatedProgrammes, slugOf } from "@/lib/programme-detail";
