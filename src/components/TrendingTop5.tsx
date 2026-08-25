@@ -1,10 +1,12 @@
 import { Link } from "@tanstack/react-router";
 
 import { slugOf } from "@/lib/programme-detail";
+import { getMatches, type FinderSearch } from "@/lib/finder";
 import {
   PROGRAMMES,
   TRACKS,
   TRENDING,
+  TYPES,
   TYPE_NAME,
   cohortGrades,
   feeOf,
@@ -12,16 +14,36 @@ import {
   isPast,
 } from "@/lib/programmes";
 
-export function TrendingTop5({ onOpen }: { onOpen: (id: string) => void }) {
+type Props = {
+  state?: FinderSearch;
+  onOpen: (id: string) => void;
+};
+
+export function TrendingTop5({ state, onOpen }: Props) {
+  const filteredMatches = state ? new Map(getMatches(state).map((m) => [m.p.id, m])) : null;
+  const activeInterest =
+    state && state.interest !== "all"
+      ? TRACKS[state.interest as keyof typeof TRACKS]
+      : null;
+  const activeType =
+    state && state.type !== "all" ? TYPES[state.type as keyof typeof TYPES] : null;
+
   const picks = TRENDING.map(({ id, why }) => {
-    const p = PROGRAMMES.find((x) => x.id === id);
+    const filtered = filteredMatches?.get(id);
+    if (filteredMatches && !filtered) return null;
+    const p = filtered?.p ?? PROGRAMMES.find((x) => x.id === id);
     if (!p) return null;
-    const next = p.cohorts.filter((c) => !isPast(c.d)).sort((a, b) => a.d.localeCompare(b.d))[0];
+    const next =
+      filtered?.next ??
+      p.cohorts.filter((c) => !isPast(c.d)).sort((a, b) => a.d.localeCompare(b.d))[0];
     if (!next) return null;
     return { p, next, why };
   }).filter((x): x is NonNullable<typeof x> => x !== null);
 
   if (!picks.length) return null;
+
+  const titleLead = activeInterest ? `Top ${activeInterest.label}` : "Top 5";
+  const titleNoun = activeType ? activeType.label.toLowerCase() : "programmes";
 
   return (
     <section id="trending" className="scroll-mt-24 bg-paper py-14">
@@ -31,7 +53,7 @@ export function TrendingTop5({ onOpen }: { onOpen: (id: string) => void }) {
             🔥 Trending now
           </span>
           <h2 className="mt-3 font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
-            Top 5 programmes to <em className="text-crimson-deep">start with</em>
+            {titleLead} {titleNoun} to <em className="text-crimson-deep">start with</em>
           </h2>
           <p className="mx-auto mt-2 max-w-[40em] text-[0.92rem] text-ink-soft">
             If you&apos;re not sure where to begin, these are the ones most families choose
