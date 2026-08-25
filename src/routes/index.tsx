@@ -249,6 +249,25 @@ function FinderPage() {
           <p className="mx-auto mt-7 flex w-fit max-w-full items-center justify-center gap-2 rounded-full border border-line bg-paper px-5 py-2.5 text-center text-[0.82rem] text-ink-soft">
             🕒 Live on Zoom · times shown in Dubai time (GMT+4) with US Eastern alongside.
           </p>
+
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-3xl border border-line bg-paper p-6 shadow-soft">
+            <div>
+              <h3 className="font-serif text-[1.2rem] font-semibold">
+                Prefer to plan around dates?
+              </h3>
+              <p className="mt-1 max-w-[36em] text-[0.86rem] text-ink-soft">
+                Open the full calendar for every cohort from July 2026 to April 2027,
+                month by month or grouped by type.
+              </p>
+            </div>
+            <Link
+              to="/calendar"
+              search={state}
+              className="rounded-full bg-ink px-5 py-3 text-[0.86rem] font-bold text-paper no-underline hover:bg-crimson-deep"
+            >
+              Open the full calendar →
+            </Link>
+          </div>
         </div>
       </section>
 
