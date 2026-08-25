@@ -82,17 +82,21 @@ export function MonthGrid({
                   {day ? (
                     <>
                       <div className="mb-1.5 flex items-center justify-between">
-                        <span
+                        <button
+                          type="button"
+                          onClick={() => onSelectDay(iso(day))}
+                          disabled={!dayEntries.length}
+                          aria-label={`Cohorts starting ${iso(day)}`}
                           className={`inline-flex h-6 min-w-6 items-center justify-center rounded-full px-1.5 font-mono text-[0.72rem] font-semibold ${
                             isToday
                               ? "bg-crimson text-paper"
                               : dayEntries.length
-                                ? "text-ink"
+                                ? "text-ink hover:bg-wash-deep"
                                 : "text-ink-faint"
                           }`}
                         >
                           {day.getDate()}
-                        </span>
+                        </button>
                         {dayEntries.length > 2 ? (
                           <span className="font-mono text-[0.66rem] text-ink-faint">
                             {dayEntries.length}
