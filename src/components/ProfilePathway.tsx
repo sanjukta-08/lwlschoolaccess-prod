@@ -25,7 +25,7 @@ export function ProfilePathway({ onOpen }: { onOpen: (id: string) => void }) {
           </p>
         </header>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {PATHWAY.map((stage, i) => (
             <article
               key={stage.key}
@@ -33,7 +33,7 @@ export function ProfilePathway({ onOpen }: { onOpen: (id: string) => void }) {
             >
               <div className="flex items-baseline justify-between gap-2">
                 <span className="mono-label text-crimson">Step {i + 1}</span>
-                <span className="rounded-full bg-wash px-2.5 py-1 font-mono text-[0.7rem] font-semibold text-ink-soft">
+                <span className="whitespace-nowrap rounded-full bg-wash px-2.5 py-1 font-mono text-[0.7rem] font-semibold text-ink-soft">
                   {stage.band}
                 </span>
               </div>

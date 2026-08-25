@@ -980,7 +980,7 @@ export const PATHWAY: {
   },
   {
     key: "verify",
-    band: "Grades 9–12 · alongside any programme",
+    band: "Grades 9–12 · any stage",
     title: "Turn it into proof universities can check",
     goal: "The work only counts if an admissions officer can find it, read it and confirm it is real. Step 4 packages everything from steps 1–3.",
     ids: [],
