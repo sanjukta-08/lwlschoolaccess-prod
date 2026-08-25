@@ -1,3 +1,4 @@
+import { DEFAULT_SEARCH } from "@/lib/finder";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -24,7 +25,7 @@ function NotFoundComponent() {
         <div className="mt-6">
           <Link
             to="/"
-            search={{ grade: "all", interest: "all", month: "all", type: "all", q: "", view: "list", status: "all" }}
+            search={DEFAULT_SEARCH}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Go home

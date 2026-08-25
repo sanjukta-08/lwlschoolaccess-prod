@@ -3,6 +3,7 @@ import { useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { FinderPanel } from "@/components/FinderPanel";
 import { ProgrammeCard } from "@/components/ProgrammeCard";
+import { ResultGroup } from "@/components/ResultGroup";
 import { ProgrammeSheet } from "@/components/ProgrammeSheet";
 import { HeroStats } from "@/components/HeroStats";
 import { CounsellorCard } from "@/components/CounsellorCard";
@@ -13,10 +14,12 @@ import {
   BAND_LABEL,
   DEFAULT_SEARCH,
   getMatches,
+  groupMatches,
   monthLabel,
   validateFinderSearch,
   type FinderSearch,
 } from "@/lib/finder";
+
 
 const TITLE = "Programme Finder | Learn with Leaders";
 const DESC =
@@ -62,6 +65,8 @@ function FinderPage() {
   const matches = getMatches(state);
   const cohortCount = matches.reduce((n, m) => n + 1 + m.others.length, 0);
   const narrowed = state.interest !== "all" || state.grade !== "all" || !!state.q;
+  const groups = groupMatches(matches, state.sort);
+
 
   let fallback = matches.length ? [] : getMatches(state, { ignoreMonth: true });
   let fallbackNote = "in other months";
@@ -153,24 +158,56 @@ function FinderPage() {
           </header>
 
           {matches.length ? (
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {matches.map((m, i) => (
-                <ProgrammeCard
-                  key={m.p.id}
-                  match={m}
-                  index={i}
-                  label={
-                    narrowed && matches.length > 1 && i < 2
-                      ? i === 0
-                        ? "Best match"
-                        : "Great fit"
-                      : null
-                  }
+            <>
+              <div className="mb-2 flex flex-wrap items-center justify-center gap-3">
+                <Segmented
+                  legend="Sort"
+                  value={state.sort}
+                  onChange={(v) => update({ sort: v })}
+                  options={[
+                    { value: "cat", label: "By category" },
+                    { value: "month", label: "By start month" },
+                  ]}
+                />
+                <Segmented
+                  legend="View"
+                  value={state.density}
+                  onChange={(v) => update({ density: v })}
+                  options={[
+                    { value: "comfy", label: "Cards" },
+                    { value: "compact", label: "Compact list" },
+                  ]}
+                />
+              </div>
+
+              {groups.length > 1 ? (
+                <div className="mb-2 flex flex-wrap items-center justify-center gap-2">
+                  <span className="mono-label text-ink-faint">Jump to</span>
+                  {groups.map((g) => (
+                    <a
+                      key={g.key}
+                      href={`#group-${g.key}`}
+                      className="rounded-full border border-line bg-paper px-3 py-1 text-[0.76rem] font-semibold text-ink-soft no-underline transition-colors hover:border-crimson/40 hover:text-crimson"
+                    >
+                      {g.label} · {g.rows.length}
+                    </a>
+                  ))}
+                </div>
+              ) : null}
+
+              {groups.map((g, gi) => (
+                <ResultGroup
+                  key={g.key}
+                  group={g}
+                  compact={state.density === "compact"}
+                  showType={state.sort === "month"}
+                  labelTop={narrowed && gi === 0 && g.rows.length > 1}
                   onOpen={setDetailId}
                 />
               ))}
-            </div>
+            </>
           ) : (
+
             <>
               <div className="mb-6 rounded-lg border-[1.5px] border-dashed border-line bg-paper px-6 py-9 text-center">
                 <span className="mb-2.5 block text-[1.8rem]">🔍</span>
@@ -237,6 +274,42 @@ function FinderPage() {
       </footer>
 
       <ProgrammeSheet id={detailId} onClose={() => setDetailId(null)} />
+    </div>
+  );
+}
+
+function Segmented({
+  legend,
+  value,
+  onChange,
+  options,
+}: {
+  legend: string;
+  value: string;
+  onChange: (value: string) => void;
+  options: { value: string; label: string }[];
+}) {
+  return (
+    <div className="flex items-center gap-2">
+      <span className="mono-label text-ink-faint">{legend}</span>
+      <div className="inline-flex gap-0.5 rounded-full border border-line bg-paper p-1">
+        {options.map((o) => {
+          const on = value === o.value;
+          return (
+            <button
+              key={o.value}
+              type="button"
+              aria-pressed={on}
+              onClick={() => onChange(o.value)}
+              className={`rounded-full px-3 py-1 text-[0.76rem] font-semibold transition-colors ${
+                on ? "bg-ink text-paper" : "text-ink-soft hover:text-ink"
+              }`}
+            >
+              {o.label}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }

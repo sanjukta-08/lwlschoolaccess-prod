@@ -1,6 +1,9 @@
 import {
   PROGRAMMES,
   TRACKS,
+  TYPES,
+  TYPE_BLURB,
+  TYPE_ORDER,
   cohortGrades,
   isPast,
   upcomingProgrammes,
@@ -18,6 +21,8 @@ export type FinderSearch = {
   q: string;
   view: string;
   status: string;
+  sort: string;
+  density: string;
 };
 
 export const DEFAULT_SEARCH: FinderSearch = {
@@ -28,6 +33,8 @@ export const DEFAULT_SEARCH: FinderSearch = {
   q: "",
   view: "list",
   status: "all",
+  sort: "cat",
+  density: "comfy",
 };
 
 const str = (v: unknown, fallback: string) =>
@@ -42,7 +49,10 @@ export const validateFinderSearch = (raw: Record<string, unknown>): FinderSearch
   q: str(raw["q"], "").slice(0, 80),
   view: str(raw["view"], "list") === "grid" ? "grid" : "list",
   status: str(raw["status"], "all") === "soon" ? "soon" : "all",
+  sort: str(raw["sort"], "cat") === "month" ? "month" : "cat",
+  density: str(raw["density"], "comfy") === "compact" ? "compact" : "comfy",
 });
+
 
 export const BANDS: Record<string, [number, number]> = {
   b57: [5, 7],
@@ -168,4 +178,46 @@ export const typeCounts = (state: FinderSearch, types: string[]) =>
 export const isDefaultSearch = (s: FinderSearch) =>
   s.grade === "all" && s.interest === "all" && s.month === "all" && s.type === "all" && !s.q;
 
+export type MatchGroup = {
+  key: string;
+  label: string;
+  sub: string;
+  rows: Match[];
+};
+
+/** Group results either by category (default) or by the month they start. */
+export function groupMatches(matches: Match[], sort: string): MatchGroup[] {
+  if (sort === "month") {
+    const byMonth = new Map<string, Match[]>();
+    matches.forEach((m) => {
+      const key = m.next.d.slice(0, 7);
+      const list = byMonth.get(key);
+      if (list) list.push(m);
+      else byMonth.set(key, [m]);
+    });
+    return Array.from(byMonth.keys())
+      .sort()
+      .map((key) => {
+        const rows = byMonth.get(key)!;
+        return {
+          key,
+          label: new Date(key + "-01T00:00:00").toLocaleDateString("en-GB", {
+            month: "long",
+            year: "numeric",
+          }),
+          sub: "Cohorts opening this month",
+          rows,
+        };
+      });
+  }
+
+  return TYPE_ORDER.map((t) => ({
+    key: t,
+    label: TYPES[t].label,
+    sub: TYPE_BLURB[t],
+    rows: matches.filter((m) => m.p.type === t),
+  })).filter((g) => g.rows.length > 0);
+}
+
 export type { TypeKey };
+
