@@ -248,6 +248,34 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         ) : null}
       </section>
 
+      {/* LinkedIn stories */}
+      <section id="stories" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
+        <div className="flex items-center gap-3">
+          <LinkedInGlyph />
+          <h2 className="font-serif text-[clamp(1.45rem,3.4vw,1.9rem)] font-medium">
+            Stories from <em className="text-crimson-deep italic">this pathway</em>
+          </h2>
+        </div>
+        <p className="mt-2 max-w-[40em] text-[0.92rem] text-ink-soft">
+          What students and parents posted after finishing {track.label.toLowerCase()}{" "}
+          cohorts. Tap a story to read the full post.
+        </p>
+        <div className="mt-6">
+          <StoryGallery stories={storiesForTracks(p.tracks, 3)} />
+        </div>
+        <p className="mt-5">
+          <Link
+            to="/stories"
+            search={{ track: p.tracks[0]! }}
+            className="text-[0.85rem] font-bold text-crimson no-underline hover:underline"
+          >
+            See all {track.label} stories →
+          </Link>
+        </p>
+      </section>
+
+
+
 
       {/* Cohorts */}
       <section id="dates" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
