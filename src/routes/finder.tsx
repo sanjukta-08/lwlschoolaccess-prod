@@ -1,3 +1,4 @@
+import ZoomBadge from "@/components/ZoomBadge";
 import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
 import { stripSearchParams } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
