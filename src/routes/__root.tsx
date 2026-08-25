@@ -1,4 +1,3 @@
-import { DEFAULT_SEARCH } from "@/lib/finder";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
