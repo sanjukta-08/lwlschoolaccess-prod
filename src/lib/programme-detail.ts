@@ -1,6 +1,7 @@
 // Per-programme landing page content. Hand-written for the flagships, derived
 // from the catalogue for everything else so every page reads complete.
 
+import { TRACK_PROFILE, TYPE_PROFILE } from "./profile-building";
 import {
   PROGRAMMES,
   TRACKS,
@@ -10,6 +11,7 @@ import {
 } from "./programmes";
 
 export type DoStep = { title: string; body: string };
+export type ProjectOutcome = { title: string; body: string; proof: string[] };
 export type Faq = { q: string; a: string };
 
 export type ProgrammeDetail = {
@@ -18,6 +20,8 @@ export type ProgrammeDetail = {
   ageLabel: string;
   doSteps: DoStep[];
   takeaways: string[];
+  skills: string[];
+  project: ProjectOutcome;
   mentorTitle: string;
   mentorBody: string;
   faqs: Faq[];
@@ -524,6 +528,31 @@ const derivedFaqs = (p: Programme): Faq[] => [
   },
 ];
 
+const uniq = (xs: string[]) => Array.from(new Set(xs));
+
+const derivedSkills = (p: Programme): string[] =>
+  uniq([
+    ...p.tracks.flatMap((t) => TRACK_PROFILE[t].skills),
+    ...TYPE_PROFILE[p.type].skills,
+  ]).slice(0, 7);
+
+const PROJECT_TITLE: Record<TypeKey, string> = {
+  fel: "A finished capstone, built over the fellowship",
+  prog: "A short project or presentation to close the programme",
+  comp: "A judged entry with a result attached",
+  intern: "A real deliverable for a real organisation",
+  conf: "A position paper and a committee record",
+};
+
+const derivedProject = (p: Programme): ProjectOutcome => {
+  const primary = TRACK_PROFILE[p.tracks[0]!];
+  return {
+    title: PROJECT_TITLE[p.type],
+    body: `${primary.story} By the end of ${p.name}, the aim is simple: ${primary.outcome.charAt(0).toLowerCase()}${primary.outcome.slice(1)}`,
+    proof: TYPE_PROFILE[p.type].proof,
+  };
+};
+
 export const detailFor = (p: Programme): ProgrammeDetail => {
   const w = WRITTEN[p.id] ?? {};
   return {
@@ -532,6 +561,8 @@ export const detailFor = (p: Programme): ProgrammeDetail => {
     ageLabel: w.ageLabel ?? `Grades ${p.g[0]}–${p.g[1]} (${p.g[0] + 5}–${p.g[1] + 5})`,
     doSteps: w.doSteps ?? derivedSteps(p),
     takeaways: w.takeaways ?? TAKEAWAYS[p.type],
+    skills: w.skills ?? derivedSkills(p),
+    project: w.project ?? derivedProject(p),
     mentorTitle: w.mentorTitle ?? "Live mentors, every single session",
     mentorBody:
       w.mentorBody ??
