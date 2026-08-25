@@ -929,6 +929,6 @@ export const PATHWAY: {
     band: "Grades 11–12",
     title: "Make it application-ready",
     goal: "Publish, compete and intern so the profile shows proof — a paper, an award or real work experience with a named organisation.",
-    ids: ["rpf", "irf", "fd1"],
+    ids: ["rpf", "irf", "allianz"],
   },
 ];
