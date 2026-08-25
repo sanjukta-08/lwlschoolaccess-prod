@@ -26,6 +26,22 @@ export function SiteHeader() {
           >
             Calendar
           </Link>
+          <Link
+            to="/"
+            search={DEFAULT_SEARCH}
+            hash="how"
+            className="hidden rounded-full px-3 py-2 text-ink-soft transition-colors hover:text-ink sm:block"
+          >
+            How it works
+          </Link>
+          <Link
+            to="/"
+            search={DEFAULT_SEARCH}
+            hash="faq"
+            className="hidden rounded-full px-3 py-2 text-ink-soft transition-colors hover:text-ink sm:block"
+          >
+            FAQ
+          </Link>
           <a
             href="https://www.learnwithleaders.com/"
             target="_blank"
