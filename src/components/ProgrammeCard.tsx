@@ -64,8 +64,12 @@ export function ProgrammeCard({
         </span>
         <span className="flex flex-col items-start gap-0.5 font-mono text-[0.72rem] text-ink-soft sm:items-end">
           <span className="font-semibold text-ink">{startLabel(next.d)}</span>
-          <span className="text-ink-faint">{timeLabel}</span>
+          <span className="flex items-center gap-2 text-ink-faint">
+            {timeLabel}
+            <ZoomBadge />
+          </span>
         </span>
+
         <span className="flex flex-col items-start sm:items-end">
           <span className="font-serif text-[1rem] font-semibold">Fee {fee.e}</span>
           {discounted ? (
