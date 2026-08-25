@@ -862,4 +862,25 @@ export const dualTime = (str: string): string => {
   return `${/GMT\+4/.test(conv) ? conv : conv + " GMT+4"} (${str})`;
 };
 
+/** Dubai-only rendering of a session time, for tight one-line meta rows. */
+export const shortTime = (str: string): string => {
+  const dual = dualTime(str);
+  const cut = dual.indexOf(" (");
+  const local = (cut > -1 ? dual.slice(0, cut) : dual).trim();
+  const first = local.match(/\d{1,2}:\d{2}\s*(?:AM|PM)/i);
+  return first ? `${first[0]} GMT+4` : local;
+};
+
+/** One-line explainer under each category heading. */
+export const TYPE_BLURB: Record<TypeKey, string> = {
+  fel: "Mentor-led cohorts ending in a capstone or defence",
+  prog: "Short live courses that build one specific skill",
+  comp: "Judged challenges with awards and rankings",
+  intern: "Real work experience with partner organisations",
+  conf: "Delegate-style summits, MUNs and simulations",
+};
+
+export const TYPE_ORDER: TypeKey[] = ["fel", "prog", "comp", "intern", "conf"];
+
 export const TOTAL_COHORTS = PROGRAMMES.reduce((n, p) => n + p.cohorts.length, 0);
+
