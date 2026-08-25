@@ -118,9 +118,14 @@ function FinderPage() {
         </div>
       </div>
 
-      <section className="bg-wash pt-8 pb-12">
+      <TrendingTop5 onOpen={setDetailId} />
+
+      <section id="all-programmes" className="scroll-mt-24 bg-wash pt-12 pb-12">
         <div className="mx-auto max-w-[1100px] px-5">
           <header className="mb-6 text-center">
+            <span className="mono-label mb-2 block text-ink-faint">
+              All main programmes
+            </span>
             <h2 className="font-serif text-[clamp(1.25rem,3vw,1.6rem)] font-medium">
               {matches.length ? (
                 <>
