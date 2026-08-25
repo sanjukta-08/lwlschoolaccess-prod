@@ -53,9 +53,18 @@ export function SiteHeader() {
           >
             Profile building
           </Link>
+          <Link
+            to="/stories"
+            search={{ track: "" }}
+            className={linkCls}
+            activeProps={{ className: "text-ink" }}
+          >
+            Stories
+          </Link>
           <Link to="/about" className={linkCls} activeProps={{ className: "text-ink" }}>
             About
           </Link>
+
           <ShortlistBadge />
 
           <Link to="/" hash="pathways" className={`hidden sm:block ${linkCls}`}>

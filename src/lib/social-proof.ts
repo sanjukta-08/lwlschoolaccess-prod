@@ -117,7 +117,10 @@ export const REACH = {
   ],
 };
 
-export type LinkedInPost = {
+import type { TrackKey } from "@/lib/programmes";
+
+export type LinkedInStory = {
+  id: string;
   name: string;
   initials: string;
   role: string;
@@ -126,14 +129,36 @@ export type LinkedInPost = {
   reactions: number;
   comments: number;
   tag?: string;
+  /** Track keys this story belongs to — used to match it to programme pages. */
+  tags: TrackKey[];
+  /** CDN url of the approved screenshot. Leave undefined to render a text card. */
+  image?: string;
+  /** Alt text describing the screenshot. Required when `image` is set. */
+  imageAlt?: string;
+  /** Link to the live LinkedIn post, when we have it. */
+  postUrl?: string;
+  /** Only approved stories render anywhere on the site. */
+  approved: boolean;
+  /** True while the copy is a stand-in rather than a real, permissioned post. */
+  placeholder?: boolean;
 };
 
 /**
- * LinkedIn-style stories, recreated as cards. Replace `name`, `role` and `text`
- * with real posts (with permission) as they come in.
+ * LinkedIn stories.
+ *
+ * HOW TO ADD A REAL STORY
+ * 1. Get written permission from the student/parent before publishing.
+ * 2. Upload the screenshot via `lovable-assets` and paste its `url` into `image`,
+ *    with a describing `imageAlt`. If a name must be hidden, blur it in the image
+ *    before upload — we never blur in CSS.
+ * 3. Set `placeholder: false` and `approved: true`, and add the live `postUrl`.
+ *
+ * Entries with `placeholder: true` are stand-in copy written by us, kept so the
+ * gallery has shape. Replace them as real posts come in.
  */
-export const LINKEDIN_POSTS: LinkedInPost[] = [
+export const LINKEDIN_POSTS: LinkedInStory[] = [
   {
+    id: "aarav-research",
     name: "Aarav M.",
     initials: "AM",
     role: "Grade 12 · Future Doctors Fellowship alum",
@@ -142,8 +167,12 @@ export const LINKEDIN_POSTS: LinkedInPost[] = [
     reactions: 412,
     comments: 38,
     tag: "Research",
+    tags: ["res", "med"],
+    approved: true,
+    placeholder: true,
   },
   {
+    id: "sara-venture",
     name: "Sara K.",
     initials: "SK",
     role: "Grade 11 · Innovation & Research Fellowship",
@@ -152,8 +181,12 @@ export const LINKEDIN_POSTS: LinkedInPost[] = [
     reactions: 587,
     comments: 54,
     tag: "Venture",
+    tags: ["ent", "res"],
+    approved: true,
+    placeholder: true,
   },
   {
+    id: "priya-parent",
     name: "Priya R.",
     initials: "PR",
     role: "Parent · Dubai",
@@ -162,8 +195,12 @@ export const LINKEDIN_POSTS: LinkedInPost[] = [
     reactions: 296,
     comments: 41,
     tag: "Parent",
+    tags: ["lead", "res", "med", "law", "fin", "ai", "ent", "deb", "sat"],
+    approved: true,
+    placeholder: true,
   },
   {
+    id: "yusuf-ai",
     name: "Yusuf A.",
     initials: "YA",
     role: "Grade 10 · AI & Leadership",
@@ -172,8 +209,12 @@ export const LINKEDIN_POSTS: LinkedInPost[] = [
     reactions: 341,
     comments: 27,
     tag: "AI",
+    tags: ["ai", "lead"],
+    approved: true,
+    placeholder: true,
   },
   {
+    id: "meera-congress",
     name: "Meera S.",
     initials: "MS",
     role: "Grade 12 · Model Congress delegate",
@@ -182,8 +223,12 @@ export const LINKEDIN_POSTS: LinkedInPost[] = [
     reactions: 623,
     comments: 62,
     tag: "Conference",
+    tags: ["deb", "lead", "law"],
+    approved: true,
+    placeholder: true,
   },
   {
+    id: "ishaan-finance",
     name: "Ishaan T.",
     initials: "IT",
     role: "Grade 11 · Financial Literacy & Markets",
@@ -192,5 +237,67 @@ export const LINKEDIN_POSTS: LinkedInPost[] = [
     reactions: 254,
     comments: 19,
     tag: "Finance",
+    tags: ["fin", "ent"],
+    approved: true,
+    placeholder: true,
+  },
+  {
+    id: "hana-law",
+    name: "Hana Q.",
+    initials: "HQ",
+    role: "Grade 11 · Future Lawyers Fellowship",
+    when: "4w",
+    text: "Argued my first moot as second counsel this weekend. Cross-examination is terrifying and I loved it. Thank you to my Learn with Leaders mentor for the twelve pages of notes on my written submission.",
+    reactions: 388,
+    comments: 33,
+    tag: "Law",
+    tags: ["law", "deb"],
+    approved: true,
+    placeholder: true,
+  },
+  {
+    id: "dev-satscore",
+    name: "Dev P.",
+    initials: "DP",
+    role: "Grade 11 · Test prep cohort",
+    when: "7w",
+    text: "Score up 190 points, but the more useful bit was learning to review my own mistakes properly instead of doing another practice set. That habit is transferring to school exams too.",
+    reactions: 211,
+    comments: 16,
+    tag: "Test prep",
+    tags: ["sat"],
+    approved: true,
+    placeholder: true,
+  },
+  {
+    id: "anya-parent-2",
+    name: "Anya B.",
+    initials: "AB",
+    role: "Parent · Abu Dhabi",
+    when: "2mo",
+    text: "Two things I did not expect: a mentor who actually replied between sessions, and a son who now talks about his project at dinner. He has a LinkedIn post of his own now — which is how I found this page.",
+    reactions: 174,
+    comments: 22,
+    tag: "Parent",
+    tags: ["lead", "ai", "ent", "res"],
+    approved: true,
+    placeholder: true,
   },
 ];
+
+export const APPROVED_STORIES = LINKEDIN_POSTS.filter((s) => s.approved);
+
+/** Stories matching any of the given track keys, most-reacted first, with a general fallback. */
+export function storiesForTracks(tracks: TrackKey[], limit = 3): LinkedInStory[] {
+  const matched = APPROVED_STORIES.filter((s) =>
+    s.tags.some((t) => tracks.includes(t)),
+  ).sort((a, b) => b.reactions - a.reactions);
+  const fallback = [...APPROVED_STORIES].sort((a, b) => b.reactions - a.reactions);
+  const out = [...matched];
+  for (const s of fallback) {
+    if (out.length >= limit) break;
+    if (!out.some((o) => o.id === s.id)) out.push(s);
+  }
+  return out.slice(0, limit);
+}
+
