@@ -1,5 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { slugOf } from "@/lib/programme-detail";
+import { SaveButton } from "@/components/SaveButton";
+import { AddToCalendar } from "@/components/AddToCalendar";
 import {
   TRACKS,
   cohortGrades,
