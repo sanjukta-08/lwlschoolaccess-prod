@@ -219,23 +219,27 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="px-5 py-14 text-center">
+      <section className="px-5 py-14">
         <div className="mx-auto max-w-[1100px]">
-          <h2 className="font-serif text-[clamp(1.6rem,3.8vw,2.2rem)] font-medium">
+          <SectionHeading eyebrow="Trusted collaborations">
             Delivered with <em className="text-crimson-deep">partners</em> students
             recognise
-          </h2>
+          </SectionHeading>
           <PartnerLogos />
-          <div className="mt-7 flex flex-wrap justify-center gap-x-8 gap-y-3">
+          <div className="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-3">
             {PARTNERS.map((n) => (
-              <span key={n} className="font-serif text-[1.02rem] font-semibold text-ink-soft">
+              <span
+                key={n}
+                className="font-serif text-[1.02rem] font-semibold text-ink-soft"
+              >
                 {n}
               </span>
             ))}
           </div>
-          <p className="mt-4 text-[0.78rem] text-ink-faint">
+          <p className="mt-5 text-center text-[0.78rem] text-ink-faint">
             Programme partners and corporate internship hosts across the 2026–27 calendar.
           </p>
+          <hr className="section-divider mt-14" />
         </div>
       </section>
 
