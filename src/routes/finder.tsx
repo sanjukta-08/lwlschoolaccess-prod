@@ -118,7 +118,7 @@ function FinderPage() {
         </div>
       </div>
 
-      <TrendingTop5 onOpen={setDetailId} />
+      <TrendingTop5 state={state} onOpen={setDetailId} />
 
       <section id="all-programmes" className="scroll-mt-24 bg-wash pt-12 pb-12">
         <div className="mx-auto max-w-[1100px] px-5">
