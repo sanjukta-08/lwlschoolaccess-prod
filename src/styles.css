@@ -288,3 +288,30 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
+
+/* ---------- brand: gold signature layer ---------- */
+
+@utility gold-rule {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold-line) 20%,
+    var(--gold) 50%,
+    var(--gold-line) 80%,
+    transparent
+  );
+}
+
+@utility section-divider {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(90deg, transparent, var(--gold-line), transparent);
+}
+
+@utility header-blur {
+  background: color-mix(in srgb, var(--paper) 82%, transparent);
+  backdrop-filter: saturate(140%) blur(12px);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  border-bottom: 1px solid var(--gold-line);
+  box-shadow: 0 8px 24px -20px rgba(28, 34, 48, 0.5);
+}
