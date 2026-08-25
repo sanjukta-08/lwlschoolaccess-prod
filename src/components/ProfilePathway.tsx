@@ -110,11 +110,11 @@ export function ProfilePathway({ onOpen }: { onOpen: (id: string) => void }) {
                   const track = TRACKS[p.tracks[0]!];
                   const [lo, hi] = cohortGrades(p, next);
                   return (
-                    <button
+                    <Link
                       key={id}
-                      type="button"
-                      onClick={() => onOpen(id)}
-                      className="rounded-xl border border-line bg-wash px-3 py-2.5 text-left transition-colors hover:border-ink-soft"
+                      to="/programmes/$slug"
+                      params={{ slug: slugOf(p) }}
+                      className="rounded-xl border border-line bg-wash px-3 py-2.5 text-left no-underline transition-colors hover:border-ink-soft"
                     >
                       <b className="block text-[0.87rem] font-semibold text-ink">
                         {p.name}
@@ -124,7 +124,7 @@ export function ProfilePathway({ onOpen }: { onOpen: (id: string) => void }) {
                         {lo}–{hi}
                         {next ? ` · next ${fmtShort(next.d)}` : ""}
                       </small>
-                    </button>
+                    </Link>
                   );
                 })}
               </div>
