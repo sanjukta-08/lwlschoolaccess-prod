@@ -36,6 +36,7 @@ export const DEFAULT_SEARCH: FinderSearch = {
   status: "all",
   sort: "cat",
   density: "comfy",
+  calView: "month",
 };
 
 const str = (v: unknown, fallback: string) =>
@@ -52,6 +53,7 @@ export const validateFinderSearch = (raw: Record<string, unknown>): FinderSearch
   status: str(raw["status"], "all") === "soon" ? "soon" : "all",
   sort: str(raw["sort"], "cat") === "month" ? "month" : "cat",
   density: str(raw["density"], "comfy") === "compact" ? "compact" : "comfy",
+  calView: str(raw["calView"], "month") === "type" ? "type" : "month",
 });
 
 
@@ -218,6 +220,73 @@ export function groupMatches(matches: Match[], sort: string): MatchGroup[] {
     sub: TYPE_BLURB[t],
     rows: matches.filter((m) => m.p.type === t),
   })).filter((g) => g.rows.length > 0);
+}
+
+export type Entry = { p: Programme; c: Cohort };
+
+export type MonthGroup = { key: string; label: string; rows: Entry[] };
+
+/** Cohort rows grouped by calendar month, chronologically. */
+export function groupEntriesByMonth(entries: Entry[]): MonthGroup[] {
+  const by = new Map<string, Entry[]>();
+  entries.forEach((e) => {
+    const key = e.c.d.slice(0, 7);
+    const list = by.get(key);
+    if (list) list.push(e);
+    else by.set(key, [e]);
+  });
+  return Array.from(by.keys())
+    .sort()
+    .map((key) => ({
+      key,
+      label: new Date(key + "-01T00:00:00").toLocaleDateString("en-GB", {
+        month: "long",
+        year: "numeric",
+      }),
+      rows: by.get(key)!,
+    }));
+}
+
+export type TypeGroup = {
+  key: TypeKey;
+  label: string;
+  sub: string;
+  rows: { p: Programme; next: Cohort; others: Cohort[] }[];
+};
+
+/** One row per programme, grouped by category and sorted by next start. */
+export function groupProgrammesByType(entries: Entry[]): TypeGroup[] {
+  const by = new Map<string, { p: Programme; cs: Cohort[] }>();
+  entries.forEach(({ p, c }) => {
+    const hit = by.get(p.id);
+    if (hit) hit.cs.push(c);
+    else by.set(p.id, { p, cs: [c] });
+  });
+  const progs = Array.from(by.values());
+  progs.forEach((x) => x.cs.sort((a, b) => a.d.localeCompare(b.d)));
+  progs.sort((a, b) => a.cs[0]!.d.localeCompare(b.cs[0]!.d));
+  return TYPE_ORDER.map((t) => ({
+    key: t,
+    label: TYPES[t].label,
+    sub: TYPE_BLURB[t],
+    rows: progs
+      .filter((x) => x.p.type === t)
+      .map((x) => ({ p: x.p, next: x.cs[0]!, others: x.cs.slice(1) })),
+  })).filter((g) => g.rows.length > 0);
+}
+
+/** Programme counts for one facet, holding every other filter steady. */
+export function facetCounts(
+  state: FinderSearch,
+  facet: "type" | "interest",
+  values: string[],
+): Record<string, number> {
+  const out: Record<string, number> = {};
+  values.forEach((v) => {
+    const next = { ...state, [facet]: v } as FinderSearch;
+    out[v] = new Set(getCohortEntries(next).map((e) => e.p.id)).size;
+  });
+  return out;
 }
 
 export type { TypeKey };
