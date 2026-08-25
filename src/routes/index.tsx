@@ -16,6 +16,8 @@ import { DEFAULT_SEARCH } from "@/lib/finder";
 import { slugOf } from "@/lib/programme-slug";
 import { SiteFooter } from "@/components/SiteFooter";
 import { PartnerLogos } from "@/components/PartnerLogos";
+import { WingMark, WingRule } from "@/components/WingMark";
+import { SectionHeading } from "@/components/SectionHeading";
 
 const TITLE = "Learn with Leaders — Harvard & Yale-mentored programmes, Grades 5–12";
 const DESC =
@@ -57,16 +59,17 @@ function HomePage() {
         <div className="hero-wash absolute inset-0" />
         <div className="relative">
           <SiteHeader />
-          <section className="mx-auto max-w-[1100px] px-5 pt-14 pb-20 text-center">
-            <span className="mono-label mb-5 inline-flex items-center gap-2 rounded-full border border-crimson/20 bg-paper px-3.5 py-1.5 text-crimson shadow-soft">
-              <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
+          <section className="mx-auto max-w-[1100px] px-5 pt-12 pb-20 text-center">
+            <span className="mono-label mb-5 inline-flex items-center gap-2 rounded-full border border-gold-line bg-paper px-3.5 py-1.5 text-gold-deep shadow-soft">
+              <WingMark size={13} />
               Online programmes for Grades 5–12 · 2026–27
             </span>
-            <h1 className="mx-auto max-w-[16em] font-serif text-[clamp(2.3rem,6vw,3.9rem)] leading-[1.08] font-medium tracking-tight">
-              Where ambitious students{" "}
-              <em className="text-crimson-deep">learn with leaders</em>.
+            <h1 className="mx-auto font-serif text-[clamp(2.2rem,6vw,3.9rem)] leading-[1.06] font-medium tracking-tight text-balance">
+              <span className="block">Where ambitious students</span>
+              <em className="mt-1 block text-crimson-deep">learn with leaders</em>
             </h1>
-            <p className="mx-auto mt-5 max-w-[38em] text-[clamp(1rem,2.4vw,1.12rem)] text-ink-soft">
+            <WingRule className="mt-6" />
+            <p className="mx-auto mt-6 max-w-[38em] text-[clamp(1rem,2.4vw,1.12rem)] text-ink-soft">
               Live fellowships, competitions, corporate internships and MUN conferences,
               mentored by students from Harvard, Yale, MIT, Stanford and Princeton —
               joined by families in the Gulf, India, Southeast Asia and beyond.
@@ -87,16 +90,23 @@ function HomePage() {
                 Browse the full calendar
               </Link>
             </div>
-            <dl className="mt-11 flex flex-wrap justify-center gap-x-10 gap-y-5">
+            <dl className="mx-auto mt-11 grid max-w-[820px] grid-cols-2 items-stretch divide-gold-line/70 rounded-[20px] border border-gold-line bg-paper/70 px-4 py-5 shadow-soft sm:flex sm:px-6 sm:divide-x">
               {[
                 [String(PROGRAMMES.length), "Programmes"],
                 [String(TOTAL_COHORTS), "Upcoming cohorts"],
                 ["426+", "Students published"],
                 ["5–12", "Grades covered"],
               ].map(([v, l]) => (
-                <div key={l} className="flex flex-col items-center">
-                  <dt className="font-serif text-[1.6rem] font-semibold">{v}</dt>
-                  <dd className="mono-label text-ink-faint">{l}</dd>
+                <div
+                  key={l}
+                  className="flex flex-1 flex-col items-center px-3 py-2.5 text-center sm:px-5 sm:py-1.5"
+                >
+                  <dt className="font-serif text-[1.6rem] leading-none font-semibold">
+                    {v}
+                  </dt>
+                  <dd className="mono-label mt-1.5 text-ink-faint sm:whitespace-nowrap">
+                    {l}
+                  </dd>
                 </div>
               ))}
             </dl>
@@ -104,15 +114,14 @@ function HomePage() {
         </div>
       </div>
 
-      <section id="pathways" className="scroll-mt-20 px-5 pt-14 pb-8">
+      <section id="pathways" className="scroll-mt-24 px-5 pt-14 pb-8">
         <div className="mx-auto max-w-[1100px]">
-          <h2 className="text-center font-serif text-[clamp(1.6rem,3.8vw,2.2rem)] font-medium">
+          <SectionHeading
+            eyebrow="Where to begin"
+            sub="Every interest has a route — from a first taste to flagship fellowships. Tap one to see what fits your child."
+          >
             Pick a <em className="text-crimson-deep">pathway</em>
-          </h2>
-          <p className="mx-auto mt-2.5 max-w-[40em] text-center text-[0.92rem] text-ink-soft">
-            Every interest has a route — from a first taste to flagship fellowships. Tap
-            one to see what fits your child.
-          </p>
+          </SectionHeading>
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {(Object.keys(TRACKS) as TrackKey[]).map((k) => {
               const t = TRACKS[k];
@@ -144,15 +153,14 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="bg-wash px-5 py-14">
+      <section className="border-y border-gold-line/60 bg-wash px-5 py-14">
         <div className="mx-auto max-w-[1100px]">
-          <h2 className="text-center font-serif text-[clamp(1.6rem,3.8vw,2.2rem)] font-medium">
+          <SectionHeading
+            eyebrow="Signature cohorts"
+            sub="Our deepest experiences — small cohorts, dedicated mentors, capstones and Demo Days."
+          >
             The <em className="text-crimson-deep">flagship</em> fellowships
-          </h2>
-          <p className="mx-auto mt-2.5 max-w-[40em] text-center text-[0.92rem] text-ink-soft">
-            Our deepest experiences — small cohorts, dedicated mentors, capstones and Demo
-            Days.
-          </p>
+          </SectionHeading>
           <div className="mt-8 grid gap-4.5 sm:grid-cols-2 lg:grid-cols-4">
             {FEATURED.map((id) => {
               const p = upcoming.find((x) => x.id === id);
@@ -218,23 +226,27 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="px-5 py-14 text-center">
+      <section className="px-5 py-14">
         <div className="mx-auto max-w-[1100px]">
-          <h2 className="font-serif text-[clamp(1.6rem,3.8vw,2.2rem)] font-medium">
+          <SectionHeading eyebrow="Trusted collaborations">
             Delivered with <em className="text-crimson-deep">partners</em> students
             recognise
-          </h2>
+          </SectionHeading>
           <PartnerLogos />
-          <div className="mt-7 flex flex-wrap justify-center gap-x-8 gap-y-3">
+          <div className="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-3">
             {PARTNERS.map((n) => (
-              <span key={n} className="font-serif text-[1.02rem] font-semibold text-ink-soft">
+              <span
+                key={n}
+                className="font-serif text-[1.02rem] font-semibold text-ink-soft"
+              >
                 {n}
               </span>
             ))}
           </div>
-          <p className="mt-4 text-[0.78rem] text-ink-faint">
+          <p className="mt-5 text-center text-[0.78rem] text-ink-faint">
             Programme partners and corporate internship hosts across the 2026–27 calendar.
           </p>
+          <hr className="section-divider mt-14" />
         </div>
       </section>
 

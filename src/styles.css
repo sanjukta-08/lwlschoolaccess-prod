@@ -163,6 +163,9 @@
   --crimson: #a31d33;
   --crimson-deep: #7e1527;
   --gold: #b98a1f;
+  --gold-deep: #8f6912;
+  --gold-soft: #fbf5e6;
+  --gold-line: #e7d6a8;
 
   --track-med: #b02a3c;
   --track-law: #28497a;
@@ -210,6 +213,9 @@
   --color-crimson: var(--crimson);
   --color-crimson-deep: var(--crimson-deep);
   --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-gold-soft: var(--gold-soft);
+  --color-gold-line: var(--gold-line);
 
   --color-track-med: var(--track-med);
   --color-track-law: var(--track-law);
@@ -281,4 +287,31 @@
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+}
+
+/* ---------- brand: gold signature layer ---------- */
+
+@utility gold-rule {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold-line) 20%,
+    var(--gold) 50%,
+    var(--gold-line) 80%,
+    transparent
+  );
+}
+
+@utility section-divider {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(90deg, transparent, var(--gold-line), transparent);
+}
+
+@utility header-blur {
+  background: var(--paper);
+  backdrop-filter: saturate(140%) blur(12px);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  border-bottom: 1px solid var(--gold-line);
+  box-shadow: 0 8px 24px -20px rgba(28, 34, 48, 0.5);
 }
