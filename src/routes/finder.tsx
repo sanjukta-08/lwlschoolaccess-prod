@@ -1,4 +1,5 @@
 import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
+import { stripSearchParams } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { FinderPanel } from "@/components/FinderPanel";
@@ -36,6 +37,7 @@ const PAGE = 12;
 
 export const Route = createFileRoute("/finder")({
   validateSearch: (search: Record<string, unknown>) => validateFinderSearch(search),
+  search: { middlewares: [stripSearchParams(DEFAULT_SEARCH)] },
   head: () => ({
     scripts: [
       {
