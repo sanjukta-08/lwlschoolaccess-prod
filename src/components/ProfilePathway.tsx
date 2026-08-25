@@ -20,12 +20,12 @@ export function ProfilePathway({ onOpen }: { onOpen: (id: string) => void }) {
           </h2>
           <p className="mx-auto mt-2.5 max-w-[44em] text-[0.93rem] text-ink-soft">
             Universities look for a story, not a scatter of certificates. Here is the
-            three-stage path we recommend — explore early, go deep in the middle school
-            years, and finish with proof an admissions officer can see.
+            four-step path we recommend — explore early, go deep in the middle years,
+            make it application-ready, then turn it into proof a university can verify.
           </p>
         </header>
 
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {PATHWAY.map((stage, i) => (
             <article
               key={stage.key}
@@ -33,7 +33,7 @@ export function ProfilePathway({ onOpen }: { onOpen: (id: string) => void }) {
             >
               <div className="flex items-baseline justify-between gap-2">
                 <span className="mono-label text-crimson">Step {i + 1}</span>
-                <span className="rounded-full bg-wash px-2.5 py-1 font-mono text-[0.7rem] font-semibold text-ink-soft">
+                <span className="whitespace-nowrap rounded-full bg-wash px-2.5 py-1 font-mono text-[0.7rem] font-semibold text-ink-soft">
                   {stage.band}
                 </span>
               </div>
@@ -42,6 +42,63 @@ export function ProfilePathway({ onOpen }: { onOpen: (id: string) => void }) {
               </h3>
               <p className="mt-1.5 text-[0.86rem] text-ink-soft">{stage.goal}</p>
 
+              {stage.outcomes ? (
+                <div className="mt-4 flex flex-col gap-2 rounded-2xl bg-wash-deep/70 p-3">
+                  <span className="mono-label text-ink-faint">What they walk away with</span>
+                  {stage.outcomes.map((o) => {
+                    const inner = (
+                      <>
+                        <span className="mt-[0.15rem] shrink-0 text-[0.8rem] text-crimson">
+                          ✓
+                        </span>
+                        <span>
+                          <b className="block text-[0.85rem] font-semibold text-ink">
+                            {o.title}
+                          </b>
+                          <small className="block text-[0.74rem] leading-snug text-ink-faint">
+                            {o.body}
+                          </small>
+                        </span>
+                      </>
+                    );
+                    const cls =
+                      "flex w-full items-start gap-2 rounded-xl border border-transparent px-1.5 py-1.5 text-left transition-colors";
+                    if (o.id) {
+                      return (
+                        <button
+                          key={o.title}
+                          type="button"
+                          onClick={() => onOpen(o.id!)}
+                          className={`${cls} hover:border-line hover:bg-paper`}
+                        >
+                          {inner}
+                        </button>
+                      );
+                    }
+                    if (o.type || o.interest) {
+                      return (
+                        <Link
+                          key={o.title}
+                          to="/finder"
+                          search={{
+                            ...DEFAULT_SEARCH,
+                            ...(o.type ? { type: o.type } : {}),
+                            ...(o.interest ? { interest: o.interest } : {}),
+                          }}
+                          className={`${cls} no-underline hover:border-line hover:bg-paper`}
+                        >
+                          {inner}
+                        </Link>
+                      );
+                    }
+                    return (
+                      <span key={o.title} className={cls}>
+                        {inner}
+                      </span>
+                    );
+                  })}
+                </div>
+              ) : (
               <div className="mt-4 flex flex-col gap-2">
                 <span className="mono-label text-ink-faint">Start here</span>
                 {stage.ids.map((id) => {
@@ -71,6 +128,7 @@ export function ProfilePathway({ onOpen }: { onOpen: (id: string) => void }) {
                   );
                 })}
               </div>
+              )}
             </article>
           ))}
         </div>

@@ -903,13 +903,60 @@ export const TRENDING: { id: string; why: string }[] = [
 ];
 
 /** Grade-band pathway for profile building. */
+export type Outcome = {
+  title: string;
+  body: string;
+  /** Optional programme that produces this outcome. */
+  id?: string;
+  /** Optional finder type filter to jump to. */
+  type?: TypeKey;
+  /** Optional finder interest filter to jump to. */
+  interest?: TrackKey;
+};
+
+export const OUTCOMES: Outcome[] = [
+  {
+    title: "Write to a professor and land a research role",
+    body: "Find the right academic, read one of their papers properly, and send the email that actually gets a reply.",
+    id: "yrp",
+    interest: "res",
+  },
+  {
+    title: "Publish a paper with a citable link",
+    body: "A permanent, checkable record of the research — not a line of unverifiable claim on a CV.",
+    id: "rpf",
+    interest: "res",
+  },
+  {
+    title: "Build and launch a real venture",
+    body: "A live product or service with users, customers or revenue, plus a pitch deck they can defend.",
+    id: "fef",
+    interest: "ent",
+  },
+  {
+    title: "A portfolio site that holds everything",
+    body: "Capstones, papers, demo videos and awards behind one link that goes on every application.",
+  },
+  {
+    title: "A presence universities can verify",
+    body: "LinkedIn and a public builder profile that match the portfolio, with certificates and mentor letters attached.",
+  },
+  {
+    title: "Mentor letters and certificates on file",
+    body: "Named, dated, verifiable documents from every programme — ready when a university or scholarship asks.",
+    type: "intern",
+  },
+];
+
 export const PATHWAY: {
   key: string;
   band: string;
   title: string;
   goal: string;
   ids: string[];
+  outcomes?: Outcome[];
 }[] = [
+
   {
     key: "explore",
     band: "Grades 5–7",
@@ -931,4 +978,13 @@ export const PATHWAY: {
     goal: "Publish, compete and intern so the profile shows proof — a paper, an award or real work experience with a named organisation.",
     ids: ["rpf", "irf", "allianz"],
   },
+  {
+    key: "verify",
+    band: "Grades 9–12 · any stage",
+    title: "Turn it into proof universities can check",
+    goal: "The work only counts if an admissions officer can find it, read it and confirm it is real. Step 4 packages everything from steps 1–3.",
+    ids: [],
+    outcomes: OUTCOMES,
+  },
+
 ];
