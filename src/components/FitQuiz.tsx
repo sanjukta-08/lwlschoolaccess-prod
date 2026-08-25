@@ -15,6 +15,7 @@ import {
   type FitResult,
 } from "@/lib/fit";
 import { PROGRAMMES, TRACKS, TYPE_NAME, feeOf } from "@/lib/programmes";
+import { DEFAULT_SEARCH } from "@/lib/finder";
 import { slugOf } from "@/lib/programme-slug";
 import { startLabel } from "@/lib/outcome";
 import { SaveButton } from "@/components/SaveButton";
@@ -267,6 +268,7 @@ function ResultView({ result, onRestart }: { result: FitResult; onRestart: () =>
         </p>
         <Link
           to="/finder"
+          search={DEFAULT_SEARCH}
           className="mt-5 inline-block rounded-full bg-ink px-6 py-3 text-[0.9rem] font-bold text-paper no-underline"
         >
           Browse all programmes
