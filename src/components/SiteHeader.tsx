@@ -9,9 +9,16 @@ export function SiteHeader() {
   return (
     <header className="relative z-50">
       <div className="mx-auto flex max-w-[1100px] items-center justify-between gap-4 px-5 py-5">
-        <Link to="/" className="font-serif text-[1.2rem] font-semibold no-underline">
-          Learn with Leaders<span className="text-crimson">.</span>
+        <Link to="/" className="flex items-center no-underline" aria-label="Learn With Leaders home">
+          <img
+            src={logoAsset.url}
+            alt="Learn With Leaders"
+            width={150}
+            height={75}
+            className="h-9 w-auto md:h-10"
+          />
         </Link>
+
         <nav className="flex items-center gap-1 text-[0.85rem] font-semibold">
           <Link
             to="/finder"
