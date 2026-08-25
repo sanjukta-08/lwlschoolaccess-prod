@@ -92,6 +92,10 @@ export function CohortAgenda({
                         Applications open
                       </span>
                     )}
+                    <span className="flex items-center gap-1.5">
+                      <AddToCalendar p={p} c={c} />
+                      <SaveButton p={p} c={c} />
+                    </span>
                   </span>
                 </Link>
               );
