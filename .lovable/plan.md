@@ -1,40 +1,44 @@
-# Seven-category programme filter (from your doc)
+# Header polish + a gold brand mark layer
 
-Rebuild the finder's navigation around the seven interest categories in your document, with one category per programme so a chip never shows the same programme twice.
+## 1. Hero headline on two lines
+Currently the H1 wraps unpredictably ("Where ambitious students learn with leaders."). Lock it to two deliberate lines:
 
-## The seven chips
+```text
+Where ambitious students
+learn with leaders.
+```
 
-Medicine & Healthcare · Law, Debate & Communication · Finance & Investing · AI, Technology & Entrepreneurship · Research & Academic Writing · Leadership & Global Affairs · Test Prep & College Readiness
+- Line 1 in ink, line 2 as the italic serif accent, each on its own block line at every breakpoint (no reliance on natural wrapping).
+- A short gold hairline rule (the wing motif, see below) sits under line 2 as a signature underline instead of the bare full stop.
+- Tighter leading so the two lines read as one lockup.
 
-Each chip shows a short parent-facing line (e.g. "For students drawn to argument, advocacy and speaking on stage") and a live count. Results group under category headings so browsing without a filter still reads cleanly.
+## 2. Gold wing brand mark
+Introduce a reusable wing motif derived from the LWL logo's wing, drawn as inline SVG (no new image asset), in the existing but currently unused `--gold` brand colour.
 
-## Which programmes appear
+Where it appears, for a consistent signature across pages:
+- Under the hero headline as a gold wing-rule flourish.
+- On the eyebrow pill: gold wing tick replacing the plain crimson dot.
+- Beside every section heading (`Pick a pathway`, `Delivered with partners`, etc.) as a small gold wing glyph, so the whole site shares one mark.
+- In the footer next to the logo.
 
-The finder leads with the 18 canonical programmes from the doc. Nothing is deleted from the catalogue — the other cohorts and HSA/MUN variants keep their landing pages and calendar rows, and the finder has a quiet "Show all programmes" toggle at the bottom of the list for people who want the full set.
+New component `src/components/WingMark.tsx` with `size`/`tone` props, plus a `SectionHeading` wrapper so headings stay identical everywhere.
 
-Two mapping notes I'll surface rather than guess on:
-- "Junior Doctor Fellowship" (Grades 5–8, 3 weekends) has no exact match in the current data; the closest is "Future Doctors Level 1 (HSA)". I'll map it to that and flag it for your confirmation.
-- Per your answer, the flagged data issues (Young Debaters date, naming variants, "Research Fellowship" duplicate) stay untouched this round.
+## 3. Gold accents, used sparingly
+Gold becomes the secondary brand colour (crimson stays primary/CTA):
+- Gold hairline dividers between major sections in place of grey lines.
+- Gold underline on the active header nav link.
+- Gold ring/keyline on hero stat numbers and partner logo row.
+- New tokens: `--gold-soft` (tint surface) and `--gold-line` (hairline), plus a `gold-rule` utility, so nothing is hardcoded.
 
-## Secondary filter row
-
-A single compact second row, collapsed on mobile:
-
-- Grade band: 5–7 · 6–8 · 8–12 · 9–12 (matching the doc's bands, replacing the current 5–7 / 8–10 / 11–12 split)
-- Duration: 3-weekend intensive · 6 weeks · 8 weeks · 10–12 weeks
-- Mentor university: Harvard · Yale · MIT / Stanford / Princeton (new field, also shown as a line on cards and landing pages)
-- Type: Fellowship · Programme · Competition
-- Live on Zoom: filter to programmes with live mentor sessions, with the session time shown in your timezone and Dubai
-
-Every filter stays in the URL, so a chip combination is shareable and a school can be sent a pre-filtered link.
-
-## Cards and landing pages
-
-Each result row shows: category dot, programme name, grades, duration, mentor university, next start date, fee. Clicking opens the existing programme landing page. Home-page pathway tiles and the calendar's type filter switch to the same seven categories so the language is consistent site-wide.
+## 4. Header alignment and spacing
+- Vertically centre logo, nav, and actions on one optical baseline; raise the logo to `h-10 / md:h-11` so it holds against the nav weight.
+- Even nav rhythm: consistent `px-3.5 py-2` hit areas, `gap-0.5`, active link = ink text + gold underline.
+- Group the right cluster with a clear gap between shortlist badge and the advisor button so they stop crowding.
+- Sticky, translucent header with a gold hairline bottom border that only appears once the page is scrolled (frosted blur over the hero wash).
+- Mobile: full-width menu panel, matched padding with the bar, and a wing mark on the panel edge.
 
 ## Technical notes
-
-- `src/lib/programmes.ts`: add `CATEGORIES` (7 keys with label + blurb), a single `cat` field per programme, `mentors: string[]`, and a `canon: true` flag on the doc's 18. Existing `tracks` stay for search keywords and landing-page copy.
-- `src/lib/finder.ts`: new search params `cat`, `dur`, `uni`, `live`; grade bands updated to the doc's four; filtering groups by programme (not cohort) so a chip can't repeat a programme.
-- `src/components/FinderPanel.tsx`, `ResultGroup.tsx`, `ProgrammeCard.tsx`: chip row, secondary row, mentor line, canonical/all toggle.
-- `src/components/ProfilePathway.tsx` and `src/routes/calendar.tsx`: reuse `CATEGORIES` instead of `TRACKS`.
+- `src/styles.css`: add `--gold-soft`, `--gold-line`, `@theme` colour entries, and `gold-rule` / `header-blur` utilities.
+- New: `src/components/WingMark.tsx`, `src/components/SectionHeading.tsx`.
+- Edit: `src/components/SiteHeader.tsx` (alignment, sticky, gold active state), `src/components/SiteFooter.tsx` (wing mark), `src/routes/index.tsx` (hero lockup, section headings, gold dividers).
+- Verify with a Playwright screenshot at desktop and mobile widths before finishing.
