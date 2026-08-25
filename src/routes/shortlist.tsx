@@ -26,9 +26,10 @@ import {
 } from "@/lib/shortlist";
 
 export const Route = createFileRoute("/shortlist")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    ids: typeof search.ids === "string" && search.ids ? search.ids : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { ids?: string } => {
+    const raw = search["ids"];
+    return typeof raw === "string" && raw ? { ids: raw } : {};
+  },
   head: () => ({
     meta: [
       { title: "My saved programmes | Learn with Leaders" },
