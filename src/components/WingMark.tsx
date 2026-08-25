@@ -27,21 +27,13 @@ export function WingMark({
       className={`${TONE[tone]} ${className}`}
     >
       <path
-        d="M12 3.2c2.6 3.4 5.5 5.2 8.8 5.6-2 3.6-5 5.9-8.8 7.1-3.8-1.2-6.8-3.5-8.8-7.1C6.5 8.4 9.4 6.6 12 3.2Z"
+        d="M2.6 15.6C6.2 14.2 9 12 11 9.1c2-2.9 4.6-5 7.9-6.1-.5 4.6-2.4 8.2-5.6 10.8-3.2 2.6-6.8 3.9-10.7 3.9Z"
         fill="currentColor"
-        opacity="0.16"
       />
       <path
-        d="M12 3.2c2.6 3.4 5.5 5.2 8.8 5.6-2 3.6-5 5.9-8.8 7.1-3.8-1.2-6.8-3.5-8.8-7.1C6.5 8.4 9.4 6.6 12 3.2Z"
-        stroke="currentColor"
-        strokeWidth="1.3"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M12 16v4.8"
-        stroke="currentColor"
-        strokeWidth="1.3"
-        strokeLinecap="round"
+        d="M8.4 20.8c2.9-.6 5.4-1.9 7.4-3.9 2-2 3.4-4.4 4-7.2.9 3.5.4 6.5-1.6 9-2 2.5-4.7 3.6-9.8 2.1Z"
+        fill="currentColor"
+        opacity="0.55"
       />
     </svg>
   );
