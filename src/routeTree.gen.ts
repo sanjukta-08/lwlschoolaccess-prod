@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as CalendarMonthRouteImport } from './routes/calendar-month'
 import { Route as FinderRouteImport } from './routes/finder'
+import { Route as FitRouteImport } from './routes/fit'
 import { Route as ProfileBuildingRouteImport } from './routes/profile-building'
 import { Route as ShortlistRouteImport } from './routes/shortlist'
 import { Route as StoriesRouteImport } from './routes/stories'
@@ -44,6 +45,11 @@ const FinderRoute = FinderRouteImport.update({
   path: '/finder',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FitRoute = FitRouteImport.update({
+  id: '/fit',
+  path: '/fit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProfileBuildingRoute = ProfileBuildingRouteImport.update({
   id: '/profile-building',
   path: '/profile-building',
@@ -71,6 +77,7 @@ export interface FileRoutesByFullPath {
   '/calendar': typeof CalendarRoute
   '/calendar-month': typeof CalendarMonthRoute
   '/finder': typeof FinderRoute
+  '/fit': typeof FitRoute
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
@@ -82,6 +89,7 @@ export interface FileRoutesByTo {
   '/calendar': typeof CalendarRoute
   '/calendar-month': typeof CalendarMonthRoute
   '/finder': typeof FinderRoute
+  '/fit': typeof FitRoute
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
@@ -94,6 +102,7 @@ export interface FileRoutesById {
   '/calendar': typeof CalendarRoute
   '/calendar-month': typeof CalendarMonthRoute
   '/finder': typeof FinderRoute
+  '/fit': typeof FitRoute
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
@@ -107,6 +116,7 @@ export interface FileRouteTypes {
     | '/calendar'
     | '/calendar-month'
     | '/finder'
+    | '/fit'
     | '/profile-building'
     | '/shortlist'
     | '/stories'
@@ -118,6 +128,7 @@ export interface FileRouteTypes {
     | '/calendar'
     | '/calendar-month'
     | '/finder'
+    | '/fit'
     | '/profile-building'
     | '/shortlist'
     | '/stories'
@@ -129,6 +140,7 @@ export interface FileRouteTypes {
     | '/calendar'
     | '/calendar-month'
     | '/finder'
+    | '/fit'
     | '/profile-building'
     | '/shortlist'
     | '/stories'
@@ -141,6 +153,7 @@ export interface RootRouteChildren {
   CalendarRoute: typeof CalendarRoute
   CalendarMonthRoute: typeof CalendarMonthRoute
   FinderRoute: typeof FinderRoute
+  FitRoute: typeof FitRoute
   ProfileBuildingRoute: typeof ProfileBuildingRoute
   ShortlistRoute: typeof ShortlistRoute
   StoriesRoute: typeof StoriesRoute
@@ -184,6 +197,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FinderRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/fit': {
+      id: '/fit'
+      path: '/fit'
+      fullPath: '/fit'
+      preLoaderRoute: typeof FitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/profile-building': {
       id: '/profile-building'
       path: '/profile-building'
@@ -221,6 +241,7 @@ const rootRouteChildren: RootRouteChildren = {
   CalendarRoute: CalendarRoute,
   CalendarMonthRoute: CalendarMonthRoute,
   FinderRoute: FinderRoute,
+  FitRoute: FitRoute,
   ProfileBuildingRoute: ProfileBuildingRoute,
   ShortlistRoute: ShortlistRoute,
   StoriesRoute: StoriesRoute,

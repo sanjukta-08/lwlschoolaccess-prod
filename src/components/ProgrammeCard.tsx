@@ -14,6 +14,8 @@ import { Link } from "@tanstack/react-router";
 import { SaveButton } from "@/components/SaveButton";
 import { AddToCalendar } from "@/components/AddToCalendar";
 import { countdownLabel, decideLabel } from "@/lib/shortlist";
+import { outcomeOf, startLabel, weeklyHoursOf } from "@/lib/outcome";
+import { regionTimeLabel } from "@/lib/regions";
 
 type Props = {
   match: Match;
@@ -21,6 +23,7 @@ type Props = {
   label?: string | null;
   compact?: boolean;
   showType?: boolean;
+  region?: string;
 };
 
 export function ProgrammeCard({
@@ -29,12 +32,16 @@ export function ProgrammeCard({
   label,
   compact = false,
   showType = false,
+  region = "all",
 }: Props) {
   const { p, next, others } = match;
   const track = TRACKS[p.tracks[0]!];
   const [lo, hi] = cohortGrades(p, next);
   const fee = feeOf(p, next);
   const discounted = fee.r && fee.r !== fee.e;
+  const timeLabel = regionTimeLabel(p, region) ?? shortTime(p.time);
+  const outcome = outcomeOf(p);
+  const hours = weeklyHoursOf(p);
 
   if (compact) {
     return (
@@ -48,28 +55,32 @@ export function ProgrammeCard({
         <span className="text-base" aria-hidden style={{ color: track.color }}>
           {track.ic}
         </span>
-        <span className="min-w-[10rem] flex-1">
-          <b className="block text-[0.92rem] font-bold text-ink">{p.name}</b>
-          <small className="mt-0.5 block text-[0.74rem] text-ink-faint">
-            {TYPE_NAME[p.type]} · G{lo}–{hi} · {p.dur}
+        <span className="min-w-[14rem] flex-1">
+          <b className="block text-[0.94rem] font-bold text-ink">{p.name}</b>
+          <small className="mt-0.5 block text-[0.79rem] text-ink-soft">{outcome}</small>
+          <small className="mt-0.5 block text-[0.72rem] text-ink-faint">
+            {TYPE_NAME[p.type]} · Grades {lo}–{hi} · {p.dur} · about {hours}h a week
           </small>
         </span>
-        <span className="font-mono text-[0.74rem] text-ink-soft">{fmtShort(next.d)}</span>
-        <span className="hidden font-mono text-[0.74rem] text-ink-faint md:inline">
-          {shortTime(p.time)}
+        <span className="flex flex-col items-start gap-0.5 font-mono text-[0.72rem] text-ink-soft sm:items-end">
+          <span className="font-semibold text-ink">{startLabel(next.d)}</span>
+          <span className="text-ink-faint">{timeLabel}</span>
         </span>
-        <span className="font-serif text-[1rem] font-semibold">{fee.e}</span>
+        <span className="flex flex-col items-start sm:items-end">
+          <span className="font-serif text-[1rem] font-semibold">Fee {fee.e}</span>
+          {discounted ? (
+            <small className="text-[0.7rem] text-ink-faint line-through">{fee.r}</small>
+          ) : null}
+        </span>
+        {countdownLabel(next.d) ? (
+          <span className="rounded-md bg-gold/12 px-2 py-0.5 text-[0.68rem] font-bold text-gold">
+            {countdownLabel(next.d)}
+          </span>
+        ) : null}
         <SaveButton p={p} c={next} />
-        <a
-          href={p.apply}
-          target="_blank"
-          rel="noopener"
-          onClick={(e) => e.stopPropagation()}
-          className="relative z-[3] rounded-lg px-3 py-1.5 text-[0.78rem] font-bold text-paper no-underline transition-[filter] hover:brightness-110"
-          style={{ background: track.color }}
-        >
-          Apply
-        </a>
+        <span className="relative z-[2] rounded-lg border border-line bg-wash px-3 py-1.5 text-[0.76rem] font-bold text-ink group-hover:border-ink-soft/50">
+          View
+        </span>
       </div>
     );
   }
@@ -129,6 +140,8 @@ export function ProgrammeCard({
           </span>
         </div>
 
+        <p className="text-[0.88rem] font-semibold text-ink">{outcome}</p>
+
         {countdownLabel(next.d) || decideLabel(next.d) ? (
           <p className="flex flex-wrap items-center gap-1.5 text-[0.7rem] font-bold">
             {countdownLabel(next.d) ? (
@@ -146,32 +159,41 @@ export function ProgrammeCard({
 
         <p className="clamp-2 text-[0.85rem] text-ink-soft">{p.tag}</p>
 
+        <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.76rem] text-ink-soft">
+          <span>{TYPE_NAME[p.type]}</span>
+          <span className="text-ink-faint">·</span>
+          <span>
+            Grades {lo}–{hi}
+          </span>
+          <span className="text-ink-faint">·</span>
+          <span>
+            {p.dur} · about {hours}h a week
+          </span>
+        </p>
+
         <p
           className="flex flex-wrap items-center gap-x-2 gap-y-1 rounded-lg bg-wash px-3 py-2 font-mono text-[0.72rem] text-ink-soft"
           title={`Live on ${dualTime(p.time)}`}
         >
-          <span className="font-semibold text-ink">{fmtShort(next.d)}</span>
+          <span className="font-semibold text-ink">{startLabel(next.d)}</span>
           <span className="text-ink-faint">·</span>
-          <span>{p.dur}</span>
+          <span>{timeLabel}</span>
           <span className="text-ink-faint">·</span>
-          <span>{shortTime(p.time)}</span>
+          <span>Fee {fee.e}</span>
         </p>
 
-        <div className="flex flex-wrap items-baseline gap-2.5">
-          <span className="font-serif text-[1.24rem] font-semibold">{fee.e}</span>
-          {discounted ? (
-            <>
-              <span className="text-[0.8rem] text-ink-faint line-through">{fee.r}</span>
-              <span className="rounded-[5px] border border-gold px-[6px] py-0.5 text-[0.66rem] font-bold tracking-wide text-gold uppercase">
-                Early bird
-              </span>
-            </>
-          ) : null}
-        </div>
+        {discounted ? (
+          <div className="flex flex-wrap items-baseline gap-2.5">
+            <span className="text-[0.8rem] text-ink-faint line-through">{fee.r}</span>
+            <span className="rounded-[5px] border border-gold px-[6px] py-0.5 text-[0.66rem] font-bold tracking-wide text-gold uppercase">
+              Early bird
+            </span>
+          </div>
+        ) : null}
 
         {others.length ? (
           <p className="flex flex-wrap items-center gap-[6px] text-[0.72rem] text-ink-faint">
-            <b className="font-semibold text-ink-soft">Also</b>
+            <b className="font-semibold text-ink-soft">Also starts</b>
             {others.slice(0, 2).map((o) => (
               <span
                 key={o.d}
@@ -185,16 +207,14 @@ export function ProgrammeCard({
         ) : null}
 
         <div className="mt-auto flex items-center gap-3 pt-2">
-          <a
-            href={p.apply}
-            target="_blank"
-            rel="noopener"
-            onClick={(e) => e.stopPropagation()}
+          <Link
+            to="/programmes/$slug"
+            params={{ slug: slugOf(p) }}
             className="relative z-[2] flex-1 rounded-xl px-4 py-2 text-center text-[0.85rem] font-bold text-paper no-underline transition-[filter] hover:brightness-110"
             style={{ background: track.color }}
           >
-            Apply now
-          </a>
+            View programme
+          </Link>
           <AddToCalendar p={p} c={next} />
         </div>
       </div>
