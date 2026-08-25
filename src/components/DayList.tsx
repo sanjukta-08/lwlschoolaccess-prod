@@ -1,3 +1,5 @@
+import { slugOf } from "@/lib/programme-detail";
+import { Link } from "@tanstack/react-router";
 import {
   TRACKS,
   TYPE_NAME,
@@ -85,12 +87,19 @@ export function DayList({
                   >
                     Apply
                   </a>
+                  <Link
+                    to="/programmes/$slug"
+                    params={{ slug: slugOf(p) }}
+                    className="rounded-lg border-[1.5px] border-line px-3.5 py-2 text-[0.8rem] font-semibold text-ink-soft no-underline hover:border-ink-soft hover:text-ink"
+                  >
+                    Full details
+                  </Link>
                   <button
                     type="button"
                     onClick={() => onOpen(p.id)}
-                    className="rounded-lg border-[1.5px] border-line px-3.5 py-2 text-[0.8rem] font-semibold text-ink-soft hover:border-ink-soft hover:text-ink"
+                    className="rounded-lg px-2 py-2 text-[0.8rem] font-semibold text-ink-faint underline decoration-line underline-offset-4 hover:text-crimson"
                   >
-                    Details
+                    Quick look
                   </button>
                 </div>
               </li>

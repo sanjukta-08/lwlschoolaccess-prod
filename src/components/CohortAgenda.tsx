@@ -55,11 +55,11 @@ export function CohortAgenda({
               const soon = isSoon(c.d);
               const track = TRACKS[p.tracks[0]!];
               return (
-                <button
+                <Link
                   key={p.id + c.d}
-                  type="button"
-                  onClick={() => onOpen(p.id)}
-                  className="flex w-full items-center gap-4 rounded-2xl border border-line bg-paper px-4 py-3 text-left transition-transform hover:-translate-y-px hover:shadow-soft"
+                  to="/programmes/$slug"
+                  params={{ slug: slugOf(p) }}
+                  className="flex w-full items-center gap-4 rounded-2xl border border-line bg-paper px-4 py-3 text-left text-ink no-underline transition-transform hover:-translate-y-px hover:shadow-soft"
                 >
                   <span
                     className="shrink-0 border-r border-line pr-3.5 text-center"
@@ -93,7 +93,7 @@ export function CohortAgenda({
                       </span>
                     )}
                   </span>
-                </button>
+                </Link>
               );
             })}
           </div>
