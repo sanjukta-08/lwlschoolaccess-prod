@@ -800,3 +800,42 @@ export const PROGRAMMES: Programme[] = [
     ],
   },
 ];
+
+/* ---------- helpers ---------- */
+
+export const startOfToday = () => {
+  const d = new Date();
+  d.setHours(0, 0, 0, 0);
+  return d;
+};
+
+export const parseISO = (iso: string) => new Date(iso + "T00:00:00");
+
+export const isPast = (iso: string) => parseISO(iso) < startOfToday();
+
+export const isSoon = (iso: string) => {
+  const diff = (parseISO(iso).getTime() - startOfToday().getTime()) / 86400000;
+  return diff >= 0 && diff <= 45;
+};
+
+export const fmtLong = (iso: string) =>
+  parseISO(iso).toLocaleDateString("en-GB", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+
+export const fmtShort = (iso: string) =>
+  parseISO(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+
+export const cohortGrades = (p: Programme, c?: Cohort): [number, number] =>
+  (c && c.g) || p.g;
+
+export const feeOf = (p: Programme, c?: Cohort): Fee =>
+  c && c.fee ? c.fee : { e: p.feeE, r: p.feeR };
+
+/** Programmes with past cohorts removed (empty programmes dropped). */
+export const upcomingProgrammes = (): Programme[] =>
+  PROGRAMMES.map((p) => ({ ...p, cohorts: p.cohorts.filter((c) => !isPast(c.d)) }))
+    .filter((p) => p.cohorts.length > 0);
