@@ -59,12 +59,13 @@ export function ProgrammeCard({
           {shortTime(p.time)}
         </span>
         <span className="font-serif text-[1rem] font-semibold">{fee.e}</span>
+        <SaveButton p={p} c={next} />
         <a
           href={p.apply}
           target="_blank"
           rel="noopener"
           onClick={(e) => e.stopPropagation()}
-          className="relative rounded-lg px-3 py-1.5 text-[0.78rem] font-bold text-paper no-underline transition-[filter] hover:brightness-110"
+          className="relative z-[3] rounded-lg px-3 py-1.5 text-[0.78rem] font-bold text-paper no-underline transition-[filter] hover:brightness-110"
           style={{ background: track.color }}
         >
           Apply
