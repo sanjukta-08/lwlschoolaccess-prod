@@ -146,15 +146,14 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="bg-wash px-5 py-14">
+      <section className="border-y border-gold-line/60 bg-wash px-5 py-14">
         <div className="mx-auto max-w-[1100px]">
-          <h2 className="text-center font-serif text-[clamp(1.6rem,3.8vw,2.2rem)] font-medium">
+          <SectionHeading
+            eyebrow="Signature cohorts"
+            sub="Our deepest experiences — small cohorts, dedicated mentors, capstones and Demo Days."
+          >
             The <em className="text-crimson-deep">flagship</em> fellowships
-          </h2>
-          <p className="mx-auto mt-2.5 max-w-[40em] text-center text-[0.92rem] text-ink-soft">
-            Our deepest experiences — small cohorts, dedicated mentors, capstones and Demo
-            Days.
-          </p>
+          </SectionHeading>
           <div className="mt-8 grid gap-4.5 sm:grid-cols-2 lg:grid-cols-4">
             {FEATURED.map((id) => {
               const p = upcoming.find((x) => x.id === id);
