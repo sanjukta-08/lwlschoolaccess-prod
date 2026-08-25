@@ -4,6 +4,10 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { FinderPanel } from "@/components/FinderPanel";
 import { ProgrammeCard } from "@/components/ProgrammeCard";
 import { ProgrammeSheet } from "@/components/ProgrammeSheet";
+import { HeroStats } from "@/components/HeroStats";
+import { CounsellorCard } from "@/components/CounsellorCard";
+import { FaqAccordion, FAQS } from "@/components/FaqAccordion";
+import { HowItWorks, WhyLwl } from "@/components/HowItWorks";
 import { TRACKS, TYPE_NAME } from "@/lib/programmes";
 import {
   BAND_LABEL,
@@ -21,6 +25,20 @@ const DESC =
 export const Route = createFileRoute("/")({
   validateSearch: (search: Record<string, unknown>) => validateFinderSearch(search),
   head: () => ({
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: FAQS.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }),
+      },
+    ],
     meta: [
       { title: TITLE },
       { name: "description", content: DESC },
@@ -76,6 +94,7 @@ function FinderPage() {
               internships — filtered by grade, interest and start date in under thirty
               seconds.
             </p>
+            <HeroStats />
           </section>
         </div>
       </div>
@@ -184,10 +203,15 @@ function FinderPage() {
           )}
 
           <p className="mx-auto mt-7 flex w-fit max-w-full items-center justify-center gap-2 rounded-full border border-line bg-paper px-5 py-2.5 text-center text-[0.82rem] text-ink-soft">
-            🕒 All sessions run live on Zoom in US Eastern Time (ET).
+            🕒 Live on Zoom · times shown in Dubai time (GMT+4) with US Eastern alongside.
           </p>
         </div>
       </section>
+
+      <CounsellorCard />
+      <HowItWorks />
+      <WhyLwl />
+      <FaqAccordion />
 
       <section className="bg-crimson-deep px-5 py-16 text-center text-paper">
         <h2 className="font-serif text-[clamp(1.5rem,4vw,2.2rem)] font-medium">

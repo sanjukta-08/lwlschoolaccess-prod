@@ -6,6 +6,7 @@ import {
   fmtLong,
   fmtShort,
   isSoon,
+  dualTime,
 } from "@/lib/programmes";
 import type { Match } from "@/lib/finder";
 
@@ -85,7 +86,7 @@ export function ProgrammeCard({ match, index = 0, label, onOpen }: Props) {
           {[
             ["Starts", fmtLong(next.d)],
             ["Length", p.dur],
-            ["Live on", p.time],
+            ["Live on", dualTime(p.time)],
           ].map(([k, v]) => (
             <div key={k} className="flex items-baseline gap-2.5">
               <dt className="mono-label flex-none basis-[74px] text-ink-faint">{k}</dt>

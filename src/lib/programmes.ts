@@ -839,3 +839,27 @@ export const feeOf = (p: Programme, c?: Cohort): Fee =>
 export const upcomingProgrammes = (): Programme[] =>
   PROGRAMMES.map((p) => ({ ...p, cohorts: p.cohorts.filter((c) => !isPast(c.d)) }))
     .filter((p) => p.cohorts.length > 0);
+
+/**
+ * Sessions are published in US Eastern. Most families reading this are in the
+ * Gulf, so show Dubai time (GMT+4, ET + 8h) first with the original alongside.
+ */
+export const dualTime = (str: string): string => {
+  if (!/AM|PM/i.test(str)) return str;
+  const spread = str.replace(
+    /(\d{1,2}(?::\d{2})?)\s*[–—-]\s*(\d{1,2}(?::\d{2})?)\s*(AM|PM)/gi,
+    "$1 $3–$2 $3",
+  );
+  const conv = spread
+    .replace(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM)/gi, (_m, h, mm, ap) => {
+      let H = (parseInt(h, 10) % 12) + (String(ap).toUpperCase() === "PM" ? 12 : 0);
+      H = (H + 8) % 24;
+      const ap2 = H >= 12 ? "PM" : "AM";
+      const h2 = H % 12 || 12;
+      return `${h2}${mm ? ":" + mm : ":00"} ${ap2}`;
+    })
+    .replace(/\b(EDT|EST|ET)\b/g, "GMT+4");
+  return `${/GMT\+4/.test(conv) ? conv : conv + " GMT+4"} (${str})`;
+};
+
+export const TOTAL_COHORTS = PROGRAMMES.reduce((n, p) => n + p.cohorts.length, 0);
