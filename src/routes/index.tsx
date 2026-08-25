@@ -1,4 +1,5 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
+import { DEFAULT_FIT } from "@/lib/fit";
 import { SiteHeader } from "@/components/SiteHeader";
 import { HowItWorks } from "@/components/HowItWorks";
 import { Suspense, lazy } from "react";
