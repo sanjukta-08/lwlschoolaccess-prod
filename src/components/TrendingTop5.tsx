@@ -16,12 +16,11 @@ import {
 
 type Props = {
   state?: FinderSearch;
-  onOpen: (id: string) => void;
   /** "section" = full band, "strip" = slim 3-across row inside a page column */
   variant?: "section" | "strip";
 };
 
-export function TrendingTop5({ state, onOpen, variant = "section" }: Props) {
+export function TrendingTop5({ state, variant = "section" }: Props) {
   const filteredMatches = state ? new Map(getMatches(state).map((m) => [m.p.id, m])) : null;
   const activeInterest =
     state && state.interest !== "all"
@@ -94,13 +93,6 @@ export function TrendingTop5({ state, onOpen, variant = "section" }: Props) {
                     >
                       View programme →
                     </Link>
-                    <button
-                      type="button"
-                      onClick={() => onOpen(p.id)}
-                      className="relative z-[2] ml-auto text-[0.76rem] font-semibold text-ink-faint underline decoration-line underline-offset-4 hover:text-crimson"
-                    >
-                      Quick look
-                    </button>
                   </div>
                 </div>
               </li>
@@ -182,13 +174,6 @@ export function TrendingTop5({ state, onOpen, variant = "section" }: Props) {
                     >
                       Full details
                     </Link>
-                    <button
-                      type="button"
-                      onClick={() => onOpen(p.id)}
-                      className="rounded-xl px-2 py-2.5 text-[0.82rem] font-semibold text-ink-faint underline decoration-line underline-offset-4 hover:text-crimson"
-                    >
-                      Quick look
-                    </button>
                   </div>
                 </div>
               </li>

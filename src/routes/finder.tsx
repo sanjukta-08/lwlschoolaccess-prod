@@ -4,7 +4,6 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { FinderPanel } from "@/components/FinderPanel";
 import { ProgrammeCard } from "@/components/ProgrammeCard";
 import { ResultGroup } from "@/components/ResultGroup";
-import { ProgrammeSheet } from "@/components/ProgrammeSheet";
 import { CounsellorCard } from "@/components/CounsellorCard";
 import { FaqAccordion, FAQS } from "@/components/FaqAccordion";
 import { HowItWorks, WhyLwl } from "@/components/HowItWorks";
@@ -66,7 +65,6 @@ export const Route = createFileRoute("/finder")({
 function FinderPage() {
   const state = Route.useSearch();
   const navigate = useNavigate({ from: Route.fullPath });
-  const [detailId, setDetailId] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<string>("all");
   const [visible, setVisible] = useState(PAGE);
 
@@ -206,7 +204,7 @@ function FinderPage() {
           </div>
 
           <main className="min-w-0 space-y-6">
-            <TrendingTop5 state={state} onOpen={setDetailId} variant="strip" />
+            <TrendingTop5 state={state} variant="strip" />
 
             <section id="all-programmes" className="scroll-mt-6">
               <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
@@ -290,7 +288,6 @@ function FinderPage() {
                     compact={state.density === "compact"}
                     showType={state.sort === "month" || currentKey === "all"}
                     labelTop={narrowed && activeGroup.rows.length > 1}
-                    onOpen={setDetailId}
                   />
 
                   {remaining > 0 ? (
@@ -326,7 +323,6 @@ function FinderPage() {
                           key={m.p.id}
                           match={m}
                           index={i}
-                          onOpen={setDetailId}
                         />
                       ))}
                     </div>
@@ -355,7 +351,7 @@ function FinderPage() {
               className="rounded-2xl border border-line bg-paper px-4"
             >
               <TailItem value="pathway" title="Plan the profile — step by step">
-                <ProfilePathway onOpen={setDetailId} />
+                <ProfilePathway />
               </TailItem>
               <TailItem value="advisor" title="Not sure? Describe your child instead">
                 <CounsellorCard />
@@ -395,7 +391,6 @@ function FinderPage() {
         confirm on each programme page.
       </footer>
 
-      <ProgrammeSheet id={detailId} onClose={() => setDetailId(null)} />
     </div>
   );
 }

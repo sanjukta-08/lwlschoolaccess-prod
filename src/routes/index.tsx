@@ -1,7 +1,5 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
-import { ProgrammeSheet } from "@/components/ProgrammeSheet";
 import { HowItWorks, WhyLwl } from "@/components/HowItWorks";
 import {
   PROGRAMMES,
@@ -14,6 +12,7 @@ import {
   type TrackKey,
 } from "@/lib/programmes";
 import { DEFAULT_SEARCH } from "@/lib/finder";
+import { slugOf } from "@/lib/programme-detail";
 
 const TITLE = "Learn with Leaders — Harvard & Yale-mentored programmes, Grades 5–12";
 const DESC =
@@ -45,7 +44,6 @@ const PARTNERS = [
 ];
 
 function HomePage() {
-  const [detailId, setDetailId] = useState<string | null>(null);
   const upcoming = upcomingProgrammes();
 
   return (
@@ -159,12 +157,12 @@ function HomePage() {
               const t = TRACKS[p.tracks[0] as TrackKey];
               const [g1, g2] = cohortGrades(p, c);
               return (
-                <button
+                <Link
                   key={p.id}
-                  type="button"
-                  onClick={() => setDetailId(p.id)}
+                  to="/programmes/$slug"
+                  params={{ slug: slugOf(p) }}
                   style={{ "--sp": t.color } as React.CSSProperties}
-                  className="flex flex-col overflow-hidden rounded-[18px] border border-line bg-paper text-left shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-lift"
+                  className="flex flex-col overflow-hidden rounded-[18px] border border-line bg-paper text-left text-ink no-underline shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-lift"
                 >
                   <span
                     className="flex items-center justify-between border-b px-4.5 py-2.5 text-[0.74rem] font-bold"
@@ -199,7 +197,7 @@ function HomePage() {
                       View programme →
                     </span>
                   </span>
-                </button>
+                </Link>
               );
             })}
           </div>
@@ -291,7 +289,6 @@ function HomePage() {
         confirm on each programme page.
       </footer>
 
-      <ProgrammeSheet id={detailId} onClose={() => setDetailId(null)} />
     </div>
   );
 }

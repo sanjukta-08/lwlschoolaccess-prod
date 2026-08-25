@@ -1,7 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
-import { ProgrammeSheet } from "@/components/ProgrammeSheet";
 import { CalendarControls } from "@/components/CalendarControls";
 import { MonthSections, TypeSections } from "@/components/CohortRows";
 import { TRACKS, isSoon } from "@/lib/programmes";
@@ -37,7 +36,6 @@ export const Route = createFileRoute("/calendar")({
 function CalendarPage() {
   const state = Route.useSearch();
   const navigate = useNavigate({ from: Route.fullPath });
-  const [detailId, setDetailId] = useState<string | null>(null);
 
   const entries = useMemo(() => {
     const all = getCohortEntries(state);
@@ -95,9 +93,9 @@ function CalendarPage() {
             broader.
           </p>
         ) : byMonth ? (
-          <MonthSections groups={months} onOpen={setDetailId} />
+          <MonthSections groups={months} />
         ) : (
-          <TypeSections groups={types} onOpen={setDetailId} />
+          <TypeSections groups={types} />
         )}
 
         <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-2xl border border-line bg-paper p-4">
@@ -116,7 +114,6 @@ function CalendarPage() {
         (GMT+4) equivalents.
       </footer>
 
-      <ProgrammeSheet id={detailId} onClose={() => setDetailId(null)} />
     </div>
   );
 }

@@ -4,6 +4,12 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { ProgrammeLanding } from "@/components/ProgrammeLanding";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { detailFor, programmeBySlug } from "@/lib/programme-detail";
+import {
+  profileImpactFor,
+  projectsFor,
+  ratingFor,
+  testimonialsFor,
+} from "@/lib/programme-proof";
 import { TRACKS, TYPE_NAME, feeOf, fmtLong, isPast } from "@/lib/programmes";
 
 export const Route = createFileRoute("/programmes/$slug")({
@@ -58,10 +64,32 @@ export const Route = createFileRoute("/programmes/$slug")({
               url: "https://www.learnwithleaders.com/",
             },
             educationalLevel: `Grades ${p.g[0]}–${p.g[1]}`,
-            teaches: d.skills,
+            teaches: [...d.skills, ...profileImpactFor(p).verifiable],
             educationalCredentialAwarded: d.project.title,
             timeRequired: p.dur,
             url: p.site,
+            syllabusSections: projectsFor(p).map((pr) => ({
+              "@type": "Syllabus",
+              name: pr.title,
+              description: `${pr.question} Output: ${pr.output}`,
+              timeRequired: pr.timeline,
+            })),
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: ratingFor(p).value,
+              reviewCount: ratingFor(p).count,
+              bestRating: "5",
+            },
+            review: testimonialsFor(p).map((t) => ({
+              "@type": "Review",
+              reviewBody: t.quote,
+              author: { "@type": "Person", name: t.name },
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: "5",
+                bestRating: "5",
+              },
+            })),
             hasCourseInstance: p.cohorts
               .filter((c) => !isPast(c.d))
               .map((c) => ({
@@ -72,6 +100,7 @@ export const Route = createFileRoute("/programmes/$slug")({
               })),
           }),
         },
+
         {
           type: "application/ld+json",
           children: JSON.stringify({

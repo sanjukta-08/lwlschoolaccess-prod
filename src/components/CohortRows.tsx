@@ -19,12 +19,10 @@ function CohortRow({
   p,
   c,
   others,
-  onOpen,
 }: {
   p: Programme;
   c: Cohort;
   others?: Cohort[];
-  onOpen: (id: string) => void;
 }) {
   const track = TRACKS[p.tracks[0]!];
   const [lo, hi] = cohortGrades(p, c);
@@ -94,10 +92,8 @@ function CohortRow({
 
 export function MonthSections({
   groups,
-  onOpen,
 }: {
   groups: MonthGroup[];
-  onOpen: (id: string) => void;
 }) {
   return (
     <div>
@@ -111,7 +107,7 @@ export function MonthSections({
           </div>
           <div className="flex flex-col gap-2">
             {g.rows.map((e: Entry) => (
-              <CohortRow key={e.p.id + e.c.d} p={e.p} c={e.c} onOpen={onOpen} />
+              <CohortRow key={e.p.id + e.c.d} p={e.p} c={e.c} />
             ))}
           </div>
         </section>
@@ -122,10 +118,8 @@ export function MonthSections({
 
 export function TypeSections({
   groups,
-  onOpen,
 }: {
   groups: TypeGroup[];
-  onOpen: (id: string) => void;
 }) {
   return (
     <div>
@@ -148,7 +142,6 @@ export function TypeSections({
                 p={r.p}
                 c={r.next}
                 others={r.others}
-                onOpen={onOpen}
               />
             ))}
           </div>

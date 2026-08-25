@@ -10,7 +10,7 @@ import {
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { slugOf } from "@/lib/programme-detail";
 
-export function ProfilePathway({ onOpen }: { onOpen: (id: string) => void }) {
+export function ProfilePathway() {
   return (
     <section id="pathway" className="scroll-mt-24 bg-wash-deep/60 py-16">
       <div className="mx-auto max-w-[1100px] px-5">
@@ -65,17 +65,21 @@ export function ProfilePathway({ onOpen }: { onOpen: (id: string) => void }) {
                     const cls =
                       "flex w-full items-start gap-2 rounded-xl border border-transparent px-1.5 py-1.5 text-left transition-colors";
                     if (o.id) {
-                      return (
-                        <button
-                          key={o.title}
-                          type="button"
-                          onClick={() => onOpen(o.id!)}
-                          className={`${cls} hover:border-line hover:bg-paper`}
-                        >
-                          {inner}
-                        </button>
-                      );
+                      const target = PROGRAMMES.find((x) => x.id === o.id);
+                      if (target) {
+                        return (
+                          <Link
+                            key={o.title}
+                            to="/programmes/$slug"
+                            params={{ slug: slugOf(target) }}
+                            className={`${cls} no-underline hover:border-line hover:bg-paper`}
+                          >
+                            {inner}
+                          </Link>
+                        );
+                      }
                     }
+
                     if (o.type || o.interest) {
                       return (
                         <Link

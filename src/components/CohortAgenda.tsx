@@ -19,10 +19,8 @@ const monthOf = (iso: string) =>
 
 export function CohortAgenda({
   entries,
-  onOpen,
 }: {
   entries: Entry[];
-  onOpen: (id: string) => void;
 }) {
   if (!entries.length) {
     return (
