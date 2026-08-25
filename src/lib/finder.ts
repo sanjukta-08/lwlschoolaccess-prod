@@ -12,10 +12,12 @@ import {
   type TrackKey,
   type TypeKey,
 } from "./programmes";
+import { REGIONS, fitsRegion } from "./regions";
 
 export type FinderSearch = {
   grade: string;
   interest: string;
+  region: string;
   month: string;
   type: string;
   q: string;
@@ -29,6 +31,7 @@ export type FinderSearch = {
 export const DEFAULT_SEARCH: FinderSearch = {
   grade: "all",
   interest: "all",
+  region: "all",
   month: "all",
   type: "all",
   q: "",
@@ -46,6 +49,10 @@ const str = (v: unknown, fallback: string) =>
 export const validateFinderSearch = (raw: Record<string, unknown>): FinderSearch => ({
   grade: str(raw["grade"], "all"),
   interest: str(raw["interest"], "all"),
+  region: (() => {
+    const r = str(raw["region"], "all");
+    return r in REGIONS ? r : "all";
+  })(),
   month: str(raw["month"], "all"),
   type: str(raw["type"], "all"),
   q: str(raw["q"], "").slice(0, 80),
@@ -137,6 +144,7 @@ export type Match = { p: Programme; next: Cohort; others: Cohort[] };
 
 export type MatchOptions = {
   typeOverride?: string;
+  ignoreRegion?: boolean;
   ignoreMonth?: boolean;
   ignoreInterest?: boolean;
   ignoreQuery?: boolean;
@@ -149,6 +157,7 @@ export function getMatches(state: FinderSearch, o: MatchOptions = {}): Match[] {
     if (!matchType(p, type)) return;
     if (!o.ignoreInterest && !matchInterest(p, state.interest)) return;
     if (!o.ignoreQuery && !matchQuery(p, state.q)) return;
+    if (!o.ignoreRegion && !fitsRegion(p, state.region)) return;
     const eligible = p.cohorts
       .filter((c) => !isPast(c.d))
       .filter(
@@ -179,7 +188,12 @@ export const typeCounts = (state: FinderSearch, types: string[]) =>
   ) as Record<string, number>;
 
 export const isDefaultSearch = (s: FinderSearch) =>
-  s.grade === "all" && s.interest === "all" && s.month === "all" && s.type === "all" && !s.q;
+  s.grade === "all" &&
+  s.interest === "all" &&
+  s.region === "all" &&
+  s.month === "all" &&
+  s.type === "all" &&
+  !s.q;
 
 export type MatchGroup = {
   key: string;
@@ -278,7 +292,7 @@ export function groupProgrammesByType(entries: Entry[]): TypeGroup[] {
 /** Programme counts for one facet, holding every other filter steady. */
 export function facetCounts(
   state: FinderSearch,
-  facet: "type" | "interest",
+  facet: "type" | "interest" | "region",
   values: string[],
 ): Record<string, number> {
   const out: Record<string, number> = {};
