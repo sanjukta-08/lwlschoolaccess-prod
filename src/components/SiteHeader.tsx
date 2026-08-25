@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { ShortlistBadge } from "@/components/ShortlistBadge";
+import logoAsset from "@/assets/lwl-logo.png.asset.json";
+
 
 const linkCls =
   "rounded-full px-3 py-2 text-ink-soft transition-colors hover:text-ink no-underline";
