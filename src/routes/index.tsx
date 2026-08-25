@@ -1,5 +1,4 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { HowItWorks, WhyLwl } from "@/components/HowItWorks";
 import {
@@ -13,6 +12,7 @@ import {
   type TrackKey,
 } from "@/lib/programmes";
 import { DEFAULT_SEARCH } from "@/lib/finder";
+import { slugOf } from "@/lib/programme-detail";
 
 const TITLE = "Learn with Leaders — Harvard & Yale-mentored programmes, Grades 5–12";
 const DESC =
