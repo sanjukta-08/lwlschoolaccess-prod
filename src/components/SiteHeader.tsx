@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { DEFAULT_SEARCH } from "@/lib/finder";
+import { ShortlistBadge } from "@/components/ShortlistBadge";
 
 const linkCls =
   "rounded-full px-3 py-2 text-ink-soft transition-colors hover:text-ink no-underline";
