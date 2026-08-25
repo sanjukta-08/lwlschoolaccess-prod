@@ -1,4 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { stripSearchParams } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { MonthGrid, monthTitle } from "@/components/MonthGrid";
@@ -19,6 +20,7 @@ const DESC =
 
 export const Route = createFileRoute("/calendar-month")({
   validateSearch: (search: Record<string, unknown>) => validateFinderSearch(search),
+  search: { middlewares: [stripSearchParams(DEFAULT_SEARCH)] },
   head: () => ({
     meta: [
       { title: TITLE },
