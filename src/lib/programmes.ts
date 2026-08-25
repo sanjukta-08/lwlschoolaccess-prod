@@ -978,4 +978,13 @@ export const PATHWAY: {
     goal: "Publish, compete and intern so the profile shows proof — a paper, an award or real work experience with a named organisation.",
     ids: ["rpf", "irf", "allianz"],
   },
+  {
+    key: "verify",
+    band: "Grades 9–12 · alongside any programme",
+    title: "Turn it into proof universities can check",
+    goal: "The work only counts if an admissions officer can find it, read it and confirm it is real. Step 4 packages everything from steps 1–3.",
+    ids: [],
+    outcomes: OUTCOMES,
+  },
+
 ];
