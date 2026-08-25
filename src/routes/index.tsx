@@ -15,6 +15,7 @@ import {
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { slugOf } from "@/lib/programme-slug";
 import { SiteFooter } from "@/components/SiteFooter";
+import { PartnerLogos } from "@/components/PartnerLogos";
 
 const TITLE = "Learn with Leaders — Harvard & Yale-mentored programmes, Grades 5–12";
 const DESC =
@@ -223,7 +224,8 @@ function HomePage() {
             Delivered with <em className="text-crimson-deep">partners</em> students
             recognise
           </h2>
-          <div className="mt-6 flex flex-wrap justify-center gap-x-8 gap-y-3">
+          <PartnerLogos />
+          <div className="mt-7 flex flex-wrap justify-center gap-x-8 gap-y-3">
             {PARTNERS.map((n) => (
               <span key={n} className="font-serif text-[1.02rem] font-semibold text-ink-soft">
                 {n}
