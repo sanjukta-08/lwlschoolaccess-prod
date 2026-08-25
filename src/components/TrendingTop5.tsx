@@ -97,9 +97,9 @@ export function TrendingTop5({ onOpen }: { onOpen: (id: string) => void }) {
                     <button
                       type="button"
                       onClick={() => onOpen(p.id)}
-                      className="rounded-xl border-[1.5px] border-line bg-paper px-4 py-2.5 text-[0.82rem] font-semibold text-ink-soft hover:border-ink-soft hover:text-ink"
+                      className="rounded-xl px-2 py-2.5 text-[0.82rem] font-semibold text-ink-faint underline decoration-line underline-offset-4 hover:text-crimson"
                     >
-                      Details
+                      Quick look
                     </button>
                   </div>
                 </div>

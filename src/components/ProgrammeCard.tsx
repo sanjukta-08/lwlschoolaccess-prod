@@ -9,6 +9,8 @@ import {
   shortTime,
 } from "@/lib/programmes";
 import type { Match } from "@/lib/finder";
+import { slugOf } from "@/lib/programme-detail";
+import { Link } from "@tanstack/react-router";
 
 type Props = {
   match: Match;
@@ -35,19 +37,13 @@ export function ProgrammeCard({
 
   if (compact) {
     return (
-      <div
-        role="button"
-        tabIndex={0}
-        aria-label={`View ${p.name}`}
-        onClick={() => onOpen(p.id)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            onOpen(p.id);
-          }
-        }}
-        className="flex cursor-pointer flex-wrap items-center gap-x-4 gap-y-1.5 rounded-xl border border-line bg-paper px-4 py-3 transition-colors hover:border-ink-soft/40 hover:bg-wash"
-      >
+      <div className="group relative flex flex-wrap items-center gap-x-4 gap-y-1.5 rounded-xl border border-line bg-paper px-4 py-3 transition-colors hover:border-ink-soft/40 hover:bg-wash">
+        <Link
+          to="/programmes/$slug"
+          params={{ slug: slugOf(p) }}
+          aria-label={`View ${p.name}`}
+          className="absolute inset-0 rounded-xl"
+        />
         <span className="text-base" aria-hidden style={{ color: track.color }}>
           {track.ic}
         </span>
@@ -67,7 +63,7 @@ export function ProgrammeCard({
           target="_blank"
           rel="noopener"
           onClick={(e) => e.stopPropagation()}
-          className="rounded-lg px-3 py-1.5 text-[0.78rem] font-bold text-paper no-underline transition-[filter] hover:brightness-110"
+          className="relative rounded-lg px-3 py-1.5 text-[0.78rem] font-bold text-paper no-underline transition-[filter] hover:brightness-110"
           style={{ background: track.color }}
         >
           Apply
@@ -78,24 +74,20 @@ export function ProgrammeCard({
 
   return (
     <article
-      role="button"
-      tabIndex={0}
-      aria-label={`View ${p.name}`}
-      onClick={() => onOpen(p.id)}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onOpen(p.id);
-        }
-      }}
       style={
         {
           "--sp": track.color,
           animationDelay: `${Math.min(index * 40, 320)}ms`,
         } as React.CSSProperties
       }
-      className="relative flex animate-in cursor-pointer flex-col overflow-hidden rounded-lg border border-line bg-paper shadow-soft transition-all duration-150 fade-in slide-in-from-bottom-2 hover:-translate-y-[3px] hover:shadow-lift"
+      className="relative flex animate-in flex-col overflow-hidden rounded-lg border border-line bg-paper shadow-soft transition-all duration-150 fade-in slide-in-from-bottom-2 hover:-translate-y-[3px] hover:shadow-lift"
     >
+      <Link
+        to="/programmes/$slug"
+        params={{ slug: slugOf(p) }}
+        aria-label={`View ${p.name}`}
+        className="absolute inset-0 z-[1] rounded-lg"
+      />
       {label ? (
         <span
           className={`absolute top-0 right-0 rounded-bl-lg px-3 py-1 text-[0.66rem] font-bold tracking-wide uppercase ${
@@ -178,7 +170,7 @@ export function ProgrammeCard({
             target="_blank"
             rel="noopener"
             onClick={(e) => e.stopPropagation()}
-            className="flex-1 rounded-xl px-4 py-2 text-center text-[0.85rem] font-bold text-paper no-underline transition-[filter] hover:brightness-110"
+            className="relative z-[2] flex-1 rounded-xl px-4 py-2 text-center text-[0.85rem] font-bold text-paper no-underline transition-[filter] hover:brightness-110"
             style={{ background: track.color }}
           >
             Apply now
@@ -186,12 +178,13 @@ export function ProgrammeCard({
           <button
             type="button"
             onClick={(e) => {
+              e.preventDefault();
               e.stopPropagation();
               onOpen(p.id);
             }}
-            className="flex-none text-[0.8rem] font-semibold text-ink-faint underline decoration-line underline-offset-4 transition-colors hover:text-crimson"
+            className="relative z-[2] flex-none text-[0.8rem] font-semibold text-ink-faint underline decoration-line underline-offset-4 transition-colors hover:text-crimson"
           >
-            Details
+            Quick look
           </button>
         </div>
       </div>

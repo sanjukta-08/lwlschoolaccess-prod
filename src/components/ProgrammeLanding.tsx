@@ -129,8 +129,57 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         </div>
 
         <h2 className="mt-12 font-serif text-[clamp(1.45rem,3.4vw,1.9rem)] font-medium">
+          Skills your child will <em className="text-crimson-deep italic">gain</em>
+        </h2>
+        <p className="mt-2 max-w-[40em] text-[0.92rem] text-ink-soft">
+          Named, practised skills — the ones that show up later in essays, interviews
+          and the next programme.
+        </p>
+        <ul className="mt-5 grid list-none gap-2.5 p-0 sm:grid-cols-2 lg:grid-cols-3">
+          {d.skills.map((s) => (
+            <li
+              key={s}
+              className="flex items-start gap-2.5 rounded-xl border border-line bg-paper px-4 py-3 text-[0.88rem] font-semibold shadow-soft"
+            >
+              <span className="mt-[1px] font-bold" style={{ color: track.color }} aria-hidden>
+                ▸
+              </span>
+              {s}
+            </li>
+          ))}
+        </ul>
+
+        <h2 className="mt-12 font-serif text-[clamp(1.45rem,3.4vw,1.9rem)] font-medium">
+          The project they <em className="text-crimson-deep italic">finish with</em>
+        </h2>
+        <div
+          className="mt-5 rounded-[20px] border-[1.5px] p-6"
+          style={{
+            borderColor: `color-mix(in srgb, ${track.color} 28%, #fff)`,
+            background: `color-mix(in srgb, ${track.color} 6%, #fff)`,
+          }}
+        >
+          <b className="font-serif text-[1.12rem] font-semibold">{d.project.title}</b>
+          <p className="mt-2 max-w-[46em] text-[0.9rem] text-ink-soft">{d.project.body}</p>
+          <p className="mt-5 font-mono text-[0.7rem] font-semibold tracking-wide text-ink-faint uppercase">
+            What you end up holding
+          </p>
+          <ul className="mt-2.5 grid list-none gap-2 p-0 sm:grid-cols-2">
+            {d.project.proof.map((x) => (
+              <li key={x} className="flex items-start gap-2 text-[0.88rem] text-ink-soft">
+                <span className="mt-[1px] font-bold text-track-fin" aria-hidden>
+                  ✓
+                </span>
+                {x}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <h2 className="mt-12 font-serif text-[clamp(1.45rem,3.4vw,1.9rem)] font-medium">
           What they'll <em className="text-crimson-deep italic">take away</em>
         </h2>
+
         <div className="mt-5 flex flex-wrap gap-2.5">
           {d.takeaways.map((t) => (
             <span

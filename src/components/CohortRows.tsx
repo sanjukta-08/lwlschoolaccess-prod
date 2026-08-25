@@ -12,6 +12,8 @@ import {
   type Programme,
 } from "@/lib/programmes";
 import type { Entry, MonthGroup, TypeGroup } from "@/lib/finder";
+import { slugOf } from "@/lib/programme-detail";
+import { Link } from "@tanstack/react-router";
 
 function CohortRow({
   p,
@@ -30,11 +32,11 @@ function CohortRow({
   const date = parseISO(c.d);
 
   return (
-    <button
-      type="button"
-      onClick={() => onOpen(p.id)}
+    <Link
+      to="/programmes/$slug"
+      params={{ slug: slugOf(p) }}
       style={{ borderLeftColor: track.color }}
-      className="flex w-full items-center gap-4 rounded-2xl border border-line border-l-[4px] bg-paper px-4 py-3.5 text-left transition-all hover:-translate-y-px hover:shadow-lift"
+      className="flex w-full items-center gap-4 rounded-2xl border border-line border-l-[4px] bg-paper px-4 py-3.5 text-left text-ink no-underline transition-all hover:-translate-y-px hover:shadow-lift"
     >
       <span className="w-[54px] shrink-0 text-center">
         <b
@@ -86,7 +88,7 @@ function CohortRow({
           </span>
         )}
       </span>
-    </button>
+    </Link>
   );
 }
 

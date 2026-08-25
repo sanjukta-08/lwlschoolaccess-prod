@@ -58,6 +58,8 @@ export const Route = createFileRoute("/programmes/$slug")({
               url: "https://www.learnwithleaders.com/",
             },
             educationalLevel: `Grades ${p.g[0]}–${p.g[1]}`,
+            teaches: d.skills,
+            educationalCredentialAwarded: d.project.title,
             timeRequired: p.dur,
             url: p.site,
             hasCourseInstance: p.cohorts
