@@ -17,9 +17,11 @@ import {
 type Props = {
   state?: FinderSearch;
   onOpen: (id: string) => void;
+  /** "section" = full band, "strip" = slim 3-across row inside a page column */
+  variant?: "section" | "strip";
 };
 
-export function TrendingTop5({ state, onOpen }: Props) {
+export function TrendingTop5({ state, onOpen, variant = "section" }: Props) {
   const filteredMatches = state ? new Map(getMatches(state).map((m) => [m.p.id, m])) : null;
   const activeInterest =
     state && state.interest !== "all"
