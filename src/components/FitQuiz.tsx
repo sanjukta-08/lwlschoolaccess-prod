@@ -315,8 +315,10 @@ function ResultView({ result, onRestart }: { result: FitResult; onRestart: () =>
               </li>
               <li>
                 <b className="text-ink">Commitment</b>{" "}
-                <span className="text-ink-soft">{pick.commitment}</span>
+                <span className="text-ink-soft">{pick.commitment}</span>{" "}
+                <ZoomBadge className="align-middle" />
               </li>
+
               {next ? (
                 <li>
                   <b className="text-ink">Next cohort</b>{" "}
