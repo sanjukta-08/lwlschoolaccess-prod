@@ -57,7 +57,7 @@ function FinderPage() {
   }
 
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="min-h-screen bg-wash">
       <div className="relative">
         <div className="hero-wash absolute inset-0" />
         <div className="relative">
