@@ -145,6 +145,13 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
           ))}
         </div>
 
+        <Link
+          to="/profile-building"
+          className="mt-4 inline-block text-[0.85rem] font-semibold text-crimson no-underline hover:text-crimson-deep"
+        >
+          How this fits into profile building →
+        </Link>
+
         {p.badge ? (
           <div className="mt-9 flex flex-wrap items-center gap-4 rounded-[18px] border border-line bg-wash px-6 py-5">
             <span className="text-[1.6rem]" aria-hidden>
