@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { FinderPanel } from "@/components/FinderPanel";
@@ -9,6 +9,8 @@ import { HeroStats } from "@/components/HeroStats";
 import { CounsellorCard } from "@/components/CounsellorCard";
 import { FaqAccordion, FAQS } from "@/components/FaqAccordion";
 import { HowItWorks, WhyLwl } from "@/components/HowItWorks";
+import { TrendingTop5 } from "@/components/TrendingTop5";
+import { ProfilePathway } from "@/components/ProfilePathway";
 import { TRACKS, TYPE_NAME } from "@/lib/programmes";
 import {
   BAND_LABEL,
@@ -116,9 +118,14 @@ function FinderPage() {
         </div>
       </div>
 
-      <section className="bg-wash pt-8 pb-12">
+      <TrendingTop5 onOpen={setDetailId} />
+
+      <section id="all-programmes" className="scroll-mt-24 bg-wash pt-12 pb-12">
         <div className="mx-auto max-w-[1100px] px-5">
           <header className="mb-6 text-center">
+            <span className="mono-label mb-2 block text-ink-faint">
+              All main programmes
+            </span>
             <h2 className="font-serif text-[clamp(1.25rem,3vw,1.6rem)] font-medium">
               {matches.length ? (
                 <>
@@ -242,9 +249,29 @@ function FinderPage() {
           <p className="mx-auto mt-7 flex w-fit max-w-full items-center justify-center gap-2 rounded-full border border-line bg-paper px-5 py-2.5 text-center text-[0.82rem] text-ink-soft">
             🕒 Live on Zoom · times shown in Dubai time (GMT+4) with US Eastern alongside.
           </p>
+
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-3xl border border-line bg-paper p-6 shadow-soft">
+            <div>
+              <h3 className="font-serif text-[1.2rem] font-semibold">
+                Prefer to plan around dates?
+              </h3>
+              <p className="mt-1 max-w-[36em] text-[0.86rem] text-ink-soft">
+                Open the full calendar for every cohort from July 2026 to April 2027,
+                month by month or grouped by type.
+              </p>
+            </div>
+            <Link
+              to="/calendar"
+              search={state}
+              className="rounded-full bg-ink px-5 py-3 text-[0.86rem] font-bold text-paper no-underline hover:bg-crimson-deep"
+            >
+              Open the full calendar →
+            </Link>
+          </div>
         </div>
       </section>
 
+      <ProfilePathway onOpen={setDetailId} />
       <CounsellorCard />
       <HowItWorks />
       <WhyLwl />
