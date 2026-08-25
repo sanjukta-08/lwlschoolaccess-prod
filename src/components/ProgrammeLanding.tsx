@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 
 import { DEFAULT_SEARCH } from "@/lib/finder";
-import { detailFor, programmePath, relatedProgrammes } from "@/lib/programme-detail";
+import { detailFor, relatedProgrammes, slugOf } from "@/lib/programme-detail";
 import {
   TRACKS,
   TYPE_NAME,
@@ -272,7 +272,8 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
               return (
                 <Link
                   key={r.id}
-                  to={programmePath(r)}
+                  to="/programmes/$slug"
+                  params={{ slug: slugOf(r) }}
                   className="flex flex-col gap-2 rounded-2xl border border-line bg-paper p-4.5 no-underline shadow-soft transition-all hover:-translate-y-[3px] hover:shadow-lift"
                 >
                   <span className="text-[0.74rem] font-bold" style={{ color: rt.color }}>
