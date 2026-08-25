@@ -135,6 +135,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
           { id: "projects", label: "Projects" },
           { id: "profile", label: "Profile impact" },
           { id: "reviews", label: "Reviews" },
+          { id: "stories", label: "LinkedIn stories" },
           { id: "dates", label: "Dates & fees" },
           { id: "faq", label: "FAQs" },
         ]}
