@@ -15,7 +15,7 @@ const DEFAULTS = { track: "" as string };
 
 export const Route = createFileRoute("/stories")({
   validateSearch: (search: Record<string, unknown>) => ({
-    track: typeof search.track === "string" ? search.track : "",
+    track: typeof search["track"] === "string" ? (search["track"] as string) : "",
   }),
   search: { middlewares: [stripSearchParams(DEFAULTS)] },
   head: () => ({
