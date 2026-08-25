@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { CalendarControls } from "@/components/CalendarControls";
 import { MonthSections, TypeSections } from "@/components/CohortRows";
+import { SavedStrip } from "@/components/SavedStrip";
 import { TRACKS, isSoon } from "@/lib/programmes";
 import {
   DEFAULT_SEARCH,
