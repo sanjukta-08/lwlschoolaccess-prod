@@ -70,6 +70,10 @@ function HomePage() {
               <em className="mt-1 block text-crimson-deep">learn with leaders</em>
             </h1>
             <WingRule className="mt-6" />
+            <div className="mt-5 flex justify-center">
+              <ZoomBadge size="pill" label="Live on Zoom · every session" />
+            </div>
+
             <p className="mx-auto mt-6 max-w-[38em] text-[clamp(1rem,2.4vw,1.12rem)] text-ink-soft">
               Live fellowships, competitions, corporate internships and MUN conferences,
               mentored by students from Harvard, Yale, MIT, Stanford and Princeton —
