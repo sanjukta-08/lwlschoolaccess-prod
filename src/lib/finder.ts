@@ -35,7 +35,7 @@ export const DEFAULT_SEARCH: FinderSearch = {
   view: "list",
   status: "all",
   sort: "cat",
-  density: "comfy",
+  density: "compact",
   calView: "month",
 };
 
@@ -52,7 +52,7 @@ export const validateFinderSearch = (raw: Record<string, unknown>): FinderSearch
   view: str(raw["view"], "list") === "grid" ? "grid" : "list",
   status: str(raw["status"], "all") === "soon" ? "soon" : "all",
   sort: str(raw["sort"], "cat") === "month" ? "month" : "cat",
-  density: str(raw["density"], "comfy") === "compact" ? "compact" : "comfy",
+  density: str(raw["density"], "compact") === "comfy" ? "comfy" : "compact",
   calView: str(raw["calView"], "month") === "type" ? "type" : "month",
 });
 
