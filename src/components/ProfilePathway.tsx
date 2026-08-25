@@ -8,6 +8,7 @@ import {
   isPast,
 } from "@/lib/programmes";
 import { DEFAULT_SEARCH } from "@/lib/finder";
+import { slugOf } from "@/lib/programme-detail";
 
 export function ProfilePathway({ onOpen }: { onOpen: (id: string) => void }) {
   return (
