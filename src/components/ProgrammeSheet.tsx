@@ -8,6 +8,7 @@ import {
   fmtLong,
   isPast,
   isSoon,
+  dualTime,
 } from "@/lib/programmes";
 
 export function ProgrammeSheet({
@@ -91,7 +92,7 @@ export function ProgrammeSheet({
               <div className="grid gap-2.5 sm:grid-cols-2">
                 {[
                   ["Length", p.dur],
-                  ["Live sessions", p.time],
+                  ["Live sessions", dualTime(p.time)],
                   ["Eligibility", `Grades ${p.g[0]}–${p.g[1]}`],
                   ["Format", "Live on Zoom"],
                 ].map(([k, v]) => (
