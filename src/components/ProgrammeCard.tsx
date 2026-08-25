@@ -195,6 +195,7 @@ export function ProgrammeCard({
           >
             Apply now
           </a>
+          <AddToCalendar p={p} c={next} />
         </div>
       </div>
     </article>
