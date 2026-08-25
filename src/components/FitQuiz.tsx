@@ -1,3 +1,4 @@
+import ZoomBadge from "@/components/ZoomBadge";
 import { useState } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
