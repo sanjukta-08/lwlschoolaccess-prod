@@ -1,3 +1,4 @@
+import ZoomBadge from "@/components/ZoomBadge";
 import { Link } from "@tanstack/react-router";
 import { slugOf } from "@/lib/programme-slug";
 import { SaveButton } from "@/components/SaveButton";
@@ -80,7 +81,7 @@ export function CohortAgenda({
                   <span className="min-w-0 flex-1">
                     <b className="block text-[0.95rem] font-bold text-ink">{p.name}</b>
                     <small className="mt-0.5 block text-[0.76rem] text-ink-soft">
-                      Grades {lo}–{hi} · {p.dur} · {dualTime(p.time)}
+                      Grades {lo}–{hi} · {p.dur} · {dualTime(p.time)} · <ZoomBadge />
                     </small>
                   </span>
                   <span className="flex shrink-0 flex-col items-end gap-1.5">

@@ -1,3 +1,4 @@
+import ZoomBadge from "@/components/ZoomBadge";
 import { slugOf } from "@/lib/programme-slug";
 import { Link } from "@tanstack/react-router";
 import { SaveButton } from "@/components/SaveButton";
@@ -75,7 +76,10 @@ export function DayList({
                 <p className="mt-1 font-mono text-[0.68rem] text-ink-faint">
                   {TYPE_NAME[p.type]} · G{lo}–{hi} · {p.dur}
                 </p>
-                <p className="mt-1 text-[0.82rem] text-ink-soft">{dualTime(p.time)}</p>
+                <p className="mt-1 flex flex-wrap items-center gap-2 text-[0.82rem] text-ink-soft">
+                  {dualTime(p.time)}
+                  <ZoomBadge />
+                </p>
                 <p className="mt-1.5 font-serif text-[1.05rem] font-semibold">{fee.e}</p>
                 <div className="mt-3 flex flex-wrap items-center gap-2">
                   <a

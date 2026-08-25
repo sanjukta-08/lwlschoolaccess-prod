@@ -1,3 +1,4 @@
+import ZoomBadge from "@/components/ZoomBadge";
 import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
 import { stripSearchParams } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
@@ -197,8 +198,11 @@ function FinderPage() {
                   key={top}
                   className="rounded-full border border-line bg-paper px-3.5 py-1.5 shadow-soft"
                 >
-                  <b className="block text-[0.78rem] font-bold text-ink">{top}</b>
+                  <b className="flex items-center gap-1.5 text-[0.78rem] font-bold text-ink">
+                    {top === "Live on Zoom" ? <ZoomBadge label="Live on Zoom" /> : top}
+                  </b>
                   <small className="mono-label block text-ink-faint">{sub}</small>
+
                 </li>
               ))}
             </ul>

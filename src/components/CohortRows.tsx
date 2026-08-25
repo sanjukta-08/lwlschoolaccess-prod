@@ -1,3 +1,4 @@
+import ZoomBadge from "@/components/ZoomBadge";
 import {
   TRACKS,
   TYPE_IC,
@@ -60,7 +61,7 @@ function CohortRow({
         </span>
         <b className="mt-0.5 block text-[0.98rem] font-bold text-ink">{p.name}</b>
         <small className="block text-[0.78rem] text-ink-soft">
-          Grades {lo}–{hi} · {p.dur} · {dualTime(p.time)}
+          Grades {lo}–{hi} · {p.dur} · {dualTime(p.time)} · <ZoomBadge />
         </small>
         {others?.length ? (
           <span className="mt-1.5 flex flex-wrap items-center gap-1.5 text-[0.72rem] text-ink-faint">
