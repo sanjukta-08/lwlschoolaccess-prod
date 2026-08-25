@@ -1,16 +1,22 @@
 import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { FinderPanel } from "@/components/FinderPanel";
 import { ProgrammeCard } from "@/components/ProgrammeCard";
 import { ResultGroup } from "@/components/ResultGroup";
 import { ProgrammeSheet } from "@/components/ProgrammeSheet";
-import { HeroStats } from "@/components/HeroStats";
 import { CounsellorCard } from "@/components/CounsellorCard";
 import { FaqAccordion, FAQS } from "@/components/FaqAccordion";
 import { HowItWorks, WhyLwl } from "@/components/HowItWorks";
 import { TrendingTop5 } from "@/components/TrendingTop5";
 import { ProfilePathway } from "@/components/ProfilePathway";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { TRACKS, TYPE_NAME } from "@/lib/programmes";
 import {
   BAND_LABEL,
@@ -22,10 +28,11 @@ import {
   type FinderSearch,
 } from "@/lib/finder";
 
-
 const TITLE = "Programme Finder | Learn with Leaders";
 const DESC =
   "Find the right Harvard and Yale-mentored programme for your child in under 30 seconds. Filter by grade, interest, type and start date.";
+
+const PAGE = 12;
 
 export const Route = createFileRoute("/finder")({
   validateSearch: (search: Record<string, unknown>) => validateFinderSearch(search),
@@ -60,15 +67,32 @@ function FinderPage() {
   const state = Route.useSearch();
   const navigate = useNavigate({ from: Route.fullPath });
   const [detailId, setDetailId] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<string>("all");
+  const [visible, setVisible] = useState(PAGE);
 
-  const update = (patch: Partial<FinderSearch>) =>
+  const update = (patch: Partial<FinderSearch>) => {
+    setVisible(PAGE);
     navigate({ search: (prev) => ({ ...prev, ...patch }), replace: true });
+  };
 
   const matches = getMatches(state);
   const cohortCount = matches.reduce((n, m) => n + 1 + m.others.length, 0);
   const narrowed = state.interest !== "all" || state.grade !== "all" || !!state.q;
-  const groups = groupMatches(matches, state.sort);
+  const groups = useMemo(() => groupMatches(matches, state.sort), [matches, state.sort]);
 
+  const tabKeys = ["all", ...groups.map((g) => g.key)];
+  const currentKey = tabKeys.includes(activeTab) ? activeTab : "all";
+  const activeGroup =
+    currentKey === "all"
+      ? {
+          key: "all",
+          label: "All results",
+          sub: "Every match, in order",
+          rows: matches,
+        }
+      : groups.find((g) => g.key === currentKey)!;
+  const rows = activeGroup.rows.slice(0, visible);
+  const remaining = activeGroup.rows.length - rows.length;
 
   let fallback = matches.length ? [] : getMatches(state, { ignoreMonth: true });
   let fallbackNote = "in other months";
@@ -81,207 +105,278 @@ function FinderPage() {
     fallbackNote = "in other subject areas";
   }
 
+  const headline = matches.length ? (
+    <>
+      {matches.length}
+      {state.type === "all"
+        ? " programme"
+        : ` ${TYPE_NAME[state.type as keyof typeof TYPE_NAME]?.toLowerCase() ?? "programme"}`}
+      {matches.length === 1 ? "" : "s"} for{" "}
+      <em className="text-crimson-deep">
+        {state.grade === "all"
+          ? "every grade"
+          : (BAND_LABEL[state.grade] ?? `Grade ${state.grade}`)}
+      </em>
+      {state.interest !== "all" ? (
+        <>
+          {" "}
+          curious about{" "}
+          <em className="text-crimson-deep">
+            {TRACKS[state.interest as keyof typeof TRACKS]?.label}
+          </em>
+        </>
+      ) : null}
+      {state.month !== "all" ? (
+        <>
+          , starting <em className="text-crimson-deep">{monthLabel(state.month)}</em>
+        </>
+      ) : null}
+    </>
+  ) : (
+    <>
+      No exact match — here are the <em className="text-crimson-deep">closest fits</em>
+    </>
+  );
+
+  const filters = (
+    <FinderPanel
+      layout="rail"
+      state={state}
+      onChange={update}
+      onReset={() => update(DEFAULT_SEARCH)}
+      resultCount={matches.length}
+      cohortCount={cohortCount}
+    />
+  );
+
   return (
     <div className="min-h-screen bg-wash">
       <div className="relative">
         <div className="hero-wash absolute inset-0" />
         <div className="relative">
           <SiteHeader />
-          <section className="mx-auto max-w-[1100px] px-5 pt-14 pb-[190px] text-center">
-            <span className="mono-label mb-5 inline-flex items-center gap-2 rounded-full border border-crimson/20 bg-paper px-3.5 py-1.5 text-crimson shadow-soft">
-              <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
-              38 programmes · Grades 5–12
-            </span>
-            <h1 className="mx-auto max-w-[780px] font-serif text-[clamp(2.2rem,5.6vw,3.6rem)] leading-[1.1] font-medium tracking-tight">
-              Find the programme that <em className="text-crimson-deep">fits</em> your
-              child
-            </h1>
-            <p className="mx-auto mt-4 max-w-[36em] text-[clamp(0.98rem,2.4vw,1.1rem)] text-ink-soft">
-              Harvard and Yale-mentored fellowships, programmes, competitions and
-              internships — filtered by grade, interest and start date in under thirty
-              seconds.
-            </p>
-            <HeroStats />
+          <section className="mx-auto flex max-w-[1240px] flex-wrap items-end justify-between gap-x-8 gap-y-4 px-5 pt-8 pb-8">
+            <div>
+              <span className="mono-label mb-2 inline-flex items-center gap-2 text-crimson">
+                <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
+                38 programmes · Grades 5–12
+              </span>
+              <h1 className="max-w-[22em] font-serif text-[clamp(1.7rem,4vw,2.5rem)] leading-[1.12] font-medium tracking-tight">
+                Find the programme that{" "}
+                <em className="text-crimson-deep">fits</em> your child
+              </h1>
+            </div>
+            <ul className="flex flex-wrap gap-2">
+              {[
+                ["Harvard & Yale mentors", "Taught by leaders"],
+                ["Live on Zoom", "Dubai + US Eastern"],
+                ["Grades 5–12", "38 programmes"],
+              ].map(([top, sub]) => (
+                <li
+                  key={top}
+                  className="rounded-full border border-line bg-paper px-3.5 py-1.5 shadow-soft"
+                >
+                  <b className="block text-[0.78rem] font-bold text-ink">{top}</b>
+                  <small className="mono-label block text-ink-faint">{sub}</small>
+                </li>
+              ))}
+            </ul>
           </section>
         </div>
       </div>
 
-      <div className="relative z-30 -mt-[140px]">
-        <div className="mx-auto max-w-[1100px] px-5">
-          <FinderPanel
-            state={state}
-            onChange={update}
-            onReset={() => update(DEFAULT_SEARCH)}
-            resultCount={matches.length}
-            cohortCount={cohortCount}
-          />
-        </div>
-      </div>
+      <div className="mx-auto max-w-[1240px] px-5 pb-14">
+        <div className="grid items-start gap-6 lg:grid-cols-[264px_1fr]">
+          <aside className="hidden lg:block">
+            <div className="sticky top-6">{filters}</div>
+          </aside>
 
-      <TrendingTop5 state={state} onOpen={setDetailId} />
+          <div className="lg:hidden">
+            <Sheet>
+              <SheetTrigger className="flex w-full items-center justify-between rounded-full border border-line bg-paper px-5 py-3 text-[0.86rem] font-bold shadow-soft">
+                <span>Filter programmes</span>
+                <span className="font-mono text-[0.78rem] text-crimson">
+                  {matches.length} options
+                </span>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-[min(340px,90vw)] overflow-y-auto p-4">
+                {filters}
+              </SheetContent>
+            </Sheet>
+          </div>
 
-      <section id="all-programmes" className="scroll-mt-24 bg-wash pt-12 pb-12">
-        <div className="mx-auto max-w-[1100px] px-5">
-          <header className="mb-6 text-center">
-            <span className="mono-label mb-2 block text-ink-faint">
-              All main programmes
-            </span>
-            <h2 className="font-serif text-[clamp(1.25rem,3vw,1.6rem)] font-medium">
+          <main className="min-w-0 space-y-6">
+            <TrendingTop5 state={state} onOpen={setDetailId} variant="strip" />
+
+            <section id="all-programmes" className="scroll-mt-6">
+              <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+                <h2 className="font-serif text-[clamp(1.15rem,2.6vw,1.5rem)] font-medium">
+                  {headline}
+                </h2>
+                <div className="flex flex-wrap items-center gap-2">
+                  <Segmented
+                    value={state.sort}
+                    onChange={(v) => {
+                      setActiveTab("all");
+                      update({ sort: v });
+                    }}
+                    options={[
+                      { value: "cat", label: "Category" },
+                      { value: "month", label: "Month" },
+                    ]}
+                  />
+                  <Segmented
+                    value={state.density}
+                    onChange={(v) => update({ density: v })}
+                    options={[
+                      { value: "compact", label: "List" },
+                      { value: "comfy", label: "Cards" },
+                    ]}
+                  />
+                </div>
+              </div>
+
               {matches.length ? (
                 <>
-                  {matches.length}
-                  {state.type === "all"
-                    ? " programme"
-                    : ` ${TYPE_NAME[state.type as keyof typeof TYPE_NAME]?.toLowerCase() ?? "programme"}`}
-                  {matches.length === 1 ? "" : "s"} for{" "}
-                  <em className="text-crimson-deep">
-                    {state.grade === "all"
-                      ? "every grade"
-                      : (BAND_LABEL[state.grade] ?? `Grade ${state.grade}`)}
-                  </em>
-                  {state.interest !== "all" ? (
-                    <>
-                      {" "}
-                      curious about{" "}
-                      <em className="text-crimson-deep">
-                        {TRACKS[state.interest as keyof typeof TRACKS]?.label}
-                      </em>
-                    </>
+                  {groups.length > 1 ? (
+                    <div
+                      role="tablist"
+                      aria-label="Result groups"
+                      className="mb-4 flex gap-1 overflow-x-auto border-b border-line [scrollbar-width:none]"
+                    >
+                      {[
+                        { key: "all", label: "All", count: matches.length },
+                        ...groups.map((g) => ({
+                          key: g.key,
+                          label: g.label,
+                          count: g.rows.length,
+                        })),
+                      ].map((t) => {
+                        const on = t.key === currentKey;
+                        return (
+                          <button
+                            key={t.key}
+                            role="tab"
+                            aria-selected={on}
+                            type="button"
+                            onClick={() => {
+                              setActiveTab(t.key);
+                              setVisible(PAGE);
+                            }}
+                            className={`-mb-px border-b-2 px-3 py-2 text-[0.82rem] font-semibold whitespace-nowrap transition-colors ${
+                              on
+                                ? "border-crimson text-crimson"
+                                : "border-transparent text-ink-soft hover:text-ink"
+                            }`}
+                          >
+                            {t.label}
+                            <small className="ml-1.5 font-mono text-[0.68rem] text-ink-faint">
+                              {t.count}
+                            </small>
+                          </button>
+                        );
+                      })}
+                    </div>
                   ) : null}
-                  {state.month !== "all" ? (
-                    <>
-                      , starting{" "}
-                      <em className="text-crimson-deep">{monthLabel(state.month)}</em>
-                    </>
+
+                  {currentKey !== "all" ? (
+                    <p className="mb-3 text-[0.82rem] text-ink-soft">{activeGroup.sub}</p>
+                  ) : null}
+
+                  <ResultGroup
+                    group={activeGroup}
+                    rows={rows}
+                    hideHeader
+                    compact={state.density === "compact"}
+                    showType={state.sort === "month" || currentKey === "all"}
+                    labelTop={narrowed && activeGroup.rows.length > 1}
+                    onOpen={setDetailId}
+                  />
+
+                  {remaining > 0 ? (
+                    <div className="mt-5 text-center">
+                      <button
+                        type="button"
+                        onClick={() => setVisible((v) => v + PAGE)}
+                        className="rounded-full border-[1.5px] border-line bg-paper px-6 py-2.5 text-[0.84rem] font-bold text-ink-soft hover:border-ink-soft hover:text-ink"
+                      >
+                        Show {Math.min(remaining, PAGE)} more
+                        <small className="ml-1.5 font-mono text-[0.72rem] text-ink-faint">
+                          {remaining} left
+                        </small>
+                      </button>
+                    </div>
                   ) : null}
                 </>
               ) : (
                 <>
-                  No exact match — here are the{" "}
-                  <em className="text-crimson-deep">closest fits</em>
+                  <div className="mb-5 rounded-lg border-[1.5px] border-dashed border-line bg-paper px-6 py-8 text-center">
+                    <h3 className="mb-2 font-serif text-[1.25rem] font-semibold">
+                      Nothing matches that exact combination
+                    </h3>
+                    <p className="mx-auto max-w-[34em] text-[0.88rem] text-ink-soft">
+                      Your child doesn&apos;t have to wait long — these are the closest
+                      fits {fallbackNote}. Or clear a filter to widen the search.
+                    </p>
+                  </div>
+                  {fallback.length ? (
+                    <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                      {fallback.slice(0, 3).map((m, i) => (
+                        <ProgrammeCard
+                          key={m.p.id}
+                          match={m}
+                          index={i}
+                          onOpen={setDetailId}
+                        />
+                      ))}
+                    </div>
+                  ) : null}
                 </>
               )}
-            </h2>
-          </header>
+            </section>
 
-          {matches.length ? (
-            <>
-              <div className="mb-2 flex flex-wrap items-center justify-center gap-3">
-                <Segmented
-                  legend="Sort"
-                  value={state.sort}
-                  onChange={(v) => update({ sort: v })}
-                  options={[
-                    { value: "cat", label: "By category" },
-                    { value: "month", label: "By start month" },
-                  ]}
-                />
-                <Segmented
-                  legend="View"
-                  value={state.density}
-                  onChange={(v) => update({ density: v })}
-                  options={[
-                    { value: "comfy", label: "Cards" },
-                    { value: "compact", label: "Compact list" },
-                  ]}
-                />
-              </div>
-
-              {groups.length > 1 ? (
-                <div className="mb-2 flex flex-wrap items-center justify-center gap-2">
-                  <span className="mono-label text-ink-faint">Jump to</span>
-                  {groups.map((g) => (
-                    <a
-                      key={g.key}
-                      href={`#group-${g.key}`}
-                      className="rounded-full border border-line bg-paper px-3 py-1 text-[0.76rem] font-semibold text-ink-soft no-underline transition-colors hover:border-crimson/40 hover:text-crimson"
-                    >
-                      {g.label} · {g.rows.length}
-                    </a>
-                  ))}
-                </div>
-              ) : null}
-
-              {groups.map((g, gi) => (
-                <ResultGroup
-                  key={g.key}
-                  group={g}
-                  compact={state.density === "compact"}
-                  showType={state.sort === "month"}
-                  labelTop={narrowed && gi === 0 && g.rows.length > 1}
-                  onOpen={setDetailId}
-                />
-              ))}
-            </>
-          ) : (
-
-            <>
-              <div className="mb-6 rounded-lg border-[1.5px] border-dashed border-line bg-paper px-6 py-9 text-center">
-                <span className="mb-2.5 block text-[1.8rem]">🔍</span>
-                <h3 className="mb-2 font-serif text-[1.35rem] font-semibold">
-                  Nothing matches that exact combination
-                </h3>
-                <p className="mx-auto max-w-[34em] text-[0.9rem] text-ink-soft">
-                  Your child doesn&apos;t have to wait long — these are the closest fits{" "}
-                  {fallbackNote}. Or clear a filter to widen the search.
-                </p>
-              </div>
-              {fallback.length ? (
-                <>
-                  <p className="mono-label mb-4 text-center text-ink-faint">
-                    Closest matches
-                  </p>
-                  <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                    {fallback.slice(0, 3).map((m, i) => (
-                      <ProgrammeCard
-                        key={m.p.id}
-                        match={m}
-                        index={i}
-                        onOpen={setDetailId}
-                      />
-                    ))}
-                  </div>
-                </>
-              ) : null}
-            </>
-          )}
-
-          <p className="mx-auto mt-7 flex w-fit max-w-full items-center justify-center gap-2 rounded-full border border-line bg-paper px-5 py-2.5 text-center text-[0.82rem] text-ink-soft">
-            🕒 Live on Zoom · times shown in Dubai time (GMT+4) with US Eastern alongside.
-          </p>
-
-          <div className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-3xl border border-line bg-paper p-6 shadow-soft">
-            <div>
-              <h3 className="font-serif text-[1.2rem] font-semibold">
+            <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-line bg-paper px-5 py-4">
+              <p className="max-w-[38em] text-[0.84rem] text-ink-soft">
+                🕒 Live on Zoom · times in Dubai (GMT+4) with US Eastern alongside.
                 Prefer to plan around dates?
-              </h3>
-              <p className="mt-1 max-w-[36em] text-[0.86rem] text-ink-soft">
-                Open the full calendar for every cohort from July 2026 to April 2027,
-                month by month or grouped by type.
               </p>
+              <Link
+                to="/calendar"
+                search={state}
+                className="rounded-full bg-ink px-5 py-2.5 text-[0.84rem] font-bold text-paper no-underline hover:bg-crimson-deep"
+              >
+                Open the full calendar →
+              </Link>
             </div>
-            <Link
-              to="/calendar"
-              search={state}
-              className="rounded-full bg-ink px-5 py-3 text-[0.86rem] font-bold text-paper no-underline hover:bg-crimson-deep"
+
+            <Accordion
+              type="single"
+              collapsible
+              className="rounded-2xl border border-line bg-paper px-4"
             >
-              Open the full calendar →
-            </Link>
-          </div>
+              <TailItem value="pathway" title="Plan the profile — step by step">
+                <ProfilePathway onOpen={setDetailId} />
+              </TailItem>
+              <TailItem value="advisor" title="Not sure? Describe your child instead">
+                <CounsellorCard />
+              </TailItem>
+              <TailItem value="how" title="How it works & why parents choose us">
+                <HowItWorks />
+                <WhyLwl />
+              </TailItem>
+              <TailItem value="faq" title="Questions parents ask">
+                <FaqAccordion />
+              </TailItem>
+            </Accordion>
+          </main>
         </div>
-      </section>
+      </div>
 
-      <ProfilePathway onOpen={setDetailId} />
-      <CounsellorCard />
-      <HowItWorks />
-      <WhyLwl />
-      <FaqAccordion />
-
-      <section className="bg-crimson-deep px-5 py-16 text-center text-paper">
-        <h2 className="font-serif text-[clamp(1.5rem,4vw,2.2rem)] font-medium">
+      <section className="bg-crimson-deep px-5 py-14 text-center text-paper">
+        <h2 className="font-serif text-[clamp(1.4rem,3.6vw,2rem)] font-medium">
           Not sure which one <em>fits</em>?
         </h2>
-        <p className="mx-auto mt-3 max-w-[34em] text-[0.95rem] text-paper/80">
+        <p className="mx-auto mt-3 max-w-[34em] text-[0.93rem] text-paper/80">
           Tell us about your child and an advisor will recommend the right pathway — no
           obligation.
         </p>
@@ -305,38 +400,52 @@ function FinderPage() {
   );
 }
 
+function TailItem({
+  value,
+  title,
+  children,
+}: {
+  value: string;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <AccordionItem value={value}>
+      <AccordionTrigger className="text-left font-serif text-[1.02rem] font-semibold hover:no-underline">
+        {title}
+      </AccordionTrigger>
+      <AccordionContent className="-mx-4 pb-0">{children}</AccordionContent>
+    </AccordionItem>
+  );
+}
+
 function Segmented({
-  legend,
   value,
   onChange,
   options,
 }: {
-  legend: string;
   value: string;
   onChange: (value: string) => void;
   options: { value: string; label: string }[];
 }) {
   return (
-    <div className="flex items-center gap-2">
-      <span className="mono-label text-ink-faint">{legend}</span>
-      <div className="inline-flex gap-0.5 rounded-full border border-line bg-paper p-1">
-        {options.map((o) => {
-          const on = value === o.value;
-          return (
-            <button
-              key={o.value}
-              type="button"
-              aria-pressed={on}
-              onClick={() => onChange(o.value)}
-              className={`rounded-full px-3 py-1 text-[0.76rem] font-semibold transition-colors ${
-                on ? "bg-ink text-paper" : "text-ink-soft hover:text-ink"
-              }`}
-            >
-              {o.label}
-            </button>
-          );
-        })}
-      </div>
+    <div className="inline-flex gap-0.5 rounded-full border border-line bg-paper p-1">
+      {options.map((o) => {
+        const on = value === o.value;
+        return (
+          <button
+            key={o.value}
+            type="button"
+            aria-pressed={on}
+            onClick={() => onChange(o.value)}
+            className={`rounded-full px-3 py-1 text-[0.74rem] font-semibold transition-colors ${
+              on ? "bg-ink text-paper" : "text-ink-soft hover:text-ink"
+            }`}
+          >
+            {o.label}
+          </button>
+        );
+      })}
     </div>
   );
 }
