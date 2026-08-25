@@ -47,6 +47,7 @@ export function SiteHeader() {
           <Link to="/about" className={linkCls} activeProps={{ className: "text-ink" }}>
             About
           </Link>
+          <ShortlistBadge />
 
           <Link to="/" hash="pathways" className={`hidden sm:block ${linkCls}`}>
             Pathways
