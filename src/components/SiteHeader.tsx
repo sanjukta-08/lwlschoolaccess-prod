@@ -29,6 +29,14 @@ export function SiteHeader() {
             Full calendar
           </Link>
           <Link
+            to="/calendar-month"
+            search={DEFAULT_SEARCH}
+            className={`hidden md:block ${linkCls}`}
+            activeProps={{ className: "text-ink" }}
+          >
+            Month view
+          </Link>
+          <Link
             to="/profile-building"
             className={linkCls}
             activeProps={{ className: "text-ink" }}

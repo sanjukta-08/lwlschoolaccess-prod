@@ -1,3 +1,5 @@
+import { Link } from "@tanstack/react-router";
+import { slugOf } from "@/lib/programme-detail";
 import { TRACKS, type Cohort, type Programme } from "@/lib/programmes";
 
 export type CohortEntry = { p: Programme; c: Cohort };
@@ -101,16 +103,16 @@ export function MonthGrid({
                         {dayEntries.slice(0, 3).map((e) => {
                           const track = TRACKS[e.p.tracks[0]!];
                           return (
-                            <button
+                            <Link
                               key={e.p.id + e.c.d}
-                              type="button"
-                              onClick={() => onSelectDay(iso(day))}
-                              title={e.p.name}
-                              className="truncate rounded-md px-1.5 py-1 text-left text-[0.68rem] font-semibold text-paper transition-[filter] hover:brightness-110"
+                              to="/programmes/$slug"
+                              params={{ slug: slugOf(e.p) }}
+                              title={`${e.p.name} — open programme page`}
+                              className="block truncate rounded-md px-1.5 py-1 text-left text-[0.68rem] font-semibold text-paper no-underline transition-[filter] hover:brightness-110"
                               style={{ background: track.color }}
                             >
                               {e.p.name}
-                            </button>
+                            </Link>
                           );
                         })}
                         {dayEntries.length > 3 ? (
@@ -138,30 +140,31 @@ export function MonthGrid({
           .filter((d) => d.startsWith(monthKey(month)))
           .sort()
           .map((d) => (
-            <button
-              key={d}
-              type="button"
-              onClick={() => onSelectDay(d)}
-              className="flex w-full items-start gap-3 px-4 py-3 text-left"
-            >
-              <span className="mt-0.5 flex-none font-mono text-[0.78rem] font-semibold text-crimson">
+            <div key={d} className="flex w-full items-start gap-3 px-4 py-3 text-left">
+              <button
+                type="button"
+                onClick={() => onSelectDay(d)}
+                aria-label={`Show cohorts starting ${d}`}
+                className="mt-0.5 flex-none font-mono text-[0.78rem] font-semibold text-crimson">
                 {new Date(d + "T00:00:00").toLocaleDateString("en-GB", {
                   day: "2-digit",
                   month: "short",
                 })}
-              </span>
+              </button>
               <span className="flex flex-col gap-1">
                 {(byDay.get(d) ?? []).map((e) => (
-                  <span
+                  <Link
                     key={e.p.id}
-                    className="text-[0.85rem] font-semibold text-ink"
+                    to="/programmes/$slug"
+                    params={{ slug: slugOf(e.p) }}
+                    className="text-[0.85rem] font-semibold text-ink no-underline"
                     style={{ borderLeft: `3px solid ${TRACKS[e.p.tracks[0]!].color}`, paddingLeft: 8 }}
                   >
                     {e.p.name}
-                  </span>
+                  </Link>
                 ))}
               </span>
-            </button>
+            </div>
           ))}
         {Array.from(byDay.keys()).filter((d) => d.startsWith(monthKey(month))).length ===
         0 ? (
