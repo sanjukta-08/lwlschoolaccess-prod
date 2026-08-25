@@ -3,6 +3,7 @@ import { useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { FinderPanel } from "@/components/FinderPanel";
 import { ProgrammeCard } from "@/components/ProgrammeCard";
+import { ResultGroup } from "@/components/ResultGroup";
 import { ProgrammeSheet } from "@/components/ProgrammeSheet";
 import { HeroStats } from "@/components/HeroStats";
 import { CounsellorCard } from "@/components/CounsellorCard";
@@ -13,10 +14,12 @@ import {
   BAND_LABEL,
   DEFAULT_SEARCH,
   getMatches,
+  groupMatches,
   monthLabel,
   validateFinderSearch,
   type FinderSearch,
 } from "@/lib/finder";
+
 
 const TITLE = "Programme Finder | Learn with Leaders";
 const DESC =
