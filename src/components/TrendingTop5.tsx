@@ -47,6 +47,70 @@ export function TrendingTop5({ state, onOpen, variant = "section" }: Props) {
   const titleLead = activeInterest ? `Top ${activeInterest.label}` : "Top 5";
   const titleNoun = activeType ? activeType.label.toLowerCase() : "programmes";
 
+  if (variant === "strip") {
+    return (
+      <section id="trending" className="scroll-mt-24">
+        <header className="mb-3 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+          <h2 className="font-serif text-[1.15rem] font-medium">
+            {activeInterest ? `Best ${activeInterest.label}` : "Start here"} —{" "}
+            <em className="text-crimson-deep">
+              {picks.length === 1 ? "our top pick" : `top ${Math.min(picks.length, 3)}`}
+            </em>{" "}
+            {titleNoun}
+          </h2>
+          <span className="mono-label text-gold">Trending now</span>
+        </header>
+
+        <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {picks.slice(0, 3).map(({ p, next, why }, i) => {
+            const track = TRACKS[p.tracks[0]!];
+            const fee = feeOf(p, next);
+            return (
+              <li key={p.id} className="relative">
+                <div
+                  className="flex h-full flex-col gap-1.5 rounded-xl border border-line bg-paper px-4 py-3.5 transition-shadow hover:shadow-soft"
+                  style={{ borderLeft: `3px solid ${track.color}` }}
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <b className="text-[0.94rem] leading-snug font-bold text-ink">
+                      {p.name}
+                    </b>
+                    {i === 0 ? (
+                      <span className="mt-0.5 flex-none rounded bg-crimson px-1.5 py-0.5 text-[0.58rem] font-bold tracking-[0.06em] text-paper uppercase">
+                        Popular
+                      </span>
+                    ) : null}
+                  </div>
+                  <small className="mono-label text-ink-faint">
+                    {TYPE_NAME[p.type]} · {fmtShort(next.d)} · {fee.e}
+                  </small>
+                  <p className="clamp-2 text-[0.8rem] text-ink-soft">{why}</p>
+                  <div className="mt-auto flex items-center gap-3 pt-2">
+                    <Link
+                      to="/programmes/$slug"
+                      params={{ slug: slugOf(p) }}
+                      className="relative z-[2] text-[0.8rem] font-bold no-underline"
+                      style={{ color: track.color }}
+                    >
+                      View programme →
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => onOpen(p.id)}
+                      className="relative z-[2] ml-auto text-[0.76rem] font-semibold text-ink-faint underline decoration-line underline-offset-4 hover:text-crimson"
+                    >
+                      Quick look
+                    </button>
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+      </section>
+    );
+  }
+
   return (
     <section id="trending" className="scroll-mt-24 bg-paper py-14">
       <div className="mx-auto max-w-[1100px] px-5">
