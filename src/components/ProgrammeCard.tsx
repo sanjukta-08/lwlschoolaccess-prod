@@ -183,8 +183,11 @@ export function ProgrammeCard({
           <span className="text-ink-faint">·</span>
           <span>{timeLabel}</span>
           <span className="text-ink-faint">·</span>
+          <ZoomBadge />
+          <span className="text-ink-faint">·</span>
           <span>Fee {fee.e}</span>
         </p>
+
 
         {discounted ? (
           <div className="flex flex-wrap items-baseline gap-2.5">
