@@ -65,6 +65,8 @@ function FinderPage() {
   const matches = getMatches(state);
   const cohortCount = matches.reduce((n, m) => n + 1 + m.others.length, 0);
   const narrowed = state.interest !== "all" || state.grade !== "all" || !!state.q;
+  const groups = groupMatches(matches, state.sort);
+
 
   let fallback = matches.length ? [] : getMatches(state, { ignoreMonth: true });
   let fallbackNote = "in other months";
