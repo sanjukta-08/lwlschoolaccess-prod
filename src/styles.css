@@ -142,3 +142,130 @@
     color: var(--color-foreground);
   }
 }
+
+/* ============================================================
+   Learn with Leaders brand layer
+   ============================================================ */
+
+:root {
+  --paper: #ffffff;
+  --wash: #f5f7fb;
+  --wash-deep: #ebeff6;
+  --line: #e2e6ef;
+  --ink: #1c2230;
+  --ink-soft: #525a6c;
+  --ink-faint: #8a92a6;
+  --crimson: #a31d33;
+  --crimson-deep: #7e1527;
+  --gold: #b98a1f;
+
+  --track-med: #b02a3c;
+  --track-law: #28497a;
+  --track-fin: #1e7a59;
+  --track-ai: #6444b8;
+  --track-ent: #c2661c;
+  --track-res: #127980;
+  --track-deb: #8a3568;
+  --track-lead: #977818;
+  --track-sat: #4f6078;
+
+  /* semantic shadcn tokens re-pointed at the brand palette */
+  --radius: 1.125rem;
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+  --primary: var(--crimson);
+  --primary-foreground: #ffffff;
+  --secondary: var(--wash);
+  --secondary-foreground: var(--ink);
+  --muted: var(--wash);
+  --muted-foreground: var(--ink-soft);
+  --accent: var(--wash-deep);
+  --accent-foreground: var(--ink);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--crimson);
+}
+
+@theme inline {
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Newsreader", ui-serif, Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-paper: var(--paper);
+  --color-wash: var(--wash);
+  --color-wash-deep: var(--wash-deep);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-crimson: var(--crimson);
+  --color-crimson-deep: var(--crimson-deep);
+  --color-gold: var(--gold);
+
+  --color-track-med: var(--track-med);
+  --color-track-law: var(--track-law);
+  --color-track-fin: var(--track-fin);
+  --color-track-ai: var(--track-ai);
+  --color-track-ent: var(--track-ent);
+  --color-track-res: var(--track-res);
+  --color-track-deb: var(--track-deb);
+  --color-track-lead: var(--track-lead);
+  --color-track-sat: var(--track-sat);
+
+  --shadow-soft:
+    0 2px 6px -2px rgba(28, 34, 48, 0.06), 0 12px 28px -16px rgba(28, 34, 48, 0.14);
+  --shadow-lift:
+    0 4px 10px -4px rgba(28, 34, 48, 0.1), 0 24px 48px -24px rgba(28, 34, 48, 0.24);
+  --shadow-sheet: 0 40px 90px -30px rgba(0, 0, 0, 0.5);
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 2.5px solid var(--crimson);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* accent-tinted surfaces driven by the per-card --sp track colour */
+@utility surface-track {
+  background: color-mix(in srgb, var(--sp, var(--ink)) 8%, #fff);
+  border-color: color-mix(in srgb, var(--sp, var(--ink)) 16%, #fff);
+}
+
+@utility surface-track-strong {
+  background: color-mix(in srgb, var(--sp, var(--ink)) 9%, #fff);
+  border-color: color-mix(in srgb, var(--sp, var(--ink)) 18%, #fff);
+}
+
+@utility hero-wash {
+  background:
+    radial-gradient(900px 420px at 85% -10%, rgba(163, 29, 51, 0.07), transparent 60%),
+    radial-gradient(700px 420px at 8% 8%, rgba(40, 73, 122, 0.08), transparent 55%),
+    linear-gradient(180deg, #fbfcfe 0%, var(--wash) 100%);
+}
+
+@utility clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@utility mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
