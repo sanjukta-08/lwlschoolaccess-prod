@@ -1,6 +1,7 @@
-# Add "Learn with Leaders" story, press, reach and LinkedIn sections to the home page
+# Add "Learn with Leaders" story, press, reach and LinkedIn sections to a new page
 
-Four new home-page blocks that build parent trust before they reach the finder.
+Four new blocks on a dedicated `/about` page (home page stays clean) that build parent trust before they reach the finder.
+
 
 ## 1. About Learn with Leaders
 
