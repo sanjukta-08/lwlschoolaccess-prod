@@ -26,6 +26,7 @@ import {
   validateFinderSearch,
   type FinderSearch,
 } from "@/lib/finder";
+import { regionLabel } from "@/lib/regions";
 
 const TITLE = "Programme Finder | Learn with Leaders";
 const DESC =
@@ -75,7 +76,11 @@ function FinderPage() {
 
   const matches = getMatches(state);
   const cohortCount = matches.reduce((n, m) => n + 1 + m.others.length, 0);
-  const narrowed = state.interest !== "all" || state.grade !== "all" || !!state.q;
+  const narrowed =
+    state.interest !== "all" ||
+    state.grade !== "all" ||
+    state.region !== "all" ||
+    !!state.q;
   const groups = useMemo(() => groupMatches(matches, state.sort), [matches, state.sort]);
 
   const tabKeys = ["all", ...groups.map((g) => g.key)];
@@ -94,6 +99,10 @@ function FinderPage() {
 
   let fallback = matches.length ? [] : getMatches(state, { ignoreMonth: true });
   let fallbackNote = "in other months";
+  if (!matches.length && !fallback.length && state.region !== "all") {
+    fallback = getMatches(state, { ignoreMonth: true, ignoreRegion: true });
+    fallbackNote = "at other times of day";
+  }
   if (!matches.length && !fallback.length) {
     fallback = getMatches(state, {
       ignoreMonth: true,
@@ -127,6 +136,13 @@ function FinderPage() {
       {state.month !== "all" ? (
         <>
           , starting <em className="text-crimson-deep">{monthLabel(state.month)}</em>
+        </>
+      ) : null}
+      {state.region !== "all" ? (
+        <>
+          {" "}
+          at a workable hour in{" "}
+          <em className="text-crimson-deep">{regionLabel(state.region)}</em>
         </>
       ) : null}
     </>
