@@ -153,24 +153,56 @@ function FinderPage() {
           </header>
 
           {matches.length ? (
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {matches.map((m, i) => (
-                <ProgrammeCard
-                  key={m.p.id}
-                  match={m}
-                  index={i}
-                  label={
-                    narrowed && matches.length > 1 && i < 2
-                      ? i === 0
-                        ? "Best match"
-                        : "Great fit"
-                      : null
-                  }
+            <>
+              <div className="mb-2 flex flex-wrap items-center justify-center gap-3">
+                <Segmented
+                  legend="Sort"
+                  value={state.sort}
+                  onChange={(v) => update({ sort: v })}
+                  options={[
+                    { value: "cat", label: "By category" },
+                    { value: "month", label: "By start month" },
+                  ]}
+                />
+                <Segmented
+                  legend="View"
+                  value={state.density}
+                  onChange={(v) => update({ density: v })}
+                  options={[
+                    { value: "comfy", label: "Cards" },
+                    { value: "compact", label: "Compact list" },
+                  ]}
+                />
+              </div>
+
+              {groups.length > 1 ? (
+                <div className="mb-2 flex flex-wrap items-center justify-center gap-2">
+                  <span className="mono-label text-ink-faint">Jump to</span>
+                  {groups.map((g) => (
+                    <a
+                      key={g.key}
+                      href={`#group-${g.key}`}
+                      className="rounded-full border border-line bg-paper px-3 py-1 text-[0.76rem] font-semibold text-ink-soft no-underline transition-colors hover:border-crimson/40 hover:text-crimson"
+                    >
+                      {g.label} · {g.rows.length}
+                    </a>
+                  ))}
+                </div>
+              ) : null}
+
+              {groups.map((g, gi) => (
+                <ResultGroup
+                  key={g.key}
+                  group={g}
+                  compact={state.density === "compact"}
+                  showType={state.sort === "month"}
+                  labelTop={narrowed && gi === 0 && g.rows.length > 1}
                   onOpen={setDetailId}
                 />
               ))}
-            </div>
+            </>
           ) : (
+
             <>
               <div className="mb-6 rounded-lg border-[1.5px] border-dashed border-line bg-paper px-6 py-9 text-center">
                 <span className="mb-2.5 block text-[1.8rem]">🔍</span>
