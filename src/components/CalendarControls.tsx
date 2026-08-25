@@ -1,4 +1,11 @@
-import { TRACKS, TYPES, TYPE_IC, TYPE_ORDER } from "@/lib/programmes";
+import {
+  TRACKS,
+  TYPES,
+  TYPE_IC,
+  TYPE_ORDER,
+  type TrackKey,
+  type TypeKey,
+} from "@/lib/programmes";
 import { facetCounts, type FinderSearch, type MonthGroup } from "@/lib/finder";
 
 type Props = {
@@ -20,7 +27,7 @@ function Pill({
   active: boolean;
   onClick: () => void;
   children: React.ReactNode;
-  count?: number;
+  count?: number | undefined;
 }) {
   return (
     <button
@@ -114,7 +121,9 @@ export function CalendarControls({
               onClick={() => onChange({ type: t })}
               count={typeN[t]}
             >
-              {t === "all" ? "All types" : `${TYPE_IC[t as never]} ${TYPES[t as never].label}`}
+              {t === "all"
+                ? "All types"
+                : `${TYPE_IC[t as TypeKey]} ${TYPES[t as TypeKey].label}`}
             </Pill>
           ))}
         </div>
@@ -132,7 +141,9 @@ export function CalendarControls({
                   : "border-line bg-paper text-ink-soft hover:border-ink-soft hover:text-ink"
               }`}
             >
-              {k === "all" ? "✨ Everything" : `${TRACKS[k as never].ic} ${TRACKS[k as never].label}`}
+              {k === "all"
+                ? "✨ Everything"
+                : `${TRACKS[k as TrackKey].ic} ${TRACKS[k as TrackKey].label}`}
               <small className="font-mono text-[0.66rem] text-ink-faint">{trackN[k]}</small>
             </button>
           ))}
