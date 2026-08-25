@@ -90,22 +90,26 @@ function HomePage() {
                 Browse the full calendar
               </Link>
             </div>
-            <dl className="mx-auto mt-11 flex max-w-[820px] flex-wrap items-stretch justify-center divide-gold-line/70 rounded-[20px] border border-gold-line bg-paper/70 px-6 py-5 shadow-soft sm:divide-x">
+            <dl className="mx-auto mt-11 grid max-w-[820px] grid-cols-2 items-stretch divide-gold-line/70 rounded-[20px] border border-gold-line bg-paper/70 px-4 py-5 shadow-soft sm:flex sm:px-6 sm:divide-x">
               {[
                 [String(PROGRAMMES.length), "Programmes"],
                 [String(TOTAL_COHORTS), "Upcoming cohorts"],
                 ["426+", "Students published"],
                 ["5–12", "Grades covered"],
               ].map(([v, l]) => (
-                <div key={l} className="flex flex-1 flex-col items-center px-5 py-1.5">
+                <div
+                  key={l}
+                  className="flex flex-1 flex-col items-center px-3 py-2.5 text-center sm:px-5 sm:py-1.5"
+                >
                   <dt className="font-serif text-[1.6rem] leading-none font-semibold">
                     {v}
                   </dt>
-                  <dd className="mono-label mt-1.5 whitespace-nowrap text-ink-faint">
+                  <dd className="mono-label mt-1.5 text-ink-faint sm:whitespace-nowrap">
                     {l}
                   </dd>
                 </div>
               ))}
+            </dl>
             </dl>
           </section>
         </div>
