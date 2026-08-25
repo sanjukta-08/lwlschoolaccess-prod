@@ -16,6 +16,7 @@ import { AddToCalendar } from "@/components/AddToCalendar";
 import { countdownLabel, decideLabel } from "@/lib/shortlist";
 import { outcomeOf, startLabel, weeklyHoursOf } from "@/lib/outcome";
 import { regionTimeLabel } from "@/lib/regions";
+import ZoomBadge from "@/components/ZoomBadge";
 
 type Props = {
   match: Match;
