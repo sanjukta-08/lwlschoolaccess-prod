@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { slugOf } from "@/lib/programme-detail";
+import { slugOf } from "@/lib/programme-slug";
 import { TRACKS, type Cohort, type Programme } from "@/lib/programmes";
 
 export type CohortEntry = { p: Programme; c: Cohort };

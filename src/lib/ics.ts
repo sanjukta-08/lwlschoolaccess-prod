@@ -1,7 +1,7 @@
 // Calendar export helpers: build .ics files and Google Calendar links so a
 // family can put a cohort start (and a decide-by reminder) in their own calendar.
 import { dualTime, feeOf, parseISO, type Cohort, type Programme } from "./programmes";
-import { slugOf } from "./programme-detail";
+import { slugOf } from "./programme-slug";
 import { DECIDE_LEAD_DAYS, decideByISO } from "./shortlist";
 
 const stamp = (iso: string) => iso.replace(/-/g, "");

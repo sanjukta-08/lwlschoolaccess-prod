@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 
-import { slugOf } from "@/lib/programme-detail";
+import { slugOf } from "@/lib/programme-slug";
 import { profileImpactFor } from "@/lib/programme-proof";
 import { TYPE_NAME, type Programme } from "@/lib/programmes";
 

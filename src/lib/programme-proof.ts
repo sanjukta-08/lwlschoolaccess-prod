@@ -3,7 +3,8 @@
 // real detail, derived from track + type everywhere else so all 35 programme
 // pages read complete.
 
-import { detailFor, slugOf } from "./programme-detail";
+import { detailFor } from "./programme-detail";
+import { slugOf } from "./programme-slug";
 import { TRACK_PROFILE, TYPE_PROFILE } from "./profile-building";
 import {
   PROGRAMMES,

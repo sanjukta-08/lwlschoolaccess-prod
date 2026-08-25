@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { AddToCalendar } from "@/components/AddToCalendar";
 import { DEFAULT_SEARCH } from "@/lib/finder";
-import { slugOf } from "@/lib/programme-detail";
+import { slugOf } from "@/lib/programme-slug";
 import {
   TRACKS,
   TYPE_NAME,
@@ -24,6 +24,7 @@ import {
   resolveSaved,
   useShortlist,
 } from "@/lib/shortlist";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export const Route = createFileRoute("/shortlist")({
   validateSearch: (search: Record<string, unknown>): { ids?: string } => {
@@ -243,6 +244,7 @@ function ShortlistPage() {
             </Link>
           </section>
         )}
+      <SiteFooter />
       </main>
     </div>
   );

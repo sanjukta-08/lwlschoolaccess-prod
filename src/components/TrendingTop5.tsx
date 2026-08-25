@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 
-import { slugOf } from "@/lib/programme-detail";
+import { slugOf } from "@/lib/programme-slug";
 import { getMatches, type FinderSearch } from "@/lib/finder";
 import {
   PROGRAMMES,

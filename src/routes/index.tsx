@@ -1,8 +1,7 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
-import { HowItWorks, WhyLwl } from "@/components/HowItWorks";
-import { LinkedInGlyph, StoryGallery } from "@/components/StoryGallery";
-import { APPROVED_STORIES } from "@/lib/social-proof";
+import { HowItWorks } from "@/components/HowItWorks";
+import { Suspense, lazy } from "react";
 import {
   PROGRAMMES,
   TOTAL_COHORTS,
@@ -14,7 +13,8 @@ import {
   type TrackKey,
 } from "@/lib/programmes";
 import { DEFAULT_SEARCH } from "@/lib/finder";
-import { slugOf } from "@/lib/programme-detail";
+import { slugOf } from "@/lib/programme-slug";
+import { SiteFooter } from "@/components/SiteFooter";
 
 const TITLE = "Learn with Leaders — Harvard & Yale-mentored programmes, Grades 5–12";
 const DESC =
@@ -33,6 +33,8 @@ export const Route = createFileRoute("/")({
   }),
   component: HomePage,
 });
+
+const StoryStrip = lazy(() => import("@/components/StoryStrip"));
 
 const FEATURED = ["fdf", "irf", "ail", "finlit"];
 
@@ -235,38 +237,14 @@ function HomePage() {
       </section>
 
       <HowItWorks />
-      <WhyLwl />
 
       <section className="bg-wash px-5 py-14">
         <div className="mx-auto max-w-[1100px]">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div className="flex items-start gap-3">
-              <LinkedInGlyph />
-              <div>
-                <h2 className="font-serif text-[clamp(1.4rem,3.4vw,1.95rem)] font-medium">
-                  What families post <em className="text-crimson-deep">afterwards</em>
-                </h2>
-                <p className="mt-1.5 max-w-[38em] text-[0.9rem] text-ink-soft">
-                  Not testimonials we wrote — posts students and parents put on their own
-                  feeds. Tap one to read it in full.
-                </p>
-              </div>
-            </div>
-            <Link
-              to="/stories"
-              search={{ track: "" }}
-              className="text-[0.85rem] font-bold text-crimson no-underline hover:underline"
-            >
-              See all stories →
-            </Link>
-          </div>
-          <div className="mt-7">
-            <StoryGallery stories={APPROVED_STORIES} limit={4} variant="strip" />
-          </div>
+          <Suspense fallback={<div className="h-[360px]" />}>
+            <StoryStrip />
+          </Suspense>
         </div>
       </section>
-
-
 
       <section className="px-5 pb-14">
         <div className="mx-auto flex max-w-[1100px] flex-wrap items-center justify-between gap-5 rounded-[22px] border border-line bg-gradient-to-br from-wash-deep to-paper px-8 py-7">
@@ -317,10 +295,7 @@ function HomePage() {
         </div>
       </section>
 
-      <footer className="bg-ink px-5 pb-7 text-center text-[0.76rem] text-paper/60">
-        © Learn with Leaders. Programme details and fees correct at time of publishing;
-        confirm on each programme page.
-      </footer>
+      <SiteFooter />
 
     </div>
   );

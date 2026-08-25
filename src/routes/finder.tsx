@@ -7,7 +7,7 @@ import { ProgrammeCard } from "@/components/ProgrammeCard";
 import { ResultGroup } from "@/components/ResultGroup";
 import { CounsellorCard } from "@/components/CounsellorCard";
 import { FaqAccordion, FAQS } from "@/components/FaqAccordion";
-import { HowItWorks, WhyLwl } from "@/components/HowItWorks";
+import { HowItWorks } from "@/components/HowItWorks";
 import { TrendingTop5 } from "@/components/TrendingTop5";
 import { SavedStrip } from "@/components/SavedStrip";
 import { ProfilePathway } from "@/components/ProfilePathway";
@@ -29,6 +29,7 @@ import {
   type FinderSearch,
 } from "@/lib/finder";
 import { regionLabel } from "@/lib/regions";
+import { SiteFooter } from "@/components/SiteFooter";
 
 const TITLE = "Programme Finder | Learn with Leaders";
 const DESC =
@@ -378,7 +379,6 @@ function FinderPage() {
               </TailItem>
               <TailItem value="how" title="How it works & why parents choose us">
                 <HowItWorks />
-                <WhyLwl />
               </TailItem>
               <TailItem value="faq" title="Questions parents ask">
                 <FaqAccordion />
@@ -406,10 +406,7 @@ function FinderPage() {
         </a>
       </section>
 
-      <footer className="bg-ink px-5 py-6 text-center text-[0.78rem] text-paper/60">
-        © Learn with Leaders. Programme details and fees correct at time of publishing;
-        confirm on each programme page.
-      </footer>
+      <SiteFooter />
 
     </div>
   );

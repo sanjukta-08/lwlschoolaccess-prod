@@ -1,11 +1,13 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { AboutLwl } from "@/components/AboutLwl";
+import { WhyLwl } from "@/components/HowItWorks";
 import { PressStrip } from "@/components/PressStrip";
 import { GlobalReach } from "@/components/GlobalReach";
 import { LinkedInStories } from "@/components/LinkedInStories";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { REACH } from "@/lib/social-proof";
+import { SiteFooter } from "@/components/SiteFooter";
 
 const TITLE = "About Learn with Leaders — press, schools and student stories";
 const DESC =
@@ -81,6 +83,7 @@ function AboutPage() {
       </div>
 
       <AboutLwl />
+      <WhyLwl />
       <PressStrip />
       <GlobalReach />
       <LinkedInStories />
@@ -134,10 +137,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <footer className="bg-ink px-5 pb-7 text-center text-[0.76rem] text-paper/60">
-        © Learn with Leaders. Press headlines shown for illustration where marked;
-        programme details and fees correct at time of publishing.
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

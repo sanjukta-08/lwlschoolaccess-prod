@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { PROGRAMMES, TYPES, type TypeKey } from "@/lib/programmes";
 import { TYPE_PROFILE } from "@/lib/profile-building";
-import { slugOf } from "@/lib/programme-detail";
+import { slugOf } from "@/lib/programme-slug";
 
 const ORDER: TypeKey[] = ["fel", "prog", "comp", "intern", "conf"];
 

@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 
 import { AddToCalendar } from "@/components/AddToCalendar";
+import { SiteFooter } from "@/components/SiteFooter";
 import { SaveButton } from "@/components/SaveButton";
 import { countdownLabel, decideLabel } from "@/lib/shortlist";
 import { PageJump } from "@/components/PageJump";
@@ -12,7 +13,8 @@ import { LinkedInGlyph, StoryGallery } from "@/components/StoryGallery";
 import { storiesForTracks } from "@/lib/social-proof";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 
-import { detailFor, relatedProgrammes, slugOf } from "@/lib/programme-detail";
+import { detailFor, relatedProgrammes } from "@/lib/programme-detail";
+import { slugOf } from "@/lib/programme-slug";
 import {
   TRACKS,
   TYPE_NAME,
@@ -452,6 +454,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
           </div>
         </div>
       </div>
+      <SiteFooter />
     </main>
   );
 }
