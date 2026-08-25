@@ -13,6 +13,8 @@ type Props = {
   onReset: () => void;
   resultCount: number;
   cohortCount: number;
+  /** "panel" = original wide card, "rail" = narrow vertical sidebar */
+  layout?: "panel" | "rail";
 };
 
 export function FinderPanel({
@@ -21,9 +23,143 @@ export function FinderPanel({
   onReset,
   resultCount,
   cohortCount,
+  layout = "panel",
 }: Props) {
   const typeKeys = ["all", ...Object.keys(TYPES)];
   const counts = typeCounts(state, typeKeys);
+
+  const search = (
+    <label className="relative block w-full">
+      <span className="sr-only">Search programmes</span>
+      <input
+        type="search"
+        value={state.q}
+        onChange={(e) => onChange({ q: e.target.value })}
+        placeholder="Search: research, moot court, SAT…"
+        className="w-full rounded-full border border-line bg-wash py-2.5 pr-9 pl-9 text-[0.85rem] text-ink placeholder:text-ink-faint focus:border-crimson/40 focus:bg-paper focus:outline-none"
+      />
+      <span className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-[0.85rem] text-ink-faint">
+        ⌕
+      </span>
+      {state.q ? (
+        <button
+          type="button"
+          onClick={() => onChange({ q: "" })}
+          aria-label="Clear search"
+          className="absolute top-1/2 right-3 -translate-y-1/2 text-[0.85rem] text-ink-faint hover:text-crimson"
+        >
+          ✕
+        </button>
+      ) : null}
+    </label>
+  );
+
+  const counter = (
+    <div className="flex flex-wrap items-center justify-between gap-3">
+      <span className="font-mono text-[0.78rem] text-ink-soft">
+        <strong className="text-[0.92rem] font-semibold text-crimson">
+          {resultCount}
+        </strong>{" "}
+        options · {cohortCount} cohorts
+      </span>
+      {!isDefaultSearch(state) ? (
+        <button
+          type="button"
+          onClick={onReset}
+          className="text-[0.78rem] font-semibold text-ink-faint underline underline-offset-[3px] hover:text-crimson"
+        >
+          Clear all
+        </button>
+      ) : null}
+    </div>
+  );
+
+  if (layout === "rail") {
+    return (
+      <div className="rounded-2xl border border-line bg-paper p-4 shadow-soft">
+        <div className="space-y-4">
+          {search}
+
+          <Field label="Grade">
+            <BoxSelect
+              value={state.grade}
+              onChange={(v) => onChange({ grade: v })}
+              options={gradeOptions()}
+              label="Grade"
+            />
+          </Field>
+
+          <Field label="Starting">
+            <BoxSelect
+              value={state.month}
+              onChange={(v) => onChange({ month: v })}
+              options={monthOptions()}
+              label="Start month"
+            />
+          </Field>
+
+          <Field label="Type">
+            <div className="flex flex-col gap-1">
+              {typeKeys.map((key) => {
+                const pressed = state.type === key;
+                return (
+                  <button
+                    key={key}
+                    type="button"
+                    aria-pressed={pressed}
+                    onClick={() => onChange({ type: key })}
+                    className={`flex items-center justify-between rounded-lg px-2.5 py-[7px] text-left text-[0.8rem] font-semibold transition-colors ${
+                      pressed
+                        ? "bg-ink text-paper"
+                        : "text-ink-soft hover:bg-wash hover:text-ink"
+                    }`}
+                  >
+                    <span>
+                      {key === "all"
+                        ? "All types"
+                        : TYPES[key as keyof typeof TYPES].label}
+                    </span>
+                    <small
+                      className={`font-mono text-[0.68rem] font-medium ${
+                        pressed ? "text-[#c7ccda]" : "text-ink-faint"
+                      }`}
+                    >
+                      {counts[key]}
+                    </small>
+                  </button>
+                );
+              })}
+            </div>
+          </Field>
+
+          <Field label="Curious about">
+            <div className="grid grid-cols-3 gap-1.5 lg:grid-cols-2">
+              <Tile
+                label="All"
+                icon="✨"
+                dense
+                pressed={state.interest === "all"}
+                onClick={() => onChange({ interest: "all" })}
+              />
+              {Object.entries(TRACKS).map(([key, t]) => (
+                <Tile
+                  key={key}
+                  label={t.label}
+                  icon={t.ic}
+                  color={t.color}
+                  dense
+                  pressed={state.interest === key}
+                  onClick={() => onChange({ interest: key })}
+                />
+              ))}
+            </div>
+          </Field>
+
+          <div className="border-t border-line pt-3">{counter}</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="rounded-3xl border border-line bg-paper p-[clamp(22px,4vw,34px)] shadow-lift">
@@ -46,29 +182,7 @@ export function FinderPanel({
       </p>
 
       <div className="mt-5 flex justify-center">
-        <label className="relative w-full max-w-[420px]">
-          <span className="sr-only">Search programmes</span>
-          <input
-            type="search"
-            value={state.q}
-            onChange={(e) => onChange({ q: e.target.value })}
-            placeholder="Search programmes, e.g. research, moot court, SAT"
-            className="w-full rounded-full border border-line bg-wash py-3 pr-11 pl-11 text-[0.88rem] text-ink placeholder:text-ink-faint focus:border-crimson/40 focus:bg-paper focus:outline-none"
-          />
-          <span className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-ink-faint">
-            🔍
-          </span>
-          {state.q ? (
-            <button
-              type="button"
-              onClick={() => onChange({ q: "" })}
-              aria-label="Clear search"
-              className="absolute top-1/2 right-3.5 -translate-y-1/2 text-[0.9rem] text-ink-faint hover:text-crimson"
-            >
-              ✕
-            </button>
-          ) : null}
-        </label>
+        <div className="w-full max-w-[420px]">{search}</div>
       </div>
 
       <div className="mt-5 flex justify-center">
@@ -124,24 +238,49 @@ export function FinderPanel({
         ))}
       </div>
 
-      <div className="mt-5 flex flex-wrap items-center justify-center gap-4">
-        <span className="font-mono text-[0.8rem] text-ink-soft">
-          <strong className="text-[0.95rem] font-semibold text-crimson">
-            {resultCount}
-          </strong>{" "}
-          options · {cohortCount} upcoming cohorts
-        </span>
-        {!isDefaultSearch(state) ? (
-          <button
-            type="button"
-            onClick={onReset}
-            className="text-[0.8rem] font-semibold text-ink-faint underline underline-offset-[3px] hover:text-crimson"
-          >
-            Clear all filters
-          </button>
-        ) : null}
-      </div>
+      <div className="mt-5">{counter}</div>
     </div>
+  );
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <span className="mono-label mb-1.5 block text-ink-faint">{label}</span>
+      {children}
+    </div>
+  );
+}
+
+function BoxSelect({
+  value,
+  onChange,
+  options,
+  label,
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  options: { value: string; label: string }[];
+  label: string;
+}) {
+  return (
+    <span className="relative block">
+      <select
+        aria-label={label}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full cursor-pointer appearance-none rounded-lg border border-line bg-wash px-3 py-2 pr-8 text-[0.85rem] font-semibold text-ink focus:border-crimson/40 focus:outline-none"
+      >
+        {options.map((o) => (
+          <option key={o.value} value={o.value}>
+            {o.label}
+          </option>
+        ))}
+      </select>
+      <span className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-[0.65rem] text-ink-faint">
+        ▾
+      </span>
+    </span>
   );
 }
 
@@ -183,12 +322,14 @@ function Tile({
   icon,
   color,
   pressed,
+  dense = false,
   onClick,
 }: {
   label: string;
   icon: string;
   color?: string;
   pressed: boolean;
+  dense?: boolean;
   onClick: () => void;
 }) {
   return (
@@ -201,13 +342,17 @@ function Tile({
           ? { background: color ?? "var(--ink)", borderColor: color ?? "var(--ink)" }
           : undefined
       }
-      className={`flex flex-col items-center gap-1.5 rounded-2xl border-[1.5px] border-transparent px-1.5 pt-3 pb-2.5 text-center text-[0.78rem] leading-tight font-semibold transition-all ${
+      className={`flex flex-col items-center gap-1 rounded-xl border-[1.5px] border-transparent text-center leading-tight font-semibold transition-all ${
+        dense ? "px-1 pt-2 pb-1.5 text-[0.7rem]" : "px-1.5 pt-3 pb-2.5 text-[0.78rem]"
+      } ${
         pressed
           ? "text-paper"
           : "bg-wash text-ink-soft hover:-translate-y-px hover:bg-wash-deep hover:text-ink"
       }`}
     >
-      <span className="text-[1.35rem] leading-none">{icon}</span>
+      <span className={dense ? "text-[1.05rem] leading-none" : "text-[1.35rem] leading-none"}>
+        {icon}
+      </span>
       <span>{label}</span>
     </button>
   );
