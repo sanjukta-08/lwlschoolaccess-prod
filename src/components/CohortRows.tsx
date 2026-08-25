@@ -14,6 +14,9 @@ import {
 import type { Entry, MonthGroup, TypeGroup } from "@/lib/finder";
 import { slugOf } from "@/lib/programme-detail";
 import { Link } from "@tanstack/react-router";
+import { SaveButton } from "@/components/SaveButton";
+import { AddToCalendar } from "@/components/AddToCalendar";
+import { countdownLabel } from "@/lib/shortlist";
 
 function CohortRow({
   p,
