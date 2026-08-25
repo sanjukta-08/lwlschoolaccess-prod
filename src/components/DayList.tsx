@@ -14,12 +14,10 @@ import type { CohortEntry } from "./MonthGrid";
 export function DayList({
   day,
   entries,
-  onOpen,
   onClear,
 }: {
   day: string;
   entries: CohortEntry[];
-  onOpen: (id: string) => void;
   onClear: () => void;
 }) {
   return (
@@ -94,13 +92,6 @@ export function DayList({
                   >
                     Full details
                   </Link>
-                  <button
-                    type="button"
-                    onClick={() => onOpen(p.id)}
-                    className="rounded-lg px-2 py-2 text-[0.8rem] font-semibold text-ink-faint underline decoration-line underline-offset-4 hover:text-crimson"
-                  >
-                    Quick look
-                  </button>
                 </div>
               </li>
             );

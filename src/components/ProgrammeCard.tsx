@@ -18,7 +18,6 @@ type Props = {
   label?: string | null;
   compact?: boolean;
   showType?: boolean;
-  onOpen: (id: string) => void;
 };
 
 export function ProgrammeCard({
@@ -27,7 +26,6 @@ export function ProgrammeCard({
   label,
   compact = false,
   showType = false,
-  onOpen,
 }: Props) {
   const { p, next, others } = match;
   const track = TRACKS[p.tracks[0]!];
@@ -175,17 +173,6 @@ export function ProgrammeCard({
           >
             Apply now
           </a>
-          <button
-            type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              onOpen(p.id);
-            }}
-            className="relative z-[2] flex-none text-[0.8rem] font-semibold text-ink-faint underline decoration-line underline-offset-4 transition-colors hover:text-crimson"
-          >
-            Quick look
-          </button>
         </div>
       </div>
     </article>
