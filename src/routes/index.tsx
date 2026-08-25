@@ -110,7 +110,6 @@ function HomePage() {
                 </div>
               ))}
             </dl>
-            </dl>
           </section>
         </div>
       </div>
