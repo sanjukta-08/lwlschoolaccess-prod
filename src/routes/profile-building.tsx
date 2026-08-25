@@ -6,6 +6,7 @@ import { CounsellorCard } from "@/components/CounsellorCard";
 import { PATHWAY } from "@/lib/programmes";
 import { BANDS, PB_FAQS, PROOF_FLOW } from "@/lib/profile-building";
 import { DEFAULT_SEARCH } from "@/lib/finder";
+import { SiteFooter } from "@/components/SiteFooter";
 
 const TITLE = "Profile Building Explained | Learn with Leaders";
 const DESC =
@@ -225,6 +226,7 @@ function ProfileBuildingPage() {
           </Link>
         </div>
       </section>
+      <SiteFooter />
     </div>
   );
 }

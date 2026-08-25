@@ -27,17 +27,8 @@ export type ProgrammeDetail = {
   faqs: Faq[];
 };
 
-export const slugOf = (p: Programme) =>
-  p.name
-    .toLowerCase()
-    .replace(/&/g, "and")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-
-export const programmeBySlug = (slug: string): Programme | undefined =>
-  PROGRAMMES.find((p) => slugOf(p) === slug);
-
-export const programmePath = (p: Programme) => `/programmes/${slugOf(p)}` as const;
+export { slugOf, programmeBySlug, programmePath } from "./programme-slug";
+import { slugOf } from "./programme-slug";
 
 /* ---------- hand-written detail for the flagships ---------- */
 

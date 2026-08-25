@@ -8,7 +8,7 @@ import {
   isPast,
 } from "@/lib/programmes";
 import { DEFAULT_SEARCH } from "@/lib/finder";
-import { slugOf } from "@/lib/programme-detail";
+import { slugOf } from "@/lib/programme-slug";
 
 export function ProfilePathway() {
   return (

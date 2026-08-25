@@ -15,6 +15,7 @@ import {
   validateFinderSearch,
   type FinderSearch,
 } from "@/lib/finder";
+import { SiteFooter } from "@/components/SiteFooter";
 
 const TITLE = "Full Calendar 2026–27 | Learn with Leaders";
 const DESC =
@@ -112,11 +113,7 @@ function CalendarPage() {
         </div>
       </section>
 
-      <footer className="bg-ink px-5 py-6 text-center text-[0.78rem] text-paper/60">
-        © Learn with Leaders. Fees and dates correct at time of publishing; confirm on each
-        programme page. All session times are US Eastern, shown with approximate Dubai
-        (GMT+4) equivalents.
-      </footer>
+      <SiteFooter />
 
     </div>
   );

@@ -1,4 +1,4 @@
-import { slugOf } from "@/lib/programme-detail";
+import { slugOf } from "@/lib/programme-slug";
 import { Link } from "@tanstack/react-router";
 import { SaveButton } from "@/components/SaveButton";
 import { AddToCalendar } from "@/components/AddToCalendar";

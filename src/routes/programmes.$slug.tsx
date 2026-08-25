@@ -3,7 +3,8 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { ProgrammeLanding } from "@/components/ProgrammeLanding";
 import { DEFAULT_SEARCH } from "@/lib/finder";
-import { detailFor, programmeBySlug } from "@/lib/programme-detail";
+import { detailFor } from "@/lib/programme-detail";
+import { programmeBySlug } from "@/lib/programme-slug";
 import {
   profileImpactFor,
   projectsFor,

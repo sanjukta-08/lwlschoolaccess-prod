@@ -6,6 +6,7 @@ import { LinkedInGlyph, StoryGallery } from "@/components/StoryGallery";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { TRACKS, type TrackKey } from "@/lib/programmes";
 import { APPROVED_STORIES } from "@/lib/social-proof";
+import { SiteFooter } from "@/components/SiteFooter";
 
 const TITLE = "Student & parent stories | Learn with Leaders";
 const DESC =
@@ -170,10 +171,7 @@ function StoriesPage() {
         </div>
       </section>
 
-      <footer className="border-t border-line px-5 py-8 text-center text-[0.8rem] text-ink-faint">
-        © Learn with Leaders. Stories marked illustrative are stand-ins; real posts are
-        published only with the family's written permission.
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
