@@ -1,3 +1,5 @@
+import { Link } from "@tanstack/react-router";
+import { slugOf } from "@/lib/programme-detail";
 import {
   TRACKS,
   cohortGrades,
