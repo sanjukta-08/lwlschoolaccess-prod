@@ -298,6 +298,10 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
                 >
                   Apply for this cohort
                 </a>
+                <div className="flex items-center justify-between gap-2">
+                  <AddToCalendar p={p} c={c} />
+                  <SaveButton p={p} c={c} />
+                </div>
               </div>
             );
           })}
