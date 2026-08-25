@@ -4,7 +4,8 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { ProgrammeSheet } from "@/components/ProgrammeSheet";
 import { DayList } from "@/components/DayList";
 import { MonthGrid, monthKey, monthTitle } from "@/components/MonthGrid";
-import { TRACKS, TYPES } from "@/lib/programmes";
+import { CohortAgenda } from "@/components/CohortAgenda";
+import { TRACKS, TYPES, isSoon } from "@/lib/programmes";
 import {
   DEFAULT_SEARCH,
   getCohortEntries,
@@ -39,7 +40,12 @@ function CalendarPage() {
   const [detailId, setDetailId] = useState<string | null>(null);
   const [selectedDay, setSelectedDay] = useState<string | null>(null);
 
-  const entries = useMemo(() => getCohortEntries(state), [state]);
+  const allEntries = useMemo(() => getCohortEntries(state), [state]);
+  const entries = useMemo(
+    () => (state.status === "soon" ? allEntries.filter((e) => isSoon(e.c.d)) : allEntries),
+    [allEntries, state.status],
+  );
+  const isList = state.view !== "grid";
 
   const firstMonth = useMemo(() => {
     const base = state.month !== "all" ? state.month : entries[0]?.c.d.slice(0, 7);
@@ -118,6 +124,52 @@ function CalendarPage() {
               ...Object.entries(TRACKS).map(([k, t]) => ({ value: k, label: t.label })),
             ]}
           />
+          <div
+            role="group"
+            aria-label="Status"
+            className="inline-flex gap-0.5 rounded-full border border-line bg-wash p-1"
+          >
+            {[
+              { v: "all", l: "All upcoming" },
+              { v: "soon", l: "Starting soon" },
+            ].map((o) => (
+              <button
+                key={o.v}
+                type="button"
+                aria-pressed={state.status === o.v}
+                onClick={() => update({ status: o.v })}
+                className={`rounded-full px-3.5 py-1.5 text-[0.8rem] font-semibold transition-colors ${
+                  state.status === o.v ? "bg-ink text-paper" : "text-ink-soft hover:text-ink"
+                }`}
+              >
+                {o.l}
+              </button>
+            ))}
+          </div>
+          <div
+            role="group"
+            aria-label="View"
+            className="inline-flex gap-0.5 rounded-full border border-line bg-wash p-1"
+          >
+            {[
+              { v: "list", l: "List" },
+              { v: "grid", l: "Month grid" },
+            ].map((o) => (
+              <button
+                key={o.v}
+                type="button"
+                aria-pressed={isList === (o.v === "list")}
+                onClick={() => update({ view: o.v })}
+                className={`rounded-full px-3.5 py-1.5 text-[0.8rem] font-semibold transition-colors ${
+                  isList === (o.v === "list")
+                    ? "bg-ink text-paper"
+                    : "text-ink-soft hover:text-ink"
+                }`}
+              >
+                {o.l}
+              </button>
+            ))}
+          </div>
           {!isDefaultSearch(state) ? (
             <button
               type="button"
@@ -129,6 +181,15 @@ function CalendarPage() {
           ) : null}
         </div>
 
+        {isList ? (
+          <>
+            <p className="mb-1 font-mono text-[0.76rem] text-ink-faint">
+              {entries.length} cohort{entries.length === 1 ? "" : "s"} match
+            </p>
+            <CohortAgenda entries={entries} onOpen={setDetailId} />
+          </>
+        ) : (
+        <>
         {/* month nav */}
         <div className="mb-4 flex items-center justify-between gap-3">
           <h2 className="font-serif text-[1.4rem] font-semibold">{monthTitle(month)}</h2>
@@ -172,6 +233,9 @@ function CalendarPage() {
             />
           ) : null}
         </div>
+
+        </>
+        )}
 
         {/* track legend */}
         <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-2xl border border-line bg-paper p-4">
