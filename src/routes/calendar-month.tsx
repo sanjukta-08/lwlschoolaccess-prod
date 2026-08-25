@@ -1,7 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
-import { ProgrammeSheet } from "@/components/ProgrammeSheet";
 import { MonthGrid, monthTitle } from "@/components/MonthGrid";
 import { DayList } from "@/components/DayList";
 import { TRACKS, TYPES, TYPE_IC, TYPE_ORDER, isSoon, type TrackKey, type TypeKey } from "@/lib/programmes";
@@ -68,7 +67,6 @@ function Pill({
 function MonthCalendarPage() {
   const state = Route.useSearch();
   const navigate = useNavigate({ from: Route.fullPath });
-  const [detailId, setDetailId] = useState<string | null>(null);
   const [day, setDay] = useState<string | null>(null);
   const [monthIdx, setMonthIdx] = useState(0);
 
@@ -241,7 +239,6 @@ function MonthCalendarPage() {
               <DayList
                 day={day}
                 entries={dayEntries}
-                onOpen={setDetailId}
                 onClear={() => setDay(null)}
               />
             ) : null}
@@ -263,7 +260,6 @@ function MonthCalendarPage() {
         (GMT+4) equivalents.
       </footer>
 
-      <ProgrammeSheet id={detailId} onClose={() => setDetailId(null)} />
     </div>
   );
 }

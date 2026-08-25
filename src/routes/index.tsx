@@ -1,7 +1,6 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
-import { ProgrammeSheet } from "@/components/ProgrammeSheet";
 import { HowItWorks, WhyLwl } from "@/components/HowItWorks";
 import {
   PROGRAMMES,
@@ -45,7 +44,6 @@ const PARTNERS = [
 ];
 
 function HomePage() {
-  const [detailId, setDetailId] = useState<string | null>(null);
   const upcoming = upcomingProgrammes();
 
   return (
@@ -291,7 +289,6 @@ function HomePage() {
         confirm on each programme page.
       </footer>
 
-      <ProgrammeSheet id={detailId} onClose={() => setDetailId(null)} />
     </div>
   );
 }
