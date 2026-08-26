@@ -92,16 +92,16 @@ function TestimonialsPage() {
 
         <div className="relative">
           <SiteHeader />
-          <section className="page-shell flex flex-col gap-3 pt-5 pb-6">
+          <section className="page-shell flex flex-col items-center gap-3 pt-5 pb-6 text-center">
             <div>
-              <span className="mono-label mb-1.5 inline-flex items-center gap-2 text-crimson">
+              <span className="mono-label mb-1.5 inline-flex items-center justify-center gap-2 text-crimson">
                 <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
                 TESTIMONIALS · STUDENTS & PARENTS
               </span>
               <h1 className="font-serif text-[clamp(1.8rem,4.4vw,2.7rem)] leading-[1.1] font-medium tracking-tight">
                 What families say <em className="text-crimson-deep">afterwards</em>
               </h1>
-              <p className="mt-2 max-w-[58em] text-[0.95rem] leading-relaxed text-ink-soft">
+              <p className="mx-auto mt-2 max-w-[58em] text-[0.95rem] leading-relaxed text-ink-soft">
                 Every quote, post, clip and handwritten note we have permission to
                 share, in one searchable place.
               </p>
