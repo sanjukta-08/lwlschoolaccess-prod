@@ -205,10 +205,10 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         </p>
         <ProjectShowcase programme={p} color={track.color} />
 
-        <h3 className="mt-10 font-serif text-[1.2rem] font-semibold">
+        <h3 className="mt-10 text-center font-serif text-[1.2rem] font-semibold">
           What they'll take away
         </h3>
-        <div className="mt-4 flex flex-wrap gap-2.5">
+        <div className="mt-4 flex flex-wrap justify-center gap-2.5">
           {d.takeaways.map((t) => (
             <span
               key={t}
@@ -276,7 +276,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         </div>
         {quotesForProgramme(p.id).length ? (
           <div className="mt-8">
-            <h3 className="font-serif text-[1.05rem] font-medium">
+            <h3 className="text-center font-serif text-[1.05rem] font-medium">
               What learners wrote in their feedback forms
             </h3>
             <div className="mt-3">
