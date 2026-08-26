@@ -294,12 +294,23 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
                   </small>
 
                   <div className="mt-3.5 min-h-[44px] border-t border-line pt-3">
-                    <small className="block text-[0.78rem] text-ink-soft">
-                      {dualTime(timeOf(p, c))}
-                    </small>
+                    {(() => {
+                      const full = dualTime(timeOf(p, c));
+                      const cut = full.indexOf(" (");
+                      const local = cut > -1 ? full.slice(0, cut) : full;
+                      const original = cut > -1 ? full.slice(cut + 1, -1) : "";
+                      return (
+                        <small className="block text-[0.78rem] text-ink-soft">
+                          <span className="block">{local}</span>
+                          {original ? (
+                            <span className="mt-0.5 block text-ink-faint">{original}</span>
+                          ) : null}
+                        </small>
+                      );
+                    })()}
                   </div>
 
-                  <div className="min-h-[30px]">
+                  <div className="mt-3 min-h-[30px]">
                     {c.flyer || c.brochure ? (
                       <span className="flex flex-wrap gap-1.5">
                         {c.flyer ? (
