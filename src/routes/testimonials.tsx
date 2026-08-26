@@ -20,7 +20,7 @@ import birdAsset from "@/assets/lwl-bird-black.webp.asset.json";
 
 const TITLE = "Student & parent testimonials | Learn with Leaders";
 const DESC =
-  "Filter 80+ testimonials from Learn with Leaders families - written cohort feedback, LinkedIn and Instagram posts, video clips and handwritten notes - by interest, programme and format.";
+  "Searchable testimonials from Learn with Leaders families - written cohort feedback, LinkedIn and Instagram posts, video clips and handwritten notes - filtered by interest, programme and format.";
 
 const str = (v: unknown, fallback: string) =>
   typeof v === "string" && v.length > 0 ? v : fallback;
@@ -94,7 +94,7 @@ function TestimonialsPage() {
 
         <div className="relative">
           <SiteHeader />
-          <section className="page-shell flex flex-col gap-4 pt-8 pb-10">
+          <section className="page-shell flex flex-col gap-3 pt-6 pb-7">
             <div>
               <span className="mono-label mb-2 inline-flex items-center gap-2 text-crimson">
                 <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
@@ -103,10 +103,9 @@ function TestimonialsPage() {
               <h1 className="font-serif text-[clamp(1.8rem,4.4vw,2.7rem)] leading-[1.1] font-medium tracking-tight">
                 What families say <em className="text-crimson-deep">afterwards</em>
               </h1>
-              <p className="mt-3 max-w-[58em] text-[0.98rem] leading-relaxed text-ink-soft">
+              <p className="mt-2 max-w-[58em] text-[0.95rem] leading-relaxed text-ink-soft">
                 Every quote, post, clip and handwritten note we have permission to
-                share, in one searchable place. Filter by the interest area, the
-                exact programme, or the format you trust most.
+                share, in one searchable place.
               </p>
             </div>
           </section>
@@ -114,18 +113,17 @@ function TestimonialsPage() {
       </div>
 
       <div className="page-shell pb-16">
-        <div className="mb-6">
+        <div className="mb-4">
           <TestimonialFilters
             search={search}
             facets={facets}
-            total={results.length}
             onChange={update}
             onReset={() => update(DEFAULT_TESTIMONIAL_SEARCH)}
           />
         </div>
 
         {/* Format shortcuts - the quickest way to jump to videos or notes. */}
-        <div className="mb-6 flex flex-wrap items-center gap-2">
+        <div className="mb-4 flex flex-wrap items-center gap-2">
           <span className="mono-label mr-1 text-ink-faint">Jump to</span>
           {FORMAT_ORDER.filter((f) => (facets.format[f] ?? 0) > 0).map((f) => {
             const on = search.format === f;
@@ -135,16 +133,13 @@ function TestimonialsPage() {
                 type="button"
                 onClick={() => update({ format: on ? "all" : f })}
                 aria-pressed={on}
-                className={`rounded-full border px-3.5 py-1.5 text-[0.8rem] font-semibold transition-colors ${
+                className={`rounded-full border px-3 py-1 text-[0.78rem] font-semibold transition-colors ${
                   on
                     ? "border-crimson bg-crimson text-paper"
                     : "border-line bg-paper text-ink-soft hover:border-gold"
                 }`}
               >
                 {FORMATS[f].label}
-                <span className={on ? "ml-1.5 text-paper/70" : "ml-1.5 text-ink-faint"}>
-                  {facets.format[f]}
-                </span>
               </button>
             );
           })}
