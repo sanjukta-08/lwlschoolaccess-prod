@@ -1,4 +1,4 @@
-import { CalendarDays, Compass, LayoutGrid, Search, SlidersHorizontal } from "lucide-react";
+import { CalendarDays, Compass, Search, SlidersHorizontal } from "lucide-react";
 import {
   TRACKS,
   TYPES,
