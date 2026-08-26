@@ -202,36 +202,30 @@ function HomePage() {
                   className="group relative flex flex-col overflow-hidden rounded-[14px] border border-gold-line bg-paper px-4 py-3.5 text-ink no-underline shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lift hover:border-gold-deep"
                 >
                   <span className="absolute inset-x-0 bottom-0 h-[2px] origin-left scale-x-0 bg-[var(--tc)] transition-transform duration-500 group-hover:scale-x-100" />
-                  <span className="flex items-start justify-between">
-                    <span className="mono-label text-[0.66rem] text-gold-deep">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <ArrowUpRight
-                      size={14}
-                      strokeWidth={1.4}
-                      className="text-ink-faint transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-crimson-deep"
-                      aria-hidden="true"
-                    />
+                  <span className="absolute top-2.5 right-2.5 z-10 text-ink-faint transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-crimson-deep">
+                    <ArrowUpRight size={14} strokeWidth={1.4} aria-hidden="true" />
                   </span>
-                  <img
-                    src={PATHWAY_ART[k]}
-                    alt=""
-                    aria-hidden="true"
-                    loading="lazy"
-                    width={400}
-                    height={400}
-                    className="pointer-events-none absolute top-1.5 right-1 h-[72px] w-[72px] object-contain opacity-90 mix-blend-multiply transition-all duration-300 group-hover:scale-[1.04]"
-                  />
-                  <span className="relative z-10 mt-8 max-w-[68%]">
-                    <b className="block font-serif text-[1.05rem] leading-tight font-semibold">
-                      {t.label}
-                    </b>
-                    <small className="mt-0.5 block text-[0.72rem] leading-snug text-ink-soft">
-                      {PATHWAY_PROMISE[k]}
-                    </small>
-                    <small className="mono-label mt-1.5 block text-[0.7rem] text-ink-faint">
-                      {n} programme{n === 1 ? "" : "s"}
-                    </small>
+                  <span className="relative z-10 flex items-start justify-between gap-3">
+                    <span className="min-w-0 flex-1 pt-0.5">
+                      <b className="block font-serif text-[1.18rem] leading-tight font-semibold">
+                        {t.label}
+                      </b>
+                      <small className="mt-0.5 block text-[0.75rem] leading-snug text-ink-soft">
+                        {PATHWAY_PROMISE[k]}
+                      </small>
+                      <small className="mono-label mt-1.5 block text-[0.7rem] text-ink-faint">
+                        {n} programme{n === 1 ? "" : "s"}
+                      </small>
+                    </span>
+                    <img
+                      src={PATHWAY_ART[k]}
+                      alt=""
+                      aria-hidden="true"
+                      loading="lazy"
+                      width={400}
+                      height={400}
+                      className="pointer-events-none h-[76px] w-[76px] flex-shrink-0 object-contain opacity-90 mix-blend-multiply transition-all duration-300 group-hover:scale-[1.04]"
+                    />
                   </span>
                 </Link>
               );
