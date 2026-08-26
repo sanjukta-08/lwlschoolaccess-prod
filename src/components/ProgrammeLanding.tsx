@@ -156,26 +156,35 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
           Live, mentor-led sessions - worked problems and real output, not lectures.
         </p>
         <div className="mt-6 grid gap-3.5 sm:grid-cols-2">
-          {d.doSteps.map((s, i) => (
-            <div
-              key={s.title}
-              className="flex items-start gap-3.5 rounded-2xl border-2 border-ink/12 bg-wash p-4.5 shadow-soft"
-            >
-              <span
-                className="grid h-9 w-9 flex-none place-items-center rounded-full border-[1.5px] bg-paper font-serif font-semibold"
-                style={{
-                  color: track.color,
-                  borderColor: `color-mix(in srgb, ${track.color} 35%, #fff)`,
-                }}
+          {d.doSteps.map((s, i) => {
+            const isLastOdd =
+              i === d.doSteps.length - 1 && d.doSteps.length % 2 === 1;
+            return (
+              <div
+                key={s.title}
+                className={[
+                  "flex items-start gap-3.5 rounded-2xl border-2 border-ink/12 bg-wash p-4.5 shadow-soft",
+                  isLastOdd
+                    ? "sm:col-span-2 sm:max-w-[calc(50%-0.5*0.875rem)] sm:justify-self-center"
+                    : "",
+                ].join(" ")}
               >
-                {i + 1}
-              </span>
-              <div>
-                <b className="block text-[0.95rem]">{s.title}</b>
-                <p className="mt-1 text-[0.85rem] text-ink-soft">{s.body}</p>
+                <span
+                  className="grid h-9 w-9 flex-none place-items-center rounded-full border-[1.5px] bg-paper font-serif font-semibold"
+                  style={{
+                    color: track.color,
+                    borderColor: `color-mix(in srgb, ${track.color} 35%, #fff)`,
+                  }}
+                >
+                  {i + 1}
+                </span>
+                <div>
+                  <b className="block text-[0.95rem]">{s.title}</b>
+                  <p className="mt-1 text-[0.85rem] text-ink-soft">{s.body}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
