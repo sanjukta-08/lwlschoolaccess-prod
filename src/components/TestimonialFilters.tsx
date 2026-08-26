@@ -6,8 +6,6 @@ import {
   FORMATS,
   FORMAT_ORDER,
   TESTIMONIAL_PROGRAMMES,
-  VOICES,
-  VOICE_ORDER,
   isDefaultTestimonialSearch,
 } from "@/lib/testimonials";
 import type { TestimonialSearch } from "@/lib/testimonials";
