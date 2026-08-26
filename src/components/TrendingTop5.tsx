@@ -72,7 +72,7 @@ export function TrendingTop5({ state, variant = "section" }: Props) {
             const track = TRACKS[p.tracks[0]!];
             const fee = feeOf(p, next);
             const logo = logoFor(p.id, p.tracks);
-            const isLaw = p.tracks[0] === "law";
+            const isLaw = p.tracks.includes("law") || p.tracks.includes("deb");
             return (
               <li key={p.id} className="relative">
                 <div
