@@ -54,10 +54,13 @@ export function MonthGrid({
   const todayISO = iso(new Date());
 
   return (
-    <div className="overflow-hidden rounded-3xl border border-line bg-paper shadow-soft">
-      <div className="hidden grid-cols-7 border-b border-line bg-[linear-gradient(180deg,var(--paper),var(--wash))] md:grid">
+    <div className="overflow-hidden rounded-[1.75rem] border border-line bg-paper shadow-soft">
+      <div className="hidden grid-cols-7 border-b border-line bg-[linear-gradient(180deg,var(--gold-soft)_0%,var(--paper)_100%)] md:grid">
         {WEEKDAYS.map((w) => (
-          <div key={w} className="mono-label border-r border-line/70 px-3 py-2 text-center text-ink-faint last:border-r-0">
+          <div
+            key={w}
+            className="mono-label border-r border-line/70 px-2 py-2.5 text-center text-[0.72rem] font-semibold tracking-[0.12em] text-ink-soft uppercase last:border-r-0"
+          >
             {w}
           </div>
         ))}
@@ -74,40 +77,47 @@ export function MonthGrid({
               const isToday = day && dayISO === todayISO;
               const isSelected = day && dayISO === selected;
               const isWeekend = di > 4;
+              const hasCohorts = dayEntries.length > 0;
               return (
                 <div
                   key={key}
-                  className={`relative min-h-[12.5vh] border-r border-line p-1.5 transition-colors last:border-r-0 xl:min-h-[12vh] ${
-                    day ? (isWeekend ? "bg-wash/40" : "bg-paper") : "bg-wash/60"
-                  } ${dayEntries.length ? "hover:bg-gold-soft/40" : ""} ${
-                    isSelected ? "bg-gold-soft/60 ring-1 ring-inset ring-gold/50" : ""
-                  }`}
+                  className={`relative min-h-[12.5vh] border-r border-line p-2 transition-all last:border-r-0 xl:min-h-[12vh] ${
+                    day
+                      ? isWeekend
+                        ? "bg-wash/60"
+                        : "bg-paper"
+                      : "bg-wash/80"
+                  } ${hasCohorts ? "hover:bg-gold-soft/35" : ""} ${
+                    isSelected
+                      ? "bg-gold-soft/70 ring-1 ring-inset ring-gold/55 shadow-[inset_0_0_0_1px_var(--gold-line)]"
+                      : ""
+                  } ${hasCohorts && !isSelected ? "before:absolute before:top-0 before:left-0 before:right-0 before:h-[3px] before:bg-gradient-to-r before:from-gold before:to-gold-soft" : ""}`}
                 >
                   {day ? (
                     <>
-                      <div className="mb-1 flex items-center justify-between">
+                      <div className="mb-1.5 flex items-start justify-between gap-1">
                         <button
                           type="button"
                           onClick={() => onSelectDay(dayISO)}
                           disabled={!dayEntries.length}
                           aria-label={`Cohorts starting ${dayISO}`}
-                          className={`inline-flex h-7 min-w-7 items-center justify-center rounded-full px-1.5 font-mono text-[0.78rem] font-semibold transition-colors ${
+                          className={`inline-flex h-8 min-w-8 items-center justify-center rounded-full px-2 font-mono text-[0.84rem] font-semibold transition-all ${
                             isToday
-                              ? "bg-crimson text-paper shadow-soft"
-                              : dayEntries.length
-                                ? "text-ink hover:bg-ink hover:text-paper"
-                                : "text-ink-faint/70"
+                              ? "bg-crimson text-paper shadow-[0_2px_8px_-2px_rgba(163,29,51,0.45)]"
+                              : hasCohorts
+                                ? "text-ink hover:bg-ink hover:text-paper hover:shadow-soft"
+                                : "text-ink-faint/60"
                           }`}
                         >
                           {day.getDate()}
                         </button>
-                        {dayEntries.length ? (
-                          <span className="mono-label rounded-full bg-gold-soft px-1.5 py-0.5 text-[0.6rem] text-gold-deep">
-                            {dayEntries.length} start{dayEntries.length === 1 ? "" : "s"}
+                        {hasCohorts ? (
+                          <span className="mono-label mt-1 rounded-full bg-gold-soft px-2 py-0.5 text-[0.6rem] font-bold text-gold-deep">
+                            {dayEntries.length}
                           </span>
                         ) : null}
                       </div>
-                      <div className="flex flex-col gap-1">
+                      <div className="flex flex-col gap-1.5">
                         {dayEntries.slice(0, 3).map((e) => {
                           const track = TRACKS[e.p.tracks[0]!];
                           return (
@@ -116,13 +126,13 @@ export function MonthGrid({
                               to="/programmes/$slug"
                               params={{ slug: slugOf(e.p) }}
                               title={`${e.p.name} - open programme page`}
-                              className="block truncate rounded-md py-1 pr-1.5 pl-2 text-left text-[0.7rem] leading-tight font-semibold text-ink no-underline transition-colors hover:text-crimson-deep"
-                              style={{
-                                borderLeft: `3px solid ${track.color}`,
-                                background: `color-mix(in oklab, ${track.color} 12%, transparent)`,
-                              }}
+                              className="group flex items-center gap-1.5 truncate rounded-lg border border-line/60 bg-paper py-1.5 pr-2 pl-2 text-left text-[0.68rem] leading-tight font-semibold text-ink no-underline transition-all hover:border-gold-line hover:bg-gold-soft/40 hover:text-crimson-deep"
                             >
-                              {e.p.name}
+                              <span
+                                className="h-1.5 w-1.5 flex-none rounded-full"
+                                style={{ background: track.color }}
+                              />
+                              <span className="truncate">{e.p.name}</span>
                             </Link>
                           );
                         })}
@@ -130,7 +140,7 @@ export function MonthGrid({
                           <button
                             type="button"
                             onClick={() => onSelectDay(dayISO)}
-                            className="px-1.5 text-left text-[0.66rem] font-semibold text-ink-soft underline underline-offset-2 hover:text-crimson"
+                            className="w-fit rounded-md px-1.5 py-1 text-left text-[0.65rem] font-bold text-gold-deep underline underline-offset-2 transition-colors hover:text-crimson"
                           >
                             +{dayEntries.length - 3} more
                           </button>

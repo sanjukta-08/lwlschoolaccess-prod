@@ -170,69 +170,68 @@ function MonthCalendarPage() {
 
       <section className="page-shell py-6">
         {/* month switcher */}
-        <div className="mb-4 overflow-hidden rounded-3xl border border-line bg-paper shadow-soft">
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-[linear-gradient(180deg,var(--gold-soft),var(--paper))] px-4 py-2.5 sm:px-5">
+        <div className="mb-5 overflow-hidden rounded-[1.75rem] border border-line bg-paper shadow-soft">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-[linear-gradient(180deg,var(--gold-soft),var(--paper))] px-5 py-3 sm:px-6">
             <div className="flex min-w-0 items-baseline gap-3">
-              <h2 className="font-serif text-[1.35rem] leading-tight font-medium whitespace-nowrap">
+              <h2 className="font-serif text-[1.45rem] leading-tight font-medium tracking-tight whitespace-nowrap">
                 {monthTitle(monthDate)}
               </h2>
-              <p className="font-mono text-[0.72rem] text-ink-faint">
+              <p className="mono-label text-[0.72rem] text-ink-faint">
                 {active
                   ? `${active.rows.length} cohort${active.rows.length === 1 ? "" : "s"} starting this month`
                   : "No cohorts in this window"}
               </p>
             </div>
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-2">
               <button
                 type="button"
                 onClick={() => step(-1)}
                 disabled={idx === 0}
                 aria-label="Previous month"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gold-line bg-paper text-gold-deep transition-colors hover:bg-gold-soft disabled:opacity-35 disabled:hover:bg-paper"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gold-line bg-paper text-gold-deep transition-all hover:scale-105 hover:bg-gold-soft disabled:opacity-35 disabled:hover:scale-100 disabled:hover:bg-paper"
               >
-                <ChevronLeft className="h-3.5 w-3.5" />
+                <ChevronLeft className="h-4 w-4" />
               </button>
               <button
                 type="button"
                 onClick={() => step(1)}
                 disabled={idx >= months.length - 1}
                 aria-label="Next month"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gold-line bg-paper text-gold-deep transition-colors hover:bg-gold-soft disabled:opacity-35 disabled:hover:bg-paper"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gold-line bg-paper text-gold-deep transition-all hover:scale-105 hover:bg-gold-soft disabled:opacity-35 disabled:hover:scale-100 disabled:hover:bg-paper"
               >
-                <ChevronRight className="h-3.5 w-3.5" />
+                <ChevronRight className="h-4 w-4" />
               </button>
             </div>
           </div>
 
-          <div className="flex gap-1.5 overflow-x-auto px-4 py-2 sm:px-5">
-            {months.map((m, i) => {
-              const [mon, yr] = m.label.split(" ");
-              return (
-                <button
-                  key={m.key}
-                  type="button"
-                  aria-pressed={i === idx}
-                  onClick={() => {
-                    setDay(null);
-                    setMonthIdx(i);
-                  }}
-                  className={`flex-none rounded-lg border px-3 py-1.5 text-left transition-colors ${
-                    i === idx
-                      ? "border-ink bg-ink text-paper"
-                      : "border-line bg-wash text-ink-soft hover:border-gold-line hover:bg-gold-soft/60 hover:text-ink"
+          <div className="flex gap-2 overflow-x-auto px-5 py-3 sm:px-6">
+            {months.map((m, i) => (
+              <button
+                key={m.key}
+                type="button"
+                aria-pressed={i === idx}
+                onClick={() => {
+                  setDay(null);
+                  setMonthIdx(i);
+                }}
+                className={`group flex flex-none items-center gap-2.5 rounded-xl border px-3.5 py-2.5 text-left transition-all ${
+                  i === idx
+                    ? "min-w-[8.5rem] border-ink bg-ink text-paper shadow-soft"
+                    : "min-w-[8.5rem] border-line bg-wash text-ink-soft hover:-translate-y-0.5 hover:border-gold-line hover:bg-gold-soft/70 hover:text-ink hover:shadow-soft"
+                }`}
+              >
+                <span className="whitespace-nowrap text-[0.88rem] leading-none font-semibold">
+                  {m.label}
+                </span>
+                <span
+                  className={`inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full px-1 text-[0.62rem] font-bold leading-none ${
+                    i === idx ? "bg-paper/20 text-paper" : "bg-paper text-gold-deep group-hover:bg-white"
                   }`}
                 >
-                  <span className="block text-[0.82rem] leading-none font-semibold">
-                    {mon}
-                  </span>
-                  <span
-                    className={`mono-label block leading-none ${i === idx ? "text-paper/70" : "text-ink-faint"}`}
-                  >
-                    {yr} · {m.rows.length}
-                  </span>
-                </button>
-              );
-            })}
+                  {m.rows.length}
+                </span>
+              </button>
+            ))}
           </div>
         </div>
 
