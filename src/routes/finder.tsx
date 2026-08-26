@@ -199,7 +199,7 @@ function FinderPage() {
         <div className="hero-wash absolute inset-0" />
         <div className="relative">
           <SiteHeader />
-          <section className="mx-auto flex max-w-[1240px] flex-wrap items-end justify-between gap-x-8 gap-y-4 px-5 pt-8 pb-8">
+          <section className="mx-auto flex max-w-[1400px] flex-wrap items-end justify-between gap-x-8 gap-y-4 px-4 pt-8 pb-8">
             <div>
               <span className="mono-label mb-2 inline-flex items-center gap-2 text-crimson">
                 <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
@@ -232,8 +232,8 @@ function FinderPage() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-[1240px] px-5 pb-14">
-        <div className="grid items-start gap-6 lg:grid-cols-[264px_1fr]">
+      <div className="mx-auto max-w-[1400px] px-4 pb-14">
+        <div className="grid items-start gap-5 lg:grid-cols-[280px_1fr]">
           <aside className="hidden lg:block">
             <div className="sticky top-6">{filters}</div>
           </aside>
