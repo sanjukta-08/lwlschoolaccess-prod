@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -135,11 +135,12 @@ function QuoteMarquee({
   const pages = Math.max(1, Math.ceil(quotes.length / perPage));
   const [page, setPage] = useState(0);
 
-  useState;
-
-  useState;
-
-  useState;
+  useEffect(() => {
+    if (paused || pages < 2) return;
+    const interval = Math.max(9000, duration * 60);
+    const id = window.setInterval(() => setPage((p) => (p + 1) % pages), interval);
+    return () => window.clearInterval(id);
+  }, [duration, paused, pages]);
 
   return (
     <div

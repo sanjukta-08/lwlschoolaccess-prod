@@ -317,21 +317,14 @@ function StoryCarousel({
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
-      <div className="overflow-hidden">
-        <div
-          className="flex transition-transform duration-700 ease-out"
-          style={{ transform: `translateX(-${page * 100}%)` }}
-        >
-          <div className="grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {stories.slice(page * perPage, page * perPage + perPage).map((s, i) => (
-              <StoryTile
-                key={s.id}
-                story={s}
-                onOpen={() => onOpen(page * perPage + i)}
-              />
-            ))}
-          </div>
-        </div>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {stories.slice(page * perPage, page * perPage + perPage).map((s, i) => (
+          <StoryTile
+            key={s.id}
+            story={s}
+            onOpen={() => onOpen(page * perPage + i)}
+          />
+        ))}
       </div>
 
       {pages > 1 ? (
