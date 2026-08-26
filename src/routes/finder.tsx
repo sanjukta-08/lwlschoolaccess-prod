@@ -91,19 +91,42 @@ function FinderPage() {
     !!state.q;
   const groups = useMemo(() => groupMatches(matches, state.sort), [matches, state.sort]);
 
-  const tabKeys = ["all", ...groups.map((g) => g.key)];
-  const currentKey = tabKeys.includes(activeTab) ? activeTab : "all";
-  const activeGroup =
-    currentKey === "all"
-      ? {
-          key: "all",
-          label: "All results",
-          sub: "Every match, in order",
-          rows: matches,
-        }
-      : groups.find((g) => g.key === currentKey)!;
-  const rows = activeGroup.rows.slice(0, visible);
-  const remaining = activeGroup.rows.length - rows.length;
+  // Paginate across the whole ordered result set, then show only the groups
+  // that fall inside the visible slice. Keeps one calm column, no tab bar.
+  const visibleGroups = useMemo(() => {
+    let left = visible;
+    const out: { key: string; label: string; sub: string; rows: typeof matches }[] = [];
+    for (const g of groups) {
+      if (left <= 0) break;
+      out.push({ ...g, rows: g.rows.slice(0, left) });
+      left -= g.rows.length;
+    }
+    return out;
+  }, [groups, visible]);
+  const remaining = matches.length - Math.min(visible, matches.length);
+
+  const chips: { label: string; clear: Partial<FinderSearch> }[] = [];
+  if (state.q) chips.push({ label: `“${state.q}”`, clear: { q: "" } });
+  if (state.grade !== "all")
+    chips.push({
+      label: BAND_LABEL[state.grade] ?? `Grade ${state.grade}`,
+      clear: { grade: "all" },
+    });
+  if (state.interest !== "all")
+    chips.push({
+      label: TRACKS[state.interest as keyof typeof TRACKS]?.label ?? state.interest,
+      clear: { interest: "all" },
+    });
+  if (state.type !== "all")
+    chips.push({
+      label: TYPE_NAME[state.type as keyof typeof TYPE_NAME] ?? state.type,
+      clear: { type: "all" },
+    });
+  if (state.month !== "all")
+    chips.push({ label: monthLabel(state.month), clear: { month: "all" } });
+  if (state.region !== "all")
+    chips.push({ label: regionLabel(state.region), clear: { region: "all" } });
+
 
   let fallback = matches.length ? [] : getMatches(state, { ignoreMonth: true });
   let fallbackNote = "in other months";
