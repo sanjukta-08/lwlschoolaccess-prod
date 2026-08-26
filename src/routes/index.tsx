@@ -18,7 +18,6 @@ import { slugOf } from "@/lib/programme-slug";
 import { programmeLogo } from "@/lib/programme-logos";
 
 import { SiteFooter } from "@/components/SiteFooter";
-import { PartnerLogos } from "@/components/PartnerLogos";
 import { WingMark } from "@/components/WingMark";
 import { SectionHeading } from "@/components/SectionHeading";
 import birdAsset from "@/assets/lwl-bird-black.png.asset.json";
