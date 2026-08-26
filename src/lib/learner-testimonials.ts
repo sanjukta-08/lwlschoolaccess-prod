@@ -418,6 +418,7 @@ export const LEARNER_QUOTES: LearnerQuote[] = [
     name: "Rateel D.",
     role: "Student",
     programme: "HCUS Young Global Leaders",
+    programmeId: "hcus",
     camp: true,
   },
   {
@@ -427,6 +428,7 @@ export const LEARNER_QUOTES: LearnerQuote[] = [
     name: "Fabian Emilio D.",
     role: "Student",
     programme: "HCUS Young Global Leaders",
+    programmeId: "hcus",
     camp: true,
   },
   {
@@ -435,6 +437,7 @@ export const LEARNER_QUOTES: LearnerQuote[] = [
     name: "Jose C.",
     role: "Student",
     programme: "HCUS Young Global Leaders",
+    programmeId: "hcus",
     camp: true,
   },
   {
@@ -444,6 +447,7 @@ export const LEARNER_QUOTES: LearnerQuote[] = [
     name: "Saurav Sachen S.",
     role: "Student",
     programme: "HCUS Young Global Leaders",
+    programmeId: "hcus",
     camp: true,
   },
   {
@@ -452,6 +456,7 @@ export const LEARNER_QUOTES: LearnerQuote[] = [
     name: "Chloe Tran L.",
     role: "Student",
     programme: "HCUS Young Global Leaders",
+    programmeId: "hcus",
     camp: true,
   },
   {
@@ -460,6 +465,7 @@ export const LEARNER_QUOTES: LearnerQuote[] = [
     name: "Walter Myles O.",
     role: "Student",
     programme: "HCUS Young Global Leaders",
+    programmeId: "hcus",
     camp: true,
   },
   {
@@ -468,6 +474,7 @@ export const LEARNER_QUOTES: LearnerQuote[] = [
     name: "Wesley Uriah T.",
     role: "Student",
     programme: "HCUS Young Global Leaders",
+    programmeId: "hcus",
     camp: true,
   },
   {
@@ -476,6 +483,7 @@ export const LEARNER_QUOTES: LearnerQuote[] = [
     name: "Anna-Sophia S.",
     role: "Student",
     programme: "HCUS Young Global Leaders",
+    programmeId: "hcus",
     camp: true,
   },
   {
@@ -484,6 +492,7 @@ export const LEARNER_QUOTES: LearnerQuote[] = [
     name: "Nathan Ryu A.",
     role: "Student",
     programme: "HCUS Young Global Leaders",
+    programmeId: "hcus",
     camp: true,
   },
   {
@@ -493,6 +502,7 @@ export const LEARNER_QUOTES: LearnerQuote[] = [
     name: "Safa B.",
     role: "Student",
     programme: "FUSI Geneva",
+    programmeId: "fusi",
     camp: true,
   },
   {
@@ -501,6 +511,7 @@ export const LEARNER_QUOTES: LearnerQuote[] = [
     name: "Brielle B.",
     role: "Student",
     programme: "FUSI Geneva",
+    programmeId: "fusi",
     camp: true,
   },
   {
@@ -510,6 +521,7 @@ export const LEARNER_QUOTES: LearnerQuote[] = [
     name: "Gnangoran Affoua Cecilia R.",
     role: "Student",
     programme: "IGNITE Cambridge",
+    programmeId: "ignite",
     camp: true,
   },
   {
@@ -518,6 +530,7 @@ export const LEARNER_QUOTES: LearnerQuote[] = [
     name: "Oriane B.",
     role: "Student",
     programme: "IGNITE Cambridge",
+    programmeId: "ignite",
     camp: true,
   },
   {
@@ -526,6 +539,7 @@ export const LEARNER_QUOTES: LearnerQuote[] = [
     name: "Mompati Otsile M.",
     role: "Student",
     programme: "IGNITE Cambridge",
+    programmeId: "ignite",
     camp: true,
   },
   {
@@ -534,6 +548,7 @@ export const LEARNER_QUOTES: LearnerQuote[] = [
     name: "Mohammed Majed A.",
     role: "Student",
     programme: "IGNITE Cambridge",
+    programmeId: "ignite",
     camp: true,
   },
 ];
