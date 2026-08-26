@@ -412,7 +412,6 @@ export function StoryGallery({
           <StoryTile
             key={s.id}
             story={s}
-            compact={variant === "strip"}
             onOpen={() => setOpen(i)}
           />
         ))}
