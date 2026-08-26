@@ -6,8 +6,6 @@ import {
   TYPE_ORDER,
   DURATION_ORDER,
   DURATIONS,
-  MENTORS,
-  MENTOR_ORDER,
   cohortGrades,
   durationKey,
   isPast,
@@ -15,7 +13,6 @@ import {
   type Cohort,
   type Programme,
   type DurationKey,
-  type MentorKey,
   type TrackKey,
   type TypeKey,
 } from "./programmes";
@@ -28,7 +25,6 @@ export type FinderSearch = {
   month: string;
   type: string;
   duration: string;
-  mentor: string;
   q: string;
   view: string;
   status: string;
@@ -44,7 +40,6 @@ export const DEFAULT_SEARCH: FinderSearch = {
   month: "all",
   type: "all",
   duration: "all",
-  mentor: "all",
   q: "",
   view: "list",
   status: "all",
@@ -69,10 +64,6 @@ export const validateFinderSearch = (raw: Record<string, unknown>): FinderSearch
   duration: (() => {
     const d = str(raw["duration"], "all");
     return d in DURATIONS ? d : "all";
-  })(),
-  mentor: (() => {
-    const m = str(raw["mentor"], "all");
-    return m in MENTORS ? m : "all";
   })(),
   q: str(raw["q"], "").slice(0, 80),
   view: str(raw["view"], "list") === "grid" ? "grid" : "list",
@@ -144,18 +135,10 @@ const matchType = (p: Programme, type: string) => type === "all" || p.type === t
 const matchDuration = (p: Programme, duration: string) =>
   duration === "all" || durationKey(p) === (duration as DurationKey);
 
-const matchMentor = (p: Programme, mentor: string) =>
-  mentor === "all" || p.mentor === (mentor as MentorKey);
-
-/** Options for the duration and mentor dropdowns. */
+/** Options for the duration dropdown. */
 export const durationOptions = () => [
   { value: "all", label: "any length" },
   ...DURATION_ORDER.map((d) => ({ value: d, label: DURATIONS[d] })),
-];
-
-export const mentorOptions = () => [
-  { value: "all", label: "any university" },
-  ...MENTOR_ORDER.map((m) => ({ value: m, label: MENTORS[m].label })),
 ];
 
 const matchMonth = (c: Cohort, month: string) =>
@@ -194,7 +177,6 @@ export function getMatches(state: FinderSearch, o: MatchOptions = {}): Match[] {
     if (!o.ignoreInterest && !matchInterest(p, state.interest)) return;
     if (!o.ignoreQuery && !matchQuery(p, state.q)) return;
     if (!matchDuration(p, state.duration)) return;
-    if (!matchMentor(p, state.mentor)) return;
     if (!o.ignoreRegion && !fitsRegion(p, state.region)) return;
     const eligible = p.cohorts
       .filter((c) => !isPast(c.d))
@@ -232,7 +214,6 @@ export const isDefaultSearch = (s: FinderSearch) =>
   s.month === "all" &&
   s.type === "all" &&
   s.duration === "all" &&
-  s.mentor === "all" &&
   !s.q;
 
 export type MatchGroup = {
@@ -332,7 +313,7 @@ export function groupProgrammesByType(entries: Entry[]): TypeGroup[] {
 /** Programme counts for one facet, holding every other filter steady. */
 export function facetCounts(
   state: FinderSearch,
-  facet: "type" | "interest" | "region" | "duration" | "mentor",
+  facet: "type" | "interest" | "region" | "duration",
   values: string[],
 ): Record<string, number> {
   const out: Record<string, number> = {};

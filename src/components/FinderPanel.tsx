@@ -4,7 +4,6 @@ import {
   durationOptions,
   gradeOptions,
   isDefaultSearch,
-  mentorOptions,
   monthOptions,
   typeCounts,
   type FinderSearch,
@@ -17,7 +16,6 @@ import {
   CalendarDays,
   Clock,
   Compass,
-  Landmark,
   Globe,
   GraduationCap,
   Search,
@@ -138,16 +136,6 @@ export function FinderPanel({
                 onChange={(v) => onChange({ duration: v })}
                 options={durationOptions()}
                 label="Programme length"
-              />
-            </Field>
-          </div>
-          <div className="min-w-[170px] flex-1">
-            <Field label="Mentor university" icon={<Landmark className="h-3.5 w-3.5" />}>
-              <BoxSelect
-                value={state.mentor}
-                onChange={(v) => onChange({ mentor: v })}
-                options={mentorOptions()}
-                label="Mentor university"
               />
             </Field>
           </div>
