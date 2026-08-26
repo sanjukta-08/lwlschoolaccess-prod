@@ -36,15 +36,14 @@ export default function StoryStrip() {
         </h2>
       </div>
 
-      <div className="mt-1.5 flex flex-wrap items-center justify-between gap-4">
+      <div className="mt-1 flex flex-wrap items-center justify-between gap-4">
         <p className="max-w-[64em] text-[0.92rem] leading-relaxed text-ink-soft">
           Real posts from students, parents and mentors after their cohort ended.
           Tap any one to read it in full.
         </p>
-        <SeeAll label="See all stories" />
       </div>
 
-      <div className="mt-7">
+      <div className="mt-4">
         <StoryGallery stories={APPROVED_LINKEDIN} limit={6} variant="carousel" />
       </div>
 
@@ -56,14 +55,13 @@ export default function StoryStrip() {
               Research and wins we <em className="text-crimson-deep">shared</em>
             </h2>
           </div>
-          <div className="mt-1.5 flex flex-wrap items-center justify-between gap-4">
+          <div className="mt-1 flex flex-wrap items-center justify-between gap-4">
             <p className="max-w-[64em] text-[0.92rem] leading-relaxed text-ink-soft">
               Published papers, judged pitches and competition results, posted as
               they happened on Instagram.
             </p>
-            <SeeAll label="See all stories" />
           </div>
-          <div className="mt-7">
+          <div className="mt-4">
             <StoryGallery
               stories={APPROVED_INSTAGRAM}
               variant="marquee"
@@ -77,14 +75,14 @@ export default function StoryStrip() {
           <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium leading-none">
             Hear it from the <em className="text-crimson-deep">students</em>
           </h2>
-          <div className="mt-1.5 flex flex-wrap items-center justify-between gap-4">
+          <div className="mt-1 flex flex-wrap items-center justify-between gap-4">
             <p className="max-w-[64em] text-[0.92rem] leading-relaxed text-ink-soft">
               One-minute clips recorded at the end of a cohort, unscripted.
             </p>
             <SeeAll label="Watch all clips" />
           </div>
-          <div className="mt-7">
-            <VideoTestimonials videos={VIDEO_TESTIMONIALS} variant="carousel" />
+          <div className="mt-4">
+            <VideoTestimonials videos={VIDEO_TESTIMONIALS} limit={4} />
           </div>
         </div>
       ) : null}
