@@ -309,7 +309,9 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
                       const full = dualTime(timeOf(p, c));
                       const cut = full.indexOf(" (");
                       const local = cut > -1 ? full.slice(0, cut) : full;
-                      const original = cut > -1 ? full.slice(cut + 1) : "";
+                      let original = cut > -1 ? full.slice(cut + 1) : "";
+                      if (original.startsWith("(") && !original.endsWith(")"))
+                        original += ")";
                       return (
                         <small className="block text-[0.78rem] text-ink-soft">
                           <span className="block">{local}</span>
