@@ -398,7 +398,7 @@ function FinderPage() {
       </div>
 
       <section className="bg-crimson-deep px-5 py-14 text-center text-paper">
-        <h2 className="font-serif text-[clamp(1.4rem,3.6vw,2rem)] font-medium">
+        <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Not sure which one <em>fits</em>?
         </h2>
         <p className="mx-auto mt-3 max-w-[34em] text-[0.93rem] text-paper/80">

@@ -111,7 +111,7 @@ function AboutPage() {
       </section>
 
       <section className="rounded-t-[28px] bg-ink px-5 py-16 text-center text-paper">
-        <h2 className="font-serif text-[clamp(1.7rem,4vw,2.4rem)] font-medium">
+        <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Ready to find <em className="text-gold">their</em> programme?
         </h2>
         <p className="mx-auto mt-3 mb-6 max-w-[34em] text-[0.95rem] text-paper/70">

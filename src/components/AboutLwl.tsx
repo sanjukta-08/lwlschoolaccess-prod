@@ -17,7 +17,7 @@ export function AboutLwl() {
         <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <div>
             <span className="mono-label text-crimson">{ABOUT.kicker}</span>
-            <h2 className="mt-3 font-serif text-[clamp(1.6rem,3.8vw,2.25rem)] font-medium leading-tight">
+            <h2 className="mt-3 font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium leading-tight">
               {ABOUT.headline}
             </h2>
             <p className="mt-4 max-w-[46em] text-[0.95rem] leading-relaxed text-ink-soft">

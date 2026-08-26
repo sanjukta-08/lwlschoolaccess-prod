@@ -385,7 +385,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       {/* Related */}
       {related.length > 0 ? (
         <section className="mx-auto max-w-[1000px] px-5 pt-14">
-          <h2 className="font-serif text-[clamp(1.35rem,3vw,1.7rem)] font-medium">
+          <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
             Families looking at this also{" "}
             <em className="text-crimson-deep italic">consider</em>
           </h2>
