@@ -147,7 +147,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
 
       {/* What they'll do */}
       <section id="overview" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
-        <h2 className="font-serif text-[clamp(1.45rem,3.4vw,1.9rem)] font-medium">
+        <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           What your child will{" "}
           <em className="text-crimson-deep italic">actually do</em>
         </h2>
@@ -177,7 +177,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
 
       {/* Skills */}
       <section id="skills" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
-        <h2 className="font-serif text-[clamp(1.45rem,3.4vw,1.9rem)] font-medium">
+        <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Skills your child will <em className="text-crimson-deep italic">gain</em>
         </h2>
         <p className="mt-2 max-w-[40em] text-[0.92rem] text-ink-soft">
@@ -189,7 +189,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
 
       {/* Projects */}
       <section id="projects" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
-        <h2 className="font-serif text-[clamp(1.45rem,3.4vw,1.9rem)] font-medium">
+        <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Projects they <em className="text-crimson-deep italic">finish with</em>
         </h2>
         <p className="mt-2 max-w-[40em] text-[0.92rem] text-ink-soft">
@@ -218,7 +218,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
 
       {/* Profile impact */}
       <section id="profile" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
-        <h2 className="font-serif text-[clamp(1.45rem,3.4vw,1.9rem)] font-medium">
+        <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           How this strengthens their{" "}
           <em className="text-crimson-deep italic">university profile</em>
         </h2>
@@ -231,7 +231,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
 
       {/* Reviews */}
       <section id="reviews" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
-        <h2 className="font-serif text-[clamp(1.45rem,3.4vw,1.9rem)] font-medium">
+        <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           What families <em className="text-crimson-deep italic">say</em>
         </h2>
         <ProgrammeTestimonials programme={p} color={track.color} />
@@ -256,7 +256,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       <section id="stories" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
         <div className="flex items-center gap-3">
           <LinkedInGlyph />
-          <h2 className="font-serif text-[clamp(1.45rem,3.4vw,1.9rem)] font-medium">
+          <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
             Stories from <em className="text-crimson-deep italic">this pathway</em>
           </h2>
         </div>
@@ -283,7 +283,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
 
       {/* Cohorts */}
       <section id="dates" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
-        <h2 className="font-serif text-[clamp(1.45rem,3.4vw,1.9rem)] font-medium">
+        <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Upcoming <em className="text-crimson-deep italic">cohorts</em>
         </h2>
         <div className="mt-6 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
@@ -359,7 +359,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
 
       {/* FAQ */}
       <section id="faq" className="mx-auto max-w-[760px] scroll-mt-32 px-5 pt-12">
-        <h2 className="text-center font-serif text-[clamp(1.45rem,3.4vw,1.9rem)] font-medium">
+        <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Parents usually <em className="text-crimson-deep italic">ask</em>
         </h2>
         <div className="mt-6 flex flex-col gap-2.5">
@@ -385,7 +385,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       {/* Related */}
       {related.length > 0 ? (
         <section className="mx-auto max-w-[1000px] px-5 pt-14">
-          <h2 className="font-serif text-[clamp(1.35rem,3vw,1.7rem)] font-medium">
+          <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
             Families looking at this also{" "}
             <em className="text-crimson-deep italic">consider</em>
           </h2>

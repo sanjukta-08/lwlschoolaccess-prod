@@ -93,7 +93,7 @@ export function FitQuiz({ answers }: Props) {
       <p className="mono-label mb-2 text-gold">
         Step {step + 1} of {STEP_TITLES.length}
       </p>
-      <h2 className="mb-5 font-serif text-[clamp(1.3rem,3.2vw,1.9rem)] leading-tight font-medium">
+      <h2 className="mb-5 font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] leading-tight font-medium">
         {STEP_TITLES[step]}
       </h2>
 
@@ -262,7 +262,7 @@ function ResultView({ result, onRestart }: { result: FitResult; onRestart: () =>
   if (!result.picks.length) {
     return (
       <div className="rounded-2xl border border-line bg-paper p-8 text-center shadow-soft">
-        <h2 className="font-serif text-[1.5rem] font-medium">No civil-hour match yet</h2>
+        <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">No civil-hour match yet</h2>
         <p className="mt-2 text-[0.92rem] text-ink-soft">
           Nothing lands well for that grade and timezone combination. Browse the full calendar or
           speak to a counsellor.

@@ -39,7 +39,7 @@ const REASONS = [
 
 export function HowItWorks() {
   return (
-    <section id="how" className="relative scroll-mt-20 overflow-hidden border-t border-line bg-paper px-5 py-14">
+    <section id="how" className="relative scroll-mt-20 overflow-hidden border-t border-line bg-paper px-5 py-10">
       {/* Right-side background image with soft edge fade */}
       <div className="pointer-events-none absolute -right-10 bottom-0 h-[95%] max-w-[55%] overflow-hidden lg:right-0 lg:max-w-[48%]">
         <img
@@ -55,7 +55,7 @@ export function HowItWorks() {
         <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-paper via-paper/70 to-transparent" />
       </div>
       <div className="relative mx-auto max-w-[1100px]">
-        <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2rem)] font-medium">
+        <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           How it <em className="text-crimson-deep">works</em>
         </h2>
         <div className="relative mt-8 grid gap-5 md:grid-cols-3">
@@ -74,9 +74,9 @@ export function HowItWorks() {
 
 export function WhyLwl() {
   return (
-    <section id="why" className="scroll-mt-20 bg-wash px-5 py-14">
+    <section id="why" className="scroll-mt-20 bg-wash px-5 py-10">
       <div className="mx-auto max-w-[1100px]">
-        <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2rem)] font-medium">
+        <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Why <em className="text-crimson-deep">Learn with Leaders</em>
         </h2>
         <div className="mt-8 grid gap-5 sm:grid-cols-2">

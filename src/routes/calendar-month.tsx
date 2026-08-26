@@ -195,7 +195,7 @@ function MonthCalendarPage() {
               →
             </button>
           </div>
-          <h2 className="font-serif text-[1.35rem] font-semibold">
+          <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-semibold">
             {monthTitle(monthDate)}
           </h2>
           <span className="font-mono text-[0.74rem] text-ink-faint">

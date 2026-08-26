@@ -146,7 +146,7 @@ function StoriesPage() {
 
       <section className="bg-wash px-5 py-14">
         <div className="mx-auto max-w-[720px] rounded-[22px] border border-line bg-paper p-8 text-center shadow-soft">
-          <h2 className="font-serif text-[clamp(1.4rem,3.4vw,1.9rem)] font-medium">
+          <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
             Want your child's story here next year?
           </h2>
           <p className="mx-auto mt-3 max-w-[36em] text-[0.92rem] text-ink-soft">

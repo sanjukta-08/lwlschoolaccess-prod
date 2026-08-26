@@ -29,7 +29,7 @@ export function FaqAccordion() {
   return (
     <section id="faq" className="scroll-mt-20 bg-wash px-5 pt-12 pb-8">
       <div className="mx-auto max-w-[760px]">
-        <h2 className="mb-6 text-center font-serif text-[clamp(1.5rem,3.6vw,2rem)] font-medium">
+        <h2 className="mb-6 text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Questions parents <em className="text-crimson-deep">ask us</em>
         </h2>
         {FAQS.map((f) => (
