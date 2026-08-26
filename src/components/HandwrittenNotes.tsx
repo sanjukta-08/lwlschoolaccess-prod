@@ -96,6 +96,9 @@ const NOTES: Note[] = [
 export default function HandwrittenNotes() {
   const [open, setOpen] = useState<number | null>(null);
   const [paused, setPaused] = useState(false);
+  const perPage = 3;
+  const pages = Math.max(1, Math.ceil(NOTES.length / perPage));
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
     if (open === null) return;
@@ -106,8 +109,14 @@ export default function HandwrittenNotes() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
+  useEffect(() => {
+    if (paused || pages < 2) return;
+    const id = window.setInterval(() => setPage((p) => (p + 1) % pages), 11000);
+    return () => window.clearInterval(id);
+  }, [paused, pages]);
+
   const active = open === null ? null : NOTES[open];
-  const loop = [...NOTES, ...NOTES];
+  const visibleNotes = NOTES.slice(page * perPage, page * perPage + perPage);
 
   return (
     <div>
@@ -121,22 +130,19 @@ export default function HandwrittenNotes() {
       </div>
 
       <div
-        className="relative mt-4 overflow-hidden px-5"
+        className="relative mt-4 px-5"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
-        <div
-          className="note-marquee-track flex w-max gap-8 py-4"
-          style={{ animationPlayState: paused ? "paused" : "running" }}
-        >
-          {loop.map((note, i) => (
+        <div className="grid gap-8 py-4 sm:grid-cols-2 lg:grid-cols-3">
+          {visibleNotes.map((note, i) => (
             <figure
-              key={`${note.src}-${i}`}
-              className="group relative m-0 w-[19rem] shrink-0 sm:w-[23rem]"
+              key={note.src}
+              className="group relative m-0 w-full"
             >
               <button
                 type="button"
-                onClick={() => setOpen(NOTES.indexOf(note))}
+                onClick={() => setOpen(page * perPage + i)}
                 className="relative block w-full cursor-pointer border-0 bg-transparent p-0 text-left"
                 aria-label={`Read the note from ${note.name}`}
               >
@@ -148,7 +154,7 @@ export default function HandwrittenNotes() {
                     src={note.src}
                     alt={`Handwritten thank-you note from ${note.name}`}
                     loading="lazy"
-                    className="aspect-[4/3] w-full object-cover"
+                    className="aspect-[4/3] w-full bg-paper object-contain"
                   />
                 </span>
               </button>
@@ -161,6 +167,30 @@ export default function HandwrittenNotes() {
             </figure>
           ))}
         </div>
+
+        {pages > 1 ? (
+          <div className="mt-3 flex items-center justify-center gap-3">
+            <button
+              type="button"
+              onClick={() => setPage((p) => (p - 1 + pages) % pages)}
+              aria-label="Previous handwritten notes"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft transition-colors hover:border-crimson/40 hover:text-crimson"
+            >
+              <span aria-hidden>←</span>
+            </button>
+            <span className="mono-label text-ink-faint">
+              {page + 1} / {pages}
+            </span>
+            <button
+              type="button"
+              onClick={() => setPage((p) => (p + 1) % pages)}
+              aria-label="Next handwritten notes"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft transition-colors hover:border-crimson/40 hover:text-crimson"
+            >
+              <span aria-hidden>→</span>
+            </button>
+          </div>
+        ) : null}
       </div>
 
       <p className="mono-label mt-4 text-center text-ink-soft">

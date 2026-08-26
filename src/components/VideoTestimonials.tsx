@@ -135,23 +135,10 @@ function VideoCarousel({
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
-      <div className="overflow-hidden">
-        <div
-          className="flex transition-transform duration-700 ease-out"
-          style={{ transform: `translateX(-${page * 100}%)` }}
-        >
-          {Array.from({ length: pages }).map((_, p) => (
-            <div
-              key={p}
-              className="grid w-full shrink-0 gap-4 sm:grid-cols-2 lg:grid-cols-4"
-              aria-hidden={p !== page}
-            >
-              {videos.slice(p * perPage, p * perPage + perPage).map((v) => (
-                <VideoCard key={v.id} video={v} onPlay={() => onPlay(v)} />
-              ))}
-            </div>
-          ))}
-        </div>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {videos.slice(page * perPage, page * perPage + perPage).map((v) => (
+          <VideoCard key={v.id} video={v} onPlay={() => onPlay(v)} />
+        ))}
       </div>
 
       {pages > 1 ? (

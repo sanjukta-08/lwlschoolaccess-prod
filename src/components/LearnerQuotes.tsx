@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -41,7 +41,7 @@ function QuoteCard({
       type="button"
       onClick={onOpen}
       aria-label={`Read the full note from ${q.name}`}
-      className={`group relative ml-8 flex min-h-[20rem] flex-col justify-between self-stretch overflow-visible rounded-[1.25rem] rounded-tr-[3.5rem] bg-paper px-7 py-6 text-left ring-1 ring-ink/10 shadow-soft transition-transform hover:-translate-y-1 hover:shadow-lift focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none ${width}`}
+      className={`group relative flex min-h-[20rem] flex-col justify-between self-stretch overflow-visible rounded-[1.25rem] rounded-tr-[3.5rem] bg-paper px-7 py-6 text-left ring-1 ring-ink/10 shadow-soft transition-transform hover:-translate-y-1 hover:shadow-lift focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none ${width}`}
     >
       {/* Overlapping initials plate */}
       <span
@@ -120,7 +120,7 @@ function QuoteLightbox({
   );
 }
 
-/** Continuous marquee of learner quotes. Hover or focus pauses it. */
+/** Page-by-page quote carousel so feedback cards never appear chopped at the edges. */
 function QuoteMarquee({
   quotes,
   onOpen,
@@ -131,46 +131,59 @@ function QuoteMarquee({
   duration?: number;
 }) {
   const [paused, setPaused] = useState(false);
-  const loop =
-    quotes.length < 6
-      ? [...quotes, ...quotes, ...quotes, ...quotes]
-      : [...quotes, ...quotes];
+  const perPage = 3;
+  const pages = Math.max(1, Math.ceil(quotes.length / perPage));
+  const [page, setPage] = useState(0);
+
+  useEffect(() => {
+    if (paused || pages < 2) return;
+    const interval = Math.max(9000, duration * 60);
+    const id = window.setInterval(() => setPage((p) => (p + 1) % pages), interval);
+    return () => window.clearInterval(id);
+  }, [duration, paused, pages]);
 
   return (
     <div
-      className="overflow-hidden"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
-      <div
-        className="flex w-max items-stretch gap-8 py-2 will-change-transform"
-        style={{
-          animation: `learner-quote-scroll ${duration}s linear infinite`,
-          animationPlayState: paused ? "paused" : "running",
-        }}
-      >
-        {loop.map((q, i) => (
+      <div className="grid gap-x-8 gap-y-6 py-2 pl-8 sm:grid-cols-2 lg:grid-cols-3">
+        {quotes.slice(page * perPage, page * perPage + perPage).map((q, i) => (
           <QuoteCard
             key={`${q.name}-${i}`}
             q={q}
             onOpen={() => onOpen(q)}
-            accent={i}
-            width="w-[340px] shrink-0 sm:w-[420px]"
+            accent={page * perPage + i}
+            width="w-full"
           />
         ))}
       </div>
 
-      <style>{`
-        @keyframes learner-quote-scroll {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          [style*="learner-quote-scroll"] { animation: none !important; }
-        }
-      `}</style>
+      {pages > 1 ? (
+        <div className="mt-5 flex items-center justify-center gap-3">
+          <button
+            type="button"
+            onClick={() => setPage((p) => (p - 1 + pages) % pages)}
+            aria-label="Previous learner feedback"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft transition-colors hover:border-crimson/40 hover:text-crimson"
+          >
+            <span aria-hidden>←</span>
+          </button>
+          <span className="mono-label text-ink-faint">
+            {page + 1} / {pages}
+          </span>
+          <button
+            type="button"
+            onClick={() => setPage((p) => (p + 1) % pages)}
+            aria-label="Next learner feedback"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft transition-colors hover:border-crimson/40 hover:text-crimson"
+          >
+            <span aria-hidden>→</span>
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -196,7 +209,7 @@ export function LearnerQuotes({
       {variant === "marquee" ? (
         <QuoteMarquee quotes={shown} onOpen={setOpen} duration={duration ?? 180} />
       ) : (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-x-8 gap-y-6 pl-8 sm:grid-cols-2 lg:grid-cols-3">
           {shown.map((q, i) => (
             <QuoteCard
               key={`${q.name}-${q.quote.slice(0, 24)}`}
