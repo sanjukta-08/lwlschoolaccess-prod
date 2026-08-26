@@ -511,8 +511,26 @@ export const PROGRAMMES: Programme[] = [
     site: "https://satinstinct.com",
     apply: "https://satinstinct.com/apply",
     cohorts: [
-      { d: "2026-11-22" },
-      { d: "2027-03-28" },
+      {
+        d: "2026-08-02",
+        label: "Batch 1",
+        fee: { e: "USD 850", r: null },
+        flyer: dl("1rW74K13pKvkQFLgP36bIqxPtxVJUdWqv"),
+        brochure: dl("1Ne5sz1SVlbfoN1CFEaM0Ddrf_NIc2E9C"),
+      },
+      {
+        d: "2026-11-22",
+        label: "Batch 2",
+        time: "Sundays, 10:30 AM ET",
+        flyer: dl("1tttUa1sGIk9laqsQO29H2xwHvFWa8pcG"),
+        brochure: dl("1kexyI4Whk0oyhy5aj480tZ9e1hxohuwW"),
+      },
+      {
+        d: "2027-03-28",
+        label: "Batch 3",
+        flyer: dl("1hGZ9aJULyA7XpUxlgYa6E12MEJOtC-ww"),
+        brochure: dl("19MUcepOZXnaRptqTdj2lOiiYJdT_Aj_1"),
+      },
     ],
   },
 ];
