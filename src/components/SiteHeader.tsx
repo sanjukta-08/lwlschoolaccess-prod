@@ -104,7 +104,7 @@ export function SiteHeader() {
             href="https://www.learnwithleaders.com/"
             target="_blank"
             rel="noopener"
-            className="hidden items-center gap-2 rounded-full border-[1.5px] border-crimson/35 bg-paper px-4 py-2 leading-none text-crimson no-underline shadow-soft transition-colors hover:border-crimson hover:bg-crimson hover:text-paper sm:inline-flex"
+            className="hidden items-center gap-2 rounded-full border-[1.5px] border-crimson bg-crimson px-4 py-2 leading-none text-paper no-underline shadow-soft transition-colors hover:bg-crimson/90 sm:inline-flex"
           >
             Talk to an advisor
           </a>
