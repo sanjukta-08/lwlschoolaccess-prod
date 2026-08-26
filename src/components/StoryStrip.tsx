@@ -32,16 +32,16 @@ function SeeAll({ label }: { label: string }) {
 export default function StoryStrip() {
   return (
     <>
-      <div className="flex items-end gap-2">
+      <div className="flex items-end justify-center gap-2">
         <LinkedInGlyph className="h-9 w-9" />
-        <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium leading-none">
+        <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium leading-none">
           In their <em className="text-crimson-deep">own words</em>, on their own
           feeds
         </h2>
       </div>
 
-      <div className="mt-1 flex flex-wrap items-center justify-between gap-4">
-        <p className="max-w-[64em] text-[0.92rem] leading-relaxed text-ink-soft">
+      <div className="mt-1 flex flex-col items-center gap-4">
+        <p className="max-w-[64em] text-center text-[0.92rem] leading-relaxed text-ink-soft">
           Real posts from students, parents and mentors after their cohort ended.
           Tap any one to read it in full.
         </p>
@@ -53,14 +53,14 @@ export default function StoryStrip() {
 
       {APPROVED_INSTAGRAM.length > 0 ? (
         <div className="mt-16">
-          <div className="flex items-end gap-2">
+          <div className="flex items-end justify-center gap-2">
             <InstagramGlyph className="h-9 w-9" />
-            <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium leading-none">
+            <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium leading-none">
               Research and wins we <em className="text-crimson-deep">shared</em>
             </h2>
           </div>
-          <div className="mt-1 flex flex-wrap items-center justify-between gap-4">
-            <p className="max-w-[64em] text-[0.92rem] leading-relaxed text-ink-soft">
+          <div className="mt-1 flex flex-col items-center gap-4">
+            <p className="max-w-[64em] text-center text-[0.92rem] leading-relaxed text-ink-soft">
               Published papers, judged pitches and competition results, posted as
               they happened on Instagram.
             </p>
@@ -75,13 +75,13 @@ export default function StoryStrip() {
       ) : null}
 
       <div className="mt-16">
-        <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium leading-none">
+        <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium leading-none">
           What learners said about{" "}
           <em className="text-crimson-deep">each programme</em>
         </h2>
-        <div className="mt-1 flex flex-wrap items-start justify-between gap-4">
+        <div className="mt-1 flex flex-col items-center gap-4">
 
-          <p className="max-w-[64em] text-[0.92rem] leading-relaxed text-ink-soft">
+          <p className="max-w-[64em] text-center text-[0.92rem] leading-relaxed text-ink-soft">
             Unedited answers from end-of-programme feedback forms, labelled with the
             cohort they came from. Tap any card to read the full note.
           </p>
@@ -90,7 +90,7 @@ export default function StoryStrip() {
         <div className="mt-4">
           <LearnerQuotes quotes={ONLINE_QUOTES} duration={190} />
         </div>
-        <p className="mt-6 text-[0.78rem] font-semibold tracking-[0.14em] text-ink-faint uppercase">
+        <p className="mt-6 text-center text-[0.78rem] font-semibold tracking-[0.14em] text-ink-faint uppercase">
           Summer Camp 2026
         </p>
         <div className="mt-2">
@@ -101,12 +101,12 @@ export default function StoryStrip() {
 
       {VIDEO_TESTIMONIALS.length > 0 ? (
         <div className="mt-16">
-          <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium leading-none">
+          <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium leading-none">
             Hear it from the <em className="text-crimson-deep">students</em>
           </h2>
-          <div className="mt-1 flex flex-wrap items-start justify-between gap-4">
+          <div className="mt-1 flex flex-col items-center gap-4">
 
-            <p className="max-w-[64em] text-[0.92rem] leading-relaxed text-ink-soft">
+            <p className="max-w-[64em] text-center text-[0.92rem] leading-relaxed text-ink-soft">
               One-minute clips recorded at the end of a cohort, unscripted.
             </p>
             <SeeAll label="Watch all clips" />

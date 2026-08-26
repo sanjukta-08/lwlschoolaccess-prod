@@ -15,7 +15,7 @@ export function AboutLwl() {
     <section id="about" className="scroll-mt-20 border-t border-line bg-paper py-14">
       <div className="page-shell">
         <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
-          <div>
+          <div className="text-center lg:text-left">
             <span className="mono-label text-crimson">{ABOUT.kicker}</span>
             <h2 className="mt-3 font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium leading-tight">
               {ABOUT.headline}
