@@ -48,12 +48,13 @@ export function HowItWorks() {
           alt=""
           aria-hidden
           loading="lazy"
-          className="h-full w-auto object-contain opacity-[0.25] md:opacity-[0.35]"
+          className="h-full w-auto object-contain opacity-[0.55] md:opacity-[0.7]"
         />
         {/* Left edge fade into paper background */}
-        <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-paper via-paper/80 to-transparent" />
+        <div className="absolute inset-y-0 left-0 w-2/5 bg-gradient-to-r from-paper via-paper/55 to-transparent" />
         {/* Top edge fade into paper background */}
-        <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-paper via-paper/70 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-paper via-paper/45 to-transparent" />
+
       </div>
       <div className="relative mx-auto max-w-[1100px]">
         <SectionHeading
