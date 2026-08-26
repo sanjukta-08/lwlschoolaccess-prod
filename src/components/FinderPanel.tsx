@@ -139,16 +139,6 @@ export function FinderPanel({
               />
             </Field>
           </div>
-          <div className="min-w-[170px] flex-1">
-            <Field label="Mentor university" icon={<Landmark className="h-3.5 w-3.5" />}>
-              <BoxSelect
-                value={state.mentor}
-                onChange={(v) => onChange({ mentor: v })}
-                options={mentorOptions()}
-                label="Mentor university"
-              />
-            </Field>
-          </div>
           <div className="min-w-[150px] flex-1">
             <Field label="Where you are" icon={<Globe className="h-3.5 w-3.5" />}>
               <BoxSelect
