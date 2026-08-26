@@ -177,7 +177,6 @@ export function getMatches(state: FinderSearch, o: MatchOptions = {}): Match[] {
     if (!o.ignoreInterest && !matchInterest(p, state.interest)) return;
     if (!o.ignoreQuery && !matchQuery(p, state.q)) return;
     if (!matchDuration(p, state.duration)) return;
-    if (!matchMentor(p, state.mentor)) return;
     if (!o.ignoreRegion && !fitsRegion(p, state.region)) return;
     const eligible = p.cohorts
       .filter((c) => !isPast(c.d))
