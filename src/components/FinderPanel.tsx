@@ -47,10 +47,10 @@ export function FinderPanel({
         value={state.q}
         onChange={(e) => onChange({ q: e.target.value })}
         placeholder="Search: research, moot court, SAT…"
-        className="w-full rounded-full border border-line bg-wash py-2.5 pr-9 pl-9 text-[0.85rem] text-ink placeholder:text-ink-faint focus:border-crimson/40 focus:bg-paper focus:outline-none"
+        className="w-full rounded-full border border-line bg-wash py-2.5 pr-9 pl-10 text-[0.85rem] text-ink placeholder:text-ink-faint focus:border-crimson/40 focus:bg-paper focus:outline-none"
       />
-      <span className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-[0.85rem] text-ink-faint">
-        ⌕
+      <span className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-ink-faint">
+        <Search className="h-4 w-4" />
       </span>
       {state.q ? (
         <button
@@ -64,6 +64,7 @@ export function FinderPanel({
       ) : null}
     </label>
   );
+
 
   const counter = (
     <div className="flex flex-wrap items-center justify-between gap-3">
