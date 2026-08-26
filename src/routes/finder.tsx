@@ -22,7 +22,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { PROGRAMMES, TRACKS, TYPE_NAME } from "@/lib/programmes";
+import { PROGRAMMES, TRACKS, TYPES, TYPE_NAME } from "@/lib/programmes";
 import {
   BAND_LABEL,
   DEFAULT_SEARCH,
