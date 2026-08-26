@@ -72,36 +72,25 @@ export function TrendingTop5({ state, variant = "section" }: Props) {
             const track = TRACKS[p.tracks[0]!];
             const fee = feeOf(p, next);
             const logo = logoFor(p.id, p.tracks);
-            const isLaw = p.tracks.includes("law") || p.tracks.includes("deb");
             return (
               <li key={p.id} className="relative">
                 <div
-                  className="flex h-full flex-col gap-2 rounded-xl border border-line bg-paper px-4 py-3.5 transition-shadow hover:shadow-soft"
+                  className="flex h-full flex-col gap-3 rounded-xl border border-line bg-paper px-4 py-4 transition-shadow hover:shadow-soft"
                   style={{ borderLeft: `3px solid ${track.color}` }}
                 >
-                  {logo && isLaw ? (
-                    <div className="flex h-12 w-full items-center justify-start overflow-hidden rounded-md border border-line bg-paper px-2">
+                  {logo ? (
+                    <div className="flex h-14 w-full items-center justify-start overflow-hidden border-b border-line/70 pb-3">
                       <img
                         src={logo.src}
                         alt={logo.alt}
                         loading="lazy"
-                        className="h-9 w-auto object-contain"
+                        className="max-h-12 max-w-[10.5rem] object-contain object-left"
                       />
                     </div>
                   ) : null}
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
-                        {logo && !isLaw ? (
-                          <span className="flex h-8 w-8 flex-none items-center justify-center overflow-hidden rounded-md border border-line bg-paper p-[3px]">
-                            <img
-                              src={logo.src}
-                              alt={logo.alt}
-                              loading="lazy"
-                              className="h-full w-full object-contain"
-                            />
-                          </span>
-                        ) : null}
                         <b className="text-[0.94rem] leading-snug font-bold text-ink">
                           {p.name}
                         </b>
