@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { LinkedInGlyph, StoryGallery } from "@/components/StoryGallery";
 import { DEFAULT_SEARCH } from "@/lib/finder";
-import { APPROVED_STORIES } from "@/lib/social-proof";
+import { APPROVED_LINKEDIN } from "@/lib/social-proof";
 
 /** Home-page stories band. Loaded lazily - it sits well below the fold. */
 export default function StoryStrip() {
