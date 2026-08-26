@@ -56,10 +56,12 @@ export function HowItWorks() {
         <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-paper via-paper/70 to-transparent" />
       </div>
       <div className="relative mx-auto max-w-[1100px]">
-        <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
+        <SectionHeading
+          sub="Three steps from curiosity to a confirmed seat in the right cohort."
+        >
           How it <em className="text-crimson-deep">works</em>
-        </h2>
-        <div className="relative mt-6 grid gap-4 md:grid-cols-3">
+        </SectionHeading>
+        <div className="relative mt-4 grid gap-4 md:grid-cols-3">
           {STEPS.map((s) => (
             <div key={s.n} className="rounded-2xl border border-ink/10 bg-paper/80 p-5 backdrop-blur-sm">
               <span className="mono-label text-crimson">{s.n}</span>
