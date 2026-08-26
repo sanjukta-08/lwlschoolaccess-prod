@@ -79,9 +79,9 @@ export function WhyLwl() {
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Why <em className="text-crimson-deep">Learn with Leaders</em>
         </h2>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2">
+        <div className="mt-6 grid gap-4 sm:grid-cols-2">
           {REASONS.map((r) => (
-            <div key={r.t} className="rounded-2xl border border-line bg-paper p-6">
+            <div key={r.t} className="rounded-2xl border border-ink/10 bg-paper p-5">
               <h3 className="font-serif text-[1.1rem] font-semibold">{r.t}</h3>
               <p className="mt-2 text-[0.88rem] text-ink-soft">{r.d}</p>
             </div>
