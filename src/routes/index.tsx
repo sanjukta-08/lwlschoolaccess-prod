@@ -272,7 +272,7 @@ function HomePage() {
                       G{g1}–{g2}
                     </span>
                   </span>
-                  <span className="flex flex-1 flex-col items-center px-4 pt-5 pb-4 text-center">
+                  <span className="flex flex-1 flex-col items-center px-3.5 pt-5 pb-4 text-center">
                     {logo ? (
                       <span className="mb-4 flex h-12 w-full items-center justify-center">
                         <img
