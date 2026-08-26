@@ -285,7 +285,13 @@ export const LINKEDIN_POSTS: LinkedInStory[] = [
   },
 ];
 
-export const APPROVED_STORIES = LINKEDIN_POSTS.filter((s) => s.approved);
+/** Real, permissioned posts rank above stand-in copy everywhere. */
+const realFirst = (a: LinkedInStory, b: LinkedInStory) =>
+  Number(Boolean(a.placeholder)) - Number(Boolean(b.placeholder));
+
+export const APPROVED_STORIES = LINKEDIN_POSTS.filter((s) => s.approved).sort(
+  realFirst,
+);
 
 /** Stories matching any of the given track keys, most-reacted first, with a general fallback. */
 export function storiesForTracks(tracks: TrackKey[], limit = 3): LinkedInStory[] {
