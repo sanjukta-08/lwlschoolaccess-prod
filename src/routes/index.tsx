@@ -228,15 +228,15 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="border-y border-gold-line/60 bg-wash px-5 py-11">
-        <div className="mx-auto max-w-[1280px]">
+      <section className="border-y border-gold-line/60 bg-wash px-4 py-11">
+        <div className="mx-auto max-w-[1400px]">
           <SectionHeading
             eyebrow="Signature cohorts"
             sub="Our deepest experiences - small cohorts, dedicated mentors, capstones and Demo Days."
           >
             The <em className="text-crimson-deep">flagship</em> fellowships
           </SectionHeading>
-          <div className="mt-4 grid gap-4.5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {FEATURED.map((id) => {
               const p = upcoming.find((x) => x.id === id);
               if (!p) return null;
@@ -254,25 +254,25 @@ function HomePage() {
                   className="group flex flex-col overflow-hidden rounded-[18px] border border-gold-line bg-paper text-left text-ink no-underline shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold hover:shadow-lift"
                 >
                   <span
-                    className="flex items-center justify-between border-b px-4.5 py-2.5 text-[0.7rem] font-bold tracking-[0.12em] uppercase"
+                    className="flex items-start justify-between gap-2 border-b px-3.5 py-2.5 text-[0.62rem] font-bold tracking-[0.06em] uppercase leading-snug"
                     style={{
                       color: "var(--sp)",
                       background: "color-mix(in srgb, var(--sp) 8%, #fff)",
                       borderColor: "color-mix(in srgb, var(--sp) 16%, #fff)",
                     }}
                   >
-                    <span className="flex items-center gap-1.5">
+                    <span className="flex min-w-0 flex-1 items-start gap-1.5">
                       <span
-                        className="inline-block h-1.5 w-1.5 rounded-full"
+                        className="mt-[2px] inline-block h-1.5 w-1.5 flex-none rounded-full"
                         style={{ background: "var(--sp)" }}
                       />
-                      {t.label}
+                      <span className="break-words">{t.label}</span>
                     </span>
-                    <span className="mono-label text-ink-faint">
+                    <span className="mono-label shrink-0 whitespace-nowrap pl-2 text-ink-faint">
                       G{g1}–{g2}
                     </span>
                   </span>
-                  <span className="flex flex-1 flex-col items-center px-4.5 pt-5 pb-4 text-center">
+                  <span className="flex flex-1 flex-col items-center px-3.5 pt-5 pb-4 text-center">
                     {logo ? (
                       <span className="mb-4 flex h-12 w-full items-center justify-center">
                         <img
@@ -295,16 +295,15 @@ function HomePage() {
                       <span className="mono-label block text-center text-[0.72rem] text-ink-faint normal-case">
                         Next cohort
                       </span>
-                      <span className="mt-1 flex items-center justify-center gap-2 text-center text-[0.9rem]">
+                      <span className="mt-2 flex items-center justify-between text-[0.9rem]">
                         <b className="font-semibold text-ink">{fmtShort(c.d)}</b>
-                        <span className="text-ink-faint">·</span>
                         <b className="font-serif text-[1.05rem] font-semibold" style={{ color: "var(--sp)" }}>
                           {feeOf(p, c).e}
                         </b>
                       </span>
                     </span>
                   </span>
-                  <span className="px-4.5 pb-4.5">
+                  <span className="px-3.5 pb-4">
                     <span className="block rounded-full border border-ink px-4 py-2.5 text-center text-[0.7rem] font-bold tracking-[0.18em] uppercase text-ink transition-colors group-hover:bg-ink group-hover:text-paper">
                       View programme
                     </span>
