@@ -31,7 +31,7 @@ const ACCENT_TOKENS: Record<string, { avatar: string; label: string }> = {
   deb: { avatar: "bg-track-deb text-paper", label: "text-track-deb" },
 };
 
-const DEFAULT_ACCENT = ACCENT_TOKENS["ink"];
+const DEFAULT_ACCENT = ACCENT_TOKENS["ink"]!;
 
 function QuoteCard({
   q,
