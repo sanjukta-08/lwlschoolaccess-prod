@@ -258,7 +258,12 @@ function StoryLightbox({
             <p className="mono-label mt-4 text-ink-faint">
               Illustrative story - real posts are published with the family's permission.
             </p>
-          ) : null}
+          ) : (
+            <p className="mono-label mt-4 text-ink-faint">
+              Published by {story.name} on {SOURCE_LABEL[story.source]}, shared with permission.
+            </p>
+          )}
+
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-line px-5 py-4 text-[0.8rem] text-ink-faint">
