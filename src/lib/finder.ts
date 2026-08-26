@@ -65,10 +65,6 @@ export const validateFinderSearch = (raw: Record<string, unknown>): FinderSearch
     const d = str(raw["duration"], "all");
     return d in DURATIONS ? d : "all";
   })(),
-  mentor: (() => {
-    const m = str(raw["mentor"], "all");
-    return m in MENTORS ? m : "all";
-  })(),
   q: str(raw["q"], "").slice(0, 80),
   view: str(raw["view"], "list") === "grid" ? "grid" : "list",
   status: str(raw["status"], "all") === "soon" ? "soon" : "all",
