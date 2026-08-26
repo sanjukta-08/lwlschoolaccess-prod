@@ -226,7 +226,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
           How this strengthens their{" "}
           <em className="text-crimson-deep italic">university profile</em>
         </h2>
-        <p className="mx-auto mt-2 max-w-[40em] text-center text-[0.92rem] text-ink-soft">
+        <p className="mx-auto mt-2 max-w-none text-center text-[0.92rem] text-ink-soft lg:whitespace-nowrap">
           The point isn't the certificate. It's the line a family can honestly write
           afterwards - and the artefact sitting behind it.
         </p>
