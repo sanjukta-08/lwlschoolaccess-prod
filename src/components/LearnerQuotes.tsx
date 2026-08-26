@@ -16,55 +16,70 @@ function initialsOf(name: string) {
     .join("");
 }
 
+const ACCENTS = [
+  { panel: "bg-crimson", mark: "text-crimson/30" },
+  { panel: "bg-gold-deep", mark: "text-gold-deep/30" },
+  { panel: "bg-ink", mark: "text-ink/25" },
+];
+
 function QuoteCard({
   q,
   onOpen,
   width = "",
+  accent = 0,
 }: {
   q: LearnerQuote;
   onOpen: () => void;
   width?: string;
+  accent?: number;
 }) {
+  const a = ACCENTS[accent % ACCENTS.length]!;
   return (
     <button
       type="button"
       onClick={onOpen}
       aria-label={`Read the full note from ${q.name}`}
-      className={`group flex min-h-[15.5rem] flex-col self-stretch rounded-2xl border border-line bg-paper p-5 text-left shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold/50 focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none ${width}`}
+      className={`group relative flex flex-col self-stretch rounded-[2rem] rounded-tl-[3rem] pt-10 text-left transition-transform hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none ${a.panel} ${width}`}
     >
-      <span className="flex items-center justify-between gap-2">
+      {/* white quote plate, offset up and to the right like the reference */}
+      <div className="relative -mt-8 ml-6 flex min-h-[10.5rem] flex-col rounded-[1.25rem] rounded-tr-[2.5rem] bg-paper p-5 shadow-[0_14px_34px_-18px_rgba(28,34,48,0.45)]">
         <span
           aria-hidden
-          className="font-serif text-[1.6rem] leading-none text-gold"
+          className={`font-serif text-[2.1rem] leading-[0.6] ${a.mark}`}
         >
           “
         </span>
-        <span className="truncate rounded-full border border-gold/40 bg-gold/10 px-2.5 py-1 text-[0.68rem] font-semibold tracking-wide text-ink-soft">
-          {q.programme}
+        <p className="mt-3 line-clamp-5 flex-1 text-[0.9rem] leading-relaxed text-ink-soft">
+          {q.quote}
+        </p>
+        <span
+          aria-hidden
+          className={`mt-2 self-end font-serif text-[2.1rem] leading-[0.4] ${a.mark}`}
+        >
+          ”
         </span>
-      </span>
-      <p className="mt-2 line-clamp-5 flex-1 text-[0.9rem] leading-relaxed text-ink-soft">
-        {q.quote}
-      </p>
-      <footer className="mt-4 flex items-center justify-between gap-2 border-t border-line pt-3">
-        <span className="flex min-w-0 items-center gap-2.5">
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-crimson/10 font-serif text-[0.78rem] font-bold text-crimson-deep">
-            {initialsOf(q.name)}
+      </div>
+
+      <footer className="flex items-center gap-3 px-6 py-5">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-paper font-serif text-[0.85rem] font-bold text-ink">
+          {initialsOf(q.name)}
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block truncate font-serif text-[1rem] font-semibold leading-tight text-paper">
+            {q.name}
           </span>
-          <span className="min-w-0">
-            <span className="block truncate text-[0.88rem] font-bold leading-tight text-ink">
-              {q.name}
-            </span>
-            <span className="block text-[0.74rem] text-ink-faint">{q.role}</span>
+          <span className="block truncate text-[0.72rem] text-paper/75">
+            {q.role} · {q.programme}
           </span>
         </span>
-        <span className="mono-label shrink-0 text-[0.62rem] text-ink-faint opacity-0 transition-opacity group-hover:opacity-100">
+        <span className="mono-label shrink-0 text-[0.6rem] text-paper/0 transition-colors group-hover:text-paper/80">
           Read →
         </span>
       </footer>
     </button>
   );
 }
+
 
 
 function QuoteLightbox({
