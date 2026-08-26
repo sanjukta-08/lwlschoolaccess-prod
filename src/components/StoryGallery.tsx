@@ -114,7 +114,7 @@ function StoryTile({
     <button
       type="button"
       onClick={onOpen}
-      aria-label={`Open LinkedIn story from ${story.name}`}
+      aria-label={`Open ${SOURCE_LABEL[story.source]} story from ${story.name}`}
       className="group flex h-full flex-col rounded-2xl border border-line bg-paper p-5 text-left shadow-soft transition-transform hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none"
     >
       <header className="flex items-start gap-3">
