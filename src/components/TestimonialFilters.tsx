@@ -19,7 +19,7 @@ type Facets = {
 const TRACK_ORDER = Object.keys(TRACKS) as TrackKey[];
 
 const fieldCls =
-  "w-full appearance-none rounded-xl border border-line bg-paper px-3 py-2.5 pr-8 text-[0.86rem] font-semibold text-ink outline-none transition-colors focus-visible:border-gold";
+  "w-full appearance-none rounded-xl border border-line bg-paper px-3 py-2 pr-8 text-[0.84rem] font-semibold text-ink outline-none transition-colors focus-visible:border-gold";
 
 function Field({
   icon,
@@ -32,7 +32,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mono-label mb-1.5 flex items-center gap-1.5 text-ink-faint">
+      <span className="mono-label mb-1 flex items-center gap-1.5 text-ink-faint">
         <span aria-hidden className="text-gold">
           {icon}
         </span>
@@ -46,13 +46,11 @@ function Field({
 export function TestimonialFilters({
   search,
   facets,
-  total,
   onChange,
   onReset,
 }: {
   search: TestimonialSearch;
   facets: Facets;
-  total: number;
   onChange: (patch: Partial<TestimonialSearch>) => void;
   onReset: () => void;
 }) {
@@ -72,19 +70,21 @@ export function TestimonialFilters({
   if (search.q.trim())
     chips.push({ label: `"${search.q.trim()}"`, clear: { q: "" } });
 
+  const showFooter = chips.length > 0 || !isDefaultTestimonialSearch(search);
+
   return (
-    <div className="rounded-2xl border border-line bg-paper p-4 shadow-soft sm:p-5">
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="rounded-2xl border border-line bg-paper p-3 shadow-soft sm:p-3.5">
+      <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
         <Field icon={<Layers className="h-3.5 w-3.5" />} label="Interest">
           <select
             className={fieldCls}
             value={search.track}
             onChange={(e) => onChange({ track: e.target.value })}
           >
-            <option value="all">All interests ({facets.track["all"] ?? 0})</option>
+            <option value="all">All interests</option>
             {TRACK_ORDER.filter((t) => (facets.track[t] ?? 0) > 0).map((t) => (
               <option key={t} value={t}>
-                {TRACKS[t].short} ({facets.track[t]})
+                {TRACKS[t].short}
               </option>
             ))}
           </select>
@@ -96,12 +96,12 @@ export function TestimonialFilters({
             value={search.programme}
             onChange={(e) => onChange({ programme: e.target.value })}
           >
-            <option value="all">All programmes ({facets.programme["all"] ?? 0})</option>
+            <option value="all">All programmes</option>
             {TESTIMONIAL_PROGRAMMES.filter(
               (p) => (facets.programme[p] ?? 0) > 0 || p === search.programme,
             ).map((p) => (
               <option key={p} value={p}>
-                {p} ({facets.programme[p] ?? 0})
+                {p}
               </option>
             ))}
           </select>
@@ -116,10 +116,10 @@ export function TestimonialFilters({
             value={search.format}
             onChange={(e) => onChange({ format: e.target.value })}
           >
-            <option value="all">All formats ({facets.format["all"] ?? 0})</option>
+            <option value="all">All formats</option>
             {FORMAT_ORDER.filter((f) => (facets.format[f] ?? 0) > 0).map((f) => (
               <option key={f} value={f}>
-                {FORMATS[f].label} ({facets.format[f]})
+                {FORMATS[f].label}
               </option>
             ))}
           </select>
@@ -131,34 +131,35 @@ export function TestimonialFilters({
             value={search.q}
             onChange={(e) => onChange({ q: e.target.value })}
             placeholder="Name, word, programme"
-            className="w-full rounded-xl border border-line bg-paper px-3 py-2.5 text-[0.86rem] text-ink outline-none transition-colors placeholder:text-ink-faint focus-visible:border-gold"
+            className="w-full rounded-xl border border-line bg-paper px-3 py-2 text-[0.84rem] text-ink outline-none transition-colors placeholder:text-ink-faint focus-visible:border-gold"
           />
         </Field>
       </div>
 
-      <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-line pt-3.5">
-        <span className="text-[0.86rem] font-semibold text-ink">{"\n"}</span>
-        {chips.map((c) => (
-          <button
-            key={c.label}
-            type="button"
-            onClick={() => onChange(c.clear)}
-            className="inline-flex items-center gap-1.5 rounded-full border border-gold/45 bg-gold/10 px-3 py-1 text-[0.76rem] font-semibold text-ink-soft transition-colors hover:border-crimson hover:text-crimson"
-          >
-            {c.label}
-            <X className="h-3 w-3" />
-          </button>
-        ))}
-        {!isDefaultTestimonialSearch(search) ? (
-          <button
-            type="button"
-            onClick={onReset}
-            className="ml-auto text-[0.8rem] font-semibold text-crimson underline decoration-crimson/30 underline-offset-4"
-          >
-            Clear all
-          </button>
-        ) : null}
-      </div>
+      {showFooter ? (
+        <div className="mt-2.5 flex flex-wrap items-center gap-2 border-t border-line pt-2">
+          {chips.map((c) => (
+            <button
+              key={c.label}
+              type="button"
+              onClick={() => onChange(c.clear)}
+              className="inline-flex items-center gap-1.5 rounded-full border border-gold/45 bg-gold/10 px-3 py-1 text-[0.76rem] font-semibold text-ink-soft transition-colors hover:border-crimson hover:text-crimson"
+            >
+              {c.label}
+              <X className="h-3 w-3" />
+            </button>
+          ))}
+          {!isDefaultTestimonialSearch(search) ? (
+            <button
+              type="button"
+              onClick={onReset}
+              className="ml-auto text-[0.8rem] font-semibold text-crimson underline decoration-crimson/30 underline-offset-4"
+            >
+              Clear all
+            </button>
+          ) : null}
+        </div>
+      ) : null}
     </div>
   );
 }
