@@ -29,10 +29,8 @@ export function SaveButton({ p, c, variant = "icon", className = "" }: Props) {
         type="button"
         onClick={onClick}
         aria-pressed={saved}
-        className={`relative z-[3] inline-flex items-center justify-center gap-2 rounded-xl border-[1.5px] px-4 py-2 text-[0.85rem] font-bold transition-colors ${
-          saved
-            ? "border-crimson bg-crimson/8 text-crimson"
-            : "border-line bg-paper text-ink-soft hover:border-crimson/50 hover:text-crimson"
+        className={`relative z-[3] inline-flex items-center justify-center gap-2 rounded-xl border-[1.5px] border-crimson px-4 py-2 text-[0.85rem] font-bold text-crimson ${
+          saved ? "bg-crimson/10" : "bg-paper"
         } ${className}`}
       >
         <span aria-hidden>{saved ? "♥" : "♡"}</span>
