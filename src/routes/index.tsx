@@ -88,22 +88,22 @@ function HomePage() {
     <div className="min-h-screen bg-paper">
       <div className="relative overflow-hidden">
         <div className="hero-wash absolute inset-0" />
-        <div className="pointer-events-none absolute inset-y-0 -left-[3vw] w-[42%] min-w-[20rem] opacity-[0.26]">
+        <div className="pointer-events-none absolute inset-y-0 -left-[3vw] w-[44%] min-w-[20rem] opacity-[0.22]">
           <img
             src={birdAsset.url}
             alt=""
             aria-hidden="true"
-            className="h-full w-full object-contain object-left"
+            className="h-full w-full object-contain object-left [mask-image:linear-gradient(to_right,black_35%,transparent_92%)]"
           />
         </div>
-        <div className="pointer-events-none absolute -right-[6vw] bottom-0 hidden h-[min(230px,30vh)] w-[min(860px,66vw)] sm:block">
+        <div className="pointer-events-none absolute -right-[9vw] bottom-0 hidden h-[min(230px,30vh)] w-[min(900px,70vw)] sm:block">
           <img
             src={worldMapAsset.url}
             alt=""
             aria-hidden="true"
             width={1920}
             height={768}
-            className="h-full w-full object-cover object-right-bottom opacity-100 [mask-image:linear-gradient(to_top,black_70%,transparent)]"
+            className="h-full w-full object-cover object-right-bottom opacity-100 [mask-image:linear-gradient(to_top,black_72%,transparent)]"
           />
         </div>
 
