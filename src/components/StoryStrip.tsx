@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { LinkedInGlyph, StoryGallery } from "@/components/StoryGallery";
 import { DEFAULT_SEARCH } from "@/lib/finder";
-import { APPROVED_STORIES } from "@/lib/social-proof";
+import { APPROVED_LINKEDIN } from "@/lib/social-proof";
 
 /** Home-page stories band. Loaded lazily - it sits well below the fold. */
 export default function StoryStrip() {
@@ -29,8 +29,9 @@ export default function StoryStrip() {
       </div>
 
       <div className="mt-7">
-        <StoryGallery stories={APPROVED_STORIES} limit={4} variant="strip" />
+        <StoryGallery stories={APPROVED_LINKEDIN} limit={6} variant="carousel" />
       </div>
+
 
       <div className="mt-8 flex justify-center">
         <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 rounded-2xl border border-gold/35 bg-gold/8 px-6 py-4">
