@@ -468,9 +468,25 @@ export const PROGRAMMES: Programme[] = [
     site: "https://purposeplaybook.ai/academy/online",
     apply: "https://purposeplaybook.ai/apply",
     cohorts: [
-      { d: "2026-11-08" },
-      { d: "2027-02-07" },
-      { d: "2027-04-25" },
+      {
+        d: "2026-11-08",
+        label: "Batch 1",
+        elig: "Middle & high school (approx. Grades 8-12)",
+        flyer: dl("1ErRwgKu3bTJ6eo934yz4N4i23IIJDSQu"),
+        brochure: dl("1gMGp5w6Bcy47ox7JjCf_Y5IiyGCot2mF"),
+      },
+      {
+        d: "2027-02-07",
+        label: "Batch 2",
+        flyer: dl("1ktRUGuH0tMijCVdslB90lzWipeiCKVVQ"),
+        brochure: dl("1YlJEHldKpk7Az21PUlhhcKdU_oDg9l_c"),
+      },
+      {
+        d: "2027-04-25",
+        label: "Batch 3",
+        flyer: dl("1_3ZwuQ30ovCFnjy-l1cLeEYMIH4gwuwr"),
+        brochure: dl("1LWXqMM5eJ41RkjqACUJ42Rsd4ssegfMq"),
+      },
     ],
   },
   {
