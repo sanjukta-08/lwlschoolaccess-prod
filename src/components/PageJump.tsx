@@ -8,7 +8,7 @@ export function PageJump({
       aria-label="On this page"
       className="sticky top-[64px] z-40 border-b border-line bg-paper/95 backdrop-blur"
     >
-      <div className="mx-auto flex max-w-[1000px] gap-1 overflow-x-auto px-5 py-2.5">
+      <div className="page-shell flex justify-center gap-1 overflow-x-auto py-2.5">
         {items.map((i) => (
           <a
             key={i.id}
