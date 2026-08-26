@@ -21,6 +21,16 @@ import { WingMark } from "@/components/WingMark";
 import { SectionHeading } from "@/components/SectionHeading";
 import birdAsset from "@/assets/lwl-bird-black.png.asset.json";
 import worldMapAsset from "@/assets/world-map-gold.png.asset.json";
+import pathwayMedicine from "@/assets/pathway-medicine.png";
+import pathwayLaw from "@/assets/pathway-law.png";
+import pathwayFinance from "@/assets/pathway-finance.png";
+import pathwayAi from "@/assets/pathway-ai.png";
+import pathwayEntrepreneurship from "@/assets/pathway-entrepreneurship.png";
+import pathwayResearch from "@/assets/pathway-research.png";
+import pathwayDebate from "@/assets/pathway-debate.png";
+import pathwayLeadership from "@/assets/pathway-leadership.png";
+import pathwayExams from "@/assets/pathway-exams.png";
+import { ArrowUpRight } from "lucide-react";
 
 const TITLE = "Learn with Leaders - Harvard & Yale-mentored programmes, Grades 5–12";
 const DESC =
@@ -52,6 +62,30 @@ const PARTNERS = [
   "Yale mentors",
   "Greenvan",
 ];
+
+const PATHWAY_ART: Record<TrackKey, string> = {
+  med: pathwayMedicine,
+  law: pathwayLaw,
+  fin: pathwayFinance,
+  ai: pathwayAi,
+  ent: pathwayEntrepreneurship,
+  res: pathwayResearch,
+  deb: pathwayDebate,
+  lead: pathwayLeadership,
+  sat: pathwayExams,
+};
+
+const PATHWAY_PROMISE: Record<TrackKey, string> = {
+  med: "Explore clinical thinking",
+  law: "Argue with evidence",
+  fin: "Read markets and value",
+  ai: "Build with emerging technology",
+  ent: "Turn ideas into ventures",
+  res: "Investigate and publish",
+  deb: "Speak with conviction",
+  lead: "Lead teams and initiatives",
+  sat: "Prepare with a clear strategy",
+};
 
 function HomePage() {
   const upcoming = upcomingProgrammes();
@@ -146,16 +180,16 @@ function HomePage() {
         </div>
       </div>
 
-      <section id="pathways" className="scroll-mt-24 px-5 pt-14 pb-8">
-        <div className="mx-auto max-w-[1100px]">
+      <section id="pathways" className="scroll-mt-24 border-y border-gold-line/60 bg-wash px-5 py-16">
+        <div className="mx-auto max-w-[1180px]">
           <SectionHeading
             eyebrow="Where to begin"
             sub="Every interest has a route - from a first taste to flagship fellowships. Tap one to see what fits your child."
           >
             Pick a <em className="text-crimson-deep">pathway</em>
           </SectionHeading>
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {(Object.keys(TRACKS) as TrackKey[]).map((k) => {
+          <div className="mt-10 grid overflow-hidden border border-gold-line bg-paper sm:grid-cols-2 lg:grid-cols-3">
+            {(Object.keys(TRACKS) as TrackKey[]).map((k, index) => {
               const t = TRACKS[k];
               const n = upcoming.filter((p) => p.tracks.includes(k)).length;
               return (
@@ -164,19 +198,41 @@ function HomePage() {
                   to="/finder"
                   search={{ ...DEFAULT_SEARCH, interest: k }}
                   style={{ "--tc": t.color } as React.CSSProperties}
-                  className="flex items-center gap-3 rounded-2xl border-[1.5px] border-transparent bg-wash px-4.5 py-4 no-underline transition-all hover:-translate-y-0.5 hover:border-[var(--tc)] hover:bg-paper hover:shadow-soft"
+                  className="group relative min-h-[248px] overflow-hidden border-r border-b border-gold-line bg-paper p-6 text-ink no-underline transition-colors duration-500 hover:bg-gold-mist"
                 >
-                  <span
-                    className="grid h-11 w-11 flex-none place-items-center rounded-xl text-[1.3rem]"
-                    style={{ background: "color-mix(in srgb, var(--tc) 12%, #fff)" }}
-                  >
-                    {t.ic}
-                  </span>
-                  <span>
-                    <b className="block text-[0.92rem] font-bold">{t.label}</b>
-                    <small className="text-[0.74rem] text-ink-faint">
-                      {n} programme{n === 1 ? "" : "s"}
-                    </small>
+                  <span className="absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-[var(--tc)] transition-transform duration-500 group-hover:scale-x-100" />
+                  <span className="relative z-10 flex h-full flex-col">
+                    <span className="flex items-start justify-between">
+                      <span className="mono-label text-gold-deep">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <ArrowUpRight
+                        size={18}
+                        strokeWidth={1.4}
+                        className="text-ink-faint transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-crimson-deep"
+                        aria-hidden="true"
+                      />
+                    </span>
+                    <img
+                      src={PATHWAY_ART[k]}
+                      alt=""
+                      aria-hidden="true"
+                      loading="lazy"
+                      width={520}
+                      height={520}
+                      className="pointer-events-none absolute -right-5 top-5 h-[150px] w-[150px] object-contain opacity-90 mix-blend-multiply transition-all duration-500 group-hover:-translate-y-1 group-hover:scale-[1.03] group-hover:opacity-100"
+                    />
+                    <span className="mt-auto max-w-[68%] pt-28">
+                      <b className="block font-serif text-[1.55rem] leading-none font-semibold">
+                        {t.label}
+                      </b>
+                      <small className="mt-2 block text-[0.78rem] text-ink-soft">
+                        {PATHWAY_PROMISE[k]}
+                      </small>
+                      <small className="mono-label mt-3 block text-ink-faint">
+                        {n} programme{n === 1 ? "" : "s"}
+                      </small>
+                    </span>
                   </span>
                 </Link>
               );
