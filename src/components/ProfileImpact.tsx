@@ -16,7 +16,7 @@ export function ProfileImpact({
   return (
     <>
       <div className="mt-6 grid items-stretch gap-3.5 sm:grid-cols-[1fr_auto_1fr]">
-        <div className="rounded-2xl border border-line border-dashed bg-paper p-5">
+        <div className="rounded-2xl border-2 border-dashed border-ink/15 bg-paper p-5">
           <span className="mono-label text-ink-faint">Before</span>
           <p className="mt-2 font-serif text-[1.05rem] text-ink-soft">{impact.before}</p>
           <p className="mt-2 text-[0.8rem] text-ink-faint">
@@ -44,7 +44,7 @@ export function ProfileImpact({
         </div>
       </div>
 
-      <div className="mt-5 grid gap-5 rounded-[20px] bg-wash px-6 py-6 sm:grid-cols-2">
+      <div className="mt-5 grid gap-5 rounded-[20px] border-2 border-ink/12 bg-wash px-6 py-6 sm:grid-cols-2">
         <div>
           <span className="mono-label block text-ink-faint">
             Why this {TYPE_NAME[p.type].toLowerCase()} counts

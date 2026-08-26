@@ -32,7 +32,9 @@ const monthOf = (iso: string) =>
   parseISO(iso).toLocaleDateString("en-GB", { month: "long" });
 
 export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
-  const track = TRACKS[p.tracks[0]!];
+  const trackMeta = TRACKS[p.tracks[0]!];
+  /** Programme pages follow the brand palette (crimson + gold), not track colours. */
+  const track = { ...trackMeta, color: "var(--crimson)" };
   const d = detailFor(p);
   const kind = TYPE_NAME[p.type];
   const cohorts = p.cohorts.filter((c) => !isPast(c.d));
@@ -157,7 +159,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
           {d.doSteps.map((s, i) => (
             <div
               key={s.title}
-              className="flex items-start gap-3.5 rounded-2xl border-[1.5px] border-line bg-wash p-4.5 shadow-soft"
+              className="flex items-start gap-3.5 rounded-2xl border-2 border-ink/12 bg-wash p-4.5 shadow-soft"
             >
               <span
                 className="grid h-9 w-9 flex-none place-items-center rounded-full border-[1.5px] bg-paper font-serif font-semibold"
@@ -224,7 +226,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
           How this strengthens their{" "}
           <em className="text-crimson-deep italic">university profile</em>
         </h2>
-        <p className="mx-auto mt-2 max-w-[40em] text-center text-[0.92rem] text-ink-soft">
+        <p className="mx-auto mt-2 max-w-none text-center text-[0.92rem] text-ink-soft lg:whitespace-nowrap">
           The point isn't the certificate. It's the line a family can honestly write
           afterwards - and the artefact sitting behind it.
         </p>
@@ -257,13 +259,13 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Upcoming <em className="text-crimson-deep italic">cohorts</em>
         </h2>
-        <div className="mt-6 flex flex-wrap justify-center gap-3.5">
-          {cohorts.length === 0 ? (
-            <p className="text-[0.9rem] text-ink-soft">
-              Dates for the next intake are being confirmed - the programme page has
-              the latest.
-            </p>
-          ) : null}
+        {cohorts.length === 0 ? (
+          <p className="mt-6 text-center text-[0.9rem] text-ink-soft">
+            Dates for the next intake are being confirmed - the programme page has the
+            latest.
+          </p>
+        ) : null}
+        <div className="mx-auto mt-6 grid max-w-[1280px] gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {cohorts.map((c, i) => {
             const g = cohortGrades(p, c);
             const f = feeOf(p, c);
@@ -271,67 +273,85 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
             return (
               <div
                 key={c.d}
-                className="flex w-full max-w-[320px] flex-col gap-2 rounded-2xl border-[1.5px] border-line bg-paper p-4.5 shadow-soft sm:w-[300px]"
+                className="relative flex flex-col overflow-hidden rounded-2xl border-2 border-ink/12 bg-paper shadow-soft transition-shadow hover:shadow-lift"
               >
+                <span className="block h-[3px] w-full bg-gradient-to-r from-gold-line via-gold to-gold-line" />
                 {isSoon(c.d) ? (
-                  <span className="w-fit rounded-md bg-gold px-2.5 py-[3px] text-[0.64rem] font-bold tracking-wide text-paper uppercase">
+                  <span className="absolute top-4 right-3 -rotate-[9deg] rounded-md border-2 border-gold/70 bg-gold-soft px-2.5 py-1 font-mono text-[0.6rem] font-bold tracking-[0.12em] text-gold-deep uppercase shadow-soft">
                     Starting soon
                   </span>
                 ) : null}
-                <span className="font-serif text-[1.25rem] font-semibold">
-                  {fmtLong(c.d)}
-                </span>
-                <small className="mono-label text-ink-faint">
-                  {p.dur} · Grades {g[0]}–{g[1]} · {c.label ?? `Batch ${i + 1}`}
-                </small>
-                <small className="text-[0.78rem] text-ink-soft">
-                  {dualTime(timeOf(p, c))}
-                </small>
-                {c.flyer || c.brochure ? (
-                  <span className="flex flex-wrap gap-1.5">
-                    {c.flyer ? (
-                      <a
-                        href={c.flyer}
-                        target="_blank"
-                        rel="noopener"
-                        className="rounded-md border border-line px-2 py-[3px] font-mono text-[0.66rem] font-semibold tracking-[0.04em] text-ink-soft uppercase no-underline hover:border-gold hover:text-gold"
-                      >
-                        Flyer
-                      </a>
-                    ) : null}
-                    {c.brochure ? (
-                      <a
-                        href={c.brochure}
-                        target="_blank"
-                        rel="noopener"
-                        className="rounded-md border border-line px-2 py-[3px] font-mono text-[0.66rem] font-semibold tracking-[0.04em] text-ink-soft uppercase no-underline hover:border-gold hover:text-gold"
-                      >
-                        Brochure
-                      </a>
-                    ) : null}
+
+                <div className="flex flex-1 flex-col p-5">
+                  <span className="block font-serif text-[1.35rem] leading-tight font-semibold">
+                    {fmtLong(c.d)}
                   </span>
-                ) : null}
-                <span className="text-[0.88rem]">
-                  <b className="font-serif text-[1.05rem]">{f.e}</b>
-                  {disc ? (
-                    <>
-                      <s className="ml-1.5 text-[0.78rem] text-ink-faint">{f.r}</s>{" "}
-                      early bird
-                    </>
-                  ) : null}
-                </span>
-                <a
-                  href={p.apply}
-                  target="_blank"
-                  rel="noopener"
-                  className="mt-auto rounded-xl px-3 py-2.5 text-center text-[0.85rem] font-bold text-paper no-underline transition-[filter] hover:brightness-110"
-                  style={{ background: track.color }}
-                >
-                  Apply for this cohort
-                </a>
-                <div className="flex items-center justify-between gap-2">
-                  <AddToCalendar p={p} c={c} />
-                  <SaveButton p={p} c={c} />
+                  <small className="mt-1.5 block font-mono text-[0.68rem] tracking-[0.05em] text-ink-faint uppercase">
+                    {p.dur} · Grades {g[0]}–{g[1]}
+                  </small>
+                  <small className="mt-1 block text-[0.78rem] font-semibold text-ink-soft">
+                    {c.label ?? `Batch ${i + 1}`}
+                  </small>
+
+                  <div className="mt-3.5 min-h-[44px] border-t border-line pt-3">
+                    <small className="block text-[0.78rem] text-ink-soft">
+                      {dualTime(timeOf(p, c))}
+                    </small>
+                  </div>
+
+                  <div className="min-h-[30px]">
+                    {c.flyer || c.brochure ? (
+                      <span className="flex flex-wrap gap-1.5">
+                        {c.flyer ? (
+                          <a
+                            href={c.flyer}
+                            target="_blank"
+                            rel="noopener"
+                            className="rounded-md border border-line px-2 py-[3px] font-mono text-[0.66rem] font-semibold tracking-[0.04em] text-ink-soft uppercase no-underline hover:border-gold hover:text-gold"
+                          >
+                            Flyer
+                          </a>
+                        ) : null}
+                        {c.brochure ? (
+                          <a
+                            href={c.brochure}
+                            target="_blank"
+                            rel="noopener"
+                            className="rounded-md border border-line px-2 py-[3px] font-mono text-[0.66rem] font-semibold tracking-[0.04em] text-ink-soft uppercase no-underline hover:border-gold hover:text-gold"
+                          >
+                            Brochure
+                          </a>
+                        ) : null}
+                      </span>
+                    ) : null}
+                  </div>
+
+                  <div className="mt-auto pt-4">
+                    <span className="flex flex-wrap items-baseline gap-1.5 text-[0.88rem]">
+                      <b className="font-serif text-[1.2rem]">{f.e}</b>
+                      {disc ? (
+                        <>
+                          <s className="text-[0.78rem] text-ink-faint">{f.r}</s>
+                          <span className="text-[0.72rem] font-semibold text-gold-deep uppercase">
+                            early bird
+                          </span>
+                        </>
+                      ) : null}
+                    </span>
+                    <a
+                      href={p.apply}
+                      target="_blank"
+                      rel="noopener"
+                      className="mt-3 block rounded-xl px-3 py-2.5 text-center text-[0.85rem] font-bold text-paper no-underline transition-[filter] hover:brightness-110"
+                      style={{ background: track.color }}
+                    >
+                      Apply for this cohort
+                    </a>
+                    <div className="mt-3 flex items-center justify-between gap-2">
+                      <AddToCalendar p={p} c={c} />
+                      <SaveButton p={p} c={c} />
+                    </div>
+                  </div>
                 </div>
               </div>
             );
@@ -364,7 +384,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
           {d.faqs.map((f) => (
             <details
               key={f.q}
-              className="overflow-hidden rounded-[14px] border-[1.5px] border-line bg-paper"
+              className="overflow-hidden rounded-[14px] border-2 border-ink/12 bg-paper"
             >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 text-[0.93rem] font-semibold">
                 {f.q}
@@ -396,9 +416,9 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
                   key={r.id}
                   to="/programmes/$slug"
                   params={{ slug: slugOf(r) }}
-                  className="flex w-full max-w-[340px] flex-col gap-2 rounded-2xl border-[1.5px] border-line bg-paper p-4.5 no-underline shadow-soft transition-all hover:-translate-y-[3px] hover:shadow-lift sm:w-[320px]"
+                  className="flex w-full max-w-[340px] flex-col gap-2 rounded-2xl border-2 border-ink/12 bg-paper p-4.5 no-underline shadow-soft transition-all hover:-translate-y-[3px] hover:shadow-lift sm:w-[320px]"
                 >
-                  <span className="text-[0.74rem] font-bold" style={{ color: rt.color }}>
+                  <span className="text-[0.74rem] font-bold text-gold-deep">
                     {rt.ic} {TYPE_NAME[r.type]}
                   </span>
                   <b className="text-[0.95rem]">{r.name}</b>
