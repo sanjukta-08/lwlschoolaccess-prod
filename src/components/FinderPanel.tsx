@@ -355,14 +355,26 @@ export function FinderPanel({
   );
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({
+  label,
+  icon,
+  children,
+}: {
+  label: string;
+  icon?: React.ReactNode;
+  children: React.ReactNode;
+}) {
   return (
     <div>
-      <span className="mono-label mb-1.5 block text-ink-faint">{label}</span>
+      <span className="mono-label mb-1.5 inline-flex items-center gap-1.5 text-ink-faint">
+        {icon ? <span className="text-ink-faint/70">{icon}</span> : null}
+        {label}
+      </span>
       {children}
     </div>
   );
 }
+
 
 function BoxSelect({
   value,
