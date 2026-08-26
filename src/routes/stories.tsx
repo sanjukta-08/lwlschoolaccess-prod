@@ -58,9 +58,17 @@ const CHIP =
 function StoriesPage() {
   const { track } = Route.useSearch();
   const active = track as TrackKey | "";
-  const stories = active
-    ? APPROVED_STORIES.filter((s) => s.tags.includes(active))
-    : APPROVED_STORIES;
+  const linkedin = active
+    ? APPROVED_LINKEDIN.filter((s) => s.tags.includes(active))
+    : APPROVED_LINKEDIN;
+  const instagram = active
+    ? APPROVED_INSTAGRAM.filter((s) => s.tags.includes(active))
+    : APPROVED_INSTAGRAM;
+  const videos = active
+    ? VIDEO_TESTIMONIALS.filter((v) => v.tags.includes(active))
+    : VIDEO_TESTIMONIALS;
+  const total = linkedin.length + instagram.length + videos.length;
+
 
   return (
     <div className="min-h-screen bg-paper">
