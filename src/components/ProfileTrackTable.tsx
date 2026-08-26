@@ -17,7 +17,7 @@ export function ProfileTrackTable() {
   return (
     <section id="by-interest" className="scroll-mt-24 bg-wash py-14">
       <div className="page-shell">
-        <header className="mb-8 max-w-[46em]">
+        <header className="mb-8 mx-auto max-w-[46em] text-center">
           <span className="mono-label text-crimson">Interest by interest</span>
           <h2 className="mt-2 font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
             The <em className="text-crimson-deep">skills and outcomes</em> per field

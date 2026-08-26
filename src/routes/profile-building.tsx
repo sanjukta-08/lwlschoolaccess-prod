@@ -83,7 +83,7 @@ function ProfileBuildingPage() {
       {/* Four steps, restated */}
       <section className="page-shell py-14">
         <div>
-          <header className="mb-7 max-w-[46em]">
+          <header className="mb-7 mx-auto max-w-[46em] text-center">
             <span className="mono-label text-crimson">The shape of it</span>
             <h2 className="mt-2 font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
               Four steps, in <em className="text-crimson-deep">this order</em>
@@ -117,7 +117,7 @@ function ProfileBuildingPage() {
       {/* Programme to proof */}
       <section className="page-shell py-14">
         <div>
-          <header className="mb-7 max-w-[46em]">
+          <header className="mb-7 mx-auto max-w-[46em] text-center">
             <span className="mono-label text-crimson">The conversion</span>
             <h2 className="mt-2 font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
               From one programme to <em className="text-crimson-deep">one line</em> on
@@ -150,7 +150,7 @@ function ProfileBuildingPage() {
       {/* Grade bands */}
       <section className="bg-wash-deep/60">
         <div className="page-shell py-14">
-          <header className="mb-7 max-w-[46em]">
+          <header className="mb-7 mx-auto max-w-[46em] text-center">
             <span className="mono-label text-crimson">Timing</span>
             <h2 className="mt-2 font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
               What to do <em className="text-crimson-deep">when</em>
