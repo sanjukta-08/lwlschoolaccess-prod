@@ -134,7 +134,7 @@ export default function HandwrittenNotes() {
             return (
               <figure
                 key={`${note.src}-${i}`}
-                className="group relative m-0 w-[240px] shrink-0 sm:w-[270px]"
+                className="group relative m-0 w-[260px] shrink-0 sm:w-[300px]"
               >
                 <button
                   type="button"
@@ -154,7 +154,7 @@ export default function HandwrittenNotes() {
                     />
                   </span>
                 </button>
-                <figcaption className="mt-3 px-1">
+                <figcaption className="mt-5 px-1">
                   <p className="line-clamp-3 font-serif text-[0.9rem] leading-snug italic text-ink">
                     “{note.quote}”
                   </p>
