@@ -318,3 +318,23 @@
   border-bottom: 1px solid var(--gold-line);
   box-shadow: 0 8px 24px -20px rgba(28, 34, 48, 0.5);
 }
+
+@keyframes note-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility note-marquee-track {
+  animation: note-marquee 60s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .note-marquee-track {
+    animation: none;
+  }
+}
