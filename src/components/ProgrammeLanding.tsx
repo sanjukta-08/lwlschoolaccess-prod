@@ -267,6 +267,10 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         <div className="mt-6">
           <StoryGallery stories={storiesForTracks(p.tracks, 3)} />
         </div>
+        <div className="mt-6">
+          <VideoTestimonials videos={videosForTracks(p.tracks, 4)} />
+        </div>
+
         <p className="mt-5">
           <Link
             to="/stories"
