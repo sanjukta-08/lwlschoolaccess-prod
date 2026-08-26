@@ -18,6 +18,8 @@ import { outcomeOf, startLabel, weeklyHoursOf } from "@/lib/outcome";
 import { regionTimeLabel } from "@/lib/regions";
 import ZoomBadge from "@/components/ZoomBadge";
 import { TrackIcon } from "@/lib/track-icons";
+import { logoFor } from "@/lib/programme-logos";
+
 
 type Props = {
   match: Match;
