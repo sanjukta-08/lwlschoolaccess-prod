@@ -17,21 +17,9 @@ function initialsOf(name: string) {
 }
 
 const ACCENTS = [
-  {
-    panel: "bg-crimson",
-    quote: "text-crimson/35",
-    avatar: "bg-crimson-deep text-paper ring-paper",
-  },
-  {
-    panel: "bg-gold-deep",
-    quote: "text-gold-deep/35",
-    avatar: "bg-gold text-paper ring-paper",
-  },
-  {
-    panel: "bg-ink",
-    quote: "text-ink/25",
-    avatar: "bg-ink text-paper ring-paper",
-  },
+  { avatar: "bg-ink text-paper", label: "text-ink" },
+  { avatar: "bg-crimson text-paper", label: "text-crimson" },
+  { avatar: "bg-gold-deep text-paper", label: "text-gold-deep" },
 ] as const;
 
 const DEFAULT_ACCENT = ACCENTS[0];
@@ -53,48 +41,46 @@ function QuoteCard({
       type="button"
       onClick={onOpen}
       aria-label={`Read the full note from ${q.name}`}
-      className={`group relative flex min-h-[23.5rem] flex-col self-stretch overflow-visible rounded-[2rem] rounded-tl-[3.25rem] p-4 pt-7 text-left shadow-soft transition-transform hover:-translate-y-1 hover:shadow-lift focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none ${a.panel} ${width}`}
+      className={`group relative ml-8 flex min-h-[20rem] flex-col justify-between self-stretch overflow-visible rounded-[1.25rem] rounded-tr-[3.5rem] bg-paper px-7 py-6 text-left ring-1 ring-ink/10 shadow-soft transition-transform hover:-translate-y-1 hover:shadow-lift focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none ${width}`}
     >
-      <div className="pointer-events-none absolute inset-x-7 top-4 h-10 rounded-full border border-paper/30" />
-      <div className="relative ml-5 flex min-h-[15.25rem] flex-1 flex-col rounded-[1.35rem] rounded-tr-[3rem] bg-paper p-6 shadow-lift ring-1 ring-ink/5">
-        <span
-          aria-hidden
-          className={`font-serif text-[3.4rem] leading-[0.48] ${a.quote}`}
-        >
-          “
+      {/* Overlapping initials plate */}
+      <span
+        className={`absolute -left-7 top-8 flex h-14 w-14 shrink-0 items-center justify-center rounded-full font-sans text-[1rem] font-bold shadow-soft ring-4 ring-paper ${a.avatar}`}
+      >
+        {initialsOf(q.name)}
+      </span>
+
+      <header className="pl-7">
+        <span className="block truncate font-serif text-[1.15rem] font-semibold leading-tight text-ink">
+          {q.name}
         </span>
-        <p className="mt-3 line-clamp-6 flex-1 font-serif text-[1.04rem] leading-[1.55] text-ink">
-          {q.quote}
-        </p>
+        <span className="mono-label mt-1 block text-[0.62rem] text-gold-deep">
+          {q.role}
+        </span>
+      </header>
+
+      <p className="my-4 line-clamp-5 font-serif text-[1.12rem] italic leading-[1.4] text-ink">
+        “{q.quote}”
+      </p>
+
+      <footer className="relative flex items-center justify-between gap-3 border-t border-ink/10 pt-3">
+        <span className={`min-w-0 truncate font-serif text-[0.95rem] font-semibold ${a.label}`}>
+          {q.programme}
+        </span>
+        <span className="mono-label shrink-0 text-[0.6rem] text-ink-faint transition-colors group-hover:text-crimson">
+          Read
+        </span>
         <span
           aria-hidden
-          className={`mt-3 self-end font-serif text-[3rem] leading-[0.42] ${a.quote}`}
+          className="pointer-events-none absolute -top-8 right-0 select-none font-serif text-[4rem] italic leading-none text-ink/[0.06]"
         >
           ”
-        </span>
-      </div>
-
-      <footer className="relative flex min-h-[5.4rem] items-end gap-3 px-3 pb-2 pt-5">
-        <span
-          className={`absolute -top-5 left-2 flex h-14 w-14 shrink-0 items-center justify-center rounded-full font-serif text-[0.9rem] font-bold shadow-soft ring-[5px] ${a.avatar}`}
-        >
-          {initialsOf(q.name)}
-        </span>
-        <span className="min-w-0 flex-1 pl-[4.4rem]">
-          <span className="block truncate font-serif text-[1.1rem] font-semibold leading-tight text-paper">
-            {q.name}
-          </span>
-          <span className="mt-1 block line-clamp-2 text-[0.74rem] leading-snug text-paper/78">
-            {q.role} • {q.programme}
-          </span>
-        </span>
-        <span className="mono-label mb-1 shrink-0 text-[0.62rem] text-paper/70 transition-colors group-hover:text-paper">
-          Read
         </span>
       </footer>
     </button>
   );
 }
+
 
 
 
@@ -159,7 +145,7 @@ function QuoteMarquee({
       onBlurCapture={() => setPaused(false)}
     >
       <div
-        className="flex w-max items-stretch gap-6 py-2 will-change-transform"
+        className="flex w-max items-stretch gap-8 py-2 will-change-transform"
         style={{
           animation: `learner-quote-scroll ${duration}s linear infinite`,
           animationPlayState: paused ? "paused" : "running",
