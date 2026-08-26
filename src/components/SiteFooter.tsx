@@ -10,8 +10,8 @@ const linkCls = "no-underline text-paper/70 transition-colors hover:text-paper";
 
 export function SiteFooter({ note }: { note?: string }) {
   return (
-    <footer className="bg-ink px-5 pt-14 pb-8 text-paper">
-      <div className="mx-auto max-w-[1100px]">
+    <footer className="bg-ink pt-14 pb-8 text-paper">
+      <div className="page-shell">
         <div className="grid gap-10 md:grid-cols-[1.2fr_repeat(4,1fr)]">
           <div>
             <img
