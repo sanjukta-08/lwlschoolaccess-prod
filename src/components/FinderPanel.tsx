@@ -4,12 +4,19 @@ import {
   gradeOptions,
   isDefaultSearch,
   monthOptions,
-  typeCounts,
   type FinderSearch,
 } from "@/lib/finder";
 import { regionOptions } from "@/lib/regions";
 import { DEFAULT_FIT } from "@/lib/fit";
 import { Link } from "@tanstack/react-router";
+import {
+  CalendarDays,
+  Compass,
+  Globe,
+  GraduationCap,
+  Search,
+} from "lucide-react";
+
 
 type Props = {
   state: FinderSearch;
