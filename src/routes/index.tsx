@@ -20,6 +20,8 @@ import { programmeLogo } from "@/lib/programme-logos";
 import { SiteFooter } from "@/components/SiteFooter";
 import { WingMark } from "@/components/WingMark";
 import { SectionHeading } from "@/components/SectionHeading";
+import { PartnerLogos } from "@/components/PartnerLogos";
+
 import birdAsset from "@/assets/lwl-bird-black.webp.asset.json";
 import worldMapAsset from "@/assets/world-dots-gold.webp.asset.json";
 import pathwayMedicine from "@/assets/pathway-medicine.webp";
