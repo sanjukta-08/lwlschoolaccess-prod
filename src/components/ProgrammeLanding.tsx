@@ -154,11 +154,11 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
 
       {/* What they'll do */}
       <section id="overview" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
-        <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
+        <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           What your child will{" "}
           <em className="text-crimson-deep italic">actually do</em>
         </h2>
-        <p className="mt-2 max-w-[40em] text-[0.92rem] text-ink-soft">
+        <p className="mx-auto mt-2 max-w-[40em] text-center text-[0.92rem] text-ink-soft">
           Live, mentor-led sessions - worked problems and real output, not lectures.
         </p>
         <div className="mt-6 grid gap-3.5 sm:grid-cols-2">
@@ -184,10 +184,10 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
 
       {/* Skills */}
       <section id="skills" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
-        <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
+        <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Skills your child will <em className="text-crimson-deep italic">gain</em>
         </h2>
-        <p className="mt-2 max-w-[40em] text-[0.92rem] text-ink-soft">
+        <p className="mx-auto mt-2 max-w-[40em] text-center text-[0.92rem] text-ink-soft">
           Named, practised skills - grouped the way universities read them, and each one
           tied to how it is used in this {kind.toLowerCase()}.
         </p>
@@ -196,19 +196,19 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
 
       {/* Projects */}
       <section id="projects" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
-        <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
+        <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Projects they <em className="text-crimson-deep italic">finish with</em>
         </h2>
-        <p className="mt-2 max-w-[40em] text-[0.92rem] text-ink-soft">
+        <p className="mx-auto mt-2 max-w-[40em] text-center text-[0.92rem] text-ink-soft">
           Sample briefs from recent cohorts - the actual work that comes out of the
           programme, not a syllabus.
         </p>
         <ProjectShowcase programme={p} color={track.color} />
 
-        <h3 className="mt-10 font-serif text-[1.2rem] font-semibold">
+        <h3 className="mt-10 text-center font-serif text-[1.2rem] font-semibold">
           What they'll take away
         </h3>
-        <div className="mt-4 flex flex-wrap gap-2.5">
+        <div className="mt-4 flex flex-wrap justify-center gap-2.5">
           {d.takeaways.map((t) => (
             <span
               key={t}
@@ -225,11 +225,11 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
 
       {/* Profile impact */}
       <section id="profile" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
-        <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
+        <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           How this strengthens their{" "}
           <em className="text-crimson-deep italic">university profile</em>
         </h2>
-        <p className="mt-2 max-w-[40em] text-[0.92rem] text-ink-soft">
+        <p className="mx-auto mt-2 max-w-[40em] text-center text-[0.92rem] text-ink-soft">
           The point isn't the certificate. It's the line a family can honestly write
           afterwards - and the artefact sitting behind it.
         </p>
@@ -238,7 +238,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
 
       {/* Reviews */}
       <section id="reviews" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
-        <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
+        <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           What families <em className="text-crimson-deep italic">say</em>
         </h2>
         <ProgrammeTestimonials programme={p} color={track.color} />
@@ -261,13 +261,13 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
 
       {/* LinkedIn stories */}
       <section id="stories" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-center gap-3">
           <LinkedInGlyph />
-          <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
+          <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
             Stories from <em className="text-crimson-deep italic">this pathway</em>
           </h2>
         </div>
-        <p className="mt-2 max-w-[40em] text-[0.92rem] text-ink-soft">
+        <p className="mx-auto mt-2 max-w-[40em] text-center text-[0.92rem] text-ink-soft">
           What students and parents posted after finishing {track.label.toLowerCase()}{" "}
           cohorts. Tap a story to read the full post.
         </p>
@@ -276,7 +276,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         </div>
         {quotesForProgramme(p.id).length ? (
           <div className="mt-8">
-            <h3 className="font-serif text-[1.05rem] font-medium">
+            <h3 className="text-center font-serif text-[1.05rem] font-medium">
               What learners wrote in their feedback forms
             </h3>
             <div className="mt-3">
@@ -309,7 +309,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
 
       {/* Cohorts */}
       <section id="dates" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
-        <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
+        <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Upcoming <em className="text-crimson-deep italic">cohorts</em>
         </h2>
         <div className="mt-6 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
@@ -438,7 +438,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       {/* Related */}
       {related.length > 0 ? (
         <section className="mx-auto max-w-[1000px] px-5 pt-14">
-          <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
+          <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
             Families looking at this also{" "}
             <em className="text-crimson-deep italic">consider</em>
           </h2>
