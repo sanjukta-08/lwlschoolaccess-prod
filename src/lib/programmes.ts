@@ -108,6 +108,9 @@ export const TYPE_NAME: Record<TypeKey, string> = {
   comp: "Competition",
 };
 
+/** Drive flyer/brochure link from the master calendar's file id. */
+const dl = (id: string) => `https://drive.google.com/file/d/${id}/view?usp=sharing`;
+
 export const PROGRAMMES: Programme[] = [
   {
     id: "fdf",
