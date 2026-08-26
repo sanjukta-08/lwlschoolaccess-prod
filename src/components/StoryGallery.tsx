@@ -381,6 +381,88 @@ function StoryCarousel({
   );
 }
 
+/** Smooth infinite horizontal marquee. Items are duplicated so the loop never pauses. */
+function StoryMarquee({
+  stories,
+  onOpen,
+}: {
+  stories: LinkedInStory[];
+  onOpen: (i: number) => void;
+}) {
+  const [paused, setPaused] = useState(false);
+  // Duplicate enough times to fill any viewport width seamlessly.
+  const loop = stories.length < 6 ? [...stories, ...stories, ...stories, ...stories] : [...stories, ...stories];
+
+  return (
+    <div
+      className="group overflow-hidden"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
+    >
+      <div
+        className="flex w-max gap-4 will-change-transform"
+        style={{
+          animation: `marquee-scroll 40s linear infinite`,
+          animationPlayState: paused ? "paused" : "running",
+        }}
+      >
+        {loop.map((s, i) => (
+          <button
+            key={`${s.id}-${i}`}
+            type="button"
+            onClick={() => onOpen(i % stories.length)}
+            aria-label={`Open ${SOURCE_LABEL[s.source]} post from ${s.name}`}
+            className="w-[260px] shrink-0 rounded-2xl border border-line bg-paper p-4 text-left shadow-soft transition-transform hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none sm:w-[300px]"
+          >
+            <header className="flex items-center gap-2.5">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-crimson/10 font-serif text-[0.8rem] font-bold text-crimson-deep">
+                {s.initials}
+              </span>
+              <div className="min-w-0 flex-1">
+                <div className="truncate text-[0.85rem] font-bold leading-tight text-ink">
+                  {s.name}
+                </div>
+                <div className="truncate text-[0.7rem] text-ink-faint">{s.role}</div>
+              </div>
+              <SourceGlyph story={s} className="h-5 w-5" />
+            </header>
+            {s.image ? (
+              <img
+                src={s.image}
+                alt={s.imageAlt ?? `${SOURCE_LABEL[s.source]} post by ${s.name}`}
+                width={400}
+                height={300}
+                loading="lazy"
+                className="mt-3 aspect-[4/3] w-full rounded-xl border border-line object-cover"
+              />
+            ) : (
+              <p className="mt-3 line-clamp-4 text-[0.82rem] leading-relaxed text-ink-soft">
+                {s.text}
+              </p>
+            )}
+            <div className="mt-3 flex items-center justify-between text-[0.72rem] text-ink-faint">
+              <span className="truncate font-semibold text-ink-soft">{s.when}</span>
+              {s.tag ? (
+                <span className="shrink-0 rounded-full bg-crimson/8 px-2 py-0.5 text-[0.65rem] font-semibold text-crimson-deep">
+                  #{s.tag}
+                </span>
+              ) : null}
+            </div>
+          </button>
+        ))}
+      </div>
+      <style>{`
+        @keyframes marquee-scroll {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 
 export function StoryGallery({
   stories,
