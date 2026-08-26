@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 
+import linkedinMark from "@/assets/linkedin.jpg.asset.json";
 import {
   Dialog,
   DialogContent,
@@ -10,11 +11,42 @@ import type { LinkedInStory } from "@/lib/social-proof";
 
 export function LinkedInGlyph({ className = "" }: { className?: string }) {
   return (
-    <span
+    <img
+      src={linkedinMark.url}
+      alt=""
       aria-hidden
-      className={`inline-flex h-6 w-6 items-center justify-center rounded-[5px] bg-ink font-sans text-[0.72rem] font-black text-paper ${className}`}
-    >
-      in
+      width={24}
+      height={24}
+      loading="lazy"
+      className={`inline-block h-6 w-6 shrink-0 rounded-[5px] object-cover ${className}`}
+    />
+  );
+}
+
+/** Stacked reaction glyphs + faces, the way LinkedIn renders them. */
+function ReactionStack({ story }: { story: LinkedInStory }) {
+  const extra = story.reactions - 23;
+  return (
+    <span className="flex items-center gap-2">
+      <span aria-hidden className="flex items-center">
+        <span className="flex h-4 w-4 items-center justify-center rounded-full border-[1.5px] border-paper bg-[oklch(0.55_0.13_245)] text-[0.5rem] text-paper">
+          ▲
+        </span>
+        <span className="-ml-1 flex h-4 w-4 items-center justify-center rounded-full border-[1.5px] border-paper bg-crimson text-[0.5rem] text-paper">
+          ♥
+        </span>
+        <span className="-ml-1 flex h-4 w-4 items-center justify-center rounded-full border-[1.5px] border-paper bg-gold text-[0.5rem] text-ink">
+          ✦
+        </span>
+        <span className="-ml-1 h-4 w-4 rounded-full border-[1.5px] border-paper bg-ink/25" />
+        <span className="-ml-1 h-4 w-4 rounded-full border-[1.5px] border-paper bg-crimson/25" />
+        <span className="-ml-1 h-4 w-4 rounded-full border-[1.5px] border-paper bg-gold/35" />
+      </span>
+      {extra > 0 ? (
+        <span className="rounded-full bg-wash px-2 py-0.5 text-[0.7rem] font-semibold text-ink-soft">
+          +{extra}
+        </span>
+      ) : null}
     </span>
   );
 }
@@ -22,12 +54,7 @@ export function LinkedInGlyph({ className = "" }: { className?: string }) {
 function Reactions({ story }: { story: LinkedInStory }) {
   return (
     <span className="flex items-center gap-1.5">
-      <span aria-hidden className="flex items-center">
-        <span className="h-3.5 w-3.5 rounded-full border-[1.5px] border-paper bg-crimson" />
-        <span className="-ml-1 h-3.5 w-3.5 rounded-full border-[1.5px] border-paper bg-gold" />
-        <span className="-ml-1 h-3.5 w-3.5 rounded-full border-[1.5px] border-paper bg-ink" />
-      </span>
-      {story.reactions} reactions
+      <span className="font-semibold text-ink">{story.reactions}</span> reactions
     </span>
   );
 }
@@ -49,15 +76,24 @@ function StoryTile({
       className="group flex h-full flex-col rounded-2xl border border-line bg-paper p-5 text-left shadow-soft transition-transform hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none"
     >
       <header className="flex items-start gap-3">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-crimson/10 font-serif text-[0.9rem] font-bold text-crimson-deep">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-crimson/10 font-serif text-[0.9rem] font-bold text-crimson-deep">
           {story.initials}
         </span>
         <div className="min-w-0 flex-1">
           <div className="truncate text-[0.9rem] font-bold text-ink">{story.name}</div>
           <div className="truncate text-[0.76rem] text-ink-faint">{story.role}</div>
-          <div className="mono-label mt-0.5 text-ink-faint">{story.when} · Public</div>
+          <div className="mono-label mt-1 flex items-center gap-1.5 text-ink-faint">
+            {story.when} <span aria-hidden>·</span>
+            <span aria-hidden className="text-[0.7rem]">
+              🌐
+            </span>
+            PUBLIC
+          </div>
         </div>
         <LinkedInGlyph />
+        <span aria-hidden className="mt-0.5 text-[0.95rem] leading-none text-ink-faint">
+          ⋮
+        </span>
       </header>
 
       {story.image ? (
@@ -79,9 +115,9 @@ function StoryTile({
         </p>
       )}
 
-      <div className="mt-3 flex flex-wrap items-center gap-2">
+      <div className="mt-3.5 mb-4 flex flex-wrap items-center gap-2">
         {story.tag ? (
-          <span className="rounded-full border border-line bg-wash px-2.5 py-1 text-[0.72rem] font-semibold text-ink-soft">
+          <span className="rounded-full bg-crimson/8 px-2.5 py-1 text-[0.72rem] font-semibold text-crimson-deep">
             #{story.tag}
           </span>
         ) : null}
@@ -90,9 +126,13 @@ function StoryTile({
         </span>
       </div>
 
-      <footer className="mt-auto flex items-center justify-between gap-3 border-t border-line pt-3.5 text-[0.76rem] text-ink-faint">
-        <Reactions story={story} />
-        <span>{story.comments} comments</span>
+      <footer className="mt-auto flex flex-col gap-2.5 border-t border-line pt-3.5 text-[0.78rem] text-ink-faint">
+        <ReactionStack story={story} />
+        <span className="flex items-center gap-1.5">
+          <Reactions story={story} />
+          <span aria-hidden>·</span>
+          <span className="font-semibold text-ink">{story.comments}</span> comments
+        </span>
       </footer>
     </button>
   );
