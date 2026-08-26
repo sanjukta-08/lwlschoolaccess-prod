@@ -67,13 +67,26 @@ function VideoLightbox({
         {video ? (
           <>
             <div className="relative aspect-[9/13] h-[min(68vh,120vw)] w-auto bg-ink">
-              <iframe
-                src={`https://drive.google.com/file/d/${video.fileId}/preview`}
-                title={`${video.name} testimonial`}
-                allow="autoplay; fullscreen"
-                allowFullScreen
-                className="h-full w-full border-0"
-              />
+              {video.src ? (
+                <video
+                  src={video.src}
+                  poster={video.poster}
+                  title={`${video.name} testimonial`}
+                  controls
+                  autoPlay
+                  playsInline
+                  className="h-full w-full bg-ink object-contain"
+                />
+              ) : (
+                <iframe
+                  src={`https://drive.google.com/file/d/${video.fileId}/preview`}
+                  title={`${video.name} testimonial`}
+                  allow="autoplay; fullscreen"
+                  allowFullScreen
+                  className="h-full w-full border-0"
+                />
+              )}
+
               <DialogClose
                 aria-label="Close video"
                 className="absolute right-2.5 top-2.5 z-10 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-paper/40 bg-ink/70 text-paper backdrop-blur-sm transition-colors hover:bg-ink"
