@@ -138,7 +138,7 @@ export function ProgrammeCard({
           <Link
             to="/programmes/$slug"
             params={{ slug: slugOf(p) }}
-            className="rounded-full border-[1.5px] border-ink bg-ink px-4 py-1.5 text-[0.78rem] font-bold text-paper no-underline transition-colors hover:border-crimson hover:bg-crimson"
+            className="rounded-full border-[1.5px] border-ink bg-paper px-4 py-1.5 text-[0.78rem] font-bold text-ink no-underline transition-colors hover:bg-ink hover:text-paper"
           >
             View
           </Link>
