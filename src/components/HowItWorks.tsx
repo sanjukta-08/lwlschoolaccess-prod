@@ -1,4 +1,5 @@
 import studentLearning from "@/assets/student-learning.webp.asset.json";
+import { SectionHeading } from "@/components/SectionHeading";
 
 const STEPS = [
   {
