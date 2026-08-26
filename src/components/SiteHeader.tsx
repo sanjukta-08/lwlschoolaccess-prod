@@ -108,7 +108,7 @@ export function SiteHeader() {
             rel="noopener"
             className="hidden items-center gap-2 rounded-full border-[1.5px] border-crimson bg-crimson px-4 py-2 leading-none text-paper no-underline shadow-soft transition-colors hover:bg-crimson/90 sm:inline-flex"
           >
-            Talk to an advisor
+            Book a Meeting
           </a>
           <button
             type="button"
@@ -135,7 +135,7 @@ export function SiteHeader() {
             rel="noopener"
             className="mt-3 block rounded-xl bg-crimson px-3.5 py-3 text-center text-paper no-underline sm:hidden"
           >
-            Talk to an advisor
+            Book a Meeting
           </a>
         </nav>
       ) : null}
