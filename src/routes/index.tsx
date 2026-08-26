@@ -228,8 +228,8 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="border-y border-gold-line/60 bg-wash px-5 py-11">
-        <div className="mx-auto max-w-[1320px]">
+      <section className="border-y border-gold-line/60 bg-wash px-4 py-11">
+        <div className="mx-auto max-w-[1400px]">
           <SectionHeading
             eyebrow="Signature cohorts"
             sub="Our deepest experiences - small cohorts, dedicated mentors, capstones and Demo Days."
