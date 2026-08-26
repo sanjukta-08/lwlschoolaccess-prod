@@ -83,8 +83,8 @@ export function SiteFooter({ note }: { note?: string }) {
             <Link to="/about" hash="why" className={linkCls}>
               Why Learn with Leaders
             </Link>
-            <Link to="/stories" search={{ track: "" }} className={linkCls}>
-              Family stories
+            <Link to="/testimonials" search={{}} className={linkCls}>
+              Testimonials
             </Link>
             <Link to="/about" hash="press" className={linkCls}>
               Press

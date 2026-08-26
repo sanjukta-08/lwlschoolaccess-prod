@@ -294,7 +294,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
 
         <p className="mt-5">
           <Link
-            to="/stories"
+            to="/testimonials"
             search={{ track: p.tracks[0]! }}
             className="text-[0.85rem] font-bold text-crimson no-underline hover:underline"
           >

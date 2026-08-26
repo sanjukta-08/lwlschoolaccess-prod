@@ -58,13 +58,13 @@ export function SiteHeader() {
           Profile building
         </Link>
         <Link
-          to="/stories"
-          search={{ track: "" }}
+          to="/testimonials"
+          search={{}}
           className={cls}
           activeProps={active}
           onClick={close}
         >
-          Stories
+          Testimonials
         </Link>
         <Link to="/about" className={cls} activeProps={active} onClick={close}>
           About
