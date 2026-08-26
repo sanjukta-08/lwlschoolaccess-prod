@@ -110,7 +110,7 @@ export function cohortEvents(p: Programme, c: Cohort): string[] {
       uid: `lwl-start-${p.id}-${c.d}@learnwithleaders.com`,
       start: c.d,
       end: nextDay(c.d),
-      summary: `${p.name} — cohort starts`,
+      summary: `${p.name} - cohort starts`,
       description: desc,
       url,
       alarmDaysBefore: 2,
@@ -127,7 +127,7 @@ export function buildIcs(entries: { p: Programme; c: Cohort }[]): string {
     "PRODID:-//Learn with Leaders//Programme Calendar//EN",
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
-    "X-WR-CALNAME:Learn with Leaders — my dates",
+    "X-WR-CALNAME:Learn with Leaders - my dates",
   ];
   entries.forEach(({ p, c }) => body.push(...cohortEvents(p, c)));
   body.push("END:VCALENDAR");
@@ -149,7 +149,7 @@ export function downloadIcs(entries: { p: Programme; c: Cohort }[], filename: st
 export function googleCalendarUrl(p: Programme, c: Cohort): string {
   const params = new URLSearchParams({
     action: "TEMPLATE",
-    text: `${p.name} — cohort starts`,
+    text: `${p.name} - cohort starts`,
     dates: `${stamp(c.d)}/${stamp(nextDay(c.d))}`,
     details: eventDescription(p, c),
     location: "Online (live with mentors)",
@@ -161,7 +161,7 @@ export function outlookCalendarUrl(p: Programme, c: Cohort): string {
   const params = new URLSearchParams({
     path: "/calendar/action/compose",
     rru: "addevent",
-    subject: `${p.name} — cohort starts`,
+    subject: `${p.name} - cohort starts`,
     body: eventDescription(p, c),
     startdt: c.d,
     enddt: c.d,

@@ -13,7 +13,7 @@ export type TypeProfile = {
 export const TYPE_PROFILE: Record<TypeKey, TypeProfile> = {
   fel: {
     purpose:
-      "Depth. A fellowship is the spine of a profile — several weeks with one mentor, one field and one finished piece of work at the end. This is what turns \"interested in medicine\" into evidence.",
+      "Depth. A fellowship is the spine of a profile - several weeks with one mentor, one field and one finished piece of work at the end. This is what turns \"interested in medicine\" into evidence.",
     skills: [
       "Reading primary sources",
       "Structured problem solving",
@@ -30,7 +30,7 @@ export const TYPE_PROFILE: Record<TypeKey, TypeProfile> = {
   },
   prog: {
     purpose:
-      "Exploration, cheaply and quickly. Short live programmes let a child test a field over a couple of weekends before committing months to it — and they are the natural first step in Grades 5–8.",
+      "Exploration, cheaply and quickly. Short live programmes let a child test a field over a couple of weekends before committing months to it - and they are the natural first step in Grades 5–8.",
     skills: [
       "Speaking up in a live room",
       "Note-taking and synthesis",
@@ -45,7 +45,7 @@ export const TYPE_PROFILE: Record<TypeKey, TypeProfile> = {
   },
   comp: {
     purpose:
-      "External validation. A competition is judged by someone other than us, which is exactly why admissions officers weigh it — a rank or an award is a third party saying the work was good.",
+      "External validation. A competition is judged by someone other than us, which is exactly why admissions officers weigh it - a rank or an award is a third party saying the work was good.",
     skills: [
       "Working to a hard deadline",
       "Argument under scrutiny",
@@ -60,7 +60,7 @@ export const TYPE_PROFILE: Record<TypeKey, TypeProfile> = {
   },
   intern: {
     purpose:
-      "Workplace credibility. A corporate internship puts a real organisation's name next to your child's work — the single hardest thing for a school student to obtain on their own.",
+      "Workplace credibility. A corporate internship puts a real organisation's name next to your child's work - the single hardest thing for a school student to obtain on their own.",
     skills: [
       "Professional email and deadlines",
       "Working inside a real brief",
@@ -75,7 +75,7 @@ export const TYPE_PROFILE: Record<TypeKey, TypeProfile> = {
   },
   conf: {
     purpose:
-      "Diplomacy and presence. MUN and conferences build the room skills — negotiation, alliance-building, speaking without notes — that interviews and leadership roles later depend on.",
+      "Diplomacy and presence. MUN and conferences build the room skills - negotiation, alliance-building, speaking without notes - that interviews and leadership roles later depend on.",
     skills: [
       "Public speaking without a script",
       "Negotiation and caucusing",
@@ -108,7 +108,7 @@ export const TRACK_PROFILE: Record<TrackKey, TrackProfile> = {
     outcome: "A written brief or mooting record, ideally with a competition placement.",
   },
   fin: {
-    story: "Commercial literacy — a child who can read a business, not just say they like finance.",
+    story: "Commercial literacy - a child who can read a business, not just say they like finance.",
     skills: ["Financial modelling", "Valuation basics", "Market analysis"],
     outcome: "A pitch or valuation deck plus an internship or competition entry.",
   },
@@ -118,7 +118,7 @@ export const TRACK_PROFILE: Record<TrackKey, TrackProfile> = {
     outcome: "A working prototype, a public repo and a two-minute demo video.",
   },
   ent: {
-    story: "Initiative that can be checked — a venture with users, not a business plan in a drawer.",
+    story: "Initiative that can be checked - a venture with users, not a business plan in a drawer.",
     skills: ["Customer discovery", "Unit economics", "Pitching"],
     outcome: "A launched product or service, first users or revenue, and a pitch deck.",
   },
@@ -128,12 +128,12 @@ export const TRACK_PROFILE: Record<TrackKey, TrackProfile> = {
     outcome: "A published paper with a permanent link, plus a supervisor's letter.",
   },
   deb: {
-    story: "Voice and composure — the thread that makes interviews and leadership roles land.",
+    story: "Voice and composure - the thread that makes interviews and leadership roles land.",
     skills: ["Rebuttal structure", "Impromptu speaking", "Evidence use"],
     outcome: "Tournament or committee results and recorded speeches for the portfolio.",
   },
   lead: {
-    story: "Impact on other people, documented — the difference between a title and leadership.",
+    story: "Impact on other people, documented - the difference between a title and leadership.",
     skills: ["Project management", "Team facilitation", "Stakeholder writing"],
     outcome: "A led initiative with numbers attached and letters from those involved.",
   },
@@ -151,7 +151,7 @@ export const PROOF_FLOW: { title: string; body: string }[] = [
   },
   {
     title: "Build the artefact",
-    body: "Every programme should end in a thing — a paper, a deck, a prototype, a resolution, a case brief.",
+    body: "Every programme should end in a thing - a paper, a deck, a prototype, a resolution, a case brief.",
   },
   {
     title: "Get it reviewed",
@@ -179,7 +179,7 @@ export const BANDS: { band: string; head: string; body: string; dos: string[] }[
     dos: [
       "Two or three short programmes across different fields",
       "One speaking or debate programme",
-      "No fellowships yet — they are wasted this early",
+      "No fellowships yet - they are wasted this early",
     ],
   },
   {
@@ -211,7 +211,7 @@ export const PB_FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Do certificates matter to universities?",
-    a: "On their own, very little. What matters is the artefact behind the certificate — the paper, the venture, the ranked award — and whether an admissions officer can verify it. The certificate is the receipt, not the achievement.",
+    a: "On their own, very little. What matters is the artefact behind the certificate - the paper, the venture, the ranked award - and whether an admissions officer can verify it. The certificate is the receipt, not the achievement.",
   },
   {
     q: "Does profile building replace grades and test scores?",
@@ -223,7 +223,7 @@ export const PB_FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Is it too late if we start in Grade 11?",
-    a: "It is later, not too late — but the choices narrow. In Grade 11 skip exploration and go straight to programmes that end in a publishable or launchable artefact, and to internships that produce a letter.",
+    a: "It is later, not too late - but the choices narrow. In Grade 11 skip exploration and go straight to programmes that end in a publishable or launchable artefact, and to internships that produce a letter.",
   },
   {
     q: "How do we choose between a fellowship and a competition?",

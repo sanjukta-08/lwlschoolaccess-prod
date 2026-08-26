@@ -7,7 +7,7 @@ const STEPS = [
   {
     n: "02",
     t: "Compare the shortlist",
-    d: "Every card shows grade band, length, live session times in your timezone, fee and the next three start dates — no digging through brochures.",
+    d: "Every card shows grade band, length, live session times in your timezone, fee and the next three start dates - no digging through brochures.",
   },
   {
     n: "03",
@@ -27,7 +27,7 @@ const REASONS = [
   },
   {
     t: "Live, small and online",
-    d: "All sessions run live on Zoom in small cohorts, so mentors know each student by name — from anywhere in the world.",
+    d: "All sessions run live on Zoom in small cohorts, so mentors know each student by name - from anywhere in the world.",
   },
   {
     t: "Grades 5 to 12, junior and senior tracks",

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const EXAMPLES = [
-  "My daughter loves biology but is very shy — what would suit her?",
+  "My daughter loves biology but is very shy - what would suit her?",
   "My son is in Grade 9 and wants to start a business one day.",
   "We need a weekend programme that helps with US college applications.",
 ];
@@ -22,7 +22,7 @@ export function CounsellorCard() {
           </h2>
           <p className="text-[0.92rem] text-ink-soft">
             Tell our counsellor about their interests, personality and goals in your own
-            words — we&apos;ll suggest the programmes that fit best.
+            words - we&apos;ll suggest the programmes that fit best.
           </p>
           <div className="mt-4 flex flex-col gap-2">
             {EXAMPLES.map((eg) => (
@@ -56,7 +56,7 @@ export function CounsellorCard() {
             Ask the counsellor →
           </a>
           <p className="text-center text-[0.75rem] text-ink-faint">
-            Opens your email — a real advisor replies, usually within a day.
+            Opens your email - a real advisor replies, usually within a day.
           </p>
         </div>
       </div>

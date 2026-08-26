@@ -120,7 +120,7 @@ export function FinderPanel({
               label="Location"
             />
             <p className="mt-1.5 text-[0.72rem] leading-snug text-ink-faint">
-              Live online — we only show cohorts that meet at a sensible local hour.
+              Live online - we only show cohorts that meet at a sensible local hour.
             </p>
           </Field>
 

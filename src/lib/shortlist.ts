@@ -58,7 +58,7 @@ function write(items: SavedItem[]) {
   try {
     window.localStorage.setItem(KEY, JSON.stringify(items));
   } catch {
-    /* storage full or blocked — shortlist stays in memory for this session */
+    /* storage full or blocked - shortlist stays in memory for this session */
   }
 }
 

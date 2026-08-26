@@ -156,7 +156,7 @@ function FinderPage() {
     </>
   ) : (
     <>
-      No exact match — here are the <em className="text-crimson-deep">closest fits</em>
+      No exact match - here are the <em className="text-crimson-deep">closest fits</em>
     </>
   );
 
@@ -341,7 +341,7 @@ function FinderPage() {
                       Nothing matches that exact combination
                     </h3>
                     <p className="mx-auto max-w-[34em] text-[0.88rem] text-ink-soft">
-                      Your child doesn&apos;t have to wait long — these are the closest
+                      Your child doesn&apos;t have to wait long - these are the closest
                       fits {fallbackNote}. Or clear a filter to widen the search.
                     </p>
                   </div>
@@ -380,7 +380,7 @@ function FinderPage() {
               collapsible
               className="rounded-2xl border border-line bg-paper px-4"
             >
-              <TailItem value="pathway" title="Plan the profile — step by step">
+              <TailItem value="pathway" title="Plan the profile - step by step">
                 <ProfilePathway />
               </TailItem>
               <TailItem value="advisor" title="Not sure? Describe your child instead">
@@ -402,7 +402,7 @@ function FinderPage() {
           Not sure which one <em>fits</em>?
         </h2>
         <p className="mx-auto mt-3 max-w-[34em] text-[0.93rem] text-paper/80">
-          Tell us about your child and an advisor will recommend the right pathway — no
+          Tell us about your child and an advisor will recommend the right pathway - no
           obligation.
         </p>
         <a

@@ -91,7 +91,7 @@ export function CalendarControls({
             value={state.q}
             onChange={(e) => onChange({ q: e.target.value })}
             aria-label="Search programmes"
-            placeholder='Search — try "doctors", "Harvard", "research"…'
+            placeholder='Search - try "doctors", "Harvard", "research"…'
             className="min-w-[200px] flex-1 rounded-full border border-line bg-wash px-4 py-2 text-[0.85rem] text-ink placeholder:text-ink-faint focus:border-crimson/40 focus:bg-paper focus:outline-none"
           />
 

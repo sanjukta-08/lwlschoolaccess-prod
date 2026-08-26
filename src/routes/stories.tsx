@@ -10,7 +10,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 
 const TITLE = "Student & parent stories | Learn with Leaders";
 const DESC =
-  "Screenshots of what students and parents posted on LinkedIn after their Learn with Leaders cohort — research papers, ventures, moots, portfolios and competition results. Tap any story to read it in full.";
+  "Screenshots of what students and parents posted on LinkedIn after their Learn with Leaders cohort - research papers, ventures, moots, portfolios and competition results. Tap any story to read it in full.";
 
 const DEFAULTS = { track: "" as string };
 
@@ -69,7 +69,7 @@ function StoriesPage() {
             <p className="mx-auto mt-4 max-w-[42em] text-[1rem] text-ink-soft">
               The honest measure of a programme is what a student says about it once it's
               over. These are the posts and messages we've been given permission to share
-              — filter by interest, and tap any story to read the whole thing.
+              - filter by interest, and tap any story to read the whole thing.
             </p>
             <div className="mt-7 flex flex-wrap justify-center gap-3">
               <Link
@@ -151,7 +151,7 @@ function StoriesPage() {
           </h2>
           <p className="mx-auto mt-3 max-w-[36em] text-[0.92rem] text-ink-soft">
             Tell us their grade and what they're curious about, and we'll suggest the two
-            or three cohorts that fit — including how the timings work from your city.
+            or three cohorts that fit - including how the timings work from your city.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Link

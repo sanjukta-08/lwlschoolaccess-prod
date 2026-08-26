@@ -28,7 +28,7 @@ export function CohortAgenda({
   if (!entries.length) {
     return (
       <p className="py-6 text-center text-[0.9rem] text-ink-faint">
-        Nothing matches — try a different search or clear the filter.
+        Nothing matches - try a different search or clear the filter.
       </p>
     );
   }

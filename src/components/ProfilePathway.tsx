@@ -21,7 +21,7 @@ export function ProfilePathway() {
           </h2>
           <p className="mx-auto mt-2.5 max-w-[44em] text-[0.93rem] text-ink-soft">
             Universities look for a story, not a scatter of certificates. Here is the
-            four-step path we recommend — explore early, go deep in the middle years,
+            four-step path we recommend - explore early, go deep in the middle years,
             make it application-ready, then turn it into proof a university can verify.
           </p>
         </header>

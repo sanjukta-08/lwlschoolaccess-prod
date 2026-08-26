@@ -2,7 +2,7 @@ import birdAsset from "@/assets/lwl-bird.png.asset.json";
 
 type Tone = "gold" | "crimson" | "ink" | "paper";
 
-/** The LWL bird brand symbol — the shared signature mark. */
+/** The LWL bird brand symbol - the shared signature mark. */
 export function WingMark({
   size = 16,
   tone,
@@ -29,7 +29,7 @@ export function WingMark({
 }
 
 
-/** Wing centred in a hairline rule — the headline / section signature. */
+/** Wing centred in a hairline rule - the headline / section signature. */
 export function WingRule({
   className = "",
   tone = "gold",

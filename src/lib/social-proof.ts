@@ -1,7 +1,7 @@
 export const ABOUT = {
   kicker: "About Learn with Leaders",
   headline: "Ivy League mentors, live cohorts, and proof universities can check.",
-  body: "Learn with Leaders runs live, small-group programmes for students in Grades 5–12, mentored by student leaders from Harvard, Yale, MIT, Stanford and Princeton, and delivered with partners like Harvard Student Agencies, HPAIR and Harvard Model Congress. Every pathway is built backwards from an outcome — a capstone project, a published paper, a judged pitch, a moot court, a portfolio — so a child finishes with something real to show, not just another certificate.",
+  body: "Learn with Leaders runs live, small-group programmes for students in Grades 5–12, mentored by student leaders from Harvard, Yale, MIT, Stanford and Princeton, and delivered with partners like Harvard Student Agencies, HPAIR and Harvard Model Congress. Every pathway is built backwards from an outcome - a capstone project, a published paper, a judged pitch, a moot court, a portfolio - so a child finishes with something real to show, not just another certificate.",
   pillars: [
     {
       t: "Mentors, not lecturers",
@@ -13,7 +13,7 @@ export const ABOUT = {
     },
     {
       t: "Output over attendance",
-      d: "Research papers, ventures, prototypes, portfolios and competition results — the things admissions officers can actually verify.",
+      d: "Research papers, ventures, prototypes, portfolios and competition results - the things admissions officers can actually verify.",
     },
   ],
 };
@@ -27,7 +27,7 @@ export type PressItem = {
 };
 
 /**
- * Press coverage. Headlines and URLs marked `placeholder: true` are stand-ins —
+ * Press coverage. Headlines and URLs marked `placeholder: true` are stand-ins -
  * replace the `headline`, `date` and `url` with the real article details.
  */
 export const PRESS: PressItem[] = [
@@ -112,7 +112,7 @@ export const REACH = {
     },
     {
       t: "Open enrolment seats",
-      d: "Students join global cohorts individually — counsellors get progress and outcome summaries.",
+      d: "Students join global cohorts individually - counsellors get progress and outcome summaries.",
     },
   ],
 };
@@ -129,7 +129,7 @@ export type LinkedInStory = {
   reactions: number;
   comments: number;
   tag?: string;
-  /** Track keys this story belongs to — used to match it to programme pages. */
+  /** Track keys this story belongs to - used to match it to programme pages. */
   tags: TrackKey[];
   /** CDN url of the approved screenshot. Leave undefined to render a text card. */
   image?: string;
@@ -150,7 +150,7 @@ export type LinkedInStory = {
  * 1. Get written permission from the student/parent before publishing.
  * 2. Upload the screenshot via `lovable-assets` and paste its `url` into `image`,
  *    with a describing `imageAlt`. If a name must be hidden, blur it in the image
- *    before upload — we never blur in CSS.
+ *    before upload - we never blur in CSS.
  * 3. Set `placeholder: false` and `approved: true`, and add the live `postUrl`.
  *
  * Entries with `placeholder: true` are stand-in copy written by us, kept so the
@@ -163,7 +163,7 @@ export const LINKEDIN_POSTS: LinkedInStory[] = [
     initials: "AM",
     role: "Grade 12 · Future Doctors Fellowship alum",
     when: "2w",
-    text: "Wrapped up my Learn with Leaders research fellowship today. Eight weeks of mentoring from a Harvard student researcher, and I finished with a literature review on adolescent sleep and cognition — plus the confidence to email two professors about summer lab work. One replied.",
+    text: "Wrapped up my Learn with Leaders research fellowship today. Eight weeks of mentoring from a Harvard student researcher, and I finished with a literature review on adolescent sleep and cognition - plus the confidence to email two professors about summer lab work. One replied.",
     reactions: 412,
     comments: 38,
     tag: "Research",
@@ -205,7 +205,7 @@ export const LINKEDIN_POSTS: LinkedInStory[] = [
     initials: "YA",
     role: "Grade 10 · AI & Leadership",
     when: "2mo",
-    text: "Presented my first machine-learning model to a cohort of students from nine countries. Learned more in six weeks of live sessions than in a year of tutorials — mostly because someone reviewed my code and asked why every single time.",
+    text: "Presented my first machine-learning model to a cohort of students from nine countries. Learned more in six weeks of live sessions than in a year of tutorials - mostly because someone reviewed my code and asked why every single time.",
     reactions: 341,
     comments: 27,
     tag: "AI",
@@ -233,7 +233,7 @@ export const LINKEDIN_POSTS: LinkedInStory[] = [
     initials: "IT",
     role: "Grade 11 · Financial Literacy & Markets",
     when: "6w",
-    text: "Built and back-tested a small portfolio strategy as my capstone, then wrote it up for my school's investment club — which now actually exists, because of this. Add 'launch something' to your summer, not just 'attend something'.",
+    text: "Built and back-tested a small portfolio strategy as my capstone, then wrote it up for my school's investment club - which now actually exists, because of this. Add 'launch something' to your summer, not just 'attend something'.",
     reactions: 254,
     comments: 19,
     tag: "Finance",
@@ -275,7 +275,7 @@ export const LINKEDIN_POSTS: LinkedInStory[] = [
     initials: "AB",
     role: "Parent · Abu Dhabi",
     when: "2mo",
-    text: "Two things I did not expect: a mentor who actually replied between sessions, and a son who now talks about his project at dinner. He has a LinkedIn post of his own now — which is how I found this page.",
+    text: "Two things I did not expect: a mentor who actually replied between sessions, and a son who now talks about his project at dinner. He has a LinkedIn post of his own now - which is how I found this page.",
     reactions: 174,
     comments: 22,
     tag: "Parent",

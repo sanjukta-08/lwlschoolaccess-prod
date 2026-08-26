@@ -7,11 +7,11 @@ import sfls from "@/assets/partners/sfls.png.asset.json";
 import yira from "@/assets/partners/yira.png.asset.json";
 
 const LOGOS = [
-  { url: hpair.url, alt: "HPAIR — Harvard College Project for Asian and International Relations" },
+  { url: hpair.url, alt: "HPAIR - Harvard College Project for Asian and International Relations" },
   { url: hmc.url, alt: "Harvard Model Congress" },
   { url: hcus.url, alt: "Harvard College Union Society" },
   { url: hwcs.url, alt: "Harvard Women in Computer Science" },
-  { url: huso.url, alt: "HUSO — Harvard Undergraduate Science Olympiad" },
+  { url: huso.url, alt: "HUSO - Harvard Undergraduate Science Olympiad" },
   { url: sfls.url, alt: "Stanford Financial Literacy Society" },
   { url: yira.url, alt: "Yale International Relations Association" },
 ];

@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { LinkedInGlyph, StoryGallery } from "@/components/StoryGallery";
 import { APPROVED_STORIES } from "@/lib/social-proof";
 
-/** Home-page stories band. Loaded lazily — it sits well below the fold. */
+/** Home-page stories band. Loaded lazily - it sits well below the fold. */
 export default function StoryStrip() {
   return (
     <>
@@ -14,7 +14,7 @@ export default function StoryStrip() {
               What families post <em className="text-crimson-deep">afterwards</em>
             </h2>
             <p className="mt-1.5 max-w-[38em] text-[0.9rem] text-ink-soft">
-              Not testimonials we wrote — posts students and parents put on their own
+              Not testimonials we wrote - posts students and parents put on their own
               feeds. Tap one to read it in full.
             </p>
           </div>

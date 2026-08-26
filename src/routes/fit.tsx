@@ -8,11 +8,11 @@ export const Route = createFileRoute("/fit")({
   validateSearch: validateFitSearch,
   head: () => ({
     meta: [
-      { title: "Find the right programme for your child — Learn with Leaders" },
+      { title: "Find the right programme for your child - Learn with Leaders" },
       {
         name: "description",
         content:
-          "Answer five short questions and get three programmes matched to your child's grade, interests, time and timezone — with the outcome each one ends in.",
+          "Answer five short questions and get three programmes matched to your child's grade, interests, time and timezone - with the outcome each one ends in.",
       },
       { property: "og:title", content: "Find the right programme for your child" },
       {
@@ -47,7 +47,7 @@ function FitPage() {
             </h1>
             <p className="mt-3 max-w-[46em] text-[0.98rem] text-ink-soft">
               We read every upcoming cohort against your child's grade, interests, weekly time and
-              your timezone — then show three honest matches, what each one ends in, and what to
+              your timezone - then show three honest matches, what each one ends in, and what to
               consider instead.
             </p>
           </section>

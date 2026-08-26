@@ -34,12 +34,12 @@ import { slugOf } from "./programme-slug";
 
 const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
   fdf: {
-    lede: "An 8-week pre-med fellowship where your child solves 16+ real clinical cases with a dedicated Harvard student mentor — in a cohort of just 4 to 6 students, ending in a capstone project and Demo Day.",
+    lede: "An 8-week pre-med fellowship where your child solves 16+ real clinical cases with a dedicated Harvard student mentor - in a cohort of just 4 to 6 students, ending in a capstone project and Demo Day.",
     cohortSize: "4–6 students",
     doSteps: [
       {
         title: "Solve 16+ real clinical cases",
-        body: "Work through genuine medical scenarios the way clinicians do — symptoms, tests, differentials, decisions.",
+        body: "Work through genuine medical scenarios the way clinicians do - symptoms, tests, differentials, decisions.",
       },
       {
         title: "Debate medical ethics",
@@ -47,7 +47,7 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
       },
       {
         title: "Explore healthcare careers",
-        body: "See the paths beyond \u201Cdoctor\u201D — and what it actually takes to get into each one.",
+        body: "See the paths beyond \u201Cdoctor\u201D - and what it actually takes to get into each one.",
       },
       {
         title: "Build a capstone project",
@@ -55,7 +55,7 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
       },
       {
         title: "Present at Demo Day",
-        body: "Stand up and present the capstone — the confidence moment parents tell us about most.",
+        body: "Stand up and present the capstone - the confidence moment parents tell us about most.",
       },
     ],
     takeaways: [
@@ -66,11 +66,11 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
     ],
     mentorTitle: "A dedicated Harvard student mentor, not a rotating cast",
     mentorBody:
-      "Each cohort of 4–6 students works with one Harvard student mentor for all eight weeks — someone recently through the pre-med journey themselves, who learns your child's strengths and pushes them accordingly.",
+      "Each cohort of 4–6 students works with one Harvard student mentor for all eight weeks - someone recently through the pre-med journey themselves, who learns your child's strengths and pushes them accordingly.",
     faqs: [
       {
         q: "Is my child ready for this?",
-        a: "The fellowship is built for Grades 8–12 (ages 13–18) who are curious about medicine — no prior medical knowledge is needed. For Grades 5–8, the Junior Doctor Fellowship is the better on-ramp.",
+        a: "The fellowship is built for Grades 8–12 (ages 13–18) who are curious about medicine - no prior medical knowledge is needed. For Grades 5–8, the Junior Doctor Fellowship is the better on-ramp.",
       },
       {
         q: "How much time does it take each week?",
@@ -92,7 +92,7 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
       },
       {
         title: "Explore the body system by system",
-        body: "Heart, lungs, brain, immunity — taught through cases rather than textbook diagrams.",
+        body: "Heart, lungs, brain, immunity - taught through cases rather than textbook diagrams.",
       },
       {
         title: "Build a Casebook Portfolio",
@@ -100,7 +100,7 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
       },
       {
         title: "Present a capstone health project",
-        body: "A short, well-rehearsed Demo Day presentation — usually the first time they present to adults outside school.",
+        body: "A short, well-rehearsed Demo Day presentation - usually the first time they present to adults outside school.",
       },
     ],
     takeaways: [
@@ -111,7 +111,7 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
     ],
     mentorTitle: "Mentors who make medicine feel possible",
     mentorBody:
-      "Sessions are led by mentors from top universities who are close enough in age to be relatable and experienced enough to be trusted. The tone is curious and encouraging — never a lecture.",
+      "Sessions are led by mentors from top universities who are close enough in age to be relatable and experienced enough to be trusted. The tone is curious and encouraging - never a lecture.",
     faqs: [
       {
         q: "Is Grade 5 too young?",
@@ -128,11 +128,11 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
     ],
   },
   flf: {
-    lede: "A Harvard student-mentored pre-law fellowship: how US courts really work, FIRAC case analysis, LSAT fundamentals, AI & the Law — finishing with a live Moot Court simulation.",
+    lede: "A Harvard student-mentored pre-law fellowship: how US courts really work, FIRAC case analysis, LSAT fundamentals, AI & the Law - finishing with a live Moot Court simulation.",
     doSteps: [
       {
         title: "Read and break down real cases",
-        body: "Learn FIRAC — facts, issue, rule, analysis, conclusion — the method law students use from week one.",
+        body: "Learn FIRAC - facts, issue, rule, analysis, conclusion - the method law students use from week one.",
       },
       {
         title: "Write like a lawyer",
@@ -144,7 +144,7 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
       },
       {
         title: "Argue a live Moot Court",
-        body: "Stand up, present a case, take questions — the moment most students say made law feel real.",
+        body: "Stand up, present a case, take questions - the moment most students say made law feel real.",
       },
     ],
     takeaways: [
@@ -163,7 +163,7 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
       },
       {
         q: "Is this only useful for future lawyers?",
-        a: "The core skills — reading closely, arguing with evidence, writing tightly — transfer to any competitive university application.",
+        a: "The core skills - reading closely, arguing with evidence, writing tightly - transfer to any competitive university application.",
       },
       {
         q: "How is progress shared with parents?",
@@ -172,7 +172,7 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
     ],
   },
   finlit: {
-    lede: "An AI-native finance fellowship with HPAIR: investing, financial analysis, fraud detection and venture strategy — with a real project defended live before a mentor panel.",
+    lede: "An AI-native finance fellowship with HPAIR: investing, financial analysis, fraud detection and venture strategy - with a real project defended live before a mentor panel.",
     doSteps: [
       {
         title: "Learn how money actually works",
@@ -184,7 +184,7 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
       },
       {
         title: "Use AI as a research analyst",
-        body: "Practise AI-assisted research the way analysts now do — including spotting where the AI is wrong.",
+        body: "Practise AI-assisted research the way analysts now do - including spotting where the AI is wrong.",
       },
       {
         title: "Investigate financial fraud",
@@ -211,7 +211,7 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
       },
       {
         q: "Is this about picking stocks?",
-        a: "No. It is about reasoning with financial evidence — which is what universities and employers actually value.",
+        a: "No. It is about reasoning with financial evidence - which is what universities and employers actually value.",
       },
       {
         q: "How long is each session?",
@@ -220,7 +220,7 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
     ],
   },
   ail: {
-    lede: "Three build weekends where your child ships a real AI product using Claude, Cursor, Lovable and Perplexity — ending in a live Demo Day and a public Builder Profile.",
+    lede: "Three build weekends where your child ships a real AI product using Claude, Cursor, Lovable and Perplexity - ending in a live Demo Day and a public Builder Profile.",
     doSteps: [
       {
         title: "Find a problem worth solving",
@@ -228,7 +228,7 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
       },
       {
         title: "Build with professional AI tools",
-        body: "Claude, Lovable, Cursor and Perplexity used the way working builders use them — not toy exercises.",
+        body: "Claude, Lovable, Cursor and Perplexity used the way working builders use them - not toy exercises.",
       },
       {
         title: "Ship a working product",
@@ -251,11 +251,11 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
     faqs: [
       {
         q: "Does my child need to code?",
-        a: "No. The tools are AI-first, so students go from idea to working product without prior programming experience — though coders go deeper.",
+        a: "No. The tools are AI-first, so students go from idea to working product without prior programming experience - though coders go deeper.",
       },
       {
         q: "What will they have to show afterwards?",
-        a: "A live product link, a demo video and a public Builder Profile — all of which sit well in a university application.",
+        a: "A live product link, a demo video and a public Builder Profile - all of which sit well in a university application.",
       },
       {
         q: "Is a laptop required?",
@@ -264,7 +264,7 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
     ],
   },
   rpf: {
-    lede: "An eight-week mentored fellowship that takes your child from research question to a genuinely published paper — with publication guaranteed.",
+    lede: "An eight-week mentored fellowship that takes your child from research question to a genuinely published paper - with publication guaranteed.",
     doSteps: [
       {
         title: "Choose a defensible research question",
@@ -272,11 +272,11 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
       },
       {
         title: "Review the literature properly",
-        body: "Find, read and cite real sources — the skill most first-year undergraduates arrive without.",
+        body: "Find, read and cite real sources - the skill most first-year undergraduates arrive without.",
       },
       {
         title: "Write to journal structure",
-        body: "Abstract, method, findings, discussion — drafted and redrafted with a mentor line by line.",
+        body: "Abstract, method, findings, discussion - drafted and redrafted with a mentor line by line.",
       },
       {
         title: "Submit and publish",
@@ -299,7 +299,7 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
       },
       {
         q: "Which subjects are possible?",
-        a: "Sciences, social sciences, economics, public health and humanities are all supported — the question matters more than the field.",
+        a: "Sciences, social sciences, economics, public health and humanities are all supported - the question matters more than the field.",
       },
       {
         q: "How much writing is involved?",
@@ -335,10 +335,10 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
     ],
     mentorTitle: "Mentored through Harvard Student Agencies",
     mentorBody:
-      "Mentors hold students to a university standard of evidence over four months — long enough for the work to become substantial rather than a one-off project.",
+      "Mentors hold students to a university standard of evidence over four months - long enough for the work to become substantial rather than a one-off project.",
     faqs: [
       {
-        q: "Four months alongside school — is that realistic?",
+        q: "Four months alongside school - is that realistic?",
         a: "Yes. The pace is deliberately steady, with fortnightly checkpoints rather than intense sprints.",
       },
       {
@@ -352,7 +352,7 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
     ],
   },
   fef: {
-    lede: "Three weekends of building a venture from scratch — customer conversations, a working model, unit economics and a live pitch to mentors.",
+    lede: "Three weekends of building a venture from scratch - customer conversations, a working model, unit economics and a live pitch to mentors.",
     doSteps: [
       {
         title: "Test an idea with real people",
@@ -368,7 +368,7 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
       },
       {
         title: "Pitch to a mentor panel",
-        body: "Seven minutes, real questions, honest feedback — and a pitch deck to keep.",
+        body: "Seven minutes, real questions, honest feedback - and a pitch deck to keep.",
       },
     ],
     takeaways: [
@@ -379,7 +379,7 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
     ],
     mentorTitle: "Mentors who have actually built things",
     mentorBody:
-      "Sessions are led by student founders and operators, so feedback is practical rather than theoretical — what to cut, what to test next, what nobody will pay for.",
+      "Sessions are led by student founders and operators, so feedback is practical rather than theoretical - what to cut, what to test next, what nobody will pay for.",
     faqs: [
       {
         q: "Does my child need a business idea already?",
@@ -387,7 +387,7 @@ const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
       },
       {
         q: "Is this useful without starting a company?",
-        a: "Yes — the pitching, numbers and customer-research skills show up in interviews and applications immediately.",
+        a: "Yes - the pitching, numbers and customer-research skills show up in interviews and applications immediately.",
       },
       {
         q: "How are teams formed?",
@@ -454,7 +454,7 @@ const derivedSteps = (p: Programme): DoStep[] => {
     return [
       {
         title: "Get briefed by the organisation",
-        body: `A real brief from the ${p.name.replace(/ Corporate Internship| Internship/, "")} team — the same framing their own analysts get.`,
+        body: `A real brief from the ${p.name.replace(/ Corporate Internship| Internship/, "")} team - the same framing their own analysts get.`,
       },
       {
         title: "Do the work in a small team",
@@ -477,7 +477,7 @@ const derivedSteps = (p: Programme): DoStep[] => {
       },
       {
         title: "Pass a resolution",
-        body: "Work a draft through to a vote — and see whether the coalition holds.",
+        body: "Work a draft through to a vote - and see whether the coalition holds.",
       },
     ];
   return [
@@ -487,7 +487,7 @@ const derivedSteps = (p: Programme): DoStep[] => {
     },
     {
       title: "Work on something real each week",
-      body: `Across ${p.dur.toLowerCase()}, students produce work rather than notes — cases, drafts, builds or analyses depending on the ${kind}.`,
+      body: `Across ${p.dur.toLowerCase()}, students produce work rather than notes - cases, drafts, builds or analyses depending on the ${kind}.`,
     },
     {
       title: "Get individual mentor feedback",
@@ -503,7 +503,7 @@ const derivedSteps = (p: Programme): DoStep[] => {
 const derivedFaqs = (p: Programme): Faq[] => [
   {
     q: "Is my child the right age for this?",
-    a: `It is designed for Grades ${p.g[0]}–${p.g[1]}. No prior background is assumed — mentors calibrate to the cohort in the first session.`,
+    a: `It is designed for Grades ${p.g[0]}–${p.g[1]}. No prior background is assumed - mentors calibrate to the cohort in the first session.`,
   },
   {
     q: "How much time does it take?",
@@ -515,7 +515,7 @@ const derivedFaqs = (p: Programme): Faq[] => [
   },
   {
     q: "How do we pay and confirm a place?",
-    a: `Places are confirmed on the ${p.name} application page. Fees shown here are correct at time of publishing — always confirm on the programme page before paying.`,
+    a: `Places are confirmed on the ${p.name} application page. Fees shown here are correct at time of publishing - always confirm on the programme page before paying.`,
   },
 ];
 
@@ -534,7 +534,7 @@ const WRITTEN_OUTCOME: Record<string, Pick<ProgrammeDetail, "skills" | "project"
     ],
     project: {
       title: "A pre-med capstone, presented on Demo Day",
-      body: "Your child picks one of four project tracks and builds it across the fellowship with their Harvard student mentor — a clinical case study, a public-health brief, a research review or a health-tech concept — then defends it live on Demo Day.",
+      body: "Your child picks one of four project tracks and builds it across the fellowship with their Harvard student mentor - a clinical case study, a public-health brief, a research review or a health-tech concept - then defends it live on Demo Day.",
       proof: [
         "A written capstone your child can attach to applications",
         "A recorded Demo Day presentation for the portfolio",
@@ -553,7 +553,7 @@ const WRITTEN_OUTCOME: Record<string, Pick<ProgrammeDetail, "skills" | "project"
     ],
     project: {
       title: "A first medical case write-up",
-      body: "The fellowship closes with your child presenting a case they have worked through themselves — the first genuine piece of medical work in the profile, and the natural bridge into the Future Doctors Fellowship.",
+      body: "The fellowship closes with your child presenting a case they have worked through themselves - the first genuine piece of medical work in the profile, and the natural bridge into the Future Doctors Fellowship.",
       proof: [
         "A case write-up in your child's own words",
         "Named completion certificate",
@@ -572,7 +572,7 @@ const WRITTEN_OUTCOME: Record<string, Pick<ProgrammeDetail, "skills" | "project"
     ],
     project: {
       title: "A written brief plus a live moot",
-      body: "Your child prepares a legal brief on a real problem and then argues it in a live moot court against peers, with a mentor sitting as bench — the closest a school student gets to actual advocacy.",
+      body: "Your child prepares a legal brief on a real problem and then argues it in a live moot court against peers, with a mentor sitting as bench - the closest a school student gets to actual advocacy.",
       proof: [
         "A written legal brief for the portfolio",
         "A mooting record and judge feedback",
@@ -591,7 +591,7 @@ const WRITTEN_OUTCOME: Record<string, Pick<ProgrammeDetail, "skills" | "project"
     ],
     project: {
       title: "An investment case, defended live",
-      body: "The fellowship ends with your child building and presenting an investment or valuation case on a real company — the work an analyst does in week one of the job.",
+      body: "The fellowship ends with your child building and presenting an investment or valuation case on a real company - the work an analyst does in week one of the job.",
       proof: [
         "A valuation or investment deck",
         "A working spreadsheet model",
@@ -610,7 +610,7 @@ const WRITTEN_OUTCOME: Record<string, Pick<ProgrammeDetail, "skills" | "project"
     ],
     project: {
       title: "A working AI build, with a repo and a demo",
-      body: "Your child ships something that actually runs — an AI tool or agent solving a problem they chose — documented in a public repository with a short demo video anyone can open.",
+      body: "Your child ships something that actually runs - an AI tool or agent solving a problem they chose - documented in a public repository with a short demo video anyone can open.",
       proof: [
         "A working prototype with a public link or repo",
         "A two-minute demo video",
@@ -629,7 +629,7 @@ const WRITTEN_OUTCOME: Record<string, Pick<ProgrammeDetail, "skills" | "project"
     ],
     project: {
       title: "A publishable research paper",
-      body: "Your child writes a full paper with a research mentor, from question to submission, aimed at a student-appropriate journal or preprint venue — the strongest single line available to a school student.",
+      body: "Your child writes a full paper with a research mentor, from question to submission, aimed at a student-appropriate journal or preprint venue - the strongest single line available to a school student.",
       proof: [
         "A submitted or published paper with a permanent link",
         "A supervisor's letter or written reference",
@@ -647,7 +647,7 @@ const WRITTEN_OUTCOME: Record<string, Pick<ProgrammeDetail, "skills" | "project"
     ],
     project: {
       title: "An impact project with numbers attached",
-      body: "The fellowship pairs research with real-world action, so your child finishes with a documented initiative — what they did, who it affected and what changed, measured rather than described.",
+      body: "The fellowship pairs research with real-world action, so your child finishes with a documented initiative - what they did, who it affected and what changed, measured rather than described.",
       proof: [
         "A research-backed impact report",
         "Numbers you can quote on an application",
@@ -665,7 +665,7 @@ const WRITTEN_OUTCOME: Record<string, Pick<ProgrammeDetail, "skills" | "project"
     ],
     project: {
       title: "A launched MVP and an investor pitch",
-      body: "Your child takes one idea from interview to validated MVP with real users, then delivers a live investor pitch — a venture that exists rather than a business plan in a drawer.",
+      body: "Your child takes one idea from interview to validated MVP with real users, then delivers a live investor pitch - a venture that exists rather than a business plan in a drawer.",
       proof: [
         "A live product or service link",
         "First users, sign-ups or revenue",
@@ -701,7 +701,7 @@ const WRITTEN_OUTCOME: Record<string, Pick<ProgrammeDetail, "skills" | "project"
     ],
     project: {
       title: "A recorded final debate",
-      body: "The fellowship closes with a full adjudicated debate, recorded, so your child leaves with footage of themselves arguing well — the most useful thing for interview practice later.",
+      body: "The fellowship closes with a full adjudicated debate, recorded, so your child leaves with footage of themselves arguing well - the most useful thing for interview practice later.",
       proof: [
         "Recorded speeches for the portfolio",
         "Adjudicator feedback in writing",
@@ -719,7 +719,7 @@ const WRITTEN_OUTCOME: Record<string, Pick<ProgrammeDetail, "skills" | "project"
     ],
     project: {
       title: "A position paper and a passed resolution",
-      body: "Your child represents a country in committee, writes the position paper, builds alliances in caucus and works a resolution through to a vote — the whole diplomatic cycle in one conference.",
+      body: "Your child represents a country in committee, writes the position paper, builds alliances in caucus and works a resolution through to a vote - the whole diplomatic cycle in one conference.",
       proof: [
         "A submitted position paper",
         "Resolution drafts your child helped write",
@@ -767,7 +767,7 @@ export const detailFor = (p: Programme): ProgrammeDetail => {
     mentorTitle: w.mentorTitle ?? "Live mentors, every single session",
     mentorBody:
       w.mentorBody ??
-      `${p.name} is taught live by mentors from leading universities and partner organisations — never pre-recorded. Small cohorts mean your child is spoken to by name, not counted in an audience.`,
+      `${p.name} is taught live by mentors from leading universities and partner organisations - never pre-recorded. Small cohorts mean your child is spoken to by name, not counted in an audience.`,
     faqs: w.faqs ?? derivedFaqs(p),
   };
 };

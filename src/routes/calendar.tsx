@@ -60,7 +60,7 @@ function CalendarPage() {
         <SiteHeader />
         <section className="mx-auto max-w-[1000px] px-5 pt-4 pb-8 text-center">
           <h1 className="font-serif text-[clamp(1.7rem,4.4vw,2.5rem)] leading-[1.12] font-medium">
-            The <em className="text-crimson-deep">full calendar</em> — July 2026 to April
+            The <em className="text-crimson-deep">full calendar</em> - July 2026 to April
             2027
           </h1>
           <p className="mx-auto mt-2.5 max-w-[42em] text-[0.92rem] text-ink-soft">
@@ -94,7 +94,7 @@ function CalendarPage() {
         <SavedStrip />
         {!entries.length ? (
           <p className="py-14 text-center text-[0.92rem] text-ink-faint">
-            Nothing matches those filters — try clearing one, or search for something
+            Nothing matches those filters - try clearing one, or search for something
             broader.
           </p>
         ) : byMonth ? (

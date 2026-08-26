@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useShortlist } from "@/lib/shortlist";
 
-/** Header counter — makes the saved list visible on every page. */
+/** Header counter - makes the saved list visible on every page. */
 export function ShortlistBadge({ className = "" }: { className?: string }) {
   const { items, ready } = useShortlist();
   const n = ready ? items.length : 0;

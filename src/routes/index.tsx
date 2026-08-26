@@ -20,7 +20,7 @@ import { PartnerLogos } from "@/components/PartnerLogos";
 import { WingMark, WingRule } from "@/components/WingMark";
 import { SectionHeading } from "@/components/SectionHeading";
 
-const TITLE = "Learn with Leaders — Harvard & Yale-mentored programmes, Grades 5–12";
+const TITLE = "Learn with Leaders - Harvard & Yale-mentored programmes, Grades 5–12";
 const DESC =
   "Live, Ivy League student-mentored fellowships, competitions, internships and conferences for students in Grades 5–12, from anywhere in the world.";
 
@@ -132,7 +132,7 @@ function HomePage() {
         <div className="mx-auto max-w-[1100px]">
           <SectionHeading
             eyebrow="Where to begin"
-            sub="Every interest has a route — from a first taste to flagship fellowships. Tap one to see what fits your child."
+            sub="Every interest has a route - from a first taste to flagship fellowships. Tap one to see what fits your child."
           >
             Pick a <em className="text-crimson-deep">pathway</em>
           </SectionHeading>
@@ -171,7 +171,7 @@ function HomePage() {
         <div className="mx-auto max-w-[1100px]">
           <SectionHeading
             eyebrow="Signature cohorts"
-            sub="Our deepest experiences — small cohorts, dedicated mentors, capstones and Demo Days."
+            sub="Our deepest experiences - small cohorts, dedicated mentors, capstones and Demo Days."
           >
             The <em className="text-crimson-deep">flagship</em> fellowships
           </SectionHeading>
@@ -282,7 +282,7 @@ function HomePage() {
             </h3>
             <p className="mt-1.5 max-w-[34em] text-[0.9rem] text-ink-soft">
               We partner with schools across the UAE, India, Thailand, South Korea and
-              beyond — from single cohorts to co-branded pathways.
+              beyond - from single cohorts to co-branded pathways.
             </p>
           </div>
           <a
@@ -301,7 +301,7 @@ function HomePage() {
           Ready to find <em className="text-gold">their</em> programme?
         </h2>
         <p className="mx-auto mt-3 mb-6 max-w-[34em] text-[0.95rem] text-paper/70">
-          Thirty seconds with the finder, or a short conversation with an advisor —
+          Thirty seconds with the finder, or a short conversation with an advisor -
           whichever suits you.
         </p>
         <div className="flex flex-wrap justify-center gap-3.5">

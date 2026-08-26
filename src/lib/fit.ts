@@ -144,7 +144,7 @@ export function fitCandidates(a: FitAnswers): FitCandidate[] {
     .sort((x, y) => y.score - x.score || x.next.d.localeCompare(y.next.d));
 }
 
-/** Compact catalogue rows for the model — ids only, so it cannot invent one. */
+/** Compact catalogue rows for the model - ids only, so it cannot invent one. */
 export const fitPayload = (cands: FitCandidate[]) =>
   cands.slice(0, 14).map(({ p, next }) => ({
     id: p.id,
@@ -175,7 +175,7 @@ export type FitResult = {
   source: "ai" | "rules";
 };
 
-/** Used when the model is unavailable — same shape, honest copy. */
+/** Used when the model is unavailable - same shape, honest copy. */
 export function rulesResult(a: FitAnswers, cands: FitCandidate[]): FitResult {
   const top = cands.slice(0, 3);
   const goal = GOAL_OPTIONS.find((g) => g.value === a.goal)?.label.toLowerCase() ?? "their goals";

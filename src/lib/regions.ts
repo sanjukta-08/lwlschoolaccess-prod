@@ -46,7 +46,7 @@ export const localStartHour = (p: Programme, region: RegionKey): number | null =
 export const fitsRegion = (p: Programme, region: string): boolean => {
   if (region === "all" || !(region in REGIONS)) return true;
   const h = localStartHour(p, region as RegionKey);
-  if (h === null) return true; // self-paced / unscheduled — joinable anywhere
+  if (h === null) return true; // self-paced / unscheduled - joinable anywhere
   return h >= 7 && h <= 22;
 };
 
