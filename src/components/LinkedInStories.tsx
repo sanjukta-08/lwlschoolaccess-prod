@@ -3,7 +3,7 @@ import { LinkedInGlyph, StoryGallery } from "@/components/StoryGallery";
 
 export function LinkedInStories() {
   return (
-    <section id="linkedin" className="scroll-mt-20 bg-wash px-5 py-14">
+    <section id="linkedin" className="scroll-mt-20 bg-wash py-14">
       <div className="page-shell">
         <div className="flex flex-col items-center text-center">
           <LinkedInGlyph />

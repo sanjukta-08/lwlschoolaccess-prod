@@ -7,7 +7,7 @@ const ORDER: TypeKey[] = ["fel", "prog", "comp"];
 
 export function ProfileTypeBlocks() {
   return (
-    <section id="by-type" className="scroll-mt-24 px-5 py-14">
+    <section id="by-type" className="scroll-mt-24 py-14">
       <div className="page-shell">
         <header className="mb-8 max-w-[46em]">
           <span className="mono-label text-crimson">Programme by programme</span>

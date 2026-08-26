@@ -78,7 +78,7 @@ export function HowItWorks() {
 
 export function WhyLwl() {
   return (
-    <section id="why" className="scroll-mt-20 bg-wash px-5 py-10">
+    <section id="why" className="scroll-mt-20 bg-wash py-10">
       <div className="page-shell">
         <SectionHeading
           sub="The details parents ask about most, built into every programme we run."
