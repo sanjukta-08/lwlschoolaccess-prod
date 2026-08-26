@@ -86,27 +86,18 @@ export function ProgrammeCard({
 
         {/* Brand logo */}
         {logo ? (
-          <div
-            className={`hidden md:flex md:flex-none md:items-center md:justify-center ${
-              p.tracks.includes("law") || p.tracks.includes("deb")
-                ? "md:h-[3.5rem] md:w-[4rem]"
-                : "md:w-[7rem]"
-            }`}
-          >
+          <div className="hidden md:flex md:w-[7rem] md:flex-none md:items-center md:justify-center">
             <img
               src={logo.src}
               alt={logo.alt}
               loading="lazy"
-              className={`${
-                p.tracks.includes("law") || p.tracks.includes("deb")
-                  ? "h-full w-full object-cover object-left"
-                  : "max-h-11 max-w-[6.75rem] object-contain"
-              }`}
+              className="max-h-11 max-w-[6.75rem] object-contain"
             />
           </div>
         ) : (
           <div className="hidden md:block md:w-[7rem] md:flex-none" />
         )}
+
 
         {/* Schedule */}
         <div className="flex flex-col gap-0.5 sm:w-[10.5rem] sm:flex-none sm:items-end sm:text-right">
