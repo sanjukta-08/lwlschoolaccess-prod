@@ -178,7 +178,7 @@ function QuoteMarquee({
             key={`${item.name}-${index}`}
             q={item}
             onOpen={() => onOpen(item)}
-            accent={index}
+            accent={accentForQuote(item)}
             width="w-full"
           />
         ))}
