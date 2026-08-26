@@ -6,8 +6,6 @@ import {
   TYPE_ORDER,
   DURATION_ORDER,
   DURATIONS,
-  MENTORS,
-  MENTOR_ORDER,
   cohortGrades,
   durationKey,
   isPast,
@@ -15,7 +13,6 @@ import {
   type Cohort,
   type Programme,
   type DurationKey,
-  type MentorKey,
   type TrackKey,
   type TypeKey,
 } from "./programmes";
