@@ -87,6 +87,15 @@ function QuoteCard({
           ”
         </span>
       </footer>
+
+      {/* Brand bird watermark */}
+      <img
+        src={birdAsset.url}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="pointer-events-none absolute left-4 bottom-4 z-0 w-24 h-24 object-contain opacity-[0.07] select-none"
+      />
     </button>
   );
 }
