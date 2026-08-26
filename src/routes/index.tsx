@@ -264,19 +264,18 @@ function HomePage() {
                       G{g1}–{g2}
                     </span>
                   </span>
-                  <span className="flex flex-1 flex-col items-center gap-4 px-4.5 py-6 text-center">
+                  <span className="flex flex-1 flex-col items-center gap-3 px-4.5 py-5 text-center">
                     {logo ? (
                       <img
                         src={logo.src}
                         alt={logo.alt}
                         loading="lazy"
-                        className="h-11 w-full object-contain mix-blend-multiply"
+                        className="h-10 w-full object-contain mix-blend-multiply"
                       />
-                    ) : (
-                      <span className="font-serif text-[1.15rem] leading-tight font-semibold">
-                        {p.name}
-                      </span>
-                    )}
+                    ) : null}
+                    <span className="font-serif text-[1.05rem] leading-tight font-semibold">
+                      {p.name}
+                    </span>
                     <span className="line-clamp-2 text-[0.83rem] text-ink-soft">
                       {p.tag}
                     </span>
