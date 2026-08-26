@@ -30,19 +30,24 @@ function QuoteCard({
       type="button"
       onClick={onOpen}
       aria-label={`Read the full note from ${q.name}`}
-      className={`flex h-full flex-col rounded-2xl border border-line bg-paper p-5 text-left shadow-soft transition-transform hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none ${width}`}
+      className={`group flex min-h-[15.5rem] flex-col self-stretch rounded-2xl border border-line bg-paper p-5 text-left shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold/50 focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none ${width}`}
     >
-      <span
-        aria-hidden
-        className="font-serif text-[1.6rem] leading-none text-gold"
-      >
-        “
+      <span className="flex items-center justify-between gap-2">
+        <span
+          aria-hidden
+          className="font-serif text-[1.6rem] leading-none text-gold"
+        >
+          “
+        </span>
+        <span className="truncate rounded-full border border-gold/40 bg-gold/10 px-2.5 py-1 text-[0.68rem] font-semibold tracking-wide text-ink-soft">
+          {q.programme}
+        </span>
       </span>
-      <p className="mt-1 line-clamp-6 flex-1 text-[0.9rem] leading-relaxed text-ink-soft">
+      <p className="mt-2 line-clamp-5 flex-1 text-[0.9rem] leading-relaxed text-ink-soft">
         {q.quote}
       </p>
-      <footer className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-line pt-3">
-        <span className="flex items-center gap-2.5">
+      <footer className="mt-4 flex items-center justify-between gap-2 border-t border-line pt-3">
+        <span className="flex min-w-0 items-center gap-2.5">
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-crimson/10 font-serif text-[0.78rem] font-bold text-crimson-deep">
             {initialsOf(q.name)}
           </span>
@@ -53,13 +58,14 @@ function QuoteCard({
             <span className="block text-[0.74rem] text-ink-faint">{q.role}</span>
           </span>
         </span>
-        <span className="shrink-0 rounded-full border border-gold/40 bg-gold/10 px-2.5 py-1 text-[0.7rem] font-semibold text-ink-soft">
-          {q.programme}
+        <span className="mono-label shrink-0 text-[0.62rem] text-ink-faint opacity-0 transition-opacity group-hover:opacity-100">
+          Read →
         </span>
       </footer>
     </button>
   );
 }
+
 
 function QuoteLightbox({
   quote,
