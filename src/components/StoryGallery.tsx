@@ -115,9 +115,9 @@ function StoryTile({
         </p>
       )}
 
-      <div className="mt-3 flex flex-wrap items-center gap-2">
+      <div className="mt-3.5 mb-4 flex flex-wrap items-center gap-2">
         {story.tag ? (
-          <span className="rounded-full border border-line bg-wash px-2.5 py-1 text-[0.72rem] font-semibold text-ink-soft">
+          <span className="rounded-full bg-crimson/8 px-2.5 py-1 text-[0.72rem] font-semibold text-crimson-deep">
             #{story.tag}
           </span>
         ) : null}
@@ -126,9 +126,13 @@ function StoryTile({
         </span>
       </div>
 
-      <footer className="mt-auto flex items-center justify-between gap-3 border-t border-line pt-3.5 text-[0.76rem] text-ink-faint">
-        <Reactions story={story} />
-        <span>{story.comments} comments</span>
+      <footer className="mt-auto flex flex-col gap-2.5 border-t border-line pt-3.5 text-[0.78rem] text-ink-faint">
+        <ReactionStack story={story} />
+        <span className="flex items-center gap-1.5">
+          <Reactions story={story} />
+          <span aria-hidden>·</span>
+          <span className="font-semibold text-ink">{story.comments}</span> comments
+        </span>
       </footer>
     </button>
   );
