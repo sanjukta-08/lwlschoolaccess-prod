@@ -70,6 +70,30 @@ export default function StoryStrip() {
         </div>
       ) : null}
 
+      <div className="mt-16">
+        <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium leading-none">
+          What learners said about{" "}
+          <em className="text-crimson-deep">each programme</em>
+        </h2>
+        <div className="mt-1 flex flex-wrap items-center justify-between gap-4">
+          <p className="max-w-[64em] text-[0.92rem] leading-relaxed text-ink-soft">
+            Unedited answers from end-of-programme feedback forms, labelled with the
+            cohort they came from. Tap any card to read the full note.
+          </p>
+          <SeeAll label="Read all learner feedback" />
+        </div>
+        <div className="mt-4">
+          <LearnerQuotes quotes={ONLINE_QUOTES} duration={80} />
+        </div>
+        <p className="mt-6 text-[0.78rem] font-semibold tracking-[0.14em] text-ink-faint uppercase">
+          Summer Camp 2026
+        </p>
+        <div className="mt-2">
+          <LearnerQuotes quotes={CAMP_QUOTES} duration={70} />
+        </div>
+      </div>
+
+
       {VIDEO_TESTIMONIALS.length > 0 ? (
         <div className="mt-16">
           <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium leading-none">
