@@ -2,8 +2,11 @@ import fd from "@/assets/logo-future-doctors.png.asset.json";
 import finlit from "@/assets/logo-finlit.png.asset.json";
 import luther from "@/assets/logo-sir-luther.png.asset.json";
 import onward from "@/assets/logo-onward.png.asset.json";
+import onwardWord from "@/assets/logo-onward-word.png.asset.json";
 import lawyers from "@/assets/logo-future-lawyers.png.asset.json";
 import type { TrackKey } from "@/lib/programmes";
+
+const ONWARD_WORD = { src: onwardWord.url, alt: "ONWARD" };
 
 export const PROGRAMME_LOGOS: Record<string, { src: string; alt: string }> = {
   fdf: { src: fd.url, alt: "Future Doctors" },
@@ -13,18 +16,18 @@ export const PROGRAMME_LOGOS: Record<string, { src: string; alt: string }> = {
   flf: { src: lawyers.url, alt: "Future Lawyers Fellowship" },
 };
 
-// Pathway fallbacks: specific logos for medicine/finance/law/research/AI;
-// ONWARD logo is the default for every other pathway.
+// Pathway fallbacks: specific logos for medicine/finance/law/research; the AI
+// Leaders fellowship keeps its own lockup, everything else uses the ONWARD wordmark.
 export const TRACK_LOGOS: Partial<Record<TrackKey, { src: string; alt: string }>> = {
   med: { src: fd.url, alt: "Future Doctors" },
   fin: { src: finlit.url, alt: "FINLiT AI" },
   law: { src: lawyers.url, alt: "Future Lawyers Fellowship" },
   deb: { src: lawyers.url, alt: "Future Lawyers Fellowship" },
   res: { src: luther.url, alt: "Sir Luther Center for Research & Innovation" },
-  ai: { src: onward.url, alt: "ONWARD - Future AI Leaders Fellowship" },
-  ent: { src: onward.url, alt: "ONWARD - Future AI Leaders Fellowship" },
-  lead: { src: onward.url, alt: "ONWARD - Future AI Leaders Fellowship" },
-  sat: { src: onward.url, alt: "ONWARD - Future AI Leaders Fellowship" },
+  ai: ONWARD_WORD,
+  ent: ONWARD_WORD,
+  lead: ONWARD_WORD,
+  sat: ONWARD_WORD,
 };
 
 export const programmeLogo = (id: string) => PROGRAMME_LOGOS[id];
@@ -32,4 +35,5 @@ export const programmeLogo = (id: string) => PROGRAMME_LOGOS[id];
 export const logoFor = (id: string, tracks: TrackKey[]) =>
   PROGRAMME_LOGOS[id] ??
   tracks.map((t) => TRACK_LOGOS[t]).find(Boolean) ??
-  { src: onward.url, alt: "ONWARD - Future AI Leaders Fellowship" };
+  ONWARD_WORD;
+
