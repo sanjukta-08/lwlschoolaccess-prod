@@ -1,4 +1,3 @@
-import ZoomBadge from "@/components/ZoomBadge";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { DEFAULT_FIT } from "@/lib/fit";
 import { SiteHeader } from "@/components/SiteHeader";
