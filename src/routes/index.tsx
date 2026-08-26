@@ -94,15 +94,15 @@ function HomePage() {
             className="h-full w-full object-contain object-left"
           />
         </div>
-        <div className="pointer-events-none absolute right-[-7vw] bottom-[-2.5rem] hidden w-[min(52rem,58vw)] opacity-[0.72] sm:block">
+        <div className="pointer-events-none absolute right-0 bottom-0 hidden w-[min(38rem,44vw)] translate-x-[8%] translate-y-[8%] sm:block">
           <img
             src={worldMapAsset.url}
             alt=""
             aria-hidden="true"
-            className="h-full w-full object-contain object-right-bottom mix-blend-multiply"
+            className="h-full w-full object-contain object-right-bottom opacity-80"
           />
         </div>
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-paper/75 via-paper/45 via-50% to-paper/20" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-paper via-paper/85 via-55% to-paper/45" />
 
         <div className="relative">
           <SiteHeader />
