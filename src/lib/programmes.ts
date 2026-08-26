@@ -18,6 +18,14 @@ export type Cohort = {
   d: string;
   g?: [number, number];
   fee?: Fee;
+  /** Batch / cohort label as published in the master calendar. */
+  label?: string;
+  /** Session timing for this cohort when it differs from the programme default. */
+  time?: string;
+  /** Eligibility line for this cohort when it differs from the programme default. */
+  elig?: string;
+  flyer?: string;
+  brochure?: string;
 };
 
 export type Programme = {
