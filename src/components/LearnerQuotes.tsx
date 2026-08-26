@@ -143,7 +143,7 @@ function QuoteMarquee({
       onBlurCapture={() => setPaused(false)}
     >
       <div
-        className="flex w-max items-stretch gap-5 will-change-transform"
+        className="flex w-max items-stretch gap-6 py-2 will-change-transform"
         style={{
           animation: `learner-quote-scroll ${duration}s linear infinite`,
           animationPlayState: paused ? "paused" : "running",
@@ -154,10 +154,12 @@ function QuoteMarquee({
             key={`${q.name}-${i}`}
             q={q}
             onOpen={() => onOpen(q)}
+            accent={i}
             width="w-[320px] shrink-0 sm:w-[380px]"
           />
         ))}
       </div>
+
       <style>{`
         @keyframes learner-quote-scroll {
           from { transform: translateX(0); }
