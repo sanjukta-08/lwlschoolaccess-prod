@@ -11,6 +11,9 @@ import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { SkillMatrix } from "@/components/SkillMatrix";
 import { LinkedInGlyph, StoryGallery } from "@/components/StoryGallery";
 import { VideoTestimonials } from "@/components/VideoTestimonials";
+import { LearnerQuotes } from "@/components/LearnerQuotes";
+import { quotesForProgramme } from "@/lib/learner-testimonials";
+
 import { storiesForTracks, videosForTracks } from "@/lib/social-proof";
 
 import { DEFAULT_SEARCH } from "@/lib/finder";
@@ -269,9 +272,24 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         <div className="mt-6">
           <StoryGallery stories={storiesForTracks(p.tracks, 3)} />
         </div>
+        {quotesForProgramme(p.id).length ? (
+          <div className="mt-8">
+            <h3 className="font-serif text-[1.05rem] font-medium">
+              What learners wrote in their feedback forms
+            </h3>
+            <div className="mt-3">
+              <LearnerQuotes
+                quotes={quotesForProgramme(p.id)}
+                variant="grid"
+                limit={6}
+              />
+            </div>
+          </div>
+        ) : null}
         <div className="mt-6">
           <VideoTestimonials videos={videosForTracks(p.tracks, 4)} />
         </div>
+
 
         <p className="mt-5">
           <Link
