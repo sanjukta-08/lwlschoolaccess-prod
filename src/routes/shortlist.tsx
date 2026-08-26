@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 
-import { SiteHeader } from "@/components/SiteHeader";
+import { PageHero } from "@/components/PageHero";
 import { AddToCalendar } from "@/components/AddToCalendar";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { slugOf } from "@/lib/programme-slug";
