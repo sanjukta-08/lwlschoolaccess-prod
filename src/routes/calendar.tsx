@@ -2,10 +2,12 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { stripSearchParams } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
+import ZoomBadge from "@/components/ZoomBadge";
+import birdAsset from "@/assets/lwl-bird-black.webp.asset.json";
 import { CalendarControls } from "@/components/CalendarControls";
 import { MonthSections, TypeSections } from "@/components/CohortRows";
 import { SavedStrip } from "@/components/SavedStrip";
-import { TRACKS, isSoon } from "@/lib/programmes";
+import { PROGRAMMES, TRACKS, isSoon } from "@/lib/programmes";
 import {
   DEFAULT_SEARCH,
   getCohortEntries,
