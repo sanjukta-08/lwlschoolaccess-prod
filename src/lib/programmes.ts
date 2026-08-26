@@ -489,9 +489,24 @@ export const PROGRAMMES: Programme[] = [
     site: "https://joinonwards.com/changemakers",
     apply: "https://joinonwards.com/changemakers/apply",
     cohorts: [
-      { d: "2026-09-12" },
-      { d: "2026-12-23" },
-      { d: "2027-04-24" },
+      {
+        d: "2026-09-12",
+        label: "Batch 1",
+        flyer: dl("1_J4tcjOHVtnXdho58VPNgwVJeLDhL7wR"),
+        brochure: dl("16BvtHd77iixG3IRpVvZjwZS1rStWAt1T"),
+      },
+      {
+        d: "2026-12-23",
+        label: "Batch 2",
+        flyer: dl("1tPvdnlqk0JnJATxR-neslQY1Rh-QVLxe"),
+        brochure: dl("15x4Svkk2yRSEyXuE7MsaBJNV52hfcc1H"),
+      },
+      {
+        d: "2027-04-24",
+        label: "Batch 3",
+        flyer: dl("10cAuzNror6-lZ3iRY2VoZMhD88aYd_6-"),
+        brochure: dl("1Go495Xw97zLtcBZd3uaruNN-pbEbvMV1"),
+      },
     ],
   },
   {
