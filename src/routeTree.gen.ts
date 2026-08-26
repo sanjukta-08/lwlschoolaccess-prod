@@ -18,6 +18,7 @@ import { Route as FitRouteImport } from './routes/fit'
 import { Route as ProfileBuildingRouteImport } from './routes/profile-building'
 import { Route as ShortlistRouteImport } from './routes/shortlist'
 import { Route as StoriesRouteImport } from './routes/stories'
+import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as ProgrammesSlugRouteImport } from './routes/programmes.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -65,6 +66,11 @@ const StoriesRoute = StoriesRouteImport.update({
   path: '/stories',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TestimonialsRoute = TestimonialsRouteImport.update({
+  id: '/testimonials',
+  path: '/testimonials',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProgrammesSlugRoute = ProgrammesSlugRouteImport.update({
   id: '/programmes/$slug',
   path: '/programmes/$slug',
@@ -81,6 +87,7 @@ export interface FileRoutesByFullPath {
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
+  '/testimonials': typeof TestimonialsRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
 }
 export interface FileRoutesByTo {
@@ -93,6 +100,7 @@ export interface FileRoutesByTo {
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
+  '/testimonials': typeof TestimonialsRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
 }
 export interface FileRoutesById {
@@ -106,6 +114,7 @@ export interface FileRoutesById {
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
+  '/testimonials': typeof TestimonialsRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
 }
 export interface FileRouteTypes {
@@ -120,6 +129,7 @@ export interface FileRouteTypes {
     | '/profile-building'
     | '/shortlist'
     | '/stories'
+    | '/testimonials'
     | '/programmes/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -132,6 +142,7 @@ export interface FileRouteTypes {
     | '/profile-building'
     | '/shortlist'
     | '/stories'
+    | '/testimonials'
     | '/programmes/$slug'
   id:
     | '__root__'
@@ -144,6 +155,7 @@ export interface FileRouteTypes {
     | '/profile-building'
     | '/shortlist'
     | '/stories'
+    | '/testimonials'
     | '/programmes/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -157,6 +169,7 @@ export interface RootRouteChildren {
   ProfileBuildingRoute: typeof ProfileBuildingRoute
   ShortlistRoute: typeof ShortlistRoute
   StoriesRoute: typeof StoriesRoute
+  TestimonialsRoute: typeof TestimonialsRoute
   ProgrammesSlugRoute: typeof ProgrammesSlugRoute
 }
 
@@ -225,6 +238,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StoriesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/testimonials': {
+      id: '/testimonials'
+      path: '/testimonials'
+      fullPath: '/testimonials'
+      preLoaderRoute: typeof TestimonialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/programmes/$slug': {
       id: '/programmes/$slug'
       path: '/programmes/$slug'
@@ -245,6 +265,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileBuildingRoute: ProfileBuildingRoute,
   ShortlistRoute: ShortlistRoute,
   StoriesRoute: StoriesRoute,
+  TestimonialsRoute: TestimonialsRoute,
   ProgrammesSlugRoute: ProgrammesSlugRoute,
 }
 export const routeTree = rootRouteImport
