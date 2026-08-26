@@ -1,4 +1,3 @@
-import ZoomBadge from "@/components/ZoomBadge";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { DEFAULT_FIT } from "@/lib/fit";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -66,16 +65,13 @@ function HomePage() {
               <WingMark size={13} />
               Online programmes for Grades 5–12 · 2026–27
             </span>
-            <h1 className="mx-auto font-serif text-[clamp(2.2rem,6vw,3.9rem)] leading-[1.06] font-medium tracking-tight text-balance">
+            <h1 className="mx-auto font-serif text-[clamp(2.5rem,6.8vw,4.4rem)] leading-[1.05] font-medium tracking-tight text-balance">
               <span className="block">Where ambitious students</span>
               <em className="mt-1 block text-crimson-deep">learn with leaders</em>
             </h1>
             <WingRule className="mt-6" />
-            <div className="mt-5 flex justify-center">
-              <ZoomBadge size="pill" label="Live on Zoom · every session" />
-            </div>
 
-            <p className="mx-auto mt-6 max-w-[38em] text-[clamp(1rem,2.4vw,1.12rem)] text-ink-soft">
+            <p className="mx-auto mt-6 max-w-[48em] text-[clamp(1rem,2.4vw,1.14rem)] text-ink-soft">
               Live fellowships, competitions, corporate internships and MUN conferences,
               mentored by students from Harvard, Yale, MIT, Stanford and Princeton —
               joined by families in the Gulf, India, Southeast Asia and beyond.
