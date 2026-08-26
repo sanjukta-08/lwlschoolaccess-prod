@@ -323,7 +323,7 @@ function HomePage() {
       </section>
 
       <section className="bg-wash px-5 py-11">
-        <div className="mx-auto max-w-[1100px]">
+        <div className="mx-auto max-w-[1280px]">
           <Suspense fallback={<div className="h-[360px]" />}>
             <StoryStrip />
           </Suspense>
