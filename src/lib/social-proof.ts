@@ -368,7 +368,11 @@ export type VideoTestimonial = {
   name: string;
   cohort: string;
   /** Google Drive file id - embedded through the Drive preview player. */
-  fileId: string;
+  fileId?: string;
+  /** Self-hosted WebM clip served from the CDN (preferred over fileId). */
+  src?: string;
+  /** Poster frame for self-hosted clips. */
+  poster?: string;
   tags: TrackKey[];
 };
 
@@ -378,6 +382,31 @@ export type VideoTestimonial = {
  * until the sharing setting is changed to "anyone with the link".
  */
 export const VIDEO_TESTIMONIALS: VideoTestimonial[] = [
+  {
+    id: "kerryn",
+    name: "Kerryn Chalmers",
+    cohort: "Global Goals Camp, Geneva",
+    src: genevaClip1.url,
+    poster: genevaPoster1.url,
+    tags: ["lead", "deb"],
+  },
+  {
+    id: "hamza",
+    name: "Hamza Monshar",
+    cohort: "Global Goals Camp, Geneva",
+    src: genevaClip2.url,
+    poster: genevaPoster2.url,
+    tags: ["lead", "deb"],
+  },
+  {
+    id: "geneva-learner",
+    name: "Global Goals Camp learner",
+    cohort: "Global Goals Camp, Geneva",
+    src: genevaClip3.url,
+    poster: genevaPoster3.url,
+    tags: ["lead", "res"],
+  },
+
   {
     id: "efrain",
     name: "Efrain Calles-Arnaiz",
