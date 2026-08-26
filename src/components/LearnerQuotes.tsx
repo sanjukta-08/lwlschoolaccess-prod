@@ -120,7 +120,15 @@ function QuoteLightbox({
   );
 }
 
-/** Page-by-page quote carousel so feedback cards never appear chopped at the edges. */
+function windowOf<T>(items: T[], start: number, count: number) {
+  if (items.length === 0) return [] as { item: T; index: number }[];
+  return Array.from({ length: Math.min(count, items.length) }, (_, k) => {
+    const index = (start + k) % items.length;
+    return { item: items[index] as T, index };
+  });
+}
+
+/** Continuous one-card-at-a-time auto slide with side arrows. */
 function QuoteMarquee({
   quotes,
   onOpen,
@@ -132,61 +140,65 @@ function QuoteMarquee({
 }) {
   const [paused, setPaused] = useState(false);
   const perPage = 3;
-  const pages = Math.max(1, Math.ceil(quotes.length / perPage));
-  const [page, setPage] = useState(0);
+  const [start, setStart] = useState(0);
+  const canSlide = quotes.length > perPage;
 
   useEffect(() => {
-    if (paused || pages < 2) return;
-    const interval = Math.max(9000, duration * 60);
-    const id = window.setInterval(() => setPage((p) => (p + 1) % pages), interval);
+    if (paused || !canSlide) return;
+    const interval = Math.max(4000, (duration * 1000) / Math.max(1, quotes.length));
+    const id = window.setInterval(
+      () => setStart((s) => (s + 1) % quotes.length),
+      interval,
+    );
     return () => window.clearInterval(id);
-  }, [duration, paused, pages]);
+  }, [duration, paused, canSlide, quotes.length]);
+
+  const visible = windowOf(quotes, start, perPage);
 
   return (
     <div
+      className="relative"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
       <div className="grid gap-x-8 gap-y-6 py-2 pl-8 sm:grid-cols-2 lg:grid-cols-3">
-        {quotes.slice(page * perPage, page * perPage + perPage).map((q, i) => (
+        {visible.map(({ item, index }) => (
           <QuoteCard
-            key={`${q.name}-${i}`}
-            q={q}
-            onOpen={() => onOpen(q)}
-            accent={page * perPage + i}
+            key={`${item.name}-${index}`}
+            q={item}
+            onOpen={() => onOpen(item)}
+            accent={index}
             width="w-full"
           />
         ))}
       </div>
 
-      {pages > 1 ? (
-        <div className="mt-5 flex items-center justify-center gap-3">
+      {canSlide ? (
+        <>
           <button
             type="button"
-            onClick={() => setPage((p) => (p - 1 + pages) % pages)}
+            onClick={() => setStart((s) => (s - 1 + quotes.length) % quotes.length)}
             aria-label="Previous learner feedback"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft transition-colors hover:border-crimson/40 hover:text-crimson"
+            className="absolute -left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft shadow-soft transition-colors hover:border-crimson/40 hover:text-crimson lg:-left-6"
           >
             <span aria-hidden>←</span>
           </button>
-          <span className="mono-label text-ink-faint">
-            {page + 1} / {pages}
-          </span>
           <button
             type="button"
-            onClick={() => setPage((p) => (p + 1) % pages)}
+            onClick={() => setStart((s) => (s + 1) % quotes.length)}
             aria-label="Next learner feedback"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft transition-colors hover:border-crimson/40 hover:text-crimson"
+            className="absolute -right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft shadow-soft transition-colors hover:border-crimson/40 hover:text-crimson lg:-right-6"
           >
             <span aria-hidden>→</span>
           </button>
-        </div>
+        </>
       ) : null}
     </div>
   );
 }
+
 
 export function LearnerQuotes({
   quotes,
