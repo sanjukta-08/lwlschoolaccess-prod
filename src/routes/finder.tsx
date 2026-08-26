@@ -74,7 +74,6 @@ export const Route = createFileRoute("/finder")({
 function FinderPage() {
   const state = Route.useSearch();
   const navigate = useNavigate({ from: Route.fullPath });
-  const [activeTab, setActiveTab] = useState<string>("all");
   const [visible, setVisible] = useState(PAGE);
 
   const update = (patch: Partial<FinderSearch>) => {
@@ -389,8 +388,8 @@ function FinderPage() {
 
             <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-line bg-paper px-5 py-4">
               <p className="max-w-[38em] text-[0.84rem] text-ink-soft">
-                🕒 Live on Zoom · times in Dubai (GMT+4) with US Eastern alongside.
-                Prefer to plan around dates?
+                Prefer to plan around dates? Every cohort, month by month, with US
+                Eastern times alongside Dubai.
               </p>
               <Link
                 to="/calendar"
