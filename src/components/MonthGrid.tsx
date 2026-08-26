@@ -55,9 +55,9 @@ export function MonthGrid({
 
   return (
     <div className="overflow-hidden rounded-3xl border border-line bg-paper shadow-soft">
-      <div className="hidden grid-cols-7 border-b border-line bg-wash md:grid">
+      <div className="hidden grid-cols-7 border-b border-line bg-[linear-gradient(180deg,var(--paper),var(--wash))] md:grid">
         {WEEKDAYS.map((w) => (
-          <div key={w} className="mono-label px-3 py-2.5 text-center text-ink-faint">
+          <div key={w} className="mono-label border-r border-line/70 px-3 py-3 text-center text-ink-faint last:border-r-0">
             {w}
           </div>
         ))}
@@ -69,37 +69,41 @@ export function MonthGrid({
           <div key={wi} className="grid grid-cols-7 border-b border-line last:border-b-0">
             {week.map((day, di) => {
               const key = day ? iso(day) : `empty-${di}`;
-              const dayEntries = day ? (byDay.get(iso(day)) ?? []) : [];
-              const isToday = day && iso(day) === todayISO;
-              const isSelected = day && iso(day) === selected;
+              const dayISO = day ? iso(day) : "";
+              const dayEntries = day ? (byDay.get(dayISO) ?? []) : [];
+              const isToday = day && dayISO === todayISO;
+              const isSelected = day && dayISO === selected;
+              const isWeekend = di > 4;
               return (
                 <div
                   key={key}
-                  className={`min-h-[112px] border-r border-line p-2 last:border-r-0 ${
-                    day ? "" : "bg-wash/50"
-                  } ${isSelected ? "bg-wash-deep" : ""}`}
+                  className={`relative min-h-[132px] border-r border-line p-2 transition-colors last:border-r-0 ${
+                    day ? (isWeekend ? "bg-wash/40" : "bg-paper") : "bg-wash/60"
+                  } ${dayEntries.length ? "hover:bg-gold-soft/40" : ""} ${
+                    isSelected ? "bg-gold-soft/60 ring-1 ring-inset ring-gold/50" : ""
+                  }`}
                 >
                   {day ? (
                     <>
-                      <div className="mb-1.5 flex items-center justify-between">
+                      <div className="mb-2 flex items-center justify-between">
                         <button
                           type="button"
-                          onClick={() => onSelectDay(iso(day))}
+                          onClick={() => onSelectDay(dayISO)}
                           disabled={!dayEntries.length}
-                          aria-label={`Cohorts starting ${iso(day)}`}
-                          className={`inline-flex h-6 min-w-6 items-center justify-center rounded-full px-1.5 font-mono text-[0.72rem] font-semibold ${
+                          aria-label={`Cohorts starting ${dayISO}`}
+                          className={`inline-flex h-7 min-w-7 items-center justify-center rounded-full px-1.5 font-mono text-[0.78rem] font-semibold transition-colors ${
                             isToday
-                              ? "bg-crimson text-paper"
+                              ? "bg-crimson text-paper shadow-soft"
                               : dayEntries.length
-                                ? "text-ink hover:bg-wash-deep"
-                                : "text-ink-faint"
+                                ? "text-ink hover:bg-ink hover:text-paper"
+                                : "text-ink-faint/70"
                           }`}
                         >
                           {day.getDate()}
                         </button>
-                        {dayEntries.length > 2 ? (
-                          <span className="font-mono text-[0.66rem] text-ink-faint">
-                            {dayEntries.length}
+                        {dayEntries.length ? (
+                          <span className="mono-label rounded-full bg-gold-soft px-1.5 py-0.5 text-[0.6rem] text-gold-deep">
+                            {dayEntries.length} start{dayEntries.length === 1 ? "" : "s"}
                           </span>
                         ) : null}
                       </div>
@@ -112,8 +116,11 @@ export function MonthGrid({
                               to="/programmes/$slug"
                               params={{ slug: slugOf(e.p) }}
                               title={`${e.p.name} - open programme page`}
-                              className="block truncate rounded-md px-1.5 py-1 text-left text-[0.68rem] font-semibold text-paper no-underline transition-[filter] hover:brightness-110"
-                              style={{ background: track.color }}
+                              className="block truncate rounded-md py-1 pr-1.5 pl-2 text-left text-[0.7rem] leading-tight font-semibold text-ink no-underline transition-colors hover:text-crimson-deep"
+                              style={{
+                                borderLeft: `3px solid ${track.color}`,
+                                background: `color-mix(in oklab, ${track.color} 12%, transparent)`,
+                              }}
                             >
                               {e.p.name}
                             </Link>
@@ -122,8 +129,8 @@ export function MonthGrid({
                         {dayEntries.length > 3 ? (
                           <button
                             type="button"
-                            onClick={() => onSelectDay(iso(day))}
-                            className="px-1.5 text-left text-[0.66rem] font-semibold text-ink-soft underline underline-offset-2"
+                            onClick={() => onSelectDay(dayISO)}
+                            className="px-1.5 text-left text-[0.66rem] font-semibold text-ink-soft underline underline-offset-2 hover:text-crimson"
                           >
                             +{dayEntries.length - 3} more
                           </button>
