@@ -29,9 +29,11 @@ import {
   getMatches,
   groupMatches,
   monthLabel,
+  typeCounts,
   validateFinderSearch,
   type FinderSearch,
 } from "@/lib/finder";
+
 import { regionLabel } from "@/lib/regions";
 import { SiteFooter } from "@/components/SiteFooter";
 
