@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { LearnerQuotes } from "@/components/LearnerQuotes";
 import {
   InstagramGlyph,
   LinkedInGlyph,
@@ -6,11 +7,13 @@ import {
 } from "@/components/StoryGallery";
 import { VideoTestimonials } from "@/components/VideoTestimonials";
 import { DEFAULT_SEARCH } from "@/lib/finder";
+import { CAMP_QUOTES, ONLINE_QUOTES } from "@/lib/learner-testimonials";
 import {
   APPROVED_INSTAGRAM,
   APPROVED_LINKEDIN,
   VIDEO_TESTIMONIALS,
 } from "@/lib/social-proof";
+
 
 function SeeAll({ label }: { label: string }) {
   return (
