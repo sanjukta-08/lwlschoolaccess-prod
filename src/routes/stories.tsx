@@ -2,10 +2,17 @@ import { Link, createFileRoute, stripSearchParams } from "@tanstack/react-router
 
 import { SiteHeader } from "@/components/SiteHeader";
 import { PressStrip } from "@/components/PressStrip";
-import { LinkedInGlyph, StoryGallery } from "@/components/StoryGallery";
+import { InstagramGlyph, LinkedInGlyph, StoryGallery } from "@/components/StoryGallery";
+import { VideoTestimonials } from "@/components/VideoTestimonials";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { TRACKS, type TrackKey } from "@/lib/programmes";
-import { APPROVED_STORIES } from "@/lib/social-proof";
+import {
+  APPROVED_INSTAGRAM,
+  APPROVED_LINKEDIN,
+  APPROVED_STORIES,
+  VIDEO_TESTIMONIALS,
+} from "@/lib/social-proof";
+
 import { SiteFooter } from "@/components/SiteFooter";
 
 const TITLE = "Student & parent stories | Learn with Leaders";
