@@ -7,9 +7,18 @@ import {
   typeCounts,
   type FinderSearch,
 } from "@/lib/finder";
+
 import { regionOptions } from "@/lib/regions";
 import { DEFAULT_FIT } from "@/lib/fit";
 import { Link } from "@tanstack/react-router";
+import {
+  CalendarDays,
+  Compass,
+  Globe,
+  GraduationCap,
+  Search,
+} from "lucide-react";
+
 
 type Props = {
   state: FinderSearch;
@@ -40,10 +49,10 @@ export function FinderPanel({
         value={state.q}
         onChange={(e) => onChange({ q: e.target.value })}
         placeholder="Search: research, moot court, SAT…"
-        className="w-full rounded-full border border-line bg-wash py-2.5 pr-9 pl-9 text-[0.85rem] text-ink placeholder:text-ink-faint focus:border-crimson/40 focus:bg-paper focus:outline-none"
+        className="w-full rounded-full border border-line bg-wash py-2.5 pr-9 pl-10 text-[0.85rem] text-ink placeholder:text-ink-faint focus:border-crimson/40 focus:bg-paper focus:outline-none"
       />
-      <span className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-[0.85rem] text-ink-faint">
-        ⌕
+      <span className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-ink-faint">
+        <Search className="h-4 w-4" />
       </span>
       {state.q ? (
         <button
@@ -57,6 +66,7 @@ export function FinderPanel({
       ) : null}
     </label>
   );
+
 
   const counter = (
     <div className="flex flex-wrap items-center justify-between gap-3">
@@ -83,18 +93,12 @@ export function FinderPanel({
       { value: "all", label: "Any interest" },
       ...Object.entries(TRACKS).map(([key, t]) => ({ value: key, label: t.label })),
     ];
-    const typeOptions = typeKeys.map((key) => ({
-      value: key,
-      label:
-        (key === "all" ? "Any type" : TYPES[key as keyof typeof TYPES].label) +
-        ` (${counts[key]})`,
-    }));
 
     return (
       <div className="rounded-2xl border border-line bg-paper p-4 shadow-soft sm:p-5">
         <div className="flex flex-wrap items-end gap-x-4 gap-y-3">
           <div className="min-w-[220px] flex-[2]">
-            <Field label="My child has interest in">
+            <Field label="My child has interest in" icon={<Compass className="h-3.5 w-3.5" />}>
               <BoxSelect
                 value={state.interest}
                 onChange={(v) => onChange({ interest: v })}
@@ -103,8 +107,8 @@ export function FinderPanel({
               />
             </Field>
           </div>
-          <div className="min-w-[140px] flex-1">
-            <Field label="Grade">
+          <div className="min-w-[120px] flex-1">
+            <Field label="Grade" icon={<GraduationCap className="h-3.5 w-3.5" />}>
               <BoxSelect
                 value={state.grade}
                 onChange={(v) => onChange({ grade: v })}
@@ -113,18 +117,8 @@ export function FinderPanel({
               />
             </Field>
           </div>
-          <div className="min-w-[150px] flex-1">
-            <Field label="Programme type">
-              <BoxSelect
-                value={state.type}
-                onChange={(v) => onChange({ type: v })}
-                options={typeOptions}
-                label="Programme type"
-              />
-            </Field>
-          </div>
           <div className="min-w-[140px] flex-1">
-            <Field label="Starting">
+            <Field label="Starting" icon={<CalendarDays className="h-3.5 w-3.5" />}>
               <BoxSelect
                 value={state.month}
                 onChange={(v) => onChange({ month: v })}
@@ -134,7 +128,7 @@ export function FinderPanel({
             </Field>
           </div>
           <div className="min-w-[150px] flex-1">
-            <Field label="Where you are">
+            <Field label="Where you are" icon={<Globe className="h-3.5 w-3.5" />}>
               <BoxSelect
                 value={state.region}
                 onChange={(v) => onChange({ region: v })}
@@ -143,8 +137,10 @@ export function FinderPanel({
               />
             </Field>
           </div>
-          <div className="min-w-[200px] flex-[1.5]">
-            <Field label="Search">{search}</Field>
+          <div className="min-w-[220px] flex-[1.5]">
+            <Field label="Search" icon={<Search className="h-3.5 w-3.5" />}>
+              {search}
+            </Field>
           </div>
         </div>
 
@@ -152,6 +148,7 @@ export function FinderPanel({
       </div>
     );
   }
+
 
   if (layout === "rail") {
     return (
@@ -361,14 +358,26 @@ export function FinderPanel({
   );
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({
+  label,
+  icon,
+  children,
+}: {
+  label: string;
+  icon?: React.ReactNode;
+  children: React.ReactNode;
+}) {
   return (
     <div>
-      <span className="mono-label mb-1.5 block text-ink-faint">{label}</span>
+      <span className="mono-label mb-1.5 inline-flex items-center gap-1.5 text-ink-faint">
+        {icon ? <span className="text-ink-faint/70">{icon}</span> : null}
+        {label}
+      </span>
       {children}
     </div>
   );
 }
+
 
 function BoxSelect({
   value,

@@ -22,16 +22,18 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { PROGRAMMES, TRACKS, TYPE_NAME } from "@/lib/programmes";
+import { PROGRAMMES, TRACKS, TYPES, TYPE_NAME } from "@/lib/programmes";
 import {
   BAND_LABEL,
   DEFAULT_SEARCH,
   getMatches,
   groupMatches,
   monthLabel,
+  typeCounts,
   validateFinderSearch,
   type FinderSearch,
 } from "@/lib/finder";
+
 import { regionLabel } from "@/lib/regions";
 import { SiteFooter } from "@/components/SiteFooter";
 
@@ -265,8 +267,16 @@ function FinderPage() {
           </aside>
 
           <main className="min-w-0 space-y-8">
+            <div className="space-y-3">
+              <h3 className="font-serif text-[1.05rem] font-semibold text-ink">
+                Browse by category
+              </h3>
+              <TypeChips state={state} onChange={update} />
+            </div>
+
             <section id="all-programmes" className="scroll-mt-6">
               <div className="mb-4 flex flex-wrap items-end justify-between gap-x-6 gap-y-3 border-b border-line pb-4">
+
                 <div className="min-w-0">
                   <h2 className="font-serif text-[clamp(1.15rem,2.6vw,1.5rem)] leading-snug font-medium">
                     {headline}
@@ -473,6 +483,64 @@ function TailItem({
     </AccordionItem>
   );
 }
+
+function TypeChips({
+  state,
+  onChange,
+}: {
+  state: FinderSearch;
+  onChange: (patch: Partial<FinderSearch>) => void;
+}) {
+  const typeKeys = ["all", ...Object.keys(TYPES)] as const;
+  const counts = typeCounts(state, typeKeys as unknown as string[]);
+
+  const scrollToResults = () => {
+    const el = document.getElementById("all-programmes");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  return (
+    <div className="relative">
+      <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none]">
+        {typeKeys.map((key) => {
+          const pressed = state.type === key;
+          const label =
+            key === "all" ? "All" : TYPES[key as keyof typeof TYPES].label;
+          return (
+            <button
+              key={key}
+              type="button"
+              aria-pressed={pressed}
+              onClick={() => {
+                onChange({ type: key });
+                scrollToResults();
+              }}
+              className={`flex-none rounded-full border px-4 py-2 text-[0.82rem] font-semibold whitespace-nowrap transition-all ${
+                pressed
+                  ? "border-ink bg-ink text-paper shadow-soft"
+                  : "border-line bg-paper text-ink-soft hover:border-ink-soft hover:text-ink"
+              }`}
+            >
+              <span>{label}</span>
+              <small
+                className={`ml-1.5 font-mono text-[0.7rem] font-medium ${
+                  pressed ? "text-paper/70" : "text-ink-faint"
+                }`}
+              >
+                {counts[key]}
+              </small>
+            </button>
+          );
+        })}
+      </div>
+      <span
+        className="pointer-events-none absolute top-0 right-0 h-full w-8 bg-gradient-to-l from-wash to-transparent sm:hidden"
+        aria-hidden="true"
+      />
+    </div>
+  );
+}
+
 
 function Segmented({
   value,
