@@ -5,6 +5,7 @@ import {
   DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog";
+import birdAsset from "@/assets/lwl-bird-bg.png.asset.json";
 import { accentForQuote } from "@/lib/learner-testimonials";
 import type { LearnerQuote } from "@/lib/learner-testimonials";
 
@@ -52,6 +53,15 @@ function QuoteCard({
       aria-label={`Read the full note from ${q.name}`}
       className={`group relative flex min-h-[20rem] flex-col justify-between self-stretch overflow-visible rounded-[1.25rem] rounded-tr-[3.5rem] bg-paper px-7 py-6 text-left ring-1 ring-ink/10 shadow-soft transition-transform hover:-translate-y-1 hover:shadow-lift focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none ${width}`}
     >
+      {/* Brand bird watermark */}
+      <img
+        src={birdAsset.url}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="pointer-events-none absolute left-4 bottom-4 z-0 w-24 h-24 object-contain opacity-[0.10] select-none"
+      />
+
       {/* Overlapping initials plate */}
       <span
         className={`absolute -left-7 top-8 flex h-14 w-14 shrink-0 items-center justify-center rounded-full font-sans text-[1rem] font-bold shadow-soft ring-4 ring-paper ${a.avatar}`}
@@ -59,7 +69,7 @@ function QuoteCard({
         {initialsOf(q.name)}
       </span>
 
-      <header className="pl-7">
+      <header className="relative z-10 pl-7">
         <span className="block truncate font-serif text-[1.15rem] font-semibold leading-tight text-ink">
           {q.name}
         </span>
@@ -68,11 +78,11 @@ function QuoteCard({
         </span>
       </header>
 
-      <p className="my-4 line-clamp-5 font-serif text-[1.12rem] italic leading-[1.4] text-ink">
+      <p className="relative z-10 my-4 line-clamp-5 font-serif text-[1.12rem] italic leading-[1.4] text-ink">
         “{q.quote}”
       </p>
 
-      <footer className="relative flex items-center justify-between gap-3 border-t border-ink/10 pt-3">
+      <footer className="relative z-10 flex items-center justify-between gap-3 border-t border-ink/10 pt-3">
         <span className={`min-w-0 truncate font-serif text-[0.95rem] font-semibold ${a.label}`}>
           {q.programme}
         </span>
@@ -166,43 +176,50 @@ function QuoteMarquee({
 
   return (
     <div
-      className="relative px-12"
+      className={`flex items-stretch ${canSlide ? "gap-5" : ""}`}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
-      <div className="grid gap-x-8 gap-y-6 py-2 sm:grid-cols-2 lg:grid-cols-3">
-        {visible.map(({ item, index }) => (
-          <QuoteCard
-            key={`${item.name}-${index}`}
-            q={item}
-            onOpen={() => onOpen(item)}
-            accent={accentForQuote(item)}
-            width="w-full"
-          />
-        ))}
-      </div>
-
       {canSlide ? (
-        <>
+        <div className="flex w-12 items-center justify-center">
           <button
             type="button"
             onClick={() => setStart((s) => (s - 1 + quotes.length) % quotes.length)}
             aria-label="Previous learner feedback"
-            className="absolute left-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft shadow-soft ring-2 ring-paper transition-colors hover:border-crimson/40 hover:text-crimson"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/40 bg-gold-soft text-gold-deep shadow-soft ring-2 ring-paper transition hover:bg-gold hover:text-paper"
           >
             <span aria-hidden>←</span>
           </button>
+        </div>
+      ) : null}
+
+      <div className="min-w-0 flex-1">
+        <div className="grid gap-x-8 gap-y-6 py-2 sm:grid-cols-2 lg:grid-cols-3">
+          {visible.map(({ item, index }) => (
+            <QuoteCard
+              key={`${item.name}-${index}`}
+              q={item}
+              onOpen={() => onOpen(item)}
+              accent={accentForQuote(item)}
+              width="w-full"
+            />
+          ))}
+        </div>
+      </div>
+
+      {canSlide ? (
+        <div className="flex w-12 items-center justify-center">
           <button
             type="button"
             onClick={() => setStart((s) => (s + 1) % quotes.length)}
             aria-label="Next learner feedback"
-            className="absolute right-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft shadow-soft ring-2 ring-paper transition-colors hover:border-crimson/40 hover:text-crimson"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/40 bg-gold-soft text-gold-deep shadow-soft ring-2 ring-paper transition hover:bg-gold hover:text-paper"
           >
             <span aria-hidden>→</span>
           </button>
-        </>
+        </div>
       ) : null}
     </div>
   );
