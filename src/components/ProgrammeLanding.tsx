@@ -418,7 +418,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
                   params={{ slug: slugOf(r) }}
                   className="flex w-full max-w-[340px] flex-col gap-2 rounded-2xl border-2 border-ink/12 bg-paper p-4.5 no-underline shadow-soft transition-all hover:-translate-y-[3px] hover:shadow-lift sm:w-[320px]"
                 >
-                  <span className="text-[0.74rem] font-bold" style={{ color: rt.color }}>
+                  <span className="text-[0.74rem] font-bold text-gold-deep">
                     {rt.ic} {TYPE_NAME[r.type]}
                   </span>
                   <b className="text-[0.95rem]">{r.name}</b>
