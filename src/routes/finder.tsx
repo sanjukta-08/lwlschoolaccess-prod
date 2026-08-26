@@ -195,26 +195,41 @@ function FinderPage() {
 
   return (
     <div className="min-h-screen bg-wash">
-      <div className="relative isolate">
-        <div className="hero-wash absolute inset-0 -z-10" />
-        <div className="pointer-events-none absolute -right-[6vw] bottom-[-14%] -z-10 hidden h-[min(320px,40vh)] w-[min(520px,38vw)] opacity-[0.14] sm:block">
+      <div className="relative isolate overflow-hidden">
+        {/* layered background wash */}
+        <div className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,#fbfcfe_0%,#f7f2e8_60%,var(--wash)_100%)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(900px_520px_at_88%_20%,rgba(185,138,31,0.14),transparent_60%),radial-gradient(700px_420px_at_12%_10%,rgba(163,29,51,0.08),transparent_55%)]" />
+        <div
+          className="pointer-events-none absolute inset-0 -z-10 opacity-[0.35]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, rgba(185,138,31,0.18) 1px, transparent 0)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+
+        {/* right-side bird mark — visible inside the section */}
+        <div className="pointer-events-none absolute top-1/2 right-0 -z-10 hidden w-[min(420px,32vw)] -translate-y-1/2 opacity-[0.42] sm:block lg:w-[min(480px,30vw)]">
           <img
             src={birdAsset.url}
             alt=""
             aria-hidden="true"
-            className="h-full w-full object-contain object-right [mask-image:linear-gradient(to_left,black_45%,transparent_92%)]"
+            className="h-auto w-full object-contain object-right [mask-image:linear-gradient(to_left,black_55%,transparent_95%)]"
           />
         </div>
-        <div className="relative">
 
+        {/* decorative gold arc behind headline */}
+        <div className="pointer-events-none absolute top-[-10%] left-[-5%] -z-10 h-[60%] w-[45%] rounded-full bg-[radial-gradient(circle,rgba(185,138,31,0.10),transparent_70%)] blur-3xl" />
+
+        <div className="relative">
           <SiteHeader />
-          <section className="mx-auto flex w-full max-w-none flex-wrap items-end justify-between gap-x-8 gap-y-4 px-4 pt-8 pb-8 sm:px-5 lg:px-6 xl:px-8">
-            <div>
+          <section className="mx-auto flex w-full max-w-none flex-wrap items-end justify-between gap-x-8 gap-y-4 px-4 pt-8 pb-10 sm:px-5 lg:px-6 xl:px-8">
+            <div className="max-w-[26em]">
               <span className="mono-label mb-2 inline-flex items-center gap-2 text-crimson">
                 <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
                 {PROGRAMMES.length} programmes · Grades {GRADE_LO}–{GRADE_HI}
               </span>
-              <h1 className="max-w-[22em] font-serif text-[clamp(1.7rem,4vw,2.5rem)] leading-[1.12] font-medium tracking-tight">
+              <h1 className="font-serif text-[clamp(1.8rem,4.4vw,2.7rem)] leading-[1.1] font-medium tracking-tight">
                 Find the programme that{" "}
                 <em className="text-crimson-deep">fits</em> your child
               </h1>
@@ -227,13 +242,12 @@ function FinderPage() {
               ].map(([top, sub]) => (
                 <li
                   key={top}
-                  className="rounded-full border border-line bg-paper px-3.5 py-1.5 shadow-soft"
+                  className="rounded-full border border-line bg-paper/90 px-3.5 py-1.5 shadow-soft backdrop-blur-sm"
                 >
                   <b className="flex items-center gap-1.5 text-[0.78rem] font-bold text-ink">
                     {top === "Live on Zoom" ? <ZoomBadge label="Live on Zoom" /> : top}
                   </b>
                   <small className="mono-label block text-ink-faint">{sub}</small>
-
                 </li>
               ))}
             </ul>
@@ -241,7 +255,7 @@ function FinderPage() {
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-none px-4 pb-14 sm:px-5 lg:px-6 xl:px-8">
+      <div className="relative mx-auto w-full max-w-none px-4 pb-14 sm:px-5 lg:px-6 xl:px-8">
         <div className="mb-6">{filters}</div>
 
         <div className="grid items-start gap-6 lg:grid-cols-[320px_1fr]">
