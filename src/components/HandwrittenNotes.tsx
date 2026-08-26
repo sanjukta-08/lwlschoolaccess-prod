@@ -111,16 +111,18 @@ export default function HandwrittenNotes() {
 
   return (
     <div>
-      <SectionHeading
-        eyebrow="In their own handwriting"
-        sub="Notes students pressed into our hands at the end of Dr Jojo's programme. Tap a card to read it."
-      >
-        From the <span className="text-crimson">heart</span> of the cohort
-      </SectionHeading>
-      <div className="gold-rule mx-auto mt-3 h-px w-24" />
+      <div className="px-5">
+        <SectionHeading
+          eyebrow="In their own handwriting"
+          sub="Notes students pressed into our hands at the end of Dr Jojo's programme. Tap a card to read it."
+        >
+          From the <span className="text-crimson">heart</span> of the cohort
+        </SectionHeading>
+        <div className="gold-rule mx-auto mt-3 h-px w-24" />
+      </div>
 
       <div
-        className="relative mt-7 overflow-hidden"
+        className="relative mt-7 overflow-hidden px-5"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
