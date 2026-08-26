@@ -86,12 +86,20 @@ export function ProgrammeCard({
 
         {/* Brand logo */}
         {logo ? (
-          <div className="hidden md:flex md:w-[7rem] md:flex-none md:items-center md:justify-center">
+          <div
+            className={`hidden md:flex md:flex-none md:items-center md:justify-center ${
+              p.tracks[0] === "law" ? "md:w-[8.5rem]" : "md:w-[7rem]"
+            }`}
+          >
             <img
               src={logo.src}
               alt={logo.alt}
               loading="lazy"
-              className="max-h-11 w-auto max-w-[6.75rem] object-contain"
+              className={`w-auto object-contain ${
+                p.tracks[0] === "law"
+                  ? "max-h-12 max-w-[8rem]"
+                  : "max-h-11 max-w-[6.75rem]"
+              }`}
             />
           </div>
         ) : (
