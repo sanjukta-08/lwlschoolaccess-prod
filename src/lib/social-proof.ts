@@ -119,6 +119,19 @@ export const REACH = {
 
 import type { TrackKey } from "@/lib/programmes";
 
+import shotMompati from "@/assets/story-mompati.webp.asset.json";
+import shotKhalid from "@/assets/story-khalid.webp.asset.json";
+import shotMohammed from "@/assets/story-mohammed.webp.asset.json";
+import shotSwaraj from "@/assets/story-swaraj.webp.asset.json";
+import shotKanav from "@/assets/story-kanav.webp.asset.json";
+import shotRouqaya from "@/assets/story-rouqaya.webp.asset.json";
+import shotIreh from "@/assets/story-ireh.webp.asset.json";
+import shotKalina from "@/assets/story-kalina.webp.asset.json";
+import shotChloe from "@/assets/story-chloe.webp.asset.json";
+import shotTanvi from "@/assets/story-tanvi.webp.asset.json";
+
+export type StorySource = "linkedin" | "instagram";
+
 export type LinkedInStory = {
   id: string;
   name: string;
@@ -129,14 +142,18 @@ export type LinkedInStory = {
   reactions: number;
   comments: number;
   tag?: string;
+  /** Where the post lives. Drives the card chrome and the gallery grouping. */
+  source: StorySource;
   /** Track keys this story belongs to - used to match it to programme pages. */
   tags: TrackKey[];
   /** CDN url of the approved screenshot. Leave undefined to render a text card. */
   image?: string;
   /** Alt text describing the screenshot. Required when `image` is set. */
   imageAlt?: string;
-  /** Link to the live LinkedIn post, when we have it. */
+  /** Link to the live post. */
   postUrl?: string;
+  /** Alias of postUrl kept for clarity at call sites. */
+  sourceUrl?: string;
   /** Only approved stories render anywhere on the site. */
   approved: boolean;
   /** True while the copy is a stand-in rather than a real, permissioned post. */
@@ -144,159 +161,285 @@ export type LinkedInStory = {
 };
 
 /**
- * LinkedIn stories.
+ * Real, permissioned posts only. Every entry below is a live public post by the
+ * student named, with the screenshot as shared by them.
  *
- * HOW TO ADD A REAL STORY
- * 1. Get written permission from the student/parent before publishing.
- * 2. Upload the screenshot via `lovable-assets` and paste its `url` into `image`,
- *    with a describing `imageAlt`. If a name must be hidden, blur it in the image
- *    before upload - we never blur in CSS.
- * 3. Set `placeholder: false` and `approved: true`, and add the live `postUrl`.
- *
- * Entries with `placeholder: true` are stand-in copy written by us, kept so the
- * gallery has shape. Replace them as real posts come in.
+ * HOW TO ADD A NEW ONE
+ * 1. Get written permission from the student/parent.
+ * 2. Upload the screenshot via `lovable-assets`, import the pointer above and
+ *    paste its `.url` into `image`, with a describing `imageAlt`.
+ * 3. Add the live `postUrl` and tag it to the tracks it belongs to.
  */
 export const LINKEDIN_POSTS: LinkedInStory[] = [
   {
-    id: "aarav-research",
-    name: "Aarav M.",
-    initials: "AM",
-    role: "Grade 12 · Future Doctors Fellowship alum",
-    when: "2w",
-    text: "Wrapped up my Learn with Leaders research fellowship today. Eight weeks of mentoring from a Harvard student researcher, and I finished with a literature review on adolescent sleep and cognition - plus the confidence to email two professors about summer lab work. One replied.",
-    reactions: 412,
-    comments: 38,
-    tag: "Research",
-    tags: ["res", "med"],
+    id: "rouqaya-future-doctors",
+    name: "Rouqaya Elbanna",
+    initials: "RE",
+    role: "Sophomore at AIS Jeddah · Future Doctors Fellowship",
+    when: "Future Doctors Fellowship x HPAIR",
+    text: "55 million people worldwide live with dementia, with Alzheimer's being the leading cause of the majority of cases. I've always been drawn to the question of how the brain shapes who we are - and how changes within it can affect us, whether through psychological or neurological disorders such as Alzheimer's. This summer, the Learn with Leaders Future Doctors Fellowship, in partnership with the Harvard Project for Asian and International Relations (HPAIR), let me explore that question through neuroscience, psychology and medicine, and see how deeply they intersect in patient care.",
+    reactions: 148,
+    comments: 21,
+    tag: "Medicine",
+    source: "linkedin",
+    tags: ["med", "res"],
+    image: shotRouqaya.url,
+    imageAlt:
+      "LinkedIn post by Rouqaya Elbanna about her Future Doctors Fellowship research on Alzheimer's and neuroscience",
+    postUrl:
+      "https://www.linkedin.com/posts/rouqaya-elbanna-b7750b386_future-doctors-fellowship-certificates-share-7495698122250207232-v8tT/",
     approved: true,
-    placeholder: true,
   },
   {
-    id: "sara-venture",
-    name: "Sara K.",
+    id: "swaraj-finance",
+    name: "Swaraj Koyande",
     initials: "SK",
-    role: "Grade 11 · Innovation & Research Fellowship",
-    when: "1mo",
-    text: "Our team just pitched a low-cost water-testing kit to a panel of mentors from Harvard and Yale. Six weeks ago I had never built a prototype. Grateful to my Learn with Leaders mentor for making 'just try the ugly version first' stick.",
-    reactions: 587,
-    comments: 54,
-    tag: "Venture",
-    tags: ["ent", "res"],
-    approved: true,
-    placeholder: true,
-  },
-  {
-    id: "priya-parent",
-    name: "Priya R.",
-    initials: "PR",
-    role: "Parent · Dubai",
-    when: "3w",
-    text: "As a parent I was sceptical about another online programme. What changed my mind: my daughter came out of it with a finished project, a mentor reference and a much clearer idea of what she wants to study. Sessions ran in the evening Dubai time, so no clash with school.",
-    reactions: 296,
-    comments: 41,
-    tag: "Parent",
-    tags: ["lead", "res", "med", "law", "fin", "ai", "ent", "deb", "sat"],
-    approved: true,
-    placeholder: true,
-  },
-  {
-    id: "yusuf-ai",
-    name: "Yusuf A.",
-    initials: "YA",
-    role: "Grade 10 · AI & Leadership",
-    when: "2mo",
-    text: "Presented my first machine-learning model to a cohort of students from nine countries. Learned more in six weeks of live sessions than in a year of tutorials - mostly because someone reviewed my code and asked why every single time.",
-    reactions: 341,
-    comments: 27,
-    tag: "AI",
-    tags: ["ai", "lead"],
-    approved: true,
-    placeholder: true,
-  },
-  {
-    id: "meera-congress",
-    name: "Meera S.",
-    initials: "MS",
-    role: "Grade 12 · Model Congress delegate",
-    when: "5w",
-    text: "Won Best Delegate at my first conference after a Learn with Leaders prep cohort. My mentor made me rewrite my opening speech four times. Worth every draft.",
-    reactions: 623,
-    comments: 62,
-    tag: "Conference",
-    tags: ["deb", "lead", "law"],
-    approved: true,
-    placeholder: true,
-  },
-  {
-    id: "ishaan-finance",
-    name: "Ishaan T.",
-    initials: "IT",
-    role: "Grade 11 · Financial Literacy & Markets",
-    when: "6w",
-    text: "Built and back-tested a small portfolio strategy as my capstone, then wrote it up for my school's investment club - which now actually exists, because of this. Add 'launch something' to your summer, not just 'attend something'.",
-    reactions: 254,
-    comments: 19,
+    role: "Founder & President, The Ledger · 8-week Finance Fellowship",
+    when: "Sharpest Financial Analysis award",
+    text: "I'm excited to have won the sharpest financial analysis award for the 8-week finance fellowship by Learn with Leaders. At the end of the programme I designed and built a venture pitch deck evaluating burn rate, LTV:CAC ratios, and financial and operational growth. I pitched TeenVenture, an idea I'm very keen about, and was able to build a connection with the judges and listeners who faced the problems TeenVenture aims to solve. I deepened my knowledge of financial analysis, business management, venture capital and financial management throughout the programme.",
+    reactions: 132,
+    comments: 18,
     tag: "Finance",
+    source: "linkedin",
     tags: ["fin", "ent"],
+    image: shotSwaraj.url,
+    imageAlt:
+      "LinkedIn post by Swaraj Koyande announcing his Sharpest Financial Analysis award and venture pitch deck",
+    postUrl:
+      "https://www.linkedin.com/posts/swarajkoyande_sharpest-financial-analysis-ugcPost-7494012270591799298-6o_0/",
     approved: true,
-    placeholder: true,
   },
   {
-    id: "hana-law",
-    name: "Hana Q.",
-    initials: "HQ",
-    role: "Grade 11 · Future Lawyers Fellowship",
-    when: "4w",
-    text: "Argued my first moot as second counsel this weekend. Cross-examination is terrifying and I loved it. Thank you to my Learn with Leaders mentor for the twelve pages of notes on my written submission.",
-    reactions: 388,
-    comments: 33,
-    tag: "Law",
-    tags: ["law", "deb"],
+    id: "mompati-cambridge",
+    name: "Mompati Masiangoako",
+    initials: "MM",
+    role: "Aspiring founder · Cambridge Judge Business School week",
+    when: "Seed funding + mentoring winner",
+    text: "I recently had the opportunity to spend a week at the Cambridge Judge Business School. One of the biggest takeaways was the mentorship I received as we were put into random groups with a mentor and had to come up with a startup idea and present it in five days. Although my group did not win, I am still really proud of what we managed to achieve in five days. I was incredibly honoured to be one of two participants to receive four hours of mentoring and 100 pounds of seed funding for my future endeavours.",
+    reactions: 96,
+    comments: 12,
+    tag: "Entrepreneurship",
+    source: "linkedin",
+    tags: ["ent", "lead"],
+    image: shotMompati.url,
+    imageAlt:
+      "LinkedIn post by Mompati Masiangoako about his Cambridge Judge Business School startup week and seed funding",
+    postUrl:
+      "https://www.linkedin.com/posts/mompati-masiangoako-9524673a1_learnwithleaders-startup-cambridge-share-7487528971228577793-0lGI/",
     approved: true,
-    placeholder: true,
   },
   {
-    id: "dev-satscore",
-    name: "Dev P.",
-    initials: "DP",
-    role: "Grade 11 · Test prep cohort",
-    when: "7w",
-    text: "Score up 190 points, but the more useful bit was learning to review my own mistakes properly instead of doing another practice set. That habit is transferring to school exams too.",
-    reactions: 211,
-    comments: 16,
-    tag: "Test prep",
-    tags: ["sat"],
+    id: "kanav-hcus",
+    name: "Kanav Suri",
+    initials: "KS",
+    role: "TEDx speaker · HCUS Young Leaders' Camp, Harvard",
+    when: "First LinkedIn post",
+    text: "Delighted to share my experiences from an unforgettable summer camp at Harvard University - HCUS: Young Leaders' Camp. A huge shout-out to my mentors, and especially our team mentor. Structured to provide diverse exposure to skills such as persuasive writing, public speaking, public policy, research, problem-solving, teamwork, decision-making and effective use of AI, the course was extensive. Hands-on activities and role plays made these exceptionally engaging. Our team worked on a project for a large city facing overcrowded hospitals.",
+    reactions: 210,
+    comments: 34,
+    tag: "Leadership",
+    source: "linkedin",
+    tags: ["lead", "deb", "ai"],
+    image: shotKanav.url,
+    imageAlt:
+      "LinkedIn post by Kanav Suri about the HCUS Young Leaders' Camp at Harvard University",
+    postUrl:
+      "https://www.linkedin.com/posts/kanav-suri-2b5a50375_my-first-linkedin-post-delighted-to-share-ugcPost-7495118364109938689-RwXW/",
     approved: true,
-    placeholder: true,
   },
   {
-    id: "anya-parent-2",
-    name: "Anya B.",
-    initials: "AB",
-    role: "Parent · Abu Dhabi",
-    when: "2mo",
-    text: "Two things I did not expect: a mentor who actually replied between sessions, and a son who now talks about his project at dinner. He has a LinkedIn post of his own now - which is how I found this page.",
-    reactions: 174,
-    comments: 22,
-    tag: "Parent",
-    tags: ["lead", "ai", "ent", "res"],
+    id: "khalid-hcus",
+    name: "Khalid W. Al-Sultan",
+    initials: "KA",
+    role: "Mechanical Engineering student · Mawhiba alumnus, KFUPM",
+    when: "Mentor feedback letter",
+    text: "I'm grateful to have received personal feedback from my mentor following my participation in the Harvard College Union Society (HCUS) Young Global Leaders Summer Camp. The experience challenged me to step outside my comfort zone, engage with diverse perspectives, strengthen my communication skills and think more intentionally about leadership. One piece of feedback that particularly stayed with me was the encouragement to take on leadership roles more often and become more actively involved in discussions and team challenges.",
+    reactions: 118,
+    comments: 14,
+    tag: "Leadership",
+    source: "linkedin",
+    tags: ["lead", "deb"],
+    image: shotKhalid.url,
+    imageAlt:
+      "LinkedIn post by Khalid W. Al-Sultan sharing mentor feedback from the HCUS Young Global Leaders Summer Camp",
+    postUrl:
+      "https://www.linkedin.com/posts/khalid-w-al-sultan-1bbb8731b_harvard-harvardcollege-hcus-share-7495857709075013632-gRzK/",
     approved: true,
-    placeholder: true,
+  },
+  {
+    id: "mohammed-hcus",
+    name: "Mohammed Majed Abu Baid",
+    initials: "MA",
+    role: "Delegate, ANJSUM 2025 · Harvard College Union Society programme",
+    when: "Invitation letter shared",
+    text: "A week ago I was able to get the opportunity to attend the Harvard College Union Society programme made by Learn with Leaders. I really appreciate how their team's fast response and quick support helped me know more about this programme, and from my perspective I recommend that any student who would like to try a new experience should. I also attended the one before, Ignite Young Minds summer camp, and it was an excellent experience too - making many friends and socialising with others, but most importantly learning new things from these programmes.",
+    reactions: 87,
+    comments: 9,
+    tag: "Leadership",
+    source: "linkedin",
+    tags: ["lead", "deb", "law"],
+    image: shotMohammed.url,
+    imageAlt:
+      "LinkedIn post by Mohammed Majed Abu Baid with his Harvard College Union Society invitation letter",
+    postUrl:
+      "https://www.linkedin.com/posts/mohammed-majed-abu-baid-7a2323423_a-week-ago-i-was-able-to-get-the-opportunity-share-7498005545514246145-44hI/",
+    approved: true,
   },
 ];
 
-/** Real, permissioned posts rank above stand-in copy everywhere. */
-const realFirst = (a: LinkedInStory, b: LinkedInStory) =>
-  Number(Boolean(a.placeholder)) - Number(Boolean(b.placeholder));
+/** Research Scholars features published on Instagram by the Sir Luther Center. */
+export const INSTAGRAM_POSTS: LinkedInStory[] = [
+  {
+    id: "ireh-research",
+    name: "Ireh Choe",
+    initials: "IC",
+    role: "Research Scholars Program · Sir Luther Center x Learn with Leaders",
+    when: "Featured research",
+    text: "Through Learn with Leaders, I learned how to synthesize complex information into a well-structured, persuasive academic paper. I've experienced great development in my writing skills, and I am so grateful for the program!",
+    reactions: 17,
+    comments: 8,
+    tag: "Research",
+    source: "instagram",
+    tags: ["res"],
+    image: shotIreh.url,
+    imageAlt:
+      "Instagram feature quoting Ireh Choe on the Research Scholars Program with the Sir Luther Center",
+    postUrl: "https://www.instagram.com/p/DZvERn1EumY/",
+    approved: true,
+  },
+  {
+    id: "kalina-research",
+    name: "Kalina Abdulla",
+    initials: "KA",
+    role: "Research Scholars Program · Sir Luther Center x Learn with Leaders",
+    when: "Featured research",
+    text: "Writing my research paper on data centers strengthened my analytical skills while expanding my understanding of modern technology. The Learn with Leaders program provided clear structure, valuable feedback and guidance, helping me refine my ideas and build confidence in my writing.",
+    reactions: 20,
+    comments: 10,
+    tag: "Research",
+    source: "instagram",
+    tags: ["res", "ai"],
+    image: shotKalina.url,
+    imageAlt:
+      "Instagram feature quoting Kalina Abdulla on her Research Scholars paper about data centers",
+    postUrl: "https://www.instagram.com/p/Dann7Rqkr_d/",
+    approved: true,
+  },
+  {
+    id: "chloe-research",
+    name: "Chloe Jenkins",
+    initials: "CJ",
+    role: "Research Scholars Program · Sir Luther Center x Learn with Leaders",
+    when: "Featured research",
+    text: "It was a great opportunity to research a topic I was curious about and learn more about it. I learned valuable skills during the Research Scholars Program that I've been able to apply in classes and other aspects of my academic career.",
+    reactions: 13,
+    comments: 2,
+    tag: "Research",
+    source: "instagram",
+    tags: ["res"],
+    image: shotChloe.url,
+    imageAlt:
+      "Instagram feature quoting Chloe Jenkins on the skills she gained in the Research Scholars Program",
+    postUrl: "https://www.instagram.com/p/Da0JlF-EoYN/",
+    approved: true,
+  },
+  {
+    id: "tanvi-research",
+    name: "Tanvi Koppula",
+    initials: "TK",
+    role: "Research Scholars Program · Sir Luther Center x Learn with Leaders",
+    when: "Featured research",
+    text: "My mentors helped me throughout the process, from ensuring my research questions were focused to proofreading my paper paragraph by paragraph. Since participating in this programme, I've become more comfortable reading scientific literature and citing sources in academic writing.",
+    reactions: 5,
+    comments: 1,
+    tag: "Research",
+    source: "instagram",
+    tags: ["res", "med"],
+    image: shotTanvi.url,
+    imageAlt:
+      "Instagram feature quoting Tanvi Koppula on mentor support during the Research Scholars Program",
+    postUrl: "https://www.instagram.com/p/DbJJtFcEpGx/",
+    approved: true,
+  },
+];
 
-export const APPROVED_STORIES = LINKEDIN_POSTS.filter((s) => s.approved).sort(
-  realFirst,
-);
+export type VideoTestimonial = {
+  id: string;
+  name: string;
+  cohort: string;
+  /** Google Drive file id - embedded through the Drive preview player. */
+  fileId: string;
+  tags: TrackKey[];
+};
 
-/** Stories matching any of the given track keys, real posts first, then most-reacted. */
+/**
+ * Video testimonials, streamed from the shared Drive folders.
+ * The Geneva camp clip (Yassin) is not publicly shared yet, so it is omitted
+ * until the sharing setting is changed to "anyone with the link".
+ */
+export const VIDEO_TESTIMONIALS: VideoTestimonial[] = [
+  {
+    id: "efrain",
+    name: "Efrain Calles-Arnaiz",
+    cohort: "Harvard Winter Camp 2025",
+    fileId: "1ToX2xWT-tareQBmWSInwyr2emSPe8wGa",
+    tags: ["lead", "deb"],
+  },
+  {
+    id: "maame",
+    name: "Maame Adjoa Kakraba Nduom",
+    cohort: "Harvard Winter Camp 2025",
+    fileId: "1dTssxV7gQVDrPa3gG4nD_NsvNkgySfTo",
+    tags: ["lead", "deb"],
+  },
+  {
+    id: "isham",
+    name: "Isham",
+    cohort: "Harvard Winter Camp 2025",
+    fileId: "1j1T2mCMPpgbR-Tx88e-voxUzGtokLk6k",
+    tags: ["lead"],
+  },
+  {
+    id: "yasmina",
+    name: "Yasmina Traoré",
+    cohort: "Harvard Winter Camp 2025",
+    fileId: "1rIes6hptni3Y3o0_4JmSgDGblKvwSdPy",
+    tags: ["lead", "deb"],
+  },
+  {
+    id: "wistarani",
+    name: "Ni Putu Wistarani",
+    cohort: "Research Scholars Program",
+    fileId: "1OhwsovaLQm-IuO5UlLFcHtnVLH707peP",
+    tags: ["res"],
+  },
+  {
+    id: "arghyaditya",
+    name: "Arghyaditya",
+    cohort: "Research Scholars Program",
+    fileId: "1VmdHKA8yKg2CdcfZVNPEvze2xPitxkOD",
+    tags: ["res"],
+  },
+  {
+    id: "aws",
+    name: "Aws Al Bokhari",
+    cohort: "Research Scholars Program",
+    fileId: "1kGRZuT1nuKqpPKHGG44tkGWdgojSikYa",
+    tags: ["res", "med"],
+  },
+];
+
+export const ALL_STORIES: LinkedInStory[] = [...LINKEDIN_POSTS, ...INSTAGRAM_POSTS];
+
+export const APPROVED_STORIES = ALL_STORIES.filter((s) => s.approved);
+
+export const APPROVED_LINKEDIN = LINKEDIN_POSTS.filter((s) => s.approved);
+
+export const APPROVED_INSTAGRAM = INSTAGRAM_POSTS.filter((s) => s.approved);
+
+/** Stories matching any of the given track keys, most-reacted first. */
 export function storiesForTracks(tracks: TrackKey[], limit = 3): LinkedInStory[] {
-  const rank = (a: LinkedInStory, b: LinkedInStory) =>
-    realFirst(a, b) || b.reactions - a.reactions;
+  const rank = (a: LinkedInStory, b: LinkedInStory) => b.reactions - a.reactions;
   const matched = APPROVED_STORIES.filter((s) =>
     s.tags.some((t) => tracks.includes(t)),
   ).sort(rank);
@@ -309,3 +452,15 @@ export function storiesForTracks(tracks: TrackKey[], limit = 3): LinkedInStory[]
   return out.slice(0, limit);
 }
 
+/** Videos matching any of the given track keys, falling back to the newest set. */
+export function videosForTracks(tracks: TrackKey[], limit = 3): VideoTestimonial[] {
+  const matched = VIDEO_TESTIMONIALS.filter((v) =>
+    v.tags.some((t) => tracks.includes(t)),
+  );
+  const out = [...matched];
+  for (const v of VIDEO_TESTIMONIALS) {
+    if (out.length >= limit) break;
+    if (!out.some((o) => o.id === v.id)) out.push(v);
+  }
+  return out.slice(0, limit);
+}
