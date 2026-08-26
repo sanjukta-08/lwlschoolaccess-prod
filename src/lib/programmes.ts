@@ -244,8 +244,19 @@ export const PROGRAMMES: Programme[] = [
     site: "https://joinonwards.com/communication-leadership",
     apply: "https://joinonwards.com/communication-leadership/apply",
     cohorts: [
-      { d: "2026-10-24" },
-      { d: "2027-01-30" },
+      {
+        d: "2026-10-24",
+        label: "Batch 1",
+        elig: "Grades 6-8 and Grades 9-12 (two parallel tracks)",
+        flyer: dl("1wCa1ifzZFPJhDzIbvnnL8y5X622t6S2S"),
+        brochure: dl("1qwl4xgYVJKvb3HjWAiICB1srJMxY3yLw"),
+      },
+      {
+        d: "2027-01-30",
+        label: "Batch 2",
+        flyer: dl("1ldzpF8sK-_KqQ3j8Q6a6K8gKMiqxeoIq"),
+        brochure: dl("1hRKkw6n8dYl-JDe44Lg74uMg0pzKX6yI"),
+      },
     ],
   },
   {
