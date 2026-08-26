@@ -79,113 +79,123 @@ export function FinderPanel({
 
   if (layout === "rail") {
     return (
-      <div className="rounded-2xl border border-line bg-paper p-4 shadow-soft">
-        <div className="space-y-4">
-          <Link
-            to="/fit"
-            search={DEFAULT_FIT}
-            className="block rounded-xl border border-gold/45 bg-gold/8 px-4 py-3 no-underline transition-colors hover:bg-gold/14"
-          >
-            <b className="block text-[0.86rem] font-bold text-ink">Not sure where to start?</b>
-            <small className="block text-[0.76rem] text-ink-soft">
-              Answer 5 questions → 3 matched programmes
-            </small>
-          </Link>
+      <div className="overflow-hidden rounded-2xl border border-line bg-paper shadow-soft">
+        <Link
+          to="/fit"
+          search={DEFAULT_FIT}
+          className="block border-b border-line bg-gold/8 px-4 py-3 no-underline transition-colors hover:bg-gold/14"
+        >
+          <b className="block text-[0.85rem] font-bold text-ink">
+            Not sure where to start?
+          </b>
+          <small className="block text-[0.75rem] text-ink-soft">
+            Answer 5 questions → 3 matched programmes
+          </small>
+        </Link>
 
-          {search}
+        <div className="px-4 py-4">{search}</div>
 
-          <Field label="Grade">
-            <BoxSelect
-              value={state.grade}
-              onChange={(v) => onChange({ grade: v })}
-              options={gradeOptions()}
-              label="Grade"
-            />
-          </Field>
+        <div className="divide-y divide-line border-t border-line">
+          <div className="px-4 py-4">
+            <Field label="Grade">
+              <BoxSelect
+                value={state.grade}
+                onChange={(v) => onChange({ grade: v })}
+                options={gradeOptions()}
+                label="Grade"
+              />
+            </Field>
+          </div>
 
-          <Field label="Starting">
-            <BoxSelect
-              value={state.month}
-              onChange={(v) => onChange({ month: v })}
-              options={monthOptions()}
-              label="Start month"
-            />
-          </Field>
+          <div className="px-4 py-4">
+            <Field label="Starting">
+              <BoxSelect
+                value={state.month}
+                onChange={(v) => onChange({ month: v })}
+                options={monthOptions()}
+                label="Start month"
+              />
+            </Field>
+          </div>
 
-          <Field label="Where you are">
-            <BoxSelect
-              value={state.region}
-              onChange={(v) => onChange({ region: v })}
-              options={regionOptions()}
-              label="Location"
-            />
-            <p className="mt-1.5 text-[0.72rem] leading-snug text-ink-faint">
-              Live online - we only show cohorts that meet at a sensible local hour.
-            </p>
-          </Field>
+          <div className="px-4 py-4">
+            <Field label="Where you are">
+              <BoxSelect
+                value={state.region}
+                onChange={(v) => onChange({ region: v })}
+                options={regionOptions()}
+                label="Location"
+              />
+              <p className="mt-1.5 text-[0.71rem] leading-snug text-ink-faint">
+                Live online - we only show cohorts that meet at a sensible local hour.
+              </p>
+            </Field>
+          </div>
 
-          <Field label="Type">
-            <div className="flex flex-col gap-1">
-              {typeKeys.map((key) => {
-                const pressed = state.type === key;
-                return (
-                  <button
-                    key={key}
-                    type="button"
-                    aria-pressed={pressed}
-                    onClick={() => onChange({ type: key })}
-                    className={`flex items-center justify-between rounded-lg px-2.5 py-[7px] text-left text-[0.8rem] font-semibold transition-colors ${
-                      pressed
-                        ? "bg-ink text-paper"
-                        : "text-ink-soft hover:bg-wash hover:text-ink"
-                    }`}
-                  >
-                    <span>
-                      {key === "all"
-                        ? "All types"
-                        : TYPES[key as keyof typeof TYPES].label}
-                    </span>
-                    <small
-                      className={`font-mono text-[0.68rem] font-medium ${
-                        pressed ? "text-[#c7ccda]" : "text-ink-faint"
+          <div className="px-4 py-4">
+            <Field label="Type">
+              <div className="flex flex-col gap-0.5">
+                {typeKeys.map((key) => {
+                  const pressed = state.type === key;
+                  return (
+                    <button
+                      key={key}
+                      type="button"
+                      aria-pressed={pressed}
+                      onClick={() => onChange({ type: key })}
+                      className={`flex items-center justify-between rounded-lg px-2.5 py-[7px] text-left text-[0.8rem] font-semibold transition-colors ${
+                        pressed
+                          ? "bg-ink text-paper"
+                          : "text-ink-soft hover:bg-wash hover:text-ink"
                       }`}
                     >
-                      {counts[key]}
-                    </small>
-                  </button>
-                );
-              })}
-            </div>
-          </Field>
+                      <span>
+                        {key === "all"
+                          ? "All types"
+                          : TYPES[key as keyof typeof TYPES].label}
+                      </span>
+                      <small
+                        className={`font-mono text-[0.68rem] font-medium ${
+                          pressed ? "text-[#c7ccda]" : "text-ink-faint"
+                        }`}
+                      >
+                        {counts[key]}
+                      </small>
+                    </button>
+                  );
+                })}
+              </div>
+            </Field>
+          </div>
 
-          <Field label="Curious about">
-            <div className="grid grid-cols-3 gap-1.5 lg:grid-cols-2">
-              <Tile
-                label="All"
-                icon="✨"
-                dense
-                pressed={state.interest === "all"}
-                onClick={() => onChange({ interest: "all" })}
-              />
-              {Object.entries(TRACKS).map(([key, t]) => (
-                <Tile
-                  key={key}
-                  label={t.label}
-                  icon={t.ic}
-                  color={t.color}
-                  dense
-                  pressed={state.interest === key}
-                  onClick={() => onChange({ interest: key })}
+          <div className="px-4 py-4">
+            <Field label="Curious about">
+              <div className="flex flex-col gap-0.5">
+                <TrackRow
+                  label="All interests"
+                  pressed={state.interest === "all"}
+                  onClick={() => onChange({ interest: "all" })}
                 />
-              ))}
-            </div>
-          </Field>
+                {Object.entries(TRACKS).map(([key, t]) => (
+                  <TrackRow
+                    key={key}
+                    label={t.label}
+                    track={key as TrackKey}
+                    color={t.color}
+                    pressed={state.interest === key}
+                    onClick={() => onChange({ interest: key })}
+                  />
+                ))}
+              </div>
+            </Field>
+          </div>
 
-          <div className="border-t border-line pt-3">{counter}</div>
+          <div className="px-4 py-3.5">{counter}</div>
         </div>
       </div>
     );
   }
+
 
   return (
     <div className="rounded-3xl border border-line bg-paper p-[clamp(22px,4vw,34px)] shadow-lift">
