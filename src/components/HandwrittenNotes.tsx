@@ -96,9 +96,6 @@ const NOTES: Note[] = [
 export default function HandwrittenNotes() {
   const [open, setOpen] = useState<number | null>(null);
   const [paused, setPaused] = useState(false);
-  const perPage = 3;
-  const pages = Math.max(1, Math.ceil(NOTES.length / perPage));
-  const [page, setPage] = useState(0);
 
   useEffect(() => {
     if (open === null) return;
@@ -109,14 +106,8 @@ export default function HandwrittenNotes() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  useEffect(() => {
-    if (paused || pages < 2) return;
-    const id = window.setInterval(() => setPage((p) => (p + 1) % pages), 11000);
-    return () => window.clearInterval(id);
-  }, [paused, pages]);
-
   const active = open === null ? null : NOTES[open];
-  const visibleNotes = NOTES.slice(page * perPage, page * perPage + perPage);
+  const track = [...NOTES, ...NOTES];
 
   return (
     <div>
@@ -130,72 +121,55 @@ export default function HandwrittenNotes() {
       </div>
 
       <div
-        className="relative mt-4 px-5"
+        className="relative mt-4 overflow-hidden"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
-        <div className="grid gap-8 py-4 sm:grid-cols-2 lg:grid-cols-3">
-          {visibleNotes.map((note, i) => (
-            <figure
-              key={note.src}
-              className="group relative m-0 w-full"
-            >
-              <button
-                type="button"
-                onClick={() => setOpen(page * perPage + i)}
-                className="relative block w-full cursor-pointer border-0 bg-transparent p-0 text-left"
-                aria-label={`Read the note from ${note.name}`}
+        <div
+          className="note-marquee-track flex w-max gap-7 px-5 py-4"
+          style={paused ? { animationPlayState: "paused" } : undefined}
+        >
+          {track.map((note, i) => {
+            const index = i % NOTES.length;
+            return (
+              <figure
+                key={`${note.src}-${i}`}
+                className="group relative m-0 w-[240px] shrink-0 sm:w-[270px]"
               >
-                <span className="pointer-events-none absolute -inset-2 translate-x-2 translate-y-2 rounded-sm border border-gold-line" />
-                <span
-                  className={`relative block overflow-hidden bg-ink p-2.5 shadow-lift ring-8 ring-paper/40 transition-transform duration-500 ${note.tilt} group-hover:-translate-y-2 group-hover:rotate-0`}
+                <button
+                  type="button"
+                  onClick={() => setOpen(index)}
+                  className="relative block w-full cursor-pointer border-0 bg-transparent p-0 text-left"
+                  aria-label={`Read the note from ${note.name}`}
                 >
-                  <img
-                    src={note.src}
-                    alt={`Handwritten thank-you note from ${note.name}`}
-                    loading="lazy"
-                    className="aspect-[4/3] w-full bg-paper object-contain"
-                  />
-                </span>
-              </button>
-              <figcaption className="mt-4 px-1">
-                <p className="font-serif text-[0.98rem] leading-snug italic text-ink">
-                  “{note.quote}”
-                </p>
-                <p className="mono-label mt-2 text-crimson">{note.name}</p>
-              </figcaption>
-            </figure>
-          ))}
+                  <span className="pointer-events-none absolute -inset-2 translate-x-2 translate-y-2 rounded-sm border border-gold-line" />
+                  <span
+                    className={`relative block overflow-hidden bg-ink p-2 shadow-lift ring-8 ring-paper/40 transition-transform duration-500 ${note.tilt} group-hover:-translate-y-2 group-hover:rotate-0`}
+                  >
+                    <img
+                      src={note.src}
+                      alt={`Handwritten thank-you note from ${note.name}`}
+                      loading="lazy"
+                      className="aspect-[4/3] w-full bg-paper object-contain"
+                    />
+                  </span>
+                </button>
+                <figcaption className="mt-3 px-1">
+                  <p className="line-clamp-3 font-serif text-[0.9rem] leading-snug italic text-ink">
+                    “{note.quote}”
+                  </p>
+                  <p className="mono-label mt-2 text-[0.6rem] text-crimson">{note.name}</p>
+                </figcaption>
+              </figure>
+            );
+          })}
         </div>
-
-        {pages > 1 ? (
-          <div className="mt-3 flex items-center justify-center gap-3">
-            <button
-              type="button"
-              onClick={() => setPage((p) => (p - 1 + pages) % pages)}
-              aria-label="Previous handwritten notes"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft transition-colors hover:border-crimson/40 hover:text-crimson"
-            >
-              <span aria-hidden>←</span>
-            </button>
-            <span className="mono-label text-ink-faint">
-              {page + 1} / {pages}
-            </span>
-            <button
-              type="button"
-              onClick={() => setPage((p) => (p + 1) % pages)}
-              aria-label="Next handwritten notes"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft transition-colors hover:border-crimson/40 hover:text-crimson"
-            >
-              <span aria-hidden>→</span>
-            </button>
-          </div>
-        ) : null}
       </div>
 
       <p className="mono-label mt-4 text-center text-ink-soft">
         &nbsp;HOVER TO PAUSE, TAP ANY NOTE TO READ IT
       </p>
+
 
 
       {active ? (
