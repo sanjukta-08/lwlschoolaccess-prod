@@ -21,6 +21,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { WingMark } from "@/components/WingMark";
 import { SectionHeading } from "@/components/SectionHeading";
 import birdAsset from "@/assets/lwl-bird-black.png.asset.json";
+import worldMapAsset from "@/assets/world-map-gold.png.asset.json";
 import pathwayMedicine from "@/assets/pathway-medicine.png";
 import pathwayLaw from "@/assets/pathway-law.png";
 import pathwayFinance from "@/assets/pathway-finance.png";
@@ -91,6 +92,14 @@ function HomePage() {
             alt=""
             aria-hidden="true"
             className="h-full w-full object-contain object-left"
+          />
+        </div>
+        <div className="pointer-events-none absolute right-[-7vw] bottom-[-2.5rem] hidden w-[min(52rem,58vw)] opacity-[0.72] sm:block">
+          <img
+            src={worldMapAsset.url}
+            alt=""
+            aria-hidden="true"
+            className="h-full w-full object-contain object-right-bottom mix-blend-multiply"
           />
         </div>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-paper/75 via-paper/45 via-50% to-paper/20" />
