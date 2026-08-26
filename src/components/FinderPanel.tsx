@@ -90,18 +90,12 @@ export function FinderPanel({
       { value: "all", label: "Any interest" },
       ...Object.entries(TRACKS).map(([key, t]) => ({ value: key, label: t.label })),
     ];
-    const typeOptions = typeKeys.map((key) => ({
-      value: key,
-      label:
-        (key === "all" ? "Any type" : TYPES[key as keyof typeof TYPES].label) +
-        ` (${counts[key]})`,
-    }));
 
     return (
       <div className="rounded-2xl border border-line bg-paper p-4 shadow-soft sm:p-5">
         <div className="flex flex-wrap items-end gap-x-4 gap-y-3">
           <div className="min-w-[220px] flex-[2]">
-            <Field label="My child has interest in">
+            <Field label="My child has interest in" icon={<Compass className="h-3.5 w-3.5" />}>
               <BoxSelect
                 value={state.interest}
                 onChange={(v) => onChange({ interest: v })}
@@ -110,8 +104,8 @@ export function FinderPanel({
               />
             </Field>
           </div>
-          <div className="min-w-[140px] flex-1">
-            <Field label="Grade">
+          <div className="min-w-[120px] flex-1">
+            <Field label="Grade" icon={<GraduationCap className="h-3.5 w-3.5" />}>
               <BoxSelect
                 value={state.grade}
                 onChange={(v) => onChange({ grade: v })}
@@ -120,18 +114,8 @@ export function FinderPanel({
               />
             </Field>
           </div>
-          <div className="min-w-[150px] flex-1">
-            <Field label="Programme type">
-              <BoxSelect
-                value={state.type}
-                onChange={(v) => onChange({ type: v })}
-                options={typeOptions}
-                label="Programme type"
-              />
-            </Field>
-          </div>
           <div className="min-w-[140px] flex-1">
-            <Field label="Starting">
+            <Field label="Starting" icon={<CalendarDays className="h-3.5 w-3.5" />}>
               <BoxSelect
                 value={state.month}
                 onChange={(v) => onChange({ month: v })}
@@ -141,7 +125,7 @@ export function FinderPanel({
             </Field>
           </div>
           <div className="min-w-[150px] flex-1">
-            <Field label="Where you are">
+            <Field label="Where you are" icon={<Globe className="h-3.5 w-3.5" />}>
               <BoxSelect
                 value={state.region}
                 onChange={(v) => onChange({ region: v })}
@@ -150,8 +134,10 @@ export function FinderPanel({
               />
             </Field>
           </div>
-          <div className="min-w-[200px] flex-[1.5]">
-            <Field label="Search">{search}</Field>
+          <div className="min-w-[220px] flex-[1.5]">
+            <Field label="Search" icon={<Search className="h-3.5 w-3.5" />}>
+              {search}
+            </Field>
           </div>
         </div>
 
@@ -159,6 +145,7 @@ export function FinderPanel({
       </div>
     );
   }
+
 
   if (layout === "rail") {
     return (
