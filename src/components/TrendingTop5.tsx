@@ -16,8 +16,8 @@ import {
 
 type Props = {
   state?: FinderSearch;
-  /** "section" = full band, "strip" = slim 3-across row inside a page column */
-  variant?: "section" | "strip";
+  /** "section" = full band, "strip" = slim 3-across row, "rail" = vertical sidebar stack */
+  variant?: "section" | "strip" | "rail";
 };
 
 export function TrendingTop5({ state, variant = "section" }: Props) {
@@ -46,7 +46,7 @@ export function TrendingTop5({ state, variant = "section" }: Props) {
   const titleLead = activeInterest ? `Top ${activeInterest.label}` : "Top 5";
   const titleNoun = activeType ? activeType.label.toLowerCase() : "programmes";
 
-  if (variant === "strip") {
+  if (variant === "strip" || variant === "rail") {
     return (
       <section id="trending" className="scroll-mt-24">
         <header className="mb-3 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
@@ -60,7 +60,13 @@ export function TrendingTop5({ state, variant = "section" }: Props) {
           <span className="mono-label text-gold">Trending now</span>
         </header>
 
-        <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <ol
+          className={
+            variant === "rail"
+              ? "grid gap-3"
+              : "grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
+          }
+        >
           {picks.slice(0, 3).map(({ p, next, why }, i) => {
             const track = TRACKS[p.tracks[0]!];
             const fee = feeOf(p, next);
