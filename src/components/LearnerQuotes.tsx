@@ -17,10 +17,24 @@ function initialsOf(name: string) {
 }
 
 const ACCENTS = [
-  { panel: "bg-crimson", mark: "text-crimson/30" },
-  { panel: "bg-gold-deep", mark: "text-gold-deep/30" },
-  { panel: "bg-ink", mark: "text-ink/25" },
-];
+  {
+    panel: "bg-crimson",
+    quote: "text-crimson/35",
+    avatar: "bg-crimson-deep text-paper ring-paper",
+  },
+  {
+    panel: "bg-gold-deep",
+    quote: "text-gold-deep/35",
+    avatar: "bg-gold text-paper ring-paper",
+  },
+  {
+    panel: "bg-ink",
+    quote: "text-ink/25",
+    avatar: "bg-ink text-paper ring-paper",
+  },
+] as const;
+
+const DEFAULT_ACCENT = ACCENTS[0];
 
 function QuoteCard({
   q,
@@ -33,47 +47,49 @@ function QuoteCard({
   width?: string;
   accent?: number;
 }) {
-  const a = ACCENTS[accent % ACCENTS.length]!;
+  const a = ACCENTS[accent % ACCENTS.length] ?? DEFAULT_ACCENT;
   return (
     <button
       type="button"
       onClick={onOpen}
       aria-label={`Read the full note from ${q.name}`}
-      className={`group relative flex flex-col self-stretch rounded-[2rem] rounded-tl-[3rem] pt-10 text-left transition-transform hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none ${a.panel} ${width}`}
+      className={`group relative flex min-h-[23.5rem] flex-col self-stretch overflow-visible rounded-[2rem] rounded-tl-[3.25rem] p-4 pt-7 text-left shadow-soft transition-transform hover:-translate-y-1 hover:shadow-lift focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none ${a.panel} ${width}`}
     >
-      {/* white quote plate, offset up and to the right like the reference */}
-      <div className="relative -mt-8 ml-6 flex min-h-[10.5rem] flex-col rounded-[1.25rem] rounded-tr-[2.5rem] bg-paper p-5 shadow-[0_14px_34px_-18px_rgba(28,34,48,0.45)]">
+      <div className="pointer-events-none absolute inset-x-7 top-4 h-10 rounded-full border border-paper/30" />
+      <div className="relative ml-5 flex min-h-[15.25rem] flex-1 flex-col rounded-[1.35rem] rounded-tr-[3rem] bg-paper p-6 shadow-lift ring-1 ring-ink/5">
         <span
           aria-hidden
-          className={`font-serif text-[2.1rem] leading-[0.6] ${a.mark}`}
+          className={`font-serif text-[3.4rem] leading-[0.48] ${a.quote}`}
         >
           “
         </span>
-        <p className="mt-3 line-clamp-5 flex-1 text-[0.9rem] leading-relaxed text-ink-soft">
+        <p className="mt-3 line-clamp-6 flex-1 font-serif text-[1.04rem] leading-[1.55] text-ink">
           {q.quote}
         </p>
         <span
           aria-hidden
-          className={`mt-2 self-end font-serif text-[2.1rem] leading-[0.4] ${a.mark}`}
+          className={`mt-3 self-end font-serif text-[3rem] leading-[0.42] ${a.quote}`}
         >
           ”
         </span>
       </div>
 
-      <footer className="flex items-center gap-3 px-6 py-5">
-        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-paper font-serif text-[0.85rem] font-bold text-ink">
+      <footer className="relative flex min-h-[5.4rem] items-end gap-3 px-3 pb-2 pt-5">
+        <span
+          className={`absolute -top-5 left-2 flex h-14 w-14 shrink-0 items-center justify-center rounded-full font-serif text-[0.9rem] font-bold shadow-soft ring-[5px] ${a.avatar}`}
+        >
           {initialsOf(q.name)}
         </span>
-        <span className="min-w-0 flex-1">
-          <span className="block truncate font-serif text-[1rem] font-semibold leading-tight text-paper">
+        <span className="min-w-0 flex-1 pl-[4.4rem]">
+          <span className="block truncate font-serif text-[1.1rem] font-semibold leading-tight text-paper">
             {q.name}
           </span>
-          <span className="block truncate text-[0.72rem] text-paper/75">
-            {q.role} · {q.programme}
+          <span className="mt-1 block line-clamp-2 text-[0.74rem] leading-snug text-paper/78">
+            {q.role} • {q.programme}
           </span>
         </span>
-        <span className="mono-label shrink-0 text-[0.6rem] text-paper/0 transition-colors group-hover:text-paper/80">
-          Read →
+        <span className="mono-label mb-1 shrink-0 text-[0.62rem] text-paper/70 transition-colors group-hover:text-paper">
+          Read
         </span>
       </footer>
     </button>
@@ -155,7 +171,7 @@ function QuoteMarquee({
             q={q}
             onOpen={() => onOpen(q)}
             accent={i}
-            width="w-[320px] shrink-0 sm:w-[380px]"
+            width="w-[340px] shrink-0 sm:w-[420px]"
           />
         ))}
       </div>
@@ -192,7 +208,7 @@ export function LearnerQuotes({
   return (
     <>
       {variant === "marquee" ? (
-        <QuoteMarquee quotes={shown} onOpen={setOpen} duration={duration ?? 55} />
+        <QuoteMarquee quotes={shown} onOpen={setOpen} duration={duration ?? 95} />
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {shown.map((q, i) => (
