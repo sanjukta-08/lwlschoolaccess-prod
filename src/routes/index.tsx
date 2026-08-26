@@ -57,7 +57,7 @@ const StoryStrip = lazy(() => import("@/components/StoryStrip"));
 const HandwrittenNotes = lazy(() => import("@/components/HandwrittenNotes"));
 
 
-const FEATURED = ["fdf", "irf", "ail", "finlit"];
+const FEATURED = ["fdf", "rpf", "ail", "finlit"];
 
 const PATHWAY_ART: Record<TrackKey, string> = {
   med: pathwayMedicine,

@@ -209,7 +209,7 @@ export const LINKEDIN_POSTS: LinkedInStory[] = [
     comments: 18,
     tag: "Finance",
     source: "linkedin",
-    tags: ["fin", "ent"],
+    tags: ["fin", "ai"],
     image: shotSwaraj.url,
     imageAlt:
       "LinkedIn post by Swaraj Koyande announcing his Sharpest Financial Analysis award and venture pitch deck",
@@ -228,7 +228,7 @@ export const LINKEDIN_POSTS: LinkedInStory[] = [
     comments: 14,
     tag: "Leadership",
     source: "linkedin",
-    tags: ["lead", "deb"],
+    tags: ["lead", "law"],
     image: shotKhalid.url,
     imageAlt:
       "LinkedIn post by Khalid W. Al-Sultan sharing mentor feedback from the HCUS Young Global Leaders Summer Camp",
@@ -247,7 +247,7 @@ export const LINKEDIN_POSTS: LinkedInStory[] = [
     comments: 34,
     tag: "Leadership",
     source: "linkedin",
-    tags: ["lead", "deb", "ai"],
+    tags: ["lead", "law", "ai"],
     image: shotKanav.url,
     imageAlt:
       "LinkedIn post by Kanav Suri about the HCUS Young Leaders' Camp at Harvard University",
@@ -266,7 +266,7 @@ export const LINKEDIN_POSTS: LinkedInStory[] = [
     comments: 12,
     tag: "Entrepreneurship",
     source: "linkedin",
-    tags: ["ent", "lead"],
+    tags: ["ai", "lead"],
     image: shotMompati.url,
     imageAlt:
       "LinkedIn post by Mompati Masiangoako about his Cambridge Judge Business School startup week and seed funding",
@@ -285,7 +285,7 @@ export const LINKEDIN_POSTS: LinkedInStory[] = [
     comments: 9,
     tag: "Leadership",
     source: "linkedin",
-    tags: ["lead", "deb", "law"],
+    tags: ["lead", "law", "law"],
     image: shotMohammed.url,
     imageAlt:
       "LinkedIn post by Mohammed Majed Abu Baid with his Harvard College Union Society invitation letter",
@@ -396,7 +396,7 @@ export const VIDEO_TESTIMONIALS: VideoTestimonial[] = [
     cohort: "Global Goals Camp, Geneva",
     src: genevaClip1.url,
     poster: genevaPoster1.url,
-    tags: ["lead", "deb"],
+    tags: ["lead", "law"],
   },
   {
     id: "hamza",
@@ -404,7 +404,7 @@ export const VIDEO_TESTIMONIALS: VideoTestimonial[] = [
     cohort: "Global Goals Camp, Geneva",
     src: genevaClip2.url,
     poster: genevaPoster2.url,
-    tags: ["lead", "deb"],
+    tags: ["lead", "law"],
   },
   {
     id: "geneva-learner",
@@ -420,14 +420,14 @@ export const VIDEO_TESTIMONIALS: VideoTestimonial[] = [
     name: "Efrain Calles-Arnaiz",
     cohort: "Harvard Winter Camp 2025",
     fileId: "1ToX2xWT-tareQBmWSInwyr2emSPe8wGa",
-    tags: ["lead", "deb"],
+    tags: ["lead", "law"],
   },
   {
     id: "maame",
     name: "Maame Adjoa Kakraba Nduom",
     cohort: "Harvard Winter Camp 2025",
     fileId: "1dTssxV7gQVDrPa3gG4nD_NsvNkgySfTo",
-    tags: ["lead", "deb"],
+    tags: ["lead", "law"],
   },
   {
     id: "isham",
@@ -441,7 +441,7 @@ export const VIDEO_TESTIMONIALS: VideoTestimonial[] = [
     name: "Yasmina Traoré",
     cohort: "Harvard Winter Camp 2025",
     fileId: "1rIes6hptni3Y3o0_4JmSgDGblKvwSdPy",
-    tags: ["lead", "deb"],
+    tags: ["lead", "law"],
   },
   {
     id: "wistarani",
