@@ -201,6 +201,32 @@ function StoriesPage() {
         ) : null}
       </section>
 
+      <section className="px-5 pb-16">
+        <div className="mx-auto max-w-[1180px]">
+          <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium leading-none">
+            Programme feedback, cohort by cohort
+          </h2>
+          <p className="mt-1 max-w-[64em] text-[0.92rem] leading-relaxed text-ink-soft">
+            Every quote below comes from an end-of-programme feedback form, grouped by
+            the cohort it was written in.
+          </p>
+          {groupedQuotes().map((g) => (
+            <div key={g.programme} className="mt-9">
+              <h3 className="font-serif text-[1.05rem] font-medium">
+                {g.programme}
+                <span className="ml-2 text-[0.78rem] font-sans text-ink-faint">
+                  {g.quotes.length} {g.quotes.length === 1 ? "note" : "notes"}
+                </span>
+              </h3>
+              <div className="mt-3">
+                <LearnerQuotes quotes={g.quotes} variant="grid" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+
 
       <PressStrip />
 
