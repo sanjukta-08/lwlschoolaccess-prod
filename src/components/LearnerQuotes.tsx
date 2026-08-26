@@ -194,11 +194,17 @@ export function LearnerQuotes({
       {variant === "marquee" ? (
         <QuoteMarquee quotes={shown} onOpen={setOpen} duration={duration ?? 70} />
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {shown.map((q) => (
-            <QuoteCard key={`${q.name}-${q.quote.slice(0, 24)}`} q={q} onOpen={() => setOpen(q)} />
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {shown.map((q, i) => (
+            <QuoteCard
+              key={`${q.name}-${q.quote.slice(0, 24)}`}
+              q={q}
+              accent={i}
+              onOpen={() => setOpen(q)}
+            />
           ))}
         </div>
+
       )}
       <QuoteLightbox quote={open} onClose={() => setOpen(null)} />
     </>
