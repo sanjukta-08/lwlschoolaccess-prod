@@ -476,6 +476,64 @@ function TailItem({
   );
 }
 
+function TypeChips({
+  state,
+  onChange,
+}: {
+  state: FinderSearch;
+  onChange: (patch: Partial<FinderSearch>) => void;
+}) {
+  const typeKeys = ["all", ...Object.keys(TYPES)] as const;
+  const counts = typeCounts(state, typeKeys as unknown as string[]);
+
+  const scrollToResults = () => {
+    const el = document.getElementById("all-programmes");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  return (
+    <div className="relative">
+      <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none]">
+        {typeKeys.map((key) => {
+          const pressed = state.type === key;
+          const label =
+            key === "all" ? "All" : TYPES[key as keyof typeof TYPES].label;
+          return (
+            <button
+              key={key}
+              type="button"
+              aria-pressed={pressed}
+              onClick={() => {
+                onChange({ type: key });
+                scrollToResults();
+              }}
+              className={`flex-none rounded-full border px-4 py-2 text-[0.82rem] font-semibold whitespace-nowrap transition-all ${
+                pressed
+                  ? "border-ink bg-ink text-paper shadow-soft"
+                  : "border-line bg-paper text-ink-soft hover:border-ink-soft hover:text-ink"
+              }`}
+            >
+              <span>{label}</span>
+              <small
+                className={`ml-1.5 font-mono text-[0.7rem] font-medium ${
+                  pressed ? "text-paper/70" : "text-ink-faint"
+                }`}
+              >
+                {counts[key]}
+              </small>
+            </button>
+          );
+        })}
+      </div>
+      <span
+        className="pointer-events-none absolute top-0 right-0 h-full w-8 bg-gradient-to-l from-wash to-transparent sm:hidden"
+        aria-hidden="true"
+      />
+    </div>
+  );
+}
+
+
 function Segmented({
   value,
   onChange,
