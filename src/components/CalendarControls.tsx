@@ -1,7 +1,7 @@
+import { CalendarDays, Compass, LayoutGrid, Search, SlidersHorizontal } from "lucide-react";
 import {
   TRACKS,
   TYPES,
-  TYPE_IC,
   TYPE_ORDER,
   type TrackKey,
   type TypeKey,
@@ -18,37 +18,98 @@ type Props = {
   dirty: boolean;
 };
 
-function Pill({
-  active,
-  onClick,
+/** Labelled dropdown, same visual language as the finder filter bar. */
+function Field({
+  label,
+  icon,
   children,
-  count,
 }: {
-  active: boolean;
-  onClick: () => void;
+  label: string;
+  icon?: React.ReactNode;
   children: React.ReactNode;
-  count?: number | undefined;
 }) {
   return (
-    <button
-      type="button"
-      aria-pressed={active}
-      onClick={onClick}
-      className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[0.8rem] font-semibold whitespace-nowrap transition-colors ${
-        active ? "bg-ink text-paper" : "text-ink-soft hover:text-ink"
-      }`}
-    >
+    <div className="min-w-0">
+      <span className="mono-label mb-1.5 inline-flex items-center gap-1.5 text-ink-faint">
+        {icon ? <span className="text-ink-faint/70">{icon}</span> : null}
+        {label}
+      </span>
       {children}
-      {count !== undefined ? (
-        <small
-          className={`font-mono text-[0.68rem] ${active ? "text-paper/70" : "text-ink-faint"}`}
-        >
-          {count}
-        </small>
-      ) : null}
-    </button>
+    </div>
   );
 }
+
+function BoxSelect({
+  value,
+  onChange,
+  options,
+  label,
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  options: { value: string; label: string }[];
+  label: string;
+}) {
+  return (
+    <span className="relative block">
+      <select
+        aria-label={label}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full cursor-pointer appearance-none rounded-lg border border-line bg-wash px-3 py-2 pr-8 text-[0.85rem] font-semibold text-ink focus:border-crimson/40 focus:outline-none"
+      >
+        {options.map((o) => (
+          <option key={o.value} value={o.value}>
+            {o.label}
+          </option>
+        ))}
+      </select>
+      <span className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-[0.65rem] text-ink-faint">
+        ▾
+      </span>
+    </span>
+  );
+}
+
+function Seg({
+  value,
+  onChange,
+  options,
+  label,
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  options: { value: string; label: string }[];
+  label: string;
+}) {
+  return (
+    <div
+      role="group"
+      aria-label={label}
+      className="inline-flex gap-0.5 rounded-lg border border-line bg-wash p-1"
+    >
+      {options.map((o) => (
+        <button
+          key={o.value}
+          type="button"
+          aria-pressed={value === o.value}
+          onClick={() => onChange(o.value)}
+          className={`rounded-md px-3 py-1.5 text-[0.78rem] font-semibold whitespace-nowrap transition-colors ${
+            value === o.value ? "bg-ink text-paper" : "text-ink-soft hover:text-ink"
+          }`}
+        >
+          {o.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+const shortMonth = (key: string) =>
+  new Date(key + "-01T00:00:00").toLocaleDateString("en-GB", {
+    month: "long",
+    year: "numeric",
+  });
 
 export function CalendarControls({
   state,
@@ -65,128 +126,163 @@ export function CalendarControls({
   const trackN = facetCounts(state, "interest", trackVals);
   const byMonth = state.calView !== "type";
 
-  const jump = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
+  const interestOptions = trackVals.map((k) => ({
+    value: k,
+    label:
+      k === "all"
+        ? `Every subject (${trackN["all"] ?? 0})`
+        : `${TRACKS[k as TrackKey].label} (${trackN[k] ?? 0})`,
+  }));
+
+  const typeOptions = typeVals.map((t) => ({
+    value: t,
+    label:
+      t === "all"
+        ? `Every format (${typeN["all"] ?? 0})`
+        : `${TYPES[t as TypeKey].label} (${typeN[t] ?? 0})`,
+  }));
+
+  const monthOptions = [
+    { value: "all", label: "Any month" },
+    ...months.map((m) => ({
+      value: m.key,
+      label: `${shortMonth(m.key)} (${m.rows.length})`,
+    })),
+  ];
+
+  // Active filters, each individually clearable.
+  const chips: { label: string; clear: Partial<FinderSearch> }[] = [];
+  if (state.q) chips.push({ label: `“${state.q}”`, clear: { q: "" } });
+  if (state.interest !== "all")
+    chips.push({
+      label: TRACKS[state.interest as TrackKey]?.label ?? state.interest,
+      clear: { interest: "all" },
+    });
+  if (state.type !== "all")
+    chips.push({
+      label: TYPES[state.type as TypeKey]?.label ?? state.type,
+      clear: { type: "all" },
+    });
+  if (state.month !== "all")
+    chips.push({ label: shortMonth(state.month), clear: { month: "all" } });
+  if (state.status === "soon")
+    chips.push({ label: "Starting soon", clear: { status: "all" } });
 
   return (
     <div className="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur">
-      <div className="mx-auto max-w-[1100px] space-y-2.5 px-5 py-3.5">
-        <div className="flex flex-wrap items-center gap-2.5">
-          <div
-            role="group"
-            aria-label="View"
-            className="inline-flex gap-0.5 rounded-full border border-line bg-wash p-1"
-          >
-            <Pill active={byMonth} onClick={() => onChange({ calView: "month" })}>
-              📅 By month
-            </Pill>
-            <Pill active={!byMonth} onClick={() => onChange({ calView: "type" })}>
-              🗂 By type
-            </Pill>
-          </div>
-
-          <input
-            type="search"
-            value={state.q}
-            onChange={(e) => onChange({ q: e.target.value })}
-            aria-label="Search programmes"
-            placeholder='Search - try "doctors", "Harvard", "research"…'
-            className="min-w-[200px] flex-1 rounded-full border border-line bg-wash px-4 py-2 text-[0.85rem] text-ink placeholder:text-ink-faint focus:border-crimson/40 focus:bg-paper focus:outline-none"
-          />
-
-          <div
-            role="group"
-            aria-label="Status"
-            className="inline-flex gap-0.5 rounded-full border border-line bg-wash p-1"
-          >
-            <Pill active={state.status !== "soon"} onClick={() => onChange({ status: "all" })}>
-              All upcoming
-            </Pill>
-            <Pill active={state.status === "soon"} onClick={() => onChange({ status: "soon" })}>
-              Starting soon
-            </Pill>
+      <div className="mx-auto max-w-[1100px] px-5 py-4">
+        {/* Row 1 — what you are looking at, and how it is grouped */}
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <span className="mono-label inline-flex items-center gap-2 text-ink-faint">
+            <SlidersHorizontal className="h-3.5 w-3.5" />
+            Filter the calendar
+          </span>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="mono-label hidden text-ink-faint sm:inline">Group by</span>
+            <Seg
+              label="Group cohorts by"
+              value={byMonth ? "month" : "type"}
+              onChange={(v) => onChange({ calView: v })}
+              options={[
+                { value: "month", label: "Month" },
+                { value: "type", label: "Programme type" },
+              ]}
+            />
           </div>
         </div>
 
-        <div
-          role="group"
-          aria-label="Programme type"
-          className="flex flex-wrap items-center gap-1 rounded-2xl border border-line bg-wash p-1"
-        >
-          {typeVals.map((t) => (
-            <Pill
-              key={t}
-              active={state.type === t}
-              onClick={() => onChange({ type: t })}
-              count={typeN[t]}
-            >
-              {t === "all"
-                ? "All types"
-                : `${TYPE_IC[t as TypeKey]} ${TYPES[t as TypeKey].label}`}
-            </Pill>
-          ))}
+        {/* Row 2 — four plain dropdowns plus search, all labelled */}
+        <div className="mt-3 grid gap-x-3 gap-y-3 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.3fr]">
+          <Field label="Subject area" icon={<Compass className="h-3.5 w-3.5" />}>
+            <BoxSelect
+              label="Subject area"
+              value={state.interest}
+              onChange={(v) => onChange({ interest: v })}
+              options={interestOptions}
+            />
+          </Field>
+          <Field label="Programme type" icon={<LayoutGrid className="h-3.5 w-3.5" />}>
+            <BoxSelect
+              label="Programme type"
+              value={state.type}
+              onChange={(v) => onChange({ type: v })}
+              options={typeOptions}
+            />
+          </Field>
+          <Field label="Starts in" icon={<CalendarDays className="h-3.5 w-3.5" />}>
+            <BoxSelect
+              label="Start month"
+              value={state.month}
+              onChange={(v) => onChange({ month: v })}
+              options={monthOptions}
+            />
+          </Field>
+          <Field label="Search" icon={<Search className="h-3.5 w-3.5" />}>
+            <span className="relative block">
+              <input
+                type="search"
+                value={state.q}
+                onChange={(e) => onChange({ q: e.target.value })}
+                aria-label="Search programmes"
+                placeholder='Try "doctors", "Harvard", "research"'
+                className="w-full rounded-lg border border-line bg-wash px-3 py-2 pr-8 text-[0.85rem] text-ink placeholder:text-ink-faint focus:border-crimson/40 focus:bg-paper focus:outline-none"
+              />
+              {state.q ? (
+                <button
+                  type="button"
+                  onClick={() => onChange({ q: "" })}
+                  aria-label="Clear search"
+                  className="absolute top-1/2 right-2.5 -translate-y-1/2 text-[0.8rem] text-ink-faint hover:text-crimson"
+                >
+                  ✕
+                </button>
+              ) : null}
+            </span>
+          </Field>
         </div>
 
-        <div role="group" aria-label="Interest" className="flex flex-wrap gap-1.5">
-          {trackVals.map((k) => (
-            <button
-              key={k}
-              type="button"
-              aria-pressed={state.interest === k}
-              onClick={() => onChange({ interest: k })}
-              className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[0.78rem] font-semibold transition-colors ${
-                state.interest === k
-                  ? "border-crimson bg-crimson/8 text-crimson"
-                  : "border-line bg-paper text-ink-soft hover:border-ink-soft hover:text-ink"
-              }`}
-            >
-              {k === "all"
-                ? "✨ Everything"
-                : `${TRACKS[k as TrackKey].ic} ${TRACKS[k as TrackKey].label}`}
-              <small className="font-mono text-[0.66rem] text-ink-faint">{trackN[k]}</small>
-            </button>
-          ))}
-        </div>
+        {/* Row 3 — count, quick "starting soon" toggle, active filters, reset */}
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-line pt-3">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="font-mono text-[0.78rem] text-ink-soft">
+              <strong className="text-[0.9rem] font-semibold text-crimson">
+                {programmeCount}
+              </strong>{" "}
+              programmes · {cohortCount} cohorts
+            </span>
+            <Seg
+              label="Start window"
+              value={state.status === "soon" ? "soon" : "all"}
+              onChange={(v) => onChange({ status: v })}
+              options={[
+                { value: "all", label: "All upcoming" },
+                { value: "soon", label: "Starting soon" },
+              ]}
+            />
+          </div>
 
-        {byMonth && months.length ? (
-          <div
-            aria-label="Jump to month"
-            className="flex gap-1.5 overflow-x-auto pb-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          >
-            {months.map((m) => (
+          <div className="flex flex-wrap items-center gap-2">
+            {chips.map((c) => (
               <button
-                key={m.key}
+                key={c.label}
                 type="button"
-                onClick={() => jump(`m-${m.key}`)}
-                className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-line bg-paper px-3 py-1.5 text-[0.75rem] font-semibold text-ink-soft hover:border-ink-soft hover:text-ink"
+                onClick={() => onChange(c.clear)}
+                className="inline-flex items-center gap-1.5 rounded-full border border-line bg-paper px-3 py-1 text-[0.76rem] font-semibold text-ink-soft transition-colors hover:border-crimson/50 hover:text-crimson"
               >
-                {new Date(m.key + "-01T00:00:00").toLocaleDateString("en-GB", {
-                  month: "short",
-                })}{" "}
-                ’{m.key.slice(2, 4)}
-                <small className="font-mono text-[0.66rem] text-ink-faint">
-                  {m.rows.length}
-                </small>
+                {c.label}
+                <span aria-hidden>✕</span>
               </button>
             ))}
+            {dirty ? (
+              <button
+                type="button"
+                onClick={onReset}
+                className="text-[0.78rem] font-semibold text-ink-faint underline underline-offset-[3px] hover:text-crimson"
+              >
+                Clear all
+              </button>
+            ) : null}
           </div>
-        ) : null}
-
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <span className="font-mono text-[0.76rem] text-ink-soft">
-            <strong className="text-ink">{programmeCount}</strong> programmes ·{" "}
-            {cohortCount} cohorts match
-          </span>
-          {dirty ? (
-            <button
-              type="button"
-              onClick={onReset}
-              className="text-[0.78rem] font-semibold text-ink-faint underline underline-offset-[3px] hover:text-crimson"
-            >
-              Clear all filters
-            </button>
-          ) : null}
         </div>
       </div>
     </div>
