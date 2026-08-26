@@ -183,7 +183,7 @@ function HomePage() {
           >
             Pick a <em className="text-crimson-deep">pathway</em>
           </SectionHeading>
-          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 lg:[&>*:last-child]:col-start-2">
             {(Object.keys(TRACKS) as TrackKey[]).map((k, index) => {
               const t = TRACKS[k];
               const n = upcoming.filter((p) => p.tracks.includes(k)).length;
