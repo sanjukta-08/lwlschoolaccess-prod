@@ -193,7 +193,10 @@ function QuoteMarquee({
         </button>
       ) : null}
 
-      <div className="grid gap-x-8 gap-y-6 py-2 sm:grid-cols-2 lg:grid-cols-3">
+      <div
+        key={start}
+        className="grid animate-fade-in gap-x-8 gap-y-6 py-2 sm:grid-cols-2 lg:grid-cols-3"
+      >
         {visible.map(({ item, index }) => (
           <QuoteCard
             key={`${item.name}-${index}`}
