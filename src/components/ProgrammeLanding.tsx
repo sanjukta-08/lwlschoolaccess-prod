@@ -194,7 +194,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Projects they <em className="text-crimson-deep italic">finish with</em>
         </h2>
-        <p className="mx-auto mt-2 max-w-[40em] text-center text-[0.92rem] text-ink-soft">
+        <p className="mx-auto mt-2 max-w-none text-center text-[0.92rem] text-ink-soft lg:whitespace-nowrap">
           Sample briefs from recent cohorts - the actual work that comes out of the
           programme, not a syllabus.
         </p>
