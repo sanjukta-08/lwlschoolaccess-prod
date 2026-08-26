@@ -1,4 +1,4 @@
-import { CalendarDays, Compass, LayoutGrid, Search, SlidersHorizontal } from "lucide-react";
+import { CalendarDays, Compass, Search, SlidersHorizontal } from "lucide-react";
 import {
   TRACKS,
   TYPES,
@@ -196,22 +196,49 @@ export function CalendarControls({
           ) : null}
         </div>
 
-        {/* Row 2 — four plain dropdowns plus search, all labelled */}
-        <div className="mt-3 grid gap-x-3 gap-y-3 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.3fr]">
+        {/* Row 2 — easy-pick category chips */}
+        <div className="relative mt-3">
+          <div className="flex gap-1.5 overflow-x-auto rounded-full border border-line bg-wash p-1.5 [scrollbar-width:none]">
+            {typeVals.map((key) => {
+              const pressed = state.type === key;
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  aria-pressed={pressed}
+                  onClick={() => onChange({ type: key })}
+                  className={`shrink-0 rounded-full px-4 py-2 text-[0.82rem] font-semibold whitespace-nowrap transition-all ${
+                    pressed
+                      ? "bg-ink text-paper shadow-soft"
+                      : "text-ink-soft hover:bg-paper hover:text-ink"
+                  }`}
+                >
+                  {key === "all" ? "All" : TYPES[key as TypeKey].label}
+                  <small
+                    className={`ml-1.5 font-mono text-[0.7rem] font-medium ${
+                      pressed ? "text-[#c7ccda]" : "text-ink-faint"
+                    }`}
+                  >
+                    {typeN[key] ?? 0}
+                  </small>
+                </button>
+              );
+            })}
+          </div>
+          <span
+            className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-paper/95 to-transparent sm:hidden"
+            aria-hidden="true"
+          />
+        </div>
+
+        {/* Row 3 — three plain dropdowns plus search, all labelled */}
+        <div className="mt-3 grid gap-x-3 gap-y-3 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1.4fr]">
           <Field label="Subject area" icon={<Compass className="h-3.5 w-3.5" />}>
             <BoxSelect
               label="Subject area"
               value={state.interest}
               onChange={(v) => onChange({ interest: v })}
               options={interestOptions}
-            />
-          </Field>
-          <Field label="Programme type" icon={<LayoutGrid className="h-3.5 w-3.5" />}>
-            <BoxSelect
-              label="Programme type"
-              value={state.type}
-              onChange={(v) => onChange({ type: v })}
-              options={typeOptions}
             />
           </Field>
           <Field label="Starts in" icon={<CalendarDays className="h-3.5 w-3.5" />}>
@@ -246,7 +273,7 @@ export function CalendarControls({
           </Field>
         </div>
 
-        {/* Row 3 — count, quick "starting soon" toggle, active filters, reset */}
+        {/* Row 4 — count, quick "starting soon" toggle, active filters, reset */}
         <div className="mt-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-line pt-3">
           <div className="flex flex-wrap items-center gap-2">
             <span className="font-mono text-[0.78rem] text-ink-soft">
