@@ -136,7 +136,7 @@ function HomePage() {
               <Link
                 to="/calendar"
                 search={DEFAULT_SEARCH}
-                className="rounded-full border-[1.5px] border-line bg-paper px-7 py-3.5 text-[0.98rem] font-bold text-ink no-underline transition-colors hover:border-ink-soft"
+                className="rounded-full border-[1.5px] border-ink-soft bg-paper px-7 py-3.5 text-[0.98rem] font-bold text-ink no-underline shadow-soft transition-colors hover:border-ink hover:bg-wash"
               >
                 Browse the full calendar
               </Link>
