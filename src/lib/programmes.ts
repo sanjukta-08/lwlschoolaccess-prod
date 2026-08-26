@@ -749,6 +749,9 @@ export const cohortGrades = (p: Programme, c?: Cohort): [number, number] =>
 export const feeOf = (p: Programme, c?: Cohort): Fee =>
   c && c.fee ? c.fee : { e: p.feeE, r: p.feeR };
 
+/** Session timing for a cohort, falling back to the programme default. */
+export const timeOf = (p: Programme, c?: Cohort): string => (c && c.time) || p.time;
+
 export const mentorLabel = (p: Programme) => MENTORS[p.mentor].short;
 
 /** Duration buckets used by the finder's secondary filter. */
