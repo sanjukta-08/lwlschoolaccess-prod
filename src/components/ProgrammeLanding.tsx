@@ -236,15 +236,9 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         <ProfileImpact programme={p} color={track.color} />
       </section>
 
-      {/* Reviews */}
-      <section id="reviews" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
-        <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
-          What families <em className="text-crimson-deep italic">say</em>
-        </h2>
-        <ProgrammeTestimonials programme={p} color={track.color} />
-
-        {p.badge ? (
-          <div className="mt-9 flex flex-wrap items-center gap-4 rounded-[18px] border border-line bg-wash px-6 py-5">
+      {p.badge ? (
+        <section className="page-shell pt-12">
+          <div className="mx-auto flex max-w-[860px] flex-wrap items-center gap-4 rounded-[18px] border border-line bg-wash px-6 py-5">
             <span className="text-[1.6rem]" aria-hidden>
               🛡️
             </span>
@@ -256,53 +250,9 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
               </p>
             </div>
           </div>
-        ) : null}
-      </section>
+        </section>
+      ) : null}
 
-      {/* LinkedIn stories */}
-      <section id="stories" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
-        <div className="flex items-center justify-center gap-3">
-          <LinkedInGlyph />
-          <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
-            Stories from <em className="text-crimson-deep italic">this pathway</em>
-          </h2>
-        </div>
-        <p className="mx-auto mt-2 max-w-[40em] text-center text-[0.92rem] text-ink-soft">
-          What students and parents posted after finishing {track.label.toLowerCase()}{" "}
-          cohorts. Tap a story to read the full post.
-        </p>
-        <div className="mt-6">
-          <StoryGallery stories={storiesForTracks(p.tracks, 3)} />
-        </div>
-        {quotesForProgramme(p.id).length ? (
-          <div className="mt-8">
-            <h3 className="text-center font-serif text-[1.05rem] font-medium">
-              What learners wrote in their feedback forms
-            </h3>
-            <div className="mt-3">
-              <LearnerQuotes
-                quotes={quotesForProgramme(p.id)}
-                variant="grid"
-                limit={6}
-              />
-            </div>
-          </div>
-        ) : null}
-        <div className="mt-6">
-          <VideoTestimonials videos={videosForTracks(p.tracks, 4)} />
-        </div>
-
-
-        <p className="mt-5">
-          <Link
-            to="/testimonials"
-            search={{ ...DEFAULT_TESTIMONIAL_SEARCH, track: p.tracks[0]! }}
-            className="text-[0.85rem] font-bold text-crimson no-underline hover:underline"
-          >
-            See all {track.label} stories →
-          </Link>
-        </p>
-      </section>
 
 
 
