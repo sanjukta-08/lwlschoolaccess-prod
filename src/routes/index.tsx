@@ -15,6 +15,8 @@ import {
 } from "@/lib/programmes";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { slugOf } from "@/lib/programme-slug";
+import { programmeLogo } from "@/lib/programme-logos";
+
 import { SiteFooter } from "@/components/SiteFooter";
 import { PartnerLogos } from "@/components/PartnerLogos";
 import { WingMark } from "@/components/WingMark";
@@ -250,50 +252,58 @@ function HomePage() {
               if (!c) return null;
               const t = TRACKS[p.tracks[0] as TrackKey];
               const [g1, g2] = cohortGrades(p, c);
+              const logo = programmeLogo(p.id);
               return (
                 <Link
                   key={p.id}
                   to="/programmes/$slug"
                   params={{ slug: slugOf(p) }}
                   style={{ "--sp": t.color } as React.CSSProperties}
-                  className="flex flex-col overflow-hidden rounded-[18px] border border-line bg-paper text-left text-ink no-underline shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-lift"
+                  className="group flex flex-col overflow-hidden rounded-[18px] border border-gold-line bg-paper text-left text-ink no-underline shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold hover:shadow-lift"
                 >
                   <span
-                    className="flex items-center justify-between border-b px-4.5 py-2.5 text-[0.74rem] font-bold"
+                    className="flex items-center justify-between border-b px-4.5 py-2.5 text-[0.7rem] font-bold tracking-[0.12em] uppercase"
                     style={{
                       color: "var(--sp)",
                       background: "color-mix(in srgb, var(--sp) 8%, #fff)",
                       borderColor: "color-mix(in srgb, var(--sp) 16%, #fff)",
                     }}
                   >
-                    <span>
-                      {t.ic} {t.label}
-                    </span>
-                    <span>
+                    <span>{t.label}</span>
+                    <span className="mono-label text-ink-faint">
                       G{g1}–{g2}
                     </span>
                   </span>
-                  <span className="flex flex-1 flex-col gap-2 p-4.5">
-                    <span className="font-serif text-[1.2rem] leading-tight font-semibold">
-                      {p.name}
-                    </span>
-                    <span className="line-clamp-3 text-[0.83rem] text-ink-soft">
+                  <span className="flex flex-1 flex-col items-center gap-4 px-4.5 py-6 text-center">
+                    {logo ? (
+                      <img
+                        src={logo.src}
+                        alt={logo.alt}
+                        loading="lazy"
+                        className="h-11 w-full object-contain mix-blend-multiply"
+                      />
+                    ) : (
+                      <span className="font-serif text-[1.15rem] leading-tight font-semibold">
+                        {p.name}
+                      </span>
+                    )}
+                    <span className="line-clamp-2 text-[0.83rem] text-ink-soft">
                       {p.tag}
                     </span>
-                    <span className="mono-label mt-auto pt-2 text-ink-faint normal-case">
-                      Next: <b className="text-ink">{fmtShort(c.d)}</b> · From{" "}
+                  </span>
+                  <span className="flex flex-col gap-3 px-4.5 pb-4.5">
+                    <span className="mono-label text-center text-ink-faint normal-case">
+                      Next: <b className="text-ink">{fmtShort(c.d)}</b> ·{" "}
                       <b className="text-ink">{feeOf(p, c).e}</b>
                     </span>
-                    <span
-                      className="text-[0.83rem] font-bold"
-                      style={{ color: "var(--sp)" }}
-                    >
-                      View programme →
+                    <span className="block rounded-full border border-ink px-4 py-2.5 text-center text-[0.7rem] font-bold tracking-[0.18em] uppercase text-ink transition-colors group-hover:bg-ink group-hover:text-paper">
+                      View programme
                     </span>
                   </span>
                 </Link>
               );
             })}
+
           </div>
           <p className="mt-8 text-center">
             <Link
