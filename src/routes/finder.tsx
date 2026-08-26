@@ -21,7 +21,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { PROGRAMMES, TRACKS, TYPE_NAME } from "@/lib/programmes";
 import {
   BAND_LABEL,
