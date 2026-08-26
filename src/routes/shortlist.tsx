@@ -91,7 +91,7 @@ function ShortlistPage() {
     <div className="min-h-screen bg-canvas">
       <SiteHeader />
 
-      <main className="mx-auto max-w-[1000px] px-5 pb-20">
+      <main className="page-shell pb-20">
         <header className="border-b border-line pb-6">
           <p className="mono-label text-crimson">Your list · saved on this device</p>
           <h1 className="mt-2 font-serif text-[2.1rem] leading-tight font-semibold">

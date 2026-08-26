@@ -103,7 +103,7 @@ function MonthCalendarPage() {
 
         <div className="relative">
           <SiteHeader />
-          <section className="mx-auto flex w-full max-w-[1100px] flex-col gap-4 px-5 pt-8 pb-10">
+          <section className="page-shell flex flex-col gap-4 pt-8 pb-10">
             <div>
               <span className="mono-label mb-2 inline-flex items-center gap-2 text-crimson">
                 <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
@@ -168,7 +168,7 @@ function MonthCalendarPage() {
         showGrouping={false}
       />
 
-      <section className="mx-auto max-w-[1100px] px-5 py-6">
+      <section className="page-shell py-6">
         {/* month switcher */}
         <div className="mb-4 overflow-hidden rounded-3xl border border-line bg-paper shadow-soft">
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-[linear-gradient(180deg,var(--gold-soft),var(--paper))] px-4 py-2.5 sm:px-5">

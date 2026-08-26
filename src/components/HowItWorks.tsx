@@ -56,7 +56,7 @@ export function HowItWorks() {
         <div className="absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-paper via-paper/45 to-transparent" />
 
       </div>
-      <div className="relative mx-auto max-w-[1100px]">
+      <div className="relative page-shell">
         <SectionHeading
           sub="Three steps from curiosity to a confirmed seat in the right cohort."
         >
@@ -79,7 +79,7 @@ export function HowItWorks() {
 export function WhyLwl() {
   return (
     <section id="why" className="scroll-mt-20 bg-wash px-5 py-10">
-      <div className="mx-auto max-w-[1100px]">
+      <div className="page-shell">
         <SectionHeading
           sub="The details parents ask about most, built into every programme we run."
         >

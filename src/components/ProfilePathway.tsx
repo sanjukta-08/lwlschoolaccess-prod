@@ -13,7 +13,7 @@ import { slugOf } from "@/lib/programme-slug";
 export function ProfilePathway() {
   return (
     <section id="pathway" className="scroll-mt-24 bg-wash-deep/60 py-16">
-      <div className="mx-auto max-w-[1100px] px-5">
+      <div className="page-shell">
         <header className="mb-8 text-center">
           <span className="mono-label text-crimson">Plan it, don&apos;t rush it</span>
           <h2 className="mt-2 font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
