@@ -58,36 +58,6 @@ export const TYPE_PROFILE: Record<TypeKey, TypeProfile> = {
       "A line that needs no explaining on a form",
     ],
   },
-  intern: {
-    purpose:
-      "Workplace credibility. A corporate internship puts a real organisation's name next to your child's work - the single hardest thing for a school student to obtain on their own.",
-    skills: [
-      "Professional email and deadlines",
-      "Working inside a real brief",
-      "Data and reporting basics",
-      "Receiving and acting on feedback",
-    ],
-    proof: [
-      "An internship letter on company letterhead",
-      "Deliverables you can show",
-      "A LinkedIn entry that verifies",
-    ],
-  },
-  conf: {
-    purpose:
-      "Diplomacy and presence. MUN and conferences build the room skills - negotiation, alliance-building, speaking without notes - that interviews and leadership roles later depend on.",
-    skills: [
-      "Public speaking without a script",
-      "Negotiation and caucusing",
-      "Drafting resolutions and clauses",
-      "Researching a country or brief fast",
-    ],
-    proof: [
-      "Delegate award or committee recognition",
-      "Position paper and resolution drafts",
-      "A leadership story with a named conference",
-    ],
-  },
 };
 
 export type TrackProfile = {
@@ -117,20 +87,10 @@ export const TRACK_PROFILE: Record<TrackKey, TrackProfile> = {
     skills: ["Python and prompting", "Model evaluation", "Product thinking"],
     outcome: "A working prototype, a public repo and a two-minute demo video.",
   },
-  ent: {
-    story: "Initiative that can be checked - a venture with users, not a business plan in a drawer.",
-    skills: ["Customer discovery", "Unit economics", "Pitching"],
-    outcome: "A launched product or service, first users or revenue, and a pitch deck.",
-  },
   res: {
     story: "The strongest single signal available to a school student: published, citable research.",
     skills: ["Literature review", "Method design", "Academic citation"],
     outcome: "A published paper with a permanent link, plus a supervisor's letter.",
-  },
-  deb: {
-    story: "Voice and composure - the thread that makes interviews and leadership roles land.",
-    skills: ["Rebuttal structure", "Impromptu speaking", "Evidence use"],
-    outcome: "Tournament or committee results and recorded speeches for the portfolio.",
   },
   lead: {
     story: "Impact on other people, documented - the difference between a title and leadership.",
