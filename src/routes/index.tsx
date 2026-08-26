@@ -96,14 +96,17 @@ function HomePage() {
             className="h-full w-full object-contain object-left"
           />
         </div>
-        <div className="pointer-events-none absolute right-0 bottom-0 hidden h-[min(300px,40vh)] w-[min(300px,34vw)] sm:block">
+        <div className="pointer-events-none absolute right-0 bottom-0 hidden h-[min(190px,26vh)] w-[min(760px,58vw)] sm:block">
           <img
             src={worldMapAsset.url}
             alt=""
             aria-hidden="true"
-            className="h-full w-full object-contain object-right-bottom opacity-95"
+            width={1920}
+            height={768}
+            className="h-full w-full object-cover object-bottom opacity-90 [mask-image:linear-gradient(to_top,black_55%,transparent)]"
           />
         </div>
+
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-paper via-paper/95 via-65% to-paper/70" />
 
         <div className="relative">
