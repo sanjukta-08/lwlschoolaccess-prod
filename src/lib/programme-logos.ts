@@ -1,8 +1,8 @@
-import fd from "@/assets/logo-future-doctors.webp.asset.json";
-import finlit from "@/assets/logo-finlit.webp.asset.json";
-import luther from "@/assets/logo-sir-luther.webp.asset.json";
-import onward from "@/assets/logo-onward.webp.asset.json";
-import lawyers from "@/assets/logo-future-lawyers.webp.asset.json";
+import fd from "@/assets/logo-future-doctors.png.asset.json";
+import finlit from "@/assets/logo-finlit.png.asset.json";
+import luther from "@/assets/logo-sir-luther.png.asset.json";
+import onward from "@/assets/logo-onward.png.asset.json";
+import lawyers from "@/assets/logo-future-lawyers.png.asset.json";
 import type { TrackKey } from "@/lib/programmes";
 
 export const PROGRAMME_LOGOS: Record<string, { src: string; alt: string }> = {
