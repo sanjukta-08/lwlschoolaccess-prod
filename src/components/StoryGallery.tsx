@@ -402,9 +402,9 @@ function StoryMarquee({
       onBlurCapture={() => setPaused(false)}
     >
       <div
-        className="flex w-max gap-4 will-change-transform"
+        className="flex w-max items-start gap-5 will-change-transform"
         style={{
-          animation: `marquee-scroll 40s linear infinite`,
+          animation: `marquee-scroll 55s linear infinite`,
           animationPlayState: paused ? "paused" : "running",
         }}
       >
@@ -414,38 +414,38 @@ function StoryMarquee({
             type="button"
             onClick={() => onOpen(i % stories.length)}
             aria-label={`Open ${SOURCE_LABEL[s.source]} post from ${s.name}`}
-            className="w-[260px] shrink-0 rounded-2xl border border-line bg-paper p-4 text-left shadow-soft transition-transform hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none sm:w-[300px]"
+            className="w-[340px] shrink-0 rounded-2xl border border-line bg-paper p-5 text-left shadow-soft transition-transform hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none sm:w-[420px] lg:w-[460px]"
           >
-            <header className="flex items-center gap-2.5">
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-crimson/10 font-serif text-[0.8rem] font-bold text-crimson-deep">
+            <header className="flex items-center gap-3">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-crimson/10 font-serif text-[0.9rem] font-bold text-crimson-deep">
                 {s.initials}
               </span>
               <div className="min-w-0 flex-1">
-                <div className="truncate text-[0.85rem] font-bold leading-tight text-ink">
+                <div className="truncate text-[0.95rem] font-bold leading-tight text-ink">
                   {s.name}
                 </div>
-                <div className="truncate text-[0.7rem] text-ink-faint">{s.role}</div>
+                <div className="truncate text-[0.76rem] text-ink-faint">{s.role}</div>
               </div>
-              <SourceGlyph story={s} className="h-5 w-5" />
+              <SourceGlyph story={s} className="h-6 w-6" />
             </header>
             {s.image ? (
               <img
                 src={s.image}
                 alt={s.imageAlt ?? `${SOURCE_LABEL[s.source]} post by ${s.name}`}
-                width={400}
-                height={300}
+                width={640}
+                height={640}
                 loading="lazy"
-                className="mt-3 aspect-[4/3] w-full rounded-xl border border-line object-cover"
+                className="mt-4 w-full rounded-xl border border-line bg-wash object-contain"
               />
             ) : (
-              <p className="mt-3 line-clamp-4 text-[0.82rem] leading-relaxed text-ink-soft">
+              <p className="mt-4 line-clamp-5 text-[0.9rem] leading-relaxed text-ink-soft">
                 {s.text}
               </p>
             )}
-            <div className="mt-3 flex items-center justify-between text-[0.72rem] text-ink-faint">
+            <div className="mt-4 flex items-center justify-between gap-3 text-[0.78rem] text-ink-faint">
               <span className="truncate font-semibold text-ink-soft">{s.when}</span>
               {s.tag ? (
-                <span className="shrink-0 rounded-full bg-crimson/8 px-2 py-0.5 text-[0.65rem] font-semibold text-crimson-deep">
+                <span className="shrink-0 rounded-full bg-crimson/8 px-2.5 py-1 text-[0.7rem] font-semibold text-crimson-deep">
                   #{s.tag}
                 </span>
               ) : null}
