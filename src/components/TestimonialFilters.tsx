@@ -81,10 +81,10 @@ export function TestimonialFilters({
             value={search.track}
             onChange={(e) => onChange({ track: e.target.value })}
           >
-            <option value="all">All interests ({facets.track["all"] ?? 0})</option>
+            <option value="all">All interests</option>
             {TRACK_ORDER.filter((t) => (facets.track[t] ?? 0) > 0).map((t) => (
               <option key={t} value={t}>
-                {TRACKS[t].short} ({facets.track[t]})
+                {TRACKS[t].short}
               </option>
             ))}
           </select>
@@ -96,12 +96,12 @@ export function TestimonialFilters({
             value={search.programme}
             onChange={(e) => onChange({ programme: e.target.value })}
           >
-            <option value="all">All programmes ({facets.programme["all"] ?? 0})</option>
+            <option value="all">All programmes</option>
             {TESTIMONIAL_PROGRAMMES.filter(
               (p) => (facets.programme[p] ?? 0) > 0 || p === search.programme,
             ).map((p) => (
               <option key={p} value={p}>
-                {p} ({facets.programme[p] ?? 0})
+                {p}
               </option>
             ))}
           </select>
@@ -116,10 +116,10 @@ export function TestimonialFilters({
             value={search.format}
             onChange={(e) => onChange({ format: e.target.value })}
           >
-            <option value="all">All formats ({facets.format["all"] ?? 0})</option>
+            <option value="all">All formats</option>
             {FORMAT_ORDER.filter((f) => (facets.format[f] ?? 0) > 0).map((f) => (
               <option key={f} value={f}>
-                {FORMATS[f].label} ({facets.format[f]})
+                {FORMATS[f].label}
               </option>
             ))}
           </select>
