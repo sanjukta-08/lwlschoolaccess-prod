@@ -116,10 +116,7 @@ function StoryTile({
           <div className="text-[0.95rem] font-bold leading-tight text-ink">{story.name}</div>
           <div className="truncate text-[0.78rem] text-ink-faint">{story.role}</div>
           <div className="mono-label mt-1 flex items-center gap-1.5 text-[0.7rem] text-ink-faint">
-            {story.when} <span aria-hidden>·</span>
-            <span aria-hidden className="text-[0.65rem]">
-              🌐
-            </span>
+            <span aria-hidden className="text-[0.65rem]">🌐</span>
             PUBLIC
           </div>
         </div>
