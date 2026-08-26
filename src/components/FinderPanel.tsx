@@ -17,8 +17,8 @@ type Props = {
   onReset: () => void;
   resultCount: number;
   cohortCount: number;
-  /** "panel" = original wide card, "rail" = narrow vertical sidebar */
-  layout?: "panel" | "rail";
+  /** "panel" = original wide card, "rail" = narrow vertical sidebar, "bar" = horizontal dropdown bar */
+  layout?: "panel" | "rail" | "bar";
 };
 
 export function FinderPanel({
