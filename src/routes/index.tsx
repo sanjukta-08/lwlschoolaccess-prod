@@ -94,7 +94,7 @@ function HomePage() {
     <div className="min-h-screen bg-paper">
       <div className="relative overflow-hidden">
         <div className="hero-wash absolute inset-0" />
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-[46%] min-w-[20rem] opacity-[0.32]">
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-[46%] min-w-[20rem] opacity-[0.18]">
           <img
             src={birdAsset.url}
             alt=""
@@ -102,7 +102,7 @@ function HomePage() {
             className="h-full w-full object-contain object-left"
           />
         </div>
-        <div className="pointer-events-none absolute right-0 bottom-0 w-[48%] min-w-[20rem] max-w-[34rem] opacity-[0.28]">
+        <div className="pointer-events-none absolute right-0 bottom-0 w-[52%] min-w-[22rem] max-w-[38rem] opacity-[0.48]">
           <img
             src={worldMapAsset.url}
             alt=""
@@ -110,7 +110,7 @@ function HomePage() {
             className="h-auto w-full object-contain object-right-bottom"
           />
         </div>
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-paper/70 via-paper/45 via-50% to-paper/25" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-paper/75 via-paper/45 via-50% to-paper/35" />
 
         <div className="relative">
           <SiteHeader />
