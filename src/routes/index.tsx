@@ -303,7 +303,7 @@ function HomePage() {
                       </span>
                     </span>
                   </span>
-                  <span className="px-4 pb-4">
+                  <span className="px-3.5 pb-4">
                     <span className="block rounded-full border border-ink px-4 py-2.5 text-center text-[0.7rem] font-bold tracking-[0.18em] uppercase text-ink transition-colors group-hover:bg-ink group-hover:text-paper">
                       View programme
                     </span>
