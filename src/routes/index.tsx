@@ -94,7 +94,7 @@ function HomePage() {
             className="h-full w-full object-contain object-left"
           />
         </div>
-        <div className="pointer-events-none absolute right-0 -bottom-6 w-[56%] min-w-[22rem] max-w-[44rem] opacity-[0.85]">
+        <div className="pointer-events-none absolute right-0 -bottom-6 w-[60%] min-w-[24rem] max-w-[50rem] opacity-100">
           <img
             src={worldMapAsset}
             alt=""
@@ -103,10 +103,10 @@ function HomePage() {
             height={768}
             className="h-auto w-full object-contain object-right-bottom"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-paper via-paper/35 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-paper via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-paper via-paper/25 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-paper/80 via-transparent to-transparent" />
         </div>
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-paper/75 via-paper/45 via-50% to-paper/35" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-paper/75 via-paper/45 via-50% to-paper/20" />
 
         <div className="relative">
           <SiteHeader />
