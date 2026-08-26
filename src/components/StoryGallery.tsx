@@ -76,15 +76,24 @@ function StoryTile({
       className="group flex h-full flex-col rounded-2xl border border-line bg-paper p-5 text-left shadow-soft transition-transform hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none"
     >
       <header className="flex items-start gap-3">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-crimson/10 font-serif text-[0.9rem] font-bold text-crimson-deep">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-crimson/10 font-serif text-[0.9rem] font-bold text-crimson-deep">
           {story.initials}
         </span>
         <div className="min-w-0 flex-1">
           <div className="truncate text-[0.9rem] font-bold text-ink">{story.name}</div>
           <div className="truncate text-[0.76rem] text-ink-faint">{story.role}</div>
-          <div className="mono-label mt-0.5 text-ink-faint">{story.when} · Public</div>
+          <div className="mono-label mt-1 flex items-center gap-1.5 text-ink-faint">
+            {story.when} <span aria-hidden>·</span>
+            <span aria-hidden className="text-[0.7rem]">
+              🌐
+            </span>
+            PUBLIC
+          </div>
         </div>
         <LinkedInGlyph />
+        <span aria-hidden className="mt-0.5 text-[0.95rem] leading-none text-ink-faint">
+          ⋮
+        </span>
       </header>
 
       {story.image ? (
