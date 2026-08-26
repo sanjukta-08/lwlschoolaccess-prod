@@ -1,3 +1,5 @@
+import studentLearning from "@/assets/student-learning.png.asset.json";
+
 const STEPS = [
   {
     n: "01",
@@ -37,14 +39,22 @@ const REASONS = [
 
 export function HowItWorks() {
   return (
-    <section id="how" className="scroll-mt-20 border-t border-line bg-paper px-5 py-14">
-      <div className="mx-auto max-w-[1100px]">
+    <section id="how" className="relative scroll-mt-20 overflow-hidden border-t border-line bg-paper px-5 py-14">
+      {/* Right-side background image */}
+      <img
+        src={studentLearning.url}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="pointer-events-none absolute -right-10 top-1/2 h-[80%] w-auto max-w-[45%] -translate-y-1/2 object-contain opacity-[0.15] md:opacity-[0.22] lg:right-0 lg:max-w-[38%]"
+      />
+      <div className="relative mx-auto max-w-[1100px]">
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2rem)] font-medium">
           How it <em className="text-crimson-deep">works</em>
         </h2>
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
+        <div className="relative mt-8 grid gap-5 md:grid-cols-3">
           {STEPS.map((s) => (
-            <div key={s.n} className="rounded-2xl border border-line bg-wash p-6">
+            <div key={s.n} className="rounded-2xl border border-line bg-paper/80 p-6 backdrop-blur-sm">
               <span className="mono-label text-crimson">{s.n}</span>
               <h3 className="mt-2 font-serif text-[1.15rem] font-semibold">{s.t}</h3>
               <p className="mt-2 text-[0.88rem] text-ink-soft">{s.d}</p>
