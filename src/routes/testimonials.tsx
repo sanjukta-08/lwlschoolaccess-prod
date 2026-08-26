@@ -106,26 +106,10 @@ function TestimonialsPage() {
               </h1>
               <p className="mt-3 max-w-[58em] text-[0.98rem] leading-relaxed text-ink-soft">
                 Every quote, post, clip and handwritten note we have permission to
-                share, in one searchable place. Filter by who said it, the interest
-                area, the exact programme, or the format you trust most.
+                share, in one searchable place. Filter by the interest area, the
+                exact programme, or the format you trust most.
               </p>
             </div>
-            <ul className="flex flex-wrap gap-2">
-              {[
-                [`${TESTIMONIAL_TOTAL} testimonials`, "All formats in one feed"],
-                [`${PARENT_COUNT} parent voices`, "Written by families"],
-                [`${VIDEO_COUNT} video clips`, "In their own words"],
-                [`${PROGRAMMES.length} programmes`, "Filter cohort by cohort"],
-              ].map(([top, sub]) => (
-                <li
-                  key={top}
-                  className="rounded-full border border-line bg-paper/90 px-3.5 py-1.5 shadow-soft backdrop-blur-sm"
-                >
-                  <b className="block text-[0.78rem] font-bold text-ink">{top}</b>
-                  <small className="mono-label block text-ink-faint">{sub}</small>
-                </li>
-              ))}
-            </ul>
           </section>
         </div>
       </div>
