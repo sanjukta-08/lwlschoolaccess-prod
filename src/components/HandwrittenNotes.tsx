@@ -120,7 +120,7 @@ export default function HandwrittenNotes() {
       <div className="gold-rule mx-auto mt-3 h-px w-24" />
 
       <div
-        className="relative mt-7 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
+        className="relative mt-7 overflow-hidden"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
