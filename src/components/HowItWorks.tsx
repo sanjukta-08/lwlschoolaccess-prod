@@ -40,14 +40,20 @@ const REASONS = [
 export function HowItWorks() {
   return (
     <section id="how" className="relative scroll-mt-20 overflow-hidden border-t border-line bg-paper px-5 py-14">
-      {/* Right-side background image */}
-      <img
-        src={studentLearning.url}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        className="pointer-events-none absolute -right-10 bottom-0 h-[95%] w-auto max-w-[55%] object-contain opacity-[0.25] md:opacity-[0.35] lg:right-0 lg:max-w-[48%]"
-      />
+      {/* Right-side background image with soft edge fade */}
+      <div className="pointer-events-none absolute -right-10 bottom-0 h-[95%] max-w-[55%] overflow-hidden lg:right-0 lg:max-w-[48%]">
+        <img
+          src={studentLearning.url}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          className="h-full w-auto object-contain opacity-[0.25] md:opacity-[0.35]"
+        />
+        {/* Left edge fade into paper background */}
+        <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-paper via-paper/80 to-transparent" />
+        {/* Top edge fade into paper background */}
+        <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-paper via-paper/70 to-transparent" />
+      </div>
       <div className="relative mx-auto max-w-[1100px]">
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2rem)] font-medium">
           How it <em className="text-crimson-deep">works</em>
