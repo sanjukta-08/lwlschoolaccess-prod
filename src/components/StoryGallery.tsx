@@ -378,7 +378,7 @@ function StoryCarousel({
 }
 
 
-/** Page-by-page social carousel so no testimonial card is shown half-cut. */
+/** Continuous one-card-per-tick loop with side arrows. */
 function StoryMarquee({
   stories,
   onOpen,
@@ -388,28 +388,32 @@ function StoryMarquee({
 }) {
   const [paused, setPaused] = useState(false);
   const perPage = 3;
-  const pages = Math.max(1, Math.ceil(stories.length / perPage));
-  const [page, setPage] = useState(0);
+  const [start, setStart] = useState(0);
+  const canSlide = stories.length > perPage;
 
   useEffect(() => {
-    if (paused || pages < 2) return;
-    const id = window.setInterval(() => setPage((p) => (p + 1) % pages), 8000);
+    if (paused || !canSlide) return;
+    const id = window.setInterval(
+      () => setStart((s) => (s + 1) % stories.length),
+      6000,
+    );
     return () => window.clearInterval(id);
-  }, [paused, pages]);
+  }, [paused, canSlide, stories.length]);
 
   return (
     <div
+      className="relative"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {stories.slice(page * perPage, page * perPage + perPage).map((s, i) => (
+        {windowOf(stories, start, perPage).map(({ item: s, index }) => (
           <button
-            key={s.id}
+            key={`${s.id}-${index}`}
             type="button"
-            onClick={() => onOpen(page * perPage + i)}
+            onClick={() => onOpen(index)}
             aria-label={`Open ${SOURCE_LABEL[s.source]} post from ${s.name}`}
             className="rounded-2xl border border-line bg-paper p-5 text-left shadow-soft transition-transform hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none"
           >
@@ -451,32 +455,17 @@ function StoryMarquee({
         ))}
       </div>
 
-      {pages > 1 ? (
-        <div className="mt-5 flex items-center justify-center gap-3">
-          <button
-            type="button"
-            onClick={() => setPage((p) => (p - 1 + pages) % pages)}
-            aria-label="Previous posts"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft transition-colors hover:border-crimson/40 hover:text-crimson"
-          >
-            <span aria-hidden>←</span>
-          </button>
-          <span className="mono-label text-ink-faint">
-            {page + 1} / {pages}
-          </span>
-          <button
-            type="button"
-            onClick={() => setPage((p) => (p + 1) % pages)}
-            aria-label="Next posts"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft transition-colors hover:border-crimson/40 hover:text-crimson"
-          >
-            <span aria-hidden>→</span>
-          </button>
-        </div>
+      {canSlide ? (
+        <SideArrows
+          label="posts"
+          onPrev={() => setStart((s) => (s - 1 + stories.length) % stories.length)}
+          onNext={() => setStart((s) => (s + 1) % stories.length)}
+        />
       ) : null}
     </div>
   );
 }
+
 
 
 export function StoryGallery({
