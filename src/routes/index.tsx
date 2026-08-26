@@ -240,7 +240,7 @@ function HomePage() {
           >
             The <em className="text-crimson-deep">flagship</em> fellowships
           </SectionHeading>
-          <div className="mt-8 grid gap-4.5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-4 grid gap-4.5 sm:grid-cols-2 lg:grid-cols-4">
             {FEATURED.map((id) => {
               const p = upcoming.find((x) => x.id === id);
               if (!p) return null;
