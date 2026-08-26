@@ -229,14 +229,14 @@ function HomePage() {
       </section>
 
       <section className="border-y border-gold-line/60 bg-wash px-5 py-11">
-        <div className="mx-auto max-w-[1280px]">
+        <div className="mx-auto max-w-[1320px]">
           <SectionHeading
             eyebrow="Signature cohorts"
             sub="Our deepest experiences - small cohorts, dedicated mentors, capstones and Demo Days."
           >
             The <em className="text-crimson-deep">flagship</em> fellowships
           </SectionHeading>
-          <div className="mt-4 grid gap-4.5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {FEATURED.map((id) => {
               const p = upcoming.find((x) => x.id === id);
               if (!p) return null;
