@@ -6,7 +6,7 @@ export function PageJump({
   return (
     <nav
       aria-label="On this page"
-      className="sticky top-[64px] z-40 border-b border-line bg-paper/95 backdrop-blur"
+      className="sticky top-[76px] z-40 border-b border-line bg-paper/95 backdrop-blur"
     >
       <div className="page-shell flex justify-center gap-1 overflow-x-auto py-2.5">
         {items.map((i) => (
