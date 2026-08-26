@@ -3,6 +3,7 @@ import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
 import { stripSearchParams } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
+import birdAsset from "@/assets/lwl-bird-black.webp.asset.json";
 
 const GRADE_LO = Math.min(...PROGRAMMES.map((p) => p.g[0]));
 const GRADE_HI = Math.max(...PROGRAMMES.map((p) => p.g[1]));
