@@ -80,7 +80,7 @@ export function ProgrammeCard({
         </div>
 
         {/* Schedule */}
-        <div className="flex flex-col gap-0.5 sm:w-[9.5rem] sm:flex-none sm:items-end sm:text-right">
+        <div className="flex flex-col gap-0.5 sm:w-[10.5rem] sm:flex-none sm:items-end sm:text-right">
           <span className="font-mono text-[0.76rem] font-semibold text-ink">
             {startLabel(next.d)}
           </span>
