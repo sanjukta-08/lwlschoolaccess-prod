@@ -3,8 +3,8 @@ import { LinkedInGlyph, StoryGallery } from "@/components/StoryGallery";
 
 export function LinkedInStories() {
   return (
-    <section id="linkedin" className="scroll-mt-20 bg-wash px-5 py-14">
-      <div className="mx-auto max-w-[1100px]">
+    <section id="linkedin" className="scroll-mt-20 bg-wash py-14">
+      <div className="page-shell">
         <div className="flex flex-col items-center text-center">
           <LinkedInGlyph />
           <h2 className="mt-3 font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">

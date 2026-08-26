@@ -15,8 +15,8 @@ const ORDER: TrackKey[] = [
 
 export function ProfileTrackTable() {
   return (
-    <section id="by-interest" className="scroll-mt-24 bg-wash px-5 py-14">
-      <div className="mx-auto max-w-[1100px]">
+    <section id="by-interest" className="scroll-mt-24 bg-wash py-14">
+      <div className="page-shell">
         <header className="mb-8 max-w-[46em]">
           <span className="mono-label text-crimson">Interest by interest</span>
           <h2 className="mt-2 font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">

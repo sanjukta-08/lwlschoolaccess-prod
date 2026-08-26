@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 
-import { SiteHeader } from "@/components/SiteHeader";
+import { PageHero } from "@/components/PageHero";
 import { AddToCalendar } from "@/components/AddToCalendar";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { slugOf } from "@/lib/programme-slug";
@@ -89,20 +89,24 @@ function ShortlistPage() {
 
   return (
     <div className="min-h-screen bg-canvas">
-      <SiteHeader />
+      <PageHero
+        eyebrow="Your list · saved on this device"
+        title={
+          rows.length
+            ? `${rows.length} programme${rows.length === 1 ? "" : "s"} on your shortlist`
+            : "Your shortlist is empty"
+        }
+        subtitle={
+          <>
+            Save anything you're considering, put the dates in your family calendar, and
+            send the list to a parent to decide together. No account needed.
+          </>
+        }
+      />
 
-      <main className="mx-auto max-w-[1000px] px-5 pb-20">
-        <header className="border-b border-line pb-6">
-          <p className="mono-label text-crimson">Your list · saved on this device</p>
-          <h1 className="mt-2 font-serif text-[2.1rem] leading-tight font-semibold">
-            {rows.length
-              ? `${rows.length} programme${rows.length === 1 ? "" : "s"} on your shortlist`
-              : "Your shortlist is empty"}
-          </h1>
-          <p className="mt-2 max-w-[62ch] text-[0.95rem] text-ink-soft">
-            Save anything you're considering, put the dates in your family calendar, and send
-            the list to a parent to decide together. No account needed.
-          </p>
+      <main className="page-shell pb-20">
+        <header className="pt-2">
+
 
           {rows.length ? (
             <div className="mt-5 flex flex-wrap items-center gap-2.5">

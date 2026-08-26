@@ -100,7 +100,7 @@ function TestimonialsPage() {
 
         <div className="relative">
           <SiteHeader />
-          <section className="mx-auto flex w-full max-w-[1180px] flex-col gap-4 px-5 pt-8 pb-10">
+          <section className="page-shell flex flex-col gap-4 pt-8 pb-10">
             <div>
               <span className="mono-label mb-2 inline-flex items-center gap-2 text-crimson">
                 <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
@@ -135,7 +135,7 @@ function TestimonialsPage() {
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-[1180px] px-5 pb-16">
+      <div className="page-shell pb-16">
         <div className="mb-6">
           <TestimonialFilters
             search={search}

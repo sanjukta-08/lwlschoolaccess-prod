@@ -173,7 +173,7 @@ export function CalendarControls({
 
   return (
     <div className="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur">
-      <div className="mx-auto max-w-[1100px] px-5 py-4">
+      <div className="page-shell py-4">
         {/* Row 1 — what you are looking at, and how it is grouped */}
         <div className="flex flex-wrap items-center justify-between gap-3">
           <span className="mono-label inline-flex items-center gap-2 text-ink-faint">

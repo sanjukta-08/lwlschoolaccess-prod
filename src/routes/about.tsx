@@ -1,5 +1,5 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { SiteHeader } from "@/components/SiteHeader";
+import { PageHero } from "@/components/PageHero";
 import { AboutLwl } from "@/components/AboutLwl";
 import { WhyLwl } from "@/components/HowItWorks";
 import { PressStrip } from "@/components/PressStrip";
@@ -45,42 +45,41 @@ export const Route = createFileRoute("/about")({
 function AboutPage() {
   return (
     <div className="min-h-screen bg-paper">
-      <div className="relative">
-        <div className="hero-wash absolute inset-0" />
-        <div className="relative">
-          <SiteHeader />
-          <section className="mx-auto max-w-[1100px] px-5 pt-10 pb-14 text-center">
-            <span className="mono-label mb-5 inline-flex items-center gap-2 rounded-full border border-crimson/20 bg-paper px-3.5 py-1.5 text-crimson shadow-soft">
-              <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
-              Learn with Leaders · since 2019
-            </span>
-            <h1 className="font-serif text-[clamp(2rem,5.4vw,3.1rem)] font-medium leading-[1.08]">
-              Learn <em className="text-crimson-deep">with</em> leaders - and finish with
-              proof.
-            </h1>
-            <p className="mx-auto mt-4 max-w-[40em] text-[1rem] text-ink-soft">
-              Live programmes mentored by students and alumni of the world's most
-              selective universities, joined by young people from{" "}
-              {REACH.countries} countries and {REACH.schools} schools.
-            </p>
-            <div className="mt-7 flex flex-wrap justify-center gap-3">
-              <Link
-                to="/finder"
-                search={DEFAULT_SEARCH}
-                className="rounded-full bg-crimson px-7 py-3.5 text-[0.95rem] font-bold text-paper no-underline shadow-lift transition-colors hover:bg-crimson-deep"
-              >
-                Open the Programme Finder
-              </Link>
-              <a
-                href="#press"
-                className="rounded-full border-[1.5px] border-crimson/35 bg-paper px-7 py-3.5 text-[0.95rem] font-bold text-crimson no-underline transition-colors hover:border-crimson"
-              >
-                See our press coverage
-              </a>
-            </div>
-          </section>
-        </div>
-      </div>
+      <PageHero
+        eyebrow="Learn with Leaders · since 2019"
+        title={
+          <>
+            Learn <em className="text-crimson-deep">with</em> leaders - and finish with
+            proof.
+          </>
+        }
+        subtitle={
+          <>
+            Live programmes mentored by students and alumni of the world's most selective
+            universities, joined by young people from {REACH.countries} countries and{" "}
+            {REACH.schools} schools.
+          </>
+        }
+        pills={[
+          { top: "Ivy League student mentors", sub: "Taught by leaders" },
+          { top: `${REACH.countries} countries`, sub: `${REACH.schools} schools` },
+          { top: "Live on Zoom", sub: "Dubai + US Eastern" },
+        ]}
+      >
+        <Link
+          to="/finder"
+          search={DEFAULT_SEARCH}
+          className="rounded-full bg-crimson px-7 py-3.5 text-[0.95rem] font-bold text-paper no-underline shadow-lift transition-colors hover:bg-crimson-deep"
+        >
+          Open the Programme Finder
+        </Link>
+        <a
+          href="#press"
+          className="rounded-full border-[1.5px] border-crimson/35 bg-paper px-7 py-3.5 text-[0.95rem] font-bold text-crimson no-underline transition-colors hover:border-crimson"
+        >
+          See our press coverage
+        </a>
+      </PageHero>
 
       <AboutLwl />
       <WhyLwl />
@@ -88,8 +87,9 @@ function AboutPage() {
       <GlobalReach />
       <LinkedInStories />
 
-      <section className="px-5 py-16">
-        <div className="mx-auto flex max-w-[1100px] flex-wrap items-center justify-between gap-5 rounded-[22px] border border-line bg-gradient-to-br from-wash-deep to-paper px-8 py-7">
+      <section className="page-shell py-16">
+        <div className="flex w-full flex-wrap items-center justify-between gap-5 rounded-[22px] border border-line bg-gradient-to-br from-wash-deep to-paper px-8 py-7">
+
           <div>
             <h2 className="font-serif text-[clamp(1.25rem,3vw,1.6rem)] font-semibold">
               Bringing this to your school?

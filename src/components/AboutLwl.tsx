@@ -12,8 +12,8 @@ export function AboutLwl() {
   ];
 
   return (
-    <section id="about" className="scroll-mt-20 border-t border-line bg-paper px-5 py-14">
-      <div className="mx-auto max-w-[1100px]">
+    <section id="about" className="scroll-mt-20 border-t border-line bg-paper py-14">
+      <div className="page-shell">
         <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <div>
             <span className="mono-label text-crimson">{ABOUT.kicker}</span>

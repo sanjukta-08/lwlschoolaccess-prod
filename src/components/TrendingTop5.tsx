@@ -133,7 +133,7 @@ export function TrendingTop5({ state, variant = "section" }: Props) {
 
   return (
     <section id="trending" className="scroll-mt-24 bg-paper py-14">
-      <div className="mx-auto max-w-[1100px] px-5">
+      <div className="page-shell">
         <header className="mb-6 text-center">
           <span className="mono-label inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/8 px-3 py-1 text-gold">
             🔥 Trending now

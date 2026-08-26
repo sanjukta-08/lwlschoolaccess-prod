@@ -1,5 +1,5 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { SiteHeader } from "@/components/SiteHeader";
+import { PageHero } from "@/components/PageHero";
 import { ProfileTypeBlocks } from "@/components/ProfileTypeBlocks";
 import { ProfileTrackTable } from "@/components/ProfileTrackTable";
 import { CounsellorCard } from "@/components/CounsellorCard";
@@ -43,44 +43,46 @@ export const Route = createFileRoute("/profile-building")({
 function ProfileBuildingPage() {
   return (
     <div className="min-h-dvh bg-wash">
-      <div className="bg-paper">
-        <SiteHeader />
-
-        <section className="px-5 pt-6 pb-14">
-          <div className="mx-auto max-w-[860px] text-center">
-            <span className="mono-label text-crimson">For parents</span>
-            <h1 className="mt-3 font-serif text-[clamp(1.9rem,5vw,3rem)] leading-[1.1] font-medium">
-              Profile building, <em className="text-crimson-deep">explained</em>
-            </h1>
-            <p className="mx-auto mt-4 max-w-[46em] text-[1rem] text-ink-soft">
-              Universities read a story, not a list of certificates. This page sets out
-              exactly what each kind of programme contributes to that story, the skills
-              your child practises, and the proof you are left holding at the end - the
-              things an admissions officer can actually check.
-            </p>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-              <Link
-                to="/finder"
-                search={DEFAULT_SEARCH}
-                className="rounded-full bg-crimson px-6 py-3 text-[0.88rem] font-bold text-paper no-underline hover:bg-crimson-deep"
-              >
-                Find the right programme
-              </Link>
-              <Link
-                to="/calendar"
-                search={DEFAULT_SEARCH}
-                className="rounded-full border-[1.5px] border-line bg-paper px-6 py-3 text-[0.88rem] font-semibold text-ink-soft no-underline hover:border-ink-soft hover:text-ink"
-              >
-                See the full calendar →
-              </Link>
-            </div>
-          </div>
-        </section>
-      </div>
+      <PageHero
+        eyebrow="For parents"
+        title={
+          <>
+            Profile building, <em className="text-crimson-deep">explained</em>
+          </>
+        }
+        subtitle={
+          <>
+            Universities read a story, not a list of certificates. This page sets out
+            exactly what each kind of programme contributes to that story, the skills your
+            child practises, and the proof you are left holding at the end - the things an
+            admissions officer can actually check.
+          </>
+        }
+        pills={[
+          { top: "Four steps, in order", sub: "Explore to proof" },
+          { top: "Grades 5-12", sub: "Band by band" },
+          { top: "Verifiable outcomes", sub: "What universities check" },
+        ]}
+      >
+        <Link
+          to="/finder"
+          search={DEFAULT_SEARCH}
+          className="rounded-full bg-crimson px-6 py-3 text-[0.88rem] font-bold text-paper no-underline hover:bg-crimson-deep"
+        >
+          Find the right programme
+        </Link>
+        <Link
+          to="/calendar"
+          search={DEFAULT_SEARCH}
+          className="rounded-full border-[1.5px] border-line bg-paper px-6 py-3 text-[0.88rem] font-semibold text-ink-soft no-underline hover:border-ink-soft hover:text-ink"
+        >
+          See the full calendar →
+        </Link>
+      </PageHero>
 
       {/* Four steps, restated */}
-      <section className="px-5 py-14">
-        <div className="mx-auto max-w-[1100px]">
+      <section className="page-shell py-14">
+        <div>
           <header className="mb-7 max-w-[46em]">
             <span className="mono-label text-crimson">The shape of it</span>
             <h2 className="mt-2 font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
@@ -113,8 +115,8 @@ function ProfileBuildingPage() {
       <ProfileTrackTable />
 
       {/* Programme to proof */}
-      <section className="px-5 py-14">
-        <div className="mx-auto max-w-[1100px]">
+      <section className="page-shell py-14">
+        <div>
           <header className="mb-7 max-w-[46em]">
             <span className="mono-label text-crimson">The conversion</span>
             <h2 className="mt-2 font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
@@ -146,8 +148,8 @@ function ProfileBuildingPage() {
       </section>
 
       {/* Grade bands */}
-      <section className="bg-wash-deep/60 px-5 py-14">
-        <div className="mx-auto max-w-[1100px]">
+      <section className="bg-wash-deep/60">
+        <div className="page-shell py-14">
           <header className="mb-7 max-w-[46em]">
             <span className="mono-label text-crimson">Timing</span>
             <h2 className="mt-2 font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
@@ -182,8 +184,8 @@ function ProfileBuildingPage() {
       </section>
 
       {/* FAQ */}
-      <section id="pb-faq" className="scroll-mt-24 px-5 py-14">
-        <div className="mx-auto max-w-[760px]">
+      <section id="pb-faq" className="page-shell scroll-mt-24 py-14">
+        <div className="mx-auto max-w-[860px]">
           <h2 className="mb-6 text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
             Profile building, <em className="text-crimson-deep">honestly answered</em>
           </h2>
@@ -209,7 +211,7 @@ function ProfileBuildingPage() {
 
       <CounsellorCard />
 
-      <section className="px-5 pb-16">
+      <section className="page-shell pb-16">
         <div className="mx-auto flex max-w-[860px] flex-wrap items-center justify-center gap-3">
           <Link
             to="/finder"

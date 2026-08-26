@@ -89,7 +89,7 @@ function CalendarPage() {
 
         <div className="relative">
           <SiteHeader />
-          <section className="mx-auto flex w-full max-w-[1100px] flex-col gap-4 px-5 pt-8 pb-10">
+          <section className="page-shell flex flex-col gap-4 pt-8 pb-10">
             <div>
               <span className="mono-label mb-2 inline-flex items-center gap-2 text-crimson">
                 <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
@@ -154,7 +154,7 @@ function CalendarPage() {
         dirty={!isDefaultSearch(state) || state.status === "soon"}
       />
 
-      <section className="mx-auto max-w-[1000px] px-5 pb-14">
+      <section className="page-shell pb-14">
         <SavedStrip />
         {!entries.length ? (
           <p className="py-14 text-center text-[0.92rem] text-ink-faint">
