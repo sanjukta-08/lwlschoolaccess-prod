@@ -26,6 +26,7 @@ import {
   cohortGrades,
   dualTime,
   feeOf,
+  timeOf,
   fmtLong,
   fmtShort,
   isPast,
@@ -335,8 +336,35 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
                   {fmtLong(c.d)}
                 </span>
                 <small className="mono-label text-ink-faint">
-                  {p.dur} · Grades {g[0]}–{g[1]} · Batch {i + 1}
+                  {p.dur} · Grades {g[0]}–{g[1]} · {c.label ?? `Batch ${i + 1}`}
                 </small>
+                <small className="text-[0.78rem] text-ink-soft">
+                  {dualTime(timeOf(p, c))}
+                </small>
+                {c.flyer || c.brochure ? (
+                  <span className="flex flex-wrap gap-1.5">
+                    {c.flyer ? (
+                      <a
+                        href={c.flyer}
+                        target="_blank"
+                        rel="noopener"
+                        className="rounded-md border border-line px-2 py-[3px] font-mono text-[0.66rem] font-semibold tracking-[0.04em] text-ink-soft uppercase no-underline hover:border-gold hover:text-gold"
+                      >
+                        Flyer
+                      </a>
+                    ) : null}
+                    {c.brochure ? (
+                      <a
+                        href={c.brochure}
+                        target="_blank"
+                        rel="noopener"
+                        className="rounded-md border border-line px-2 py-[3px] font-mono text-[0.66rem] font-semibold tracking-[0.04em] text-ink-soft uppercase no-underline hover:border-gold hover:text-gold"
+                      >
+                        Brochure
+                      </a>
+                    ) : null}
+                  </span>
+                ) : null}
                 <span className="text-[0.88rem]">
                   <b className="font-serif text-[1.05rem]">{f.e}</b>
                   {disc ? (
