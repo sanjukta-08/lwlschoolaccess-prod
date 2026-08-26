@@ -39,23 +39,8 @@ const REASONS = [
 
 export function HowItWorks() {
   return (
-    <section id="how" className="relative scroll-mt-20 overflow-hidden bg-paper px-5 py-10">
-      {/* Right-side background image with soft edge fade */}
-      <div className="pointer-events-none absolute -right-10 bottom-0 h-[95%] max-w-[55%] overflow-hidden lg:right-0 lg:max-w-[48%]">
-        <img
-          src={studentLearning.url}
-          alt=""
-          aria-hidden
-          loading="lazy"
-          className="h-full w-auto object-contain opacity-[0.55] md:opacity-[0.7]"
-        />
-        {/* Left edge fade into paper background */}
-        <div className="absolute inset-y-0 left-0 w-2/5 bg-gradient-to-r from-paper via-paper/55 to-transparent" />
-        {/* Top edge fade into paper background */}
-        <div className="absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-paper via-paper/45 to-transparent" />
-
-      </div>
-      <div className="relative page-shell">
+    <section id="how" className="scroll-mt-20 bg-paper px-5 py-10">
+      <div className="page-shell">
         <SectionHeading
           sub="Three steps from curiosity to a confirmed seat in the right cohort."
         >
