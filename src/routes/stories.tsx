@@ -1,11 +1,14 @@
 import { Link, createFileRoute, stripSearchParams } from "@tanstack/react-router";
 
 import { SiteHeader } from "@/components/SiteHeader";
+import { LearnerQuotes } from "@/components/LearnerQuotes";
 import { PressStrip } from "@/components/PressStrip";
 import { InstagramGlyph, LinkedInGlyph, StoryGallery } from "@/components/StoryGallery";
 import { VideoTestimonials } from "@/components/VideoTestimonials";
 import { DEFAULT_SEARCH } from "@/lib/finder";
+import { groupedQuotes } from "@/lib/learner-testimonials";
 import { TRACKS, type TrackKey } from "@/lib/programmes";
+
 import {
   APPROVED_INSTAGRAM,
   APPROVED_LINKEDIN,
