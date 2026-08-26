@@ -48,7 +48,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
     >
       {/* Hero */}
       <section className="surface-track-strong border-b">
-        <div className="page-shell pt-10 pb-11">
+        <div className="page-shell pt-10 pb-11 text-center">
           <p className="mono-label mb-4 text-ink-faint">
             <Link to="/finder" search={DEFAULT_SEARCH} className="no-underline hover:underline">
               Programmes
@@ -65,14 +65,14 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
             <span aria-hidden>{track.ic}</span>
             {kind} · {track.label}
           </span>
-          <h1 className="max-w-[13em] font-serif text-[clamp(2rem,5.4vw,3.05rem)] leading-[1.08] font-semibold">
+          <h1 className="mx-auto max-w-[20em] font-serif text-[clamp(2rem,5.4vw,3.05rem)] leading-[1.08] font-semibold">
             {p.name}
           </h1>
-          <p className="mt-3.5 max-w-[38em] text-[clamp(0.98rem,2.3vw,1.08rem)] text-ink-soft">
+          <p className="mx-auto mt-3.5 max-w-[54em] text-[clamp(0.98rem,2.3vw,1.08rem)] text-ink-soft">
             {d.lede}
           </p>
 
-          <div className="mt-6 flex flex-wrap items-center gap-4">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
             <a
               href={p.apply}
               target="_blank"
@@ -95,7 +95,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
           </div>
 
           {next ? (
-            <p className="mt-4 flex flex-wrap items-center gap-2 text-[0.78rem]">
+            <p className="mt-4 flex flex-wrap items-center justify-center gap-2 text-[0.78rem]">
               {countdownLabel(next.d) ? (
                 <span className="rounded-lg bg-gold/12 px-2.5 py-1 font-bold text-gold">
                   {countdownLabel(next.d)}
