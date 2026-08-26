@@ -124,7 +124,7 @@ function QuoteLightbox({
 function QuoteMarquee({
   quotes,
   onOpen,
-  duration = 70,
+  duration = 180,
 }: {
   quotes: LearnerQuote[];
   onOpen: (q: LearnerQuote) => void;
@@ -194,7 +194,7 @@ export function LearnerQuotes({
   return (
     <>
       {variant === "marquee" ? (
-        <QuoteMarquee quotes={shown} onOpen={setOpen} duration={duration ?? 95} />
+        <QuoteMarquee quotes={shown} onOpen={setOpen} duration={duration ?? 180} />
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {shown.map((q, i) => (
