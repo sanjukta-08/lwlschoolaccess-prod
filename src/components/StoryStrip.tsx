@@ -66,8 +66,7 @@ export default function StoryStrip() {
           <div className="mt-7">
             <StoryGallery
               stories={APPROVED_INSTAGRAM}
-              limit={6}
-              variant="carousel"
+              variant="marquee"
             />
           </div>
         </div>
