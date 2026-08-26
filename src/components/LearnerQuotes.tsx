@@ -192,7 +192,7 @@ export function LearnerQuotes({
   return (
     <>
       {variant === "marquee" ? (
-        <QuoteMarquee quotes={shown} onOpen={setOpen} duration={duration ?? 70} />
+        <QuoteMarquee quotes={shown} onOpen={setOpen} duration={duration ?? 55} />
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {shown.map((q, i) => (
