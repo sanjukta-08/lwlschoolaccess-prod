@@ -166,9 +166,24 @@ export const PROGRAMMES: Programme[] = [
     site: "https://futuredoctorsprogram.com/junior-doctors",
     apply: "https://futuredoctorsprogram.com/junior-doctors/apply",
     cohorts: [
-      { d: "2026-10-03" },
-      { d: "2026-12-19" },
-      { d: "2027-03-20" },
+      {
+        d: "2026-10-03",
+        label: "Batch 1",
+        flyer: dl("1StgUWWJSEe4Zr11urxVQ04z5XIbP845P"),
+        brochure: dl("1bmQ8zNH-kAi6FSKau3IbfuWgX9ddqJnv"),
+      },
+      {
+        d: "2026-12-19",
+        label: "Batch 2",
+        flyer: dl("1XP4VAAfwTTMzepDBlpGnDtVjRyq1R15L"),
+        brochure: dl("1MG-LMoOK4c2i26hU576QxAZe9XHv8SQ8"),
+      },
+      {
+        d: "2027-03-20",
+        label: "Batch 3",
+        flyer: dl("1_qpcxC0gKPyuGm7OkU5q1we5aAqfRTli"),
+        brochure: dl("1e5lAo3L1DyZOLORV-YcP7hO2_TS4vaBH"),
+      },
     ],
   },
   {
