@@ -176,44 +176,51 @@ function QuoteMarquee({
 
   return (
     <div
-      className="relative px-12"
+      className="flex items-stretch gap-6"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
-      <div className="grid gap-x-8 gap-y-6 py-2 sm:grid-cols-2 lg:grid-cols-3">
-        {visible.map(({ item, index }) => (
-          <QuoteCard
-            key={`${item.name}-${index}`}
-            q={item}
-            onOpen={() => onOpen(item)}
-            accent={accentForQuote(item)}
-            width="w-full"
-          />
-        ))}
-      </div>
-
-      {canSlide ? (
-        <>
+      <div className="flex w-14 items-center justify-center">
+        {canSlide ? (
           <button
             type="button"
             onClick={() => setStart((s) => (s - 1 + quotes.length) % quotes.length)}
             aria-label="Previous learner feedback"
-            className="absolute left-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft shadow-soft ring-2 ring-paper transition-colors hover:border-crimson/40 hover:text-crimson"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-gold/40 bg-gold-soft text-gold-deep shadow-soft ring-2 ring-paper transition hover:bg-gold hover:text-paper"
           >
             <span aria-hidden>←</span>
           </button>
+        ) : null}
+      </div>
+
+      <div className="min-w-0 flex-1">
+        <div className="grid gap-x-8 gap-y-6 py-2 sm:grid-cols-2 lg:grid-cols-3">
+          {visible.map(({ item, index }) => (
+            <QuoteCard
+              key={`${item.name}-${index}`}
+              q={item}
+              onOpen={() => onOpen(item)}
+              accent={accentForQuote(item)}
+              width="w-full"
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="flex w-14 items-center justify-center">
+        {canSlide ? (
           <button
             type="button"
             onClick={() => setStart((s) => (s + 1) % quotes.length)}
             aria-label="Next learner feedback"
-            className="absolute right-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft shadow-soft ring-2 ring-paper transition-colors hover:border-crimson/40 hover:text-crimson"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-gold/40 bg-gold-soft text-gold-deep shadow-soft ring-2 ring-paper transition hover:bg-gold hover:text-paper"
           >
             <span aria-hidden>→</span>
           </button>
-        </>
-      ) : null}
+        ) : null}
+      </div>
     </div>
   );
 }
