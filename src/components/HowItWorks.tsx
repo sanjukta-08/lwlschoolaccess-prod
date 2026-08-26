@@ -79,10 +79,12 @@ export function WhyLwl() {
   return (
     <section id="why" className="scroll-mt-20 bg-wash px-5 py-10">
       <div className="mx-auto max-w-[1100px]">
-        <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
+        <SectionHeading
+          sub="The details parents ask about most, built into every programme we run."
+        >
           Why <em className="text-crimson-deep">Learn with Leaders</em>
-        </h2>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+        </SectionHeading>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
           {REASONS.map((r) => (
             <div key={r.t} className="rounded-2xl border border-ink/10 bg-paper p-5">
               <h3 className="font-serif text-[1.1rem] font-semibold">{r.t}</h3>
