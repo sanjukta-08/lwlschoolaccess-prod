@@ -406,7 +406,7 @@ function HomePage() {
             Open the Programme Finder
           </Link>
           <a
-            href="https://www.learnwithleaders.com/"
+            href={CALENDLY_BOOKING_URL}
             target="_blank"
             rel="noopener"
             className="rounded-full border-[1.5px] border-paper/40 px-7 py-3.5 text-[0.95rem] font-bold text-paper no-underline transition-colors hover:border-paper"
