@@ -129,9 +129,25 @@ export const PROGRAMMES: Programme[] = [
     site: "https://futuredoctorsprogram.com/fellowship",
     apply: "https://futuredoctorsprogram.com/fellowship/apply",
     cohorts: [
-      { d: "2026-09-12" },
-      { d: "2026-11-14" },
-      { d: "2027-02-27" },
+      {
+        d: "2026-09-12",
+        label: "Batch 1",
+        elig: "Grades 8-12 (ages 13-18)",
+        flyer: dl("1t-JehpudAZSB6pcKdD22ZPPS0he1GlM3"),
+        brochure: dl("1uB9dsbH2gC_4GYFOvul5q1tMKG0Zaq3X"),
+      },
+      {
+        d: "2026-11-14",
+        label: "Batch 2",
+        flyer: dl("1KIaJhp-JBbT5RE8v2tkNDjeab2DJpQgk"),
+        brochure: dl("1DbrGXmsxN3FfdaVHjpv-hFP36p7ihkXh"),
+      },
+      {
+        d: "2027-02-27",
+        label: "Batch 3",
+        flyer: dl("1ComGBHt5vVnht1tlDeiARj6iGmm9zD7H"),
+        brochure: dl("15KwR4og8GcYt1u9jH8l_eL8a3rM-uWh4"),
+      },
     ],
   },
   {
