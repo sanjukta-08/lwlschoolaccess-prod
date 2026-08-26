@@ -312,7 +312,23 @@ function HomePage() {
         </div>
       </section>
 
+      <section className="px-5 py-11">
+        <div className="mx-auto max-w-[1100px]">
+          <SectionHeading
+            eyebrow="Trusted collaborations"
+            sub="Programme partners and corporate internship hosts across the 2026-27 calendar."
+          >
+            Delivered with <em className="text-crimson-deep">partners</em>{" "}
+            students recognise
+          </SectionHeading>
+          <div className="mt-4">
+            <PartnerLogos compact />
+          </div>
+        </div>
+      </section>
+
       <HowItWorks />
+
 
       <section className="py-14">
         <Suspense fallback={<div className="h-[420px]" />}>
