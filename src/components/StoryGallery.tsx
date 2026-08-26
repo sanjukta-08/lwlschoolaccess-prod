@@ -114,18 +114,24 @@ function StoryTile({
         </p>
       )}
 
-      <div className="mt-3.5 mb-4 flex items-center justify-between gap-2">
-        {story.tag ? (
-          <span className="rounded-full bg-crimson/8 px-2.5 py-1 text-[0.72rem] font-semibold text-crimson-deep">
-            #{story.tag}
-          </span>
-        ) : (
-          <span />
-        )}
+      <div className="mt-3.5 mb-4 flex flex-wrap items-center justify-between gap-2">
+        <span className="flex flex-wrap items-center gap-1.5">
+          {story.tag ? (
+            <span className="rounded-full bg-crimson/8 px-2.5 py-1 text-[0.72rem] font-semibold text-crimson-deep">
+              #{story.tag}
+            </span>
+          ) : null}
+          {!story.placeholder ? (
+            <span className="rounded-full border border-gold/40 bg-gold/10 px-2.5 py-1 text-[0.7rem] font-semibold text-ink-soft">
+              ✦ Real post
+            </span>
+          ) : null}
+        </span>
         <span className="text-[0.72rem] font-semibold text-crimson">
           Read the post →
         </span>
       </div>
+
 
       <footer className="mt-auto flex flex-col gap-2.5 border-t border-line pt-3.5 text-[0.78rem] text-ink-faint">
         <ReactionStack story={story} />
