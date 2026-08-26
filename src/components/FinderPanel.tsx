@@ -1,4 +1,5 @@
-import { TRACKS, TYPES } from "@/lib/programmes";
+import { TRACKS, TYPES, type TrackKey } from "@/lib/programmes";
+import { ALL_TRACKS_ICON, TrackIcon } from "@/lib/track-icons";
 import {
   gradeOptions,
   isDefaultSearch,
@@ -265,7 +266,6 @@ export function FinderPanel({
       <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
         <Tile
           label="Everything"
-          icon="✨"
           pressed={state.interest === "all"}
           onClick={() => onChange({ interest: "all" })}
         />
@@ -273,7 +273,7 @@ export function FinderPanel({
           <Tile
             key={key}
             label={t.label}
-            icon={t.ic}
+            track={key as TrackKey}
             color={t.color}
             pressed={state.interest === key}
             onClick={() => onChange({ interest: key })}
@@ -360,21 +360,59 @@ function SentenceSelect({
   );
 }
 
-function Tile({
+function TrackRow({
   label,
-  icon,
+  track,
   color,
   pressed,
-  dense = false,
   onClick,
 }: {
   label: string;
-  icon: string;
+  track?: TrackKey;
   color?: string;
   pressed: boolean;
-  dense?: boolean;
   onClick: () => void;
 }) {
+  const Icon = ALL_TRACKS_ICON;
+  return (
+    <button
+      type="button"
+      aria-pressed={pressed}
+      onClick={onClick}
+      className={`flex items-center gap-2.5 rounded-lg px-2.5 py-[7px] text-left text-[0.8rem] font-semibold transition-colors ${
+        pressed ? "bg-ink text-paper" : "text-ink-soft hover:bg-wash hover:text-ink"
+      }`}
+    >
+      <span
+        className="flex-none"
+        aria-hidden
+        style={pressed ? undefined : { color: color ?? "var(--ink-faint)" }}
+      >
+        {track ? (
+          <TrackIcon track={track} className="h-[0.95rem] w-[0.95rem]" />
+        ) : (
+          <Icon className="h-[0.95rem] w-[0.95rem]" strokeWidth={1.75} />
+        )}
+      </span>
+      <span className="truncate">{label}</span>
+    </button>
+  );
+}
+
+function Tile({
+  label,
+  track,
+  color,
+  pressed,
+  onClick,
+}: {
+  label: string;
+  track?: TrackKey;
+  color?: string;
+  pressed: boolean;
+  onClick: () => void;
+}) {
+  const Icon = ALL_TRACKS_ICON;
   return (
     <button
       type="button"
@@ -385,16 +423,18 @@ function Tile({
           ? { background: color ?? "var(--ink)", borderColor: color ?? "var(--ink)" }
           : undefined
       }
-      className={`flex flex-col items-center gap-1 rounded-xl border-[1.5px] border-transparent text-center leading-tight font-semibold transition-all ${
-        dense ? "px-1 pt-2 pb-1.5 text-[0.7rem]" : "px-1.5 pt-3 pb-2.5 text-[0.78rem]"
-      } ${
+      className={`flex flex-col items-center gap-1.5 rounded-xl border-[1.5px] border-transparent px-1.5 pt-3 pb-2.5 text-center text-[0.78rem] leading-tight font-semibold transition-all ${
         pressed
           ? "text-paper"
           : "bg-wash text-ink-soft hover:-translate-y-px hover:bg-wash-deep hover:text-ink"
       }`}
     >
-      <span className={dense ? "text-[1.05rem] leading-none" : "text-[1.35rem] leading-none"}>
-        {icon}
+      <span aria-hidden style={pressed ? undefined : { color }}>
+        {track ? (
+          <TrackIcon track={track} className="h-[1.15rem] w-[1.15rem]" />
+        ) : (
+          <Icon className="h-[1.15rem] w-[1.15rem]" strokeWidth={1.75} />
+        )}
       </span>
       <span>{label}</span>
     </button>
