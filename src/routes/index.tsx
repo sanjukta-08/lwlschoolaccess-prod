@@ -17,8 +17,9 @@ import { DEFAULT_SEARCH } from "@/lib/finder";
 import { slugOf } from "@/lib/programme-slug";
 import { SiteFooter } from "@/components/SiteFooter";
 import { PartnerLogos } from "@/components/PartnerLogos";
-import { WingMark, WingRule } from "@/components/WingMark";
+import { WingMark } from "@/components/WingMark";
 import { SectionHeading } from "@/components/SectionHeading";
+import birdAsset from "@/assets/lwl-bird-black.png.asset.json";
 
 const TITLE = "Learn with Leaders - Harvard & Yale-mentored programmes, Grades 5–12";
 const DESC =
@@ -58,6 +59,12 @@ function HomePage() {
     <div className="min-h-screen bg-paper">
       <div className="relative">
         <div className="hero-wash absolute inset-0" />
+        <img
+          src={birdAsset.url}
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute top-0 right-0 w-[22rem] max-w-[40vw] -translate-y-1/4 translate-x-1/4 opacity-[0.08]"
+        />
         <div className="relative">
           <SiteHeader />
           <section className="mx-auto max-w-[1100px] px-5 pt-10 pb-16 text-center">
@@ -69,7 +76,6 @@ function HomePage() {
               <span className="block">Where ambitious students</span>
               <em className="mt-1 block text-crimson-deep">learn with leaders</em>
             </h1>
-            <WingRule className="mt-5" />
 
             <p className="mx-auto mt-5 max-w-[60em] text-[clamp(1rem,2.4vw,1.14rem)] text-ink-soft">
               Live fellowships, competitions, corporate internships and MUN conferences,
