@@ -180,7 +180,20 @@ export function ProgrammeCard({
 
       <div className="flex flex-1 flex-col gap-2.5 px-5 pt-3.5 pb-4">
         <div className="flex items-start justify-between gap-3">
-          <h3 className="font-serif text-[1.2rem] leading-tight font-semibold">{p.name}</h3>
+          <div className="flex min-w-0 items-start gap-2.5">
+            {logo ? (
+              <span className="mt-[2px] flex h-10 w-10 flex-none items-center justify-center overflow-hidden rounded-md border border-line bg-paper p-[3px]">
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  loading="lazy"
+                  className="h-full w-full object-contain"
+                />
+              </span>
+            ) : null}
+            <h3 className="font-serif text-[1.2rem] leading-tight font-semibold">{p.name}</h3>
+          </div>
+
           <span className="mt-0.5 flex flex-none items-center gap-1.5">
             {isSoon(next.d) ? (
               <span className="rounded-md bg-gold px-2 py-[3px] text-[0.62rem] font-bold tracking-wide text-paper uppercase">
