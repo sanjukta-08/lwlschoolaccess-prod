@@ -17,13 +17,21 @@ function initialsOf(name: string) {
     .join("");
 }
 
-const ACCENTS = [
-  { avatar: "bg-ink text-paper", label: "text-ink" },
-  { avatar: "bg-crimson text-paper", label: "text-crimson" },
-  { avatar: "bg-gold-deep text-paper", label: "text-gold-deep" },
-] as const;
+const ACCENT_TOKENS: Record<string, { avatar: string; label: string }> = {
+  ink: { avatar: "bg-ink text-paper", label: "text-ink" },
+  crimson: { avatar: "bg-crimson text-paper", label: "text-crimson" },
+  gold: { avatar: "bg-gold-deep text-paper", label: "text-gold-deep" },
+  law: { avatar: "bg-track-law text-paper", label: "text-track-law" },
+  med: { avatar: "bg-track-med text-paper", label: "text-track-med" },
+  res: { avatar: "bg-track-res text-paper", label: "text-track-res" },
+  ent: { avatar: "bg-track-ent text-paper", label: "text-track-ent" },
+  ai: { avatar: "bg-track-ai text-paper", label: "text-track-ai" },
+  fin: { avatar: "bg-track-fin text-paper", label: "text-track-fin" },
+  lead: { avatar: "bg-track-lead text-paper", label: "text-track-lead" },
+  deb: { avatar: "bg-track-deb text-paper", label: "text-track-deb" },
+};
 
-const DEFAULT_ACCENT = ACCENTS[0];
+const DEFAULT_ACCENT = ACCENT_TOKENS.ink;
 
 function QuoteCard({
   q,
