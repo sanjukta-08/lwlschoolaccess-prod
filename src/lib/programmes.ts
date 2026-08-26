@@ -223,9 +223,24 @@ export const PROGRAMMES: Programme[] = [
     site: "https://joinonwards.com/young-debaters",
     apply: "https://joinonwards.com/young-debaters/apply",
     cohorts: [
-      { d: "2026-09-26" },
-      { d: "2026-12-12" },
-      { d: "2027-04-24" },
+      {
+        d: "2026-09-26",
+        label: "Batch 1",
+        flyer: dl("1J4nUeIDZi8JqBSONNwAhAEiBsYPrSmqQ"),
+        brochure: dl("1KjATth8QGQ_5-WMoK76lyNjtczC4uuUY"),
+      },
+      {
+        d: "2026-12-12",
+        label: "Batch 2",
+        flyer: dl("1yPS_Bg29Ev7mIvGpCgQyRACYGWuzqFBG"),
+        brochure: dl("1oP5weZqeaql_oXPHQHk1knZHyMci9atx"),
+      },
+      {
+        d: "2027-04-24",
+        label: "Batch 3",
+        flyer: dl("19rLla_0FZqY8nXH1gX7fESFzzoRngDvC"),
+        brochure: dl("11ZCTp_z05CFL5yY883rlQBrPXG6mTyCT"),
+      },
     ],
   },
   {
