@@ -97,39 +97,45 @@ function Reactions({ story }: { story: LinkedInStory }) {
 function StoryTile({
   story,
   onOpen,
-  compact = false,
 }: {
   story: LinkedInStory;
   onOpen: () => void;
-  compact?: boolean;
 }) {
   return (
     <button
       type="button"
       onClick={onOpen}
       aria-label={`Open ${SOURCE_LABEL[story.source]} story from ${story.name}`}
-      className="group flex h-full flex-col rounded-2xl border border-line bg-paper p-5 text-left shadow-soft transition-transform hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none"
+      className="group flex h-full flex-col rounded-2xl border border-line bg-paper p-6 text-left shadow-soft transition-transform hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none"
     >
-      <header className="flex items-start gap-3">
-        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-crimson/10 font-serif text-[0.9rem] font-bold text-crimson-deep">
+      <header className="flex items-start gap-3.5">
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-crimson/10 font-serif text-[0.95rem] font-bold text-crimson-deep">
           {story.initials}
         </span>
         <div className="min-w-0 flex-1">
-          <div className="truncate text-[0.9rem] font-bold text-ink">{story.name}</div>
-          <div className="truncate text-[0.76rem] text-ink-faint">{story.role}</div>
-          <div className="mono-label mt-1 flex items-center gap-1.5 text-ink-faint">
+          <div className="text-[0.95rem] font-bold leading-tight text-ink">{story.name}</div>
+          <div className="truncate text-[0.78rem] text-ink-faint">{story.role}</div>
+          <div className="mono-label mt-1 flex items-center gap-1.5 text-[0.7rem] text-ink-faint">
             {story.when} <span aria-hidden>·</span>
-            <span aria-hidden className="text-[0.7rem]">
+            <span aria-hidden className="text-[0.65rem]">
               🌐
             </span>
             PUBLIC
           </div>
         </div>
-        <SourceGlyph story={story} />
-        <span aria-hidden className="mt-0.5 text-[0.95rem] leading-none text-ink-faint">
-          ⋮
-        </span>
+        <div className="flex items-center gap-1">
+          <SourceGlyph story={story} className="h-6 w-6" />
+          <span aria-hidden className="text-[0.95rem] leading-none text-ink-faint">
+            ⋮
+          </span>
+        </div>
       </header>
+
+      <div className="mt-4">
+        <h3 className="text-[1.05rem] font-bold leading-snug text-ink">
+          {story.when}
+        </h3>
+      </div>
 
       {story.image ? (
         <img
@@ -138,43 +144,38 @@ function StoryTile({
           width={640}
           height={400}
           loading="lazy"
-          className="mt-3.5 w-full rounded-xl border border-line object-cover"
+          className="mt-4 w-full rounded-xl border border-line object-cover"
         />
       ) : (
-        <p
-          className={`mt-3.5 text-[0.87rem] leading-relaxed text-ink-soft ${
-            compact ? "line-clamp-5" : ""
-          }`}
-        >
+        <p className="mt-4 text-[0.9rem] leading-relaxed text-ink-soft line-clamp-5">
           {story.text}
         </p>
       )}
 
-      <div className="mt-3.5 mb-4 flex flex-wrap items-center justify-between gap-2">
-        <span className="flex flex-wrap items-center gap-1.5">
+      <div className="mt-4 flex items-center justify-between border-b border-line pb-3.5 text-[0.78rem] text-ink-faint">
+        <ReactionStack story={story} />
+        <span className="flex items-center gap-1.5">
+          <span className="font-semibold text-ink">{story.comments}</span> comments
+        </span>
+      </div>
+
+      <div className="mt-auto flex items-center justify-between gap-3 pt-3.5">
+        <div className="flex flex-wrap items-center gap-1.5">
           {story.tag ? (
             <span className="rounded-full bg-crimson/8 px-2.5 py-1 text-[0.72rem] font-semibold text-crimson-deep">
               #{story.tag}
             </span>
           ) : null}
-          {!story.placeholder ? (
-            <span className="rounded-full border border-gold/40 bg-gold/10 px-2.5 py-1 text-[0.7rem] font-semibold text-ink-soft">
-              ✦ Real {SOURCE_LABEL[story.source]} post
-            </span>
-          ) : null}
-        </span>
+        </div>
+        {!story.placeholder ? (
+          <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-[0.7rem] font-semibold text-ink-soft">
+            <svg className="h-3.5 w-3.5 text-[#0a66c2]" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+            </svg>
+            Real {SOURCE_LABEL[story.source]} post
+          </span>
+        ) : null}
       </div>
-
-
-
-      <footer className="mt-auto flex flex-col gap-2.5 border-t border-line pt-3.5 text-[0.78rem] text-ink-faint">
-        <ReactionStack story={story} />
-        <span className="flex items-center gap-1.5">
-          <Reactions story={story} />
-          <span aria-hidden>·</span>
-          <span className="font-semibold text-ink">{story.comments}</span> comments
-        </span>
-      </footer>
     </button>
   );
 }
