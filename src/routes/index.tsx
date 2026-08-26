@@ -57,14 +57,17 @@ function HomePage() {
 
   return (
     <div className="min-h-screen bg-paper">
-      <div className="relative">
+      <div className="relative overflow-hidden">
         <div className="hero-wash absolute inset-0" />
-        <img
-          src={birdAsset.url}
-          alt=""
-          aria-hidden="true"
-          className="pointer-events-none absolute top-0 right-0 w-[22rem] max-w-[40vw] -translate-y-1/4 translate-x-1/4 opacity-[0.08]"
-        />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-[55%] min-w-[24rem] opacity-[0.12]">
+          <img
+            src={birdAsset.url}
+            alt=""
+            aria-hidden="true"
+            className="h-full w-full object-contain object-right"
+          />
+        </div>
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-paper via-paper/90 to-transparent" />
         <div className="relative">
           <SiteHeader />
           <section className="mx-auto max-w-[1100px] px-5 pt-10 pb-16 text-center">
