@@ -114,7 +114,7 @@ function HomePage() {
 
         <div className="relative">
           <SiteHeader />
-          <section className="mx-auto max-w-[1100px] px-5 pt-10 pb-16 text-center">
+          <section className="mx-auto max-w-[1100px] px-5 pt-8 pb-12 text-center">
             <span className="mono-label mb-4 inline-flex items-center gap-2 rounded-full border border-gold-line bg-paper px-3.5 py-1.5 text-gold-deep shadow-soft">
               <WingMark size={13} />
               Online programmes for Grades 5-12 · 2026-27
