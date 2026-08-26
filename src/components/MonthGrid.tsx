@@ -77,7 +77,7 @@ export function MonthGrid({
               return (
                 <div
                   key={key}
-                  className={`relative min-h-[132px] border-r border-line p-2 transition-colors last:border-r-0 ${
+                  className={`relative min-h-[112px] border-r border-line p-2 transition-colors last:border-r-0 ${
                     day ? (isWeekend ? "bg-wash/40" : "bg-paper") : "bg-wash/60"
                   } ${dayEntries.length ? "hover:bg-gold-soft/40" : ""} ${
                     isSelected ? "bg-gold-soft/60 ring-1 ring-inset ring-gold/50" : ""
