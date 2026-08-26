@@ -1,4 +1,12 @@
+import genevaClip1 from "@/assets/geneva-clip-1.webm.asset.json";
+import genevaClip2 from "@/assets/geneva-clip-2.webm.asset.json";
+import genevaClip3 from "@/assets/geneva-clip-3.webm.asset.json";
+import genevaPoster1 from "@/assets/geneva-clip-1-poster.webp.asset.json";
+import genevaPoster2 from "@/assets/geneva-clip-2-poster.webp.asset.json";
+import genevaPoster3 from "@/assets/geneva-clip-3-poster.webp.asset.json";
+
 export const ABOUT = {
+
   kicker: "About Learn with Leaders",
   headline: "Ivy League mentors, live cohorts, and proof universities can check.",
   body: "Learn with Leaders runs live, small-group programmes for students in Grades 5–12, mentored by student leaders from Harvard, Yale, MIT, Stanford and Princeton, and delivered with partners like Harvard Student Agencies, HPAIR and Harvard Model Congress. Every pathway is built backwards from an outcome - a capstone project, a published paper, a judged pitch, a moot court, a portfolio - so a child finishes with something real to show, not just another certificate.",
