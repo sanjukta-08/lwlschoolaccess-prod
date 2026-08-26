@@ -1,3 +1,4 @@
+import { DEFAULT_TESTIMONIAL_SEARCH } from "@/lib/testimonials";
 import { Link } from "@tanstack/react-router";
 
 import { AddToCalendar } from "@/components/AddToCalendar";
@@ -294,8 +295,8 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
 
         <p className="mt-5">
           <Link
-            to="/stories"
-            search={{ track: p.tracks[0]! }}
+            to="/testimonials"
+            search={{ ...DEFAULT_TESTIMONIAL_SEARCH, track: p.tracks[0]! }}
             className="text-[0.85rem] font-bold text-crimson no-underline hover:underline"
           >
             See all {track.label} stories →

@@ -1,3 +1,4 @@
+import { DEFAULT_TESTIMONIAL_SEARCH } from "@/lib/testimonials";
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { DEFAULT_SEARCH } from "@/lib/finder";
@@ -58,13 +59,13 @@ export function SiteHeader() {
           Profile building
         </Link>
         <Link
-          to="/stories"
-          search={{ track: "" }}
+          to="/testimonials"
+          search={DEFAULT_TESTIMONIAL_SEARCH}
           className={cls}
           activeProps={active}
           onClick={close}
         >
-          Stories
+          Testimonials
         </Link>
         <Link to="/about" className={cls} activeProps={active} onClick={close}>
           About

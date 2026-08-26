@@ -1,3 +1,4 @@
+import { DEFAULT_TESTIMONIAL_SEARCH } from "@/lib/testimonials";
 import { Link } from "@tanstack/react-router";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { DEFAULT_FIT } from "@/lib/fit";
@@ -83,8 +84,8 @@ export function SiteFooter({ note }: { note?: string }) {
             <Link to="/about" hash="why" className={linkCls}>
               Why Learn with Leaders
             </Link>
-            <Link to="/stories" search={{ track: "" }} className={linkCls}>
-              Family stories
+            <Link to="/testimonials" search={DEFAULT_TESTIMONIAL_SEARCH} className={linkCls}>
+              Testimonials
             </Link>
             <Link to="/about" hash="press" className={linkCls}>
               Press
