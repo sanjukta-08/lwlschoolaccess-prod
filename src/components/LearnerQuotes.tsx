@@ -53,6 +53,15 @@ function QuoteCard({
       aria-label={`Read the full note from ${q.name}`}
       className={`group relative flex min-h-[20rem] flex-col justify-between self-stretch overflow-visible rounded-[1.25rem] rounded-tr-[3.5rem] bg-paper px-7 py-6 text-left ring-1 ring-ink/10 shadow-soft transition-transform hover:-translate-y-1 hover:shadow-lift focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none ${width}`}
     >
+      {/* Brand bird watermark */}
+      <img
+        src={birdAsset.url}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="pointer-events-none absolute left-4 bottom-4 z-0 w-24 h-24 object-contain opacity-[0.10] select-none"
+      />
+
       {/* Overlapping initials plate */}
       <span
         className={`absolute -left-7 top-8 flex h-14 w-14 shrink-0 items-center justify-center rounded-full font-sans text-[1rem] font-bold shadow-soft ring-4 ring-paper ${a.avatar}`}
@@ -60,7 +69,7 @@ function QuoteCard({
         {initialsOf(q.name)}
       </span>
 
-      <header className="pl-7">
+      <header className="relative z-10 pl-7">
         <span className="block truncate font-serif text-[1.15rem] font-semibold leading-tight text-ink">
           {q.name}
         </span>
@@ -69,11 +78,11 @@ function QuoteCard({
         </span>
       </header>
 
-      <p className="my-4 line-clamp-5 font-serif text-[1.12rem] italic leading-[1.4] text-ink">
+      <p className="relative z-10 my-4 line-clamp-5 font-serif text-[1.12rem] italic leading-[1.4] text-ink">
         “{q.quote}”
       </p>
 
-      <footer className="relative flex items-center justify-between gap-3 border-t border-ink/10 pt-3">
+      <footer className="relative z-10 flex items-center justify-between gap-3 border-t border-ink/10 pt-3">
         <span className={`min-w-0 truncate font-serif text-[0.95rem] font-semibold ${a.label}`}>
           {q.programme}
         </span>
@@ -87,15 +96,6 @@ function QuoteCard({
           ”
         </span>
       </footer>
-
-      {/* Brand bird watermark */}
-      <img
-        src={birdAsset.url}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        className="pointer-events-none absolute left-4 bottom-4 z-0 w-24 h-24 object-contain opacity-[0.07] select-none"
-      />
     </button>
   );
 }
