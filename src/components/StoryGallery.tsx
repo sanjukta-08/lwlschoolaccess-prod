@@ -271,7 +271,7 @@ function StoryLightbox({
               rel="noopener"
               className="font-bold text-crimson no-underline hover:underline"
             >
-              View on LinkedIn →
+              View on {SOURCE_LABEL[story.source]} →
             </a>
           ) : null}
         </div>
