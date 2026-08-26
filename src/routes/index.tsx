@@ -254,21 +254,21 @@ function HomePage() {
                   className="group flex flex-col overflow-hidden rounded-[18px] border border-gold-line bg-paper text-left text-ink no-underline shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold hover:shadow-lift"
                 >
                   <span
-                    className="flex items-center justify-between border-b px-4.5 py-2.5 text-[0.7rem] font-bold tracking-[0.12em] uppercase"
+                    className="flex items-center justify-between border-b px-4 py-2.5 text-[0.7rem] font-bold tracking-[0.12em] uppercase"
                     style={{
                       color: "var(--sp)",
                       background: "color-mix(in srgb, var(--sp) 8%, #fff)",
                       borderColor: "color-mix(in srgb, var(--sp) 16%, #fff)",
                     }}
                   >
-                    <span className="flex items-center gap-1.5">
+                    <span className="flex min-w-0 items-center gap-1.5">
                       <span
-                        className="inline-block h-1.5 w-1.5 rounded-full"
+                        className="inline-block h-1.5 w-1.5 flex-none rounded-full"
                         style={{ background: "var(--sp)" }}
                       />
-                      {t.label}
+                      <span className="truncate">{t.label}</span>
                     </span>
-                    <span className="mono-label text-ink-faint">
+                    <span className="mono-label shrink-0 whitespace-nowrap text-ink-faint">
                       G{g1}–{g2}
                     </span>
                   </span>
