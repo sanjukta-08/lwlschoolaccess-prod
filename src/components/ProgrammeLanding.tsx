@@ -84,15 +84,17 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
             </a>
             {next ? <SaveButton p={p} c={next} variant="wide" /> : null}
             {next ? <AddToCalendar p={p} c={next} size="md" /> : null}
-            {next ? (
-              <p className="text-[0.86rem] text-ink-soft">
-                Next cohort starts <b className="text-ink">{fmtLong(next.d)}</b>
-                {" · "}
-                {discounted ? "early-bird " : ""}
-                <b className="text-ink">{fee.e}</b>
-              </p>
-            ) : null}
           </div>
+
+          {next ? (
+            <p className="mt-4 text-center text-[0.86rem] text-ink-soft">
+              Next cohort starts <b className="text-ink">{fmtLong(next.d)}</b>
+              {" · "}
+              {discounted ? "early-bird " : ""}
+              <b className="text-ink">{fee.e}</b>
+            </p>
+          ) : null}
+
 
           {next ? (
             <p className="mt-4 flex flex-wrap items-center justify-center gap-2 text-[0.78rem]">
@@ -153,7 +155,10 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         </p>
         <div className="mt-6 grid gap-3.5 sm:grid-cols-2">
           {d.doSteps.map((s, i) => (
-            <div key={s.title} className="flex items-start gap-3.5 rounded-2xl bg-wash p-4.5">
+            <div
+              key={s.title}
+              className="flex items-start gap-3.5 rounded-2xl border-[1.5px] border-line bg-wash p-4.5 shadow-soft"
+            >
               <span
                 className="grid h-9 w-9 flex-none place-items-center rounded-full border-[1.5px] bg-paper font-serif font-semibold"
                 style={{
@@ -177,9 +182,9 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Skills your child will <em className="text-crimson-deep italic">gain</em>
         </h2>
-        <p className="mx-auto mt-2 max-w-[40em] text-center text-[0.92rem] text-ink-soft">
-          Named, practised skills - grouped the way universities read them, and each one
-          tied to how it is used in this {kind.toLowerCase()}.
+        <p className="mx-auto mt-2 max-w-none text-center text-[0.92rem] text-ink-soft lg:whitespace-nowrap">
+          Named, practised skills - grouped the way universities read them, tied to how
+          each is used in this {kind.toLowerCase()}.
         </p>
         <SkillMatrix programme={p} color={track.color} />
       </section>
@@ -189,7 +194,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Projects they <em className="text-crimson-deep italic">finish with</em>
         </h2>
-        <p className="mx-auto mt-2 max-w-[40em] text-center text-[0.92rem] text-ink-soft">
+        <p className="mx-auto mt-2 max-w-none text-center text-[0.92rem] text-ink-soft lg:whitespace-nowrap">
           Sample briefs from recent cohorts - the actual work that comes out of the
           programme, not a syllabus.
         </p>
@@ -252,7 +257,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Upcoming <em className="text-crimson-deep italic">cohorts</em>
         </h2>
-        <div className="mt-6 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="mt-6 flex flex-wrap justify-center gap-3.5">
           {cohorts.length === 0 ? (
             <p className="text-[0.9rem] text-ink-soft">
               Dates for the next intake are being confirmed - the programme page has
@@ -266,7 +271,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
             return (
               <div
                 key={c.d}
-                className="flex flex-col gap-2 rounded-2xl border border-line bg-paper p-4.5 shadow-soft"
+                className="flex w-full max-w-[320px] flex-col gap-2 rounded-2xl border-[1.5px] border-line bg-paper p-4.5 shadow-soft sm:w-[300px]"
               >
                 {isSoon(c.d) ? (
                   <span className="w-fit rounded-md bg-gold px-2.5 py-[3px] text-[0.64rem] font-bold tracking-wide text-paper uppercase">
@@ -332,7 +337,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
             );
           })}
         </div>
-        <p className="mt-3.5 text-[0.8rem] text-ink-faint">
+        <p className="mt-3.5 text-center text-[0.8rem] text-ink-faint">
           Session times shown in Dubai time (GMT+4) with US Eastern alongside. Fees are
           correct at time of publishing - confirm on the programme page.
         </p>
@@ -355,11 +360,11 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Parents usually <em className="text-crimson-deep italic">ask</em>
         </h2>
-        <div className="mt-6 flex flex-col gap-2.5">
+        <div className="mx-auto mt-6 flex max-w-[900px] flex-col gap-2.5">
           {d.faqs.map((f) => (
             <details
               key={f.q}
-              className="overflow-hidden rounded-[14px] border border-line bg-paper"
+              className="overflow-hidden rounded-[14px] border-[1.5px] border-line bg-paper"
             >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 text-[0.93rem] font-semibold">
                 {f.q}
@@ -382,7 +387,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
             Families looking at this also{" "}
             <em className="text-crimson-deep italic">consider</em>
           </h2>
-          <div className="mt-5 grid gap-3.5 sm:grid-cols-3">
+          <div className="mt-5 flex flex-wrap justify-center gap-3.5">
             {related.map((r) => {
               const rt = TRACKS[r.tracks[0]!];
               const rn = r.cohorts.find((c) => !isPast(c.d));
@@ -391,7 +396,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
                   key={r.id}
                   to="/programmes/$slug"
                   params={{ slug: slugOf(r) }}
-                  className="flex flex-col gap-2 rounded-2xl border border-line bg-paper p-4.5 no-underline shadow-soft transition-all hover:-translate-y-[3px] hover:shadow-lift"
+                  className="flex w-full max-w-[340px] flex-col gap-2 rounded-2xl border-[1.5px] border-line bg-paper p-4.5 no-underline shadow-soft transition-all hover:-translate-y-[3px] hover:shadow-lift sm:w-[320px]"
                 >
                   <span className="text-[0.74rem] font-bold" style={{ color: rt.color }}>
                     {rt.ic} {TYPE_NAME[r.type]}
@@ -406,11 +411,11 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
               );
             })}
           </div>
-          <div className="mt-7 mb-4">
+          <div className="mt-7 mb-4 flex justify-center">
             <Link
               to="/finder"
               search={DEFAULT_SEARCH}
-              className="text-[0.9rem] font-semibold text-crimson no-underline hover:underline"
+              className="rounded-full border-[1.5px] border-line bg-ink px-6 py-3 text-[0.9rem] font-bold text-paper no-underline shadow-soft transition-transform hover:-translate-y-0.5 hover:brightness-110"
             >
               ← Browse all programmes
             </Link>

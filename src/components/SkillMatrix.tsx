@@ -23,7 +23,7 @@ export function SkillMatrix({
         return (
           <div
             key={g.family}
-            className="rounded-2xl border border-line bg-paper p-5 shadow-soft"
+            className="rounded-2xl border-[1.5px] border-line bg-paper p-5 shadow-soft"
           >
             <div className="flex items-start gap-3">
               <span className="text-[1.35rem] leading-none" aria-hidden>
