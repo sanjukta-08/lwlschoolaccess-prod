@@ -338,7 +338,6 @@ function StoryCarousel({
                 <StoryTile
                   key={s.id}
                   story={s}
-                  compact
                   onOpen={() => onOpen(p * perPage + i)}
                 />
               ))}
