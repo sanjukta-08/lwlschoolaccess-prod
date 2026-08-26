@@ -10,7 +10,6 @@ import {
   DEFAULT_TESTIMONIAL_SEARCH,
   FORMATS,
   FORMAT_ORDER,
-  TESTIMONIAL_TOTAL,
   filterTestimonials,
   testimonialFacets,
 } from "@/lib/testimonials";
@@ -43,7 +42,7 @@ export const Route = createFileRoute("/testimonials")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "/testimonials" }],
-    scripts: [
+        scripts: [
       {
         type: "application/ld+json",
         children: JSON.stringify({
@@ -51,7 +50,6 @@ export const Route = createFileRoute("/testimonials")({
           "@type": "ItemList",
           name: TITLE,
           description: DESC,
-          numberOfItems: TESTIMONIAL_TOTAL,
         }),
       },
     ],
