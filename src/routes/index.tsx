@@ -114,7 +114,7 @@ function HomePage() {
 
         <div className="relative">
           <SiteHeader />
-          <section className="mx-auto max-w-[1100px] px-5 pt-10 pb-16 text-center">
+          <section className="mx-auto max-w-[1100px] px-5 pt-8 pb-12 text-center">
             <span className="mono-label mb-4 inline-flex items-center gap-2 rounded-full border border-gold-line bg-paper px-3.5 py-1.5 text-gold-deep shadow-soft">
               <WingMark size={13} />
               Online programmes for Grades 5-12 · 2026-27
@@ -181,7 +181,7 @@ function HomePage() {
         </div>
       </div>
 
-      <section id="pathways" className="scroll-mt-24 border-y border-gold-line/60 bg-wash px-5 py-16">
+      <section id="pathways" className="scroll-mt-24 border-y border-gold-line/60 bg-wash px-5 py-12">
         <div className="mx-auto max-w-[1180px]">
           <SectionHeading
             eyebrow="Where to begin"
@@ -234,7 +234,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="border-y border-gold-line/60 bg-wash px-5 py-14">
+      <section className="border-y border-gold-line/60 bg-wash px-5 py-11">
         <div className="mx-auto max-w-[1100px]">
           <SectionHeading
             eyebrow="Signature cohorts"
@@ -307,7 +307,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="px-5 py-14">
+      <section className="px-5 py-11">
         <div className="mx-auto max-w-[1100px]">
           <SectionHeading eyebrow="Trusted collaborations">
             Delivered with <em className="text-crimson-deep">partners</em> students
@@ -333,7 +333,7 @@ function HomePage() {
 
       <HowItWorks />
 
-      <section className="bg-wash px-5 py-14">
+      <section className="bg-wash px-5 py-11">
         <div className="mx-auto max-w-[1100px]">
           <Suspense fallback={<div className="h-[360px]" />}>
             <StoryStrip />
@@ -341,7 +341,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="px-5 pb-14">
+      <section className="px-5 pb-11">
         <div className="mx-auto flex max-w-[1100px] flex-wrap items-center justify-between gap-5 rounded-[22px] border border-line bg-gradient-to-br from-wash-deep to-paper px-8 py-7">
           <div>
             <h3 className="font-serif text-[clamp(1.25rem,3vw,1.6rem)] font-semibold">
@@ -363,7 +363,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="rounded-t-[28px] bg-ink px-5 py-16 text-center text-paper">
+      <section className="rounded-t-[28px] bg-ink px-5 py-12 text-center text-paper">
         <h2 className="font-serif text-[clamp(1.7rem,4vw,2.4rem)] font-medium">
           Ready to find <em className="text-gold">their</em> programme?
         </h2>
