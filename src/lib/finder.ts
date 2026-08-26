@@ -25,7 +25,6 @@ export type FinderSearch = {
   month: string;
   type: string;
   duration: string;
-  mentor: string;
   q: string;
   view: string;
   status: string;
@@ -41,7 +40,6 @@ export const DEFAULT_SEARCH: FinderSearch = {
   month: "all",
   type: "all",
   duration: "all",
-  mentor: "all",
   q: "",
   view: "list",
   status: "all",
