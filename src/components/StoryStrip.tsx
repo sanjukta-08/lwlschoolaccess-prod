@@ -8,7 +8,7 @@ export default function StoryStrip() {
   return (
     <>
       <div className="flex items-center gap-3">
-        <LinkedInGlyph className="h-8 w-8" />
+        <LinkedInGlyph className="h-10 w-10" />
         <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.15rem)] font-medium">
           What families post <em className="text-crimson-deep">afterwards</em>
         </h2>
