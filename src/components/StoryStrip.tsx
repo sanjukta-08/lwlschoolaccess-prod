@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { LinkedInGlyph, StoryGallery } from "@/components/StoryGallery";
+import { DEFAULT_SEARCH } from "@/lib/finder";
 import { APPROVED_STORIES } from "@/lib/social-proof";
 
 /** Home-page stories band. Loaded lazily - it sits well below the fold. */
@@ -41,6 +42,7 @@ export default function StoryStrip() {
           </span>
           <Link
             to="/finder"
+            search={DEFAULT_SEARCH}
             className="text-[0.9rem] font-bold text-crimson no-underline hover:underline"
           >
             Explore programmes for grades 5-12 →
