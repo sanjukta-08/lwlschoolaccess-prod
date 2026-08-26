@@ -20,6 +20,7 @@ import { PartnerLogos } from "@/components/PartnerLogos";
 import { WingMark } from "@/components/WingMark";
 import { SectionHeading } from "@/components/SectionHeading";
 import birdAsset from "@/assets/lwl-bird-black.png.asset.json";
+import worldMapAsset from "@/assets/world-map-gold.png.asset.json";
 
 const TITLE = "Learn with Leaders - Harvard & Yale-mentored programmes, Grades 5–12";
 const DESC =
