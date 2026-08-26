@@ -117,15 +117,15 @@ export default function HandwrittenNotes() {
       >
         From the <span className="text-crimson">heart</span> of the cohort
       </SectionHeading>
-      <div className="gold-rule mx-auto mt-5 h-px w-24" />
+      <div className="gold-rule mx-auto mt-3 h-px w-24" />
 
       <div
-        className="relative mt-12 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
+        className="relative mt-7 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
         <div
-          className="note-marquee-track flex w-max gap-8 py-6"
+          className="note-marquee-track flex w-max gap-8 py-4"
           style={{ animationPlayState: paused ? "paused" : "running" }}
         >
           {loop.map((note, i) => (
@@ -151,18 +151,18 @@ export default function HandwrittenNotes() {
                   />
                 </span>
               </button>
-              <figcaption className="mt-7 px-1">
+              <figcaption className="mt-4 px-1">
                 <p className="font-serif text-[0.98rem] leading-snug italic text-ink">
                   “{note.quote}”
                 </p>
-                <p className="mono-label mt-3 text-crimson">{note.name}</p>
+                <p className="mono-label mt-2 text-crimson">{note.name}</p>
               </figcaption>
             </figure>
           ))}
         </div>
       </div>
 
-      <p className="mono-label mt-6 text-center text-ink-soft">
+      <p className="mono-label mt-4 text-center text-ink-soft">
         &nbsp;HOVER TO PAUSE, TAP ANY NOTE TO READ IT
       </p>
 
