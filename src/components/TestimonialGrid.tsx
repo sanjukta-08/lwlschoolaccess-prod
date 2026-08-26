@@ -98,9 +98,9 @@ function CardShell({
         </span>
       </header>
 
-      <div className="relative z-10 mt-4 flex-1">{children}</div>
+      <div className="relative z-10 mt-4">{children}</div>
 
-      <footer className="relative z-10 mt-4 flex items-center justify-between gap-3 border-t border-line pt-3">
+      <footer className="relative z-10 mt-auto flex items-center justify-between gap-3 border-t border-line pt-3">
         <span className="min-w-0 flex-1 truncate font-serif text-[0.9rem] font-semibold text-ink-soft">
           {t.cohort}
         </span>
@@ -158,7 +158,7 @@ function Card({ t, onOpen }: { t: Testimonial; onOpen: () => void }) {
             className="h-40 w-full object-cover"
           />
         </span>
-        <span className="mt-3 block line-clamp-2 font-serif text-[0.98rem] italic leading-snug text-ink">
+        <span className="mt-3 line-clamp-2 font-serif text-[0.98rem] italic leading-snug text-ink">
           “{t.note.quote}”
         </span>
       </CardShell>
@@ -176,7 +176,7 @@ function Card({ t, onOpen }: { t: Testimonial; onOpen: () => void }) {
             className="mb-3 w-full rounded-xl border border-line object-cover"
           />
         ) : null}
-        <span className="block line-clamp-5 text-[0.9rem] leading-relaxed text-ink-soft">
+        <span className="line-clamp-5 text-[0.9rem] leading-relaxed text-ink-soft">
           {t.story.text}
         </span>
       </CardShell>
@@ -188,7 +188,7 @@ function Card({ t, onOpen }: { t: Testimonial; onOpen: () => void }) {
   return (
     <CardShell t={t} onOpen={onOpen}>
       <Quote aria-hidden className="mb-2 h-4 w-4 text-gold-deep" />
-      <span className="block line-clamp-6 font-serif text-[1.08rem] italic leading-[1.45] text-ink">
+      <span className="line-clamp-6 font-serif text-[1.08rem] italic leading-[1.45] text-ink">
         “{t.quote.quote}”
       </span>
     </CardShell>
@@ -325,7 +325,7 @@ export function TestimonialGrid({ items }: { items: Testimonial[] }) {
 
   return (
     <>
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid items-start gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((t) => (
           <Card key={t.id} t={t} onOpen={() => setOpen(t.id)} />
         ))}
