@@ -92,9 +92,9 @@ function TestimonialsPage() {
 
         <div className="relative">
           <SiteHeader />
-          <section className="page-shell flex flex-col gap-3 pt-6 pb-7">
+          <section className="page-shell flex flex-col gap-3 pt-5 pb-6">
             <div>
-              <span className="mono-label mb-2 inline-flex items-center gap-2 text-crimson">
+              <span className="mono-label mb-1.5 inline-flex items-center gap-2 text-crimson">
                 <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
                 TESTIMONIALS · STUDENTS & PARENTS
               </span>
