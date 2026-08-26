@@ -176,24 +176,24 @@ function QuoteMarquee({
 
   return (
     <div
-      className="flex items-stretch gap-6"
+      className={`flex items-stretch ${canSlide ? "gap-5" : ""}`}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
-      <div className="flex w-14 items-center justify-center">
-        {canSlide ? (
+      {canSlide ? (
+        <div className="flex w-12 items-center justify-center">
           <button
             type="button"
             onClick={() => setStart((s) => (s - 1 + quotes.length) % quotes.length)}
             aria-label="Previous learner feedback"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-gold/40 bg-gold-soft text-gold-deep shadow-soft ring-2 ring-paper transition hover:bg-gold hover:text-paper"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/40 bg-gold-soft text-gold-deep shadow-soft ring-2 ring-paper transition hover:bg-gold hover:text-paper"
           >
             <span aria-hidden>←</span>
           </button>
-        ) : null}
-      </div>
+        </div>
+      ) : null}
 
       <div className="min-w-0 flex-1">
         <div className="grid gap-x-8 gap-y-6 py-2 sm:grid-cols-2 lg:grid-cols-3">
@@ -209,18 +209,18 @@ function QuoteMarquee({
         </div>
       </div>
 
-      <div className="flex w-14 items-center justify-center">
-        {canSlide ? (
+      {canSlide ? (
+        <div className="flex w-12 items-center justify-center">
           <button
             type="button"
             onClick={() => setStart((s) => (s + 1) % quotes.length)}
             aria-label="Next learner feedback"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-gold/40 bg-gold-soft text-gold-deep shadow-soft ring-2 ring-paper transition hover:bg-gold hover:text-paper"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/40 bg-gold-soft text-gold-deep shadow-soft ring-2 ring-paper transition hover:bg-gold hover:text-paper"
           >
             <span aria-hidden>→</span>
           </button>
-        ) : null}
-      </div>
+        </div>
+      ) : null}
     </div>
   );
 }
