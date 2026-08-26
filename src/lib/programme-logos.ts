@@ -22,8 +22,8 @@ export const PROGRAMME_LOGOS: Record<string, { src: string; alt: string }> = {
   ydf: { src: onward.url, alt: "ONWARD - Young Debaters" },
   ydp: { src: onward.url, alt: "ONWARD - Young Debaters" },
   wla: { src: yaleWla.url, alt: "Yale World Leaders Academy" },
-  yir: { src: yaleIr.url, alt: "Yale International Relations Association" },
-  hmcyl: { src: hmc.url, alt: "Harvard Model Congress" },
+  yire: { src: yaleIr.url, alt: "Yale International Relations Association" },
+  hmcl: { src: hmc.url, alt: "Harvard Model Congress" },
   sat: { src: sat.url, alt: "SAT Instinct" },
 };
 
