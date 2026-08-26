@@ -21,7 +21,6 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { WingMark } from "@/components/WingMark";
 import { SectionHeading } from "@/components/SectionHeading";
 import birdAsset from "@/assets/lwl-bird-black.png.asset.json";
-import worldMapAsset from "@/assets/world-map-dots.png";
 import pathwayMedicine from "@/assets/pathway-medicine.png";
 import pathwayLaw from "@/assets/pathway-law.png";
 import pathwayFinance from "@/assets/pathway-finance.png";
