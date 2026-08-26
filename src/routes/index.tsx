@@ -189,7 +189,7 @@ function HomePage() {
           >
             Pick a <em className="text-crimson-deep">pathway</em>
           </SectionHeading>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {(Object.keys(TRACKS) as TrackKey[]).map((k, index) => {
               const t = TRACKS[k];
               const n = upcoming.filter((p) => p.tracks.includes(k)).length;
@@ -199,41 +199,39 @@ function HomePage() {
                   to="/finder"
                   search={{ ...DEFAULT_SEARCH, interest: k }}
                   style={{ "--tc": t.color } as React.CSSProperties}
-                  className="group relative overflow-hidden rounded-[16px] border border-gold-line bg-paper p-5 text-ink no-underline shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-lift hover:border-gold-deep"
+                  className="group relative flex flex-col overflow-hidden rounded-[14px] border border-gold-line bg-paper px-4 py-3.5 text-ink no-underline shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lift hover:border-gold-deep"
                 >
                   <span className="absolute inset-x-0 bottom-0 h-[2px] origin-left scale-x-0 bg-[var(--tc)] transition-transform duration-500 group-hover:scale-x-100" />
-                  <span className="relative z-10 flex h-full flex-col">
-                    <span className="flex items-start justify-between">
-                      <span className="mono-label text-[0.68rem] text-gold-deep">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <ArrowUpRight
-                        size={16}
-                        strokeWidth={1.4}
-                        className="text-ink-faint transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-crimson-deep"
-                        aria-hidden="true"
-                      />
+                  <span className="flex items-start justify-between">
+                    <span className="mono-label text-[0.66rem] text-gold-deep">
+                      {String(index + 1).padStart(2, "0")}
                     </span>
-                    <img
-                      src={PATHWAY_ART[k]}
-                      alt=""
+                    <ArrowUpRight
+                      size={14}
+                      strokeWidth={1.4}
+                      className="text-ink-faint transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-crimson-deep"
                       aria-hidden="true"
-                      loading="lazy"
-                      width={400}
-                      height={400}
-                      className="pointer-events-none absolute -right-3 top-3 h-[105px] w-[105px] object-contain opacity-90 mix-blend-multiply transition-all duration-500 group-hover:-translate-y-1 group-hover:scale-[1.03] group-hover:opacity-100"
                     />
-                    <span className="mt-auto max-w-[72%] pt-24">
-                      <b className="block font-serif text-[1.22rem] leading-none font-semibold">
-                        {t.label}
-                      </b>
-                      <small className="mt-1.5 block text-[0.74rem] leading-snug text-ink-soft">
-                        {PATHWAY_PROMISE[k]}
-                      </small>
-                      <small className="mono-label mt-2.5 block text-[0.72rem] text-ink-faint">
-                        {n} programme{n === 1 ? "" : "s"}
-                      </small>
-                    </span>
+                  </span>
+                  <img
+                    src={PATHWAY_ART[k]}
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    width={400}
+                    height={400}
+                    className="pointer-events-none absolute top-1.5 right-1 h-[72px] w-[72px] object-contain opacity-90 mix-blend-multiply transition-all duration-300 group-hover:scale-[1.04]"
+                  />
+                  <span className="relative z-10 mt-8 max-w-[68%]">
+                    <b className="block font-serif text-[1.05rem] leading-tight font-semibold">
+                      {t.label}
+                    </b>
+                    <small className="mt-0.5 block text-[0.72rem] leading-snug text-ink-soft">
+                      {PATHWAY_PROMISE[k]}
+                    </small>
+                    <small className="mono-label mt-1.5 block text-[0.7rem] text-ink-faint">
+                      {n} programme{n === 1 ? "" : "s"}
+                    </small>
                   </span>
                 </Link>
               );
