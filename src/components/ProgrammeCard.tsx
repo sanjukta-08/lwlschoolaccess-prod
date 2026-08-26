@@ -18,6 +18,8 @@ import { outcomeOf, startLabel, weeklyHoursOf } from "@/lib/outcome";
 import { regionTimeLabel } from "@/lib/regions";
 import ZoomBadge from "@/components/ZoomBadge";
 import { TrackIcon } from "@/lib/track-icons";
+import { logoFor } from "@/lib/programme-logos";
+
 
 type Props = {
   match: Match;
@@ -44,6 +46,8 @@ export function ProgrammeCard({
   const timeLabel = regionTimeLabel(p, region) ?? shortTime(p.time);
   const outcome = outcomeOf(p);
   const hours = weeklyHoursOf(p);
+  const logo = logoFor(p.id, p.tracks);
+
 
   if (compact) {
     return (
@@ -57,13 +61,25 @@ export function ProgrammeCard({
 
         {/* Programme */}
         <div className="flex min-w-0 flex-1 items-start gap-3">
-          <span
-            className="mt-[3px] flex-none"
-            aria-hidden
-            style={{ color: track.color }}
-          >
-            <TrackIcon track={p.tracks[0]!} className="h-[1.05rem] w-[1.05rem]" />
-          </span>
+          {logo ? (
+            <span className="mt-[1px] flex h-9 w-9 flex-none items-center justify-center overflow-hidden rounded-md border border-line bg-paper p-[3px]">
+              <img
+                src={logo.src}
+                alt={logo.alt}
+                loading="lazy"
+                className="h-full w-full object-contain"
+              />
+            </span>
+          ) : (
+            <span
+              className="mt-[3px] flex-none"
+              aria-hidden
+              style={{ color: track.color }}
+            >
+              <TrackIcon track={p.tracks[0]!} className="h-[1.05rem] w-[1.05rem]" />
+            </span>
+          )}
+
           <span className="min-w-0">
             <b className="block truncate text-[0.95rem] leading-snug font-bold text-ink">
               {p.name}
@@ -110,7 +126,7 @@ export function ProgrammeCard({
           <Link
             to="/programmes/$slug"
             params={{ slug: slugOf(p) }}
-            className="rounded-full border-[1.5px] border-line bg-paper px-4 py-1.5 text-[0.78rem] font-bold text-ink no-underline transition-colors group-hover:border-ink-soft/60"
+            className="rounded-full border-[1.5px] border-ink bg-ink px-4 py-1.5 text-[0.78rem] font-bold text-paper no-underline transition-colors hover:border-crimson hover:bg-crimson"
           >
             View
           </Link>
@@ -164,7 +180,20 @@ export function ProgrammeCard({
 
       <div className="flex flex-1 flex-col gap-2.5 px-5 pt-3.5 pb-4">
         <div className="flex items-start justify-between gap-3">
-          <h3 className="font-serif text-[1.2rem] leading-tight font-semibold">{p.name}</h3>
+          <div className="flex min-w-0 items-start gap-2.5">
+            {logo ? (
+              <span className="mt-[2px] flex h-10 w-10 flex-none items-center justify-center overflow-hidden rounded-md border border-line bg-paper p-[3px]">
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  loading="lazy"
+                  className="h-full w-full object-contain"
+                />
+              </span>
+            ) : null}
+            <h3 className="font-serif text-[1.2rem] leading-tight font-semibold">{p.name}</h3>
+          </div>
+
           <span className="mt-0.5 flex flex-none items-center gap-1.5">
             {isSoon(next.d) ? (
               <span className="rounded-md bg-gold px-2 py-[3px] text-[0.62rem] font-bold tracking-wide text-paper uppercase">
