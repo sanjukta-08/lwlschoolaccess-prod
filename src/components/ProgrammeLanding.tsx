@@ -155,7 +155,10 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         </p>
         <div className="mt-6 grid gap-3.5 sm:grid-cols-2">
           {d.doSteps.map((s, i) => (
-            <div key={s.title} className="flex items-start gap-3.5 rounded-2xl bg-wash p-4.5">
+            <div
+              key={s.title}
+              className="flex items-start gap-3.5 rounded-2xl border-[1.5px] border-line bg-wash p-4.5 shadow-soft"
+            >
               <span
                 className="grid h-9 w-9 flex-none place-items-center rounded-full border-[1.5px] bg-paper font-serif font-semibold"
                 style={{
