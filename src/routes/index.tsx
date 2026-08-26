@@ -261,32 +261,50 @@ function HomePage() {
                       borderColor: "color-mix(in srgb, var(--sp) 16%, #fff)",
                     }}
                   >
-                    <span>{t.label}</span>
+                    <span className="flex items-center gap-1.5">
+                      <span
+                        className="inline-block h-1.5 w-1.5 rounded-full"
+                        style={{ background: "var(--sp)" }}
+                      />
+                      {t.label}
+                    </span>
                     <span className="mono-label text-ink-faint">
                       G{g1}–{g2}
                     </span>
                   </span>
-                  <span className="flex flex-1 flex-col items-center gap-3 px-4.5 py-5 text-center">
+                  <span className="flex flex-1 flex-col items-center px-4.5 pt-5 pb-4 text-center">
                     {logo ? (
-                      <img
-                        src={logo.src}
-                        alt={logo.alt}
-                        loading="lazy"
-                        className="h-10 w-full object-contain mix-blend-multiply"
-                      />
-                    ) : null}
-                    <span className="font-serif text-[1.05rem] leading-tight font-semibold">
+                      <span className="mb-4 flex h-12 w-full items-center justify-center">
+                        <img
+                          src={logo.src}
+                          alt={logo.alt}
+                          loading="lazy"
+                          className="max-h-12 w-full max-w-[10rem] object-contain mix-blend-multiply"
+                        />
+                      </span>
+                    ) : (
+                      <span className="mb-4 h-12" />
+                    )}
+                    <span className="mb-1.5 min-h-[3.1rem] font-serif text-[1.05rem] leading-tight font-semibold line-clamp-2">
                       {p.name}
                     </span>
-                    <span className="line-clamp-2 text-[0.83rem] text-ink-soft">
+                    <span className="mb-5 min-h-[2.5rem] text-[0.83rem] leading-snug text-ink-soft line-clamp-2">
                       {p.tag}
                     </span>
-                  </span>
-                  <span className="flex flex-col gap-3 px-4.5 pb-4.5">
-                    <span className="mono-label text-center text-ink-faint normal-case">
-                      Next: <b className="text-ink">{fmtShort(c.d)}</b> ·{" "}
-                      <b className="text-ink">{feeOf(p, c).e}</b>
+                    <span className="mt-auto w-full border-t border-gold-line/60 pt-4">
+                      <span className="mono-label block text-center text-[0.72rem] text-ink-faint normal-case">
+                        Next cohort
+                      </span>
+                      <span className="mt-1 flex items-center justify-center gap-2 text-center text-[0.9rem]">
+                        <b className="font-semibold text-ink">{fmtShort(c.d)}</b>
+                        <span className="text-ink-faint">·</span>
+                        <b className="font-serif text-[1.05rem] font-semibold" style={{ color: "var(--sp)" }}>
+                          {feeOf(p, c).e}
+                        </b>
+                      </span>
                     </span>
+                  </span>
+                  <span className="px-4.5 pb-4.5">
                     <span className="block rounded-full border border-ink px-4 py-2.5 text-center text-[0.7rem] font-bold tracking-[0.18em] uppercase text-ink transition-colors group-hover:bg-ink group-hover:text-paper">
                       View programme
                     </span>
