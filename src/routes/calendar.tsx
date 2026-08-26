@@ -7,7 +7,7 @@ import birdAsset from "@/assets/lwl-bird-black.webp.asset.json";
 import { CalendarControls } from "@/components/CalendarControls";
 import { MonthSections, TypeSections } from "@/components/CohortRows";
 import { SavedStrip } from "@/components/SavedStrip";
-import { PROGRAMMES, TRACKS, isSoon } from "@/lib/programmes";
+import { PROGRAMMES, TRACKS, isPast, isSoon } from "@/lib/programmes";
 import {
   DEFAULT_SEARCH,
   getCohortEntries,
@@ -21,7 +21,10 @@ import { SiteFooter } from "@/components/SiteFooter";
 
 const GRADE_LO = Math.min(...PROGRAMMES.map((p) => p.g[0]));
 const GRADE_HI = Math.max(...PROGRAMMES.map((p) => p.g[1]));
-const TOTAL_COHORTS = PROGRAMMES.reduce((n, p) => n + p.cohorts.length, 0);
+const TOTAL_COHORTS = PROGRAMMES.reduce(
+  (n, p) => n + p.cohorts.filter((c) => !isPast(c.d)).length,
+  0,
+);
 
 const TITLE = "Full Calendar 2026–27 | Learn with Leaders";
 const DESC =
