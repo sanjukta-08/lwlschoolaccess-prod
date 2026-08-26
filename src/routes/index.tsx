@@ -88,7 +88,7 @@ function HomePage() {
     <div className="min-h-screen bg-paper">
       <div className="relative overflow-hidden">
         <div className="hero-wash absolute inset-0" />
-        <div className="pointer-events-none absolute inset-y-0 -left-[3vw] w-[44%] min-w-[20rem] opacity-[0.22]">
+        <div className="pointer-events-none absolute inset-y-0 -left-[4vw] w-[34%] min-w-[15rem] opacity-[0.22]">
           <img
             src={birdAsset.url}
             alt=""
