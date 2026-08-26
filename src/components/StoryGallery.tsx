@@ -169,12 +169,9 @@ function StoryTile({
               ✦ Real {SOURCE_LABEL[story.source]} post
             </span>
           ) : null}
-
-        </span>
-        <span className="text-[0.72rem] font-semibold text-crimson">
-          Read the post →
         </span>
       </div>
+
 
 
       <footer className="mt-auto flex flex-col gap-2.5 border-t border-line pt-3.5 text-[0.78rem] text-ink-faint">
