@@ -227,7 +227,7 @@ function HomePage() {
       </section>
 
       <section className="border-y border-gold-line/60 bg-wash px-5 py-11">
-        <div className="mx-auto max-w-[1100px]">
+        <div className="mx-auto max-w-[1280px]">
           <SectionHeading
             eyebrow="Signature cohorts"
             sub="Our deepest experiences - small cohorts, dedicated mentors, capstones and Demo Days."
