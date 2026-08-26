@@ -6,12 +6,10 @@ import { TestimonialFilters } from "@/components/TestimonialFilters";
 import { TestimonialGrid } from "@/components/TestimonialGrid";
 
 import { DEFAULT_SEARCH } from "@/lib/finder";
-import { PROGRAMMES } from "@/lib/programmes";
 import {
   DEFAULT_TESTIMONIAL_SEARCH,
   FORMATS,
   FORMAT_ORDER,
-  TESTIMONIALS,
   TESTIMONIAL_TOTAL,
   filterTestimonials,
   testimonialFacets,
@@ -22,10 +20,7 @@ import birdAsset from "@/assets/lwl-bird-black.webp.asset.json";
 
 const TITLE = "Student & parent testimonials | Learn with Leaders";
 const DESC =
-  "Filter 80+ testimonials from Learn with Leaders families - written cohort feedback, LinkedIn and Instagram posts, video clips and handwritten notes - by who said it, interest, programme and format.";
-
-const PARENT_COUNT = TESTIMONIALS.filter((t) => t.voice === "parent").length;
-const VIDEO_COUNT = TESTIMONIALS.filter((t) => t.format === "video").length;
+  "Filter 80+ testimonials from Learn with Leaders families - written cohort feedback, LinkedIn and Instagram posts, video clips and handwritten notes - by interest, programme and format.";
 
 const str = (v: unknown, fallback: string) =>
   typeof v === "string" && v.length > 0 ? v : fallback;
