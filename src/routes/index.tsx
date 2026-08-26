@@ -107,7 +107,7 @@ function HomePage() {
           />
         </div>
 
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_55%_at_50%_38%,hsl(var(--paper)/0.92),transparent_75%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(58%_52%_at_50%_38%,rgba(255,255,255,0.92),rgba(255,255,255,0)_72%)]" />
 
 
         <div className="relative">
