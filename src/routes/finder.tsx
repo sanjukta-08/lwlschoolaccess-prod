@@ -184,7 +184,7 @@ function FinderPage() {
 
   const filters = (
     <FinderPanel
-      layout="rail"
+      layout="bar"
       state={state}
       onChange={update}
       onReset={() => update(DEFAULT_SEARCH)}
