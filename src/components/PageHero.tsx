@@ -45,10 +45,10 @@ export function PageHero({
 
       <div className="relative">
         <SiteHeader />
-        <section className="page-shell flex flex-col gap-4 pt-8 pb-10">
+        <section className="page-shell flex flex-col items-center gap-4 pt-8 pb-10 text-center">
           <div>
             {eyebrow ? (
-              <span className="mono-label mb-2 inline-flex items-center gap-2 text-crimson">
+              <span className="mono-label mb-2 inline-flex items-center justify-center gap-2 text-crimson">
                 <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
                 {eyebrow}
               </span>
@@ -57,18 +57,18 @@ export function PageHero({
               {title}
             </h1>
             {subtitle ? (
-              <p className="mt-3 max-w-[58em] text-[0.98rem] leading-relaxed text-ink-soft">
+              <p className="mx-auto mt-3 max-w-[58em] text-[0.98rem] leading-relaxed text-ink-soft">
                 {subtitle}
               </p>
             ) : null}
           </div>
 
           {pills?.length ? (
-            <ul className="flex flex-wrap gap-2">
+            <ul className="flex flex-wrap justify-center gap-2">
               {pills.map((p, i) => (
                 <li
                   key={i}
-                  className="rounded-full border border-line bg-paper/90 px-3.5 py-1.5 shadow-soft backdrop-blur-sm"
+                  className="rounded-full border border-line bg-paper/90 px-3.5 py-1.5 text-left shadow-soft backdrop-blur-sm"
                 >
                   <b className="flex items-center gap-1.5 text-[0.78rem] font-bold text-ink">
                     {p.top}
@@ -79,7 +79,7 @@ export function PageHero({
             </ul>
           ) : null}
 
-          {children ? <div className="flex flex-wrap gap-3">{children}</div> : null}
+          {children ? <div className="flex flex-wrap justify-center gap-3">{children}</div> : null}
         </section>
       </div>
     </div>

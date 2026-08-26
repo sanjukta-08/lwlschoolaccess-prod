@@ -225,9 +225,9 @@ function FinderPage() {
 
         <div className="relative">
           <SiteHeader />
-          <section className="mx-auto flex w-full max-w-none flex-col gap-4 px-4 pt-8 pb-10 sm:px-5 lg:px-6 xl:px-8">
+          <section className="mx-auto flex w-full max-w-none flex-col items-center gap-4 px-4 pt-8 pb-10 text-center sm:px-5 lg:px-6 xl:px-8">
             <div>
-              <span className="mono-label mb-2 inline-flex items-center gap-2 text-crimson">
+              <span className="mono-label mb-2 inline-flex items-center justify-center gap-2 text-crimson">
                 <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
                 {PROGRAMMES.length} programmes · Grades {GRADE_LO}–{GRADE_HI}
               </span>
@@ -236,7 +236,7 @@ function FinderPage() {
                 <em className="text-crimson-deep">fits</em> your child
               </h1>
             </div>
-            <ul className="flex flex-wrap gap-2">
+            <ul className="flex flex-wrap justify-center gap-2">
               {[
                 ["Harvard & Yale Student Mentors", "Taught by leaders"],
                 ["Live on Zoom", "Dubai + US Eastern"],
@@ -244,7 +244,7 @@ function FinderPage() {
               ].map(([top, sub]) => (
                 <li
                   key={top}
-                  className="rounded-full border border-line bg-paper/90 px-3.5 py-1.5 shadow-soft backdrop-blur-sm"
+                  className="rounded-full border border-line bg-paper/90 px-3.5 py-1.5 text-left shadow-soft backdrop-blur-sm"
                 >
                   <b className="flex items-center gap-1.5 text-[0.78rem] font-bold text-ink">
                     {top === "Live on Zoom" ? <ZoomBadge label="Live on Zoom" /> : top}

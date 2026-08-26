@@ -103,23 +103,23 @@ function MonthCalendarPage() {
 
         <div className="relative">
           <SiteHeader />
-          <section className="page-shell flex flex-col gap-4 pt-8 pb-10">
+          <section className="page-shell flex flex-col items-center gap-4 pt-8 pb-10 text-center">
             <div>
-              <span className="mono-label mb-2 inline-flex items-center gap-2 text-crimson">
+              <span className="mono-label mb-2 inline-flex items-center justify-center gap-2 text-crimson">
                 <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
                 {TOTAL_COHORTS} cohorts · July 2026 - April 2027
               </span>
               <h1 className="font-serif text-[clamp(1.8rem,4.4vw,2.7rem)] leading-[1.1] font-medium tracking-tight">
                 Cohort calendar, <em className="text-crimson-deep">month by month</em>
               </h1>
-              <p className="mt-2.5 max-w-[54em] text-[0.94rem] text-ink-soft">
+              <p className="mx-auto mt-2.5 max-w-[54em] text-[0.94rem] text-ink-soft">
                 Every start date on a real month grid. Move through the months, tap a date
                 to see everything that begins that day, and click a cohort to open its
                 programme page.
               </p>
             </div>
 
-            <ul className="flex flex-wrap gap-2">
+            <ul className="flex flex-wrap justify-center gap-2">
               {[
                 [`${PROGRAMMES.length} programmes`, `${TOTAL_COHORTS} cohorts`],
                 ["Live on Zoom", "Dubai + US Eastern"],
@@ -127,7 +127,7 @@ function MonthCalendarPage() {
               ].map(([top, sub]) => (
                 <li
                   key={top}
-                  className="rounded-full border border-line bg-paper/90 px-3.5 py-1.5 shadow-soft backdrop-blur-sm"
+                  className="rounded-full border border-line bg-paper/90 px-3.5 py-1.5 text-left shadow-soft backdrop-blur-sm"
                 >
                   <b className="flex items-center gap-1.5 text-[0.78rem] font-bold text-ink">
                     {top === "Live on Zoom" ? <ZoomBadge label="Live on Zoom" /> : top}
