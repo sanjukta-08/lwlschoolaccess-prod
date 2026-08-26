@@ -11,7 +11,6 @@ import {
 import type { TestimonialSearch } from "@/lib/testimonials";
 
 type Facets = {
-  who: Record<string, number>;
   track: Record<string, number>;
   programme: Record<string, number>;
   format: Record<string, number>;
