@@ -291,7 +291,46 @@ function StoryLightbox({
   );
 }
 
-/** Three cards at a time, auto-advancing page by page. Pauses on hover. */
+function windowOf<T>(items: T[], start: number, count: number) {
+  if (items.length === 0) return [] as { item: T; index: number }[];
+  return Array.from({ length: Math.min(count, items.length) }, (_, k) => {
+    const index = (start + k) % items.length;
+    return { item: items[index] as T, index };
+  });
+}
+
+function SideArrows({
+  onPrev,
+  onNext,
+  label,
+}: {
+  onPrev: () => void;
+  onNext: () => void;
+  label: string;
+}) {
+  return (
+    <>
+      <button
+        type="button"
+        onClick={onPrev}
+        aria-label={`Previous ${label}`}
+        className="absolute -left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft shadow-soft transition-colors hover:border-crimson/40 hover:text-crimson lg:-left-6"
+      >
+        <span aria-hidden>←</span>
+      </button>
+      <button
+        type="button"
+        onClick={onNext}
+        aria-label={`Next ${label}`}
+        className="absolute -right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft shadow-soft transition-colors hover:border-crimson/40 hover:text-crimson lg:-right-6"
+      >
+        <span aria-hidden>→</span>
+      </button>
+    </>
+  );
+}
+
+/** Three cards at a time, sliding one card per tick in a continuous loop. */
 function StoryCarousel({
   stories,
   onOpen,
@@ -300,75 +339,46 @@ function StoryCarousel({
   onOpen: (i: number) => void;
 }) {
   const perPage = 3;
-  const pages = Math.max(1, Math.ceil(stories.length / perPage));
-  const [page, setPage] = useState(0);
+  const [start, setStart] = useState(0);
   const [paused, setPaused] = useState(false);
+  const canSlide = stories.length > perPage;
 
   useEffect(() => {
-    if (paused || pages < 2) return;
-    const id = window.setInterval(() => setPage((p) => (p + 1) % pages), 6500);
+    if (paused || !canSlide) return;
+    const id = window.setInterval(
+      () => setStart((s) => (s + 1) % stories.length),
+      6500,
+    );
     return () => window.clearInterval(id);
-  }, [paused, pages]);
+  }, [paused, canSlide, stories.length]);
 
   return (
     <div
+      className="relative"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {stories.slice(page * perPage, page * perPage + perPage).map((s, i) => (
-          <StoryTile
-            key={s.id}
-            story={s}
-            onOpen={() => onOpen(page * perPage + i)}
-          />
+        {windowOf(stories, start, perPage).map(({ item, index }) => (
+          <StoryTile key={`${item.id}-${index}`} story={item} onOpen={() => onOpen(index)} />
         ))}
       </div>
 
-      {pages > 1 ? (
-        <div className="mt-5 flex items-center justify-center gap-3">
-          <button
-            type="button"
-            onClick={() => setPage((p) => (p - 1 + pages) % pages)}
-            aria-label="Previous stories"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft transition-colors hover:border-crimson/40 hover:text-crimson"
-          >
-            <span aria-hidden>←</span>
-          </button>
-          <span className="flex items-center gap-2.5">
-          {Array.from({ length: pages }).map((_, p) => (
-            <button
-              key={p}
-              type="button"
-              onClick={() => setPage(p)}
-              aria-label={`Show stories ${p * perPage + 1}-${Math.min(
-                (p + 1) * perPage,
-                stories.length,
-              )}`}
-              aria-current={p === page}
-              className={`h-2 rounded-full transition-all ${
-                p === page ? "w-7 bg-crimson" : "w-2 bg-ink/20 hover:bg-ink/35"
-              }`}
-            />
-          ))}
-          </span>
-          <button
-            type="button"
-            onClick={() => setPage((p) => (p + 1) % pages)}
-            aria-label="Next stories"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft transition-colors hover:border-crimson/40 hover:text-crimson"
-          >
-            <span aria-hidden>→</span>
-          </button>
-        </div>
+      {canSlide ? (
+        <SideArrows
+          label="stories"
+          onPrev={() => setStart((s) => (s - 1 + stories.length) % stories.length)}
+          onNext={() => setStart((s) => (s + 1) % stories.length)}
+        />
       ) : null}
     </div>
   );
 }
 
-/** Page-by-page social carousel so no testimonial card is shown half-cut. */
+
+/** Continuous one-card-per-tick loop with side arrows. */
 function StoryMarquee({
   stories,
   onOpen,
@@ -378,28 +388,32 @@ function StoryMarquee({
 }) {
   const [paused, setPaused] = useState(false);
   const perPage = 3;
-  const pages = Math.max(1, Math.ceil(stories.length / perPage));
-  const [page, setPage] = useState(0);
+  const [start, setStart] = useState(0);
+  const canSlide = stories.length > perPage;
 
   useEffect(() => {
-    if (paused || pages < 2) return;
-    const id = window.setInterval(() => setPage((p) => (p + 1) % pages), 8000);
+    if (paused || !canSlide) return;
+    const id = window.setInterval(
+      () => setStart((s) => (s + 1) % stories.length),
+      6000,
+    );
     return () => window.clearInterval(id);
-  }, [paused, pages]);
+  }, [paused, canSlide, stories.length]);
 
   return (
     <div
+      className="relative"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {stories.slice(page * perPage, page * perPage + perPage).map((s, i) => (
+        {windowOf(stories, start, perPage).map(({ item: s, index }) => (
           <button
-            key={s.id}
+            key={`${s.id}-${index}`}
             type="button"
-            onClick={() => onOpen(page * perPage + i)}
+            onClick={() => onOpen(index)}
             aria-label={`Open ${SOURCE_LABEL[s.source]} post from ${s.name}`}
             className="rounded-2xl border border-line bg-paper p-5 text-left shadow-soft transition-transform hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none"
           >
@@ -441,32 +455,17 @@ function StoryMarquee({
         ))}
       </div>
 
-      {pages > 1 ? (
-        <div className="mt-5 flex items-center justify-center gap-3">
-          <button
-            type="button"
-            onClick={() => setPage((p) => (p - 1 + pages) % pages)}
-            aria-label="Previous posts"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft transition-colors hover:border-crimson/40 hover:text-crimson"
-          >
-            <span aria-hidden>←</span>
-          </button>
-          <span className="mono-label text-ink-faint">
-            {page + 1} / {pages}
-          </span>
-          <button
-            type="button"
-            onClick={() => setPage((p) => (p + 1) % pages)}
-            aria-label="Next posts"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft transition-colors hover:border-crimson/40 hover:text-crimson"
-          >
-            <span aria-hidden>→</span>
-          </button>
-        </div>
+      {canSlide ? (
+        <SideArrows
+          label="posts"
+          onPrev={() => setStart((s) => (s - 1 + stories.length) % stories.length)}
+          onNext={() => setStart((s) => (s + 1) % stories.length)}
+        />
       ) : null}
     </div>
   );
 }
+
 
 
 export function StoryGallery({
