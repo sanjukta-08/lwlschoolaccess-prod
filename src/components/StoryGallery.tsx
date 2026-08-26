@@ -314,7 +314,7 @@ function SideArrows({
         type="button"
         onClick={onPrev}
         aria-label={`Previous ${label}`}
-        className="absolute -left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft shadow-soft transition-colors hover:border-crimson/40 hover:text-crimson lg:-left-6"
+        className="absolute left-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft shadow-soft ring-2 ring-paper transition-colors hover:border-crimson/40 hover:text-crimson"
       >
         <span aria-hidden>←</span>
       </button>
@@ -322,7 +322,7 @@ function SideArrows({
         type="button"
         onClick={onNext}
         aria-label={`Next ${label}`}
-        className="absolute -right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft shadow-soft transition-colors hover:border-crimson/40 hover:text-crimson lg:-right-6"
+        className="absolute right-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft shadow-soft ring-2 ring-paper transition-colors hover:border-crimson/40 hover:text-crimson"
       >
         <span aria-hidden>→</span>
       </button>
@@ -354,7 +354,7 @@ function StoryCarousel({
 
   return (
     <div
-      className="relative"
+      className="relative px-12"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
@@ -402,7 +402,7 @@ function StoryMarquee({
 
   return (
     <div
-      className="relative"
+      className="relative px-12"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
