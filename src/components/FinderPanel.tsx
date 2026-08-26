@@ -128,6 +128,26 @@ export function FinderPanel({
             </Field>
           </div>
           <div className="min-w-[150px] flex-1">
+            <Field label="Programme length" icon={<Clock className="h-3.5 w-3.5" />}>
+              <BoxSelect
+                value={state.duration}
+                onChange={(v) => onChange({ duration: v })}
+                options={durationOptions()}
+                label="Programme length"
+              />
+            </Field>
+          </div>
+          <div className="min-w-[170px] flex-1">
+            <Field label="Mentor university" icon={<Landmark className="h-3.5 w-3.5" />}>
+              <BoxSelect
+                value={state.mentor}
+                onChange={(v) => onChange({ mentor: v })}
+                options={mentorOptions()}
+                label="Mentor university"
+              />
+            </Field>
+          </div>
+          <div className="min-w-[150px] flex-1">
             <Field label="Where you are" icon={<Globe className="h-3.5 w-3.5" />}>
               <BoxSelect
                 value={state.region}
@@ -143,6 +163,7 @@ export function FinderPanel({
             </Field>
           </div>
         </div>
+
 
         <div className="mt-3.5 border-t border-line pt-3">{counter}</div>
       </div>
