@@ -308,6 +308,14 @@ function HomePage() {
 
       <HowItWorks />
 
+      <section className="px-5 py-14">
+        <div className="mx-auto max-w-[1200px]">
+          <Suspense fallback={<div className="h-[420px]" />}>
+            <HandwrittenNotes />
+          </Suspense>
+        </div>
+      </section>
+
       <section className="bg-wash px-5 py-11">
         <div className="mx-auto max-w-[1100px]">
           <Suspense fallback={<div className="h-[360px]" />}>
@@ -315,6 +323,7 @@ function HomePage() {
           </Suspense>
         </div>
       </section>
+
 
       <section className="px-5 py-14">
         <div className="mx-auto flex max-w-[1100px] flex-wrap items-center justify-between gap-5 rounded-[22px] border border-line bg-gradient-to-br from-wash-deep to-paper px-8 py-7">
