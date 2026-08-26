@@ -145,7 +145,7 @@ function QuoteMarquee({
       onBlurCapture={() => setPaused(false)}
     >
       <div
-        className="flex w-max items-stretch gap-6 py-2 will-change-transform"
+        className="flex w-max items-stretch gap-8 py-2 will-change-transform"
         style={{
           animation: `learner-quote-scroll ${duration}s linear infinite`,
           animationPlayState: paused ? "paused" : "running",
