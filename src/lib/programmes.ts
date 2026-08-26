@@ -306,8 +306,24 @@ export const PROGRAMMES: Programme[] = [
     site: "https://joinonwards.com/aischool",
     apply: "https://joinonwards.com/aischool/apply",
     cohorts: [
-      { d: "2026-10-17" },
-      { d: "2027-02-20" },
+      {
+        d: "2026-07-18",
+        label: "Cohort 1",
+        flyer: dl("1-F0SPVWuHh_0OolvWWn06C_j6dEkseo9"),
+        brochure: dl("1H-qADSnMPJpmEzuXFEwOtkJi5cO24qwn"),
+      },
+      {
+        d: "2026-10-17",
+        label: "Batch 2",
+        flyer: dl("1JUUTJNcV9A4FGXpymH9PkiOXGUjG2D2a"),
+        brochure: dl("1p4LXadLYO8BPmQ21NB0_hE-n28pEspqF"),
+      },
+      {
+        d: "2027-02-20",
+        label: "Batch 3",
+        flyer: dl("1dChHD4b0UdurvTsJyOI0QnuVSoOxOC9R"),
+        brochure: dl("1-FAz8Iip4n0krxotaGeOFtfKdw976JV_"),
+      },
     ],
   },
   {
