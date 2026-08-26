@@ -69,17 +69,17 @@ const SOURCE_LABEL: Record<LinkedInStory["source"], string> = {
 function ReactionStack({ story }: { story: LinkedInStory }) {
   return (
     <span className="flex items-center gap-2">
-      <span aria-hidden className="flex items-center -space-x-1">
-        <span className="flex h-4.5 w-4.5 items-center justify-center rounded-full border border-paper bg-[#0a66c2] text-[0.55rem] text-paper">
+        <span aria-hidden className="flex items-center -space-x-1">
+        <span className="flex h-5 w-5 items-center justify-center rounded-full border border-paper bg-[#0a66c2] text-[0.55rem] text-paper">
           <svg className="h-2.5 w-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M2 20h2c.55 0 1-.45 1-1v-9c0-.55-.45-1-1-1H2v11zm19.83-7.12c.11-.25.17-.52.17-.8V11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 2 7.58 7.59C7.21 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1c0-.03-.01-.06-.01-.09z"/></svg>
         </span>
-        <span className="flex h-4.5 w-4.5 items-center justify-center rounded-full border border-paper bg-crimson text-[0.55rem] text-paper">
+        <span className="flex h-5 w-5 items-center justify-center rounded-full border border-paper bg-crimson text-[0.55rem] text-paper">
           <svg className="h-2.5 w-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
         </span>
-        <span className="flex h-4.5 w-4.5 items-center justify-center rounded-full border border-paper bg-gold text-[0.55rem] text-ink">
+        <span className="flex h-5 w-5 items-center justify-center rounded-full border border-paper bg-gold text-[0.55rem] text-ink">
           <svg className="h-2.5 w-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
         </span>
-        <span className="flex h-4.5 w-4.5 items-center justify-center rounded-full border border-paper bg-ink/25" />
+        <span className="flex h-5 w-5 items-center justify-center rounded-full border border-paper bg-ink/25" />
       </span>
       <span className="text-[0.78rem] font-semibold text-ink-soft">{story.reactions}</span>
     </span>
