@@ -61,24 +61,13 @@ export function ProgrammeCard({
 
         {/* Programme */}
         <div className="flex min-w-0 flex-1 items-start gap-3">
-          {logo ? (
-            <span className="mt-[1px] flex h-9 w-9 flex-none items-center justify-center overflow-hidden rounded-md border border-line bg-paper p-[3px]">
-              <img
-                src={logo.src}
-                alt={logo.alt}
-                loading="lazy"
-                className="h-full w-full object-contain"
-              />
-            </span>
-          ) : (
-            <span
-              className="mt-[3px] flex-none"
-              aria-hidden
-              style={{ color: track.color }}
-            >
-              <TrackIcon track={p.tracks[0]!} className="h-[1.05rem] w-[1.05rem]" />
-            </span>
-          )}
+          <span
+            className="mt-[3px] flex-none"
+            aria-hidden
+            style={{ color: track.color }}
+          >
+            <TrackIcon track={p.tracks[0]!} className="h-[1.15rem] w-[1.15rem]" />
+          </span>
 
           <span className="min-w-0">
             <b className="block truncate text-[0.95rem] leading-snug font-bold text-ink">
@@ -95,8 +84,23 @@ export function ProgrammeCard({
           </span>
         </div>
 
+        {/* Brand logo */}
+        {logo ? (
+          <div className="hidden md:flex md:w-[9.5rem] md:flex-none md:items-center md:justify-center">
+            <img
+              src={logo.src}
+              alt={logo.alt}
+              loading="lazy"
+              className="max-h-11 w-auto max-w-[9rem] object-contain"
+            />
+          </div>
+        ) : (
+          <div className="hidden md:block md:w-[9.5rem] md:flex-none" />
+        )}
+
         {/* Schedule */}
         <div className="flex flex-col gap-0.5 sm:w-[10.5rem] sm:flex-none sm:items-end sm:text-right">
+
           <span className="font-mono text-[0.76rem] font-semibold text-ink">
             {startLabel(next.d)}
           </span>
