@@ -240,7 +240,7 @@ function StoryLightbox({
               {story.when} · Public{story.tag ? ` · #${story.tag}` : ""}
             </div>
           </div>
-          <LinkedInGlyph className="h-7 w-7" />
+          <SourceGlyph story={story} className="h-7 w-7" />
         </div>
 
         <div className="p-5">
