@@ -286,7 +286,8 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
               >
                 <span className="block h-[3px] w-full bg-gradient-to-r from-gold-line via-gold to-gold-line" />
                 {isSoon(c.d) ? (
-                  <span className="absolute top-4 right-3 -rotate-[9deg] rounded-md border-2 border-gold/70 bg-gold-soft px-2.5 py-1 font-mono text-[0.6rem] font-bold tracking-[0.12em] text-gold-deep uppercase shadow-soft">
+                  <span className="absolute top-3.5 right-3 inline-flex items-center gap-1 rounded-sm border-2 border-dashed border-gold/80 bg-gold-soft px-2.5 py-1 font-mono text-[0.62rem] font-bold tracking-[0.1em] text-gold-deep uppercase shadow-soft">
+                    <span aria-hidden className="text-[0.72rem]">✦</span>
                     Starting soon
                   </span>
                 ) : null}
