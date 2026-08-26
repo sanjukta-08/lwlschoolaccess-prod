@@ -285,9 +285,24 @@ export const PROGRAMMES: Programme[] = [
     site: "https://joinfinlit.com/competition",
     apply: "https://joinfinlit.com/competition/apply",
     cohorts: [
-      { d: "2026-07-25" },
-      { d: "2026-10-24" },
-      { d: "2027-02-27" },
+      {
+        d: "2026-07-25",
+        label: "Cohort 1",
+        flyer: dl("1j1nvJcbnz76wmh2K6pFApcYlngMDQCSr"),
+        brochure: dl("1Gf70wU8NMM1IsgC3YMWtzPczajFijGE2"),
+      },
+      {
+        d: "2026-10-24",
+        label: "Batch 2",
+        flyer: dl("1JLSFJ7ZujDxNVNP2es3r8SKIVj4wywN9"),
+        brochure: dl("1HADn1hPON7U8GrojGBWKhTazQHqgqfN5"),
+      },
+      {
+        d: "2027-02-27",
+        label: "Batch 3",
+        flyer: dl("1S2qQe1kfNNGY3Ya8Cfu0VC11ee_3C0V2"),
+        brochure: dl("1hO3dxd0reG1LSX8lta6FHCeZd8eHLUk_"),
+      },
     ],
   },
   {
