@@ -176,50 +176,44 @@ function QuoteMarquee({
 
   return (
     <div
-      className={`flex items-stretch ${canSlide ? "gap-5" : ""}`}
+      className="relative"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
       {canSlide ? (
-        <div className="flex w-12 items-center justify-center">
-          <button
-            type="button"
-            onClick={() => setStart((s) => (s - 1 + quotes.length) % quotes.length)}
-            aria-label="Previous learner feedback"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/40 bg-gold-soft text-gold-deep shadow-soft ring-2 ring-paper transition hover:bg-gold hover:text-paper"
-          >
-            <span aria-hidden>←</span>
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={() => setStart((s) => (s - 1 + quotes.length) % quotes.length)}
+          aria-label="Previous learner feedback"
+          className="hidden sm:flex absolute left-0 top-1/2 z-20 h-10 w-10 -translate-x-[calc(100%+0.5rem)] -translate-y-1/2 items-center justify-center rounded-full border border-gold/40 bg-gold-soft text-gold-deep shadow-soft ring-2 ring-paper transition hover:bg-gold hover:text-paper"
+        >
+          <span aria-hidden>←</span>
+        </button>
       ) : null}
 
-      <div className="min-w-0 flex-1">
-        <div className="grid gap-x-8 gap-y-6 py-2 sm:grid-cols-2 lg:grid-cols-3">
-          {visible.map(({ item, index }) => (
-            <QuoteCard
-              key={`${item.name}-${index}`}
-              q={item}
-              onOpen={() => onOpen(item)}
-              accent={accentForQuote(item)}
-              width="w-full"
-            />
-          ))}
-        </div>
+      <div className="grid gap-x-8 gap-y-6 py-2 sm:grid-cols-2 lg:grid-cols-3">
+        {visible.map(({ item, index }) => (
+          <QuoteCard
+            key={`${item.name}-${index}`}
+            q={item}
+            onOpen={() => onOpen(item)}
+            accent={accentForQuote(item)}
+            width="w-full"
+          />
+        ))}
       </div>
 
       {canSlide ? (
-        <div className="flex w-12 items-center justify-center">
-          <button
-            type="button"
-            onClick={() => setStart((s) => (s + 1) % quotes.length)}
-            aria-label="Next learner feedback"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/40 bg-gold-soft text-gold-deep shadow-soft ring-2 ring-paper transition hover:bg-gold hover:text-paper"
-          >
-            <span aria-hidden>→</span>
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={() => setStart((s) => (s + 1) % quotes.length)}
+          aria-label="Next learner feedback"
+          className="hidden sm:flex absolute right-0 top-1/2 z-20 h-10 w-10 translate-x-[calc(100%+0.5rem)] -translate-y-1/2 items-center justify-center rounded-full border border-gold/40 bg-gold-soft text-gold-deep shadow-soft ring-2 ring-paper transition hover:bg-gold hover:text-paper"
+        >
+          <span aria-hidden>→</span>
+        </button>
       ) : null}
     </div>
   );
