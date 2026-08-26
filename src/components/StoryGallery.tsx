@@ -314,7 +314,7 @@ function SideArrows({
         type="button"
         onClick={onPrev}
         aria-label={`Previous ${label}`}
-        className="absolute left-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft shadow-soft ring-2 ring-paper transition-colors hover:border-crimson/40 hover:text-crimson"
+        className="absolute left-0 top-1/2 z-10 hidden h-10 w-10 -translate-x-[calc(100%+0.5rem)] -translate-y-1/2 items-center justify-center rounded-full border border-gold/40 bg-gold-soft text-gold-deep shadow-soft ring-2 ring-paper transition-colors hover:bg-gold hover:text-paper sm:flex"
       >
         <span aria-hidden>←</span>
       </button>
@@ -322,7 +322,7 @@ function SideArrows({
         type="button"
         onClick={onNext}
         aria-label={`Next ${label}`}
-        className="absolute right-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft shadow-soft ring-2 ring-paper transition-colors hover:border-crimson/40 hover:text-crimson"
+        className="absolute right-0 top-1/2 z-10 hidden h-10 w-10 translate-x-[calc(100%+0.5rem)] -translate-y-1/2 items-center justify-center rounded-full border border-gold/40 bg-gold-soft text-gold-deep shadow-soft ring-2 ring-paper transition-colors hover:bg-gold hover:text-paper sm:flex"
       >
         <span aria-hidden>→</span>
       </button>
