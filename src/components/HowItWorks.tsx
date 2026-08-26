@@ -40,7 +40,7 @@ const REASONS = [
 
 export function HowItWorks() {
   return (
-    <section id="how" className="relative scroll-mt-20 overflow-hidden border-t border-line bg-paper px-5 py-10">
+    <section id="how" className="relative scroll-mt-20 overflow-hidden bg-paper px-5 py-10">
       {/* Right-side background image with soft edge fade */}
       <div className="pointer-events-none absolute -right-10 bottom-0 h-[95%] max-w-[55%] overflow-hidden lg:right-0 lg:max-w-[48%]">
         <img
@@ -64,7 +64,7 @@ export function HowItWorks() {
         </SectionHeading>
         <div className="relative mt-4 grid gap-4 md:grid-cols-3">
           {STEPS.map((s) => (
-            <div key={s.n} className="rounded-2xl border border-ink/10 bg-paper/80 p-5 backdrop-blur-sm">
+            <div key={s.n} className="rounded-2xl border border-line bg-paper/80 p-5 backdrop-blur-sm">
               <span className="mono-label text-crimson">{s.n}</span>
               <h3 className="mt-2 font-serif text-[1.15rem] font-semibold">{s.t}</h3>
               <p className="mt-2 text-[0.88rem] text-ink-soft">{s.d}</p>
