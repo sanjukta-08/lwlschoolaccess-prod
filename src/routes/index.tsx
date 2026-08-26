@@ -352,10 +352,10 @@ function HomePage() {
       </section>
 
       <section className="rounded-t-[28px] bg-ink px-5 py-12 text-center text-paper">
-        <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
+        <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium leading-none">
           Ready to find <em className="text-gold">their</em> programme?
         </h2>
-        <p className="mx-auto mt-3 mb-6 max-w-[52em] text-[0.95rem] text-paper/70">
+        <p className="mx-auto mt-1 mb-6 max-w-[52em] text-[0.95rem] leading-relaxed text-paper/70">
           Thirty seconds with the finder, or a short conversation with an advisor -
           whichever suits you.
         </p>
