@@ -6,6 +6,7 @@ import {
   cohortGrades,
   dualTime,
   feeOf,
+  timeOf,
   fmtShort,
   isSoon,
   parseISO,
@@ -18,6 +19,23 @@ import { Link } from "@tanstack/react-router";
 import { SaveButton } from "@/components/SaveButton";
 import { AddToCalendar } from "@/components/AddToCalendar";
 import { countdownLabel } from "@/lib/shortlist";
+
+/** Opens a Drive flyer/brochure without nesting an anchor inside the row link. */
+function DocLink({ href, label }: { href: string; label: string }) {
+  return (
+    <button
+      type="button"
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        window.open(href, "_blank", "noopener");
+      }}
+      className="rounded-md border border-line bg-paper px-1.5 py-0.5 font-mono text-[0.66rem] font-semibold tracking-[0.04em] text-ink-soft uppercase transition-colors hover:border-gold hover:text-gold"
+    >
+      {label}
+    </button>
+  );
+}
 
 function CohortRow({
   p,
@@ -61,8 +79,19 @@ function CohortRow({
         </span>
         <b className="mt-0.5 block text-[0.98rem] font-bold text-ink">{p.name}</b>
         <small className="block text-[0.78rem] text-ink-soft">
-          Grades {lo}–{hi} · {p.dur} · {dualTime(p.time)} · <ZoomBadge />
+          Grades {lo}–{hi} · {p.dur} · {dualTime(timeOf(p, c))} · <ZoomBadge />
         </small>
+        {c.label || c.flyer || c.brochure ? (
+          <span className="mt-1.5 flex flex-wrap items-center gap-1.5">
+            {c.label ? (
+              <span className="rounded-md border border-line bg-wash px-1.5 py-0.5 font-mono text-[0.66rem] tracking-[0.04em] text-ink-soft uppercase">
+                {c.label}
+              </span>
+            ) : null}
+            {c.flyer ? <DocLink href={c.flyer} label="Flyer" /> : null}
+            {c.brochure ? <DocLink href={c.brochure} label="Brochure" /> : null}
+          </span>
+        ) : null}
         {others?.length ? (
           <span className="mt-1.5 flex flex-wrap items-center gap-1.5 text-[0.72rem] text-ink-faint">
             Also starts
