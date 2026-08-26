@@ -17,8 +17,9 @@ import { DEFAULT_SEARCH } from "@/lib/finder";
 import { slugOf } from "@/lib/programme-slug";
 import { SiteFooter } from "@/components/SiteFooter";
 import { PartnerLogos } from "@/components/PartnerLogos";
-import { WingMark, WingRule } from "@/components/WingMark";
+import { WingMark } from "@/components/WingMark";
 import { SectionHeading } from "@/components/SectionHeading";
+import birdAsset from "@/assets/lwl-bird-black.png.asset.json";
 
 const TITLE = "Learn with Leaders - Harvard & Yale-mentored programmes, Grades 5–12";
 const DESC =
