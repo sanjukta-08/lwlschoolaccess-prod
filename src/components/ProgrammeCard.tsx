@@ -289,8 +289,14 @@ export function ProgrammeCard({
           <Link
             to="/programmes/$slug"
             params={{ slug: slugOf(p) }}
-            className="relative z-[2] flex-1 rounded-xl px-4 py-2 text-center text-[0.85rem] font-bold text-paper no-underline transition-[filter] hover:brightness-110"
-            style={{ background: track.color }}
+            className="relative z-[2] flex-1 rounded-xl border-2 px-4 py-2 text-center text-[0.85rem] font-bold no-underline transition-colors hover:text-paper"
+            style={{ borderColor: track.color, color: track.color }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = track.color;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "transparent";
+            }}
           >
             View programme
           </Link>
