@@ -418,18 +418,6 @@ const TAKEAWAYS: Record<TypeKey, string[]> = {
     "Awards for top entries",
     "A submission to show universities",
   ],
-  intern: [
-    "Internship completion certificate",
-    "Named organisation on the CV",
-    "Real deliverable for the team",
-    "Mentor feedback on the work",
-  ],
-  conf: [
-    "Certificate of Participation",
-    "Awards for standout delegates",
-    "Position paper for the portfolio",
-    "Public-speaking experience",
-  ],
 };
 
 const derivedSteps = (p: Programme): DoStep[] => {
@@ -448,36 +436,6 @@ const derivedSteps = (p: Programme): DoStep[] => {
       {
         title: "Submit and get judged",
         body: "Entries are assessed by the organising panel, with feedback and rankings returned to every participant.",
-      },
-    ];
-  if (p.type === "intern")
-    return [
-      {
-        title: "Get briefed by the organisation",
-        body: `A real brief from the ${p.name.replace(/ Corporate Internship| Internship/, "")} team - the same framing their own analysts get.`,
-      },
-      {
-        title: "Do the work in a small team",
-        body: `Weekly working sessions across ${p.dur.toLowerCase()}, with a mentor reviewing progress.`,
-      },
-      {
-        title: "Present to the company",
-        body: "Final recommendations presented back to the organisation, and a certificate naming the internship.",
-      },
-    ];
-  if (p.type === "conf")
-    return [
-      {
-        title: "Prepare a country and position",
-        body: "Research the brief, write a position paper and learn conference procedure before day one.",
-      },
-      {
-        title: "Debate in committee",
-        body: "Speak, caucus, negotiate and amend resolutions in a properly chaired committee.",
-      },
-      {
-        title: "Pass a resolution",
-        body: "Work a draft through to a vote - and see whether the coalition holds.",
       },
     ];
   return [
@@ -741,8 +699,6 @@ const PROJECT_TITLE: Record<TypeKey, string> = {
   fel: "A finished capstone, built over the fellowship",
   prog: "A short project or presentation to close the programme",
   comp: "A judged entry with a result attached",
-  intern: "A real deliverable for a real organisation",
-  conf: "A position paper and a committee record",
 };
 
 const derivedProject = (p: Programme): ProjectOutcome => {
@@ -758,7 +714,7 @@ export const detailFor = (p: Programme): ProgrammeDetail => {
   const w = WRITTEN[p.id] ?? {};
   return {
     lede: w.lede ?? `${p.tag} ${p.about}`.trim(),
-    cohortSize: w.cohortSize ?? (p.type === "conf" ? "Full delegate committee" : "Small live cohort"),
+    cohortSize: w.cohortSize ?? "Small live cohort",
     ageLabel: w.ageLabel ?? `Grades ${p.g[0]}–${p.g[1]} (${p.g[0] + 5}–${p.g[1] + 5})`,
     doSteps: w.doSteps ?? derivedSteps(p),
     takeaways: w.takeaways ?? TAKEAWAYS[p.type],

@@ -98,7 +98,7 @@ export const LEARNER_QUOTES: LearnerQuote[] = [
     name: "Ivanna A.",
     role: "Student",
     programme: "Future Doctors, Batch 1",
-    programmeId: "fd1",
+    programmeId: "fdf",
   },
   {
     quote:
@@ -106,7 +106,7 @@ export const LEARNER_QUOTES: LearnerQuote[] = [
     name: "Ava K.",
     role: "Student",
     programme: "Future Doctors, Batch 1",
-    programmeId: "fd1",
+    programmeId: "fdf",
   },
   {
     quote:
@@ -114,7 +114,7 @@ export const LEARNER_QUOTES: LearnerQuote[] = [
     name: "Adhithi B.",
     role: "Student",
     programme: "Future Doctors, Batch 1",
-    programmeId: "fd1",
+    programmeId: "fdf",
   },
   {
     quote:
@@ -122,7 +122,7 @@ export const LEARNER_QUOTES: LearnerQuote[] = [
     name: "Daniel E.",
     role: "Student",
     programme: "Future Doctors, Batch 1",
-    programmeId: "fd1",
+    programmeId: "fdf",
   },
 
   /* ---------------- AI pathway / Future AI Leaders ---------------- */
@@ -577,7 +577,7 @@ export const PROGRAMME_ACCENT: Record<string, string> = {
   wla: "law",
   hcus: "med",
   fusi: "res",
-  ignite: "ent",
+  ignite: "ai",
   // Online programmes
   fdf: "med",
   fd1: "med",
@@ -589,7 +589,7 @@ export const PROGRAMME_ACCENT: Record<string, string> = {
   "Yale Global Diplomacy Programme": "law",
   "HCUS Young Global Leaders": "med",
   "FUSI Geneva": "res",
-  "IGNITE Cambridge": "ent",
+  "IGNITE Cambridge": "ai",
   "Future Doctors, Batch 2": "med",
   "Future Doctors, Batch 1": "med",
   "Onward AI Pathway": "ai",

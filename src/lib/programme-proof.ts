@@ -260,49 +260,7 @@ const derivedProjects = (p: Programme): SampleProject[] => {
       },
     ];
 
-  if (p.type === "intern")
-    return [
-      {
-        title: "The organisation's real brief",
-        question: "What problem is the team genuinely trying to solve?",
-        output: "A scoped work plan agreed with the supervising mentor.",
-        timeline: "Week 1",
-      },
-      {
-        title: "The deliverable",
-        question: "Can a school student produce work a company will use?",
-        output: "An analysis, deck or recommendation handed to the organisation.",
-        timeline: p.dur,
-      },
-      {
-        title: "Final presentation to the company",
-        question: "Can they defend the recommendation to professionals?",
-        output: "A presentation, an internship letter and a verifiable LinkedIn entry.",
-        timeline: "Final sessions",
-      },
-    ];
 
-  if (p.type === "conf")
-    return [
-      {
-        title: "Position paper for the assigned country",
-        question: "What is this nation's real interest here, not just its slogan?",
-        output: "A researched position paper for the portfolio.",
-        timeline: "Before the conference",
-      },
-      {
-        title: "Committee debate and caucusing",
-        question: "Can your child hold a room and build a coalition?",
-        output: "Speeches delivered, alliances formed, amendments tabled.",
-        timeline: "Conference days",
-      },
-      {
-        title: "A passed resolution",
-        question: "Did the coalition hold to the vote?",
-        output: "A resolution with your child's name in the sponsor list.",
-        timeline: "Closing session",
-      },
-    ];
 
   return [
     {
@@ -345,10 +303,8 @@ const NEXT_BY_TRACK: Partial<Record<TrackKey, string>> = {
   law: "flf",
   fin: "finlit",
   ai: "ail",
-  ent: "fef",
   res: "rpf",
-  deb: "flf",
-  lead: "irf",
+  lead: "fcf",
 };
 
 export const profileImpactFor = (p: Programme): ProfileImpact => {
