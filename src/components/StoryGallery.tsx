@@ -132,7 +132,7 @@ function StoryTile({
             PUBLIC
           </div>
         </div>
-        <LinkedInGlyph />
+        <SourceGlyph story={story} />
         <span aria-hidden className="mt-0.5 text-[0.95rem] leading-none text-ink-faint">
           ⋮
         </span>
