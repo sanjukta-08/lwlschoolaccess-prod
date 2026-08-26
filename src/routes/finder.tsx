@@ -198,7 +198,7 @@ function FinderPage() {
         <div className="hero-wash absolute inset-0" />
         <div className="relative">
           <SiteHeader />
-          <section className="mx-auto flex max-w-[1400px] flex-wrap items-end justify-between gap-x-8 gap-y-4 px-4 pt-8 pb-8">
+          <section className="mx-auto flex w-full max-w-none flex-wrap items-end justify-between gap-x-8 gap-y-4 px-4 pt-8 pb-8 sm:px-5 lg:px-6 xl:px-8">
             <div>
               <span className="mono-label mb-2 inline-flex items-center gap-2 text-crimson">
                 <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
@@ -231,10 +231,10 @@ function FinderPage() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-[1400px] px-4 pb-14">
+      <div className="mx-auto w-full max-w-none px-4 pb-14 sm:px-5 lg:px-6 xl:px-8">
         <div className="mb-6">{filters}</div>
 
-        <div className="grid items-start gap-6 lg:grid-cols-[300px_1fr]">
+        <div className="grid items-start gap-6 lg:grid-cols-[320px_1fr]">
           <aside className="min-w-0 space-y-5 lg:sticky lg:top-6">
             <TrendingTop5 state={state} variant="rail" />
             <SavedStrip />

@@ -79,7 +79,7 @@ export function SiteHeader() {
         scrolled ? "header-blur" : "border-b border-transparent"
       }`}
     >
-      <div className="mx-auto flex h-[76px] max-w-[1100px] items-center justify-between gap-6 px-5">
+      <div className="mx-auto flex h-[76px] w-full max-w-none items-center justify-between gap-6 px-4 sm:px-5 lg:px-6 xl:px-8">
         <Link
           to="/"
           className="flex flex-none items-center gap-2.5 no-underline"
