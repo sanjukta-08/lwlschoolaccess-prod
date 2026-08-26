@@ -60,7 +60,7 @@ export function ProgrammeCard({
         />
 
         {/* Programme */}
-        <div className="flex min-w-0 flex-1 items-start gap-3 sm:basis-[22rem]">
+        <div className="flex min-w-0 flex-1 items-start gap-3 ">
           <span
             className="mt-[3px] flex-none"
             aria-hidden
@@ -70,7 +70,7 @@ export function ProgrammeCard({
           </span>
 
           <span className="min-w-0">
-            <b className="block truncate text-[0.95rem] leading-snug font-bold text-ink">
+            <b className="block text-[0.95rem] leading-snug font-bold text-ink">
               {p.name}
             </b>
             <small className="mt-0.5 block truncate text-[0.8rem] text-ink-soft">
@@ -86,16 +86,16 @@ export function ProgrammeCard({
 
         {/* Brand logo */}
         {logo ? (
-          <div className="hidden md:flex md:w-[8.5rem] md:flex-none md:items-center md:justify-center">
+          <div className="hidden md:flex md:w-[7rem] md:flex-none md:items-center md:justify-center">
             <img
               src={logo.src}
               alt={logo.alt}
               loading="lazy"
-              className="max-h-11 w-auto max-w-[8rem] object-contain"
+              className="max-h-11 w-auto max-w-[6.75rem] object-contain"
             />
           </div>
         ) : (
-          <div className="hidden md:block md:w-[8.5rem] md:flex-none" />
+          <div className="hidden md:block md:w-[7rem] md:flex-none" />
         )}
 
         {/* Schedule */}
