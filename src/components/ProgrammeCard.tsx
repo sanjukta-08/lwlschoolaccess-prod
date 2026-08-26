@@ -44,6 +44,8 @@ export function ProgrammeCard({
   const timeLabel = regionTimeLabel(p, region) ?? shortTime(p.time);
   const outcome = outcomeOf(p);
   const hours = weeklyHoursOf(p);
+  const logo = logoFor(p.id, p.tracks);
+
 
   if (compact) {
     return (
