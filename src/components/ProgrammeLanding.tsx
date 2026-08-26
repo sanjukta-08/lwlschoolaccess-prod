@@ -84,15 +84,17 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
             </a>
             {next ? <SaveButton p={p} c={next} variant="wide" /> : null}
             {next ? <AddToCalendar p={p} c={next} size="md" /> : null}
-            {next ? (
-              <p className="text-[0.86rem] text-ink-soft">
-                Next cohort starts <b className="text-ink">{fmtLong(next.d)}</b>
-                {" · "}
-                {discounted ? "early-bird " : ""}
-                <b className="text-ink">{fee.e}</b>
-              </p>
-            ) : null}
           </div>
+
+          {next ? (
+            <p className="mt-4 text-center text-[0.86rem] text-ink-soft">
+              Next cohort starts <b className="text-ink">{fmtLong(next.d)}</b>
+              {" · "}
+              {discounted ? "early-bird " : ""}
+              <b className="text-ink">{fee.e}</b>
+            </p>
+          ) : null}
+
 
           {next ? (
             <p className="mt-4 flex flex-wrap items-center justify-center gap-2 text-[0.78rem]">
