@@ -264,9 +264,24 @@ export const PROGRAMMES: Programme[] = [
     site: "https://joinfinlit.com/fellowship",
     apply: "https://joinfinlit.com/apply",
     cohorts: [
-      { d: "2026-08-29" },
-      { d: "2026-11-07" },
-      { d: "2027-02-13" },
+      {
+        d: "2026-08-29",
+        label: "Cohort 1",
+        flyer: dl("1afTh_45BIRgMjN2g9QY8CB9pKLZQwrvq"),
+        brochure: dl("1IpH5Z2Ois0BZxgtWZ5osyc-8sdtXYXR7"),
+      },
+      {
+        d: "2026-11-07",
+        label: "Batch 2",
+        flyer: dl("1sc7mERnUpuxX6zbLdTRdbvQdLQkRbvtH"),
+        brochure: dl("1wE8bubwezKlvD0URT6iUWCdjpPVI2jGg"),
+      },
+      {
+        d: "2027-02-13",
+        label: "Batch 3",
+        flyer: dl("1Q33FD_CbaVEiAEBy-QHWcb_h64Ubw4Ub"),
+        brochure: dl("1TOtM7O28mOWDvzq1z6-QotI6EOcsu8gF"),
+      },
     ],
   },
   {
