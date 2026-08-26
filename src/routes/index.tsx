@@ -254,7 +254,7 @@ function HomePage() {
                   className="group flex flex-col overflow-hidden rounded-[18px] border border-gold-line bg-paper text-left text-ink no-underline shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold hover:shadow-lift"
                 >
                   <span
-                    className="flex items-center justify-between border-b px-3.5 py-2.5 text-[0.6rem] font-bold tracking-[0.06em] uppercase"
+                    className="flex items-center justify-between border-b px-3.5 py-2.5 text-[0.55rem] font-bold tracking-[0.05em] uppercase"
                     style={{
                       color: "var(--sp)",
                       background: "color-mix(in srgb, var(--sp) 8%, #fff)",
