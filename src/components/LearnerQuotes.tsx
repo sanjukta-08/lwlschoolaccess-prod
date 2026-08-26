@@ -37,14 +37,14 @@ function QuoteCard({
   q,
   onOpen,
   width = "",
-  accent = 0,
+  accent = "ink",
 }: {
   q: LearnerQuote;
   onOpen: () => void;
   width?: string;
-  accent?: number;
+  accent?: string;
 }) {
-  const a = ACCENTS[accent % ACCENTS.length] ?? DEFAULT_ACCENT;
+  const a = ACCENT_TOKENS[accent] ?? DEFAULT_ACCENT;
   return (
     <button
       type="button"
