@@ -182,29 +182,29 @@ function MonthCalendarPage() {
                   : "No cohorts in this window"}
               </p>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5">
               <button
                 type="button"
                 onClick={() => step(-1)}
                 disabled={idx === 0}
                 aria-label="Previous month"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold-line bg-paper text-gold-deep transition-colors hover:bg-gold-soft disabled:opacity-35 disabled:hover:bg-paper"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gold-line bg-paper text-gold-deep transition-colors hover:bg-gold-soft disabled:opacity-35 disabled:hover:bg-paper"
               >
-                <ChevronLeft className="h-4 w-4" />
+                <ChevronLeft className="h-3.5 w-3.5" />
               </button>
               <button
                 type="button"
                 onClick={() => step(1)}
                 disabled={idx >= months.length - 1}
                 aria-label="Next month"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold-line bg-paper text-gold-deep transition-colors hover:bg-gold-soft disabled:opacity-35 disabled:hover:bg-paper"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gold-line bg-paper text-gold-deep transition-colors hover:bg-gold-soft disabled:opacity-35 disabled:hover:bg-paper"
               >
-                <ChevronRight className="h-4 w-4" />
+                <ChevronRight className="h-3.5 w-3.5" />
               </button>
             </div>
           </div>
 
-          <div className="flex gap-2 overflow-x-auto px-4 py-3 sm:px-5">
+          <div className="flex gap-1.5 overflow-x-auto px-4 py-2 sm:px-5">
             {months.map((m, i) => {
               const [mon, yr] = m.label.split(" ");
               return (
@@ -216,7 +216,7 @@ function MonthCalendarPage() {
                     setDay(null);
                     setMonthIdx(i);
                   }}
-                  className={`flex-none rounded-xl border px-3.5 py-2 text-left transition-colors ${
+                  className={`flex-none rounded-lg border px-3 py-1.5 text-left transition-colors ${
                     i === idx
                       ? "border-ink bg-ink text-paper"
                       : "border-line bg-wash text-ink-soft hover:border-gold-line hover:bg-gold-soft/60 hover:text-ink"
