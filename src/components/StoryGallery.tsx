@@ -408,7 +408,7 @@ function StoryMarquee({
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div key={start} className="grid animate-fade-in gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {windowOf(stories, start, perPage).map(({ item: s, index }) => (
           <button
             key={`${s.id}-${index}`}
