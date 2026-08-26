@@ -79,22 +79,26 @@ export function TrendingTop5({ state, variant = "section" }: Props) {
                   className="flex h-full flex-col gap-2 rounded-xl border border-line bg-paper px-4 py-3.5 transition-shadow hover:shadow-soft"
                   style={{ borderLeft: `3px solid ${track.color}` }}
                 >
+                  {logo && isLaw ? (
+                    <div className="flex h-10 w-full items-center justify-start overflow-hidden rounded-md border border-line bg-paper px-2">
+                      <img
+                        src={logo.src}
+                        alt={logo.alt}
+                        loading="lazy"
+                        className="h-7 w-auto object-contain"
+                      />
+                    </div>
+                  ) : null}
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
-                        {logo ? (
-                          <span
-                            className={`flex flex-none items-center justify-center overflow-hidden rounded-md border border-line bg-paper ${
-                              isLaw ? "h-8 w-[4.5rem] px-1" : "h-8 w-8 p-[3px]"
-                            }`}
-                          >
+                        {logo && !isLaw ? (
+                          <span className="flex h-8 w-8 flex-none items-center justify-center overflow-hidden rounded-md border border-line bg-paper p-[3px]">
                             <img
                               src={logo.src}
                               alt={logo.alt}
                               loading="lazy"
-                              className={`object-contain ${
-                                isLaw ? "h-full w-full" : "h-full w-full"
-                              }`}
+                              className="h-full w-full object-contain"
                             />
                           </span>
                         ) : null}
