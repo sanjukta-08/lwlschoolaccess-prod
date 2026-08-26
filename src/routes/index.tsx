@@ -102,7 +102,7 @@ function HomePage() {
             className="h-full w-full object-contain object-left"
           />
         </div>
-        <div className="pointer-events-none absolute right-0 bottom-0 w-[52%] min-w-[22rem] max-w-[38rem] opacity-[0.48]">
+        <div className="pointer-events-none absolute right-0 bottom-0 w-[36%] min-w-[18rem] max-w-[26rem] opacity-[0.48]">
           <img
             src={worldMapAsset.url}
             alt=""
