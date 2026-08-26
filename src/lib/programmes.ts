@@ -387,9 +387,25 @@ export const PROGRAMMES: Programme[] = [
     site: "https://sirluthercenter.com/young-researchers",
     apply: "https://sirluthercenter.com/young-researchers/apply",
     cohorts: [
-      { d: "2026-10-10" },
-      { d: "2027-01-16" },
-      { d: "2027-04-10" },
+      {
+        d: "2026-10-10",
+        label: "Batch 1",
+        flyer: dl("1Fu93frAm2wqWLRSdv1VogLtBs5NfAJN7"),
+        brochure: dl("1qE0ilcIFqwOVFGuW8qDuSjT1wFcPyI4R"),
+      },
+      {
+        d: "2027-01-16",
+        label: "Batch 2",
+        time: "Saturdays, 10:00–11:30 AM ET",
+        flyer: dl("1RToJRwOoStsemHBGMqRAha5WaJPYGg-b"),
+        brochure: dl("1tok5DO21l5kseijt9OZswrao6smlAR6-"),
+      },
+      {
+        d: "2027-04-10",
+        label: "Batch 3",
+        flyer: dl("1sMATVN2RoPAkVfMonJDUuOCq0tOp1k9v"),
+        brochure: dl("1igS3ure9tZMIoBYV9m1_Qi76ZRM16vp0"),
+      },
     ],
   },
   {
