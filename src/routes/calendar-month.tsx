@@ -170,57 +170,73 @@ function MonthCalendarPage() {
 
       <section className="mx-auto max-w-[1100px] px-5 py-8">
         {/* month switcher */}
-        <div className="mb-4 flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-1.5">
-            <button
-              type="button"
-              onClick={() => step(-1)}
-              disabled={idx === 0}
-              aria-label="Previous month"
-              className="h-9 w-9 rounded-full border border-line bg-paper text-ink-soft disabled:opacity-40 hover:text-ink"
-            >
-              ←
-            </button>
-            <button
-              type="button"
-              onClick={() => step(1)}
-              disabled={idx >= months.length - 1}
-              aria-label="Next month"
-              className="h-9 w-9 rounded-full border border-line bg-paper text-ink-soft disabled:opacity-40 hover:text-ink"
-            >
-              →
-            </button>
+        <div className="mb-5 overflow-hidden rounded-3xl border border-line bg-paper shadow-soft">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-[linear-gradient(180deg,var(--gold-soft),var(--paper))] px-4 py-3.5 sm:px-5">
+            <div className="min-w-0">
+              <span className="mono-label text-gold-deep">Viewing</span>
+              <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] leading-tight font-medium">
+                {monthTitle(monthDate)}
+              </h2>
+              <p className="mt-0.5 font-mono text-[0.74rem] text-ink-faint">
+                {active
+                  ? `${active.rows.length} cohort${active.rows.length === 1 ? "" : "s"} starting this month`
+                  : "No cohorts in this window"}
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => step(-1)}
+                disabled={idx === 0}
+                aria-label="Previous month"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold-line bg-paper text-gold-deep transition-colors hover:bg-gold-soft disabled:opacity-35 disabled:hover:bg-paper"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => step(1)}
+                disabled={idx >= months.length - 1}
+                aria-label="Next month"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold-line bg-paper text-gold-deep transition-colors hover:bg-gold-soft disabled:opacity-35 disabled:hover:bg-paper"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
           </div>
-          <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-semibold">
-            {monthTitle(monthDate)}
-          </h2>
-          <span className="font-mono text-[0.74rem] text-ink-faint">
-            {active ? `${active.rows.length} cohort${active.rows.length === 1 ? "" : "s"} starting` : "No cohorts"}
-          </span>
+
+          <div className="flex gap-2 overflow-x-auto px-4 py-3 sm:px-5">
+            {months.map((m, i) => {
+              const [mon, yr] = m.label.split(" ");
+              return (
+                <button
+                  key={m.key}
+                  type="button"
+                  aria-pressed={i === idx}
+                  onClick={() => {
+                    setDay(null);
+                    setMonthIdx(i);
+                  }}
+                  className={`flex-none rounded-xl border px-3.5 py-2 text-left transition-colors ${
+                    i === idx
+                      ? "border-ink bg-ink text-paper"
+                      : "border-line bg-wash text-ink-soft hover:border-gold-line hover:bg-gold-soft/60 hover:text-ink"
+                  }`}
+                >
+                  <span className="block text-[0.82rem] leading-none font-semibold">
+                    {mon}
+                  </span>
+                  <span
+                    className={`mono-label block leading-none ${i === idx ? "text-paper/70" : "text-ink-faint"}`}
+                  >
+                    {yr} · {m.rows.length}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        <div className="mb-5 -mx-5 flex gap-1.5 overflow-x-auto px-5 pb-1">
-          {months.map((m, i) => (
-            <button
-              key={m.key}
-              type="button"
-              onClick={() => {
-                setDay(null);
-                setMonthIdx(i);
-              }}
-              className={`flex-none rounded-full px-3.5 py-1.5 text-[0.78rem] font-semibold whitespace-nowrap transition-colors ${
-                i === idx
-                  ? "bg-ink text-paper"
-                  : "border border-line bg-paper text-ink-soft hover:text-ink"
-              }`}
-            >
-              {m.label.replace(" 20", " '")}
-              <small className={`ml-1.5 font-mono text-[0.66rem] ${i === idx ? "text-paper/70" : "text-ink-faint"}`}>
-                {m.rows.length}
-              </small>
-            </button>
-          ))}
-        </div>
 
         {months.length === 0 ? (
           <p className="py-14 text-center text-[0.92rem] text-ink-faint">
