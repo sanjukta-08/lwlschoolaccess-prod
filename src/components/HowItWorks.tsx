@@ -1,4 +1,4 @@
-import studentLearning from "@/assets/student-learning.png.asset.json";
+import studentLearning from "@/assets/student-learning.webp.asset.json";
 
 const STEPS = [
   {

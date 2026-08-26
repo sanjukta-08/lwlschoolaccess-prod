@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import linkedinMark from "@/assets/linkedin-logo.png.asset.json";
+import linkedinMark from "@/assets/linkedin-logo.webp.asset.json";
 import {
   Dialog,
   DialogContent,

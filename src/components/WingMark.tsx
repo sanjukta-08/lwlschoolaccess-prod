@@ -1,4 +1,4 @@
-import birdAsset from "@/assets/lwl-bird.png.asset.json";
+import birdAsset from "@/assets/lwl-bird.webp.asset.json";
 
 type Tone = "gold" | "crimson" | "ink" | "paper";
 
