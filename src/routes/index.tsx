@@ -60,20 +60,20 @@ function HomePage() {
         <div className="hero-wash absolute inset-0" />
         <div className="relative">
           <SiteHeader />
-          <section className="mx-auto max-w-[1100px] px-5 pt-12 pb-20 text-center">
-            <span className="mono-label mb-5 inline-flex items-center gap-2 rounded-full border border-gold-line bg-paper px-3.5 py-1.5 text-gold-deep shadow-soft">
+          <section className="mx-auto max-w-[1100px] px-5 pt-10 pb-16 text-center">
+            <span className="mono-label mb-4 inline-flex items-center gap-2 rounded-full border border-gold-line bg-paper px-3.5 py-1.5 text-gold-deep shadow-soft">
               <WingMark size={13} />
-              Online programmes for Grades 5–12 · 2026–27
+              Online programmes for Grades 5-12 · 2026-27
             </span>
-            <h1 className="mx-auto font-serif text-[clamp(2.5rem,6.8vw,4.4rem)] leading-[1.05] font-medium tracking-tight text-balance">
+            <h1 className="mx-auto font-serif text-[clamp(2.6rem,7.2vw,4.7rem)] leading-[1.05] font-medium tracking-tight text-balance">
               <span className="block">Where ambitious students</span>
               <em className="mt-1 block text-crimson-deep">learn with leaders</em>
             </h1>
-            <WingRule className="mt-6" />
+            <WingRule className="mt-5" />
 
-            <p className="mx-auto mt-6 max-w-[48em] text-[clamp(1rem,2.4vw,1.14rem)] text-ink-soft">
+            <p className="mx-auto mt-5 max-w-[60em] text-[clamp(1rem,2.4vw,1.14rem)] text-ink-soft">
               Live fellowships, competitions, corporate internships and MUN conferences,
-              mentored by students from Harvard, Yale, MIT, Stanford and Princeton —
+              mentored by students from Harvard, Yale, MIT, Stanford and Princeton -
               joined by families in the Gulf, India, Southeast Asia and beyond.
             </p>
             <div className="mt-7 flex flex-wrap justify-center gap-3.5">
