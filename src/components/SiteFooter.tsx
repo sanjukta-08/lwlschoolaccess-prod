@@ -2,6 +2,7 @@ import { DEFAULT_TESTIMONIAL_SEARCH } from "@/lib/testimonials";
 import { Link } from "@tanstack/react-router";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { DEFAULT_FIT } from "@/lib/fit";
+import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
 import { REACH } from "@/lib/social-proof";
 import footerLogo from "@/assets/lwl_white.png.asset.json";
 
@@ -95,7 +96,7 @@ export function SiteFooter({ note }: { note?: string }) {
           <nav className={colCls} aria-label="Talk to us">
             <span className="mono-label text-gold">Talk to us</span>
             <a
-              href="https://www.learnwithleaders.com/"
+              href={CALENDLY_BOOKING_URL}
               target="_blank"
               rel="noopener"
               className={linkCls}
