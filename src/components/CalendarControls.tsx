@@ -16,6 +16,8 @@ type Props = {
   programmeCount: number;
   cohortCount: number;
   dirty: boolean;
+  /** Hide the month/type grouping switch (the month-grid page has no grouping). */
+  showGrouping?: boolean;
 };
 
 /** Labelled dropdown, same visual language as the finder filter bar. */
@@ -119,6 +121,7 @@ export function CalendarControls({
   programmeCount,
   cohortCount,
   dirty,
+  showGrouping = true,
 }: Props) {
   const typeVals = ["all", ...TYPE_ORDER];
   const trackVals = ["all", ...Object.keys(TRACKS)];
@@ -177,18 +180,20 @@ export function CalendarControls({
             <SlidersHorizontal className="h-3.5 w-3.5" />
             Filter the calendar
           </span>
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="mono-label hidden text-ink-faint sm:inline">Group by</span>
-            <Seg
-              label="Group cohorts by"
-              value={byMonth ? "month" : "type"}
-              onChange={(v) => onChange({ calView: v })}
-              options={[
-                { value: "month", label: "Month" },
-                { value: "type", label: "Programme type" },
-              ]}
-            />
-          </div>
+          {showGrouping ? (
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="mono-label hidden text-ink-faint sm:inline">Group by</span>
+              <Seg
+                label="Group cohorts by"
+                value={byMonth ? "month" : "type"}
+                onChange={(v) => onChange({ calView: v })}
+                options={[
+                  { value: "month", label: "Month" },
+                  { value: "type", label: "Programme type" },
+                ]}
+              />
+            </div>
+          ) : null}
         </div>
 
         {/* Row 2 — four plain dropdowns plus search, all labelled */}

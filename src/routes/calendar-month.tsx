@@ -4,16 +4,27 @@ import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { MonthGrid, monthTitle } from "@/components/MonthGrid";
 import { DayList } from "@/components/DayList";
-import { TRACKS, TYPES, TYPE_IC, TYPE_ORDER, isSoon, type TrackKey, type TypeKey } from "@/lib/programmes";
+import { PROGRAMMES, TRACKS, isPast, isSoon } from "@/lib/programmes";
+import { CalendarControls } from "@/components/CalendarControls";
+import ZoomBadge from "@/components/ZoomBadge";
+import birdAsset from "@/assets/lwl-bird-black.webp.asset.json";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import {
   DEFAULT_SEARCH,
   getCohortEntries,
   groupEntriesByMonth,
+  isDefaultSearch,
   validateFinderSearch,
-  facetCounts,
   type FinderSearch,
 } from "@/lib/finder";
 import { SiteFooter } from "@/components/SiteFooter";
+
+const GRADE_LO = Math.min(...PROGRAMMES.map((p) => p.g[0]));
+const GRADE_HI = Math.max(...PROGRAMMES.map((p) => p.g[1]));
+const TOTAL_COHORTS = PROGRAMMES.reduce(
+  (n, p) => n + p.cohorts.filter((c) => !isPast(c.d)).length,
+  0,
+);
 
 const TITLE = "Month-by-month cohort calendar | Learn with Leaders";
 const DESC =
@@ -35,38 +46,6 @@ export const Route = createFileRoute("/calendar-month")({
   component: MonthCalendarPage,
 });
 
-function Pill({
-  active,
-  onClick,
-  children,
-  count,
-}: {
-  active: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-  count?: number | undefined;
-}) {
-  return (
-    <button
-      type="button"
-      aria-pressed={active}
-      onClick={onClick}
-      className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[0.8rem] font-semibold whitespace-nowrap transition-colors ${
-        active ? "bg-ink text-paper" : "text-ink-soft hover:text-ink"
-      }`}
-    >
-      {children}
-      {count !== undefined ? (
-        <small
-          className={`font-mono text-[0.68rem] ${active ? "text-paper/70" : "text-ink-faint"}`}
-        >
-          {count}
-        </small>
-      ) : null}
-    </button>
-  );
-}
-
 function MonthCalendarPage() {
   const state = Route.useSearch();
   const navigate = useNavigate({ from: Route.fullPath });
@@ -86,10 +65,7 @@ function MonthCalendarPage() {
     : new Date(new Date().getFullYear(), new Date().getMonth(), 1);
 
   const dayEntries = day ? entries.filter((e) => e.c.d === day) : [];
-  const typeVals = ["all", ...TYPE_ORDER];
-  const trackVals = ["all", ...Object.keys(TRACKS)];
-  const typeN = facetCounts(state, "type", typeVals);
-  const trackN = facetCounts(state, "interest", trackVals);
+  const programmeCount = new Set(entries.map((e) => e.p.id)).size;
 
   const update = (patch: Partial<FinderSearch>) => {
     setDay(null);
@@ -104,127 +80,163 @@ function MonthCalendarPage() {
 
   return (
     <div className="min-h-screen bg-wash">
-      <div className="border-b border-line bg-paper">
-        <SiteHeader />
-        <section className="mx-auto max-w-[1000px] px-5 pt-4 pb-8 text-center">
-          <h1 className="font-serif text-[clamp(1.7rem,4.4vw,2.5rem)] leading-[1.12] font-medium">
-            Cohort calendar, <em className="text-crimson-deep">month by month</em>
-          </h1>
-          <p className="mx-auto mt-2.5 max-w-[42em] text-[0.92rem] text-ink-soft">
-            Every start date on a real month grid. Click any cohort to open its programme
-            page, or tap a date to see everything that begins that day.
-          </p>
-          <div className="mt-4 flex flex-wrap justify-center gap-2 text-[0.82rem] font-semibold">
-            <Link
-              to="/calendar"
-              search={DEFAULT_SEARCH}
-              className="rounded-full border-[1.5px] border-line bg-paper px-4 py-2 text-ink-soft no-underline hover:border-ink-soft hover:text-ink"
-            >
-              Switch to list view
-            </Link>
-            <Link
-              to="/finder"
-              search={DEFAULT_SEARCH}
-              className="rounded-full border-[1.5px] border-line bg-paper px-4 py-2 text-ink-soft no-underline hover:border-ink-soft hover:text-ink"
-            >
-              Browse all programmes
-            </Link>
-          </div>
-        </section>
-      </div>
+      <div className="relative isolate overflow-hidden">
+        {/* layered background wash, matching the finder + calendar heroes */}
+        <div className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,#fbfcfe_0%,#f7f2e8_60%,var(--wash)_100%)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(900px_520px_at_88%_20%,rgba(185,138,31,0.14),transparent_60%),radial-gradient(700px_420px_at_12%_10%,rgba(163,29,51,0.08),transparent_55%)]" />
+        <div
+          className="pointer-events-none absolute inset-0 -z-10 opacity-[0.35]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, rgba(185,138,31,0.18) 1px, transparent 0)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+        <div className="pointer-events-none absolute top-1/2 right-0 -z-10 hidden w-[min(420px,32vw)] -translate-y-1/2 opacity-[0.42] sm:block lg:w-[min(480px,30vw)]">
+          <img
+            src={birdAsset.url}
+            alt=""
+            aria-hidden="true"
+            className="h-auto w-full object-contain object-right [mask-image:linear-gradient(to_left,black_55%,transparent_95%)]"
+          />
+        </div>
 
-      {/* filters */}
-      <div className="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur">
-        <div className="mx-auto flex max-w-[1100px] flex-col gap-2 px-5 py-3">
-          <div className="flex flex-wrap items-center gap-1.5">
-            <span className="mono-label mr-1 text-ink-faint">Type</span>
-            {typeVals.map((t) => (
-              <Pill
-                key={t}
-                active={state.type === t}
-                onClick={() => update({ type: t })}
-                count={typeN[t]}
+        <div className="relative">
+          <SiteHeader />
+          <section className="mx-auto flex w-full max-w-[1100px] flex-col gap-4 px-5 pt-8 pb-10">
+            <div>
+              <span className="mono-label mb-2 inline-flex items-center gap-2 text-crimson">
+                <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
+                {TOTAL_COHORTS} cohorts · July 2026 - April 2027
+              </span>
+              <h1 className="font-serif text-[clamp(1.8rem,4.4vw,2.7rem)] leading-[1.1] font-medium tracking-tight">
+                Cohort calendar, <em className="text-crimson-deep">month by month</em>
+              </h1>
+              <p className="mt-2.5 max-w-[54em] text-[0.94rem] text-ink-soft">
+                Every start date on a real month grid. Move through the months, tap a date
+                to see everything that begins that day, and click a cohort to open its
+                programme page.
+              </p>
+            </div>
+
+            <ul className="flex flex-wrap gap-2">
+              {[
+                [`${PROGRAMMES.length} programmes`, `${TOTAL_COHORTS} cohorts`],
+                ["Live on Zoom", "Dubai + US Eastern"],
+                [`Grades ${GRADE_LO}–${GRADE_HI}`, "Harvard & Yale student mentors"],
+              ].map(([top, sub]) => (
+                <li
+                  key={top}
+                  className="rounded-full border border-line bg-paper/90 px-3.5 py-1.5 shadow-soft backdrop-blur-sm"
+                >
+                  <b className="flex items-center gap-1.5 text-[0.78rem] font-bold text-ink">
+                    {top === "Live on Zoom" ? <ZoomBadge label="Live on Zoom" /> : top}
+                  </b>
+                  <small className="mono-label block text-ink-faint">{sub}</small>
+                </li>
+              ))}
+            </ul>
+
+            <div className="flex flex-wrap items-center gap-2">
+              <Link
+                to="/calendar"
+                search={DEFAULT_SEARCH}
+                className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-line bg-paper px-4 py-2 text-[0.82rem] font-semibold text-ink-soft no-underline hover:border-ink-soft hover:text-ink"
               >
-                {t === "all" ? "All" : `${TYPE_IC[t as TypeKey]} ${TYPES[t as TypeKey].label}`}
-              </Pill>
-            ))}
-          </div>
-          <div className="flex flex-wrap items-center gap-1.5">
-            <span className="mono-label mr-1 text-ink-faint">Interest</span>
-            {trackVals.map((k) => (
-              <Pill
-                key={k}
-                active={state.interest === k}
-                onClick={() => update({ interest: k })}
-                count={trackN[k]}
+                Switch to list view
+              </Link>
+              <Link
+                to="/finder"
+                search={DEFAULT_SEARCH}
+                className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-line bg-paper px-4 py-2 text-[0.82rem] font-semibold text-ink-soft no-underline hover:border-ink-soft hover:text-ink"
               >
-                {k === "all" ? "All" : `${TRACKS[k as TrackKey].ic} ${TRACKS[k as TrackKey].label}`}
-              </Pill>
-            ))}
-            <button
-              type="button"
-              onClick={() => update({ ...DEFAULT_SEARCH })}
-              className="ml-auto rounded-full px-3 py-1.5 text-[0.78rem] font-semibold text-ink-faint underline decoration-line underline-offset-4 hover:text-crimson"
-            >
-              Reset
-            </button>
-          </div>
+                Browse all programmes
+              </Link>
+            </div>
+          </section>
         </div>
       </div>
+
+      <CalendarControls
+        state={state}
+        onChange={update}
+        onReset={() => update({ ...DEFAULT_SEARCH })}
+        months={months}
+        programmeCount={programmeCount}
+        cohortCount={entries.length}
+        dirty={!isDefaultSearch(state)}
+        showGrouping={false}
+      />
 
       <section className="mx-auto max-w-[1100px] px-5 py-8">
         {/* month switcher */}
-        <div className="mb-4 flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-1.5">
-            <button
-              type="button"
-              onClick={() => step(-1)}
-              disabled={idx === 0}
-              aria-label="Previous month"
-              className="h-9 w-9 rounded-full border border-line bg-paper text-ink-soft disabled:opacity-40 hover:text-ink"
-            >
-              ←
-            </button>
-            <button
-              type="button"
-              onClick={() => step(1)}
-              disabled={idx >= months.length - 1}
-              aria-label="Next month"
-              className="h-9 w-9 rounded-full border border-line bg-paper text-ink-soft disabled:opacity-40 hover:text-ink"
-            >
-              →
-            </button>
+        <div className="mb-5 overflow-hidden rounded-3xl border border-line bg-paper shadow-soft">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-[linear-gradient(180deg,var(--gold-soft),var(--paper))] px-4 py-3.5 sm:px-5">
+            <div className="min-w-0">
+              <span className="mono-label text-gold-deep">Viewing</span>
+              <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] leading-tight font-medium">
+                {monthTitle(monthDate)}
+              </h2>
+              <p className="mt-0.5 font-mono text-[0.74rem] text-ink-faint">
+                {active
+                  ? `${active.rows.length} cohort${active.rows.length === 1 ? "" : "s"} starting this month`
+                  : "No cohorts in this window"}
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => step(-1)}
+                disabled={idx === 0}
+                aria-label="Previous month"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold-line bg-paper text-gold-deep transition-colors hover:bg-gold-soft disabled:opacity-35 disabled:hover:bg-paper"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => step(1)}
+                disabled={idx >= months.length - 1}
+                aria-label="Next month"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold-line bg-paper text-gold-deep transition-colors hover:bg-gold-soft disabled:opacity-35 disabled:hover:bg-paper"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
           </div>
-          <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-semibold">
-            {monthTitle(monthDate)}
-          </h2>
-          <span className="font-mono text-[0.74rem] text-ink-faint">
-            {active ? `${active.rows.length} cohort${active.rows.length === 1 ? "" : "s"} starting` : "No cohorts"}
-          </span>
+
+          <div className="flex gap-2 overflow-x-auto px-4 py-3 sm:px-5">
+            {months.map((m, i) => {
+              const [mon, yr] = m.label.split(" ");
+              return (
+                <button
+                  key={m.key}
+                  type="button"
+                  aria-pressed={i === idx}
+                  onClick={() => {
+                    setDay(null);
+                    setMonthIdx(i);
+                  }}
+                  className={`flex-none rounded-xl border px-3.5 py-2 text-left transition-colors ${
+                    i === idx
+                      ? "border-ink bg-ink text-paper"
+                      : "border-line bg-wash text-ink-soft hover:border-gold-line hover:bg-gold-soft/60 hover:text-ink"
+                  }`}
+                >
+                  <span className="block text-[0.82rem] leading-none font-semibold">
+                    {mon}
+                  </span>
+                  <span
+                    className={`mono-label block leading-none ${i === idx ? "text-paper/70" : "text-ink-faint"}`}
+                  >
+                    {yr} · {m.rows.length}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        <div className="mb-5 -mx-5 flex gap-1.5 overflow-x-auto px-5 pb-1">
-          {months.map((m, i) => (
-            <button
-              key={m.key}
-              type="button"
-              onClick={() => {
-                setDay(null);
-                setMonthIdx(i);
-              }}
-              className={`flex-none rounded-full px-3.5 py-1.5 text-[0.78rem] font-semibold whitespace-nowrap transition-colors ${
-                i === idx
-                  ? "bg-ink text-paper"
-                  : "border border-line bg-paper text-ink-soft hover:text-ink"
-              }`}
-            >
-              {m.label.replace(" 20", " '")}
-              <small className={`ml-1.5 font-mono text-[0.66rem] ${i === idx ? "text-paper/70" : "text-ink-faint"}`}>
-                {m.rows.length}
-              </small>
-            </button>
-          ))}
-        </div>
 
         {months.length === 0 ? (
           <p className="py-14 text-center text-[0.92rem] text-ink-faint">
