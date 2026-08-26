@@ -18,7 +18,7 @@ export function ProjectShowcase({
         {projects.map((pr, i) => (
           <article
             key={pr.title}
-            className="flex flex-col rounded-2xl border-[1.5px] border-line bg-paper p-5 shadow-soft"
+            className="flex flex-col rounded-2xl border-2 border-ink/12 bg-paper p-5 shadow-soft"
           >
             <span className="mono-label text-ink-faint">Project {i + 1}</span>
             <h3 className="mt-1.5 font-serif text-[1.08rem] leading-snug font-semibold">
@@ -39,7 +39,7 @@ export function ProjectShowcase({
         ))}
       </div>
 
-      <div className="mt-5 grid gap-5 rounded-[20px] border-[1.5px] border-line bg-wash px-6 py-6 sm:grid-cols-[1.1fr_1fr]">
+      <div className="mt-5 grid gap-5 rounded-[20px] border-2 border-ink/12 bg-wash px-6 py-6 sm:grid-cols-[1.1fr_1fr]">
         <div>
           <b className="block font-serif text-[1.15rem] font-semibold">{d.project.title}</b>
           <p className="mt-2 text-[0.88rem] text-ink-soft">{d.project.body}</p>

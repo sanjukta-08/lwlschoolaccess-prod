@@ -159,7 +159,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
           {d.doSteps.map((s, i) => (
             <div
               key={s.title}
-              className="flex items-start gap-3.5 rounded-2xl border-[1.5px] border-line bg-wash p-4.5 shadow-soft"
+              className="flex items-start gap-3.5 rounded-2xl border-2 border-ink/12 bg-wash p-4.5 shadow-soft"
             >
               <span
                 className="grid h-9 w-9 flex-none place-items-center rounded-full border-[1.5px] bg-paper font-serif font-semibold"
@@ -384,7 +384,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
           {d.faqs.map((f) => (
             <details
               key={f.q}
-              className="overflow-hidden rounded-[14px] border-[1.5px] border-line bg-paper"
+              className="overflow-hidden rounded-[14px] border-2 border-ink/12 bg-paper"
             >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 text-[0.93rem] font-semibold">
                 {f.q}
@@ -416,7 +416,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
                   key={r.id}
                   to="/programmes/$slug"
                   params={{ slug: slugOf(r) }}
-                  className="flex w-full max-w-[340px] flex-col gap-2 rounded-2xl border-[1.5px] border-line bg-paper p-4.5 no-underline shadow-soft transition-all hover:-translate-y-[3px] hover:shadow-lift sm:w-[320px]"
+                  className="flex w-full max-w-[340px] flex-col gap-2 rounded-2xl border-2 border-ink/12 bg-paper p-4.5 no-underline shadow-soft transition-all hover:-translate-y-[3px] hover:shadow-lift sm:w-[320px]"
                 >
                   <span className="text-[0.74rem] font-bold" style={{ color: rt.color }}>
                     {rt.ic} {TYPE_NAME[r.type]}
