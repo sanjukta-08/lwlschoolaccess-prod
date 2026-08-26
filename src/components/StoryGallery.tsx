@@ -114,13 +114,15 @@ function StoryTile({
         </p>
       )}
 
-      <div className="mt-3.5 mb-4 flex flex-wrap items-center gap-2">
+      <div className="mt-3.5 mb-4 flex items-center justify-between gap-2">
         {story.tag ? (
           <span className="rounded-full bg-crimson/8 px-2.5 py-1 text-[0.72rem] font-semibold text-crimson-deep">
             #{story.tag}
           </span>
-        ) : null}
-        <span className="text-[0.72rem] font-semibold text-crimson opacity-0 transition-opacity group-hover:opacity-100">
+        ) : (
+          <span />
+        )}
+        <span className="text-[0.72rem] font-semibold text-crimson">
           Read the post →
         </span>
       </div>
