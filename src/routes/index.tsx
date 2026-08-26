@@ -76,7 +76,7 @@ function HomePage() {
               mentored by students from Harvard, Yale, MIT, Stanford and Princeton -
               joined by families in the Gulf, India, Southeast Asia and beyond.
             </p>
-            <div className="mt-7 flex flex-wrap justify-center gap-3.5">
+            <div className="mt-6 flex flex-wrap justify-center gap-3.5">
               <Link
                 to="/finder"
                 search={DEFAULT_SEARCH}
@@ -92,7 +92,7 @@ function HomePage() {
                 Browse the full calendar
               </Link>
             </div>
-            <p className="mt-4 text-[0.88rem] text-ink-soft">
+            <p className="mt-3.5 text-[0.88rem] text-ink-soft">
               Not sure which one fits?{" "}
               <Link
                 to="/fit"
@@ -104,12 +104,12 @@ function HomePage() {
               .
             </p>
 
-            <dl className="mx-auto mt-11 grid max-w-[820px] grid-cols-2 items-stretch divide-gold-line/70 rounded-[20px] border border-gold-line bg-paper/70 px-4 py-5 shadow-soft sm:flex sm:px-6 sm:divide-x">
+            <dl className="mx-auto mt-9 grid max-w-[820px] grid-cols-2 items-stretch divide-gold-line/70 rounded-[20px] border border-gold-line bg-paper/70 px-4 py-4 shadow-soft sm:flex sm:px-6 sm:divide-x">
               {[
                 [String(PROGRAMMES.length), "Programmes"],
                 [String(TOTAL_COHORTS), "Upcoming cohorts"],
                 ["426+", "Students published"],
-                ["5–12", "Grades covered"],
+                ["5-12", "Grades covered"],
               ].map(([v, l]) => (
                 <div
                   key={l}
