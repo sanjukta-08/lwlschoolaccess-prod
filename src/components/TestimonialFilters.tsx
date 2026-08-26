@@ -137,9 +137,7 @@ export function TestimonialFilters({
       </div>
 
       <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-line pt-3.5">
-        <span className="text-[0.86rem] font-semibold text-ink">
-          {total} {total === 1 ? "testimonial" : "testimonials"}
-        </span>
+        <span className="text-[0.86rem] font-semibold text-ink">{"\n"}</span>
         {chips.map((c) => (
           <button
             key={c.label}
