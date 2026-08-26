@@ -187,7 +187,7 @@ function QuoteMarquee({
           type="button"
           onClick={() => setStart((s) => (s - 1 + quotes.length) % quotes.length)}
           aria-label="Previous learner feedback"
-          className="hidden sm:flex absolute left-0 top-1/2 z-20 h-10 w-10 -translate-x-full -translate-y-1/2 items-center justify-center rounded-full border border-gold/40 bg-gold-soft text-gold-deep shadow-soft ring-2 ring-paper transition hover:bg-gold hover:text-paper"
+          className="hidden sm:flex absolute left-0 top-1/2 z-20 h-10 w-10 -translate-x-[calc(100%+0.5rem)] -translate-y-1/2 items-center justify-center rounded-full border border-gold/40 bg-gold-soft text-gold-deep shadow-soft ring-2 ring-paper transition hover:bg-gold hover:text-paper"
         >
           <span aria-hidden>←</span>
         </button>
@@ -210,7 +210,7 @@ function QuoteMarquee({
           type="button"
           onClick={() => setStart((s) => (s + 1) % quotes.length)}
           aria-label="Next learner feedback"
-          className="hidden sm:flex absolute right-0 top-1/2 z-20 h-10 w-10 translate-x-full -translate-y-1/2 items-center justify-center rounded-full border border-gold/40 bg-gold-soft text-gold-deep shadow-soft ring-2 ring-paper transition hover:bg-gold hover:text-paper"
+          className="hidden sm:flex absolute right-0 top-1/2 z-20 h-10 w-10 translate-x-[calc(100%+0.5rem)] -translate-y-1/2 items-center justify-center rounded-full border border-gold/40 bg-gold-soft text-gold-deep shadow-soft ring-2 ring-paper transition hover:bg-gold hover:text-paper"
         >
           <span aria-hidden>→</span>
         </button>
