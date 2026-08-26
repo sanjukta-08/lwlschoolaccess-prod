@@ -17,6 +17,7 @@ import { countdownLabel, decideLabel } from "@/lib/shortlist";
 import { outcomeOf, startLabel, weeklyHoursOf } from "@/lib/outcome";
 import { regionTimeLabel } from "@/lib/regions";
 import ZoomBadge from "@/components/ZoomBadge";
+import { TrackIcon } from "@/lib/track-icons";
 
 type Props = {
   match: Match;
@@ -148,7 +149,7 @@ export function ProgrammeCard({
           className="inline-flex items-center gap-2 text-[0.76rem] font-bold"
           style={{ color: track.color }}
         >
-          <span className="text-base">{track.ic}</span>
+          <TrackIcon track={p.tracks[0]!} className="h-[1.05rem] w-[1.05rem]" />
           {track.label}
         </span>
         <span
