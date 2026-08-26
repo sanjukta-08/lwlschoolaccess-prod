@@ -74,7 +74,6 @@ export const Route = createFileRoute("/finder")({
 function FinderPage() {
   const state = Route.useSearch();
   const navigate = useNavigate({ from: Route.fullPath });
-  const [activeTab, setActiveTab] = useState<string>("all");
   const [visible, setVisible] = useState(PAGE);
 
   const update = (patch: Partial<FinderSearch>) => {
@@ -91,19 +90,42 @@ function FinderPage() {
     !!state.q;
   const groups = useMemo(() => groupMatches(matches, state.sort), [matches, state.sort]);
 
-  const tabKeys = ["all", ...groups.map((g) => g.key)];
-  const currentKey = tabKeys.includes(activeTab) ? activeTab : "all";
-  const activeGroup =
-    currentKey === "all"
-      ? {
-          key: "all",
-          label: "All results",
-          sub: "Every match, in order",
-          rows: matches,
-        }
-      : groups.find((g) => g.key === currentKey)!;
-  const rows = activeGroup.rows.slice(0, visible);
-  const remaining = activeGroup.rows.length - rows.length;
+  // Paginate across the whole ordered result set, then show only the groups
+  // that fall inside the visible slice. Keeps one calm column, no tab bar.
+  const visibleGroups = useMemo(() => {
+    let left = visible;
+    const out: { key: string; label: string; sub: string; rows: typeof matches }[] = [];
+    for (const g of groups) {
+      if (left <= 0) break;
+      out.push({ ...g, rows: g.rows.slice(0, left) });
+      left -= g.rows.length;
+    }
+    return out;
+  }, [groups, visible]);
+  const remaining = matches.length - Math.min(visible, matches.length);
+
+  const chips: { label: string; clear: Partial<FinderSearch> }[] = [];
+  if (state.q) chips.push({ label: `“${state.q}”`, clear: { q: "" } });
+  if (state.grade !== "all")
+    chips.push({
+      label: BAND_LABEL[state.grade] ?? `Grade ${state.grade}`,
+      clear: { grade: "all" },
+    });
+  if (state.interest !== "all")
+    chips.push({
+      label: TRACKS[state.interest as keyof typeof TRACKS]?.label ?? state.interest,
+      clear: { interest: "all" },
+    });
+  if (state.type !== "all")
+    chips.push({
+      label: TYPE_NAME[state.type as keyof typeof TYPE_NAME] ?? state.type,
+      clear: { type: "all" },
+    });
+  if (state.month !== "all")
+    chips.push({ label: monthLabel(state.month), clear: { month: "all" } });
+  if (state.region !== "all")
+    chips.push({ label: regionLabel(state.region), clear: { region: "all" } });
+
 
   let fallback = matches.length ? [] : getMatches(state, { ignoreMonth: true });
   let fallbackNote = "in other months";
@@ -230,22 +252,26 @@ function FinderPage() {
             </Sheet>
           </div>
 
-          <main className="min-w-0 space-y-6">
+          <main className="min-w-0 space-y-8">
             <TrendingTop5 state={state} variant="strip" />
             <SavedStrip />
 
             <section id="all-programmes" className="scroll-mt-6">
-              <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
-                <h2 className="font-serif text-[clamp(1.15rem,2.6vw,1.5rem)] font-medium">
-                  {headline}
-                </h2>
+              <div className="mb-4 flex flex-wrap items-end justify-between gap-x-6 gap-y-3 border-b border-line pb-4">
+                <div className="min-w-0">
+                  <h2 className="font-serif text-[clamp(1.15rem,2.6vw,1.5rem)] leading-snug font-medium">
+                    {headline}
+                  </h2>
+                  <p className="mt-1.5 flex flex-wrap items-center gap-2 text-[0.78rem] text-ink-faint">
+                    <ZoomBadge label="All sessions live on Zoom" />
+                    <span>·</span>
+                    <span>Times shown in Dubai (GMT+4)</span>
+                  </p>
+                </div>
                 <div className="flex flex-wrap items-center gap-2">
                   <Segmented
                     value={state.sort}
-                    onChange={(v) => {
-                      setActiveTab("all");
-                      update({ sort: v });
-                    }}
+                    onChange={(v) => update({ sort: v })}
                     options={[
                       { value: "cat", label: "Category" },
                       { value: "month", label: "Month" },
@@ -262,65 +288,63 @@ function FinderPage() {
                 </div>
               </div>
 
+              {chips.length ? (
+                <div className="mb-5 flex flex-wrap items-center gap-2">
+                  <span className="mono-label text-ink-faint">Filtered by</span>
+                  {chips.map((c) => (
+                    <button
+                      key={c.label}
+                      type="button"
+                      onClick={() => update(c.clear)}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-line bg-paper px-3 py-1 text-[0.76rem] font-semibold text-ink-soft transition-colors hover:border-crimson/50 hover:text-crimson"
+                    >
+                      {c.label}
+                      <span aria-hidden className="text-[0.7rem]">
+                        ✕
+                      </span>
+                    </button>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={() => update(DEFAULT_SEARCH)}
+                    className="text-[0.76rem] font-semibold text-ink-faint underline underline-offset-[3px] hover:text-crimson"
+                  >
+                    Clear all
+                  </button>
+                </div>
+              ) : null}
+
               {matches.length ? (
                 <>
-                  {groups.length > 1 ? (
-                    <div
-                      role="tablist"
-                      aria-label="Result groups"
-                      className="mb-4 flex gap-1 overflow-x-auto border-b border-line [scrollbar-width:none]"
-                    >
-                      {[
-                        { key: "all", label: "All", count: matches.length },
-                        ...groups.map((g) => ({
-                          key: g.key,
-                          label: g.label,
-                          count: g.rows.length,
-                        })),
-                      ].map((t) => {
-                        const on = t.key === currentKey;
-                        return (
-                          <button
-                            key={t.key}
-                            role="tab"
-                            aria-selected={on}
-                            type="button"
-                            onClick={() => {
-                              setActiveTab(t.key);
-                              setVisible(PAGE);
-                            }}
-                            className={`-mb-px border-b-2 px-3 py-2 text-[0.82rem] font-semibold whitespace-nowrap transition-colors ${
-                              on
-                                ? "border-crimson text-crimson"
-                                : "border-transparent text-ink-soft hover:text-ink"
-                            }`}
-                          >
-                            {t.label}
-                            <small className="ml-1.5 font-mono text-[0.68rem] text-ink-faint">
-                              {t.count}
-                            </small>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  ) : null}
-
-                  {currentKey !== "all" ? (
-                    <p className="mb-3 text-[0.82rem] text-ink-soft">{activeGroup.sub}</p>
-                  ) : null}
-
-                  <ResultGroup
-                    group={activeGroup}
-                    rows={rows}
-                    hideHeader
-                    compact={state.density === "compact"}
-                    showType={state.sort === "month" || currentKey === "all"}
-                    labelTop={narrowed && activeGroup.rows.length > 1}
-                    region={state.region}
-                  />
+                  <div className="space-y-8">
+                    {visibleGroups.map((g) => (
+                      <div key={g.key}>
+                        <div className="mb-2.5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                          <h3 className="font-serif text-[1.05rem] font-semibold text-ink">
+                            {g.label}
+                          </h3>
+                          <small className="mono-label text-ink-faint">
+                            {groups.find((x) => x.key === g.key)?.rows.length} option
+                            {groups.find((x) => x.key === g.key)?.rows.length === 1
+                              ? ""
+                              : "s"}
+                          </small>
+                        </div>
+                        <ResultGroup
+                          group={g}
+                          rows={g.rows}
+                          hideHeader
+                          compact={state.density === "compact"}
+                          showType={state.sort === "month"}
+                          labelTop={narrowed && g.rows.length > 1}
+                          region={state.region}
+                        />
+                      </div>
+                    ))}
+                  </div>
 
                   {remaining > 0 ? (
-                    <div className="mt-5 text-center">
+                    <div className="mt-7 text-center">
                       <button
                         type="button"
                         onClick={() => setVisible((v) => v + PAGE)}
@@ -336,7 +360,7 @@ function FinderPage() {
                 </>
               ) : (
                 <>
-                  <div className="mb-5 rounded-lg border-[1.5px] border-dashed border-line bg-paper px-6 py-8 text-center">
+                  <div className="mb-5 rounded-2xl border-[1.5px] border-dashed border-line bg-paper px-6 py-8 text-center">
                     <h3 className="mb-2 font-serif text-[1.25rem] font-semibold">
                       Nothing matches that exact combination
                     </h3>
@@ -361,10 +385,11 @@ function FinderPage() {
               )}
             </section>
 
+
             <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-line bg-paper px-5 py-4">
               <p className="max-w-[38em] text-[0.84rem] text-ink-soft">
-                🕒 Live on Zoom · times in Dubai (GMT+4) with US Eastern alongside.
-                Prefer to plan around dates?
+                Prefer to plan around dates? Every cohort, month by month, with US
+                Eastern times alongside Dubai.
               </p>
               <Link
                 to="/calendar"

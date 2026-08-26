@@ -37,7 +37,7 @@ export function ResultGroup({
       )}
 
       {compact ? (
-        <div className="flex flex-col gap-2">
+        <div className="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-paper shadow-soft">
           {list.map((m) => (
             <ProgrammeCard
               key={m.p.id}
@@ -48,6 +48,7 @@ export function ResultGroup({
             />
           ))}
         </div>
+
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {list.map((m, i) => (

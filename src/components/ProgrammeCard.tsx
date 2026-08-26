@@ -17,6 +17,7 @@ import { countdownLabel, decideLabel } from "@/lib/shortlist";
 import { outcomeOf, startLabel, weeklyHoursOf } from "@/lib/outcome";
 import { regionTimeLabel } from "@/lib/regions";
 import ZoomBadge from "@/components/ZoomBadge";
+import { TrackIcon } from "@/lib/track-icons";
 
 type Props = {
   match: Match;
@@ -46,49 +47,78 @@ export function ProgrammeCard({
 
   if (compact) {
     return (
-      <div className="group relative flex flex-wrap items-center gap-x-4 gap-y-1.5 rounded-xl border border-line bg-paper px-4 py-3 transition-colors hover:border-ink-soft/40 hover:bg-wash">
+      <div className="group relative flex flex-col gap-3 px-4 py-4 transition-colors hover:bg-wash sm:flex-row sm:items-center sm:gap-6">
         <Link
           to="/programmes/$slug"
           params={{ slug: slugOf(p) }}
           aria-label={`View ${p.name}`}
-          className="absolute inset-0 rounded-xl"
+          className="absolute inset-0"
         />
-        <span className="text-base" aria-hidden style={{ color: track.color }}>
-          {track.ic}
-        </span>
-        <span className="min-w-[14rem] flex-1">
-          <b className="block text-[0.94rem] font-bold text-ink">{p.name}</b>
-          <small className="mt-0.5 block text-[0.79rem] text-ink-soft">{outcome}</small>
-          <small className="mt-0.5 block text-[0.72rem] text-ink-faint">
-            {TYPE_NAME[p.type]} · Grades {lo}–{hi} · {p.dur} · about {hours}h a week
-          </small>
-        </span>
-        <span className="flex flex-col items-start gap-0.5 font-mono text-[0.72rem] text-ink-soft sm:items-end">
-          <span className="font-semibold text-ink">{startLabel(next.d)}</span>
-          <span className="flex items-center gap-2 text-ink-faint">
-            {timeLabel}
-            <ZoomBadge />
-          </span>
-        </span>
 
-        <span className="flex flex-col items-start sm:items-end">
-          <span className="font-serif text-[1rem] font-semibold">Fee {fee.e}</span>
-          {discounted ? (
-            <small className="text-[0.7rem] text-ink-faint line-through">{fee.r}</small>
-          ) : null}
-        </span>
-        {countdownLabel(next.d) ? (
-          <span className="rounded-md bg-gold/12 px-2 py-0.5 text-[0.68rem] font-bold text-gold">
-            {countdownLabel(next.d)}
+        {/* Programme */}
+        <div className="flex min-w-0 flex-1 items-start gap-3">
+          <span
+            className="mt-[3px] flex-none"
+            aria-hidden
+            style={{ color: track.color }}
+          >
+            <TrackIcon track={p.tracks[0]!} className="h-[1.05rem] w-[1.05rem]" />
           </span>
-        ) : null}
-        <SaveButton p={p} c={next} />
-        <span className="relative z-[2] rounded-lg border border-line bg-wash px-3 py-1.5 text-[0.76rem] font-bold text-ink group-hover:border-ink-soft/50">
-          View
-        </span>
+          <span className="min-w-0">
+            <b className="block truncate text-[0.95rem] leading-snug font-bold text-ink">
+              {p.name}
+            </b>
+            <small className="mt-0.5 block truncate text-[0.8rem] text-ink-soft">
+              {outcome}
+            </small>
+            <small className="mt-1 block truncate font-mono text-[0.7rem] text-ink-faint">
+              {showType ? `${TYPE_NAME[p.type]} · ` : ""}Grades {lo}–{hi} · {p.dur} · ~
+              {hours}h/week
+            </small>
+
+          </span>
+        </div>
+
+        {/* Schedule */}
+        <div className="flex flex-col gap-0.5 sm:w-[10.5rem] sm:flex-none sm:items-end sm:text-right">
+          <span className="font-mono text-[0.76rem] font-semibold text-ink">
+            {startLabel(next.d)}
+          </span>
+          <span className="font-mono text-[0.7rem] text-ink-faint">{timeLabel}</span>
+          {countdownLabel(next.d) ? (
+            <span className="mt-0.5 font-mono text-[0.68rem] font-bold text-gold">
+              {countdownLabel(next.d)}
+            </span>
+          ) : null}
+        </div>
+
+        {/* Fee */}
+        <div className="flex flex-col gap-0.5 sm:w-[6.5rem] sm:flex-none sm:items-end sm:text-right">
+          <span className="font-serif text-[1rem] leading-none font-semibold text-ink">
+            {fee.e}
+          </span>
+          {discounted ? (
+            <small className="font-mono text-[0.68rem] text-ink-faint line-through">
+              {fee.r}
+            </small>
+          ) : null}
+        </div>
+
+        {/* Actions */}
+        <div className="relative z-[2] flex flex-none items-center gap-2 sm:w-[7.75rem] sm:justify-end">
+          <SaveButton p={p} c={next} />
+          <Link
+            to="/programmes/$slug"
+            params={{ slug: slugOf(p) }}
+            className="rounded-full border-[1.5px] border-line bg-paper px-4 py-1.5 text-[0.78rem] font-bold text-ink no-underline transition-colors group-hover:border-ink-soft/60"
+          >
+            View
+          </Link>
+        </div>
       </div>
     );
   }
+
 
   return (
     <article
@@ -121,7 +151,7 @@ export function ProgrammeCard({
           className="inline-flex items-center gap-2 text-[0.76rem] font-bold"
           style={{ color: track.color }}
         >
-          <span className="text-base">{track.ic}</span>
+          <TrackIcon track={p.tracks[0]!} className="h-[1.05rem] w-[1.05rem]" />
           {track.label}
         </span>
         <span
