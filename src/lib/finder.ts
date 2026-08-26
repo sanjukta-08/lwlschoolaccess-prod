@@ -214,7 +214,6 @@ export const isDefaultSearch = (s: FinderSearch) =>
   s.month === "all" &&
   s.type === "all" &&
   s.duration === "all" &&
-  s.mentor === "all" &&
   !s.q;
 
 export type MatchGroup = {
