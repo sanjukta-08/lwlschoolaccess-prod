@@ -28,9 +28,7 @@ import pathwayMedicine from "@/assets/pathway-medicine.webp";
 import pathwayLaw from "@/assets/pathway-law.webp";
 import pathwayFinance from "@/assets/pathway-finance.webp";
 import pathwayAi from "@/assets/pathway-ai.webp";
-import pathwayEntrepreneurship from "@/assets/pathway-entrepreneurship.webp";
 import pathwayResearch from "@/assets/pathway-research.webp";
-import pathwayDebate from "@/assets/pathway-debate.webp";
 import pathwayLeadership from "@/assets/pathway-leadership.webp";
 import pathwayExams from "@/assets/pathway-exams.webp";
 import { ArrowUpRight } from "lucide-react";
@@ -64,21 +62,17 @@ const PATHWAY_ART: Record<TrackKey, string> = {
   law: pathwayLaw,
   fin: pathwayFinance,
   ai: pathwayAi,
-  ent: pathwayEntrepreneurship,
   res: pathwayResearch,
-  deb: pathwayDebate,
   lead: pathwayLeadership,
   sat: pathwayExams,
 };
 
 const PATHWAY_PROMISE: Record<TrackKey, string> = {
   med: "Explore clinical thinking",
-  law: "Argue with evidence",
+  law: "Argue and speak with evidence",
   fin: "Read markets and value",
-  ai: "Build with emerging technology",
-  ent: "Turn ideas into ventures",
+  ai: "Build ventures with emerging technology",
   res: "Investigate and publish",
-  deb: "Speak with conviction",
   lead: "Lead teams and initiatives",
   sat: "Prepare with a clear strategy",
 };

@@ -8,9 +8,7 @@ const ORDER: TrackKey[] = [
   "law",
   "fin",
   "ai",
-  "ent",
   "res",
-  "deb",
   "lead",
   "sat",
 ];

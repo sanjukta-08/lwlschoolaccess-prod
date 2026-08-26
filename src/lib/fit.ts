@@ -96,18 +96,18 @@ export const fitComplete = (a: FitAnswers) =>
 
 const GOAL_TRACKS: Record<GoalKey, TrackKey[]> = {
   proof: ["res", "med", "law"],
-  portfolio: ["ai", "ent", "res"],
+  portfolio: ["ai", "res"],
   marks: ["sat"],
-  confidence: ["deb", "lead"],
+  confidence: ["law", "lead"],
   explore: [],
 };
 
 const GOAL_TYPES: Record<GoalKey, string[]> = {
-  proof: ["fel", "intern"],
+  proof: ["fel", "comp"],
   portfolio: ["fel", "prog"],
   marks: ["prog"],
-  confidence: ["prog", "conf", "comp"],
-  explore: ["prog", "conf"],
+  confidence: ["prog", "comp"],
+  explore: ["prog"],
 };
 
 export type FitCandidate = {
