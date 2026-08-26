@@ -313,12 +313,27 @@ export function StoryGallery({
 }: {
   stories: LinkedInStory[];
   limit?: number;
-  variant?: "grid" | "strip";
+  /** "carousel" shows three cards at a time and auto-advances through the set. */
+  variant?: "grid" | "strip" | "carousel";
 }) {
   const shown = limit ? stories.slice(0, limit) : stories;
   const [open, setOpen] = useState<number | null>(null);
 
   if (shown.length === 0) return null;
+
+  if (variant === "carousel") {
+    return (
+      <>
+        <StoryCarousel stories={shown} onOpen={setOpen} />
+        <StoryLightbox
+          stories={shown}
+          index={open}
+          onClose={() => setOpen(null)}
+          onIndex={setOpen}
+        />
+      </>
+    );
+  }
 
   return (
     <>
@@ -338,6 +353,7 @@ export function StoryGallery({
           />
         ))}
       </div>
+
 
       <StoryLightbox
         stories={shown}
