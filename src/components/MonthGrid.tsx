@@ -57,7 +57,7 @@ export function MonthGrid({
     <div className="overflow-hidden rounded-3xl border border-line bg-paper shadow-soft">
       <div className="hidden grid-cols-7 border-b border-line bg-[linear-gradient(180deg,var(--paper),var(--wash))] md:grid">
         {WEEKDAYS.map((w) => (
-          <div key={w} className="mono-label border-r border-line/70 px-3 py-3 text-center text-ink-faint last:border-r-0">
+          <div key={w} className="mono-label border-r border-line/70 px-3 py-2 text-center text-ink-faint last:border-r-0">
             {w}
           </div>
         ))}
@@ -85,7 +85,7 @@ export function MonthGrid({
                 >
                   {day ? (
                     <>
-                      <div className="mb-2 flex items-center justify-between">
+                      <div className="mb-1 flex items-center justify-between">
                         <button
                           type="button"
                           onClick={() => onSelectDay(dayISO)}
