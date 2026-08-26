@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 
 import { slugOf } from "@/lib/programme-slug";
 import { getMatches, type FinderSearch } from "@/lib/finder";
+import { logoFor } from "@/lib/programme-logos";
 import {
   PROGRAMMES,
   TRACKS,
@@ -70,16 +71,42 @@ export function TrendingTop5({ state, variant = "section" }: Props) {
           {picks.slice(0, 3).map(({ p, next, why }, i) => {
             const track = TRACKS[p.tracks[0]!];
             const fee = feeOf(p, next);
+            const logo = logoFor(p.id, p.tracks);
+            const isLaw = p.tracks.includes("law") || p.tracks.includes("deb");
             return (
               <li key={p.id} className="relative">
                 <div
-                  className="flex h-full flex-col gap-1.5 rounded-xl border border-line bg-paper px-4 py-3.5 transition-shadow hover:shadow-soft"
+                  className="flex h-full flex-col gap-2 rounded-xl border border-line bg-paper px-4 py-3.5 transition-shadow hover:shadow-soft"
                   style={{ borderLeft: `3px solid ${track.color}` }}
                 >
+                  {logo && isLaw ? (
+                    <div className="flex h-12 w-full items-center justify-start overflow-hidden rounded-md border border-line bg-paper px-2">
+                      <img
+                        src={logo.src}
+                        alt={logo.alt}
+                        loading="lazy"
+                        className="h-9 w-auto object-contain"
+                      />
+                    </div>
+                  ) : null}
                   <div className="flex items-start justify-between gap-2">
-                    <b className="text-[0.94rem] leading-snug font-bold text-ink">
-                      {p.name}
-                    </b>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-2">
+                        {logo && !isLaw ? (
+                          <span className="flex h-8 w-8 flex-none items-center justify-center overflow-hidden rounded-md border border-line bg-paper p-[3px]">
+                            <img
+                              src={logo.src}
+                              alt={logo.alt}
+                              loading="lazy"
+                              className="h-full w-full object-contain"
+                            />
+                          </span>
+                        ) : null}
+                        <b className="text-[0.94rem] leading-snug font-bold text-ink">
+                          {p.name}
+                        </b>
+                      </div>
+                    </div>
                     {i === 0 ? (
                       <span className="mt-0.5 flex-none rounded bg-crimson px-1.5 py-0.5 text-[0.58rem] font-bold tracking-[0.06em] text-paper uppercase">
                         Popular
@@ -94,10 +121,16 @@ export function TrendingTop5({ state, variant = "section" }: Props) {
                     <Link
                       to="/programmes/$slug"
                       params={{ slug: slugOf(p) }}
-                      className="relative z-[2] text-[0.8rem] font-bold no-underline"
-                      style={{ color: track.color }}
+                      className="relative z-[2] rounded-lg border-[1.5px] px-3 py-1.5 text-[0.78rem] font-bold no-underline transition-colors hover:text-paper"
+                      style={{ borderColor: track.color, color: track.color }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = track.color;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = "transparent";
+                      }}
                     >
-                      View programme →
+                      View programme
                     </Link>
                   </div>
                 </div>

@@ -86,12 +86,22 @@ export function ProgrammeCard({
 
         {/* Brand logo */}
         {logo ? (
-          <div className="hidden md:flex md:w-[7rem] md:flex-none md:items-center md:justify-center">
+          <div
+            className={`hidden md:flex md:flex-none md:items-center md:justify-center ${
+              p.tracks.includes("law") || p.tracks.includes("deb")
+                ? "md:h-[3.5rem] md:w-[4rem]"
+                : "md:w-[7rem]"
+            }`}
+          >
             <img
               src={logo.src}
               alt={logo.alt}
               loading="lazy"
-              className="max-h-11 w-auto max-w-[6.75rem] object-contain"
+              className={`${
+                p.tracks.includes("law") || p.tracks.includes("deb")
+                  ? "h-full w-full object-cover object-left"
+                  : "max-h-11 max-w-[6.75rem] object-contain"
+              }`}
             />
           </div>
         ) : (
@@ -130,7 +140,7 @@ export function ProgrammeCard({
           <Link
             to="/programmes/$slug"
             params={{ slug: slugOf(p) }}
-            className="rounded-full border-[1.5px] border-ink bg-ink px-4 py-1.5 text-[0.78rem] font-bold text-paper no-underline transition-colors hover:border-crimson hover:bg-crimson"
+            className="rounded-full border-[1.5px] border-ink bg-paper px-4 py-1.5 text-[0.78rem] font-bold text-ink no-underline transition-colors hover:bg-ink hover:text-paper"
           >
             View
           </Link>
@@ -281,8 +291,14 @@ export function ProgrammeCard({
           <Link
             to="/programmes/$slug"
             params={{ slug: slugOf(p) }}
-            className="relative z-[2] flex-1 rounded-xl px-4 py-2 text-center text-[0.85rem] font-bold text-paper no-underline transition-[filter] hover:brightness-110"
-            style={{ background: track.color }}
+            className="relative z-[2] flex-1 rounded-xl border-2 px-4 py-2 text-center text-[0.85rem] font-bold no-underline transition-colors hover:text-paper"
+            style={{ borderColor: track.color, color: track.color }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = track.color;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "transparent";
+            }}
           >
             View programme
           </Link>
