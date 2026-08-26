@@ -220,7 +220,7 @@ function StoryLightbox({
               {story.role}
             </DialogDescription>
             <div className="mono-label mt-1 text-ink-faint">
-              {story.when} · Public{story.tag ? ` · #${story.tag}` : ""}
+              {story.when}{story.tag ? ` · #${story.tag}` : ""}
             </div>
           </div>
           <SourceGlyph story={story} className="h-7 w-7" />
@@ -341,7 +341,16 @@ function StoryCarousel({
       </div>
 
       {pages > 1 ? (
-        <div className="mt-5 flex items-center justify-center gap-2.5">
+        <div className="mt-5 flex items-center justify-center gap-3">
+          <button
+            type="button"
+            onClick={() => setPage((p) => (p - 1 + pages) % pages)}
+            aria-label="Previous stories"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft transition-colors hover:border-crimson/40 hover:text-crimson"
+          >
+            <span aria-hidden>←</span>
+          </button>
+          <span className="flex items-center gap-2.5">
           {Array.from({ length: pages }).map((_, p) => (
             <button
               key={p}
@@ -357,6 +366,15 @@ function StoryCarousel({
               }`}
             />
           ))}
+          </span>
+          <button
+            type="button"
+            onClick={() => setPage((p) => (p + 1) % pages)}
+            aria-label="Next stories"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft transition-colors hover:border-crimson/40 hover:text-crimson"
+          >
+            <span aria-hidden>→</span>
+          </button>
         </div>
       ) : null}
     </div>
