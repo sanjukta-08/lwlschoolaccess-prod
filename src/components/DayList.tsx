@@ -8,6 +8,7 @@ import {
   TYPE_NAME,
   cohortGrades,
   feeOf,
+  timeOf,
   fmtLong,
   isSoon,
   dualTime,
@@ -75,9 +76,10 @@ export function DayList({
                 </h3>
                 <p className="mt-1 font-mono text-[0.68rem] text-ink-faint">
                   {TYPE_NAME[p.type]} · G{lo}–{hi} · {p.dur}
+                  {c.label ? ` · ${c.label}` : ""}
                 </p>
                 <p className="mt-1 flex flex-wrap items-center gap-2 text-[0.82rem] text-ink-soft">
-                  {dualTime(p.time)}
+                  {dualTime(timeOf(p, c))}
                   <ZoomBadge />
                 </p>
                 <p className="mt-1.5 font-serif text-[1.05rem] font-semibold">{fee.e}</p>
@@ -98,6 +100,26 @@ export function DayList({
                   >
                     Full details
                   </Link>
+                  {c.flyer ? (
+                    <a
+                      href={c.flyer}
+                      target="_blank"
+                      rel="noopener"
+                      className="rounded-lg border-[1.5px] border-line px-3 py-2 text-[0.76rem] font-semibold text-ink-soft no-underline hover:border-ink-soft hover:text-ink"
+                    >
+                      Flyer
+                    </a>
+                  ) : null}
+                  {c.brochure ? (
+                    <a
+                      href={c.brochure}
+                      target="_blank"
+                      rel="noopener"
+                      className="rounded-lg border-[1.5px] border-line px-3 py-2 text-[0.76rem] font-semibold text-ink-soft no-underline hover:border-ink-soft hover:text-ink"
+                    >
+                      Brochure
+                    </a>
+                  ) : null}
                   <AddToCalendar p={p} c={c} />
                   <SaveButton p={p} c={c} />
                 </div>
