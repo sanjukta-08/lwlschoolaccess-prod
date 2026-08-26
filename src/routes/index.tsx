@@ -272,7 +272,7 @@ function HomePage() {
                       G{g1}–{g2}
                     </span>
                   </span>
-                  <span className="flex flex-1 flex-col items-center px-4.5 pt-5 pb-4 text-center">
+                  <span className="flex flex-1 flex-col items-center px-4 pt-5 pb-4 text-center">
                     {logo ? (
                       <span className="mb-4 flex h-12 w-full items-center justify-center">
                         <img
@@ -295,16 +295,15 @@ function HomePage() {
                       <span className="mono-label block text-center text-[0.72rem] text-ink-faint normal-case">
                         Next cohort
                       </span>
-                      <span className="mt-1 flex items-center justify-center gap-2 text-center text-[0.9rem]">
+                      <span className="mt-2 flex items-center justify-between text-[0.9rem]">
                         <b className="font-semibold text-ink">{fmtShort(c.d)}</b>
-                        <span className="text-ink-faint">·</span>
                         <b className="font-serif text-[1.05rem] font-semibold" style={{ color: "var(--sp)" }}>
                           {feeOf(p, c).e}
                         </b>
                       </span>
                     </span>
                   </span>
-                  <span className="px-4.5 pb-4.5">
+                  <span className="px-4 pb-4">
                     <span className="block rounded-full border border-ink px-4 py-2.5 text-center text-[0.7rem] font-bold tracking-[0.18em] uppercase text-ink transition-colors group-hover:bg-ink group-hover:text-paper">
                       View programme
                     </span>
