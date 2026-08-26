@@ -793,7 +793,7 @@ export const upcomingProgrammes = (): Programme[] =>
 export const dualTime = (str: string): string => {
   if (!/AM|PM/i.test(str)) return str;
   const spread = str.replace(
-    /(\d{1,2}(?::\d{2})?)\s*[–--]\s*(\d{1,2}(?::\d{2})?)\s*(AM|PM)/gi,
+    /(\d{1,2}(?::\d{2})?)\s*[–-]\s*(\d{1,2}(?::\d{2})?)\s*(AM|PM)/gi,
     "$1 $3–$2 $3",
   );
   const conv = spread
