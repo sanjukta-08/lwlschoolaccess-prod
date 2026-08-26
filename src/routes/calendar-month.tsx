@@ -168,16 +168,15 @@ function MonthCalendarPage() {
         showGrouping={false}
       />
 
-      <section className="mx-auto max-w-[1100px] px-5 py-8">
+      <section className="mx-auto max-w-[1100px] px-5 py-6">
         {/* month switcher */}
-        <div className="mb-5 overflow-hidden rounded-3xl border border-line bg-paper shadow-soft">
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-[linear-gradient(180deg,var(--gold-soft),var(--paper))] px-4 py-3.5 sm:px-5">
-            <div className="min-w-0">
-              <span className="mono-label text-gold-deep">Viewing</span>
-              <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] leading-tight font-medium">
+        <div className="mb-4 overflow-hidden rounded-3xl border border-line bg-paper shadow-soft">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-[linear-gradient(180deg,var(--gold-soft),var(--paper))] px-4 py-2.5 sm:px-5">
+            <div className="flex min-w-0 items-baseline gap-3">
+              <h2 className="font-serif text-[1.35rem] leading-tight font-medium whitespace-nowrap">
                 {monthTitle(monthDate)}
               </h2>
-              <p className="mt-0.5 font-mono text-[0.74rem] text-ink-faint">
+              <p className="font-mono text-[0.72rem] text-ink-faint">
                 {active
                   ? `${active.rows.length} cohort${active.rows.length === 1 ? "" : "s"} starting this month`
                   : "No cohorts in this window"}
