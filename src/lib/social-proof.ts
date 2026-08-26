@@ -1,4 +1,12 @@
+import genevaClip1 from "@/assets/geneva-clip-1.webm.asset.json";
+import genevaClip2 from "@/assets/geneva-clip-2.webm.asset.json";
+import genevaClip3 from "@/assets/geneva-clip-3.webm.asset.json";
+import genevaPoster1 from "@/assets/geneva-clip-1-poster.webp.asset.json";
+import genevaPoster2 from "@/assets/geneva-clip-2-poster.webp.asset.json";
+import genevaPoster3 from "@/assets/geneva-clip-3-poster.webp.asset.json";
+
 export const ABOUT = {
+
   kicker: "About Learn with Leaders",
   headline: "Ivy League mentors, live cohorts, and proof universities can check.",
   body: "Learn with Leaders runs live, small-group programmes for students in Grades 5–12, mentored by student leaders from Harvard, Yale, MIT, Stanford and Princeton, and delivered with partners like Harvard Student Agencies, HPAIR and Harvard Model Congress. Every pathway is built backwards from an outcome - a capstone project, a published paper, a judged pitch, a moot court, a portfolio - so a child finishes with something real to show, not just another certificate.",
@@ -368,7 +376,11 @@ export type VideoTestimonial = {
   name: string;
   cohort: string;
   /** Google Drive file id - embedded through the Drive preview player. */
-  fileId: string;
+  fileId?: string;
+  /** Self-hosted WebM clip served from the CDN (preferred over fileId). */
+  src?: string;
+  /** Poster frame for self-hosted clips. */
+  poster?: string;
   tags: TrackKey[];
 };
 
@@ -378,6 +390,31 @@ export type VideoTestimonial = {
  * until the sharing setting is changed to "anyone with the link".
  */
 export const VIDEO_TESTIMONIALS: VideoTestimonial[] = [
+  {
+    id: "kerryn",
+    name: "Kerryn Chalmers",
+    cohort: "Global Goals Camp, Geneva",
+    src: genevaClip1.url,
+    poster: genevaPoster1.url,
+    tags: ["lead", "deb"],
+  },
+  {
+    id: "hamza",
+    name: "Hamza Monshar",
+    cohort: "Global Goals Camp, Geneva",
+    src: genevaClip2.url,
+    poster: genevaPoster2.url,
+    tags: ["lead", "deb"],
+  },
+  {
+    id: "geneva-learner",
+    name: "Global Goals Camp learner",
+    cohort: "Global Goals Camp, Geneva",
+    src: genevaClip3.url,
+    poster: genevaPoster3.url,
+    tags: ["lead", "res"],
+  },
+
   {
     id: "efrain",
     name: "Efrain Calles-Arnaiz",
