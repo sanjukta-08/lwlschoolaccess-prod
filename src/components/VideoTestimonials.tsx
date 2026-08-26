@@ -28,12 +28,16 @@ function VideoCard({
         className="group relative block aspect-[9/13] w-full overflow-hidden bg-ink/5"
       >
         <img
-          src={`https://drive.google.com/thumbnail?id=${video.fileId}&sz=w800`}
+          src={
+            video.poster ??
+            `https://drive.google.com/thumbnail?id=${video.fileId}&sz=w800`
+          }
           alt=""
           aria-hidden
           loading="lazy"
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
         />
+
         <span className="absolute inset-0 bg-[linear-gradient(to_top,rgba(12,14,20,0.55),rgba(12,14,20,0.05)_55%)]" />
         <span className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-paper">
           <span className="flex h-14 w-14 items-center justify-center rounded-full border border-paper/70 bg-ink/45 pl-0.5 text-[1.1rem] backdrop-blur-sm transition-transform group-hover:scale-105">
