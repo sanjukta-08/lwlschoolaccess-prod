@@ -1,5 +1,6 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { DEFAULT_FIT } from "@/lib/fit";
+import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
 import { SiteHeader } from "@/components/SiteHeader";
 import { HowItWorks } from "@/components/HowItWorks";
 import { Suspense, lazy } from "react";
@@ -138,6 +139,14 @@ function HomePage() {
               >
                 Browse the full calendar
               </Link>
+              <a
+                href={CALENDLY_BOOKING_URL}
+                target="_blank"
+                rel="noopener"
+                className="rounded-full border-[1.5px] border-gold bg-paper px-7 py-3.5 text-[0.98rem] font-bold text-ink no-underline shadow-soft transition-colors hover:border-gold-deep hover:bg-gold-soft"
+              >
+                Book a free meeting
+              </a>
             </div>
             <p className="mt-3.5 text-[0.88rem] text-ink-soft">
               Not sure which one fits?{" "}
@@ -397,7 +406,7 @@ function HomePage() {
             Open the Programme Finder
           </Link>
           <a
-            href="https://www.learnwithleaders.com/"
+            href={CALENDLY_BOOKING_URL}
             target="_blank"
             rel="noopener"
             className="rounded-full border-[1.5px] border-paper/40 px-7 py-3.5 text-[0.95rem] font-bold text-paper no-underline transition-colors hover:border-paper"

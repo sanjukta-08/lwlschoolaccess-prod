@@ -2,6 +2,7 @@ import { DEFAULT_TESTIMONIAL_SEARCH } from "@/lib/testimonials";
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { DEFAULT_SEARCH } from "@/lib/finder";
+import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
 import { ShortlistBadge } from "@/components/ShortlistBadge";
 import { WingMark } from "@/components/WingMark";
 import logoAsset from "@/assets/lwl-logo.png.asset.json";
@@ -102,7 +103,7 @@ export function SiteHeader() {
         <div className="flex flex-none items-center gap-3 text-[0.85rem] font-semibold">
           <ShortlistBadge />
           <a
-            href="https://www.learnwithleaders.com/"
+            href={CALENDLY_BOOKING_URL}
             target="_blank"
             rel="noopener"
             className="hidden items-center gap-2 rounded-full border-[1.5px] border-crimson bg-crimson px-4 py-2 leading-none text-paper no-underline shadow-soft transition-colors hover:bg-crimson/90 sm:inline-flex"
@@ -129,7 +130,7 @@ export function SiteHeader() {
           </div>
           <div className="flex flex-col gap-0.5">{nav(true)}</div>
           <a
-            href="https://www.learnwithleaders.com/"
+            href={CALENDLY_BOOKING_URL}
             target="_blank"
             rel="noopener"
             className="mt-3 block rounded-xl bg-crimson px-3.5 py-3 text-center text-paper no-underline sm:hidden"
