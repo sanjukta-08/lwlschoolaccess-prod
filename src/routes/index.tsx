@@ -55,15 +55,6 @@ const StoryStrip = lazy(() => import("@/components/StoryStrip"));
 
 const FEATURED = ["fdf", "irf", "ail", "finlit"];
 
-const PARTNERS = [
-  "Harvard Student Agencies",
-  "HPAIR",
-  "Harvard Model Congress",
-  "Harvard MUN Team",
-  "Yale mentors",
-  "Greenvan",
-];
-
 const PATHWAY_ART: Record<TrackKey, string> = {
   med: pathwayMedicine,
   law: pathwayLaw,
