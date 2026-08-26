@@ -21,7 +21,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { WingMark } from "@/components/WingMark";
 import { SectionHeading } from "@/components/SectionHeading";
 import birdAsset from "@/assets/lwl-bird-black.png.asset.json";
-import worldMapAsset from "@/assets/world-map-gold.png.asset.json";
+import worldMapAsset from "@/assets/world-map-dots.png";
 import pathwayMedicine from "@/assets/pathway-medicine.png";
 import pathwayLaw from "@/assets/pathway-law.png";
 import pathwayFinance from "@/assets/pathway-finance.png";
@@ -94,13 +94,17 @@ function HomePage() {
             className="h-full w-full object-contain object-left"
           />
         </div>
-        <div className="pointer-events-none absolute right-0 bottom-0 w-[36%] min-w-[18rem] max-w-[26rem] opacity-[0.48]">
+        <div className="pointer-events-none absolute right-0 -bottom-6 w-[52%] min-w-[22rem] max-w-[40rem] opacity-[0.55]">
           <img
-            src={worldMapAsset.url}
+            src={worldMapAsset}
             alt=""
             aria-hidden="true"
+            width={1536}
+            height={768}
             className="h-auto w-full object-contain object-right-bottom"
           />
+          <div className="absolute inset-0 bg-gradient-to-r from-paper via-paper/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-paper via-transparent to-transparent" />
         </div>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-paper/75 via-paper/45 via-50% to-paper/35" />
 
