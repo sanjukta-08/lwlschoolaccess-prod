@@ -293,12 +293,14 @@ export const APPROVED_STORIES = LINKEDIN_POSTS.filter((s) => s.approved).sort(
   realFirst,
 );
 
-/** Stories matching any of the given track keys, most-reacted first, with a general fallback. */
+/** Stories matching any of the given track keys, real posts first, then most-reacted. */
 export function storiesForTracks(tracks: TrackKey[], limit = 3): LinkedInStory[] {
+  const rank = (a: LinkedInStory, b: LinkedInStory) =>
+    realFirst(a, b) || b.reactions - a.reactions;
   const matched = APPROVED_STORIES.filter((s) =>
     s.tags.some((t) => tracks.includes(t)),
-  ).sort((a, b) => b.reactions - a.reactions);
-  const fallback = [...APPROVED_STORIES].sort((a, b) => b.reactions - a.reactions);
+  ).sort(rank);
+  const fallback = [...APPROVED_STORIES].sort(rank);
   const out = [...matched];
   for (const s of fallback) {
     if (out.length >= limit) break;
