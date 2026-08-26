@@ -80,12 +80,12 @@ export function TrendingTop5({ state, variant = "section" }: Props) {
                   style={{ borderLeft: `3px solid ${track.color}` }}
                 >
                   {logo && isLaw ? (
-                    <div className="flex h-10 w-full items-center justify-start overflow-hidden rounded-md border border-line bg-paper px-2">
+                    <div className="flex h-12 w-full items-center justify-start overflow-hidden rounded-md border border-line bg-paper px-2">
                       <img
                         src={logo.src}
                         alt={logo.alt}
                         loading="lazy"
-                        className="h-7 w-auto object-contain"
+                        className="h-9 w-auto object-contain"
                       />
                     </div>
                   ) : null}
