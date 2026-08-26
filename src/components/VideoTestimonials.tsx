@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 
+import { X } from "lucide-react";
+
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogTitle,
@@ -56,10 +59,10 @@ function VideoLightbox({
 }) {
   return (
     <Dialog open={video !== null} onOpenChange={(v) => (v ? null : onClose())}>
-      <DialogContent className="max-w-[520px] overflow-hidden bg-paper p-0">
+      <DialogContent className="w-auto max-w-[min(94vw,520px)] gap-0 overflow-hidden bg-paper p-0 [&>button]:hidden">
         {video ? (
           <>
-            <div className="aspect-[9/13] w-full bg-ink">
+            <div className="relative aspect-[9/13] h-[min(68vh,120vw)] w-auto bg-ink">
               <iframe
                 src={`https://drive.google.com/file/d/${video.fileId}/preview`}
                 title={`${video.name} testimonial`}
@@ -67,8 +70,14 @@ function VideoLightbox({
                 allowFullScreen
                 className="h-full w-full border-0"
               />
+              <DialogClose
+                aria-label="Close video"
+                className="absolute right-2.5 top-2.5 z-10 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-paper/40 bg-ink/70 text-paper backdrop-blur-sm transition-colors hover:bg-ink"
+              >
+                <X className="h-4 w-4" />
+              </DialogClose>
             </div>
-            <div className="border-t border-line px-5 py-4">
+            <div className="border-t border-line px-5 py-3.5">
               <DialogTitle className="text-[1rem] font-bold text-ink">
                 {video.name}
               </DialogTitle>
