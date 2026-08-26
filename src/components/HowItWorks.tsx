@@ -58,9 +58,9 @@ export function HowItWorks() {
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           How it <em className="text-crimson-deep">works</em>
         </h2>
-        <div className="relative mt-8 grid gap-5 md:grid-cols-3">
+        <div className="relative mt-6 grid gap-4 md:grid-cols-3">
           {STEPS.map((s) => (
-            <div key={s.n} className="rounded-2xl border border-line bg-paper/80 p-6 backdrop-blur-sm">
+            <div key={s.n} className="rounded-2xl border border-ink/10 bg-paper/80 p-5 backdrop-blur-sm">
               <span className="mono-label text-crimson">{s.n}</span>
               <h3 className="mt-2 font-serif text-[1.15rem] font-semibold">{s.t}</h3>
               <p className="mt-2 text-[0.88rem] text-ink-soft">{s.d}</p>
