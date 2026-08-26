@@ -235,7 +235,7 @@ export function LearnerQuotes({
             <QuoteCard
               key={`${q.name}-${q.quote.slice(0, 24)}`}
               q={q}
-              accent={i}
+              accent={accentForQuote(q)}
               onOpen={() => setOpen(q)}
             />
           ))}
