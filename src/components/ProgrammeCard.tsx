@@ -86,16 +86,16 @@ export function ProgrammeCard({
 
         {/* Brand logo */}
         {logo ? (
-          <div className="hidden md:flex md:w-[7rem] md:flex-none md:items-center md:justify-center">
+          <div className="hidden md:flex md:w-[9.5rem] md:flex-none md:items-center md:justify-center">
             <img
               src={logo.src}
               alt={logo.alt}
               loading="lazy"
-              className="max-h-11 max-w-[6.75rem] object-contain"
+              className="max-h-14 max-w-[9rem] object-contain"
             />
           </div>
         ) : (
-          <div className="hidden md:block md:w-[7rem] md:flex-none" />
+          <div className="hidden md:block md:w-[9.5rem] md:flex-none" />
         )}
 
 
@@ -187,12 +187,12 @@ export function ProgrammeCard({
         <div className="flex items-start justify-between gap-3">
           <div className="flex min-w-0 items-start gap-2.5">
             {logo ? (
-              <span className="mt-[2px] flex h-10 w-10 flex-none items-center justify-center overflow-hidden rounded-md border border-line bg-paper p-[3px]">
+              <span className="mt-[2px] flex h-11 w-14 flex-none items-center justify-center overflow-hidden bg-transparent">
                 <img
                   src={logo.src}
                   alt={logo.alt}
                   loading="lazy"
-                  className="h-full w-full object-contain"
+                  className="max-h-11 max-w-14 object-contain"
                 />
               </span>
             ) : null}
