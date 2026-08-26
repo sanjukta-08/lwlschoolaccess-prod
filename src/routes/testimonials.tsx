@@ -27,7 +27,6 @@ const str = (v: unknown, fallback: string) =>
 
 export const Route = createFileRoute("/testimonials")({
   validateSearch: (search: Record<string, unknown>): TestimonialSearch => ({
-    who: str(search["who"], "all"),
     track: str(search["track"], "all"),
     programme: str(search["programme"], "all"),
     format: str(search["format"], "all"),
