@@ -224,12 +224,12 @@ function FinderPage() {
         <div className="relative">
           <SiteHeader />
           <section className="mx-auto flex w-full max-w-none flex-wrap items-end justify-between gap-x-8 gap-y-4 px-4 pt-8 pb-10 sm:px-5 lg:px-6 xl:px-8">
-            <div className="max-w-[36em]">
+            <div className="max-w-[42em]">
               <span className="mono-label mb-2 inline-flex items-center gap-2 text-crimson">
                 <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
                 {PROGRAMMES.length} programmes · Grades {GRADE_LO}–{GRADE_HI}
               </span>
-              <h1 className="font-serif text-[clamp(1.8rem,4.4vw,2.7rem)] leading-[1.1] font-medium tracking-tight sm:whitespace-nowrap">
+              <h1 className="font-serif text-[clamp(1.6rem,3.8vw,2.5rem)] leading-[1.12] font-medium tracking-tight sm:whitespace-nowrap">
                 Find the programme that{" "}
                 <em className="text-crimson-deep">fits</em> your child
               </h1>
