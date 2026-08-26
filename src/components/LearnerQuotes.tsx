@@ -5,6 +5,7 @@ import {
   DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { accentForQuote } from "@/lib/learner-testimonials";
 import type { LearnerQuote } from "@/lib/learner-testimonials";
 
 function initialsOf(name: string) {
@@ -16,26 +17,34 @@ function initialsOf(name: string) {
     .join("");
 }
 
-const ACCENTS = [
-  { avatar: "bg-ink text-paper", label: "text-ink" },
-  { avatar: "bg-crimson text-paper", label: "text-crimson" },
-  { avatar: "bg-gold-deep text-paper", label: "text-gold-deep" },
-] as const;
+const ACCENT_TOKENS: Record<string, { avatar: string; label: string }> = {
+  ink: { avatar: "bg-ink text-paper", label: "text-ink" },
+  crimson: { avatar: "bg-crimson text-paper", label: "text-crimson" },
+  gold: { avatar: "bg-gold-deep text-paper", label: "text-gold-deep" },
+  law: { avatar: "bg-track-law text-paper", label: "text-track-law" },
+  med: { avatar: "bg-track-med text-paper", label: "text-track-med" },
+  res: { avatar: "bg-track-res text-paper", label: "text-track-res" },
+  ent: { avatar: "bg-track-ent text-paper", label: "text-track-ent" },
+  ai: { avatar: "bg-track-ai text-paper", label: "text-track-ai" },
+  fin: { avatar: "bg-track-fin text-paper", label: "text-track-fin" },
+  lead: { avatar: "bg-track-lead text-paper", label: "text-track-lead" },
+  deb: { avatar: "bg-track-deb text-paper", label: "text-track-deb" },
+};
 
-const DEFAULT_ACCENT = ACCENTS[0];
+const DEFAULT_ACCENT = ACCENT_TOKENS["ink"]!;
 
 function QuoteCard({
   q,
   onOpen,
   width = "",
-  accent = 0,
+  accent = "ink",
 }: {
   q: LearnerQuote;
   onOpen: () => void;
   width?: string;
-  accent?: number;
+  accent?: string;
 }) {
-  const a = ACCENTS[accent % ACCENTS.length] ?? DEFAULT_ACCENT;
+  const a = ACCENT_TOKENS[accent] ?? DEFAULT_ACCENT;
   return (
     <button
       type="button"
@@ -169,7 +178,7 @@ function QuoteMarquee({
             key={`${item.name}-${index}`}
             q={item}
             onOpen={() => onOpen(item)}
-            accent={index}
+            accent={accentForQuote(item)}
             width="w-full"
           />
         ))}
@@ -226,7 +235,7 @@ export function LearnerQuotes({
             <QuoteCard
               key={`${q.name}-${q.quote.slice(0, 24)}`}
               q={q}
-              accent={i}
+              accent={accentForQuote(q)}
               onOpen={() => setOpen(q)}
             />
           ))}
