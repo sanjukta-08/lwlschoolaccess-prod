@@ -195,9 +195,9 @@ function FinderPage() {
 
   return (
     <div className="min-h-screen bg-wash">
-      <div className="relative">
-        <div className="hero-wash absolute inset-0" />
-        <div className="pointer-events-none absolute -right-[6vw] top-1/2 hidden h-[min(340px,42vh)] w-[min(520px,38vw)] -translate-y-1/2 opacity-[0.18] sm:block">
+      <div className="relative isolate">
+        <div className="hero-wash absolute inset-0 -z-10" />
+        <div className="pointer-events-none absolute -right-[6vw] bottom-[-14%] -z-10 hidden h-[min(320px,40vh)] w-[min(520px,38vw)] opacity-[0.14] sm:block">
           <img
             src={birdAsset.url}
             alt=""
@@ -206,6 +206,7 @@ function FinderPage() {
           />
         </div>
         <div className="relative">
+
           <SiteHeader />
           <section className="mx-auto flex w-full max-w-none flex-wrap items-end justify-between gap-x-8 gap-y-4 px-4 pt-8 pb-8 sm:px-5 lg:px-6 xl:px-8">
             <div>
