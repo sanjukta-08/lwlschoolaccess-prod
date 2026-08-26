@@ -4,16 +4,27 @@ import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { MonthGrid, monthTitle } from "@/components/MonthGrid";
 import { DayList } from "@/components/DayList";
-import { TRACKS, TYPES, TYPE_IC, TYPE_ORDER, isSoon, type TrackKey, type TypeKey } from "@/lib/programmes";
+import { PROGRAMMES, TRACKS, isPast, isSoon } from "@/lib/programmes";
+import { CalendarControls } from "@/components/CalendarControls";
+import ZoomBadge from "@/components/ZoomBadge";
+import birdAsset from "@/assets/lwl-bird-black.webp.asset.json";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import {
   DEFAULT_SEARCH,
   getCohortEntries,
   groupEntriesByMonth,
+  isDefaultSearch,
   validateFinderSearch,
-  facetCounts,
   type FinderSearch,
 } from "@/lib/finder";
 import { SiteFooter } from "@/components/SiteFooter";
+
+const GRADE_LO = Math.min(...PROGRAMMES.map((p) => p.g[0]));
+const GRADE_HI = Math.max(...PROGRAMMES.map((p) => p.g[1]));
+const TOTAL_COHORTS = PROGRAMMES.reduce(
+  (n, p) => n + p.cohorts.filter((c) => !isPast(c.d)).length,
+  0,
+);
 
 const TITLE = "Month-by-month cohort calendar | Learn with Leaders";
 const DESC =
@@ -34,38 +45,6 @@ export const Route = createFileRoute("/calendar-month")({
   }),
   component: MonthCalendarPage,
 });
-
-function Pill({
-  active,
-  onClick,
-  children,
-  count,
-}: {
-  active: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-  count?: number | undefined;
-}) {
-  return (
-    <button
-      type="button"
-      aria-pressed={active}
-      onClick={onClick}
-      className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[0.8rem] font-semibold whitespace-nowrap transition-colors ${
-        active ? "bg-ink text-paper" : "text-ink-soft hover:text-ink"
-      }`}
-    >
-      {children}
-      {count !== undefined ? (
-        <small
-          className={`font-mono text-[0.68rem] ${active ? "text-paper/70" : "text-ink-faint"}`}
-        >
-          {count}
-        </small>
-      ) : null}
-    </button>
-  );
-}
 
 function MonthCalendarPage() {
   const state = Route.useSearch();
