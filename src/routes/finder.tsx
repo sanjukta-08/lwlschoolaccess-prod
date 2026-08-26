@@ -211,7 +211,7 @@ function FinderPage() {
             </div>
             <ul className="flex flex-wrap gap-2">
               {[
-                ["Harvard & Yale mentors", "Taught by leaders"],
+                ["Harvard & Yale Student Mentors", "Taught by leaders"],
                 ["Live on Zoom", "Dubai + US Eastern"],
                 [`Grades ${GRADE_LO}–${GRADE_HI}`, `${PROGRAMMES.length} programmes`],
               ].map(([top, sub]) => (
