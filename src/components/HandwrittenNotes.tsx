@@ -163,7 +163,7 @@ export default function HandwrittenNotes() {
       </div>
 
       <p className="mono-label mt-6 text-center text-ink-soft">
-        {NOTES.length} notes · hover to pause, tap any note to read it
+        &nbsp;HOVER TO PAUSE, TAP ANY NOTE TO READ IT
       </p>
 
 
