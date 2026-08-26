@@ -306,6 +306,80 @@ function StoryLightbox({
   );
 }
 
+/** Three cards at a time, auto-advancing page by page. Pauses on hover. */
+function StoryCarousel({
+  stories,
+  onOpen,
+}: {
+  stories: LinkedInStory[];
+  onOpen: (i: number) => void;
+}) {
+  const perPage = 3;
+  const pages = Math.max(1, Math.ceil(stories.length / perPage));
+  const [page, setPage] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused || pages < 2) return;
+    const id = window.setInterval(() => setPage((p) => (p + 1) % pages), 6500);
+    return () => window.clearInterval(id);
+  }, [paused, pages]);
+
+  return (
+    <div
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
+    >
+      <div className="overflow-hidden">
+        <div
+          className="flex transition-transform duration-700 ease-out"
+          style={{ transform: `translateX(-${page * 100}%)` }}
+        >
+          {Array.from({ length: pages }).map((_, p) => (
+            <div
+              key={p}
+              className="grid w-full shrink-0 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+              aria-hidden={p !== page}
+            >
+              {stories.slice(p * perPage, p * perPage + perPage).map((s, i) => (
+                <StoryTile
+                  key={s.id}
+                  story={s}
+                  compact
+                  onOpen={() => onOpen(p * perPage + i)}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {pages > 1 ? (
+        <div className="mt-5 flex items-center justify-center gap-2.5">
+          {Array.from({ length: pages }).map((_, p) => (
+            <button
+              key={p}
+              type="button"
+              onClick={() => setPage(p)}
+              aria-label={`Show stories ${p * perPage + 1}-${Math.min(
+                (p + 1) * perPage,
+                stories.length,
+              )}`}
+              aria-current={p === page}
+              className={`h-2 rounded-full transition-all ${
+                p === page ? "w-7 bg-crimson" : "w-2 bg-ink/20 hover:bg-ink/35"
+              }`}
+            />
+          ))}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+
 export function StoryGallery({
   stories,
   limit,
