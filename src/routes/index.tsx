@@ -145,7 +145,7 @@ function HomePage() {
                 rel="noopener"
                 className="rounded-full border-[1.5px] border-gold bg-paper px-7 py-3.5 text-[0.98rem] font-bold text-ink no-underline shadow-soft transition-colors hover:border-gold-deep hover:bg-gold-soft"
               >
-                Book a free meeting
+                Book a Meeting
               </a>
             </div>
             <p className="mt-3.5 text-[0.88rem] text-ink-soft">
@@ -352,18 +352,18 @@ function HomePage() {
 
       <HowItWorks />
 
+      <section className="py-14">
+        <Suspense fallback={<div className="h-[420px]" />}>
+          <HandwrittenNotes />
+        </Suspense>
+      </section>
+
       <section className="bg-wash px-5 py-11 sm:px-10">
         <div className="mx-auto max-w-[1280px]">
           <Suspense fallback={<div className="h-[360px]" />}>
             <StoryStrip />
           </Suspense>
         </div>
-      </section>
-
-      <section className="py-14">
-        <Suspense fallback={<div className="h-[420px]" />}>
-          <HandwrittenNotes />
-        </Suspense>
       </section>
 
 
@@ -379,12 +379,12 @@ function HomePage() {
             </p>
           </div>
           <a
-            href="https://www.learnwithleaders.com/"
+            href={CALENDLY_BOOKING_URL}
             target="_blank"
             rel="noopener"
             className="rounded-full bg-crimson px-6 py-3.5 text-[0.95rem] font-bold text-paper no-underline shadow-lift transition-colors hover:bg-crimson-deep"
           >
-            Partner with us →
+            Book a Meeting
           </a>
         </div>
       </section>
