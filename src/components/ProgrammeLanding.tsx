@@ -1,4 +1,3 @@
-import { DEFAULT_TESTIMONIAL_SEARCH } from "@/lib/testimonials";
 import { Link } from "@tanstack/react-router";
 
 import { AddToCalendar } from "@/components/AddToCalendar";
@@ -7,15 +6,8 @@ import { SaveButton } from "@/components/SaveButton";
 import { countdownLabel, decideLabel } from "@/lib/shortlist";
 import { PageJump } from "@/components/PageJump";
 import { ProfileImpact } from "@/components/ProfileImpact";
-import { ProgrammeTestimonials } from "@/components/ProgrammeTestimonials";
 import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { SkillMatrix } from "@/components/SkillMatrix";
-import { LinkedInGlyph, StoryGallery } from "@/components/StoryGallery";
-import { VideoTestimonials } from "@/components/VideoTestimonials";
-import { LearnerQuotes } from "@/components/LearnerQuotes";
-import { quotesForProgramme } from "@/lib/learner-testimonials";
-
-import { storiesForTracks, videosForTracks } from "@/lib/social-proof";
 
 import { DEFAULT_SEARCH } from "@/lib/finder";
 
@@ -56,7 +48,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
     >
       {/* Hero */}
       <section className="surface-track-strong border-b">
-        <div className="mx-auto max-w-[1000px] px-5 pt-10 pb-11">
+        <div className="page-shell pt-10 pb-11">
           <p className="mono-label mb-4 text-ink-faint">
             <Link to="/finder" search={DEFAULT_SEARCH} className="no-underline hover:underline">
               Programmes
@@ -145,15 +137,13 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
           { id: "skills", label: "Skills" },
           { id: "projects", label: "Projects" },
           { id: "profile", label: "Profile impact" },
-          { id: "reviews", label: "Reviews" },
-          { id: "stories", label: "LinkedIn stories" },
           { id: "dates", label: "Dates & fees" },
           { id: "faq", label: "FAQs" },
         ]}
       />
 
       {/* What they'll do */}
-      <section id="overview" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
+      <section id="overview" className="page-shell scroll-mt-32 pt-12">
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           What your child will{" "}
           <em className="text-crimson-deep italic">actually do</em>
@@ -183,7 +173,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       </section>
 
       {/* Skills */}
-      <section id="skills" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
+      <section id="skills" className="page-shell scroll-mt-32 pt-12">
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Skills your child will <em className="text-crimson-deep italic">gain</em>
         </h2>
@@ -195,7 +185,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       </section>
 
       {/* Projects */}
-      <section id="projects" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
+      <section id="projects" className="page-shell scroll-mt-32 pt-12">
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Projects they <em className="text-crimson-deep italic">finish with</em>
         </h2>
@@ -224,7 +214,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       </section>
 
       {/* Profile impact */}
-      <section id="profile" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
+      <section id="profile" className="page-shell scroll-mt-32 pt-12">
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           How this strengthens their{" "}
           <em className="text-crimson-deep italic">university profile</em>
@@ -258,11 +248,11 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
 
 
       {/* Cohorts */}
-      <section id="dates" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
+      <section id="dates" className="page-shell scroll-mt-32 pt-12">
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Upcoming <em className="text-crimson-deep italic">cohorts</em>
         </h2>
-        <div className="mt-6 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-6 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {cohorts.length === 0 ? (
             <p className="text-[0.9rem] text-ink-soft">
               Dates for the next intake are being confirmed - the programme page has
@@ -361,7 +351,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="mx-auto max-w-[760px] scroll-mt-32 px-5 pt-12">
+      <section id="faq" className="page-shell scroll-mt-32 pt-12">
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Parents usually <em className="text-crimson-deep italic">ask</em>
         </h2>
@@ -387,7 +377,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
 
       {/* Related */}
       {related.length > 0 ? (
-        <section className="mx-auto max-w-[1000px] px-5 pt-14">
+        <section className="page-shell pt-14">
           <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
             Families looking at this also{" "}
             <em className="text-crimson-deep italic">consider</em>
@@ -430,7 +420,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
 
       {/* Sticky apply bar */}
       <div className="fixed inset-x-0 bottom-0 z-60 border-t border-line bg-paper shadow-[0_-8px_24px_-16px_rgba(28,34,48,0.35)]">
-        <div className="mx-auto flex max-w-[1000px] items-center justify-between gap-4 px-5 py-3">
+        <div className="page-shell flex items-center justify-between gap-4 py-3">
           <div>
             <b className="font-serif text-[1.15rem] font-semibold">{fee.e}</b>
             {discounted ? (
