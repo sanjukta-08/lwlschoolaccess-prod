@@ -15,6 +15,8 @@ import {
 } from "@/lib/programmes";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { slugOf } from "@/lib/programme-slug";
+import { programmeLogo } from "@/lib/programme-logos";
+
 import { SiteFooter } from "@/components/SiteFooter";
 import { PartnerLogos } from "@/components/PartnerLogos";
 import { WingMark } from "@/components/WingMark";
