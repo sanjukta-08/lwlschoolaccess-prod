@@ -52,6 +52,8 @@ export const Route = createFileRoute("/")({
 });
 
 const StoryStrip = lazy(() => import("@/components/StoryStrip"));
+const HandwrittenNotes = lazy(() => import("@/components/HandwrittenNotes"));
+
 
 const FEATURED = ["fdf", "irf", "ail", "finlit"];
 
