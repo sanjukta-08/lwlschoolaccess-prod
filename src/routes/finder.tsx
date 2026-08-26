@@ -267,8 +267,16 @@ function FinderPage() {
           </aside>
 
           <main className="min-w-0 space-y-8">
+            <div className="space-y-3">
+              <h3 className="font-serif text-[1.05rem] font-semibold text-ink">
+                Browse by category
+              </h3>
+              <TypeChips state={state} onChange={update} />
+            </div>
+
             <section id="all-programmes" className="scroll-mt-6">
               <div className="mb-4 flex flex-wrap items-end justify-between gap-x-6 gap-y-3 border-b border-line pb-4">
+
                 <div className="min-w-0">
                   <h2 className="font-serif text-[clamp(1.15rem,2.6vw,1.5rem)] leading-snug font-medium">
                     {headline}
