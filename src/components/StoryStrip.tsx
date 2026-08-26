@@ -14,17 +14,46 @@ import {
   APPROVED_LINKEDIN,
   VIDEO_TESTIMONIALS,
 } from "@/lib/social-proof";
-
+import type { ReactNode } from "react";
 
 function SeeAll({ label }: { label: string }) {
   return (
     <Link
       to="/testimonials"
       search={DEFAULT_TESTIMONIAL_SEARCH}
-      className="inline-flex items-center gap-2 rounded-full border border-crimson/30 px-5 py-2.5 text-[0.85rem] font-bold text-crimson no-underline transition-colors hover:bg-crimson/5"
+      className="inline-flex flex-none items-center gap-2 rounded-full border border-crimson/30 px-5 py-2.5 text-[0.85rem] font-bold text-crimson no-underline transition-colors hover:bg-crimson/5"
     >
       {label} <span aria-hidden>→</span>
     </Link>
+  );
+}
+
+function SectionHeader({
+  icon,
+  title,
+  sub,
+  action,
+}: {
+  icon?: ReactNode;
+  title: ReactNode;
+  sub: ReactNode;
+  action?: ReactNode;
+}) {
+  return (
+    <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <div className="flex items-end gap-2">
+          {icon ? <span className="flex-shrink-0">{icon}</span> : null}
+          <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] leading-[1.05] font-medium tracking-tight text-balance">
+            {title}
+          </h2>
+        </div>
+        <p className="mt-1 max-w-[64em] text-[0.92rem] leading-relaxed text-ink-soft">
+          {sub}
+        </p>
+      </div>
+      {action ? <div className="flex-shrink-0">{action}</div> : null}
+    </div>
   );
 }
 
@@ -32,20 +61,16 @@ function SeeAll({ label }: { label: string }) {
 export default function StoryStrip() {
   return (
     <>
-      <div className="flex items-end justify-center gap-2">
-        <LinkedInGlyph className="h-9 w-9" />
-        <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium leading-none">
-          In their <em className="text-crimson-deep">own words</em>, on their own
-          feeds
-        </h2>
-      </div>
-
-      <div className="mt-1 flex flex-col items-center gap-4">
-        <p className="max-w-[64em] text-center text-[0.92rem] leading-relaxed text-ink-soft">
-          Real posts from students, parents and mentors after their cohort ended.
-          Tap any one to read it in full.
-        </p>
-      </div>
+      <SectionHeader
+        icon={<LinkedInGlyph className="h-9 w-9" />}
+        title={
+          <>
+            In their <em className="text-crimson-deep">own words</em>, on their
+            own feeds
+          </>
+        }
+        sub="Real posts from students, parents and mentors after their cohort ended. Tap any one to read it in full."
+      />
 
       <div className="mt-4">
         <StoryGallery stories={APPROVED_LINKEDIN} limit={6} variant="carousel" />
@@ -53,18 +78,15 @@ export default function StoryStrip() {
 
       {APPROVED_INSTAGRAM.length > 0 ? (
         <div className="mt-16">
-          <div className="flex items-end justify-center gap-2">
-            <InstagramGlyph className="h-9 w-9" />
-            <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium leading-none">
-              Research and wins we <em className="text-crimson-deep">shared</em>
-            </h2>
-          </div>
-          <div className="mt-1 flex flex-col items-center gap-4">
-            <p className="max-w-[64em] text-center text-[0.92rem] leading-relaxed text-ink-soft">
-              Published papers, judged pitches and competition results, posted as
-              they happened on Instagram.
-            </p>
-          </div>
+          <SectionHeader
+            icon={<InstagramGlyph className="h-9 w-9" />}
+            title={
+              <>
+                Research and wins we <em className="text-crimson-deep">shared</em>
+              </>
+            }
+            sub="Published papers, judged pitches and competition results, posted as they happened on Instagram."
+          />
           <div className="mt-4">
             <StoryGallery
               stories={APPROVED_INSTAGRAM}
@@ -75,22 +97,20 @@ export default function StoryStrip() {
       ) : null}
 
       <div className="mt-16">
-        <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium leading-none">
-          What learners said about{" "}
-          <em className="text-crimson-deep">each programme</em>
-        </h2>
-        <div className="mt-1 flex flex-col items-center gap-4">
-
-          <p className="max-w-[64em] text-center text-[0.92rem] leading-relaxed text-ink-soft">
-            Unedited answers from end-of-programme feedback forms, labelled with the
-            cohort they came from. Tap any card to read the full note.
-          </p>
-          <SeeAll label="Read all learner feedback" />
-        </div>
+        <SectionHeader
+          title={
+            <>
+              What learners said about{" "}
+              <em className="text-crimson-deep">each programme</em>
+            </>
+          }
+          sub="Unedited answers from end-of-programme feedback forms, labelled with the cohort they came from. Tap any card to read the full note."
+          action={<SeeAll label="Read all learner feedback" />}
+        />
         <div className="mt-4">
           <LearnerQuotes quotes={ONLINE_QUOTES} duration={190} />
         </div>
-        <p className="mt-6 text-center text-[0.78rem] font-semibold tracking-[0.14em] text-ink-faint uppercase">
+        <p className="mt-6 text-[0.78rem] font-semibold tracking-[0.14em] text-ink-faint uppercase">
           Summer Camp 2026
         </p>
         <div className="mt-2">
@@ -98,19 +118,17 @@ export default function StoryStrip() {
         </div>
       </div>
 
-
       {VIDEO_TESTIMONIALS.length > 0 ? (
         <div className="mt-16">
-          <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium leading-none">
-            Hear it from the <em className="text-crimson-deep">students</em>
-          </h2>
-          <div className="mt-1 flex flex-col items-center gap-4">
-
-            <p className="max-w-[64em] text-center text-[0.92rem] leading-relaxed text-ink-soft">
-              One-minute clips recorded at the end of a cohort, unscripted.
-            </p>
-            <SeeAll label="Watch all clips" />
-          </div>
+          <SectionHeader
+            title={
+              <>
+                Hear it from the <em className="text-crimson-deep">students</em>
+              </>
+            }
+            sub="One-minute clips recorded at the end of a cohort, unscripted."
+            action={<SeeAll label="Watch all clips" />}
+          />
           <div className="mt-4">
             <VideoTestimonials videos={VIDEO_TESTIMONIALS} limit={4} />
           </div>
