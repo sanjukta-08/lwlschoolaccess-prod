@@ -111,7 +111,7 @@ function TestimonialsPage() {
       </div>
 
       <div className="page-shell pb-16">
-        <div className="mb-4">
+        <div className="mb-3">
           <TestimonialFilters
             search={search}
             facets={facets}
@@ -121,7 +121,7 @@ function TestimonialsPage() {
         </div>
 
         {/* Format shortcuts - the quickest way to jump to videos or notes. */}
-        <div className="mb-4 flex flex-wrap items-center gap-2">
+        <div className="mb-3 flex flex-wrap items-center gap-2">
           <span className="mono-label mr-1 text-ink-faint">Jump to</span>
           {FORMAT_ORDER.filter((f) => (facets.format[f] ?? 0) > 0).map((f) => {
             const on = search.format === f;
@@ -131,7 +131,7 @@ function TestimonialsPage() {
                 type="button"
                 onClick={() => update({ format: on ? "all" : f })}
                 aria-pressed={on}
-                className={`rounded-full border px-3 py-1 text-[0.78rem] font-semibold transition-colors ${
+                className={`rounded-full border px-2.5 py-0.5 text-[0.75rem] font-semibold transition-colors ${
                   on
                     ? "border-crimson bg-crimson text-paper"
                     : "border-line bg-paper text-ink-soft hover:border-gold"

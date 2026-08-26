@@ -19,7 +19,7 @@ type Facets = {
 const TRACK_ORDER = Object.keys(TRACKS) as TrackKey[];
 
 const fieldCls =
-  "w-full appearance-none rounded-xl border border-line bg-paper px-3 py-2.5 pr-8 text-[0.86rem] font-semibold text-ink outline-none transition-colors focus-visible:border-gold";
+  "w-full appearance-none rounded-xl border border-line bg-paper px-3 py-2 pr-8 text-[0.84rem] font-semibold text-ink outline-none transition-colors focus-visible:border-gold";
 
 function Field({
   icon,
@@ -32,7 +32,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mono-label mb-1.5 flex items-center gap-1.5 text-ink-faint">
+      <span className="mono-label mb-1 flex items-center gap-1.5 text-ink-faint">
         <span aria-hidden className="text-gold">
           {icon}
         </span>
@@ -73,8 +73,8 @@ export function TestimonialFilters({
   const showFooter = chips.length > 0 || !isDefaultTestimonialSearch(search);
 
   return (
-    <div className="rounded-2xl border border-line bg-paper p-3.5 shadow-soft sm:p-4">
-      <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="rounded-2xl border border-line bg-paper p-3 shadow-soft sm:p-3.5">
+      <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
         <Field icon={<Layers className="h-3.5 w-3.5" />} label="Interest">
           <select
             className={fieldCls}
@@ -131,13 +131,13 @@ export function TestimonialFilters({
             value={search.q}
             onChange={(e) => onChange({ q: e.target.value })}
             placeholder="Name, word, programme"
-            className="w-full rounded-xl border border-line bg-paper px-3 py-2.5 text-[0.86rem] text-ink outline-none transition-colors placeholder:text-ink-faint focus-visible:border-gold"
+            className="w-full rounded-xl border border-line bg-paper px-3 py-2 text-[0.84rem] text-ink outline-none transition-colors placeholder:text-ink-faint focus-visible:border-gold"
           />
         </Field>
       </div>
 
       {showFooter ? (
-        <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-line pt-2.5">
+        <div className="mt-2.5 flex flex-wrap items-center gap-2 border-t border-line pt-2">
           {chips.map((c) => (
             <button
               key={c.label}
