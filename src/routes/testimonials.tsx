@@ -98,7 +98,7 @@ function TestimonialsPage() {
             <div>
               <span className="mono-label mb-2 inline-flex items-center gap-2 text-crimson">
                 <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
-                {TESTIMONIAL_TOTAL} testimonials · students & parents
+                TESTIMONIALS · STUDENTS & PARENTS
               </span>
               <h1 className="font-serif text-[clamp(1.8rem,4.4vw,2.7rem)] leading-[1.1] font-medium tracking-tight">
                 What families say <em className="text-crimson-deep">afterwards</em>
