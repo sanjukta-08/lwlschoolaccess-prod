@@ -56,29 +56,84 @@ function CalendarPage() {
 
   return (
     <div className="min-h-screen bg-wash">
-      <div className="border-b border-line bg-paper">
-        <SiteHeader />
-        <section className="mx-auto max-w-[1000px] px-5 pt-4 pb-8 text-center">
-          <h1 className="font-serif text-[clamp(1.7rem,4.4vw,2.5rem)] leading-[1.12] font-medium">
-            The <em className="text-crimson-deep">full calendar</em> - July 2026 to April
-            2027
-          </h1>
-          <p className="mx-auto mt-2.5 max-w-[42em] text-[0.92rem] text-ink-soft">
-            Every cohort in one view. Pick a category so you&apos;re not scrolling all of
-            them, search by keyword, and tap any row for full details. Times shown in
-            Dubai time (GMT+4) with US Eastern alongside.
-          </p>
-          <div className="mt-4">
-            <Link
-              to="/calendar-month"
-              search={DEFAULT_SEARCH}
-              className="inline-block rounded-full border-[1.5px] border-line bg-paper px-4 py-2 text-[0.82rem] font-semibold text-ink-soft no-underline hover:border-ink-soft hover:text-ink"
-            >
-              Switch to month grid view
-            </Link>
-          </div>
-        </section>
+      <div className="relative isolate overflow-hidden">
+        {/* layered background wash, matching the finder hero */}
+        <div className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,#fbfcfe_0%,#f7f2e8_60%,var(--wash)_100%)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(900px_520px_at_88%_20%,rgba(185,138,31,0.14),transparent_60%),radial-gradient(700px_420px_at_12%_10%,rgba(163,29,51,0.08),transparent_55%)]" />
+        <div
+          className="pointer-events-none absolute inset-0 -z-10 opacity-[0.35]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, rgba(185,138,31,0.18) 1px, transparent 0)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+        <div className="pointer-events-none absolute top-1/2 right-0 -z-10 hidden w-[min(420px,32vw)] -translate-y-1/2 opacity-[0.42] sm:block lg:w-[min(480px,30vw)]">
+          <img
+            src={birdAsset.url}
+            alt=""
+            aria-hidden="true"
+            className="h-auto w-full object-contain object-right [mask-image:linear-gradient(to_left,black_55%,transparent_95%)]"
+          />
+        </div>
+        <div className="pointer-events-none absolute top-[-10%] left-[-5%] -z-10 h-[60%] w-[45%] rounded-full bg-[radial-gradient(circle,rgba(185,138,31,0.10),transparent_70%)] blur-3xl" />
+
+        <div className="relative">
+          <SiteHeader />
+          <section className="mx-auto flex w-full max-w-[1100px] flex-col gap-4 px-5 pt-8 pb-10">
+            <div>
+              <span className="mono-label mb-2 inline-flex items-center gap-2 text-crimson">
+                <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
+                {TOTAL_COHORTS} cohorts · July 2026 - April 2027
+              </span>
+              <h1 className="font-serif text-[clamp(1.8rem,4.4vw,2.7rem)] leading-[1.1] font-medium tracking-tight">
+                Every <em className="text-crimson-deep">start date</em>, in one calendar
+              </h1>
+              <p className="mt-2.5 max-w-[54em] text-[0.94rem] text-ink-soft">
+                Filter by subject, format or month, then tap any row to open the programme
+                page. Session times are shown in Dubai time (GMT+4) with US Eastern
+                alongside.
+              </p>
+            </div>
+
+            <ul className="flex flex-wrap gap-2">
+              {[
+                [`${PROGRAMMES.length} programmes`, `${TOTAL_COHORTS} cohorts`],
+                ["Live on Zoom", "Dubai + US Eastern"],
+                [`Grades ${GRADE_LO}–${GRADE_HI}`, "Harvard & Yale student mentors"],
+              ].map(([top, sub]) => (
+                <li
+                  key={top}
+                  className="rounded-full border border-line bg-paper/90 px-3.5 py-1.5 shadow-soft backdrop-blur-sm"
+                >
+                  <b className="flex items-center gap-1.5 text-[0.78rem] font-bold text-ink">
+                    {top === "Live on Zoom" ? <ZoomBadge label="Live on Zoom" /> : top}
+                  </b>
+                  <small className="mono-label block text-ink-faint">{sub}</small>
+                </li>
+              ))}
+            </ul>
+
+            <div className="flex flex-wrap items-center gap-2">
+              <Link
+                to="/calendar-month"
+                search={DEFAULT_SEARCH}
+                className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-[0.82rem] font-semibold text-paper no-underline hover:brightness-110"
+              >
+                Month grid view
+              </Link>
+              <Link
+                to="/finder"
+                search={DEFAULT_SEARCH}
+                className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-line bg-paper px-4 py-2 text-[0.82rem] font-semibold text-ink-soft no-underline hover:border-ink-soft hover:text-ink"
+              >
+                Open the programme finder
+              </Link>
+            </div>
+          </section>
+        </div>
       </div>
+
 
       <CalendarControls
         state={state}
