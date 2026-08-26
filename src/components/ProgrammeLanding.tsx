@@ -182,9 +182,9 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Skills your child will <em className="text-crimson-deep italic">gain</em>
         </h2>
-        <p className="mx-auto mt-2 max-w-[40em] text-center text-[0.92rem] text-ink-soft">
-          Named, practised skills - grouped the way universities read them, and each one
-          tied to how it is used in this {kind.toLowerCase()}.
+        <p className="mx-auto mt-2 max-w-none text-center text-[0.92rem] text-ink-soft lg:whitespace-nowrap">
+          Named, practised skills - grouped the way universities read them, tied to how
+          each is used in this {kind.toLowerCase()}.
         </p>
         <SkillMatrix programme={p} color={track.color} />
       </section>
