@@ -314,12 +314,10 @@ function HomePage() {
 
       <HowItWorks />
 
-      <section className="px-5 py-14">
-        <div className="mx-auto max-w-[1200px]">
-          <Suspense fallback={<div className="h-[420px]" />}>
-            <HandwrittenNotes />
-          </Suspense>
-        </div>
+      <section className="py-14">
+        <Suspense fallback={<div className="h-[420px]" />}>
+          <HandwrittenNotes />
+        </Suspense>
       </section>
 
       <section className="bg-wash px-5 py-11">
