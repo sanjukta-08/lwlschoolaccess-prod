@@ -135,23 +135,6 @@ export default function StoryStrip() {
         </div>
       ) : null}
 
-      <div className="mt-12 flex justify-center">
-        <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 rounded-2xl border border-gold/35 bg-gold/8 px-6 py-4">
-          <span aria-hidden className="text-gold">
-            ✦
-          </span>
-          <span className="text-[0.9rem] text-ink-soft">
-            Want your child to be here next?
-          </span>
-          <Link
-            to="/finder"
-            search={DEFAULT_SEARCH}
-            className="text-[0.9rem] font-bold text-crimson no-underline hover:underline"
-          >
-            Explore programmes for grades 5-12 →
-          </Link>
-        </div>
-      </div>
     </>
   );
 }

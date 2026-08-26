@@ -352,12 +352,6 @@ function HomePage() {
 
       <HowItWorks />
 
-      <section className="py-14">
-        <Suspense fallback={<div className="h-[420px]" />}>
-          <HandwrittenNotes />
-        </Suspense>
-      </section>
-
       <section className="bg-wash px-5 py-11 sm:px-10">
         <div className="mx-auto max-w-[1280px]">
           <Suspense fallback={<div className="h-[360px]" />}>
@@ -366,6 +360,30 @@ function HomePage() {
         </div>
       </section>
 
+      <section className="py-14">
+        <Suspense fallback={<div className="h-[420px]" />}>
+          <HandwrittenNotes />
+        </Suspense>
+      </section>
+
+
+      <section className="px-5">
+        <div className="mx-auto flex max-w-[1100px] flex-wrap items-center justify-center gap-x-5 gap-y-2 rounded-2xl border border-gold/35 bg-gold/8 px-6 py-4">
+          <span aria-hidden className="text-gold">
+            ✦
+          </span>
+          <span className="text-[0.9rem] text-ink-soft">
+            Want your child to be here next?
+          </span>
+          <Link
+            to="/finder"
+            search={DEFAULT_SEARCH}
+            className="text-[0.9rem] font-bold text-crimson no-underline hover:underline"
+          >
+            Explore programmes for grades 5-12 →
+          </Link>
+        </div>
+      </section>
 
       <section className="px-5 py-14">
         <div className="mx-auto flex max-w-[1100px] flex-wrap items-center justify-between gap-5 rounded-[22px] border border-line bg-gradient-to-br from-wash-deep to-paper px-8 py-7">
