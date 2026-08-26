@@ -88,7 +88,9 @@ export function ProgrammeCard({
         {logo ? (
           <div
             className={`hidden md:flex md:flex-none md:items-center md:justify-center ${
-              p.tracks[0] === "law" ? "md:w-[13rem]" : "md:w-[7rem]"
+              p.tracks.includes("law") || p.tracks.includes("deb")
+                ? "md:w-[13rem]"
+                : "md:w-[7rem]"
             }`}
           >
             <img
@@ -96,7 +98,7 @@ export function ProgrammeCard({
               alt={logo.alt}
               loading="lazy"
               className={`w-auto object-contain ${
-                p.tracks[0] === "law"
+                p.tracks.includes("law") || p.tracks.includes("deb")
                   ? "max-h-14 max-w-[12.5rem]"
                   : "max-h-11 max-w-[6.75rem]"
               }`}
