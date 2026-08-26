@@ -2,8 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { DEFAULT_FIT } from "@/lib/fit";
 import { REACH } from "@/lib/social-proof";
-import logoAsset from "@/assets/lwl-logo.png.asset.json";
-import { WingMark } from "@/components/WingMark";
+import footerLogo from "@/assets/lwl_white.png.asset.json";
 
 const colCls = "flex flex-col gap-2 text-[0.82rem] text-paper/70";
 const linkCls = "no-underline text-paper/70 transition-colors hover:text-paper";
@@ -14,17 +13,14 @@ export function SiteFooter({ note }: { note?: string }) {
       <div className="mx-auto max-w-[1100px]">
         <div className="grid gap-10 md:grid-cols-[1.2fr_repeat(4,1fr)]">
           <div>
-            <div className="flex items-center gap-3">
-              <img
-                src={logoAsset.url}
-                alt="Learn With Leaders"
-                width={160}
-                height={80}
-                loading="lazy"
-                className="h-9 w-auto brightness-0 invert"
-              />
-              <WingMark size={18} tone="gold" />
-            </div>
+            <img
+              src={footerLogo.url}
+              alt="Learn With Leaders"
+              width={120}
+              height={60}
+              loading="lazy"
+              className="h-10 w-auto"
+            />
             <p className="mt-4 max-w-[24em] text-[0.82rem] text-paper/60">
               Live programmes mentored by students and alumni of the world's most
               selective universities. Families in {REACH.countries} countries and{" "}
