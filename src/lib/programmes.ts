@@ -427,9 +427,9 @@ export const PROGRAMMES: Programme[] = [
     site: "https://joinonwards.com/6-weeks",
     apply: "https://joinonwards.com/6-weeks/apply",
     cohorts: [
-      { d: "2026-09-20" },
-      { d: "2026-12-13", fee: { e: "€299", r: "€349" } },
-      { d: "2027-03-14" },
+      { d: "2026-09-20", label: "Batch 1" },
+      { d: "2026-12-13", label: "Batch 2", fee: { e: "€299", r: "€349" } },
+      { d: "2027-03-14", label: "Batch 3" },
     ],
   },
   {
