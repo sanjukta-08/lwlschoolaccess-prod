@@ -247,7 +247,8 @@ function StoryLightbox({
           {story.image ? (
             <img
               src={story.image}
-              alt={story.imageAlt ?? `LinkedIn post by ${story.name}`}
+              alt={story.imageAlt ?? `${SOURCE_LABEL[story.source]} post by ${story.name}`}
+
               className="w-full rounded-xl border border-line"
             />
           ) : null}
