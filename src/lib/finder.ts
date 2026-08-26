@@ -313,7 +313,7 @@ export function groupProgrammesByType(entries: Entry[]): TypeGroup[] {
 /** Programme counts for one facet, holding every other filter steady. */
 export function facetCounts(
   state: FinderSearch,
-  facet: "type" | "interest" | "region" | "duration" | "mentor",
+  facet: "type" | "interest" | "region" | "duration",
   values: string[],
 ): Record<string, number> {
   const out: Record<string, number> = {};
