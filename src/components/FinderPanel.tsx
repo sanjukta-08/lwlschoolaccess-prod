@@ -1,8 +1,10 @@
 import { TRACKS, TYPES, type TrackKey } from "@/lib/programmes";
 import { ALL_TRACKS_ICON, TrackIcon } from "@/lib/track-icons";
 import {
+  durationOptions,
   gradeOptions,
   isDefaultSearch,
+  mentorOptions,
   monthOptions,
   typeCounts,
   type FinderSearch,
@@ -13,7 +15,9 @@ import { DEFAULT_FIT } from "@/lib/fit";
 import { Link } from "@tanstack/react-router";
 import {
   CalendarDays,
+  Clock,
   Compass,
+  Landmark,
   Globe,
   GraduationCap,
   Search,
