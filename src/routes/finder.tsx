@@ -233,29 +233,15 @@ function FinderPage() {
       </div>
 
       <div className="mx-auto max-w-[1400px] px-4 pb-14">
-        <div className="grid items-start gap-5 lg:grid-cols-[280px_1fr]">
-          <aside className="hidden lg:block">
-            <div className="sticky top-6">{filters}</div>
+        <div className="mb-6">{filters}</div>
+
+        <div className="grid items-start gap-6 lg:grid-cols-[300px_1fr]">
+          <aside className="min-w-0 space-y-5 lg:sticky lg:top-6">
+            <TrendingTop5 state={state} variant="rail" />
+            <SavedStrip />
           </aside>
 
-          <div className="lg:hidden">
-            <Sheet>
-              <SheetTrigger className="flex w-full items-center justify-between rounded-full border border-line bg-paper px-5 py-3 text-[0.86rem] font-bold shadow-soft">
-                <span>Filter programmes</span>
-                <span className="font-mono text-[0.78rem] text-crimson">
-                  {matches.length} options
-                </span>
-              </SheetTrigger>
-              <SheetContent side="left" className="w-[min(340px,90vw)] overflow-y-auto p-4">
-                {filters}
-              </SheetContent>
-            </Sheet>
-          </div>
-
           <main className="min-w-0 space-y-8">
-            <TrendingTop5 state={state} variant="strip" />
-            <SavedStrip />
-
             <section id="all-programmes" className="scroll-mt-6">
               <div className="mb-4 flex flex-wrap items-end justify-between gap-x-6 gap-y-3 border-b border-line pb-4">
                 <div className="min-w-0">
