@@ -408,7 +408,11 @@ export const PROGRAMMES: Programme[] = [
     site: "https://www.learnwithleaders.com/competitions/the-yale-international-relations-essay-competition/",
     apply: "https://docs.google.com/forms/d/e/1FAIpQLSeD2WQ-nxDS4Ux_EXZPKhlSwjE4TfiL1Mjti28BsoWAZ8D5Tg/viewform",
     cohorts: [
-      { d: "2027-01-09" },
+      {
+        d: "2027-01-09",
+        flyer: dl("1H4ZOEedjiEEqfQbwjmKTXCnV7fl3AEnm"),
+        brochure: dl("1sHezq7IpMAHJkLVdT-W4uJ97oZfCuwBH"),
+      },
     ],
   },
   {
