@@ -32,7 +32,9 @@ const monthOf = (iso: string) =>
   parseISO(iso).toLocaleDateString("en-GB", { month: "long" });
 
 export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
-  const track = TRACKS[p.tracks[0]!];
+  const trackMeta = TRACKS[p.tracks[0]!];
+  /** Programme pages follow the brand palette (crimson + gold), not track colours. */
+  const track = { ...trackMeta, color: "var(--crimson)" };
   const d = detailFor(p);
   const kind = TYPE_NAME[p.type];
   const cohorts = p.cohorts.filter((c) => !isPast(c.d));
