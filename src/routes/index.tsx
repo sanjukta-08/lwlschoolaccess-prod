@@ -316,7 +316,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="px-5 pb-11">
+      <section className="px-5 py-14">
         <div className="mx-auto flex max-w-[1100px] flex-wrap items-center justify-between gap-5 rounded-[22px] border border-line bg-gradient-to-br from-wash-deep to-paper px-8 py-7">
           <div>
             <h3 className="font-serif text-[clamp(1.25rem,3vw,1.6rem)] font-semibold">
