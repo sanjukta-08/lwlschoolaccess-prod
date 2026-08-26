@@ -78,7 +78,8 @@ export default function StoryStrip() {
           What learners said about{" "}
           <em className="text-crimson-deep">each programme</em>
         </h2>
-        <div className="mt-1 flex flex-wrap items-center justify-between gap-4">
+        <div className="mt-1 flex flex-wrap items-start justify-between gap-4">
+
           <p className="max-w-[64em] text-[0.92rem] leading-relaxed text-ink-soft">
             Unedited answers from end-of-programme feedback forms, labelled with the
             cohort they came from. Tap any card to read the full note.
@@ -102,7 +103,8 @@ export default function StoryStrip() {
           <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium leading-none">
             Hear it from the <em className="text-crimson-deep">students</em>
           </h2>
-          <div className="mt-1 flex flex-wrap items-center justify-between gap-4">
+          <div className="mt-1 flex flex-wrap items-start justify-between gap-4">
+
             <p className="max-w-[64em] text-[0.92rem] leading-relaxed text-ink-soft">
               One-minute clips recorded at the end of a cohort, unscripted.
             </p>
