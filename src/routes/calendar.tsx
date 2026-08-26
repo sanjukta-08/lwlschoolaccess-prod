@@ -19,6 +19,10 @@ import {
 } from "@/lib/finder";
 import { SiteFooter } from "@/components/SiteFooter";
 
+const GRADE_LO = Math.min(...PROGRAMMES.map((p) => p.g[0]));
+const GRADE_HI = Math.max(...PROGRAMMES.map((p) => p.g[1]));
+const TOTAL_COHORTS = PROGRAMMES.reduce((n, p) => n + p.cohorts.length, 0);
+
 const TITLE = "Full Calendar 2026–27 | Learn with Leaders";
 const DESC =
   "Every Learn with Leaders online programme from July 2026 to April 2027 in one calendar. Filter by interest, type and month, with Dubai and US Eastern session times.";
