@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { SectionHeading } from "@/components/SectionHeading";
 
-import faris from "@/assets/note-faris.jpg.asset.json";
-import retaj from "@/assets/note-retaj.jpg.asset.json";
-import fatima from "@/assets/note-fatima.jpg.asset.json";
-import marya from "@/assets/note-marya.jpg.asset.json";
-import maria from "@/assets/note-maria.jpg.asset.json";
-import prof from "@/assets/note-prof.jpg.asset.json";
-import hoor from "@/assets/note-hoor.jpg.asset.json";
-import luqman from "@/assets/note-luqman.jpg.asset.json";
+import faris from "@/assets/note-faris.webp.asset.json";
+import retaj from "@/assets/note-retaj.webp.asset.json";
+import fatima from "@/assets/note-fatima.webp.asset.json";
+import marya from "@/assets/note-marya.webp.asset.json";
+import maria from "@/assets/note-maria.webp.asset.json";
+import prof from "@/assets/note-prof.webp.asset.json";
+import hoor from "@/assets/note-hoor.webp.asset.json";
+import luqman from "@/assets/note-luqman.webp.asset.json";
 
 type Note = {
   src: string;

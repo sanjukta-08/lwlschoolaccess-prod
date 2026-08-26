@@ -1,7 +1,7 @@
-import fd from "@/assets/logo-future-doctors.asset.json";
-import finlit from "@/assets/logo-finlit.asset.json";
-import luther from "@/assets/logo-sir-luther.asset.json";
-import onward from "@/assets/logo-onward.asset.json";
+import fd from "@/assets/logo-future-doctors.webp.asset.json";
+import finlit from "@/assets/logo-finlit.webp.asset.json";
+import luther from "@/assets/logo-sir-luther.webp.asset.json";
+import onward from "@/assets/logo-onward.webp.asset.json";
 
 export const PROGRAMME_LOGOS: Record<string, { src: string; alt: string }> = {
   fdf: { src: fd.url, alt: "Future Doctors" },
