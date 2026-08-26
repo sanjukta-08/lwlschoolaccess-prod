@@ -1,6 +1,6 @@
 // Calendar export helpers: build .ics files and Google Calendar links so a
 // family can put a cohort start (and a decide-by reminder) in their own calendar.
-import { dualTime, feeOf, parseISO, type Cohort, type Programme } from "./programmes";
+import { dualTime, feeOf, timeOf, parseISO, type Cohort, type Programme } from "./programmes";
 import { slugOf } from "./programme-slug";
 import { DECIDE_LEAD_DAYS, decideByISO } from "./shortlist";
 
@@ -39,7 +39,7 @@ export function eventDescription(p: Programme, c: Cohort): string {
   return [
     p.tag,
     "",
-    `Live sessions: ${dualTime(p.time)}`,
+    `Live sessions: ${dualTime(timeOf(p, c))}`,
     `Duration: ${p.dur}`,
     `Fee: ${fee.e}${fee.r && fee.r !== fee.e ? ` (early bird, list ${fee.r})` : ""}`,
     "",

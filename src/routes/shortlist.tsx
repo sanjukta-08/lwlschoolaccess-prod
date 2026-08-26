@@ -11,6 +11,7 @@ import {
   cohortGrades,
   dualTime,
   feeOf,
+  timeOf,
   fmtLong,
   PROGRAMMES,
 } from "@/lib/programmes";
@@ -164,7 +165,7 @@ function ShortlistPage() {
                         </Link>
                       </h2>
                       <p className="mt-1 text-[0.82rem] text-ink-soft">
-                        Grades {lo}–{hi} · {p.dur} · {dualTime(p.time)}
+                        Grades {lo}–{hi} · {p.dur} · {dualTime(timeOf(p, c))}
                       </p>
                       <p className="mt-2 flex flex-wrap items-center gap-2 text-[0.78rem]">
                         <span className="rounded-lg bg-wash px-2 py-1 font-mono text-ink-soft">

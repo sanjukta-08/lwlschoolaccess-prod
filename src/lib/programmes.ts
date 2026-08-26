@@ -18,6 +18,14 @@ export type Cohort = {
   d: string;
   g?: [number, number];
   fee?: Fee;
+  /** Batch / cohort label as published in the master calendar. */
+  label?: string;
+  /** Session timing for this cohort when it differs from the programme default. */
+  time?: string;
+  /** Eligibility line for this cohort when it differs from the programme default. */
+  elig?: string;
+  flyer?: string;
+  brochure?: string;
 };
 
 export type Programme = {
@@ -100,6 +108,9 @@ export const TYPE_NAME: Record<TypeKey, string> = {
   comp: "Competition",
 };
 
+/** Drive flyer/brochure link from the master calendar's file id. */
+const dl = (id: string) => `https://drive.google.com/file/d/${id}/view?usp=sharing`;
+
 export const PROGRAMMES: Programme[] = [
   {
     id: "fdf",
@@ -118,9 +129,25 @@ export const PROGRAMMES: Programme[] = [
     site: "https://futuredoctorsprogram.com/fellowship",
     apply: "https://futuredoctorsprogram.com/fellowship/apply",
     cohorts: [
-      { d: "2026-09-12" },
-      { d: "2026-11-14" },
-      { d: "2027-02-27" },
+      {
+        d: "2026-09-12",
+        label: "Batch 1",
+        elig: "Grades 8-12 (ages 13-18)",
+        flyer: dl("1t-JehpudAZSB6pcKdD22ZPPS0he1GlM3"),
+        brochure: dl("1uB9dsbH2gC_4GYFOvul5q1tMKG0Zaq3X"),
+      },
+      {
+        d: "2026-11-14",
+        label: "Batch 2",
+        flyer: dl("1KIaJhp-JBbT5RE8v2tkNDjeab2DJpQgk"),
+        brochure: dl("1DbrGXmsxN3FfdaVHjpv-hFP36p7ihkXh"),
+      },
+      {
+        d: "2027-02-27",
+        label: "Batch 3",
+        flyer: dl("1ComGBHt5vVnht1tlDeiARj6iGmm9zD7H"),
+        brochure: dl("15KwR4og8GcYt1u9jH8l_eL8a3rM-uWh4"),
+      },
     ],
   },
   {
@@ -139,9 +166,24 @@ export const PROGRAMMES: Programme[] = [
     site: "https://futuredoctorsprogram.com/junior-doctors",
     apply: "https://futuredoctorsprogram.com/junior-doctors/apply",
     cohorts: [
-      { d: "2026-10-03" },
-      { d: "2026-12-19" },
-      { d: "2027-03-20" },
+      {
+        d: "2026-10-03",
+        label: "Batch 1",
+        flyer: dl("1StgUWWJSEe4Zr11urxVQ04z5XIbP845P"),
+        brochure: dl("1bmQ8zNH-kAi6FSKau3IbfuWgX9ddqJnv"),
+      },
+      {
+        d: "2026-12-19",
+        label: "Batch 2",
+        flyer: dl("1XP4VAAfwTTMzepDBlpGnDtVjRyq1R15L"),
+        brochure: dl("1MG-LMoOK4c2i26hU576QxAZe9XHv8SQ8"),
+      },
+      {
+        d: "2027-03-20",
+        label: "Batch 3",
+        flyer: dl("1_qpcxC0gKPyuGm7OkU5q1we5aAqfRTli"),
+        brochure: dl("1e5lAo3L1DyZOLORV-YcP7hO2_TS4vaBH"),
+      },
     ],
   },
   {
@@ -160,9 +202,24 @@ export const PROGRAMMES: Programme[] = [
     site: "https://futurelawyersprogram.com",
     apply: "https://futurelawyersprogram.com/apply",
     cohorts: [
-      { d: "2026-08-29" },
-      { d: "2026-10-31" },
-      { d: "2027-03-06" },
+      {
+        d: "2026-08-29",
+        label: "Cohort 1",
+        flyer: dl("1mY3l7dwXzSi8ImeKV21i12Ig7Sk0kvgk"),
+        brochure: dl("1ZfUK01VRlYgheVbDdLbdPpaiQ2XyedJk"),
+      },
+      {
+        d: "2026-10-31",
+        label: "Batch 2",
+        flyer: dl("19zvBO5s_FW9FNUg86MWex3ShwFP90hRH"),
+        brochure: dl("1QyKgZ2L_N6t_D6y_IYCs5ZOo_dVosJd1"),
+      },
+      {
+        d: "2027-03-06",
+        label: "Batch 3",
+        flyer: dl("1iNq34ObsKhwdmAd48lPbF95zu74ckIv0"),
+        brochure: dl("1XShV92j4A0QiAJtgK9eO_GJ8PN5mMLk1"),
+      },
     ],
   },
   {
@@ -181,9 +238,24 @@ export const PROGRAMMES: Programme[] = [
     site: "https://joinonwards.com/young-debaters",
     apply: "https://joinonwards.com/young-debaters/apply",
     cohorts: [
-      { d: "2026-09-26" },
-      { d: "2026-12-12" },
-      { d: "2027-04-24" },
+      {
+        d: "2026-09-26",
+        label: "Batch 1",
+        flyer: dl("1J4nUeIDZi8JqBSONNwAhAEiBsYPrSmqQ"),
+        brochure: dl("1KjATth8QGQ_5-WMoK76lyNjtczC4uuUY"),
+      },
+      {
+        d: "2026-12-12",
+        label: "Batch 2",
+        flyer: dl("1yPS_Bg29Ev7mIvGpCgQyRACYGWuzqFBG"),
+        brochure: dl("1oP5weZqeaql_oXPHQHk1knZHyMci9atx"),
+      },
+      {
+        d: "2027-04-24",
+        label: "Batch 3",
+        flyer: dl("19rLla_0FZqY8nXH1gX7fESFzzoRngDvC"),
+        brochure: dl("11ZCTp_z05CFL5yY883rlQBrPXG6mTyCT"),
+      },
     ],
   },
   {
@@ -202,8 +274,19 @@ export const PROGRAMMES: Programme[] = [
     site: "https://joinonwards.com/communication-leadership",
     apply: "https://joinonwards.com/communication-leadership/apply",
     cohorts: [
-      { d: "2026-10-24" },
-      { d: "2027-01-30" },
+      {
+        d: "2026-10-24",
+        label: "Batch 1",
+        elig: "Grades 6-8 and Grades 9-12 (two parallel tracks)",
+        flyer: dl("1wCa1ifzZFPJhDzIbvnnL8y5X622t6S2S"),
+        brochure: dl("1qwl4xgYVJKvb3HjWAiICB1srJMxY3yLw"),
+      },
+      {
+        d: "2027-01-30",
+        label: "Batch 2",
+        flyer: dl("1ldzpF8sK-_KqQ3j8Q6a6K8gKMiqxeoIq"),
+        brochure: dl("1hRKkw6n8dYl-JDe44Lg74uMg0pzKX6yI"),
+      },
     ],
   },
   {
@@ -222,9 +305,24 @@ export const PROGRAMMES: Programme[] = [
     site: "https://joinfinlit.com/fellowship",
     apply: "https://joinfinlit.com/apply",
     cohorts: [
-      { d: "2026-08-29" },
-      { d: "2026-11-07" },
-      { d: "2027-02-13" },
+      {
+        d: "2026-08-29",
+        label: "Cohort 1",
+        flyer: dl("1afTh_45BIRgMjN2g9QY8CB9pKLZQwrvq"),
+        brochure: dl("1IpH5Z2Ois0BZxgtWZ5osyc-8sdtXYXR7"),
+      },
+      {
+        d: "2026-11-07",
+        label: "Batch 2",
+        flyer: dl("1sc7mERnUpuxX6zbLdTRdbvQdLQkRbvtH"),
+        brochure: dl("1wE8bubwezKlvD0URT6iUWCdjpPVI2jGg"),
+      },
+      {
+        d: "2027-02-13",
+        label: "Batch 3",
+        flyer: dl("1Q33FD_CbaVEiAEBy-QHWcb_h64Ubw4Ub"),
+        brochure: dl("1TOtM7O28mOWDvzq1z6-QotI6EOcsu8gF"),
+      },
     ],
   },
   {
@@ -243,9 +341,24 @@ export const PROGRAMMES: Programme[] = [
     site: "https://joinfinlit.com/competition",
     apply: "https://joinfinlit.com/competition/apply",
     cohorts: [
-      { d: "2026-07-25" },
-      { d: "2026-10-24" },
-      { d: "2027-02-27" },
+      {
+        d: "2026-07-25",
+        label: "Cohort 1",
+        flyer: dl("1j1nvJcbnz76wmh2K6pFApcYlngMDQCSr"),
+        brochure: dl("1Gf70wU8NMM1IsgC3YMWtzPczajFijGE2"),
+      },
+      {
+        d: "2026-10-24",
+        label: "Batch 2",
+        flyer: dl("1JLSFJ7ZujDxNVNP2es3r8SKIVj4wywN9"),
+        brochure: dl("1HADn1hPON7U8GrojGBWKhTazQHqgqfN5"),
+      },
+      {
+        d: "2027-02-27",
+        label: "Batch 3",
+        flyer: dl("1S2qQe1kfNNGY3Ya8Cfu0VC11ee_3C0V2"),
+        brochure: dl("1hO3dxd0reG1LSX8lta6FHCeZd8eHLUk_"),
+      },
     ],
   },
   {
@@ -264,8 +377,24 @@ export const PROGRAMMES: Programme[] = [
     site: "https://joinonwards.com/aischool",
     apply: "https://joinonwards.com/aischool/apply",
     cohorts: [
-      { d: "2026-10-17" },
-      { d: "2027-02-20" },
+      {
+        d: "2026-07-18",
+        label: "Cohort 1",
+        flyer: dl("1-F0SPVWuHh_0OolvWWn06C_j6dEkseo9"),
+        brochure: dl("1H-qADSnMPJpmEzuXFEwOtkJi5cO24qwn"),
+      },
+      {
+        d: "2026-10-17",
+        label: "Batch 2",
+        flyer: dl("1JUUTJNcV9A4FGXpymH9PkiOXGUjG2D2a"),
+        brochure: dl("1p4LXadLYO8BPmQ21NB0_hE-n28pEspqF"),
+      },
+      {
+        d: "2027-02-20",
+        label: "Batch 3",
+        flyer: dl("1dChHD4b0UdurvTsJyOI0QnuVSoOxOC9R"),
+        brochure: dl("1-FAz8Iip4n0krxotaGeOFtfKdw976JV_"),
+      },
     ],
   },
   {
@@ -284,8 +413,18 @@ export const PROGRAMMES: Programme[] = [
     site: "https://joinonwards.com/young-entrepreneurs",
     apply: "https://joinonwards.com/young-entrepreneurs/apply",
     cohorts: [
-      { d: "2026-09-12" },
-      { d: "2027-01-30" },
+      {
+        d: "2026-09-12",
+        label: "Batch 1",
+        flyer: dl("1mtwlpMAW6ylE77ViMOV7RZHKxyV68QTh"),
+        brochure: dl("1OvHsT5KTVGI20_RZmPJ65P8u1wos53WI"),
+      },
+      {
+        d: "2027-01-30",
+        label: "Batch 2",
+        flyer: dl("1DhZV3gjyuw-NytjtgNOV6YNX4aBos2cI"),
+        brochure: dl("1xMoWHhAH70bdsd48BMYpYLBI2ehDuV_5"),
+      },
     ],
   },
   {
@@ -304,7 +443,12 @@ export const PROGRAMMES: Programme[] = [
     site: "https://joinonwards.com/young-entrepreneurs",
     apply: "https://joinonwards.com/young-entrepreneurs/apply",
     cohorts: [
-      { d: "2027-04-17" },
+      {
+        d: "2027-04-17",
+        label: "Batch 3",
+        flyer: dl("1cG56EPzvxnrqY8vc_VVmLbqCq61sCQec"),
+        brochure: dl("1aUabOLzRF643Gf-0jIIL-i6rqyWscs_J"),
+      },
     ],
   },
   {
@@ -324,9 +468,25 @@ export const PROGRAMMES: Programme[] = [
     site: "https://sirluthercenter.com/fellowship",
     apply: "https://sirluthercenter.com/fellowship/apply",
     cohorts: [
-      { d: "2026-08-23" },
-      { d: "2026-11-15" },
-      { d: "2027-03-21" },
+      {
+        d: "2026-08-23",
+        label: "Cohort 1",
+        flyer: dl("1ECjhcsYwTyg2CyLBV0x8TeRD4ciMGvFl"),
+        brochure: dl("1rpWAQqS7vmW8fmt7FTmjyc0onHayuve9"),
+      },
+      {
+        d: "2026-11-15",
+        label: "Batch 2",
+        time: "Sundays, 9:00 AM ET",
+        flyer: dl("17tYrq2e5SPDvSsqaz98XSVS5Vg0qN4LW"),
+        brochure: dl("1k2OMfGhavmP5gceGx6I50Ol53HqXzTPO"),
+      },
+      {
+        d: "2027-03-21",
+        label: "Batch 3",
+        flyer: dl("1i67SlI4kUBY43gDjs3myCIwQefZXGLAB"),
+        brochure: dl("1E1deCrvPWezNJxtHaN9u8OQ_lfqGv4Ka"),
+      },
     ],
   },
   {
@@ -345,9 +505,25 @@ export const PROGRAMMES: Programme[] = [
     site: "https://sirluthercenter.com/young-researchers",
     apply: "https://sirluthercenter.com/young-researchers/apply",
     cohorts: [
-      { d: "2026-10-10" },
-      { d: "2027-01-16" },
-      { d: "2027-04-10" },
+      {
+        d: "2026-10-10",
+        label: "Batch 1",
+        flyer: dl("1Fu93frAm2wqWLRSdv1VogLtBs5NfAJN7"),
+        brochure: dl("1qE0ilcIFqwOVFGuW8qDuSjT1wFcPyI4R"),
+      },
+      {
+        d: "2027-01-16",
+        label: "Batch 2",
+        time: "Saturdays, 10:00–11:30 AM ET",
+        flyer: dl("1RToJRwOoStsemHBGMqRAha5WaJPYGg-b"),
+        brochure: dl("1tok5DO21l5kseijt9OZswrao6smlAR6-"),
+      },
+      {
+        d: "2027-04-10",
+        label: "Batch 3",
+        flyer: dl("1sMATVN2RoPAkVfMonJDUuOCq0tOp1k9v"),
+        brochure: dl("1igS3ure9tZMIoBYV9m1_Qi76ZRM16vp0"),
+      },
     ],
   },
   {
@@ -366,7 +542,11 @@ export const PROGRAMMES: Programme[] = [
     site: "https://www.learnwithleaders.com/competitions/the-yale-international-relations-essay-competition/",
     apply: "https://docs.google.com/forms/d/e/1FAIpQLSeD2WQ-nxDS4Ux_EXZPKhlSwjE4TfiL1Mjti28BsoWAZ8D5Tg/viewform",
     cohorts: [
-      { d: "2027-01-09" },
+      {
+        d: "2027-01-09",
+        flyer: dl("1H4ZOEedjiEEqfQbwjmKTXCnV7fl3AEnm"),
+        brochure: dl("1sHezq7IpMAHJkLVdT-W4uJ97oZfCuwBH"),
+      },
     ],
   },
   {
@@ -385,9 +565,9 @@ export const PROGRAMMES: Programme[] = [
     site: "https://joinonwards.com/6-weeks",
     apply: "https://joinonwards.com/6-weeks/apply",
     cohorts: [
-      { d: "2026-09-20" },
-      { d: "2026-12-13", fee: { e: "€299", r: "€349" } },
-      { d: "2027-03-14" },
+      { d: "2026-09-20", label: "Batch 1" },
+      { d: "2026-12-13", label: "Batch 2", fee: { e: "€299", r: "€349" } },
+      { d: "2027-03-14", label: "Batch 3" },
     ],
   },
   {
@@ -406,8 +586,19 @@ export const PROGRAMMES: Programme[] = [
     site: "https://joinonwards.com/advanced-leadership-online",
     apply: "https://joinonwards.com/advanced-leadership-online/apply",
     cohorts: [
-      { d: "2026-11-14" },
-      { d: "2027-02-20" },
+      {
+        d: "2026-11-14",
+        label: "Cohort 1",
+        elig: "Grades 6-8 and Grades 9-12 (parallel cohorts)",
+        flyer: dl("1LkcprAPmeF-WEX1XDrxRMMyEg2St_NO7"),
+        brochure: dl("1Cjx7ulrxjVhsTv3NM4fqnnVxbUzWNUs8"),
+      },
+      {
+        d: "2027-02-20",
+        label: "Cohort 2",
+        flyer: dl("1OrkojFVuWE-WSRkOGApZ8WCc18Y3g8Xe"),
+        brochure: dl("1vU5iWryndDp_KyO_y-AXjKLEMljA-otA"),
+      },
     ],
   },
   {
@@ -426,9 +617,25 @@ export const PROGRAMMES: Programme[] = [
     site: "https://purposeplaybook.ai/academy/online",
     apply: "https://purposeplaybook.ai/apply",
     cohorts: [
-      { d: "2026-11-08" },
-      { d: "2027-02-07" },
-      { d: "2027-04-25" },
+      {
+        d: "2026-11-08",
+        label: "Batch 1",
+        elig: "Middle & high school (approx. Grades 8-12)",
+        flyer: dl("1ErRwgKu3bTJ6eo934yz4N4i23IIJDSQu"),
+        brochure: dl("1gMGp5w6Bcy47ox7JjCf_Y5IiyGCot2mF"),
+      },
+      {
+        d: "2027-02-07",
+        label: "Batch 2",
+        flyer: dl("1ktRUGuH0tMijCVdslB90lzWipeiCKVVQ"),
+        brochure: dl("1YlJEHldKpk7Az21PUlhhcKdU_oDg9l_c"),
+      },
+      {
+        d: "2027-04-25",
+        label: "Batch 3",
+        flyer: dl("1_3ZwuQ30ovCFnjy-l1cLeEYMIH4gwuwr"),
+        brochure: dl("1LWXqMM5eJ41RkjqACUJ42Rsd4ssegfMq"),
+      },
     ],
   },
   {
@@ -447,9 +654,24 @@ export const PROGRAMMES: Programme[] = [
     site: "https://joinonwards.com/changemakers",
     apply: "https://joinonwards.com/changemakers/apply",
     cohorts: [
-      { d: "2026-09-12" },
-      { d: "2026-12-23" },
-      { d: "2027-04-24" },
+      {
+        d: "2026-09-12",
+        label: "Batch 1",
+        flyer: dl("1_J4tcjOHVtnXdho58VPNgwVJeLDhL7wR"),
+        brochure: dl("16BvtHd77iixG3IRpVvZjwZS1rStWAt1T"),
+      },
+      {
+        d: "2026-12-23",
+        label: "Batch 2",
+        flyer: dl("1tPvdnlqk0JnJATxR-neslQY1Rh-QVLxe"),
+        brochure: dl("15x4Svkk2yRSEyXuE7MsaBJNV52hfcc1H"),
+      },
+      {
+        d: "2027-04-24",
+        label: "Batch 3",
+        flyer: dl("10cAuzNror6-lZ3iRY2VoZMhD88aYd_6-"),
+        brochure: dl("1Go495Xw97zLtcBZd3uaruNN-pbEbvMV1"),
+      },
     ],
   },
   {
@@ -469,8 +691,26 @@ export const PROGRAMMES: Programme[] = [
     site: "https://satinstinct.com",
     apply: "https://satinstinct.com/apply",
     cohorts: [
-      { d: "2026-11-22" },
-      { d: "2027-03-28" },
+      {
+        d: "2026-08-02",
+        label: "Batch 1",
+        fee: { e: "USD 850", r: null },
+        flyer: dl("1rW74K13pKvkQFLgP36bIqxPtxVJUdWqv"),
+        brochure: dl("1Ne5sz1SVlbfoN1CFEaM0Ddrf_NIc2E9C"),
+      },
+      {
+        d: "2026-11-22",
+        label: "Batch 2",
+        time: "Sundays, 10:30 AM ET",
+        flyer: dl("1tttUa1sGIk9laqsQO29H2xwHvFWa8pcG"),
+        brochure: dl("1kexyI4Whk0oyhy5aj480tZ9e1hxohuwW"),
+      },
+      {
+        d: "2027-03-28",
+        label: "Batch 3",
+        flyer: dl("1hGZ9aJULyA7XpUxlgYa6E12MEJOtC-ww"),
+        brochure: dl("19MUcepOZXnaRptqTdj2lOiiYJdT_Aj_1"),
+      },
     ],
   },
 ];
@@ -508,6 +748,9 @@ export const cohortGrades = (p: Programme, c?: Cohort): [number, number] =>
 
 export const feeOf = (p: Programme, c?: Cohort): Fee =>
   c && c.fee ? c.fee : { e: p.feeE, r: p.feeR };
+
+/** Session timing for a cohort, falling back to the programme default. */
+export const timeOf = (p: Programme, c?: Cohort): string => (c && c.time) || p.time;
 
 export const mentorLabel = (p: Programme) => MENTORS[p.mentor].short;
 

@@ -8,6 +8,7 @@ import {
   cohortGrades,
   dualTime,
   feeOf,
+  timeOf,
   fmtShort,
   isSoon,
   parseISO,
@@ -81,7 +82,7 @@ export function CohortAgenda({
                   <span className="min-w-0 flex-1">
                     <b className="block text-[0.95rem] font-bold text-ink">{p.name}</b>
                     <small className="mt-0.5 block text-[0.76rem] text-ink-soft">
-                      Grades {lo}–{hi} · {p.dur} · {dualTime(p.time)} · <ZoomBadge />
+                      Grades {lo}–{hi} · {p.dur} · {dualTime(timeOf(p, c))} · <ZoomBadge />
                     </small>
                   </span>
                   <span className="flex shrink-0 flex-col items-end gap-1.5">
