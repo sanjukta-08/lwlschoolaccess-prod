@@ -1,5 +1,5 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { SiteHeader } from "@/components/SiteHeader";
+import { PageHero } from "@/components/PageHero";
 import { AboutLwl } from "@/components/AboutLwl";
 import { WhyLwl } from "@/components/HowItWorks";
 import { PressStrip } from "@/components/PressStrip";
