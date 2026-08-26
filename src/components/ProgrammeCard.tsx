@@ -56,7 +56,7 @@ export function ProgrammeCard({
         />
 
         {/* Programme */}
-        <div className="flex min-w-0 items-start gap-3">
+        <div className="flex min-w-0 flex-1 items-start gap-3">
           <span
             className="mt-[3px] flex-none"
             aria-hidden
@@ -78,7 +78,7 @@ export function ProgrammeCard({
         </div>
 
         {/* Schedule */}
-        <div className="flex flex-col gap-0.5 sm:items-end sm:text-right">
+        <div className="flex flex-col gap-0.5 sm:w-[9.5rem] sm:flex-none sm:items-end sm:text-right">
           <span className="font-mono text-[0.76rem] font-semibold text-ink">
             {startLabel(next.d)}
           </span>
@@ -91,7 +91,7 @@ export function ProgrammeCard({
         </div>
 
         {/* Fee */}
-        <div className="flex flex-col gap-0.5 sm:items-end sm:text-right">
+        <div className="flex flex-col gap-0.5 sm:w-[6.5rem] sm:flex-none sm:items-end sm:text-right">
           <span className="font-serif text-[1rem] leading-none font-semibold text-ink">
             {fee.e}
           </span>
@@ -103,7 +103,7 @@ export function ProgrammeCard({
         </div>
 
         {/* Actions */}
-        <div className="relative z-[2] flex items-center gap-2 sm:justify-end">
+        <div className="relative z-[2] flex flex-none items-center gap-2 sm:w-[7.75rem] sm:justify-end">
           <SaveButton p={p} c={next} />
           <Link
             to="/programmes/$slug"
