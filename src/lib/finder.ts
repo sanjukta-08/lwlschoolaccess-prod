@@ -135,18 +135,10 @@ const matchType = (p: Programme, type: string) => type === "all" || p.type === t
 const matchDuration = (p: Programme, duration: string) =>
   duration === "all" || durationKey(p) === (duration as DurationKey);
 
-const matchMentor = (p: Programme, mentor: string) =>
-  mentor === "all" || p.mentor === (mentor as MentorKey);
-
-/** Options for the duration and mentor dropdowns. */
+/** Options for the duration dropdown. */
 export const durationOptions = () => [
   { value: "all", label: "any length" },
   ...DURATION_ORDER.map((d) => ({ value: d, label: DURATIONS[d] })),
-];
-
-export const mentorOptions = () => [
-  { value: "all", label: "any university" },
-  ...MENTOR_ORDER.map((m) => ({ value: m, label: MENTORS[m].label })),
 ];
 
 const matchMonth = (c: Cohort, month: string) =>
