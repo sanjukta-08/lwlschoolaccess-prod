@@ -292,7 +292,9 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
                 ) : null}
 
                 <div className="flex flex-1 flex-col p-5">
-                  <span className="block font-serif text-[1.35rem] leading-tight font-semibold">
+                  <span
+                    className={`block font-serif text-[1.35rem] leading-tight font-semibold ${isSoon(c.d) ? "pr-20" : ""}`}
+                  >
                     {fmtLong(c.d)}
                   </span>
                   <small className="mt-1.5 block font-mono text-[0.68rem] tracking-[0.05em] text-ink-faint uppercase">
@@ -307,7 +309,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
                       const full = dualTime(timeOf(p, c));
                       const cut = full.indexOf(" (");
                       const local = cut > -1 ? full.slice(0, cut) : full;
-                      const original = cut > -1 ? full.slice(cut + 1, -1) : "";
+                      const original = cut > -1 ? full.slice(cut + 1) : "";
                       return (
                         <small className="block text-[0.78rem] text-ink-soft">
                           <span className="block">{local}</span>
