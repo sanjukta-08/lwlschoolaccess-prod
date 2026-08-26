@@ -326,8 +326,18 @@ export const PROGRAMMES: Programme[] = [
     site: "https://joinonwards.com/young-entrepreneurs",
     apply: "https://joinonwards.com/young-entrepreneurs/apply",
     cohorts: [
-      { d: "2026-09-12" },
-      { d: "2027-01-30" },
+      {
+        d: "2026-09-12",
+        label: "Batch 1",
+        flyer: dl("1mtwlpMAW6ylE77ViMOV7RZHKxyV68QTh"),
+        brochure: dl("1OvHsT5KTVGI20_RZmPJ65P8u1wos53WI"),
+      },
+      {
+        d: "2027-01-30",
+        label: "Batch 2",
+        flyer: dl("1DhZV3gjyuw-NytjtgNOV6YNX4aBos2cI"),
+        brochure: dl("1xMoWHhAH70bdsd48BMYpYLBI2ehDuV_5"),
+      },
     ],
   },
   {
