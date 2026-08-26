@@ -166,7 +166,7 @@ function StoryLightbox({
           </p>
           {story.placeholder ? (
             <p className="mono-label mt-4 text-ink-faint">
-              Illustrative story — real posts are published with the family's permission.
+              Illustrative story - real posts are published with the family's permission.
             </p>
           ) : null}
         </div>

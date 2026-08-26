@@ -19,7 +19,7 @@ export function SavedStrip({ minimum = 2 }: { minimum?: number }) {
         <b className="text-ink">
           {rows.length} programme{rows.length === 1 ? "" : "s"} saved
         </b>{" "}
-        — put the start dates in your family calendar so nothing slips.
+        - put the start dates in your family calendar so nothing slips.
       </span>
       <span className="ml-auto flex flex-wrap items-center gap-2">
         <button

@@ -10,7 +10,7 @@ type Props = {
 };
 
 /**
- * "Save for later" — the low-commitment action for a student who is not ready
+ * "Save for later" - the low-commitment action for a student who is not ready
  * to apply. Lives above card link overlays, so it stops propagation.
  */
 export function SaveButton({ p, c, variant = "icon", className = "" }: Props) {
@@ -36,7 +36,7 @@ export function SaveButton({ p, c, variant = "icon", className = "" }: Props) {
         } ${className}`}
       >
         <span aria-hidden>{saved ? "♥" : "♡"}</span>
-        {saved ? "Saved — see my list" : "Save & remind me"}
+        {saved ? "Saved - see my list" : "Save & remind me"}
       </button>
     );
   }
@@ -47,7 +47,7 @@ export function SaveButton({ p, c, variant = "icon", className = "" }: Props) {
       onClick={onClick}
       aria-pressed={saved}
       aria-label={saved ? `Remove ${p.name} from saved` : `Save ${p.name} for later`}
-      title={saved ? "Saved — in your list" : "Save for later"}
+      title={saved ? "Saved - in your list" : "Save for later"}
       className={`relative z-[3] inline-flex h-8 w-8 flex-none items-center justify-center rounded-full border border-line bg-paper text-[0.95rem] leading-none transition-colors ${
         saved
           ? "border-crimson/45 bg-crimson/8 text-crimson"

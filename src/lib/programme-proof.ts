@@ -38,7 +38,7 @@ export const SKILL_FAMILY: Record<SkillFamily, { label: string; ic: string; blur
   people: {
     label: "Working with people",
     ic: "🤝",
-    blurb: "Deadlines, teams, feedback — the habits universities and employers notice.",
+    blurb: "Deadlines, teams, feedback - the habits universities and employers notice.",
   },
 };
 
@@ -70,7 +70,7 @@ export type GroupedSkill = { skill: string; family: SkillFamily; how: string };
 
 const HOW_VARIANTS: Record<SkillFamily, ((p: Programme) => string)[]> = {
   think: [
-    (p) => `Practised on live problems in every ${p.type === "comp" ? "round" : "session"} — never taught as theory.`,
+    (p) => `Practised on live problems in every ${p.type === "comp" ? "round" : "session"} - never taught as theory.`,
     () => "Mentors make your child justify each step out loud before moving on.",
     (p) => `Applied to unfamiliar ${TRACKS[p.tracks[0]!].label.toLowerCase()} material, not rehearsed examples.`,
   ],
@@ -87,7 +87,7 @@ const HOW_VARIANTS: Record<SkillFamily, ((p: Programme) => string)[]> = {
   people: [
     () => "Built through real deadlines and written mentor feedback.",
     () => "Practised in small-team work with students your child has never met.",
-    () => "Held to a professional standard — the brief, the deadline, the follow-up.",
+    () => "Held to a professional standard - the brief, the deadline, the follow-up.",
   ],
 };
 
@@ -115,7 +115,7 @@ const WRITTEN_PROJECTS: Record<string, SampleProject[]> = {
   fdf: [
     {
       title: "Clinical case study: the missed diagnosis",
-      question: "Why did three doctors read the same symptoms differently — and who was right?",
+      question: "Why did three doctors read the same symptoms differently - and who was right?",
       output: "A 1,500-word case write-up with differentials, evidence and a recommended pathway.",
       timeline: "Weeks 2–5",
     },
@@ -161,7 +161,7 @@ const WRITTEN_PROJECTS: Record<string, SampleProject[]> = {
     },
     {
       title: "Model evaluation write-up",
-      question: "Does it actually work — and how would we know?",
+      question: "Does it actually work - and how would we know?",
       output: "A short evaluation report with prompts, failures and fixes.",
       timeline: "Weeks 5–7",
     },
@@ -201,7 +201,7 @@ const WRITTEN_PROJECTS: Record<string, SampleProject[]> = {
     },
     {
       title: "A launched MVP with first users",
-      question: "Will a stranger use it — and pay?",
+      question: "Will a stranger use it - and pay?",
       output: "A live product or service with real usage.",
       timeline: "Weeks 3–7",
     },
@@ -227,7 +227,7 @@ const WRITTEN_PROJECTS: Record<string, SampleProject[]> = {
     },
     {
       title: "Investment pitch, defended live",
-      question: "Buy, hold or sell — and why?",
+      question: "Buy, hold or sell - and why?",
       output: "A valuation deck plus a recorded pitch.",
       timeline: "Final week",
     },
@@ -249,7 +249,7 @@ const derivedProjects = (p: Programme): SampleProject[] => {
       {
         title: "The competition entry itself",
         question: `Can your child produce ${track} work that stands up to outside judging?`,
-        output: "A submitted entry — essay, case or presentation — kept for the portfolio.",
+        output: "A submitted entry - essay, case or presentation - kept for the portfolio.",
         timeline: p.dur,
       },
       {
@@ -314,7 +314,7 @@ const derivedProjects = (p: Programme): SampleProject[] => {
     {
       title: "The main project",
       question: `What is worth building in ${track} in ${p.dur.toLowerCase()}?`,
-      output: `A finished ${kind} project — the piece that goes into the portfolio.`,
+      output: `A finished ${kind} project - the piece that goes into the portfolio.`,
       timeline: "Middle of the programme",
     },
     {
@@ -383,7 +383,7 @@ export type Testimonial = {
 
 /**
  * Family quotes shown on the programme pages. Everything marked
- * `placeholder: true` is written copy standing in for a real quote — replace the
+ * `placeholder: true` is written copy standing in for a real quote - replace the
  * `quote`, `name`, `role` and `city` with the genuine one when you have it.
  */
 const WRITTEN_TESTIMONIALS: Record<string, Testimonial[]> = {
@@ -406,7 +406,7 @@ const WRITTEN_TESTIMONIALS: Record<string, Testimonial[]> = {
     },
     {
       quote:
-        "We finally have something concrete on file — a capstone, a recording, a mentor letter. That is worth more to us than another certificate.",
+        "We finally have something concrete on file - a capstone, a recording, a mentor letter. That is worth more to us than another certificate.",
       name: "Sandeep K.",
       role: "Parent of a Grade 12 student",
       city: "Sharjah",
@@ -417,7 +417,7 @@ const WRITTEN_TESTIMONIALS: Record<string, Testimonial[]> = {
 
 const DERIVED_QUOTES: ((p: Programme) => Testimonial)[] = [
   (p) => ({
-    quote: `${p.name} was the first thing my child stayed up late for by choice. Small cohort, real mentor attention — you can see the difference in how they talk about the subject now.`,
+    quote: `${p.name} was the first thing my child stayed up late for by choice. Small cohort, real mentor attention - you can see the difference in how they talk about the subject now.`,
     name: "Parent, Grade " + p.g[0] + " student",
     role: "Verified family",
     city: "Dubai",

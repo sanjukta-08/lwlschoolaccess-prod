@@ -20,7 +20,7 @@ import { PartnerLogos } from "@/components/PartnerLogos";
 import { WingMark, WingRule } from "@/components/WingMark";
 import { SectionHeading } from "@/components/SectionHeading";
 
-const TITLE = "Learn with Leaders — Harvard & Yale-mentored programmes, Grades 5–12";
+const TITLE = "Learn with Leaders - Harvard & Yale-mentored programmes, Grades 5–12";
 const DESC =
   "Live, Ivy League student-mentored fellowships, competitions, internships and conferences for students in Grades 5–12, from anywhere in the world.";
 
@@ -60,23 +60,23 @@ function HomePage() {
         <div className="hero-wash absolute inset-0" />
         <div className="relative">
           <SiteHeader />
-          <section className="mx-auto max-w-[1100px] px-5 pt-12 pb-20 text-center">
-            <span className="mono-label mb-5 inline-flex items-center gap-2 rounded-full border border-gold-line bg-paper px-3.5 py-1.5 text-gold-deep shadow-soft">
+          <section className="mx-auto max-w-[1100px] px-5 pt-10 pb-16 text-center">
+            <span className="mono-label mb-4 inline-flex items-center gap-2 rounded-full border border-gold-line bg-paper px-3.5 py-1.5 text-gold-deep shadow-soft">
               <WingMark size={13} />
-              Online programmes for Grades 5–12 · 2026–27
+              Online programmes for Grades 5-12 · 2026-27
             </span>
-            <h1 className="mx-auto font-serif text-[clamp(2.5rem,6.8vw,4.4rem)] leading-[1.05] font-medium tracking-tight text-balance">
+            <h1 className="mx-auto font-serif text-[clamp(2.6rem,7.2vw,4.7rem)] leading-[1.05] font-medium tracking-tight text-balance">
               <span className="block">Where ambitious students</span>
               <em className="mt-1 block text-crimson-deep">learn with leaders</em>
             </h1>
-            <WingRule className="mt-6" />
+            <WingRule className="mt-5" />
 
-            <p className="mx-auto mt-6 max-w-[48em] text-[clamp(1rem,2.4vw,1.14rem)] text-ink-soft">
+            <p className="mx-auto mt-5 max-w-[60em] text-[clamp(1rem,2.4vw,1.14rem)] text-ink-soft">
               Live fellowships, competitions, corporate internships and MUN conferences,
-              mentored by students from Harvard, Yale, MIT, Stanford and Princeton —
+              mentored by students from Harvard, Yale, MIT, Stanford and Princeton -
               joined by families in the Gulf, India, Southeast Asia and beyond.
             </p>
-            <div className="mt-7 flex flex-wrap justify-center gap-3.5">
+            <div className="mt-6 flex flex-wrap justify-center gap-3.5">
               <Link
                 to="/finder"
                 search={DEFAULT_SEARCH}
@@ -92,7 +92,7 @@ function HomePage() {
                 Browse the full calendar
               </Link>
             </div>
-            <p className="mt-4 text-[0.88rem] text-ink-soft">
+            <p className="mt-3.5 text-[0.88rem] text-ink-soft">
               Not sure which one fits?{" "}
               <Link
                 to="/fit"
@@ -104,12 +104,12 @@ function HomePage() {
               .
             </p>
 
-            <dl className="mx-auto mt-11 grid max-w-[820px] grid-cols-2 items-stretch divide-gold-line/70 rounded-[20px] border border-gold-line bg-paper/70 px-4 py-5 shadow-soft sm:flex sm:px-6 sm:divide-x">
+            <dl className="mx-auto mt-9 grid max-w-[820px] grid-cols-2 items-stretch divide-gold-line/70 rounded-[20px] border border-gold-line bg-paper/70 px-4 py-4 shadow-soft sm:flex sm:px-6 sm:divide-x">
               {[
                 [String(PROGRAMMES.length), "Programmes"],
                 [String(TOTAL_COHORTS), "Upcoming cohorts"],
                 ["426+", "Students published"],
-                ["5–12", "Grades covered"],
+                ["5-12", "Grades covered"],
               ].map(([v, l]) => (
                 <div
                   key={l}
@@ -132,7 +132,7 @@ function HomePage() {
         <div className="mx-auto max-w-[1100px]">
           <SectionHeading
             eyebrow="Where to begin"
-            sub="Every interest has a route — from a first taste to flagship fellowships. Tap one to see what fits your child."
+            sub="Every interest has a route - from a first taste to flagship fellowships. Tap one to see what fits your child."
           >
             Pick a <em className="text-crimson-deep">pathway</em>
           </SectionHeading>
@@ -171,7 +171,7 @@ function HomePage() {
         <div className="mx-auto max-w-[1100px]">
           <SectionHeading
             eyebrow="Signature cohorts"
-            sub="Our deepest experiences — small cohorts, dedicated mentors, capstones and Demo Days."
+            sub="Our deepest experiences - small cohorts, dedicated mentors, capstones and Demo Days."
           >
             The <em className="text-crimson-deep">flagship</em> fellowships
           </SectionHeading>
@@ -282,7 +282,7 @@ function HomePage() {
             </h3>
             <p className="mt-1.5 max-w-[34em] text-[0.9rem] text-ink-soft">
               We partner with schools across the UAE, India, Thailand, South Korea and
-              beyond — from single cohorts to co-branded pathways.
+              beyond - from single cohorts to co-branded pathways.
             </p>
           </div>
           <a
@@ -301,7 +301,7 @@ function HomePage() {
           Ready to find <em className="text-gold">their</em> programme?
         </h2>
         <p className="mx-auto mt-3 mb-6 max-w-[34em] text-[0.95rem] text-paper/70">
-          Thirty seconds with the finder, or a short conversation with an advisor —
+          Thirty seconds with the finder, or a short conversation with an advisor -
           whichever suits you.
         </p>
         <div className="flex flex-wrap justify-center gap-3.5">

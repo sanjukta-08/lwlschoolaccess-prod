@@ -45,7 +45,7 @@ export const DEFAULT_SEARCH: FinderSearch = {
 const str = (v: unknown, fallback: string) =>
   typeof v === "string" && v.length > 0 ? v : fallback;
 
-/** Plain validator — search params are always strings with safe defaults. */
+/** Plain validator - search params are always strings with safe defaults. */
 export const validateFinderSearch = (raw: Record<string, unknown>): FinderSearch => ({
   grade: str(raw["grade"], "all"),
   interest: str(raw["interest"], "all"),
@@ -173,7 +173,7 @@ export function getMatches(state: FinderSearch, o: MatchOptions = {}): Match[] {
   return out;
 }
 
-/** Every matching cohort, flattened — used by the calendar. */
+/** Every matching cohort, flattened - used by the calendar. */
 export function getCohortEntries(state: FinderSearch) {
   const entries: { p: Programme; c: Cohort }[] = [];
   getMatches({ ...state, month: "all" }, {}).forEach(({ p, next, others }) => {

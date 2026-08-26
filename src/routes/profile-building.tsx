@@ -55,7 +55,7 @@ function ProfileBuildingPage() {
             <p className="mx-auto mt-4 max-w-[46em] text-[1rem] text-ink-soft">
               Universities read a story, not a list of certificates. This page sets out
               exactly what each kind of programme contributes to that story, the skills
-              your child practises, and the proof you are left holding at the end — the
+              your child practises, and the proof you are left holding at the end - the
               things an admissions officer can actually check.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">

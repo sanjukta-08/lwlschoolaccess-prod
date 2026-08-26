@@ -228,7 +228,7 @@ function MonthCalendarPage() {
 
         {months.length === 0 ? (
           <p className="py-14 text-center text-[0.92rem] text-ink-faint">
-            Nothing matches those filters — try clearing one.
+            Nothing matches those filters - try clearing one.
           </p>
         ) : (
           <div className={`grid gap-5 ${day ? "lg:grid-cols-[1.55fr_1fr]" : ""}`}>

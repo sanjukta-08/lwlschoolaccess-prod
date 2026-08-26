@@ -111,7 +111,7 @@ export function MonthGrid({
                               key={e.p.id + e.c.d}
                               to="/programmes/$slug"
                               params={{ slug: slugOf(e.p) }}
-                              title={`${e.p.name} — open programme page`}
+                              title={`${e.p.name} - open programme page`}
                               className="block truncate rounded-md px-1.5 py-1 text-left text-[0.68rem] font-semibold text-paper no-underline transition-[filter] hover:brightness-110"
                               style={{ background: track.color }}
                             >

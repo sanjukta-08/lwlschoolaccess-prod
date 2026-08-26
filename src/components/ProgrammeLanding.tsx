@@ -152,7 +152,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
           <em className="text-crimson-deep italic">actually do</em>
         </h2>
         <p className="mt-2 max-w-[40em] text-[0.92rem] text-ink-soft">
-          Live, mentor-led sessions — worked problems and real output, not lectures.
+          Live, mentor-led sessions - worked problems and real output, not lectures.
         </p>
         <div className="mt-6 grid gap-3.5 sm:grid-cols-2">
           {d.doSteps.map((s, i) => (
@@ -181,7 +181,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
           Skills your child will <em className="text-crimson-deep italic">gain</em>
         </h2>
         <p className="mt-2 max-w-[40em] text-[0.92rem] text-ink-soft">
-          Named, practised skills — grouped the way universities read them, and each one
+          Named, practised skills - grouped the way universities read them, and each one
           tied to how it is used in this {kind.toLowerCase()}.
         </p>
         <SkillMatrix programme={p} color={track.color} />
@@ -193,7 +193,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
           Projects they <em className="text-crimson-deep italic">finish with</em>
         </h2>
         <p className="mt-2 max-w-[40em] text-[0.92rem] text-ink-soft">
-          Sample briefs from recent cohorts — the actual work that comes out of the
+          Sample briefs from recent cohorts - the actual work that comes out of the
           programme, not a syllabus.
         </p>
         <ProjectShowcase programme={p} color={track.color} />
@@ -224,7 +224,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         </h2>
         <p className="mt-2 max-w-[40em] text-[0.92rem] text-ink-soft">
           The point isn't the certificate. It's the line a family can honestly write
-          afterwards — and the artefact sitting behind it.
+          afterwards - and the artefact sitting behind it.
         </p>
         <ProfileImpact programme={p} color={track.color} />
       </section>
@@ -244,7 +244,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
             <div>
               <b className="text-[1rem]">{p.badge}</b>
               <p className="mt-1 text-[0.86rem] text-ink-soft">
-                If it isn't right for your child after the first session, tell us — we
+                If it isn't right for your child after the first session, tell us - we
                 sort it out without forms or fuss.
               </p>
             </div>
@@ -289,7 +289,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         <div className="mt-6 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
           {cohorts.length === 0 ? (
             <p className="text-[0.9rem] text-ink-soft">
-              Dates for the next intake are being confirmed — the programme page has
+              Dates for the next intake are being confirmed - the programme page has
               the latest.
             </p>
           ) : null}
@@ -341,7 +341,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         </div>
         <p className="mt-3.5 text-[0.8rem] text-ink-faint">
           Session times shown in Dubai time (GMT+4) with US Eastern alongside. Fees are
-          correct at time of publishing — confirm on the programme page.
+          correct at time of publishing - confirm on the programme page.
         </p>
 
         <div className="mt-10 grid gap-4 rounded-[20px] bg-wash px-7 py-6 sm:grid-cols-[auto_1fr] sm:items-center">

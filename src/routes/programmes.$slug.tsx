@@ -24,7 +24,7 @@ export const Route = createFileRoute("/programmes/$slug")({
     if (!p) {
       return {
         meta: [
-          { title: "Programme not found — Learn with Leaders" },
+          { title: "Programme not found - Learn with Leaders" },
           { name: "robots", content: "noindex" },
         ],
       };
@@ -34,7 +34,7 @@ export const Route = createFileRoute("/programmes/$slug")({
     const track = TRACKS[p.tracks[0]!].label;
     const next = p.cohorts.find((c) => !isPast(c.d)) ?? p.cohorts[0];
     const fee = feeOf(p, next);
-    const title = `${p.name} — ${kind} for Grades ${p.g[0]}–${p.g[1]} | Learn with Leaders`;
+    const title = `${p.name} - ${kind} for Grades ${p.g[0]}–${p.g[1]} | Learn with Leaders`;
     const description = `${p.tag} ${p.dur}. ${
       next ? `Next cohort ${fmtLong(next.d)}. ` : ""
     }From ${fee.e}.`.slice(0, 158);
@@ -44,7 +44,7 @@ export const Route = createFileRoute("/programmes/$slug")({
       meta: [
         { title },
         { name: "description", content: description },
-        { property: "og:title", content: `${p.name} — ${kind} · ${track}` },
+        { property: "og:title", content: `${p.name} - ${kind} · ${track}` },
         { property: "og:description", content: description },
         { property: "og:type", content: "website" },
         { property: "og:url", content: url },

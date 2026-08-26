@@ -51,7 +51,7 @@ export function TrendingTop5({ state, variant = "section" }: Props) {
       <section id="trending" className="scroll-mt-24">
         <header className="mb-3 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
           <h2 className="font-serif text-[1.15rem] font-medium">
-            {activeInterest ? `Best ${activeInterest.label}` : "Start here"} —{" "}
+            {activeInterest ? `Best ${activeInterest.label}` : "Start here"} -{" "}
             <em className="text-crimson-deep">
               {picks.length === 1 ? "our top pick" : `top ${Math.min(picks.length, 3)}`}
             </em>{" "}
@@ -115,7 +115,7 @@ export function TrendingTop5({ state, variant = "section" }: Props) {
           </h2>
           <p className="mx-auto mt-2 max-w-[40em] text-[0.92rem] text-ink-soft">
             If you&apos;re not sure where to begin, these are the ones most families choose
-            first — strong mentors, clear outcomes, and a next cohort you can still join.
+            first - strong mentors, clear outcomes, and a next cohort you can still join.
           </p>
         </header>
 

@@ -16,7 +16,7 @@ export function ProfileTypeBlocks() {
           </h2>
           <p className="mt-2.5 text-[0.93rem] text-ink-soft">
             The five kinds of programme do different jobs on a profile. Read the job
-            first, then pick the field — that order stops families buying five of the
+            first, then pick the field - that order stops families buying five of the
             same thing.
           </p>
         </header>

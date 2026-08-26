@@ -9,7 +9,7 @@ import { DEFAULT_SEARCH } from "@/lib/finder";
 import { REACH } from "@/lib/social-proof";
 import { SiteFooter } from "@/components/SiteFooter";
 
-const TITLE = "About Learn with Leaders — press, schools and student stories";
+const TITLE = "About Learn with Leaders - press, schools and student stories";
 const DESC =
   "Who we are: Ivy League student mentors, live cohorts for Grades 5–12, press coverage, students from 80+ countries and 30,000+ schools, and stories shared on LinkedIn.";
 
@@ -55,7 +55,7 @@ function AboutPage() {
               Learn with Leaders · since 2019
             </span>
             <h1 className="font-serif text-[clamp(2rem,5.4vw,3.1rem)] font-medium leading-[1.08]">
-              Learn <em className="text-crimson-deep">with</em> leaders — and finish with
+              Learn <em className="text-crimson-deep">with</em> leaders - and finish with
               proof.
             </h1>
             <p className="mx-auto mt-4 max-w-[40em] text-[1rem] text-ink-soft">
@@ -95,7 +95,7 @@ function AboutPage() {
               Bringing this to your school?
             </h2>
             <p className="mt-1.5 max-w-[34em] text-[0.9rem] text-ink-soft">
-              From a single cohort to a co-branded, multi-term pathway — we work with
+              From a single cohort to a co-branded, multi-term pathway - we work with
               school leadership and counselling teams across the world.
             </p>
           </div>
@@ -115,7 +115,7 @@ function AboutPage() {
           Ready to find <em className="text-gold">their</em> programme?
         </h2>
         <p className="mx-auto mt-3 mb-6 max-w-[34em] text-[0.95rem] text-paper/70">
-          Thirty seconds with the finder, or a short conversation with an advisor —
+          Thirty seconds with the finder, or a short conversation with an advisor -
           whichever suits you.
         </p>
         <div className="flex flex-wrap justify-center gap-3.5">

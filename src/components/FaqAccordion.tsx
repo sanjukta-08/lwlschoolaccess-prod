@@ -5,7 +5,7 @@ export const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "What ages and grades do you cover?",
-    a: "Grades 5 to 12. Many pathways run junior and senior tracks — for example Junior Doctor Fellowship for Grades 5–8 and the Future Doctors Fellowship for Grades 8–12. Every listing shows its exact grade band, and the finder only shows what your child qualifies for.",
+    a: "Grades 5 to 12. Many pathways run junior and senior tracks - for example Junior Doctor Fellowship for Grades 5–8 and the Future Doctors Fellowship for Grades 8–12. Every listing shows its exact grade band, and the finder only shows what your child qualifies for.",
   },
   {
     q: "How much do programmes cost?",
@@ -17,7 +17,7 @@ export const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "How do I apply?",
-    a: "Tap Apply now on any programme — most take a few minutes. If you'd rather talk it through first, an advisor can walk you through the options with no obligation.",
+    a: "Tap Apply now on any programme - most take a few minutes. If you'd rather talk it through first, an advisor can walk you through the options with no obligation.",
   },
   {
     q: "How often is this page updated?",
