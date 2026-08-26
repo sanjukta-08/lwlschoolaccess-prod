@@ -29,13 +29,13 @@ export function SectionHeading({
       ) : null}
       <h2
         id={id}
-        className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] leading-[1.15] font-medium tracking-tight"
+        className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] leading-none font-medium tracking-tight"
       >
         {children}
       </h2>
       {sub ? (
         <p
-          className={`mt-2.5 max-w-[54em] text-[0.92rem] text-ink-soft ${
+          className={`mt-1 max-w-[54em] text-[0.92rem] leading-relaxed text-ink-soft ${
             centred ? "mx-auto" : ""
           }`}
         >
