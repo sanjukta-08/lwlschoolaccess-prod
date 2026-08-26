@@ -1,3 +1,5 @@
+import studentLearning from "@/assets/student-learning.png.asset.json";
+
 const STEPS = [
   {
     n: "01",
