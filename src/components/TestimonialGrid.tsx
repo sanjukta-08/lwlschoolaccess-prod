@@ -14,7 +14,7 @@ import type { Testimonial } from "@/lib/testimonials";
 import { TRACKS } from "@/lib/programmes";
 import type { TrackKey } from "@/lib/programmes";
 
-import birdAsset from "@/assets/lwl-bird-gold.webp.asset.json";
+import birdAsset from "@/assets/lwl-bird-bg.png.asset.json";
 
 const ACCENT: Record<string, string> = {
   ink: "bg-ink text-paper",
