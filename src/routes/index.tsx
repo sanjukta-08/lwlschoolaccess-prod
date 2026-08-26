@@ -18,7 +18,6 @@ import { slugOf } from "@/lib/programme-slug";
 import { programmeLogo } from "@/lib/programme-logos";
 
 import { SiteFooter } from "@/components/SiteFooter";
-import { PartnerLogos } from "@/components/PartnerLogos";
 import { WingMark } from "@/components/WingMark";
 import { SectionHeading } from "@/components/SectionHeading";
 import birdAsset from "@/assets/lwl-bird-black.png.asset.json";
@@ -55,15 +54,6 @@ export const Route = createFileRoute("/")({
 const StoryStrip = lazy(() => import("@/components/StoryStrip"));
 
 const FEATURED = ["fdf", "irf", "ail", "finlit"];
-
-const PARTNERS = [
-  "Harvard Student Agencies",
-  "HPAIR",
-  "Harvard Model Congress",
-  "Harvard MUN Team",
-  "Yale mentors",
-  "Greenvan",
-];
 
 const PATHWAY_ART: Record<TrackKey, string> = {
   med: pathwayMedicine,
@@ -314,30 +304,6 @@ function HomePage() {
               See all programmes →
             </Link>
           </p>
-        </div>
-      </section>
-
-      <section className="px-5 py-11">
-        <div className="mx-auto max-w-[1100px]">
-          <SectionHeading eyebrow="Trusted collaborations">
-            Delivered with <em className="text-crimson-deep">partners</em> students
-            recognise
-          </SectionHeading>
-          <PartnerLogos />
-          <div className="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-3">
-            {PARTNERS.map((n) => (
-              <span
-                key={n}
-                className="font-serif text-[1.02rem] font-semibold text-ink-soft"
-              >
-                {n}
-              </span>
-            ))}
-          </div>
-          <p className="mt-5 text-center text-[0.78rem] text-ink-faint">
-            Programme partners and corporate internship hosts across the 2026–27 calendar.
-          </p>
-          <hr className="section-divider mt-14" />
         </div>
       </section>
 
