@@ -4,7 +4,7 @@ export function PressStrip() {
   return (
     <section id="press" className="scroll-mt-20 bg-wash px-5 py-14">
       <div className="mx-auto max-w-[1100px]">
-        <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2rem)] font-medium">
+        <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           In the <em className="text-crimson-deep">press</em>
         </h2>
         <p className="mx-auto mt-2 max-w-[38em] text-center text-[0.9rem] text-ink-soft">

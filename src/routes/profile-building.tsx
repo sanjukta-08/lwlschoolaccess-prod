@@ -184,7 +184,7 @@ function ProfileBuildingPage() {
       {/* FAQ */}
       <section id="pb-faq" className="scroll-mt-24 px-5 py-14">
         <div className="mx-auto max-w-[760px]">
-          <h2 className="mb-6 text-center font-serif text-[clamp(1.5rem,3.6vw,2rem)] font-medium">
+          <h2 className="mb-6 text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
             Profile building, <em className="text-crimson-deep">honestly answered</em>
           </h2>
           {PB_FAQS.map((f) => (
