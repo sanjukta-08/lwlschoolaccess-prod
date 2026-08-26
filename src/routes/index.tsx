@@ -254,7 +254,7 @@ function HomePage() {
                   className="group flex flex-col overflow-hidden rounded-[18px] border border-gold-line bg-paper text-left text-ink no-underline shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold hover:shadow-lift"
                 >
                   <span
-                    className="flex items-start justify-between gap-2 border-b px-3.5 py-2.5 text-[0.62rem] font-bold tracking-[0.06em] uppercase leading-tight"
+                    className="flex items-start justify-between gap-2 border-b px-3.5 py-2.5 text-[0.62rem] font-bold tracking-[0.06em] uppercase leading-snug"
                     style={{
                       color: "var(--sp)",
                       background: "color-mix(in srgb, var(--sp) 8%, #fff)",
@@ -266,7 +266,7 @@ function HomePage() {
                         className="mt-[2px] inline-block h-1.5 w-1.5 flex-none rounded-full"
                         style={{ background: "var(--sp)" }}
                       />
-                      <span className="line-clamp-2">{t.label}</span>
+                      <span className="break-words">{t.label}</span>
                     </span>
                     <span className="mono-label shrink-0 whitespace-nowrap pl-2 text-ink-faint">
                       G{g1}–{g2}
