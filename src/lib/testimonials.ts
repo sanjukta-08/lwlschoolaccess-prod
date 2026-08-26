@@ -20,13 +20,6 @@ export type Voice = "student" | "parent";
 
 export type Format = "written" | "linkedin" | "instagram" | "video" | "note";
 
-export const VOICES: Record<Voice, { label: string; short: string }> = {
-  student: { label: "Students", short: "Student" },
-  parent: { label: "Parents", short: "Parent" },
-};
-
-export const VOICE_ORDER: Voice[] = ["student", "parent"];
-
 export const FORMATS: Record<Format, { label: string; short: string }> = {
   written: { label: "Written feedback", short: "Written" },
   linkedin: { label: "LinkedIn posts", short: "LinkedIn" },
