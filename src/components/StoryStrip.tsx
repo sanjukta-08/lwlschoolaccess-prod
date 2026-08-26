@@ -1,3 +1,4 @@
+import { DEFAULT_TESTIMONIAL_SEARCH } from "@/lib/testimonials";
 import { Link } from "@tanstack/react-router";
 import { LearnerQuotes } from "@/components/LearnerQuotes";
 import {
@@ -19,7 +20,7 @@ function SeeAll({ label }: { label: string }) {
   return (
     <Link
       to="/testimonials"
-      search={{}}
+      search={DEFAULT_TESTIMONIAL_SEARCH}
       className="inline-flex items-center gap-2 rounded-full border border-crimson/30 px-5 py-2.5 text-[0.85rem] font-bold text-crimson no-underline transition-colors hover:bg-crimson/5"
     >
       {label} <span aria-hidden>→</span>

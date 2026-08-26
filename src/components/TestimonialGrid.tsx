@@ -183,6 +183,8 @@ function Card({ t, onOpen }: { t: Testimonial; onOpen: () => void }) {
     );
   }
 
+  if (t.format !== "written") return null;
+
   return (
     <CardShell t={t} onOpen={onOpen}>
       <Quote aria-hidden className="mb-2 h-4 w-4 text-gold-deep" />

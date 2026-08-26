@@ -1,3 +1,4 @@
+import { DEFAULT_TESTIMONIAL_SEARCH } from "@/lib/testimonials";
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { DEFAULT_SEARCH } from "@/lib/finder";
@@ -59,7 +60,7 @@ export function SiteHeader() {
         </Link>
         <Link
           to="/testimonials"
-          search={{}}
+          search={DEFAULT_TESTIMONIAL_SEARCH}
           className={cls}
           activeProps={active}
           onClick={close}

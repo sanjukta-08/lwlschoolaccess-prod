@@ -187,6 +187,7 @@ function TestimonialsPage() {
           </Link>
           <Link
             to="/calendar"
+            search={DEFAULT_SEARCH}
             className="rounded-full border border-line bg-paper px-7 py-3.5 text-[0.95rem] font-bold text-ink no-underline transition-colors hover:bg-wash"
           >
             See upcoming dates

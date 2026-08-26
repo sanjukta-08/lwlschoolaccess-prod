@@ -1,3 +1,4 @@
+import { DEFAULT_TESTIMONIAL_SEARCH } from "@/lib/testimonials";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 
 /** Legacy /stories URL - the section is now /testimonials. */
@@ -6,7 +7,7 @@ export const Route = createFileRoute("/stories")({
     const track = typeof search["track"] === "string" ? search["track"] : "";
     throw redirect({
       to: "/testimonials",
-      search: track ? { track } : {},
+      search: { ...DEFAULT_TESTIMONIAL_SEARCH, track: track || "all" },
       replace: true,
     });
   },
