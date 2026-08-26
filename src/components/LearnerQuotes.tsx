@@ -157,13 +157,13 @@ function QuoteMarquee({
 
   return (
     <div
-      className="relative"
+      className="relative px-12"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
-      <div className="grid gap-x-8 gap-y-6 py-2 pl-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-x-8 gap-y-6 py-2 sm:grid-cols-2 lg:grid-cols-3">
         {visible.map(({ item, index }) => (
           <QuoteCard
             key={`${item.name}-${index}`}
@@ -181,7 +181,7 @@ function QuoteMarquee({
             type="button"
             onClick={() => setStart((s) => (s - 1 + quotes.length) % quotes.length)}
             aria-label="Previous learner feedback"
-            className="absolute -left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft shadow-soft transition-colors hover:border-crimson/40 hover:text-crimson lg:-left-6"
+            className="absolute left-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft shadow-soft ring-2 ring-paper transition-colors hover:border-crimson/40 hover:text-crimson"
           >
             <span aria-hidden>←</span>
           </button>
@@ -189,7 +189,7 @@ function QuoteMarquee({
             type="button"
             onClick={() => setStart((s) => (s + 1) % quotes.length)}
             aria-label="Next learner feedback"
-            className="absolute -right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft shadow-soft transition-colors hover:border-crimson/40 hover:text-crimson lg:-right-6"
+            className="absolute right-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft shadow-soft ring-2 ring-paper transition-colors hover:border-crimson/40 hover:text-crimson"
           >
             <span aria-hidden>→</span>
           </button>
