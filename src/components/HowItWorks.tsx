@@ -46,7 +46,7 @@ export function HowItWorks() {
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -right-10 top-1/2 h-[80%] w-auto max-w-[45%] -translate-y-1/2 object-contain opacity-[0.15] md:opacity-[0.22] lg:right-0 lg:max-w-[38%]"
+        className="pointer-events-none absolute -right-10 bottom-0 h-[95%] w-auto max-w-[55%] object-contain opacity-[0.25] md:opacity-[0.35] lg:right-0 lg:max-w-[48%]"
       />
       <div className="relative mx-auto max-w-[1100px]">
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2rem)] font-medium">
