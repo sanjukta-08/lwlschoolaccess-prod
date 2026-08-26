@@ -5,12 +5,7 @@ import { ProgrammeLanding } from "@/components/ProgrammeLanding";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { detailFor } from "@/lib/programme-detail";
 import { programmeBySlug } from "@/lib/programme-slug";
-import {
-  profileImpactFor,
-  projectsFor,
-  ratingFor,
-  testimonialsFor,
-} from "@/lib/programme-proof";
+import { profileImpactFor, projectsFor } from "@/lib/programme-proof";
 import { TRACKS, TYPE_NAME, feeOf, fmtLong, isPast } from "@/lib/programmes";
 
 export const Route = createFileRoute("/programmes/$slug")({
@@ -74,22 +69,6 @@ export const Route = createFileRoute("/programmes/$slug")({
               name: pr.title,
               description: `${pr.question} Output: ${pr.output}`,
               timeRequired: pr.timeline,
-            })),
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: ratingFor(p).value,
-              reviewCount: ratingFor(p).count,
-              bestRating: "5",
-            },
-            review: testimonialsFor(p).map((t) => ({
-              "@type": "Review",
-              reviewBody: t.quote,
-              author: { "@type": "Person", name: t.name },
-              reviewRating: {
-                "@type": "Rating",
-                ratingValue: "5",
-                bestRating: "5",
-              },
             })),
             hasCourseInstance: p.cohorts
               .filter((c) => !isPast(c.d))
