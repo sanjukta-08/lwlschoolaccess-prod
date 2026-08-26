@@ -35,7 +35,7 @@ export function SectionHeading({
       </h2>
       {sub ? (
         <p
-          className={`mt-2.5 max-w-[40em] text-[0.92rem] text-ink-soft ${
+          className={`mt-2.5 max-w-[54em] text-[0.92rem] text-ink-soft ${
             centred ? "mx-auto" : ""
           }`}
         >
