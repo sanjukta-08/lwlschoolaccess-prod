@@ -257,7 +257,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Upcoming <em className="text-crimson-deep italic">cohorts</em>
         </h2>
-        <div className="mt-6 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="mt-6 flex flex-wrap justify-center gap-3.5">
           {cohorts.length === 0 ? (
             <p className="text-[0.9rem] text-ink-soft">
               Dates for the next intake are being confirmed - the programme page has
@@ -271,7 +271,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
             return (
               <div
                 key={c.d}
-                className="flex flex-col gap-2 rounded-2xl border border-line bg-paper p-4.5 shadow-soft"
+                className="flex w-full max-w-[320px] flex-col gap-2 rounded-2xl border-[1.5px] border-line bg-paper p-4.5 shadow-soft sm:w-[300px]"
               >
                 {isSoon(c.d) ? (
                   <span className="w-fit rounded-md bg-gold px-2.5 py-[3px] text-[0.64rem] font-bold tracking-wide text-paper uppercase">
@@ -337,7 +337,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
             );
           })}
         </div>
-        <p className="mt-3.5 text-[0.8rem] text-ink-faint">
+        <p className="mt-3.5 text-center text-[0.8rem] text-ink-faint">
           Session times shown in Dubai time (GMT+4) with US Eastern alongside. Fees are
           correct at time of publishing - confirm on the programme page.
         </p>
@@ -360,11 +360,11 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Parents usually <em className="text-crimson-deep italic">ask</em>
         </h2>
-        <div className="mt-6 flex flex-col gap-2.5">
+        <div className="mx-auto mt-6 flex max-w-[900px] flex-col gap-2.5">
           {d.faqs.map((f) => (
             <details
               key={f.q}
-              className="overflow-hidden rounded-[14px] border border-line bg-paper"
+              className="overflow-hidden rounded-[14px] border-[1.5px] border-line bg-paper"
             >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 text-[0.93rem] font-semibold">
                 {f.q}
@@ -387,7 +387,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
             Families looking at this also{" "}
             <em className="text-crimson-deep italic">consider</em>
           </h2>
-          <div className="mt-5 grid gap-3.5 sm:grid-cols-3">
+          <div className="mt-5 flex flex-wrap justify-center gap-3.5">
             {related.map((r) => {
               const rt = TRACKS[r.tracks[0]!];
               const rn = r.cohorts.find((c) => !isPast(c.d));
@@ -396,7 +396,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
                   key={r.id}
                   to="/programmes/$slug"
                   params={{ slug: slugOf(r) }}
-                  className="flex flex-col gap-2 rounded-2xl border border-line bg-paper p-4.5 no-underline shadow-soft transition-all hover:-translate-y-[3px] hover:shadow-lift"
+                  className="flex w-full max-w-[340px] flex-col gap-2 rounded-2xl border-[1.5px] border-line bg-paper p-4.5 no-underline shadow-soft transition-all hover:-translate-y-[3px] hover:shadow-lift sm:w-[320px]"
                 >
                   <span className="text-[0.74rem] font-bold" style={{ color: rt.color }}>
                     {rt.ic} {TYPE_NAME[r.type]}
@@ -411,11 +411,11 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
               );
             })}
           </div>
-          <div className="mt-7 mb-4">
+          <div className="mt-7 mb-4 flex justify-center">
             <Link
               to="/finder"
               search={DEFAULT_SEARCH}
-              className="text-[0.9rem] font-semibold text-crimson no-underline hover:underline"
+              className="rounded-full border-[1.5px] border-line bg-ink px-6 py-3 text-[0.9rem] font-bold text-paper no-underline shadow-soft transition-transform hover:-translate-y-0.5 hover:brightness-110"
             >
               ← Browse all programmes
             </Link>
