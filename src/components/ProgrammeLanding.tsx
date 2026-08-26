@@ -1,4 +1,3 @@
-import { DEFAULT_TESTIMONIAL_SEARCH } from "@/lib/testimonials";
 import { Link } from "@tanstack/react-router";
 
 import { AddToCalendar } from "@/components/AddToCalendar";
@@ -7,15 +6,8 @@ import { SaveButton } from "@/components/SaveButton";
 import { countdownLabel, decideLabel } from "@/lib/shortlist";
 import { PageJump } from "@/components/PageJump";
 import { ProfileImpact } from "@/components/ProfileImpact";
-import { ProgrammeTestimonials } from "@/components/ProgrammeTestimonials";
 import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { SkillMatrix } from "@/components/SkillMatrix";
-import { LinkedInGlyph, StoryGallery } from "@/components/StoryGallery";
-import { VideoTestimonials } from "@/components/VideoTestimonials";
-import { LearnerQuotes } from "@/components/LearnerQuotes";
-import { quotesForProgramme } from "@/lib/learner-testimonials";
-
-import { storiesForTracks, videosForTracks } from "@/lib/social-proof";
 
 import { DEFAULT_SEARCH } from "@/lib/finder";
 
@@ -56,7 +48,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
     >
       {/* Hero */}
       <section className="surface-track-strong border-b">
-        <div className="mx-auto max-w-[1000px] px-5 pt-10 pb-11">
+        <div className="page-shell pt-10 pb-11 text-center">
           <p className="mono-label mb-4 text-ink-faint">
             <Link to="/finder" search={DEFAULT_SEARCH} className="no-underline hover:underline">
               Programmes
@@ -73,14 +65,14 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
             <span aria-hidden>{track.ic}</span>
             {kind} · {track.label}
           </span>
-          <h1 className="max-w-[13em] font-serif text-[clamp(2rem,5.4vw,3.05rem)] leading-[1.08] font-semibold">
+          <h1 className="mx-auto max-w-[20em] font-serif text-[clamp(2rem,5.4vw,3.05rem)] leading-[1.08] font-semibold">
             {p.name}
           </h1>
-          <p className="mt-3.5 max-w-[38em] text-[clamp(0.98rem,2.3vw,1.08rem)] text-ink-soft">
+          <p className="mx-auto mt-3.5 max-w-[54em] text-[clamp(0.98rem,2.3vw,1.08rem)] text-ink-soft">
             {d.lede}
           </p>
 
-          <div className="mt-6 flex flex-wrap items-center gap-4">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
             <a
               href={p.apply}
               target="_blank"
@@ -103,7 +95,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
           </div>
 
           {next ? (
-            <p className="mt-4 flex flex-wrap items-center gap-2 text-[0.78rem]">
+            <p className="mt-4 flex flex-wrap items-center justify-center gap-2 text-[0.78rem]">
               {countdownLabel(next.d) ? (
                 <span className="rounded-lg bg-gold/12 px-2.5 py-1 font-bold text-gold">
                   {countdownLabel(next.d)}
@@ -145,15 +137,13 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
           { id: "skills", label: "Skills" },
           { id: "projects", label: "Projects" },
           { id: "profile", label: "Profile impact" },
-          { id: "reviews", label: "Reviews" },
-          { id: "stories", label: "LinkedIn stories" },
           { id: "dates", label: "Dates & fees" },
           { id: "faq", label: "FAQs" },
         ]}
       />
 
       {/* What they'll do */}
-      <section id="overview" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
+      <section id="overview" className="page-shell scroll-mt-32 pt-12">
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           What your child will{" "}
           <em className="text-crimson-deep italic">actually do</em>
@@ -183,7 +173,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       </section>
 
       {/* Skills */}
-      <section id="skills" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
+      <section id="skills" className="page-shell scroll-mt-32 pt-12">
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Skills your child will <em className="text-crimson-deep italic">gain</em>
         </h2>
@@ -195,7 +185,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       </section>
 
       {/* Projects */}
-      <section id="projects" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
+      <section id="projects" className="page-shell scroll-mt-32 pt-12">
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Projects they <em className="text-crimson-deep italic">finish with</em>
         </h2>
@@ -224,7 +214,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       </section>
 
       {/* Profile impact */}
-      <section id="profile" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
+      <section id="profile" className="page-shell scroll-mt-32 pt-12">
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           How this strengthens their{" "}
           <em className="text-crimson-deep italic">university profile</em>
@@ -236,15 +226,9 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         <ProfileImpact programme={p} color={track.color} />
       </section>
 
-      {/* Reviews */}
-      <section id="reviews" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
-        <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
-          What families <em className="text-crimson-deep italic">say</em>
-        </h2>
-        <ProgrammeTestimonials programme={p} color={track.color} />
-
-        {p.badge ? (
-          <div className="mt-9 flex flex-wrap items-center gap-4 rounded-[18px] border border-line bg-wash px-6 py-5">
+      {p.badge ? (
+        <section className="page-shell pt-12">
+          <div className="mx-auto flex max-w-[860px] flex-wrap items-center gap-4 rounded-[18px] border border-line bg-wash px-6 py-5">
             <span className="text-[1.6rem]" aria-hidden>
               🛡️
             </span>
@@ -256,63 +240,19 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
               </p>
             </div>
           </div>
-        ) : null}
-      </section>
+        </section>
+      ) : null}
 
-      {/* LinkedIn stories */}
-      <section id="stories" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
-        <div className="flex items-center justify-center gap-3">
-          <LinkedInGlyph />
-          <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
-            Stories from <em className="text-crimson-deep italic">this pathway</em>
-          </h2>
-        </div>
-        <p className="mx-auto mt-2 max-w-[40em] text-center text-[0.92rem] text-ink-soft">
-          What students and parents posted after finishing {track.label.toLowerCase()}{" "}
-          cohorts. Tap a story to read the full post.
-        </p>
-        <div className="mt-6">
-          <StoryGallery stories={storiesForTracks(p.tracks, 3)} />
-        </div>
-        {quotesForProgramme(p.id).length ? (
-          <div className="mt-8">
-            <h3 className="text-center font-serif text-[1.05rem] font-medium">
-              What learners wrote in their feedback forms
-            </h3>
-            <div className="mt-3">
-              <LearnerQuotes
-                quotes={quotesForProgramme(p.id)}
-                variant="grid"
-                limit={6}
-              />
-            </div>
-          </div>
-        ) : null}
-        <div className="mt-6">
-          <VideoTestimonials videos={videosForTracks(p.tracks, 4)} />
-        </div>
-
-
-        <p className="mt-5">
-          <Link
-            to="/testimonials"
-            search={{ ...DEFAULT_TESTIMONIAL_SEARCH, track: p.tracks[0]! }}
-            className="text-[0.85rem] font-bold text-crimson no-underline hover:underline"
-          >
-            See all {track.label} stories →
-          </Link>
-        </p>
-      </section>
 
 
 
 
       {/* Cohorts */}
-      <section id="dates" className="mx-auto max-w-[1000px] scroll-mt-32 px-5 pt-12">
+      <section id="dates" className="page-shell scroll-mt-32 pt-12">
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Upcoming <em className="text-crimson-deep italic">cohorts</em>
         </h2>
-        <div className="mt-6 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-6 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {cohorts.length === 0 ? (
             <p className="text-[0.9rem] text-ink-soft">
               Dates for the next intake are being confirmed - the programme page has
@@ -411,7 +351,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="mx-auto max-w-[760px] scroll-mt-32 px-5 pt-12">
+      <section id="faq" className="page-shell scroll-mt-32 pt-12">
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           Parents usually <em className="text-crimson-deep italic">ask</em>
         </h2>
@@ -437,7 +377,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
 
       {/* Related */}
       {related.length > 0 ? (
-        <section className="mx-auto max-w-[1000px] px-5 pt-14">
+        <section className="page-shell pt-14">
           <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
             Families looking at this also{" "}
             <em className="text-crimson-deep italic">consider</em>
@@ -480,7 +420,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
 
       {/* Sticky apply bar */}
       <div className="fixed inset-x-0 bottom-0 z-60 border-t border-line bg-paper shadow-[0_-8px_24px_-16px_rgba(28,34,48,0.35)]">
-        <div className="mx-auto flex max-w-[1000px] items-center justify-between gap-4 px-5 py-3">
+        <div className="page-shell flex items-center justify-between gap-4 py-3">
           <div>
             <b className="font-serif text-[1.15rem] font-semibold">{fee.e}</b>
             {discounted ? (
