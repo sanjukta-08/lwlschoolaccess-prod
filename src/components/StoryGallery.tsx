@@ -166,9 +166,10 @@ function StoryTile({
           ) : null}
           {!story.placeholder ? (
             <span className="rounded-full border border-gold/40 bg-gold/10 px-2.5 py-1 text-[0.7rem] font-semibold text-ink-soft">
-              ✦ Real post
+              ✦ Real {SOURCE_LABEL[story.source]} post
             </span>
           ) : null}
+
         </span>
         <span className="text-[0.72rem] font-semibold text-crimson">
           Read the post →
