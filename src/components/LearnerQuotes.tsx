@@ -5,6 +5,7 @@ import {
   DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog";
+import birdAsset from "@/assets/lwl-bird-bg.png.asset.json";
 import { accentForQuote } from "@/lib/learner-testimonials";
 import type { LearnerQuote } from "@/lib/learner-testimonials";
 
