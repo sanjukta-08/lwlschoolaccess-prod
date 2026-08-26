@@ -272,7 +272,6 @@ function countsFor(
 
 export function testimonialFacets(s: TestimonialSearch) {
   return {
-    who: countsFor(s, "who", (t) => [t.voice]),
     track: countsFor(s, "track", (t) => t.tracks),
     programme: countsFor(s, "programme", (t) => [t.programme]),
     format: countsFor(s, "format", (t) => [t.format]),
