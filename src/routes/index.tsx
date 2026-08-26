@@ -88,7 +88,7 @@ function HomePage() {
     <div className="min-h-screen bg-paper">
       <div className="relative overflow-hidden">
         <div className="hero-wash absolute inset-0" />
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-[46%] min-w-[20rem] opacity-[0.18]">
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-[40%] min-w-[18rem] opacity-[0.42]">
           <img
             src={birdAsset.url}
             alt=""
@@ -96,18 +96,19 @@ function HomePage() {
             className="h-full w-full object-contain object-left"
           />
         </div>
-        <div className="pointer-events-none absolute right-0 bottom-0 hidden h-[min(190px,26vh)] w-[min(760px,58vw)] sm:block">
+        <div className="pointer-events-none absolute right-0 bottom-0 hidden h-[min(230px,30vh)] w-[min(820px,60vw)] sm:block">
           <img
             src={worldMapAsset.url}
             alt=""
             aria-hidden="true"
             width={1920}
             height={768}
-            className="h-full w-full object-cover object-bottom opacity-90 [mask-image:linear-gradient(to_top,black_55%,transparent)]"
+            className="h-full w-full object-cover object-bottom opacity-100 [mask-image:linear-gradient(to_top,black_70%,transparent)]"
           />
         </div>
 
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-paper via-paper/95 via-65% to-paper/70" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(58%_52%_at_50%_38%,rgba(255,255,255,0.92),rgba(255,255,255,0)_72%)]" />
+
 
         <div className="relative">
           <SiteHeader />
