@@ -202,9 +202,24 @@ export const PROGRAMMES: Programme[] = [
     site: "https://futurelawyersprogram.com",
     apply: "https://futurelawyersprogram.com/apply",
     cohorts: [
-      { d: "2026-08-29" },
-      { d: "2026-10-31" },
-      { d: "2027-03-06" },
+      {
+        d: "2026-08-29",
+        label: "Cohort 1",
+        flyer: dl("1mY3l7dwXzSi8ImeKV21i12Ig7Sk0kvgk"),
+        brochure: dl("1ZfUK01VRlYgheVbDdLbdPpaiQ2XyedJk"),
+      },
+      {
+        d: "2026-10-31",
+        label: "Batch 2",
+        flyer: dl("19zvBO5s_FW9FNUg86MWex3ShwFP90hRH"),
+        brochure: dl("1QyKgZ2L_N6t_D6y_IYCs5ZOo_dVosJd1"),
+      },
+      {
+        d: "2027-03-06",
+        label: "Batch 3",
+        flyer: dl("1iNq34ObsKhwdmAd48lPbF95zu74ckIv0"),
+        brochure: dl("1XShV92j4A0QiAJtgK9eO_GJ8PN5mMLk1"),
+      },
     ],
   },
   {
