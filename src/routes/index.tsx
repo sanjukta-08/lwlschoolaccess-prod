@@ -309,7 +309,8 @@ function HomePage() {
       </section>
 
       <section className="px-5 py-11">
-        <div className="mx-auto max-w-[1100px]">
+        <div className="mx-auto max-w-[1280px]">
+
           <SectionHeading
             eyebrow="Trusted collaborations"
             sub="Programme partners and corporate internship hosts across the 2026-27 calendar."
