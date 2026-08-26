@@ -354,7 +354,7 @@ function StoryCarousel({
 
   return (
     <div
-      className="relative"
+      className="relative px-12"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
