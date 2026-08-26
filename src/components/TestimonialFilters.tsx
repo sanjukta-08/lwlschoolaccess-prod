@@ -46,13 +46,11 @@ function Field({
 export function TestimonialFilters({
   search,
   facets,
-  total,
   onChange,
   onReset,
 }: {
   search: TestimonialSearch;
   facets: Facets;
-  total: number;
   onChange: (patch: Partial<TestimonialSearch>) => void;
   onReset: () => void;
 }) {
@@ -72,9 +70,11 @@ export function TestimonialFilters({
   if (search.q.trim())
     chips.push({ label: `"${search.q.trim()}"`, clear: { q: "" } });
 
+  const showFooter = chips.length > 0 || !isDefaultTestimonialSearch(search);
+
   return (
-    <div className="rounded-2xl border border-line bg-paper p-4 shadow-soft sm:p-5">
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="rounded-2xl border border-line bg-paper p-3.5 shadow-soft sm:p-4">
+      <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
         <Field icon={<Layers className="h-3.5 w-3.5" />} label="Interest">
           <select
             className={fieldCls}
@@ -136,29 +136,30 @@ export function TestimonialFilters({
         </Field>
       </div>
 
-      <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-line pt-3.5">
-        <span className="text-[0.86rem] font-semibold text-ink">{"\n"}</span>
-        {chips.map((c) => (
-          <button
-            key={c.label}
-            type="button"
-            onClick={() => onChange(c.clear)}
-            className="inline-flex items-center gap-1.5 rounded-full border border-gold/45 bg-gold/10 px-3 py-1 text-[0.76rem] font-semibold text-ink-soft transition-colors hover:border-crimson hover:text-crimson"
-          >
-            {c.label}
-            <X className="h-3 w-3" />
-          </button>
-        ))}
-        {!isDefaultTestimonialSearch(search) ? (
-          <button
-            type="button"
-            onClick={onReset}
-            className="ml-auto text-[0.8rem] font-semibold text-crimson underline decoration-crimson/30 underline-offset-4"
-          >
-            Clear all
-          </button>
-        ) : null}
-      </div>
+      {showFooter ? (
+        <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-line pt-2.5">
+          {chips.map((c) => (
+            <button
+              key={c.label}
+              type="button"
+              onClick={() => onChange(c.clear)}
+              className="inline-flex items-center gap-1.5 rounded-full border border-gold/45 bg-gold/10 px-3 py-1 text-[0.76rem] font-semibold text-ink-soft transition-colors hover:border-crimson hover:text-crimson"
+            >
+              {c.label}
+              <X className="h-3 w-3" />
+            </button>
+          ))}
+          {!isDefaultTestimonialSearch(search) ? (
+            <button
+              type="button"
+              onClick={onReset}
+              className="ml-auto text-[0.8rem] font-semibold text-crimson underline decoration-crimson/30 underline-offset-4"
+            >
+              Clear all
+            </button>
+          ) : null}
+        </div>
+      ) : null}
     </div>
   );
 }
