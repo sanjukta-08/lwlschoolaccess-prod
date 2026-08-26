@@ -223,8 +223,8 @@ function FinderPage() {
 
         <div className="relative">
           <SiteHeader />
-          <section className="mx-auto flex w-full max-w-none flex-wrap items-end justify-between gap-x-8 gap-y-4 px-4 pt-8 pb-10 sm:px-5 lg:px-6 xl:px-8">
-            <div className="max-w-[26em]">
+          <section className="mx-auto flex w-full max-w-none flex-col gap-4 px-4 pt-8 pb-10 sm:px-5 lg:px-6 xl:px-8">
+            <div>
               <span className="mono-label mb-2 inline-flex items-center gap-2 text-crimson">
                 <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
                 {PROGRAMMES.length} programmes · Grades {GRADE_LO}–{GRADE_HI}
