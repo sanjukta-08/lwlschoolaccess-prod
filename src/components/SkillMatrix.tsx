@@ -16,8 +16,15 @@ export function SkillMatrix({
     items: skills.filter((s) => s.family === f),
   })).filter((g) => g.items.length > 0);
 
+  const gridCols =
+    groups.length === 3
+      ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+      : groups.length === 1
+        ? "grid-cols-1"
+        : "grid-cols-1 sm:grid-cols-2";
+
   return (
-    <div className="mt-6 grid gap-3.5 sm:grid-cols-2">
+    <div className={["mt-6 grid gap-3.5", gridCols].join(" ")}>
       {groups.map((g) => {
         const meta = SKILL_FAMILY[g.family];
         return (
