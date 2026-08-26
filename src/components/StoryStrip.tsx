@@ -87,13 +87,13 @@ export default function StoryStrip() {
           <SeeAll label="Read all learner feedback" />
         </div>
         <div className="mt-4">
-          <LearnerQuotes quotes={ONLINE_QUOTES} duration={80} />
+          <LearnerQuotes quotes={ONLINE_QUOTES} duration={115} />
         </div>
         <p className="mt-6 text-[0.78rem] font-semibold tracking-[0.14em] text-ink-faint uppercase">
           Summer Camp 2026
         </p>
         <div className="mt-2">
-          <LearnerQuotes quotes={CAMP_QUOTES} duration={70} />
+          <LearnerQuotes quotes={CAMP_QUOTES} duration={105} />
         </div>
       </div>
 
