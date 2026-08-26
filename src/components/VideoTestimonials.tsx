@@ -1,35 +1,44 @@
 import { useEffect, useState } from "react";
 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from "@/components/ui/dialog";
+
 import type { VideoTestimonial } from "@/lib/social-proof";
 
-function VideoCard({ video }: { video: VideoTestimonial }) {
-  const [play, setPlay] = useState(false);
-
+function VideoCard({
+  video,
+  onPlay,
+}: {
+  video: VideoTestimonial;
+  onPlay: () => void;
+}) {
   return (
     <figure className="overflow-hidden rounded-2xl border border-line bg-paper shadow-soft">
-      <div className="relative aspect-[9/13] bg-ink">
-        {play ? (
-          <iframe
-            src={`https://drive.google.com/file/d/${video.fileId}/preview`}
-            title={`${video.name} testimonial`}
-            allow="autoplay; fullscreen"
-            allowFullScreen
-            className="absolute inset-0 h-full w-full border-0"
-          />
-        ) : (
-          <button
-            type="button"
-            onClick={() => setPlay(true)}
-            aria-label={`Play the testimonial from ${video.name}`}
-            className="group absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.14),transparent_65%)] text-paper"
-          >
-            <span className="flex h-14 w-14 items-center justify-center rounded-full border border-gold/60 bg-gold/15 text-[1.1rem] transition-transform group-hover:scale-105">
-              ▶
-            </span>
-            <span className="mono-label text-paper/70">Watch · 1 min</span>
-          </button>
-        )}
-      </div>
+      <button
+        type="button"
+        onClick={onPlay}
+        aria-label={`Play the testimonial from ${video.name}`}
+        className="group relative block aspect-[9/13] w-full overflow-hidden bg-ink/5"
+      >
+        <img
+          src={`https://drive.google.com/thumbnail?id=${video.fileId}&sz=w800`}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+        />
+        <span className="absolute inset-0 bg-[linear-gradient(to_top,rgba(12,14,20,0.55),rgba(12,14,20,0.05)_55%)]" />
+        <span className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-paper">
+          <span className="flex h-14 w-14 items-center justify-center rounded-full border border-paper/70 bg-ink/45 pl-0.5 text-[1.1rem] backdrop-blur-sm transition-transform group-hover:scale-105">
+            ▶
+          </span>
+          <span className="mono-label text-paper/85">Watch · 1 min</span>
+        </span>
+      </button>
       <figcaption className="border-t border-line px-4 py-3.5">
         <div className="text-[0.9rem] font-bold text-ink">{video.name}</div>
         <div className="mono-label mt-1 text-ink-faint">{video.cohort}</div>
@@ -38,8 +47,50 @@ function VideoCard({ video }: { video: VideoTestimonial }) {
   );
 }
 
+function VideoLightbox({
+  video,
+  onClose,
+}: {
+  video: VideoTestimonial | null;
+  onClose: () => void;
+}) {
+  return (
+    <Dialog open={video !== null} onOpenChange={(v) => (v ? null : onClose())}>
+      <DialogContent className="max-w-[520px] overflow-hidden bg-paper p-0">
+        {video ? (
+          <>
+            <div className="aspect-[9/13] w-full bg-ink">
+              <iframe
+                src={`https://drive.google.com/file/d/${video.fileId}/preview`}
+                title={`${video.name} testimonial`}
+                allow="autoplay; fullscreen"
+                allowFullScreen
+                className="h-full w-full border-0"
+              />
+            </div>
+            <div className="border-t border-line px-5 py-4">
+              <DialogTitle className="text-[1rem] font-bold text-ink">
+                {video.name}
+              </DialogTitle>
+              <DialogDescription className="mono-label mt-1 text-ink-faint">
+                {video.cohort}
+              </DialogDescription>
+            </div>
+          </>
+        ) : null}
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 /** Four clips at a time, auto-advancing page by page. Pauses on hover. */
-function VideoCarousel({ videos }: { videos: VideoTestimonial[] }) {
+function VideoCarousel({
+  videos,
+  onPlay,
+}: {
+  videos: VideoTestimonial[];
+  onPlay: (v: VideoTestimonial) => void;
+}) {
   const perPage = 4;
   const pages = Math.max(1, Math.ceil(videos.length / perPage));
   const [page, setPage] = useState(0);
@@ -70,7 +121,7 @@ function VideoCarousel({ videos }: { videos: VideoTestimonial[] }) {
               aria-hidden={p !== page}
             >
               {videos.slice(p * perPage, p * perPage + perPage).map((v) => (
-                <VideoCard key={v.id} video={v} />
+                <VideoCard key={v.id} video={v} onPlay={() => onPlay(v)} />
               ))}
             </div>
           ))}
@@ -78,7 +129,16 @@ function VideoCarousel({ videos }: { videos: VideoTestimonial[] }) {
       </div>
 
       {pages > 1 ? (
-        <div className="mt-5 flex items-center justify-center gap-2.5">
+        <div className="mt-5 flex items-center justify-center gap-3">
+          <button
+            type="button"
+            onClick={() => setPage((p) => (p - 1 + pages) % pages)}
+            aria-label="Previous clips"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft transition-colors hover:border-crimson/40 hover:text-crimson"
+          >
+            <span aria-hidden>←</span>
+          </button>
+          <span className="flex items-center gap-2.5">
           {Array.from({ length: pages }).map((_, p) => (
             <button
               key={p}
@@ -94,6 +154,15 @@ function VideoCarousel({ videos }: { videos: VideoTestimonial[] }) {
               }`}
             />
           ))}
+          </span>
+          <button
+            type="button"
+            onClick={() => setPage((p) => (p + 1) % pages)}
+            aria-label="Next clips"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-paper text-ink-soft transition-colors hover:border-crimson/40 hover:text-crimson"
+          >
+            <span aria-hidden>→</span>
+          </button>
         </div>
       ) : null}
     </div>
@@ -110,16 +179,24 @@ export function VideoTestimonials({
   /** "carousel" shows four clips at a time and auto-advances. */
   variant?: "grid" | "carousel";
 }) {
+  const [active, setActive] = useState<VideoTestimonial | null>(null);
   const shown = limit ? videos.slice(0, limit) : videos;
   if (shown.length === 0) return null;
 
-  if (variant === "carousel") return <VideoCarousel videos={shown} />;
+  if (variant === "carousel")
+    return (
+      <>
+        <VideoCarousel videos={shown} onPlay={setActive} />
+        <VideoLightbox video={active} onClose={() => setActive(null)} />
+      </>
+    );
 
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {shown.map((v) => (
-        <VideoCard key={v.id} video={v} />
+        <VideoCard key={v.id} video={v} onPlay={() => setActive(v)} />
       ))}
+      <VideoLightbox video={active} onClose={() => setActive(null)} />
     </div>
   );
 }
