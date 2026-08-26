@@ -570,3 +570,41 @@ export function groupedQuotes(list: LearnerQuote[] = LEARNER_QUOTES) {
   }
   return [...groups.entries()].map(([programme, quotes]) => ({ programme, quotes }));
 }
+
+/** Stable accent token for a quote, keyed by programmeId then programme label. */
+export const PROGRAMME_ACCENT: Record<string, string> = {
+  // Summer camp 2026
+  wla: "law",
+  hcus: "med",
+  fusi: "res",
+  ignite: "ent",
+  // Online programmes
+  fdf: "med",
+  fd1: "med",
+  ail: "ai",
+  finlit: "fin",
+  onw: "lead",
+  fef: "lead",
+  // Labels (used when programmeId is absent)
+  "Yale Global Diplomacy Programme": "law",
+  "HCUS Young Global Leaders": "med",
+  "FUSI Geneva": "res",
+  "IGNITE Cambridge": "ent",
+  "Future Doctors, Batch 2": "med",
+  "Future Doctors, Batch 1": "med",
+  "Onward AI Pathway": "ai",
+  "Future AI Leaders Fellowship": "ai",
+  "ADNOC Cohort 1": "ai",
+  "ADNOC Cohort 2": "ai",
+  "EDGE AI": "ai",
+  "Financial Literacy Programme": "fin",
+  "Onward, Batch 4": "lead",
+  "Onward, Batch 5": "lead",
+  "Onward, Batch 3": "lead",
+  "Onward, Batch 2": "lead",
+  "Onward, Batch 1": "lead",
+};
+
+export function accentForQuote(q: LearnerQuote): string {
+  return PROGRAMME_ACCENT[q.programmeId ?? ""] ?? PROGRAMME_ACCENT[q.programme] ?? "ink";
+}
