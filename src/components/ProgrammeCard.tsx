@@ -47,7 +47,7 @@ export function ProgrammeCard({
 
   if (compact) {
     return (
-      <div className="group relative grid grid-cols-1 items-center gap-x-6 gap-y-2 px-4 py-4 transition-colors hover:bg-wash sm:grid-cols-[minmax(0,1fr)_9.5rem_6.5rem_7.5rem]">
+      <div className="group relative flex flex-col gap-3 px-4 py-4 transition-colors hover:bg-wash sm:flex-row sm:items-center sm:gap-6">
         <Link
           to="/programmes/$slug"
           params={{ slug: slugOf(p) }}
