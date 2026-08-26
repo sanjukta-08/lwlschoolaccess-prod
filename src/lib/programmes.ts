@@ -366,9 +366,25 @@ export const PROGRAMMES: Programme[] = [
     site: "https://sirluthercenter.com/fellowship",
     apply: "https://sirluthercenter.com/fellowship/apply",
     cohorts: [
-      { d: "2026-08-23" },
-      { d: "2026-11-15" },
-      { d: "2027-03-21" },
+      {
+        d: "2026-08-23",
+        label: "Cohort 1",
+        flyer: dl("1ECjhcsYwTyg2CyLBV0x8TeRD4ciMGvFl"),
+        brochure: dl("1rpWAQqS7vmW8fmt7FTmjyc0onHayuve9"),
+      },
+      {
+        d: "2026-11-15",
+        label: "Batch 2",
+        time: "Sundays, 9:00 AM ET",
+        flyer: dl("17tYrq2e5SPDvSsqaz98XSVS5Vg0qN4LW"),
+        brochure: dl("1k2OMfGhavmP5gceGx6I50Ol53HqXzTPO"),
+      },
+      {
+        d: "2027-03-21",
+        label: "Batch 3",
+        flyer: dl("1i67SlI4kUBY43gDjs3myCIwQefZXGLAB"),
+        brochure: dl("1E1deCrvPWezNJxtHaN9u8OQ_lfqGv4Ka"),
+      },
     ],
   },
   {
