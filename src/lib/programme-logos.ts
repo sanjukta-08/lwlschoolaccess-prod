@@ -5,6 +5,8 @@ import onward from "@/assets/logo-onward.png.asset.json";
 import onwardWord from "@/assets/logo-onward-word.png.asset.json";
 import lawyers from "@/assets/logo-future-lawyers.png.asset.json";
 import yaleWla from "@/assets/logo-yale-wla.png.asset.json";
+import yaleIr from "@/assets/logo-yale-ir.png.asset.json";
+import hmc from "@/assets/logo-hmc.png.asset.json";
 import sat from "@/assets/logo-sat.png.asset.json";
 import type { TrackKey } from "@/lib/programmes";
 
@@ -20,6 +22,8 @@ export const PROGRAMME_LOGOS: Record<string, { src: string; alt: string }> = {
   ydf: { src: onward.url, alt: "ONWARD - Young Debaters" },
   ydp: { src: onward.url, alt: "ONWARD - Young Debaters" },
   wla: { src: yaleWla.url, alt: "Yale World Leaders Academy" },
+  yir: { src: yaleIr.url, alt: "Yale International Relations Association" },
+  hmcyl: { src: hmc.url, alt: "Harvard Model Congress" },
   sat: { src: sat.url, alt: "SAT Instinct" },
 };
 
