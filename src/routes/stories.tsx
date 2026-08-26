@@ -2,10 +2,17 @@ import { Link, createFileRoute, stripSearchParams } from "@tanstack/react-router
 
 import { SiteHeader } from "@/components/SiteHeader";
 import { PressStrip } from "@/components/PressStrip";
-import { LinkedInGlyph, StoryGallery } from "@/components/StoryGallery";
+import { InstagramGlyph, LinkedInGlyph, StoryGallery } from "@/components/StoryGallery";
+import { VideoTestimonials } from "@/components/VideoTestimonials";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { TRACKS, type TrackKey } from "@/lib/programmes";
-import { APPROVED_STORIES } from "@/lib/social-proof";
+import {
+  APPROVED_INSTAGRAM,
+  APPROVED_LINKEDIN,
+  APPROVED_STORIES,
+  VIDEO_TESTIMONIALS,
+} from "@/lib/social-proof";
+
 import { SiteFooter } from "@/components/SiteFooter";
 
 const TITLE = "Student & parent stories | Learn with Leaders";
@@ -51,9 +58,17 @@ const CHIP =
 function StoriesPage() {
   const { track } = Route.useSearch();
   const active = track as TrackKey | "";
-  const stories = active
-    ? APPROVED_STORIES.filter((s) => s.tags.includes(active))
-    : APPROVED_STORIES;
+  const linkedin = active
+    ? APPROVED_LINKEDIN.filter((s) => s.tags.includes(active))
+    : APPROVED_LINKEDIN;
+  const instagram = active
+    ? APPROVED_INSTAGRAM.filter((s) => s.tags.includes(active))
+    : APPROVED_INSTAGRAM;
+  const videos = active
+    ? VIDEO_TESTIMONIALS.filter((v) => v.tags.includes(active))
+    : VIDEO_TESTIMONIALS;
+  const total = linkedin.length + instagram.length + videos.length;
+
 
   return (
     <div className="min-h-screen bg-paper">
@@ -121,14 +136,12 @@ function StoriesPage() {
           ))}
         </div>
 
-        <p className="mono-label mb-5 text-ink-faint">
-          {stories.length} {stories.length === 1 ? "story" : "stories"}
+        <p className="mono-label mb-8 text-ink-faint">
+          {total} {total === 1 ? "story" : "stories"}
           {active ? ` · ${TRACKS[active].label}` : ""}
         </p>
 
-        {stories.length ? (
-          <StoryGallery stories={stories} />
-        ) : (
+        {total === 0 ? (
           <div className="rounded-2xl border border-line bg-wash p-8 text-center">
             <b className="text-[1rem]">No stories in this interest yet.</b>
             <p className="mt-2 text-[0.9rem] text-ink-soft">
@@ -139,8 +152,55 @@ function StoriesPage() {
               .
             </p>
           </div>
-        )}
+        ) : null}
+
+        {linkedin.length ? (
+          <div className="mb-14">
+            <div className="mb-4 flex items-center gap-2.5">
+              <LinkedInGlyph />
+              <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
+                Posted on LinkedIn
+              </h2>
+            </div>
+            <StoryGallery stories={linkedin} />
+          </div>
+        ) : null}
+
+        {videos.length ? (
+          <div className="mb-14">
+            <div className="mb-4 flex items-center gap-2.5">
+              <span aria-hidden className="text-[1.1rem]">
+                🎥
+              </span>
+              <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
+                In their own words
+              </h2>
+            </div>
+            <p className="mb-5 max-w-[46em] text-[0.92rem] text-ink-soft">
+              Short clips recorded by students at the end of their cohort - Harvard Winter
+              Camp and the Research Scholars Program.
+            </p>
+            <VideoTestimonials videos={videos} />
+          </div>
+        ) : null}
+
+        {instagram.length ? (
+          <div>
+            <div className="mb-4 flex items-center gap-2.5">
+              <InstagramGlyph />
+              <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
+                Featured research on Instagram
+              </h2>
+            </div>
+            <p className="mb-5 max-w-[46em] text-[0.92rem] text-ink-soft">
+              Research Scholars whose papers were published and featured by the Sir Luther
+              Center.
+            </p>
+            <StoryGallery stories={instagram} />
+          </div>
+        ) : null}
       </section>
+
 
       <PressStrip />
 

@@ -10,7 +10,9 @@ import { ProgrammeTestimonials } from "@/components/ProgrammeTestimonials";
 import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { SkillMatrix } from "@/components/SkillMatrix";
 import { LinkedInGlyph, StoryGallery } from "@/components/StoryGallery";
-import { storiesForTracks } from "@/lib/social-proof";
+import { VideoTestimonials } from "@/components/VideoTestimonials";
+import { storiesForTracks, videosForTracks } from "@/lib/social-proof";
+
 import { DEFAULT_SEARCH } from "@/lib/finder";
 
 import { detailFor, relatedProgrammes } from "@/lib/programme-detail";
@@ -267,6 +269,10 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         <div className="mt-6">
           <StoryGallery stories={storiesForTracks(p.tracks, 3)} />
         </div>
+        <div className="mt-6">
+          <VideoTestimonials videos={videosForTracks(p.tracks, 4)} />
+        </div>
+
         <p className="mt-5">
           <Link
             to="/stories"

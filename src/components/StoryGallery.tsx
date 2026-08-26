@@ -22,6 +22,49 @@ export function LinkedInGlyph({ className = "" }: { className?: string }) {
   );
 }
 
+export function InstagramGlyph({ className = "" }: { className?: string }) {
+  return (
+    <span
+      aria-hidden
+      className={`inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-[7px] bg-[linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7)] text-paper ${className}`}
+    >
+      <svg viewBox="0 0 24 24" fill="none" className="h-3.5 w-3.5">
+        <rect
+          x="3"
+          y="3"
+          width="18"
+          height="18"
+          rx="5"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
+        <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2" />
+        <circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" />
+      </svg>
+    </span>
+  );
+}
+
+function SourceGlyph({
+  story,
+  className = "",
+}: {
+  story: LinkedInStory;
+  className?: string;
+}) {
+  return story.source === "instagram" ? (
+    <InstagramGlyph className={className} />
+  ) : (
+    <LinkedInGlyph className={className} />
+  );
+}
+
+const SOURCE_LABEL: Record<LinkedInStory["source"], string> = {
+  linkedin: "LinkedIn",
+  instagram: "Instagram",
+};
+
+
 /** Stacked reaction glyphs + faces, the way LinkedIn renders them. */
 function ReactionStack({ story }: { story: LinkedInStory }) {
   const extra = story.reactions - 23;
@@ -71,7 +114,7 @@ function StoryTile({
     <button
       type="button"
       onClick={onOpen}
-      aria-label={`Open LinkedIn story from ${story.name}`}
+      aria-label={`Open ${SOURCE_LABEL[story.source]} story from ${story.name}`}
       className="group flex h-full flex-col rounded-2xl border border-line bg-paper p-5 text-left shadow-soft transition-transform hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none"
     >
       <header className="flex items-start gap-3">
@@ -89,7 +132,7 @@ function StoryTile({
             PUBLIC
           </div>
         </div>
-        <LinkedInGlyph />
+        <SourceGlyph story={story} />
         <span aria-hidden className="mt-0.5 text-[0.95rem] leading-none text-ink-faint">
           ⋮
         </span>
@@ -98,7 +141,7 @@ function StoryTile({
       {story.image ? (
         <img
           src={story.image}
-          alt={story.imageAlt ?? `LinkedIn post by ${story.name}`}
+          alt={story.imageAlt ?? `${SOURCE_LABEL[story.source]} post by ${story.name}`}
           width={640}
           height={400}
           loading="lazy"
@@ -123,9 +166,10 @@ function StoryTile({
           ) : null}
           {!story.placeholder ? (
             <span className="rounded-full border border-gold/40 bg-gold/10 px-2.5 py-1 text-[0.7rem] font-semibold text-ink-soft">
-              ✦ Real post
+              ✦ Real {SOURCE_LABEL[story.source]} post
             </span>
           ) : null}
+
         </span>
         <span className="text-[0.72rem] font-semibold text-crimson">
           Read the post →
@@ -197,14 +241,15 @@ function StoryLightbox({
               {story.when} · Public{story.tag ? ` · #${story.tag}` : ""}
             </div>
           </div>
-          <LinkedInGlyph className="h-7 w-7" />
+          <SourceGlyph story={story} className="h-7 w-7" />
         </div>
 
         <div className="p-5">
           {story.image ? (
             <img
               src={story.image}
-              alt={story.imageAlt ?? `LinkedIn post by ${story.name}`}
+              alt={story.imageAlt ?? `${SOURCE_LABEL[story.source]} post by ${story.name}`}
+
               className="w-full rounded-xl border border-line"
             />
           ) : null}
@@ -215,7 +260,12 @@ function StoryLightbox({
             <p className="mono-label mt-4 text-ink-faint">
               Illustrative story - real posts are published with the family's permission.
             </p>
-          ) : null}
+          ) : (
+            <p className="mono-label mt-4 text-ink-faint">
+              Published by {story.name} on {SOURCE_LABEL[story.source]}, shared with permission.
+            </p>
+          )}
+
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-line px-5 py-4 text-[0.8rem] text-ink-faint">
@@ -228,7 +278,7 @@ function StoryLightbox({
               rel="noopener"
               className="font-bold text-crimson no-underline hover:underline"
             >
-              View on LinkedIn →
+              View on {SOURCE_LABEL[story.source]} →
             </a>
           ) : null}
         </div>
