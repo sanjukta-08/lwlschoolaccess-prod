@@ -72,8 +72,10 @@ export function ProgrammeCard({
               {outcome}
             </small>
             <small className="mt-1 block truncate font-mono text-[0.7rem] text-ink-faint">
-              {TYPE_NAME[p.type]} · Grades {lo}–{hi} · {p.dur} · ~{hours}h/week
+              {showType ? `${TYPE_NAME[p.type]} · ` : ""}Grades {lo}–{hi} · {p.dur} · ~
+              {hours}h/week
             </small>
+
           </span>
         </div>
 
