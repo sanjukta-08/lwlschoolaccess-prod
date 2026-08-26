@@ -6,12 +6,10 @@ import { TestimonialFilters } from "@/components/TestimonialFilters";
 import { TestimonialGrid } from "@/components/TestimonialGrid";
 
 import { DEFAULT_SEARCH } from "@/lib/finder";
-import { PROGRAMMES } from "@/lib/programmes";
 import {
   DEFAULT_TESTIMONIAL_SEARCH,
   FORMATS,
   FORMAT_ORDER,
-  TESTIMONIALS,
   TESTIMONIAL_TOTAL,
   filterTestimonials,
   testimonialFacets,
@@ -22,17 +20,13 @@ import birdAsset from "@/assets/lwl-bird-black.webp.asset.json";
 
 const TITLE = "Student & parent testimonials | Learn with Leaders";
 const DESC =
-  "Filter 80+ testimonials from Learn with Leaders families - written cohort feedback, LinkedIn and Instagram posts, video clips and handwritten notes - by who said it, interest, programme and format.";
-
-const PARENT_COUNT = TESTIMONIALS.filter((t) => t.voice === "parent").length;
-const VIDEO_COUNT = TESTIMONIALS.filter((t) => t.format === "video").length;
+  "Filter 80+ testimonials from Learn with Leaders families - written cohort feedback, LinkedIn and Instagram posts, video clips and handwritten notes - by interest, programme and format.";
 
 const str = (v: unknown, fallback: string) =>
   typeof v === "string" && v.length > 0 ? v : fallback;
 
 export const Route = createFileRoute("/testimonials")({
   validateSearch: (search: Record<string, unknown>): TestimonialSearch => ({
-    who: str(search["who"], "all"),
     track: str(search["track"], "all"),
     programme: str(search["programme"], "all"),
     format: str(search["format"], "all"),
@@ -111,26 +105,10 @@ function TestimonialsPage() {
               </h1>
               <p className="mt-3 max-w-[58em] text-[0.98rem] leading-relaxed text-ink-soft">
                 Every quote, post, clip and handwritten note we have permission to
-                share, in one searchable place. Filter by who said it, the interest
-                area, the exact programme, or the format you trust most.
+                share, in one searchable place. Filter by the interest area, the
+                exact programme, or the format you trust most.
               </p>
             </div>
-            <ul className="flex flex-wrap gap-2">
-              {[
-                [`${TESTIMONIAL_TOTAL} testimonials`, "All formats in one feed"],
-                [`${PARENT_COUNT} parent voices`, "Written by families"],
-                [`${VIDEO_COUNT} video clips`, "In their own words"],
-                [`${PROGRAMMES.length} programmes`, "Filter cohort by cohort"],
-              ].map(([top, sub]) => (
-                <li
-                  key={top}
-                  className="rounded-full border border-line bg-paper/90 px-3.5 py-1.5 shadow-soft backdrop-blur-sm"
-                >
-                  <b className="block text-[0.78rem] font-bold text-ink">{top}</b>
-                  <small className="mono-label block text-ink-faint">{sub}</small>
-                </li>
-              ))}
-            </ul>
           </section>
         </div>
       </div>

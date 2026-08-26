@@ -6,14 +6,11 @@ import {
   FORMATS,
   FORMAT_ORDER,
   TESTIMONIAL_PROGRAMMES,
-  VOICES,
-  VOICE_ORDER,
   isDefaultTestimonialSearch,
 } from "@/lib/testimonials";
 import type { TestimonialSearch } from "@/lib/testimonials";
 
 type Facets = {
-  who: Record<string, number>;
   track: Record<string, number>;
   programme: Record<string, number>;
   format: Record<string, number>;
@@ -60,11 +57,6 @@ export function TestimonialFilters({
   onReset: () => void;
 }) {
   const chips: { label: string; clear: Partial<TestimonialSearch> }[] = [];
-  if (search.who !== "all")
-    chips.push({
-      label: VOICES[search.who as keyof typeof VOICES]?.label ?? search.who,
-      clear: { who: "all" },
-    });
   if (search.track !== "all")
     chips.push({
       label: TRACKS[search.track as TrackKey]?.label ?? search.track,
@@ -82,34 +74,7 @@ export function TestimonialFilters({
 
   return (
     <div className="rounded-2xl border border-line bg-paper p-4 shadow-soft sm:p-5">
-      {/* Who said it - the first question every parent asks. */}
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="mono-label mr-1 text-ink-faint">Who said it</span>
-        {(["all", ...VOICE_ORDER] as const).map((v) => {
-          const on = search.who === v;
-          const count = facets.who[v] ?? 0;
-          return (
-            <button
-              key={v}
-              type="button"
-              onClick={() => onChange({ who: v })}
-              aria-pressed={on}
-              className={`rounded-full border px-3.5 py-1.5 text-[0.82rem] font-semibold transition-colors ${
-                on
-                  ? "border-ink bg-ink text-paper"
-                  : "border-line bg-paper text-ink-soft hover:border-gold"
-              }`}
-            >
-              {v === "all" ? "Everyone" : VOICES[v].label}
-              <span className={on ? "ml-1.5 text-paper/60" : "ml-1.5 text-ink-faint"}>
-                {count}
-              </span>
-            </button>
-          );
-        })}
-      </div>
-
-      <div className="mt-4 grid gap-3 border-t border-line pt-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <Field icon={<Layers className="h-3.5 w-3.5" />} label="Interest">
           <select
             className={fieldCls}

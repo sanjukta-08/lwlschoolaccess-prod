@@ -127,14 +127,14 @@ function Card({ t, onOpen }: { t: Testimonial; onOpen: () => void }) {
           </span>
         }
       >
-        <span className="relative block aspect-[4/3] w-full overflow-hidden rounded-xl bg-ink/5">
+        <span className="relative block aspect-[9/16] w-full overflow-hidden rounded-xl bg-ink/5">
           {poster ? (
             <img
               src={poster}
               alt=""
               aria-hidden
               loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             />
           ) : null}
           <span className="absolute inset-0 flex items-center justify-center">
