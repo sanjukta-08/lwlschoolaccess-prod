@@ -57,13 +57,25 @@ export function ProgrammeCard({
 
         {/* Programme */}
         <div className="flex min-w-0 flex-1 items-start gap-3">
-          <span
-            className="mt-[3px] flex-none"
-            aria-hidden
-            style={{ color: track.color }}
-          >
-            <TrackIcon track={p.tracks[0]!} className="h-[1.05rem] w-[1.05rem]" />
-          </span>
+          {logo ? (
+            <span className="mt-[1px] flex h-9 w-9 flex-none items-center justify-center overflow-hidden rounded-md border border-line bg-paper p-[3px]">
+              <img
+                src={logo.src}
+                alt={logo.alt}
+                loading="lazy"
+                className="h-full w-full object-contain"
+              />
+            </span>
+          ) : (
+            <span
+              className="mt-[3px] flex-none"
+              aria-hidden
+              style={{ color: track.color }}
+            >
+              <TrackIcon track={p.tracks[0]!} className="h-[1.05rem] w-[1.05rem]" />
+            </span>
+          )}
+
           <span className="min-w-0">
             <b className="block truncate text-[0.95rem] leading-snug font-bold text-ink">
               {p.name}
