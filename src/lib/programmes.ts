@@ -448,8 +448,19 @@ export const PROGRAMMES: Programme[] = [
     site: "https://joinonwards.com/advanced-leadership-online",
     apply: "https://joinonwards.com/advanced-leadership-online/apply",
     cohorts: [
-      { d: "2026-11-14" },
-      { d: "2027-02-20" },
+      {
+        d: "2026-11-14",
+        label: "Cohort 1",
+        elig: "Grades 6-8 and Grades 9-12 (parallel cohorts)",
+        flyer: dl("1LkcprAPmeF-WEX1XDrxRMMyEg2St_NO7"),
+        brochure: dl("1Cjx7ulrxjVhsTv3NM4fqnnVxbUzWNUs8"),
+      },
+      {
+        d: "2027-02-20",
+        label: "Cohort 2",
+        flyer: dl("1OrkojFVuWE-WSRkOGApZ8WCc18Y3g8Xe"),
+        brochure: dl("1vU5iWryndDp_KyO_y-AXjKLEMljA-otA"),
+      },
     ],
   },
   {
