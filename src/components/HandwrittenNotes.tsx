@@ -118,11 +118,10 @@ export default function HandwrittenNotes() {
         >
           From the <span className="text-crimson">heart</span> of the cohort
         </SectionHeading>
-        <div className="gold-rule mx-auto mt-3 h-px w-24" />
       </div>
 
       <div
-        className="relative mt-7 overflow-hidden px-5"
+        className="relative mt-4 overflow-hidden px-5"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
