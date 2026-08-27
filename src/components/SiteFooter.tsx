@@ -103,6 +103,9 @@ export function SiteFooter({ note }: { note?: string }) {
             >
               Book a call
             </a>
+            <Link to="/internships" className={linkCls}>
+              Internships
+            </Link>
             <a
               href="https://www.learnwithleaders.com/"
               target="_blank"

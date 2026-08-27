@@ -15,10 +15,13 @@ import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as CalendarMonthRouteImport } from './routes/calendar-month'
 import { Route as FinderRouteImport } from './routes/finder'
 import { Route as FitRouteImport } from './routes/fit'
+import { Route as InternshipsRouteImport } from './routes/internships'
 import { Route as ProfileBuildingRouteImport } from './routes/profile-building'
 import { Route as ShortlistRouteImport } from './routes/shortlist'
 import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
+import { Route as InternshipsIndexRouteImport } from './routes/internships.index'
+import { Route as InternshipsApplyRouteImport } from './routes/internships.apply'
 import { Route as ProgrammesSlugRouteImport } from './routes/programmes.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -51,6 +54,11 @@ const FitRoute = FitRouteImport.update({
   path: '/fit',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InternshipsRoute = InternshipsRouteImport.update({
+  id: '/internships',
+  path: '/internships',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProfileBuildingRoute = ProfileBuildingRouteImport.update({
   id: '/profile-building',
   path: '/profile-building',
@@ -71,6 +79,16 @@ const TestimonialsRoute = TestimonialsRouteImport.update({
   path: '/testimonials',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InternshipsIndexRoute = InternshipsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => InternshipsRoute,
+} as any)
+const InternshipsApplyRoute = InternshipsApplyRouteImport.update({
+  id: '/apply',
+  path: '/apply',
+  getParentRoute: () => InternshipsRoute,
+} as any)
 const ProgrammesSlugRoute = ProgrammesSlugRouteImport.update({
   id: '/programmes/$slug',
   path: '/programmes/$slug',
@@ -84,11 +102,14 @@ export interface FileRoutesByFullPath {
   '/calendar-month': typeof CalendarMonthRoute
   '/finder': typeof FinderRoute
   '/fit': typeof FitRoute
+  '/internships': typeof InternshipsRouteWithChildren
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
+  '/internships/apply': typeof InternshipsApplyRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
+  '/internships/': typeof InternshipsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -101,7 +122,9 @@ export interface FileRoutesByTo {
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
+  '/internships/apply': typeof InternshipsApplyRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
+  '/internships': typeof InternshipsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -111,11 +134,14 @@ export interface FileRoutesById {
   '/calendar-month': typeof CalendarMonthRoute
   '/finder': typeof FinderRoute
   '/fit': typeof FitRoute
+  '/internships': typeof InternshipsRouteWithChildren
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
+  '/internships/apply': typeof InternshipsApplyRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
+  '/internships/': typeof InternshipsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -126,11 +152,14 @@ export interface FileRouteTypes {
     | '/calendar-month'
     | '/finder'
     | '/fit'
+    | '/internships'
     | '/profile-building'
     | '/shortlist'
     | '/stories'
     | '/testimonials'
+    | '/internships/apply'
     | '/programmes/$slug'
+    | '/internships/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -143,7 +172,9 @@ export interface FileRouteTypes {
     | '/shortlist'
     | '/stories'
     | '/testimonials'
+    | '/internships/apply'
     | '/programmes/$slug'
+    | '/internships'
   id:
     | '__root__'
     | '/'
@@ -152,11 +183,14 @@ export interface FileRouteTypes {
     | '/calendar-month'
     | '/finder'
     | '/fit'
+    | '/internships'
     | '/profile-building'
     | '/shortlist'
     | '/stories'
     | '/testimonials'
+    | '/internships/apply'
     | '/programmes/$slug'
+    | '/internships/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -166,6 +200,7 @@ export interface RootRouteChildren {
   CalendarMonthRoute: typeof CalendarMonthRoute
   FinderRoute: typeof FinderRoute
   FitRoute: typeof FitRoute
+  InternshipsRoute: typeof InternshipsRouteWithChildren
   ProfileBuildingRoute: typeof ProfileBuildingRoute
   ShortlistRoute: typeof ShortlistRoute
   StoriesRoute: typeof StoriesRoute
@@ -217,6 +252,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FitRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/internships': {
+      id: '/internships'
+      path: '/internships'
+      fullPath: '/internships'
+      preLoaderRoute: typeof InternshipsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/profile-building': {
       id: '/profile-building'
       path: '/profile-building'
@@ -245,6 +287,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TestimonialsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/internships/': {
+      id: '/internships/'
+      path: '/'
+      fullPath: '/internships/'
+      preLoaderRoute: typeof InternshipsIndexRouteImport
+      parentRoute: typeof InternshipsRoute
+    }
+    '/internships/apply': {
+      id: '/internships/apply'
+      path: '/apply'
+      fullPath: '/internships/apply'
+      preLoaderRoute: typeof InternshipsApplyRouteImport
+      parentRoute: typeof InternshipsRoute
+    }
     '/programmes/$slug': {
       id: '/programmes/$slug'
       path: '/programmes/$slug'
@@ -255,6 +311,20 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface InternshipsRouteChildren {
+  InternshipsApplyRoute: typeof InternshipsApplyRoute
+  InternshipsIndexRoute: typeof InternshipsIndexRoute
+}
+
+const InternshipsRouteChildren: InternshipsRouteChildren = {
+  InternshipsApplyRoute: InternshipsApplyRoute,
+  InternshipsIndexRoute: InternshipsIndexRoute,
+}
+
+const InternshipsRouteWithChildren = InternshipsRoute._addFileChildren(
+  InternshipsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -262,6 +332,7 @@ const rootRouteChildren: RootRouteChildren = {
   CalendarMonthRoute: CalendarMonthRoute,
   FinderRoute: FinderRoute,
   FitRoute: FitRoute,
+  InternshipsRoute: InternshipsRouteWithChildren,
   ProfileBuildingRoute: ProfileBuildingRoute,
   ShortlistRoute: ShortlistRoute,
   StoriesRoute: StoriesRoute,
