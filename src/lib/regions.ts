@@ -66,9 +66,10 @@ export const regionTimeLabel = (p: Programme, region: string): string | null => 
 };
 
 export const regionOptions = () => [
-  { value: "all", label: "anywhere in the world" },
-  ...REGION_ORDER.map((k) => ({ value: k, label: REGIONS[k].label })),
+  { value: "all", label: "Anywhere" },
+  ...REGION_ORDER.map((k) => ({ value: k, label: REGIONS[k].short })),
 ];
+
 
 export const regionLabel = (region: string) =>
   region in REGIONS ? REGIONS[region as RegionKey].label : "anywhere in the world";

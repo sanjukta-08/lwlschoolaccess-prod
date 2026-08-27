@@ -15,15 +15,15 @@ export function AboutLwl() {
     <section id="about" className="scroll-mt-20 border-t border-line bg-paper py-14">
       <div className="page-shell">
         <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
-          <div className="text-center">
+          <div className="text-center lg:text-left">
             <span className="mono-label text-crimson">{ABOUT.kicker}</span>
-            <h2 className="mt-3 font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium leading-tight">
+            <h2 className="mt-3 font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium leading-tight lg:!text-left">
               {ABOUT.headline}
             </h2>
-            <p className="mx-auto mt-4 max-w-[46em] text-[0.95rem] leading-relaxed text-ink-soft">
+            <p className="mx-auto mt-4 max-w-[46em] text-[0.95rem] leading-relaxed text-ink-soft lg:mx-0">
               {ABOUT.body}
             </p>
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <div className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
               <Link
                 to="/finder"
                 search={DEFAULT_SEARCH}

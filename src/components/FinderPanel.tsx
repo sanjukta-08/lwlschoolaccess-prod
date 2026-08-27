@@ -98,8 +98,8 @@ export function FinderPanel({
 
     return (
       <div className="rounded-2xl border border-line bg-paper p-4 shadow-soft sm:p-5">
-        <div className="flex flex-wrap items-end gap-x-4 gap-y-3">
-          <div className="min-w-[120px] flex-1">
+        <div className="grid grid-cols-2 items-end gap-x-4 gap-y-3 md:grid-cols-3 lg:grid-cols-7">
+          <div className="min-w-0">
             <Field label="Grade" icon={<GraduationCap className="h-3.5 w-3.5" />}>
               <BoxSelect
                 value={state.grade}
@@ -109,7 +109,7 @@ export function FinderPanel({
               />
             </Field>
           </div>
-          <div className="min-w-[140px] flex-1">
+          <div className="min-w-0">
             <Field label="Starting" icon={<CalendarDays className="h-3.5 w-3.5" />}>
               <BoxSelect
                 value={state.month}
@@ -119,8 +119,8 @@ export function FinderPanel({
               />
             </Field>
           </div>
-          <div className="min-w-[150px] flex-1">
-            <Field label="Programme length" icon={<Clock className="h-3.5 w-3.5" />}>
+          <div className="min-w-0">
+            <Field label="Length" icon={<Clock className="h-3.5 w-3.5" />}>
               <BoxSelect
                 value={state.duration}
                 onChange={(v) => onChange({ duration: v })}
@@ -129,7 +129,7 @@ export function FinderPanel({
               />
             </Field>
           </div>
-          <div className="min-w-[150px] flex-1">
+          <div className="min-w-0">
             <Field label="Where you are" icon={<Globe className="h-3.5 w-3.5" />}>
               <BoxSelect
                 value={state.region}
@@ -139,7 +139,7 @@ export function FinderPanel({
               />
             </Field>
           </div>
-          <div className="min-w-[150px] flex-1">
+          <div className="min-w-0">
             <Field label="Type" icon={<Compass className="h-3.5 w-3.5" />}>
               <BoxSelect
                 value={state.type}
@@ -149,12 +149,13 @@ export function FinderPanel({
               />
             </Field>
           </div>
-          <div className="min-w-[220px] flex-[1.5]">
+          <div className="col-span-2 min-w-0 md:col-span-3 lg:col-span-2">
             <Field label="Search" icon={<Search className="h-3.5 w-3.5" />}>
               {search}
             </Field>
           </div>
         </div>
+
 
         <div className="mt-3.5 border-t border-line pt-3">{counter}</div>
       </div>
@@ -413,12 +414,13 @@ function BoxSelect({
   label: string;
 }) {
   return (
-    <span className="relative block">
+    <span className="relative block w-full min-w-0">
       <select
         aria-label={label}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full cursor-pointer appearance-none rounded-lg border border-line bg-wash px-3 py-2 pr-8 text-[0.85rem] font-semibold text-ink focus:border-crimson/40 focus:outline-none"
+        className="w-full min-w-0 cursor-pointer appearance-none overflow-hidden rounded-lg border border-line bg-wash px-3 py-2 pr-8 text-[0.85rem] font-semibold text-ellipsis whitespace-nowrap text-ink focus:border-crimson/40 focus:outline-none"
+
       >
         {options.map((o) => (
           <option key={o.value} value={o.value}>

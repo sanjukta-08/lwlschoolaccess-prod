@@ -258,13 +258,14 @@ function FinderPage() {
       <div className="relative mx-auto w-full max-w-none px-4 pb-14 sm:px-5 lg:px-6 xl:px-8">
         <div className="mb-6">{filters}</div>
 
-        <div className="grid items-start gap-6 lg:grid-cols-[320px_1fr]">
-          <aside className="min-w-0 space-y-5 lg:sticky lg:top-6">
+        <div className="flex flex-col items-start gap-6 lg:flex-row">
+          <aside className="w-full min-w-0 space-y-5 empty:hidden lg:sticky lg:top-6 lg:w-[320px] lg:shrink-0">
             <TrendingTop5 state={state} variant="rail" />
             <SavedStrip />
           </aside>
 
-          <main className="min-w-0 space-y-8">
+          <main className="w-full min-w-0 flex-1 space-y-8">
+
             <div className="space-y-4">
               <div className="space-y-2">
                 <h3 className="font-serif text-[1.05rem] font-semibold text-ink">
@@ -518,7 +519,8 @@ function DomainChips({
 
   return (
     <div className="relative">
-      <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none]">
+      <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] md:flex-wrap md:overflow-visible">
+
         {trackKeys.map((key) => {
           const pressed = state.interest === key;
           const label =
@@ -551,9 +553,10 @@ function DomainChips({
         })}
       </div>
       <span
-        className="pointer-events-none absolute top-0 right-0 h-full w-8 bg-gradient-to-l from-wash to-transparent sm:hidden"
+        className="pointer-events-none absolute top-0 right-0 h-full w-8 bg-gradient-to-l from-wash to-transparent md:hidden"
         aria-hidden="true"
       />
+
     </div>
   );
 }
@@ -575,7 +578,7 @@ function TypeChips({
 
   return (
     <div className="relative">
-      <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none]">
+      <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] md:flex-wrap md:overflow-visible">
         {typeKeys.map((key) => {
           const pressed = state.type === key;
           const label =
@@ -608,9 +611,10 @@ function TypeChips({
         })}
       </div>
       <span
-        className="pointer-events-none absolute top-0 right-0 h-full w-8 bg-gradient-to-l from-wash to-transparent sm:hidden"
+        className="pointer-events-none absolute top-0 right-0 h-full w-8 bg-gradient-to-l from-wash to-transparent md:hidden"
         aria-hidden="true"
       />
+
     </div>
   );
 }
