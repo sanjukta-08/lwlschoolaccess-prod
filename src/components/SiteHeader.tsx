@@ -13,7 +13,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { TYPES, type TypeKey } from "@/lib/programmes";
+import { TRACKS, type TrackKey } from "@/lib/programmes";
 
 const linkCls =
   "relative flex items-center rounded-full px-3.5 py-2 leading-none text-ink-soft no-underline transition-colors hover:text-ink after:absolute after:inset-x-3.5 after:-bottom-0.5 after:h-[2px] after:origin-left after:scale-x-0 after:rounded-full after:bg-gold after:transition-transform hover:after:scale-x-100";
@@ -21,11 +21,15 @@ const activeCls = "text-ink after:scale-x-100";
 const mobileLinkCls =
   "rounded-xl px-3.5 py-2.5 leading-none text-ink-soft no-underline transition-colors hover:bg-gold-soft hover:text-ink";
 
-const offeringItems: { label: string; type: TypeKey | "all"; description?: string }[] = [
-  { label: "All offerings", type: "all", description: "Browse everything" },
-  { label: TYPES.prog.label, type: "prog", description: "Structured learning journeys" },
-  { label: TYPES.fel.label, type: "fel", description: "Deep-dive mentor-led tracks" },
-  { label: TYPES.comp.label, type: "comp", description: "Global challenges & showcases" },
+const offeringItems: { label: string; interest: TrackKey | "all"; description?: string }[] = [
+  { label: "All offerings", interest: "all", description: "Browse everything" },
+  { label: TRACKS.med.label, interest: "med", description: "Fellowships, programmes & competitions" },
+  { label: TRACKS.law.label, interest: "law", description: "Fellowships, programmes & competitions" },
+  { label: TRACKS.fin.label, interest: "fin", description: "Fellowships, programmes & competitions" },
+  { label: TRACKS.ai.label, interest: "ai", description: "Fellowships, programmes & competitions" },
+  { label: TRACKS.res.label, interest: "res", description: "Fellowships, programmes & competitions" },
+  { label: TRACKS.lead.label, interest: "lead", description: "Fellowships, programmes & competitions" },
+  { label: TRACKS.sat.label, interest: "sat", description: "Fellowships, programmes & competitions" },
 ];
 
 export function SiteHeader() {
