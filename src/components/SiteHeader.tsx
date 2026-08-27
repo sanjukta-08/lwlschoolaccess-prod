@@ -72,10 +72,10 @@ export function SiteHeader() {
         className="min-w-[220px] rounded-2xl border border-line bg-paper p-2 shadow-lift"
       >
         {offeringItems.map((item) => (
-          <DropdownMenuItem key={item.type} asChild>
+          <DropdownMenuItem key={item.interest} asChild>
             <Link
               to="/finder"
-              search={offeringsSearch(item.type)}
+              search={offeringsSearch(item.interest)}
               activeOptions={offeringsActiveOptions}
               activeProps={{ className: "bg-wash text-ink" }}
               className="flex cursor-pointer flex-col items-start rounded-xl px-3 py-2 text-left text-[0.85rem] font-semibold text-ink-soft no-underline outline-none transition-colors hover:bg-wash hover:text-ink focus:bg-wash focus:text-ink"
