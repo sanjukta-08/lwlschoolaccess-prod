@@ -258,13 +258,14 @@ function FinderPage() {
       <div className="relative mx-auto w-full max-w-none px-4 pb-14 sm:px-5 lg:px-6 xl:px-8">
         <div className="mb-6">{filters}</div>
 
-        <div className="grid items-start gap-6 lg:grid-cols-[320px_1fr]">
-          <aside className="min-w-0 space-y-5 lg:sticky lg:top-6">
+        <div className="flex flex-col items-start gap-6 lg:flex-row">
+          <aside className="w-full min-w-0 space-y-5 empty:hidden lg:sticky lg:top-6 lg:w-[320px] lg:shrink-0">
             <TrendingTop5 state={state} variant="rail" />
             <SavedStrip />
           </aside>
 
-          <main className="min-w-0 space-y-8">
+          <main className="w-full min-w-0 flex-1 space-y-8">
+
             <div className="space-y-4">
               <div className="space-y-2">
                 <h3 className="font-serif text-[1.05rem] font-semibold text-ink">
