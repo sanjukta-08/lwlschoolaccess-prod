@@ -285,7 +285,17 @@ export function FinderPanel({
   return (
     <div className="rounded-3xl border border-line bg-paper p-[clamp(22px,4vw,34px)] shadow-lift">
       <p className="text-center font-serif text-[clamp(1.2rem,3.2vw,1.65rem)] leading-[2] font-medium">
-        I&apos;m looking for something for{" "}
+        I&apos;m looking for something in{" "}
+        <SentenceSelect
+          value={state.interest}
+          onChange={(v) => onChange({ interest: v })}
+          options={[
+            { value: "all", label: "any subject" },
+            ...Object.entries(TRACKS).map(([key, t]) => ({ value: key, label: t.label })),
+          ]}
+          label="Interest"
+        />{" "}
+        for{" "}
         <SentenceSelect
           value={state.grade}
           onChange={(v) => onChange({ grade: v })}
@@ -311,6 +321,28 @@ export function FinderPanel({
 
       <div className="mt-5 flex justify-center">
         <div className="w-full max-w-[420px]">{search}</div>
+      </div>
+
+      <p className="mono-label mt-5 mb-3.5 text-center text-ink-faint">
+        Pick a subject
+      </p>
+
+      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
+        <Tile
+          label="Everything"
+          pressed={state.interest === "all"}
+          onClick={() => onChange({ interest: "all" })}
+        />
+        {Object.entries(TRACKS).map(([key, t]) => (
+          <Tile
+            key={key}
+            label={t.label}
+            track={key as TrackKey}
+            color={t.color}
+            pressed={state.interest === key}
+            onClick={() => onChange({ interest: key })}
+          />
+        ))}
       </div>
 
       <div className="mt-5 flex justify-center">
@@ -341,28 +373,6 @@ export function FinderPanel({
             );
           })}
         </div>
-      </div>
-
-      <p className="mono-label mt-5 mb-3.5 text-center text-ink-faint">
-        And they&apos;re curious about
-      </p>
-
-      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
-        <Tile
-          label="Everything"
-          pressed={state.interest === "all"}
-          onClick={() => onChange({ interest: "all" })}
-        />
-        {Object.entries(TRACKS).map(([key, t]) => (
-          <Tile
-            key={key}
-            label={t.label}
-            track={key as TrackKey}
-            color={t.color}
-            pressed={state.interest === key}
-            onClick={() => onChange({ interest: key })}
-          />
-        ))}
       </div>
 
       <div className="mt-5">{counter}</div>
