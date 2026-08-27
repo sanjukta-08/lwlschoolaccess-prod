@@ -74,7 +74,7 @@ export function SiteHeader() {
               search={offeringsSearch(item.type)}
               activeOptions={offeringsActiveOptions}
               activeProps={{ className: "bg-wash text-ink" }}
-              className="flex cursor-pointer flex-col rounded-xl px-3 py-2 text-[0.85rem] font-semibold text-ink-soft no-underline outline-none transition-colors hover:bg-wash hover:text-ink focus:bg-wash focus:text-ink"
+              className="flex cursor-pointer flex-col items-start rounded-xl px-3 py-2 text-left text-[0.85rem] font-semibold text-ink-soft no-underline outline-none transition-colors hover:bg-wash hover:text-ink focus:bg-wash focus:text-ink"
               onClick={close}
             >
               <span>{item.label}</span>
