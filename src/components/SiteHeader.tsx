@@ -6,6 +6,14 @@ import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
 import { ShortlistBadge } from "@/components/ShortlistBadge";
 import { WingMark } from "@/components/WingMark";
 import logoAsset from "@/assets/lwl-logo.png.asset.json";
+import { ChevronDown } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { TYPES, type TypeKey } from "@/lib/programmes";
 
 const linkCls =
   "relative flex items-center rounded-full px-3.5 py-2 leading-none text-ink-soft no-underline transition-colors hover:text-ink after:absolute after:inset-x-3.5 after:-bottom-0.5 after:h-[2px] after:origin-left after:scale-x-0 after:rounded-full after:bg-gold after:transition-transform hover:after:scale-x-100";
@@ -13,9 +21,17 @@ const activeCls = "text-ink after:scale-x-100";
 const mobileLinkCls =
   "rounded-xl px-3.5 py-2.5 leading-none text-ink-soft no-underline transition-colors hover:bg-gold-soft hover:text-ink";
 
+const offeringItems: { label: string; type: TypeKey | "all"; description?: string }[] = [
+  { label: "All offerings", type: "all", description: "Browse everything" },
+  { label: TYPES.prog.label, type: "prog", description: "Structured learning journeys" },
+  { label: TYPES.fel.label, type: "fel", description: "Deep-dive mentor-led tracks" },
+  { label: TYPES.comp.label, type: "comp", description: "Global challenges & showcases" },
+];
+
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [offeringsOpen, setOfferingsOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -24,7 +40,89 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const close = () => setOpen(false);
+  const close = () => {
+    setOpen(false);
+    setOfferingsOpen(false);
+  };
+
+  const offeringsSearch = (type: TypeKey | "all") =>
+    type === "all" ? DEFAULT_SEARCH : { ...DEFAULT_SEARCH, type };
+
+  const offeringsActiveOptions = { includeSearch: true };
+
+  const offeringsDesktop = (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button
+          type="button"
+          className={`${linkCls} gap-1 bg-transparent font-[inherit] text-[inherit] focus:outline-none`}
+          aria-haspopup="menu"
+        >
+          Our Offerings
+          <ChevronDown className="h-3.5 w-3.5 opacity-70" aria-hidden />
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent
+        align="start"
+        sideOffset={8}
+        className="min-w-[220px] rounded-2xl border border-line bg-paper p-2 shadow-lift"
+      >
+        {offeringItems.map((item) => (
+          <DropdownMenuItem key={item.type} asChild>
+            <Link
+              to="/finder"
+              search={offeringsSearch(item.type)}
+              activeOptions={offeringsActiveOptions}
+              activeProps={{ className: "bg-wash text-ink" }}
+              className="flex cursor-pointer flex-col items-start rounded-xl px-3 py-2 text-left text-[0.85rem] font-semibold text-ink-soft no-underline outline-none transition-colors hover:bg-wash hover:text-ink focus:bg-wash focus:text-ink"
+              onClick={close}
+            >
+              <span>{item.label}</span>
+              {item.description ? (
+                <span className="text-[0.72rem] font-normal text-ink-faint">
+                  {item.description}
+                </span>
+              ) : null}
+            </Link>
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+
+  const offeringsMobile = (
+    <div className="flex flex-col">
+      <button
+        type="button"
+        onClick={() => setOfferingsOpen((v) => !v)}
+        aria-expanded={offeringsOpen}
+        className={`${mobileLinkCls} flex w-full items-center justify-between`}
+      >
+        <span>Our Offerings</span>
+        <ChevronDown
+          className={`h-4 w-4 transition-transform ${offeringsOpen ? "rotate-180" : ""}`}
+          aria-hidden
+        />
+      </button>
+      {offeringsOpen ? (
+        <div className="mt-1 ml-3 flex flex-col gap-0.5 border-l border-gold-line/40 pl-3">
+          {offeringItems.map((item) => (
+            <Link
+              key={item.type}
+              to="/finder"
+              search={offeringsSearch(item.type)}
+              activeOptions={offeringsActiveOptions}
+              activeProps={{ className: "bg-gold-soft text-ink" }}
+              className={mobileLinkCls}
+              onClick={close}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      ) : null}
+    </div>
+  );
 
   const nav = (mobile = false) => {
     const cls = mobile ? mobileLinkCls : linkCls;
@@ -33,15 +131,7 @@ export function SiteHeader() {
       : { className: activeCls };
     return (
       <>
-        <Link
-          to="/finder"
-          search={DEFAULT_SEARCH}
-          className={cls}
-          activeProps={active}
-          onClick={close}
-        >
-          Programmes
-        </Link>
+        {mobile ? offeringsMobile : offeringsDesktop}
         <Link
           to="/calendar"
           search={DEFAULT_SEARCH}
