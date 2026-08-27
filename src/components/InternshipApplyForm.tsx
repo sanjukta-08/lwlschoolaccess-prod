@@ -36,7 +36,11 @@ function isEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
-export function InternshipApplyForm({ preselectRole }: { preselectRole?: string }) {
+export function InternshipApplyForm({
+  preselectRole,
+}: {
+  preselectRole?: string | undefined;
+}) {
   const [form, setForm] = useState<FormState>(() => initialState(preselectRole));
   const [touched, setTouched] = useState(false);
   const [submitted, setSubmitted] = useState(false);
