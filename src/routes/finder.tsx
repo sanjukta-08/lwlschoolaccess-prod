@@ -146,25 +146,23 @@ function FinderPage() {
 
   const headline = matches.length ? (
     <>
+      {state.interest !== "all" ? (
+        <>
+          <em className="text-crimson-deep">
+            {TRACKS[state.interest as keyof typeof TRACKS]?.label}
+          </em>{" "}
+        </>
+      ) : null}
       {matches.length}
       {state.type === "all"
         ? " programme"
         : ` ${TYPE_NAME[state.type as keyof typeof TYPE_NAME]?.toLowerCase() ?? "programme"}`}
-      {matches.length === 1 ? "" : "s"} for{" "}
-      <em className="text-crimson-deep">
-        {state.grade === "all"
-          ? "every grade"
-          : (BAND_LABEL[state.grade] ?? `Grade ${state.grade}`)}
-      </em>
-      {state.interest !== "all" ? (
-        <>
-          {" "}
-          curious about{" "}
-          <em className="text-crimson-deep">
-            {TRACKS[state.interest as keyof typeof TRACKS]?.label}
-          </em>
-        </>
-      ) : null}
+      {matches.length === 1 ? "" : "s"}
+      {state.grade === "all" ? (
+        " for every grade"
+      ) : (
+        <> for <em className="text-crimson-deep">{BAND_LABEL[state.grade] ?? `Grade ${state.grade}`}</em></>
+      )}
       {state.month !== "all" ? (
         <>
           , starting <em className="text-crimson-deep">{monthLabel(state.month)}</em>
