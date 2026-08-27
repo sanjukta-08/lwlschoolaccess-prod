@@ -267,11 +267,19 @@ function FinderPage() {
           </aside>
 
           <main className="min-w-0 space-y-8">
-            <div className="space-y-3">
-              <h3 className="font-serif text-[1.05rem] font-semibold text-ink">
-                Browse by category
-              </h3>
-              <TypeChips state={state} onChange={update} />
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <h3 className="font-serif text-[1.05rem] font-semibold text-ink">
+                  Browse by subject
+                </h3>
+                <DomainChips state={state} onChange={update} />
+              </div>
+              <div className="space-y-2">
+                <h3 className="font-serif text-[0.9rem] font-semibold text-ink-soft">
+                  Then by format
+                </h3>
+                <TypeChips state={state} onChange={update} />
+              </div>
             </div>
 
             <section id="all-programmes" className="scroll-mt-6">
