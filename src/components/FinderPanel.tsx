@@ -91,24 +91,14 @@ export function FinderPanel({
   );
 
   if (layout === "bar") {
-    const interestOptions = [
-      { value: "all", label: "Any interest" },
-      ...Object.entries(TRACKS).map(([key, t]) => ({ value: key, label: t.label })),
+    const typeOptions = [
+      { value: "all", label: "Any type" },
+      ...Object.entries(TYPES).map(([key, t]) => ({ value: key, label: t.label })),
     ];
 
     return (
       <div className="rounded-2xl border border-line bg-paper p-4 shadow-soft sm:p-5">
         <div className="flex flex-wrap items-end gap-x-4 gap-y-3">
-          <div className="min-w-[220px] flex-[2]">
-            <Field label="My child has interest in" icon={<Compass className="h-3.5 w-3.5" />}>
-              <BoxSelect
-                value={state.interest}
-                onChange={(v) => onChange({ interest: v })}
-                options={interestOptions}
-                label="Interest"
-              />
-            </Field>
-          </div>
           <div className="min-w-[120px] flex-1">
             <Field label="Grade" icon={<GraduationCap className="h-3.5 w-3.5" />}>
               <BoxSelect
@@ -149,13 +139,22 @@ export function FinderPanel({
               />
             </Field>
           </div>
+          <div className="min-w-[150px] flex-1">
+            <Field label="Type" icon={<Compass className="h-3.5 w-3.5" />}>
+              <BoxSelect
+                value={state.type}
+                onChange={(v) => onChange({ type: v })}
+                options={typeOptions}
+                label="Programme type"
+              />
+            </Field>
+          </div>
           <div className="min-w-[220px] flex-[1.5]">
             <Field label="Search" icon={<Search className="h-3.5 w-3.5" />}>
               {search}
             </Field>
           </div>
         </div>
-
 
         <div className="mt-3.5 border-t border-line pt-3">{counter}</div>
       </div>
@@ -219,46 +218,10 @@ export function FinderPanel({
           </div>
 
           <div className="px-4 py-4">
-            <Field label="Type">
-              <div className="flex flex-col gap-0.5">
-                {typeKeys.map((key) => {
-                  const pressed = state.type === key;
-                  return (
-                    <button
-                      key={key}
-                      type="button"
-                      aria-pressed={pressed}
-                      onClick={() => onChange({ type: key })}
-                      className={`flex items-center justify-between rounded-lg px-2.5 py-[7px] text-left text-[0.8rem] font-semibold transition-colors ${
-                        pressed
-                          ? "bg-ink text-paper"
-                          : "text-ink-soft hover:bg-wash hover:text-ink"
-                      }`}
-                    >
-                      <span>
-                        {key === "all"
-                          ? "All types"
-                          : TYPES[key as keyof typeof TYPES].label}
-                      </span>
-                      <small
-                        className={`font-mono text-[0.68rem] font-medium ${
-                          pressed ? "text-[#c7ccda]" : "text-ink-faint"
-                        }`}
-                      >
-                        {counts[key]}
-                      </small>
-                    </button>
-                  );
-                })}
-              </div>
-            </Field>
-          </div>
-
-          <div className="px-4 py-4">
-            <Field label="Curious about">
+            <Field label="Subject">
               <div className="flex flex-col gap-0.5">
                 <TrackRow
-                  label="All interests"
+                  label="All subjects"
                   pressed={state.interest === "all"}
                   onClick={() => onChange({ interest: "all" })}
                 />
@@ -276,6 +239,42 @@ export function FinderPanel({
             </Field>
           </div>
 
+          <div className="px-4 py-4">
+            <Field label="Format">
+              <div className="flex flex-col gap-0.5">
+                {typeKeys.map((key) => {
+                  const pressed = state.type === key;
+                  return (
+                    <button
+                      key={key}
+                      type="button"
+                      aria-pressed={pressed}
+                      onClick={() => onChange({ type: key })}
+                      className={`flex items-center justify-between rounded-lg px-2.5 py-[7px] text-left text-[0.8rem] font-semibold transition-colors ${
+                        pressed
+                          ? "bg-ink text-paper"
+                          : "text-ink-soft hover:bg-wash hover:text-ink"
+                      }`}
+                    >
+                      <span>
+                        {key === "all"
+                          ? "All formats"
+                          : TYPES[key as keyof typeof TYPES].label}
+                      </span>
+                      <small
+                        className={`font-mono text-[0.68rem] font-medium ${
+                          pressed ? "text-[#c7ccda]" : "text-ink-faint"
+                        }`}
+                      >
+                        {counts[key]}
+                      </small>
+                    </button>
+                  );
+                })}
+              </div>
+            </Field>
+          </div>
+
           <div className="px-4 py-3.5">{counter}</div>
         </div>
       </div>
@@ -286,7 +285,17 @@ export function FinderPanel({
   return (
     <div className="rounded-3xl border border-line bg-paper p-[clamp(22px,4vw,34px)] shadow-lift">
       <p className="text-center font-serif text-[clamp(1.2rem,3.2vw,1.65rem)] leading-[2] font-medium">
-        I&apos;m looking for something for{" "}
+        I&apos;m looking for something in{" "}
+        <SentenceSelect
+          value={state.interest}
+          onChange={(v) => onChange({ interest: v })}
+          options={[
+            { value: "all", label: "any subject" },
+            ...Object.entries(TRACKS).map(([key, t]) => ({ value: key, label: t.label })),
+          ]}
+          label="Interest"
+        />{" "}
+        for{" "}
         <SentenceSelect
           value={state.grade}
           onChange={(v) => onChange({ grade: v })}
@@ -312,6 +321,28 @@ export function FinderPanel({
 
       <div className="mt-5 flex justify-center">
         <div className="w-full max-w-[420px]">{search}</div>
+      </div>
+
+      <p className="mono-label mt-5 mb-3.5 text-center text-ink-faint">
+        Pick a subject
+      </p>
+
+      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
+        <Tile
+          label="Everything"
+          pressed={state.interest === "all"}
+          onClick={() => onChange({ interest: "all" })}
+        />
+        {Object.entries(TRACKS).map(([key, t]) => (
+          <Tile
+            key={key}
+            label={t.label}
+            track={key as TrackKey}
+            color={t.color}
+            pressed={state.interest === key}
+            onClick={() => onChange({ interest: key })}
+          />
+        ))}
       </div>
 
       <div className="mt-5 flex justify-center">
@@ -342,28 +373,6 @@ export function FinderPanel({
             );
           })}
         </div>
-      </div>
-
-      <p className="mono-label mt-5 mb-3.5 text-center text-ink-faint">
-        And they&apos;re curious about
-      </p>
-
-      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
-        <Tile
-          label="Everything"
-          pressed={state.interest === "all"}
-          onClick={() => onChange({ interest: "all" })}
-        />
-        {Object.entries(TRACKS).map(([key, t]) => (
-          <Tile
-            key={key}
-            label={t.label}
-            track={key as TrackKey}
-            color={t.color}
-            pressed={state.interest === key}
-            onClick={() => onChange({ interest: key })}
-          />
-        ))}
       </div>
 
       <div className="mt-5">{counter}</div>

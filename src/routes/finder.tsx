@@ -146,25 +146,23 @@ function FinderPage() {
 
   const headline = matches.length ? (
     <>
+      {state.interest !== "all" ? (
+        <>
+          <em className="text-crimson-deep">
+            {TRACKS[state.interest as keyof typeof TRACKS]?.label}
+          </em>{" "}
+        </>
+      ) : null}
       {matches.length}
       {state.type === "all"
         ? " programme"
         : ` ${TYPE_NAME[state.type as keyof typeof TYPE_NAME]?.toLowerCase() ?? "programme"}`}
-      {matches.length === 1 ? "" : "s"} for{" "}
-      <em className="text-crimson-deep">
-        {state.grade === "all"
-          ? "every grade"
-          : (BAND_LABEL[state.grade] ?? `Grade ${state.grade}`)}
-      </em>
-      {state.interest !== "all" ? (
-        <>
-          {" "}
-          curious about{" "}
-          <em className="text-crimson-deep">
-            {TRACKS[state.interest as keyof typeof TRACKS]?.label}
-          </em>
-        </>
-      ) : null}
+      {matches.length === 1 ? "" : "s"}
+      {state.grade === "all" ? (
+        " for every grade"
+      ) : (
+        <> for <em className="text-crimson-deep">{BAND_LABEL[state.grade] ?? `Grade ${state.grade}`}</em></>
+      )}
       {state.month !== "all" ? (
         <>
           , starting <em className="text-crimson-deep">{monthLabel(state.month)}</em>
@@ -267,11 +265,19 @@ function FinderPage() {
           </aside>
 
           <main className="min-w-0 space-y-8">
-            <div className="space-y-3">
-              <h3 className="font-serif text-[1.05rem] font-semibold text-ink">
-                Browse by category
-              </h3>
-              <TypeChips state={state} onChange={update} />
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <h3 className="font-serif text-[1.05rem] font-semibold text-ink">
+                  Browse by subject
+                </h3>
+                <DomainChips state={state} onChange={update} />
+              </div>
+              <div className="space-y-2">
+                <h3 className="font-serif text-[0.9rem] font-semibold text-ink-soft">
+                  Then by format
+                </h3>
+                <TypeChips state={state} onChange={update} />
+              </div>
             </div>
 
             <section id="all-programmes" className="scroll-mt-6">
@@ -484,6 +490,74 @@ function TailItem({
   );
 }
 
+function DomainChips({
+  state,
+  onChange,
+}: {
+  state: FinderSearch;
+  onChange: (patch: Partial<FinderSearch>) => void;
+}) {
+  const trackKeys = ["all", ...Object.keys(TRACKS)] as const;
+
+  const counts = useMemo(() => {
+    const out: Record<string, number> = { all: 0 };
+    trackKeys.forEach((key) => {
+      if (key === "all") {
+        out["all"] = getMatches({ ...state, interest: "all" }).length;
+      } else {
+        out[key] = getMatches({ ...state, interest: key }).length;
+      }
+    });
+    return out;
+  }, [state]);
+
+  const scrollToResults = () => {
+    const el = document.getElementById("all-programmes");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  return (
+    <div className="relative">
+      <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none]">
+        {trackKeys.map((key) => {
+          const pressed = state.interest === key;
+          const label =
+            key === "all" ? "All subjects" : TRACKS[key as keyof typeof TRACKS].label;
+          return (
+            <button
+              key={key}
+              type="button"
+              aria-pressed={pressed}
+              onClick={() => {
+                onChange({ interest: key });
+                scrollToResults();
+              }}
+              className={`flex-none rounded-full border px-4 py-2 text-[0.82rem] font-semibold whitespace-nowrap transition-all ${
+                pressed
+                  ? "border-ink bg-ink text-paper shadow-soft"
+                  : "border-line bg-paper text-ink-soft hover:border-ink-soft hover:text-ink"
+              }`}
+            >
+              <span>{label}</span>
+              <small
+                className={`ml-1.5 font-mono text-[0.7rem] font-medium ${
+                  pressed ? "text-paper/70" : "text-ink-faint"
+                }`}
+              >
+                {counts[key]}
+              </small>
+            </button>
+          );
+        })}
+      </div>
+      <span
+        className="pointer-events-none absolute top-0 right-0 h-full w-8 bg-gradient-to-l from-wash to-transparent sm:hidden"
+        aria-hidden="true"
+      />
+    </div>
+  );
+}
+
 function TypeChips({
   state,
   onChange,
@@ -505,7 +579,7 @@ function TypeChips({
         {typeKeys.map((key) => {
           const pressed = state.type === key;
           const label =
-            key === "all" ? "All" : TYPES[key as keyof typeof TYPES].label;
+            key === "all" ? "All formats" : TYPES[key as keyof typeof TYPES].label;
           return (
             <button
               key={key}
@@ -515,7 +589,7 @@ function TypeChips({
                 onChange({ type: key });
                 scrollToResults();
               }}
-              className={`flex-none rounded-full border px-4 py-2 text-[0.82rem] font-semibold whitespace-nowrap transition-all ${
+              className={`flex-none rounded-full border px-3.5 py-1.5 text-[0.78rem] font-semibold whitespace-nowrap transition-all ${
                 pressed
                   ? "border-ink bg-ink text-paper shadow-soft"
                   : "border-line bg-paper text-ink-soft hover:border-ink-soft hover:text-ink"
@@ -523,7 +597,7 @@ function TypeChips({
             >
               <span>{label}</span>
               <small
-                className={`ml-1.5 font-mono text-[0.7rem] font-medium ${
+                className={`ml-1.5 font-mono text-[0.68rem] font-medium ${
                   pressed ? "text-paper/70" : "text-ink-faint"
                 }`}
               >
