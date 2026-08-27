@@ -49,8 +49,8 @@ export function SiteHeader() {
     setOfferingsOpen(false);
   };
 
-  const offeringsSearch = (type: TypeKey | "all") =>
-    type === "all" ? DEFAULT_SEARCH : { ...DEFAULT_SEARCH, type };
+  const offeringsSearch = (interest: TrackKey | "all") =>
+    interest === "all" ? DEFAULT_SEARCH : { ...DEFAULT_SEARCH, interest };
 
   const offeringsActiveOptions = { includeSearch: true };
 
