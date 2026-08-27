@@ -414,12 +414,13 @@ function BoxSelect({
   label: string;
 }) {
   return (
-    <span className="relative block">
+    <span className="relative block w-full min-w-0">
       <select
         aria-label={label}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full cursor-pointer appearance-none rounded-lg border border-line bg-wash px-3 py-2 pr-8 text-[0.85rem] font-semibold text-ink focus:border-crimson/40 focus:outline-none"
+        className="w-full min-w-0 cursor-pointer appearance-none overflow-hidden rounded-lg border border-line bg-wash px-3 py-2 pr-8 text-[0.85rem] font-semibold text-ellipsis whitespace-nowrap text-ink focus:border-crimson/40 focus:outline-none"
+
       >
         {options.map((o) => (
           <option key={o.value} value={o.value}>
