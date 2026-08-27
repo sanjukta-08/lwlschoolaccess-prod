@@ -1,91 +1,52 @@
-# Merging the programme websites into one
+# Migration strategy document — site by site, page by page
 
-Today the brand is spread across eight domains: this site plus futuredoctorsprogram.com, futurelawyersprogram.com, joinfinlit.com, joinonwards.com, sirluthercenter.com, satinstinct.com and purposeplaybook.ai. Each one is a small, separately-ranked site. Google splits its trust between them and AI answer engines (ChatGPT, Perplexity, Gemini) have no single source to cite. Merged, all that history stacks on one domain — that's the whole reason to do it.
+Deliverable: a single Word document (`.docx`) you can hand to a developer, host or agency and have them execute without asking questions. It goes domain by domain, and inside each domain, URL by URL.
 
-## How a merge actually works
+## What the document contains
 
-Search engines treat a **301 permanent redirect** as "this page moved here forever". When Google recrawls an old URL and receives a 301, it transfers the old page's ranking history to the new URL and, over a few weeks, swaps the old URL out of results for the new one. Nothing is lost as long as three things hold:
+**1. Executive summary (1 page)**
+Why eight domains hurt you, what merging changes for Google and for AI answer engines, expected timeline and traffic curve, and the one decision that gates everything (which domain becomes canonical).
 
-1. The redirect is **301**, not 302 (temporary) and not a JavaScript or meta-refresh redirect.
-2. It is **page-to-page**, not everything dumped on the homepage. Google discards the equity of a redirect whose destination isn't a genuine equivalent.
-3. The redirect **stays live for years**, so the domains must keep renewing.
+**2. Ground rules (1 page)**
+The non-negotiables every redirect must follow: 301 only, page-to-page not homepage-dumping, no redirect chains, no JS/meta-refresh redirects, old domains renewed indefinitely, destination page must be at least as rich as the page it replaces.
 
-So the merge is really three jobs: make the destination pages worthy, map every old URL to a new one, then flip DNS domain by domain.
+**3. One chapter per satellite domain** — seven chapters, identical structure:
+- What the site is, what it currently ranks for, its rough traffic and top pages
+- Content audit: what exists there that this site does not yet have (curriculum detail, mentor bios, outcomes, testimonials, partner proof, FAQs) and which page here should absorb it
+- **The mapping table**: every discovered URL → destination URL on the new site → redirect type → note on why that destination is the true equivalent
+- Fallback rule for unmatched URLs on that domain (its subject hub, never the homepage)
+- Pages that must be built here first before this domain can be flipped
+- Its own cutover checklist and rollback trigger
 
-## Phase 1 — make this site the better destination (before any redirect)
+Domains covered: futuredoctorsprogram.com, futurelawyersprogram.com, joinfinlit.com, joinonwards.com, sirluthercenter.com, satinstinct.com, purposeplaybook.ai.
 
-**Crawl and inventory.** For each of the seven domains, list every URL, what it ranks for and roughly what traffic it gets. I can crawl the public pages myself; Semrush fills in the ranking and traffic data. Output: a spreadsheet-style mapping table — `old URL → new URL → reason`.
+**4. This site's own page-by-page audit**
+Every route in the app - home, `/finder`, `/calendar`, `/calendar-month`, `/about`, `/profile-building`, `/testimonials`, `/internships`, `/shortlist`, `/fit`, and all programme pages - with, per page: its target search intent, current title and meta description, what should change, the structured data it should carry, and its internal-linking role. Plus the gaps: sitemap, absolute canonicals, `Organization` and `BreadcrumbList` schema, and the new subject hub pages.
 
-**Absorb the content.** Anything that lives only on a satellite (curriculum week-by-week, mentor bios, past cohort outcomes, real testimonials, partner detail, their FAQs) gets folded into the matching `/programmes/<slug>` page here. If the new page is thinner than the old one, rankings drop after the redirect — this is the single most common way merges fail.
+**5. Cutover runbook**
+The ordered, per-domain sequence: verify in Search Console, install the redirect map, `curl -I` verification, submit Change of Address, two-week watch window, then the next domain. Pilot domain named, sequencing for the rest, and the specific metrics to watch with the numbers that mean "stop and roll back".
 
-**Build the landing pages the satellite homepages need.** A satellite homepage ranks for a category term ("medicine programme for high school students"), not a single cohort. It needs a category page to land on, so I add subject hubs:
+**6. Off-site work**
+Social bios, brochures, PDFs, email signatures, Google Ads destination URLs, and the outreach list of partners, schools and press whose links should be updated rather than redirected.
 
-```text
-futuredoctorsprogram.com   → /medicine
-futurelawyersprogram.com   → /law-and-debate
-joinfinlit.com             → /finance
-joinonwards.com            → /leadership          (multi-track; see below)
-sirluthercenter.com        → /research
-satinstinct.com            → /test-prep
-purposeplaybook.ai         → /ai
-```
+**7. AEO section**
+What ChatGPT, Perplexity and Gemini need in order to cite you: one canonical fact page per programme, consistent naming across every surface, question-shaped headings taken from real parent queries, and entity-level `Organization` markup.
 
-joinonwards.com is the awkward one — it hosts debate, communication, AI, entrepreneurship, leadership and changemaker programmes. Its homepage goes to `/finder`, and each of its sub-pages redirects to the specific programme or subject hub it matches.
+**8. Application flow**
+The recommended single intake on this site with programme and cohort pre-filled, Calendly as the secondary path, source tagging so lead origin stays attributable, and the exceptions where a partner legally owns registration.
 
-Each hub page: the subject's story, who it's for by grade, the programmes in it, upcoming cohorts, FAQs, and links down into the individual programme pages.
+**9. Appendices**
+The full consolidated mapping table across all seven domains, a DNS reference (A records to 185.158.133.1 plus the `_lovable` TXT record), and a QA checklist.
 
-**Fix the technical foundations.** This site currently has no sitemap and uses relative canonicals. Before redirects arrive it needs `/sitemap.xml` covering every route and all 35 programme pages, absolute canonical URLs on the final domain, and `Organization` + `BreadcrumbList` structured data next to the existing Course/FAQ markup — so Google can crawl the new destinations quickly the moment traffic redirects in.
+## How I'll build it
 
-## Phase 2 — flip the domains, one at a time
+1. Crawl the seven satellite domains to enumerate their real URLs, titles and page content - the mapping tables are built from what's actually there, not guesses. Any domain that blocks crawling gets flagged as needing a manual list from you.
+2. Pull ranking and traffic data per domain via Semrush so the chapters prioritise by real value rather than treating every page as equal.
+3. Read every route in this app to build the page-by-page audit section from the actual current metadata.
+4. Generate the `.docx` with the LWL brand styling - Cormorant Garamond headings, Karla body, crimson and gold accents - then convert every page to an image and check each one for clipped text, broken tables or layout issues before handing it over.
 
-Per domain, in this order:
+Output lands in your documents as a downloadable Word file. No project code changes in this step - the document is the deliverable.
 
-1. Verify the old domain in Google Search Console (needed later for Change of Address) and note its current traffic as a baseline.
-2. Configure the 301 map at the domain's DNS/host: each known path → its mapped new URL; anything unmatched falls back to that domain's subject hub, never the homepage.
-3. Publish, then test: `curl -I` each old URL and confirm `301` and the right `Location`. Check that redirects don't chain (old → hub → programme is two hops; make it one).
-4. In Search Console, submit **Change of Address** from the old property to the new one. This tells Google to move the site rather than discover it accidentally.
-5. Watch for two weeks: crawl errors, indexed-page count on the new domain rising, old domain falling.
+## Open question I'll assume unless you say otherwise
 
-Start with the smallest domain (satinstinct.com or purposeplaybook.ai) as the pilot. If it behaves as expected after two weeks, do the rest in pairs.
-
-**What you'll see:** a dip of roughly 20–40% in weeks 2–6 while Google reprocesses, then recovery, then — because one domain now holds all the links and content — growth past the sum of the parts. Full settling takes about 3–6 months.
-
-## Phase 3 — the off-site half
-
-Redirects move the pages; they don't move mentions. In parallel:
-
-- Update social bios, Google Business profiles, brochures, PDFs, email signatures and ad destination URLs.
-- Ask partners, schools and press (Forbes and similar) linking to old domains to update to the new URLs — a direct link is worth more than a redirected one.
-- Rebuild any Google Ads campaigns pointing at old domains; redirected ad URLs can get disapproved.
-
-## Which domain survives
-
-My recommendation: **learnwithleaders.com** as the single home, with this catalogue app serving it, because it is the brand name people search and the domain your press coverage already points at. If that site can't host this app, keep the current domain as canonical instead — the plan is identical either way. The one thing that matters is deciding once, because every redirect and canonical depends on it.
-
-## For AI answer engines (AEO)
-
-AI engines pick one authoritative source per entity and cite it. Consolidation is the highest-impact thing you can do for them. On top of it:
-
-- One page per programme carrying unambiguous facts — dates, fee, eligibility grades, format, duration — in readable text *and* structured data. Already largely true here; the merge makes it the only version in existence.
-- Question-shaped headings that match what parents type: "What does the Future Doctors Fellowship cost?", "Is it accredited?", "What does my child produce at the end?"
-- Consistent naming. "FinLit Fellowship" must never appear as three different names on three domains.
-- A factual `/about` plus `Organization` schema so engines can attribute claims to Learn with Leaders as an entity rather than to seven unrelated sites.
-
-## Applications — my suggestion
-
-Route every application through this site: one shared form, pre-filled with the programme and cohort, with "Book a meeting" (your Calendly) as the secondary path. All leads land in one place with a source tag, parents never bounce to an unfamiliar domain mid-decision, and the conversion happens on the same domain as the content. Keep an external intake only where a partner (Yale, Harvard-affiliated competitions) legally owns registration.
-
-## Technical notes
-
-- New: `src/routes/sitemap[.]xml.ts` covering all routes plus every programme slug; `Sitemap:` line in `robots.txt`; absolute canonicals once the final domain is fixed.
-- New subject hub routes (`/medicine`, `/law-and-debate`, `/finance`, `/ai`, `/research`, `/leadership`, `/test-prep`) reusing `TRACKS` and the existing finder query logic, each with its own head metadata and JSON-LD.
-- `src/lib/programmes.ts`: keep `site` as an archival field but stop using it as the primary CTA once its domain redirects here, otherwise pages link into their own redirect.
-- Redirect rules live at each domain's DNS/host, not in this app. I'll produce the complete old→new mapping table as a document you or your host paste in; custom domains connected to Lovable are pointed via A records to 185.158.133.1 plus a `_lovable` TXT record.
-- Optional: an `ApplyForm` component plus a submissions table in Lovable Cloud, so applications are queryable rather than only emailed.
-
-## What I need to start
-
-1. The canonical domain decision (learnwithleaders.com vs the current one).
-2. Permission to crawl the seven satellites so I can build the URL mapping table.
-
-I'd suggest we begin with Phase 1 — sitemap, canonicals, subject hub pages — since none of it depends on DNS and it's all needed before the first redirect goes live.
+The document will be written with **learnwithleaders.com as the canonical destination**, since that's the brand name parents search and what your press coverage points at. If you'd rather keep the current domain, say so and I'll swap it throughout - every mapping table depends on that one choice.
