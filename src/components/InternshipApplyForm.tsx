@@ -16,8 +16,8 @@ type FormState = {
   phone: string;
   roleId: string;
   linkedin: string;
-  cv: string;
-  message: string;
+  whyJoin: string;
+  experience: string;
 };
 
 function initialState(roleId?: string): FormState {
@@ -27,8 +27,8 @@ function initialState(roleId?: string): FormState {
     phone: "",
     roleId: roleId && ROLE_BY_ID.has(roleId) ? roleId : ROLES[0]!.id,
     linkedin: "",
-    cv: "",
-    message: "",
+    whyJoin: "",
+    experience: "",
   };
 }
 
@@ -52,7 +52,7 @@ export function InternshipApplyForm({
     if (!form.name.trim()) list.push("Full name is required.");
     if (!form.email.trim()) list.push("Email is required.");
     else if (!isEmail(form.email)) list.push("Please enter a valid email address.");
-    if (!form.message.trim()) list.push("Cover message is required.");
+    if (!form.whyJoin.trim()) list.push("Tell us why you want to join.");
     return list;
   }, [form]);
 
@@ -73,10 +73,12 @@ export function InternshipApplyForm({
         form.phone ? `Phone: ${form.phone}` : "",
         `Role: ${selectedRole.title}`,
         form.linkedin ? `LinkedIn / profile: ${form.linkedin}` : "",
-        form.cv ? `CV / resume link: ${form.cv}` : "",
         "",
-        "Cover message:",
-        form.message,
+        "Why do you want to join?",
+        form.whyJoin,
+        "",
+        "Do you have any relevant experience?",
+        form.experience.trim() || "No experience shared.",
       ]
         .filter(Boolean)
         .join("\n"),
@@ -181,27 +183,24 @@ export function InternshipApplyForm({
       </div>
 
       <div className="mt-6 space-y-2">
-        <Label htmlFor="cv">CV / resume link</Label>
-        <Input
-          id="cv"
-          type="url"
-          value={form.cv}
-          onChange={(e) => update("cv", e.target.value)}
-          placeholder="Link to Google Drive, Dropbox, portfolio, etc."
+        <Label htmlFor="whyJoin">Why do you want to join? *</Label>
+        <Textarea
+          id="whyJoin"
+          value={form.whyJoin}
+          onChange={(e) => update("whyJoin", e.target.value)}
+          placeholder="Tell us what excites you about this role and how you can contribute to the competitions team."
+          rows={5}
         />
-        <p className="text-[0.78rem] text-ink-faint">
-          Paste a shareable link. We do not accept file uploads yet.
-        </p>
       </div>
 
       <div className="mt-6 space-y-2">
-        <Label htmlFor="message">Cover message *</Label>
+        <Label htmlFor="experience">Do you have any relevant experience?</Label>
         <Textarea
-          id="message"
-          value={form.message}
-          onChange={(e) => update("message", e.target.value)}
-          placeholder="Tell us why you want to join and what you would bring to the competitions team."
-          rows={5}
+          id="experience"
+          value={form.experience}
+          onChange={(e) => update("experience", e.target.value)}
+          placeholder="Share any past work, internships, volunteer roles, or projects related to sponsorships, sales, events, or education."
+          rows={4}
         />
       </div>
 
