@@ -577,7 +577,7 @@ function TypeChips({
 
   return (
     <div className="relative">
-      <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none]">
+      <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] md:flex-wrap md:overflow-visible">
         {typeKeys.map((key) => {
           const pressed = state.type === key;
           const label =
