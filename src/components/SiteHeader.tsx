@@ -112,9 +112,9 @@ export function SiteHeader() {
         <div className="mt-1 ml-3 flex flex-col gap-0.5 border-l border-gold-line/40 pl-3">
           {offeringItems.map((item) => (
             <Link
-              key={item.type}
+              key={item.interest}
               to="/finder"
-              search={offeringsSearch(item.type)}
+              search={offeringsSearch(item.interest)}
               activeOptions={offeringsActiveOptions}
               activeProps={{ className: "bg-gold-soft text-ink" }}
               className={mobileLinkCls}
