@@ -91,24 +91,14 @@ export function FinderPanel({
   );
 
   if (layout === "bar") {
-    const interestOptions = [
-      { value: "all", label: "Any interest" },
-      ...Object.entries(TRACKS).map(([key, t]) => ({ value: key, label: t.label })),
+    const typeOptions = [
+      { value: "all", label: "Any type" },
+      ...Object.entries(TYPES).map(([key, t]) => ({ value: key, label: t.label })),
     ];
 
     return (
       <div className="rounded-2xl border border-line bg-paper p-4 shadow-soft sm:p-5">
         <div className="flex flex-wrap items-end gap-x-4 gap-y-3">
-          <div className="min-w-[220px] flex-[2]">
-            <Field label="My child has interest in" icon={<Compass className="h-3.5 w-3.5" />}>
-              <BoxSelect
-                value={state.interest}
-                onChange={(v) => onChange({ interest: v })}
-                options={interestOptions}
-                label="Interest"
-              />
-            </Field>
-          </div>
           <div className="min-w-[120px] flex-1">
             <Field label="Grade" icon={<GraduationCap className="h-3.5 w-3.5" />}>
               <BoxSelect
@@ -149,13 +139,22 @@ export function FinderPanel({
               />
             </Field>
           </div>
+          <div className="min-w-[150px] flex-1">
+            <Field label="Type" icon={<Compass className="h-3.5 w-3.5" />}>
+              <BoxSelect
+                value={state.type}
+                onChange={(v) => onChange({ type: v })}
+                options={typeOptions}
+                label="Programme type"
+              />
+            </Field>
+          </div>
           <div className="min-w-[220px] flex-[1.5]">
             <Field label="Search" icon={<Search className="h-3.5 w-3.5" />}>
               {search}
             </Field>
           </div>
         </div>
-
 
         <div className="mt-3.5 border-t border-line pt-3">{counter}</div>
       </div>
