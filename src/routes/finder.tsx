@@ -503,7 +503,7 @@ function DomainChips({
     const out: Record<string, number> = { all: 0 };
     trackKeys.forEach((key) => {
       if (key === "all") {
-        out.all = getMatches({ ...state, interest: "all" }).length;
+        out["all"] = getMatches({ ...state, interest: "all" }).length;
       } else {
         out[key] = getMatches({ ...state, interest: key }).length;
       }
