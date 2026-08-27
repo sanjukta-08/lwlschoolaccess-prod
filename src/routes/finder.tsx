@@ -552,9 +552,10 @@ function DomainChips({
         })}
       </div>
       <span
-        className="pointer-events-none absolute top-0 right-0 h-full w-8 bg-gradient-to-l from-wash to-transparent sm:hidden"
+        className="pointer-events-none absolute top-0 right-0 h-full w-8 bg-gradient-to-l from-wash to-transparent md:hidden"
         aria-hidden="true"
       />
+
     </div>
   );
 }
