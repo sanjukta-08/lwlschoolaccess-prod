@@ -218,7 +218,29 @@ export function FinderPanel({
           </div>
 
           <div className="px-4 py-4">
-            <Field label="Type">
+            <Field label="Subject">
+              <div className="flex flex-col gap-0.5">
+                <TrackRow
+                  label="All subjects"
+                  pressed={state.interest === "all"}
+                  onClick={() => onChange({ interest: "all" })}
+                />
+                {Object.entries(TRACKS).map(([key, t]) => (
+                  <TrackRow
+                    key={key}
+                    label={t.label}
+                    track={key as TrackKey}
+                    color={t.color}
+                    pressed={state.interest === key}
+                    onClick={() => onChange({ interest: key })}
+                  />
+                ))}
+              </div>
+            </Field>
+          </div>
+
+          <div className="px-4 py-4">
+            <Field label="Format">
               <div className="flex flex-col gap-0.5">
                 {typeKeys.map((key) => {
                   const pressed = state.type === key;
@@ -236,7 +258,7 @@ export function FinderPanel({
                     >
                       <span>
                         {key === "all"
-                          ? "All types"
+                          ? "All formats"
                           : TYPES[key as keyof typeof TYPES].label}
                       </span>
                       <small
@@ -249,28 +271,6 @@ export function FinderPanel({
                     </button>
                   );
                 })}
-              </div>
-            </Field>
-          </div>
-
-          <div className="px-4 py-4">
-            <Field label="Curious about">
-              <div className="flex flex-col gap-0.5">
-                <TrackRow
-                  label="All interests"
-                  pressed={state.interest === "all"}
-                  onClick={() => onChange({ interest: "all" })}
-                />
-                {Object.entries(TRACKS).map(([key, t]) => (
-                  <TrackRow
-                    key={key}
-                    label={t.label}
-                    track={key as TrackKey}
-                    color={t.color}
-                    pressed={state.interest === key}
-                    onClick={() => onChange({ interest: key })}
-                  />
-                ))}
               </div>
             </Field>
           </div>
