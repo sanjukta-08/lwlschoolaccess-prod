@@ -68,9 +68,9 @@ export function PageHero({
               {pills.map((p, i) => (
                 <li
                   key={i}
-                  className="rounded-full border border-line bg-paper/90 px-3.5 py-1.5 text-left shadow-soft backdrop-blur-sm"
+                  className="rounded-full border border-line bg-paper/90 px-3.5 py-1.5 text-center shadow-soft backdrop-blur-sm"
                 >
-                  <b className="flex items-center gap-1.5 text-[0.78rem] font-bold text-ink">
+                  <b className="flex items-center justify-center gap-1.5 text-[0.78rem] font-bold text-ink">
                     {p.top}
                   </b>
                   <small className="mono-label block text-ink-faint">{p.sub}</small>
