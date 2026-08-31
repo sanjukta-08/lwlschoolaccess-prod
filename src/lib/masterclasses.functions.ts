@@ -50,7 +50,7 @@ export const listPublicMasterclasses = createServerFn({ method: "GET" }).handler
 
     if (error) throw new Error(error.message);
 
-    return (data ?? []).map((r) => {
+    return ((data ?? []) as unknown[]).map((r) => {
       const row = r as Record<string, unknown>;
       const outcomes = Array.isArray(row["learning_outcomes"])
         ? (row["learning_outcomes"] as unknown[]).filter(
