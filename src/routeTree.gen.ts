@@ -16,6 +16,7 @@ import { Route as CalendarMonthRouteImport } from './routes/calendar-month'
 import { Route as FinderRouteImport } from './routes/finder'
 import { Route as FitRouteImport } from './routes/fit'
 import { Route as InternshipsRouteImport } from './routes/internships'
+import { Route as MasterclassesRouteImport } from './routes/masterclasses'
 import { Route as ProfileBuildingRouteImport } from './routes/profile-building'
 import { Route as ShortlistRouteImport } from './routes/shortlist'
 import { Route as StoriesRouteImport } from './routes/stories'
@@ -57,6 +58,11 @@ const FitRoute = FitRouteImport.update({
 const InternshipsRoute = InternshipsRouteImport.update({
   id: '/internships',
   path: '/internships',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MasterclassesRoute = MasterclassesRouteImport.update({
+  id: '/masterclasses',
+  path: '/masterclasses',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileBuildingRoute = ProfileBuildingRouteImport.update({
@@ -103,6 +109,7 @@ export interface FileRoutesByFullPath {
   '/finder': typeof FinderRoute
   '/fit': typeof FitRoute
   '/internships': typeof InternshipsRouteWithChildren
+  '/masterclasses': typeof MasterclassesRoute
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
@@ -118,6 +125,7 @@ export interface FileRoutesByTo {
   '/calendar-month': typeof CalendarMonthRoute
   '/finder': typeof FinderRoute
   '/fit': typeof FitRoute
+  '/masterclasses': typeof MasterclassesRoute
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
@@ -135,6 +143,7 @@ export interface FileRoutesById {
   '/finder': typeof FinderRoute
   '/fit': typeof FitRoute
   '/internships': typeof InternshipsRouteWithChildren
+  '/masterclasses': typeof MasterclassesRoute
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
@@ -153,6 +162,7 @@ export interface FileRouteTypes {
     | '/finder'
     | '/fit'
     | '/internships'
+    | '/masterclasses'
     | '/profile-building'
     | '/shortlist'
     | '/stories'
@@ -168,6 +178,7 @@ export interface FileRouteTypes {
     | '/calendar-month'
     | '/finder'
     | '/fit'
+    | '/masterclasses'
     | '/profile-building'
     | '/shortlist'
     | '/stories'
@@ -184,6 +195,7 @@ export interface FileRouteTypes {
     | '/finder'
     | '/fit'
     | '/internships'
+    | '/masterclasses'
     | '/profile-building'
     | '/shortlist'
     | '/stories'
@@ -201,6 +213,7 @@ export interface RootRouteChildren {
   FinderRoute: typeof FinderRoute
   FitRoute: typeof FitRoute
   InternshipsRoute: typeof InternshipsRouteWithChildren
+  MasterclassesRoute: typeof MasterclassesRoute
   ProfileBuildingRoute: typeof ProfileBuildingRoute
   ShortlistRoute: typeof ShortlistRoute
   StoriesRoute: typeof StoriesRoute
@@ -257,6 +270,13 @@ declare module '@tanstack/react-router' {
       path: '/internships'
       fullPath: '/internships'
       preLoaderRoute: typeof InternshipsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/masterclasses': {
+      id: '/masterclasses'
+      path: '/masterclasses'
+      fullPath: '/masterclasses'
+      preLoaderRoute: typeof MasterclassesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/profile-building': {
@@ -333,6 +353,7 @@ const rootRouteChildren: RootRouteChildren = {
   FinderRoute: FinderRoute,
   FitRoute: FitRoute,
   InternshipsRoute: InternshipsRouteWithChildren,
+  MasterclassesRoute: MasterclassesRoute,
   ProfileBuildingRoute: ProfileBuildingRoute,
   ShortlistRoute: ShortlistRoute,
   StoriesRoute: StoriesRoute,
