@@ -1,51 +1,24 @@
-# Phase 1 — make this site the destination the seven satellites deserve
+# Redesign the brochure cover (page 1)
 
-Decisions locked: **learnwithleaders.com is canonical** and it is free to repoint. Every canonical URL, sitemap entry and redirect target in this plan uses `https://learnwithleaders.com`.
+The cover currently reads as a flat crimson block: a visible tone seam across the middle, a large empty gap between the intro paragraph and the stats, no imagery, no proof marks, and no gold texture. Same palette (ivory / deep crimson / antique gold / ink) and the same fonts as the rest of the brochure — only the cover composition changes.
 
-Nothing in Phase 1 depends on DNS, so all of it can ship before a single redirect goes live. The order below is deliberate: technical foundations first (so Google can crawl the new pages immediately), then the seven landing pages the satellite homepages need, then absorbing satellite content into programme pages.
+## What the new cover looks like
 
-## Step 1 — Technical foundations
+Top to bottom, with no dead space:
 
-**Sitemap.** New server route `src/routes/sitemap[.]xml.ts` generating XML at request time from the router inventory plus every programme slug in `src/lib/programmes.ts` (29 programmes today, growing). Excludes `/internships/apply`, `/shortlist` and `/fit` result states — no thin or session-dependent pages. Adds a `Sitemap:` line to `public/robots.txt` pointing at `https://learnwithleaders.com/sitemap.xml`.
+1. **Header rule** — white wordmark left, gold-outlined "Programme Brochure 2026-27" chip right, thin gold hairline beneath.
+2. **Hero block** — the headline moves up and gets a gold rule above it, tightened line spacing, and the gold italic line ("learn with leaders.") kept as the accent. Supporting paragraph sits narrower (about 55% width) directly under it.
+3. **Right-hand crest area** — the bird brand mark, large, low-opacity gold, bleeding off the right edge behind the headline, so the empty right half becomes texture instead of blank crimson.
+4. **Proof strip** — a single ivory band across the cover carrying the mentor universities (Harvard, Yale, MIT, Stanford, Princeton) as text lockups, replacing the current unused mid-page gap.
+5. **Stat quartet** — same four figures (18 programmes, 47 cohorts, 7 pathways, Grades 5–12), rebuilt as gold-ruled columns in a boxed strip with a subtle darker panel so they read as a plinth, not floating numbers.
+6. **Footer** — website and city line left, Zoom / timings line right, separated by a gold hairline.
 
-**Absolute canonicals.** Right now only `/programmes/<slug>` carries a canonical. Every content route gets its own `head()` with an absolute self-referencing `canonical` and `og:url` on learnwithleaders.com, plus unique title, description, `og:title`, `og:description`: `/`, `/finder`, `/calendar`, `/calendar-month`, `/about`, `/profile-building`, `/testimonials`, `/internships`, `/fit`. Canonicals stay on leaf routes only — a duplicate in `__root.tsx` would emit two.
+Background gets a proper deep-crimson gradient plus a faint gold dot grid and a soft gold radial glow in the upper right, so the seam artefact disappears and the page has depth.
 
-**Structured data.** `Organization` schema in `__root.tsx` (legal name, logo, sameAs for the LinkedIn/Instagram profiles, contact) so answer engines can attribute claims to Learn with Leaders as one entity. `BreadcrumbList` on every deep route — programme pages, subject hubs, internships — alongside the existing `Course` and `FAQPage` markup.
+## Technical notes
 
-## Step 2 — Seven subject hub pages
-
-A satellite homepage ranks for a category term, not a cohort, so it needs a category page to land on. Seven new routes, each mapped to the domain that will redirect into it:
-
-```text
-/medicine        <- futuredoctorsprogram.com
-/law-and-debate  <- futurelawyersprogram.com
-/finance         <- joinfinlit.com
-/ai              <- purposeplaybook.ai
-/research        <- sirluthercenter.com
-/test-prep       <- satinstinct.com
-/leadership      <- joinonwards.com (homepage; sub-pages map individually)
-```
-
-These are not new data — each maps 1:1 onto an existing `TRACKS` key (`med`, `law`, `fin`, `ai`, `res`, `lead`, `sat`), so the programme list and cohort list on each hub come from the existing finder query logic. No duplicate catalogue.
-
-Each hub carries: the subject's story and why it matters for admissions, who it's for broken down by grade band, every programme in the track as cards linking down to `/programmes/<slug>`, the next upcoming cohorts, subject-specific FAQs in question-shaped headings parents actually type, and a link across to `/finder` pre-filtered to that track. One shared `SubjectHub` component driven by a `src/lib/subject-hubs.ts` content file, so the seven pages are consistent and cheap to extend.
-
-`joinonwards.com` is the awkward one: it hosts debate, communication, AI, entrepreneurship, leadership and changemaker programmes. Its homepage lands on `/leadership`; its sub-pages redirect to the specific programme or the matching hub, resolved page by page in the redirect map.
-
-## Step 3 — Absorb satellite content
-
-This is the step that decides whether the merge works. If a destination page is thinner than the page it replaces, rankings drop after the redirect — the most common way merges fail. For each `/programmes/<slug>` that a satellite currently outranks, fold in from the satellite: week-by-week curriculum detail, mentor bios, past cohort outcomes and project examples, real testimonials, partner detail, and their FAQ text.
-
-Naming gets normalised in the same pass — "FinLit Fellowship" must resolve to one name everywhere, since inconsistent naming is what stops answer engines from treating the programme as a single entity.
-
-Also in this step: stop using the `site` field in `src/lib/programmes.ts` as the primary CTA, keeping it as an archival record. Once a satellite redirects here, a page linking out to it would be linking into its own redirect.
-
-## What comes after (not built in this step)
-
-Phase 2 is the DNS flip, domain by domain, with the redirect map from the strategy document — pilot on satinstinct.com or purposeplaybook.ai, watch two weeks, then pairs. Phase 3 is the off-site half: social bios, brochures, PDFs, ad destinations, and outreach to partners and press so links are updated rather than redirected.
-
-Also deferred, worth doing before traffic arrives: a single application intake on this site with programme and cohort pre-filled and a source tag, with Calendly as the secondary path, so leads consolidate on the same domain as the content. Say the word and I'll fold it into Phase 1.
-
-## Connecting the domain
-
-learnwithleaders.com is free to repoint, so in Project Settings → Domains: connect both `learnwithleaders.com` and `www.learnwithleaders.com`, A records to `185.158.133.1` plus the `_lovable` TXT record, and set the root as primary. Do this early — SSL provisioning and DNS propagation can take up to 72 hours, and the canonicals this plan writes only become true once it is live.
+- All work is in the existing generator `/tmp/br/gen.py`: the `cover` page string and the `.cover`, `.band`, `.stats`, `.bottom` CSS rules. No app source files change.
+- Remove the `.band` element that causes the horizontal tone seam; replace with a single layered `background` on `.cover` (linear gradient + radial gold glow + dot-grid overlay).
+- Bird mark: embed `src/assets/lwl-bird-black.webp` (or the white bird) as a base64 data URI in the HTML so the PDF renderer needs no network, tinted gold via `filter`/opacity at ~12–16%.
+- University proof strip uses type only (letter-spaced small caps), so no logo licensing or image fetching is required.
+- Re-render with the existing `/tmp/br/pdf.py`, output a new versioned file `/mnt/documents/LWL-Programme-Brochure-2026-27-v2.pdf` (original kept), then convert every page to an image and visually check the cover plus confirm pages 2–15 are unchanged and unbroken.
