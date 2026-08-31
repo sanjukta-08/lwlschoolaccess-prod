@@ -137,6 +137,14 @@ export function SiteHeader() {
       <>
         {mobile ? offeringsMobile : offeringsDesktop}
         <Link
+          to="/masterclasses"
+          className={cls}
+          activeProps={active}
+          onClick={close}
+        >
+          Masterclasses
+        </Link>
+        <Link
           to="/calendar"
           search={DEFAULT_SEARCH}
           className={cls}
@@ -145,6 +153,7 @@ export function SiteHeader() {
         >
           Calendar
         </Link>
+
         <Link
           to="/profile-building"
           className={cls}
