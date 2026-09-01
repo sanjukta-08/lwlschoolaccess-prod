@@ -67,9 +67,19 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
             <span aria-hidden>{track.ic}</span>
             {kind} · {track.label}
           </span>
+          {brand ? (
+            <img
+              src={brand.src}
+              alt={brand.alt}
+              loading="eager"
+              decoding="async"
+              className="mx-auto mb-4 max-h-16 w-auto max-w-[16rem] object-contain"
+            />
+          ) : null}
           <h1 className="mx-auto max-w-[20em] font-serif text-[clamp(2rem,5.4vw,3.05rem)] leading-[1.08] font-semibold">
             {p.name}
           </h1>
+
           <p className="mx-auto mt-3.5 max-w-[54em] text-[clamp(0.98rem,2.3vw,1.08rem)] text-ink-soft">
             {d.lede}
           </p>
