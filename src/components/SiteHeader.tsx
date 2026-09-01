@@ -90,7 +90,22 @@ export function SiteHeader() {
             </Link>
           </DropdownMenuItem>
         ))}
+        <div className="my-1 h-px bg-line" />
+        <DropdownMenuItem asChild>
+          <Link
+            to="/camps"
+            activeProps={{ className: "bg-wash text-ink" }}
+            className="flex cursor-pointer flex-col items-start rounded-xl px-3 py-2 text-left text-[0.85rem] font-semibold text-ink-soft no-underline outline-none transition-colors hover:bg-wash hover:text-ink focus:bg-wash focus:text-ink"
+            onClick={close}
+          >
+            <span>Camps (in person)</span>
+            <span className="text-[0.72rem] font-normal text-ink-faint">
+              Harvard, Cambridge, Geneva, Salamanca
+            </span>
+          </Link>
+        </DropdownMenuItem>
       </DropdownMenuContent>
+
     </DropdownMenu>
   );
 
