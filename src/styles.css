@@ -363,3 +363,31 @@
     animation: none;
   }
 }
+
+/* ---------- brand: "LEADERS" wordmark display face ----------
+   Wide geometric caps taken from the Learn with Leaders logo.
+   brand-wordmark = logo lettering; brand-display = headline voice. */
+
+@utility brand-wordmark {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 118;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+@utility brand-display {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 112;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+@utility brand-display-caps {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 118;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.045em;
+}
