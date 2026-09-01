@@ -138,7 +138,16 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
+          <Link
+            to="/camps"
+            activeProps={{ className: "bg-gold-soft text-ink" }}
+            className={mobileLinkCls}
+            onClick={close}
+          >
+            Camps (in person)
+          </Link>
         </div>
+
       ) : null}
     </div>
   );
