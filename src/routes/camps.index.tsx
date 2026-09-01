@@ -317,4 +317,3 @@ function CampsHub() {
   );
 }
 
-export { campPath };
