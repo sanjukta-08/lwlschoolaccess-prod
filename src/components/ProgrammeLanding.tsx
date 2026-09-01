@@ -11,6 +11,7 @@ import { SkillMatrix } from "@/components/SkillMatrix";
 
 import { DEFAULT_SEARCH } from "@/lib/finder";
 
+import { brandFor } from "@/lib/programme-logos";
 import { detailFor, relatedProgrammes } from "@/lib/programme-detail";
 import { slugOf } from "@/lib/programme-slug";
 import {
@@ -36,6 +37,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
   /** Programme pages follow the brand palette (crimson + gold), not track colours. */
   const track = { ...trackMeta, color: "var(--crimson)" };
   const d = detailFor(p);
+  const brand = brandFor(p.id, p.tracks);
   const kind = TYPE_NAME[p.type];
   const cohorts = p.cohorts.filter((c) => !isPast(c.d));
   const next = cohorts[0];
