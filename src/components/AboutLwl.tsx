@@ -1,12 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { DEFAULT_SEARCH } from "@/lib/finder";
-import { PROGRAMMES, TOTAL_COHORTS, TRACKS } from "@/lib/programmes";
+import { PROGRAMMES, totalCohorts, TRACKS } from "@/lib/programmes";
 import { ABOUT, REACH } from "@/lib/social-proof";
 
 export function AboutLwl() {
   const stats = [
     { k: `${PROGRAMMES.length}`, l: "live programmes" },
-    { k: `${TOTAL_COHORTS}`, l: "cohorts in 2026–27" },
+    { k: `${totalCohorts()}`, l: "cohorts in 2026–27" },
     { k: `${Object.keys(TRACKS).length}`, l: "interest tracks" },
     { k: REACH.countries, l: "countries reached" },
   ];

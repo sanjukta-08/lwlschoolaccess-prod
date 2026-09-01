@@ -5,8 +5,6 @@ import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import birdAsset from "@/assets/lwl-bird-black.webp.asset.json";
 
-const GRADE_LO = Math.min(...PROGRAMMES.map((p) => p.g[0]));
-const GRADE_HI = Math.max(...PROGRAMMES.map((p) => p.g[1]));
 import { FinderPanel } from "@/components/FinderPanel";
 import { ProgrammeCard } from "@/components/ProgrammeCard";
 import { ResultGroup } from "@/components/ResultGroup";
@@ -42,6 +40,9 @@ const DESC =
   "Find the right Harvard and Yale-mentored programme for your child in under 30 seconds. Filter by grade, interest, type and start date.";
 
 const PAGE = 12;
+
+const gradeLo = () => Math.min(...PROGRAMMES.map((p) => p.g[0]));
+const gradeHi = () => Math.max(...PROGRAMMES.map((p) => p.g[1]));
 
 export const Route = createFileRoute("/finder")({
   validateSearch: (search: Record<string, unknown>) => validateFinderSearch(search),
@@ -227,7 +228,7 @@ function FinderPage() {
             <div>
               <span className="mono-label mb-2 inline-flex items-center justify-center gap-2 text-crimson">
                 <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
-                {PROGRAMMES.length} programmes · Grades {GRADE_LO}–{GRADE_HI}
+                {PROGRAMMES.length} programmes · Grades {gradeLo()}–{gradeHi()}
               </span>
               <h1 className="font-serif text-[clamp(1.8rem,4.4vw,2.7rem)] leading-[1.1] font-medium tracking-tight">
                 Find the programme that{" "}
@@ -238,7 +239,7 @@ function FinderPage() {
               {[
                 ["Harvard & Yale Student Mentors", "Taught by leaders"],
                 ["Live on Zoom", "Dubai + US Eastern"],
-                [`Grades ${GRADE_LO}–${GRADE_HI}`, `${PROGRAMMES.length} programmes`],
+                [`Grades ${gradeLo()}–${gradeHi()}`, `${PROGRAMMES.length} programmes`],
               ].map(([top, sub]) => (
                 <li
                   key={top}

@@ -1,13 +1,14 @@
-import { PROGRAMMES, TOTAL_COHORTS } from "@/lib/programmes";
+import { PROGRAMMES, totalCohorts } from "@/lib/programmes";
 
-const STATS: { value: string; label: string }[] = [
+const stats = (): { value: string; label: string }[] => [
   { value: String(PROGRAMMES.length), label: "Programmes" },
-  { value: String(TOTAL_COHORTS), label: "Upcoming cohorts" },
+  { value: String(totalCohorts()), label: "Upcoming cohorts" },
   { value: "10", label: "Months ahead" },
   { value: "Harvard · Yale", label: "Mentors from" },
 ];
 
 export function HeroStats() {
+  const STATS = stats();
   return (
     <div className="mt-7 flex flex-wrap justify-center gap-x-9 gap-y-4">
       {STATS.map((s) => (

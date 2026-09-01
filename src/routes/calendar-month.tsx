@@ -19,12 +19,10 @@ import {
 } from "@/lib/finder";
 import { SiteFooter } from "@/components/SiteFooter";
 
-const GRADE_LO = Math.min(...PROGRAMMES.map((p) => p.g[0]));
-const GRADE_HI = Math.max(...PROGRAMMES.map((p) => p.g[1]));
-const TOTAL_COHORTS = PROGRAMMES.reduce(
-  (n, p) => n + p.cohorts.filter((c) => !isPast(c.d)).length,
-  0,
-);
+const gradeLo = () => Math.min(...PROGRAMMES.map((p) => p.g[0]));
+const gradeHi = () => Math.max(...PROGRAMMES.map((p) => p.g[1]));
+const totalUpcoming = () =>
+  PROGRAMMES.reduce((n, p) => n + p.cohorts.filter((c) => !isPast(c.d)).length, 0);
 
 const TITLE = "Month-by-month cohort calendar | Learn with Leaders";
 const DESC =
@@ -107,7 +105,7 @@ function MonthCalendarPage() {
             <div>
               <span className="mono-label mb-2 inline-flex items-center justify-center gap-2 text-crimson">
                 <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
-                {TOTAL_COHORTS} cohorts · July 2026 - April 2027
+                {totalUpcoming()} cohorts · July 2026 - April 2027
               </span>
               <h1 className="font-serif text-[clamp(1.8rem,4.4vw,2.7rem)] leading-[1.1] font-medium tracking-tight">
                 Cohort calendar, <em className="text-crimson-deep">month by month</em>
@@ -121,9 +119,9 @@ function MonthCalendarPage() {
 
             <ul className="flex flex-wrap justify-center gap-2">
               {[
-                [`${PROGRAMMES.length} programmes`, `${TOTAL_COHORTS} cohorts`],
+                [`${PROGRAMMES.length} programmes`, `${totalUpcoming()} cohorts`],
                 ["Live on Zoom", "Dubai + US Eastern"],
-                [`Grades ${GRADE_LO}–${GRADE_HI}`, "Harvard & Yale student mentors"],
+                [`Grades ${gradeLo()}–${gradeHi()}`, "Harvard & Yale student mentors"],
               ].map(([top, sub]) => (
                 <li
                   key={top}
