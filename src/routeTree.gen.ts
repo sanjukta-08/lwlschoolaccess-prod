@@ -23,6 +23,7 @@ import { Route as ShortlistRouteImport } from './routes/shortlist'
 import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as CampsIndexRouteImport } from './routes/camps.index'
+import { Route as CampsSlugRouteImport } from './routes/camps.$slug'
 import { Route as InternshipsIndexRouteImport } from './routes/internships.index'
 import { Route as InternshipsApplyRouteImport } from './routes/internships.apply'
 import { Route as ProgrammesSlugRouteImport } from './routes/programmes.$slug'
@@ -97,6 +98,11 @@ const CampsIndexRoute = CampsIndexRouteImport.update({
   path: '/',
   getParentRoute: () => CampsRoute,
 } as any)
+const CampsSlugRoute = CampsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => CampsRoute,
+} as any)
 const InternshipsIndexRoute = InternshipsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -127,6 +133,7 @@ export interface FileRoutesByFullPath {
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
+  '/camps/$slug': typeof CampsSlugRoute
   '/internships/apply': typeof InternshipsApplyRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/camps/': typeof CampsIndexRoute
@@ -144,6 +151,7 @@ export interface FileRoutesByTo {
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
+  '/camps/$slug': typeof CampsSlugRoute
   '/internships/apply': typeof InternshipsApplyRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/camps': typeof CampsIndexRoute
@@ -164,6 +172,7 @@ export interface FileRoutesById {
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
+  '/camps/$slug': typeof CampsSlugRoute
   '/internships/apply': typeof InternshipsApplyRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/camps/': typeof CampsIndexRoute
@@ -185,6 +194,7 @@ export interface FileRouteTypes {
     | '/shortlist'
     | '/stories'
     | '/testimonials'
+    | '/camps/$slug'
     | '/internships/apply'
     | '/programmes/$slug'
     | '/camps/'
@@ -202,6 +212,7 @@ export interface FileRouteTypes {
     | '/shortlist'
     | '/stories'
     | '/testimonials'
+    | '/camps/$slug'
     | '/internships/apply'
     | '/programmes/$slug'
     | '/camps'
@@ -221,6 +232,7 @@ export interface FileRouteTypes {
     | '/shortlist'
     | '/stories'
     | '/testimonials'
+    | '/camps/$slug'
     | '/internships/apply'
     | '/programmes/$slug'
     | '/camps/'
@@ -344,6 +356,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CampsIndexRouteImport
       parentRoute: typeof CampsRoute
     }
+    '/camps/$slug': {
+      id: '/camps/$slug'
+      path: '/$slug'
+      fullPath: '/camps/$slug'
+      preLoaderRoute: typeof CampsSlugRouteImport
+      parentRoute: typeof CampsRoute
+    }
     '/internships/': {
       id: '/internships/'
       path: '/'
@@ -369,10 +388,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface CampsRouteChildren {
+  CampsSlugRoute: typeof CampsSlugRoute
   CampsIndexRoute: typeof CampsIndexRoute
 }
 
 const CampsRouteChildren: CampsRouteChildren = {
+  CampsSlugRoute: CampsSlugRoute,
   CampsIndexRoute: CampsIndexRoute,
 }
 

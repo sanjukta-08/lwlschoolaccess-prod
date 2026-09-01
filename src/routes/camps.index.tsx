@@ -14,7 +14,6 @@ import {
   CAMP_WEEK,
   REGIONS,
   SEASONS,
-  campPath,
   datesLabel,
   sortedCamps,
   type Region,
