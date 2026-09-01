@@ -11,6 +11,7 @@ import { SkillMatrix } from "@/components/SkillMatrix";
 
 import { DEFAULT_SEARCH } from "@/lib/finder";
 
+import { brandFor } from "@/lib/programme-logos";
 import { detailFor, relatedProgrammes } from "@/lib/programme-detail";
 import { slugOf } from "@/lib/programme-slug";
 import {
@@ -36,6 +37,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
   /** Programme pages follow the brand palette (crimson + gold), not track colours. */
   const track = { ...trackMeta, color: "var(--crimson)" };
   const d = detailFor(p);
+  const brand = brandFor(p.id, p.tracks);
   const kind = TYPE_NAME[p.type];
   const cohorts = p.cohorts.filter((c) => !isPast(c.d));
   const next = cohorts[0];
@@ -67,9 +69,19 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
             <span aria-hidden>{track.ic}</span>
             {kind} · {track.label}
           </span>
+          {brand ? (
+            <img
+              src={brand.src}
+              alt={brand.alt}
+              loading="eager"
+              decoding="async"
+              className="mx-auto mb-4 max-h-16 w-auto max-w-[16rem] object-contain"
+            />
+          ) : null}
           <h1 className="mx-auto max-w-[20em] font-serif text-[clamp(2rem,5.4vw,3.05rem)] leading-[1.08] font-semibold">
             {p.name}
           </h1>
+
           <p className="mx-auto mt-3.5 max-w-[54em] text-[clamp(0.98rem,2.3vw,1.08rem)] text-ink-soft">
             {d.lede}
           </p>
