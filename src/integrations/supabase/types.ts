@@ -2249,81 +2249,258 @@ export type Database = {
       purpose_applications: {
         Row: {
           amount_cents: number | null
+          amount_paid: number
+          application_submitted_at: string | null
           city: string | null
-          cohort: string
+          cohort_key: string
           country: string | null
           created_at: string
+          discount_minor: number | null
           grade_level: string | null
           id: string
+          last_reminder_at: string | null
+          match_method: string | null
           metadata: Json
+          needs_review: boolean
           parent_email: string | null
           parent_name: string | null
           parent_phone: string | null
           pathway: string | null
+          payment_currency: string | null
+          payment_date: string | null
           payment_id: string | null
+          payment_intent_id: string | null
+          payment_matched_at: string | null
+          payment_reminder_sent_at: string | null
           payment_status: string | null
+          pending_registration_email_sent_at: string | null
+          pending_registration_reminders_sent: number
+          program_code: string | null
+          promo_code: string | null
+          purchased_product_name: string | null
           referral_source: string | null
+          registration_status: string
+          reminder_count: number
+          reviewer_notes: string | null
           scholarship_code: string | null
           school_name: string | null
           school_type: string | null
           status: string
+          stripe_customer_id: string | null
+          stripe_line_items: Json | null
           student_dob: string | null
           student_email: string
           student_name: string
           student_phone: string | null
+          submission_token: string
           updated_at: string
+          utm_campaign: string
+          utm_medium: string
+          utm_source: string
         }
         Insert: {
           amount_cents?: number | null
+          amount_paid?: number
+          application_submitted_at?: string | null
           city?: string | null
-          cohort: string
+          cohort_key: string
           country?: string | null
           created_at?: string
+          discount_minor?: number | null
           grade_level?: string | null
           id?: string
+          last_reminder_at?: string | null
+          match_method?: string | null
           metadata?: Json
+          needs_review?: boolean
           parent_email?: string | null
           parent_name?: string | null
           parent_phone?: string | null
           pathway?: string | null
+          payment_currency?: string | null
+          payment_date?: string | null
           payment_id?: string | null
+          payment_intent_id?: string | null
+          payment_matched_at?: string | null
+          payment_reminder_sent_at?: string | null
           payment_status?: string | null
+          pending_registration_email_sent_at?: string | null
+          pending_registration_reminders_sent?: number
+          program_code?: string | null
+          promo_code?: string | null
+          purchased_product_name?: string | null
           referral_source?: string | null
+          registration_status?: string
+          reminder_count?: number
+          reviewer_notes?: string | null
           scholarship_code?: string | null
           school_name?: string | null
           school_type?: string | null
           status?: string
+          stripe_customer_id?: string | null
+          stripe_line_items?: Json | null
           student_dob?: string | null
           student_email: string
           student_name: string
           student_phone?: string | null
+          submission_token?: string
           updated_at?: string
+          utm_campaign?: string
+          utm_medium?: string
+          utm_source?: string
         }
         Update: {
           amount_cents?: number | null
+          amount_paid?: number
+          application_submitted_at?: string | null
           city?: string | null
-          cohort?: string
+          cohort_key?: string
           country?: string | null
           created_at?: string
+          discount_minor?: number | null
           grade_level?: string | null
           id?: string
+          last_reminder_at?: string | null
+          match_method?: string | null
           metadata?: Json
+          needs_review?: boolean
           parent_email?: string | null
           parent_name?: string | null
           parent_phone?: string | null
           pathway?: string | null
+          payment_currency?: string | null
+          payment_date?: string | null
           payment_id?: string | null
+          payment_intent_id?: string | null
+          payment_matched_at?: string | null
+          payment_reminder_sent_at?: string | null
           payment_status?: string | null
+          pending_registration_email_sent_at?: string | null
+          pending_registration_reminders_sent?: number
+          program_code?: string | null
+          promo_code?: string | null
+          purchased_product_name?: string | null
           referral_source?: string | null
+          registration_status?: string
+          reminder_count?: number
+          reviewer_notes?: string | null
           scholarship_code?: string | null
           school_name?: string | null
           school_type?: string | null
           status?: string
+          stripe_customer_id?: string | null
+          stripe_line_items?: Json | null
           student_dob?: string | null
           student_email?: string
           student_name?: string
           student_phone?: string | null
+          submission_token?: string
           updated_at?: string
+          utm_campaign?: string
+          utm_medium?: string
+          utm_source?: string
+        }
+        Relationships: []
+      }
+      purpose_masterclass_regs: {
+        Row: {
+          attendee_type: string | null
+          city: string | null
+          consent: boolean | null
+          country: string | null
+          created_at: string
+          designation: string | null
+          email: string | null
+          email_sent_at: string | null
+          full_name: string | null
+          grade: string | null
+          hear_about: string | null
+          id: string
+          masterclass_ids: string[] | null
+          meta: Json
+          parent_email: string | null
+          parent_name: string | null
+          parent_phone: string | null
+          phone: string | null
+          promotes_program_code: string | null
+          referrer: string | null
+          school: string | null
+          sessions: string[] | null
+          source_url: string | null
+          state: string | null
+          status: string
+          student_grade: string | null
+          student_name: string | null
+          user_agent: string | null
+          utm_campaign: string
+          utm_medium: string
+          utm_source: string
+        }
+        Insert: {
+          attendee_type?: string | null
+          city?: string | null
+          consent?: boolean | null
+          country?: string | null
+          created_at?: string
+          designation?: string | null
+          email?: string | null
+          email_sent_at?: string | null
+          full_name?: string | null
+          grade?: string | null
+          hear_about?: string | null
+          id?: string
+          masterclass_ids?: string[] | null
+          meta?: Json
+          parent_email?: string | null
+          parent_name?: string | null
+          parent_phone?: string | null
+          phone?: string | null
+          promotes_program_code?: string | null
+          referrer?: string | null
+          school?: string | null
+          sessions?: string[] | null
+          source_url?: string | null
+          state?: string | null
+          status?: string
+          student_grade?: string | null
+          student_name?: string | null
+          user_agent?: string | null
+          utm_campaign?: string
+          utm_medium?: string
+          utm_source?: string
+        }
+        Update: {
+          attendee_type?: string | null
+          city?: string | null
+          consent?: boolean | null
+          country?: string | null
+          created_at?: string
+          designation?: string | null
+          email?: string | null
+          email_sent_at?: string | null
+          full_name?: string | null
+          grade?: string | null
+          hear_about?: string | null
+          id?: string
+          masterclass_ids?: string[] | null
+          meta?: Json
+          parent_email?: string | null
+          parent_name?: string | null
+          parent_phone?: string | null
+          phone?: string | null
+          promotes_program_code?: string | null
+          referrer?: string | null
+          school?: string | null
+          sessions?: string[] | null
+          source_url?: string | null
+          state?: string | null
+          status?: string
+          student_grade?: string | null
+          student_name?: string | null
+          user_agent?: string | null
+          utm_campaign?: string
+          utm_medium?: string
+          utm_source?: string
         }
         Relationships: []
       }
