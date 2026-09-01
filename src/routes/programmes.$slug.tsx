@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import { SiteHeader } from "@/components/SiteHeader";
+import { ensureCatalogue } from "@/lib/catalogue";
 import { ProgrammeLanding } from "@/components/ProgrammeLanding";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { detailFor } from "@/lib/programme-detail";
@@ -9,7 +10,8 @@ import { profileImpactFor, projectsFor } from "@/lib/programme-proof";
 import { TRACKS, TYPE_NAME, feeOf, fmtLong, isPast } from "@/lib/programmes";
 
 export const Route = createFileRoute("/programmes/$slug")({
-  loader: ({ params }) => {
+  loader: async ({ params, context }) => {
+    await ensureCatalogue(context.queryClient);
     const p = programmeBySlug(params.slug);
     if (!p) throw notFound();
     return { name: p.name };
