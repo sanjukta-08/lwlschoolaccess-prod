@@ -2327,6 +2327,78 @@ export type Database = {
         }
         Relationships: []
       }
+      razorpay_payments: {
+        Row: {
+          amount: number | null
+          amount_refunded: number | null
+          bank: string | null
+          contact: string | null
+          created_date: string | null
+          currency: string | null
+          description: string | null
+          email: string | null
+          fee: number | null
+          id: string
+          international: string | null
+          method: string | null
+          notes: Json | null
+          order_id: string | null
+          payment_id: string
+          refund_status: string | null
+          status: string | null
+          synced_at: string | null
+          tax: number | null
+          vpa: string | null
+          wallet: string | null
+        }
+        Insert: {
+          amount?: number | null
+          amount_refunded?: number | null
+          bank?: string | null
+          contact?: string | null
+          created_date?: string | null
+          currency?: string | null
+          description?: string | null
+          email?: string | null
+          fee?: number | null
+          id?: string
+          international?: string | null
+          method?: string | null
+          notes?: Json | null
+          order_id?: string | null
+          payment_id: string
+          refund_status?: string | null
+          status?: string | null
+          synced_at?: string | null
+          tax?: number | null
+          vpa?: string | null
+          wallet?: string | null
+        }
+        Update: {
+          amount?: number | null
+          amount_refunded?: number | null
+          bank?: string | null
+          contact?: string | null
+          created_date?: string | null
+          currency?: string | null
+          description?: string | null
+          email?: string | null
+          fee?: number | null
+          id?: string
+          international?: string | null
+          method?: string | null
+          notes?: Json | null
+          order_id?: string | null
+          payment_id?: string
+          refund_status?: string | null
+          status?: string | null
+          synced_at?: string | null
+          tax?: number | null
+          vpa?: string | null
+          wallet?: string | null
+        }
+        Relationships: []
+      }
       sat_applications: {
         Row: {
           amount: string | null
