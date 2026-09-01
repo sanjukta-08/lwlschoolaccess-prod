@@ -6,7 +6,7 @@ import { HowItWorks } from "@/components/HowItWorks";
 import { Suspense, lazy } from "react";
 import {
   PROGRAMMES,
-  TOTAL_COHORTS,
+  totalCohorts,
   TRACKS,
   cohortGrades,
   feeOf,
@@ -163,7 +163,7 @@ function HomePage() {
             <dl className="mx-auto mt-9 grid max-w-[820px] grid-cols-2 items-stretch divide-gold-line/70 rounded-[20px] border border-gold-line bg-paper/70 px-4 py-4 shadow-soft sm:flex sm:px-6 sm:divide-x">
               {[
                 [String(PROGRAMMES.length), "Programmes"],
-                [String(TOTAL_COHORTS), "Upcoming cohorts"],
+                [String(totalCohorts()), "Upcoming cohorts"],
                 ["426+", "Students published"],
                 ["5-12", "Grades covered"],
               ].map(([v, l]) => (

@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ShortlistContext, useShortlistState } from "../lib/shortlist";
+import { ensureCatalogue } from "../lib/catalogue";
 
 function NotFoundComponent() {
   return (
@@ -74,6 +75,8 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  // Live programme + camp schedule, loaded once before anything renders.
+  loader: ({ context }) => ensureCatalogue(context.queryClient),
   head: () => ({
     meta: [
       { charSet: "utf-8" },

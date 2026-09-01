@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { ensureCatalogue } from "@/lib/catalogue";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -10,7 +11,8 @@ import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
 import { CAMPS, campBySlug, datesLabel, relatedCamps, type Camp } from "@/lib/camps";
 
 export const Route = createFileRoute("/camps/$slug")({
-  loader: ({ params }) => {
+  loader: async ({ params, context }) => {
+    await ensureCatalogue(context.queryClient);
     const camp = campBySlug(params.slug);
     if (!camp) throw notFound();
     return { camp };
