@@ -264,13 +264,14 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
         const o = overrideByCohortId.get(c.id);
         const seatsLeft =
           c.seats_total != null ? Math.max(0, c.seats_total - (c.seats_filled ?? 0)) : null;
+        const label = o?.label ?? c.cohort_label;
         out.set(c.start_date!, {
           d: c.start_date!,
-          label: o?.label ?? c.cohort_label ?? undefined,
-          time: o?.session_time ?? undefined,
-          elig: o?.elig ?? undefined,
-          flyer: o?.flyer_url ?? undefined,
-          brochure: o?.brochure_url ?? undefined,
+          ...(label ? { label } : {}),
+          ...(o?.session_time ? { time: o.session_time } : {}),
+          ...(o?.elig ? { elig: o.elig } : {}),
+          ...(o?.flyer_url ? { flyer: o.flyer_url } : {}),
+          ...(o?.brochure_url ? { brochure: o.brochure_url } : {}),
           ...(o?.fee_early ? { fee: { e: o.fee_early, r: o.fee_regular ?? null } } : {}),
           ...(c.application_deadline ? { deadline: c.application_deadline } : {}),
           ...(seatsLeft != null ? { seatsLeft } : {}),
@@ -283,11 +284,11 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
         if (out.has(o.start_date)) continue;
         out.set(o.start_date, {
           d: o.start_date,
-          label: o.label ?? undefined,
-          time: o.session_time ?? undefined,
-          elig: o.elig ?? undefined,
-          flyer: o.flyer_url ?? undefined,
-          brochure: o.brochure_url ?? undefined,
+          ...(o.label ? { label: o.label } : {}),
+          ...(o.session_time ? { time: o.session_time } : {}),
+          ...(o.elig ? { elig: o.elig } : {}),
+          ...(o.flyer_url ? { flyer: o.flyer_url } : {}),
+          ...(o.brochure_url ? { brochure: o.brochure_url } : {}),
           ...(o.fee_early ? { fee: { e: o.fee_early, r: o.fee_regular ?? null } } : {}),
         });
       }
@@ -316,7 +317,7 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
           cohorts: cohorts.map((c) => ({
             label: c.label ?? c.d,
             start: c.d,
-            note: c.elig,
+            ...(c.elig ? { note: c.elig } : {}),
           })),
         });
         continue;
