@@ -136,6 +136,9 @@ export function SiteHeader() {
     return (
       <>
         {mobile ? offeringsMobile : offeringsDesktop}
+        <Link to="/camps" className={cls} activeProps={active} onClick={close}>
+          Camps
+        </Link>
         <Link
           to="/masterclasses"
           className={cls}
@@ -144,6 +147,7 @@ export function SiteHeader() {
         >
           Masterclasses
         </Link>
+
         <Link
           to="/calendar"
           search={DEFAULT_SEARCH}
