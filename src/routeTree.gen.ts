@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as CalendarMonthRouteImport } from './routes/calendar-month'
+import { Route as CampsRouteImport } from './routes/camps'
 import { Route as FinderRouteImport } from './routes/finder'
 import { Route as FitRouteImport } from './routes/fit'
 import { Route as InternshipsRouteImport } from './routes/internships'
@@ -43,6 +44,11 @@ const CalendarRoute = CalendarRouteImport.update({
 const CalendarMonthRoute = CalendarMonthRouteImport.update({
   id: '/calendar-month',
   path: '/calendar-month',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CampsRoute = CampsRouteImport.update({
+  id: '/camps',
+  path: '/camps',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FinderRoute = FinderRouteImport.update({
@@ -106,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/calendar': typeof CalendarRoute
   '/calendar-month': typeof CalendarMonthRoute
+  '/camps': typeof CampsRoute
   '/finder': typeof FinderRoute
   '/fit': typeof FitRoute
   '/internships': typeof InternshipsRouteWithChildren
@@ -123,6 +130,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/calendar': typeof CalendarRoute
   '/calendar-month': typeof CalendarMonthRoute
+  '/camps': typeof CampsRoute
   '/finder': typeof FinderRoute
   '/fit': typeof FitRoute
   '/masterclasses': typeof MasterclassesRoute
@@ -140,6 +148,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/calendar': typeof CalendarRoute
   '/calendar-month': typeof CalendarMonthRoute
+  '/camps': typeof CampsRoute
   '/finder': typeof FinderRoute
   '/fit': typeof FitRoute
   '/internships': typeof InternshipsRouteWithChildren
@@ -159,6 +168,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/calendar'
     | '/calendar-month'
+    | '/camps'
     | '/finder'
     | '/fit'
     | '/internships'
@@ -176,6 +186,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/calendar'
     | '/calendar-month'
+    | '/camps'
     | '/finder'
     | '/fit'
     | '/masterclasses'
@@ -192,6 +203,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/calendar'
     | '/calendar-month'
+    | '/camps'
     | '/finder'
     | '/fit'
     | '/internships'
@@ -210,6 +222,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   CalendarRoute: typeof CalendarRoute
   CalendarMonthRoute: typeof CalendarMonthRoute
+  CampsRoute: typeof CampsRoute
   FinderRoute: typeof FinderRoute
   FitRoute: typeof FitRoute
   InternshipsRoute: typeof InternshipsRouteWithChildren
@@ -249,6 +262,13 @@ declare module '@tanstack/react-router' {
       path: '/calendar-month'
       fullPath: '/calendar-month'
       preLoaderRoute: typeof CalendarMonthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/camps': {
+      id: '/camps'
+      path: '/camps'
+      fullPath: '/camps'
+      preLoaderRoute: typeof CampsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/finder': {
@@ -350,6 +370,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   CalendarRoute: CalendarRoute,
   CalendarMonthRoute: CalendarMonthRoute,
+  CampsRoute: CampsRoute,
   FinderRoute: FinderRoute,
   FitRoute: FitRoute,
   InternshipsRoute: InternshipsRouteWithChildren,
