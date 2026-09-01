@@ -467,6 +467,22 @@ export const campBySlug = (slug: string) => CAMPS.find((c) => c.slug === slug);
 
 export const campPath = (c: Camp) => `/camps/${c.slug}` as const;
 
+/**
+ * Dates and apply links come from the shared programme calendar; the campus
+ * photography, vision and journey copy stay here. Called by the root loader.
+ */
+export const applyLiveCamps = (
+  live: { slug: string; applyUrl: string | null; cohorts: CampCohort[] }[],
+) => {
+  for (const l of live) {
+    const camp = CAMPS.find((c) => c.slug === l.slug);
+    if (!camp) continue;
+    if (l.applyUrl) camp.applyUrl = l.applyUrl;
+    if (l.cohorts.length) camp.cohorts = l.cohorts;
+  }
+};
+
+
 /** First announced start date, or undefined when the camp has no dates yet. */
 export const nextStart = (c: Camp) =>
   c.cohorts.map((x) => x.start).filter(Boolean).sort()[0];
