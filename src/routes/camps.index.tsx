@@ -1,0 +1,318 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { useMemo, useState } from "react";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SectionHeading } from "@/components/SectionHeading";
+import { CampCardGrid } from "@/components/CampCard";
+import { CampVideoWall } from "@/components/CampVideoWall";
+import { CampVoices } from "@/components/CampVoices";
+import { CampFaq } from "@/components/CampFaq";
+import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
+import {
+  CAMPS,
+  CAMP_FAQS,
+  CAMP_WEEK,
+  REGIONS,
+  SEASONS,
+  datesLabel,
+  sortedCamps,
+  type Region,
+  type Season,
+} from "@/lib/camps";
+import heroImage from "@/assets/camps/camps-hero.jpg";
+import { Link } from "@tanstack/react-router";
+
+const TITLE = "Summer & Winter Camps at Harvard, Cambridge, Geneva | Learn with Leaders";
+const DESC =
+  "In-person residential camps for Grades 8-12 at Harvard, Cambridge Judge, the University of Geneva and Salamanca. Dates, grade bands, what is included and how to apply.";
+
+export const Route = createFileRoute("/camps/")({
+  head: () => ({
+    meta: [
+      { title: TITLE },
+      { name: "description", content: DESC },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESC },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: CAMP_FAQS.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }),
+      },
+    ],
+  }),
+  component: CampsHub,
+});
+
+const chip = (active: boolean) =>
+  `rounded-full border px-3.5 py-1.5 text-[0.78rem] font-semibold transition-colors ${
+    active
+      ? "border-crimson bg-crimson text-paper"
+      : "border-line bg-paper text-ink-soft hover:border-gold-line hover:text-ink"
+  }`;
+
+function CampsHub() {
+  const [region, setRegion] = useState<Region | "all">("all");
+  const [season, setSeason] = useState<Season | "all">("all");
+
+  const camps = useMemo(
+    () =>
+      sortedCamps(
+        CAMPS.filter(
+          (c) =>
+            (region === "all" || c.region === region) &&
+            (season === "all" || c.season === season),
+        ),
+      ),
+    [region, season],
+  );
+
+  const upcoming = sortedCamps(CAMPS).filter((c) => c.cohorts[0]?.start).slice(0, 3);
+  const cities = new Set(CAMPS.map((c) => c.city)).size;
+  const universities = new Set(CAMPS.map((c) => c.host)).size;
+
+  return (
+    <div className="min-h-dvh bg-[#fbfbf9]">
+      <SiteHeader />
+
+      {/* ---------- hero ---------- */}
+      <section className="page-shell grid grid-cols-1 items-center gap-12 pt-10 pb-16 lg:grid-cols-12 lg:pt-16 lg:pb-24">
+        <div className="flex flex-col gap-6 lg:col-span-6">
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="mono-label border border-gold-line px-2 py-1 text-gold-deep">
+              In-person residency
+            </span>
+            <span className="mono-label text-ink-faint">Winter 2026 &amp; Summer 2027</span>
+          </div>
+
+          <h1 className="font-serif text-[clamp(2.4rem,6.4vw,4.4rem)] leading-[0.98] font-normal tracking-tight text-ink">
+            The world is your <em className="text-crimson-deep">classroom.</em>
+          </h1>
+
+          <p className="max-w-[34em] text-[1.05rem] leading-relaxed text-ink-soft">
+            {CAMPS.length} residential camps at {universities} universities across{" "}
+            {cities} cities - Harvard, Cambridge Judge, the University of Geneva and
+            Salamanca. Small cohorts, undergraduate mentors, and a project your child
+            presents before they fly home.
+          </p>
+
+          <div className="flex flex-wrap items-center gap-6 pt-1">
+            <a
+              href="#all-camps"
+              className="mono-label bg-crimson px-8 py-4 text-paper no-underline shadow-soft transition-colors hover:bg-crimson-deep"
+            >
+              Explore all camps
+            </a>
+            <div className="border-l border-line pl-6">
+              <p className="font-serif text-[0.98rem] text-ink italic">
+                &ldquo;A life-defining week on campus.&rdquo;
+              </p>
+              <p className="mono-label mt-1 text-ink-faint">Parent · Dubai</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="lg:col-span-6">
+          <div className="relative aspect-[16/10] overflow-hidden rounded-sm border border-line bg-wash shadow-lift">
+            <img
+              src={heroImage}
+              alt="International students crossing a historic university courtyard"
+              width={1600}
+              height={1000}
+              className="h-full w-full object-cover"
+            />
+            <span className="mono-label absolute right-5 bottom-5 bg-paper px-3 py-2 text-ink-soft shadow-soft">
+              On campus, not on Zoom
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- next departures ---------- */}
+      <section className="border-y border-line bg-paper py-12">
+        <div className="page-shell">
+          <SectionHeading
+            eyebrow="Next departures"
+            align="left"
+            sub="Confirmed dates first. Places are allocated in the order applications are completed."
+          >
+            Book the <em className="text-crimson-deep">flights</em> around these
+          </SectionHeading>
+          <ul className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+            {upcoming.map((c) => (
+              <li key={c.slug}>
+                <Link
+                  to="/camps/$slug"
+                  params={{ slug: c.slug }}
+                  className="flex h-full flex-col gap-2 rounded-sm border border-line bg-[#fbfbf9] p-5 no-underline transition-colors hover:border-gold-line"
+                >
+                  <span className="mono-label text-gold-deep">{datesLabel(c)}</span>
+                  <span className="font-serif text-[1.15rem] leading-tight font-medium text-ink">
+                    {c.name}
+                  </span>
+                  <span className="text-[0.82rem] text-ink-soft">
+                    {c.host} · {c.city}, {c.country} · {c.gradeBand}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ---------- all camps ---------- */}
+      <section id="all-camps" className="page-shell scroll-mt-20 py-16">
+        <SectionHeading
+          eyebrow="Every camp"
+          align="left"
+          sub="Filter by destination and season. Every camp is residential, supervised and taught on campus."
+        >
+          Choose the <em className="text-crimson-deep">campus</em>
+        </SectionHeading>
+
+        <div className="mt-6 mb-10 flex flex-wrap items-center gap-2">
+          <button type="button" className={chip(region === "all")} onClick={() => setRegion("all")}>
+            All destinations
+          </button>
+          {REGIONS.map((r) => (
+            <button
+              key={r.key}
+              type="button"
+              className={chip(region === r.key)}
+              onClick={() => setRegion(r.key)}
+            >
+              {r.label}
+            </button>
+          ))}
+          <span className="mx-2 hidden h-5 w-px bg-line sm:block" aria-hidden />
+          <button type="button" className={chip(season === "all")} onClick={() => setSeason("all")}>
+            Any season
+          </button>
+          {SEASONS.map((s) => (
+            <button
+              key={s.key}
+              type="button"
+              className={chip(season === s.key)}
+              onClick={() => setSeason(s.key)}
+            >
+              {s.label}
+            </button>
+          ))}
+        </div>
+
+        {camps.length ? (
+          <CampCardGrid camps={camps} />
+        ) : (
+          <p className="rounded-sm border border-line bg-paper p-8 text-center text-[0.92rem] text-ink-soft">
+            No camps match that combination yet. Clear a filter, or{" "}
+            <a href={CALENDLY_BOOKING_URL} target="_blank" rel="noopener" className="text-crimson">
+              talk to an advisor
+            </a>{" "}
+            about what is coming.
+          </p>
+        )}
+      </section>
+
+      {/* ---------- the week ---------- */}
+      <section className="border-y border-line bg-paper py-16">
+        <div className="page-shell">
+          <SectionHeading
+            eyebrow="A week in the life"
+            align="left"
+            sub="Camps are busy on purpose. Here is the shape of a typical week, wherever your child lands."
+          >
+            What the week actually <em className="text-crimson-deep">feels like</em>
+          </SectionHeading>
+          <ol className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
+            {CAMP_WEEK.map((s, i) => (
+              <li key={s.title} className="border-t-2 border-gold-line pt-4">
+                <span className="mono-label text-gold-deep">0{i + 1}</span>
+                <h3 className="mt-1 font-serif text-[1.15rem] font-medium text-ink">{s.title}</h3>
+                <p className="mt-1.5 text-[0.85rem] leading-relaxed text-ink-soft">{s.body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* ---------- video ---------- */}
+      <section className="page-shell py-16">
+        <SectionHeading
+          eyebrow="Real footage"
+          align="left"
+          sub="Filmed at the Geneva camp - the FabLab build days, the international quarter and the final showcase."
+        >
+          See a camp <em className="text-crimson-deep">from the inside</em>
+        </SectionHeading>
+        <div className="mt-8">
+          <CampVideoWall />
+        </div>
+      </section>
+
+      {/* ---------- voices ---------- */}
+      <section className="border-y border-line bg-paper py-16">
+        <div className="page-shell">
+          <SectionHeading
+            eyebrow="Students and parents"
+            align="left"
+            sub="Unedited notes from families who have already sent a child on a camp."
+          >
+            What they said <em className="text-crimson-deep">afterwards</em>
+          </SectionHeading>
+          <div className="mt-8">
+            <CampVoices />
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- faq ---------- */}
+      <section className="page-shell py-16">
+        <SectionHeading
+          eyebrow="Before you book"
+          sub="Supervision, visas, flights and fees - the five questions every parent asks us first."
+        >
+          Parents usually <em className="text-crimson-deep">ask</em>
+        </SectionHeading>
+        <div className="mt-8">
+          <CampFaq items={CAMP_FAQS} />
+        </div>
+      </section>
+
+      {/* ---------- closing band ---------- */}
+      <section className="bg-ink py-16 text-paper">
+        <div className="page-shell flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+          <div>
+            <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] leading-tight font-medium">
+              Not sure which campus fits your child?
+            </h2>
+            <p className="mt-2 max-w-[46em] text-[0.95rem] text-paper/75">
+              Twenty minutes with an advisor is usually enough: grade band, travel window,
+              interests, budget - then a shortlist of one or two camps.
+            </p>
+          </div>
+          <a
+            href={CALENDLY_BOOKING_URL}
+            target="_blank"
+            rel="noopener"
+            className="mono-label shrink-0 bg-paper px-8 py-4 text-ink no-underline transition-colors hover:bg-gold-soft"
+          >
+            Book a call
+          </a>
+        </div>
+      </section>
+
+      <SiteFooter />
+    </div>
+  );
+}
+

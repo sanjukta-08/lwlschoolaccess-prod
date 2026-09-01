@@ -59,7 +59,11 @@ export function SiteFooter({ note }: { note?: string }) {
             >
               Competitions
             </Link>
+            <Link to="/camps" className={linkCls}>
+              Summer &amp; winter camps
+            </Link>
           </nav>
+
 
           <nav className={colCls} aria-label="Dates">
             <span className="mono-label text-gold">Dates</span>
