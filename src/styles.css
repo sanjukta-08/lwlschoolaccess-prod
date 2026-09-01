@@ -205,6 +205,7 @@
   --font-sans: "Figtree Variable", "Figtree", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Newsreader Variable", "Newsreader", ui-serif, Georgia, serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-display: "Archivo", "Figtree Variable", ui-sans-serif, system-ui, sans-serif;
 
   --color-paper: var(--paper);
   --color-wash: var(--wash);
