@@ -62,6 +62,7 @@ export function audienceLabel(a?: string | null): string {
     parents: "Parents",
     schools: "Schools",
     all: "All grades",
+    general: "General",
   };
   return map[a.toLowerCase()] ?? a;
 }
