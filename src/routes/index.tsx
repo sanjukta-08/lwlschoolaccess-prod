@@ -114,9 +114,11 @@ function HomePage() {
               <WingMark size={13} />
               Online programmes for Grades 5-12 · 2026-27
             </span>
-            <h1 className="mx-auto font-serif text-[clamp(2.6rem,7.2vw,4.7rem)] leading-[1.05] font-medium tracking-tight text-balance">
+            <h1 className="brand-display mx-auto text-[clamp(2.2rem,6.4vw,4.1rem)] leading-[1.06] text-balance">
               <span className="block">Where ambitious students</span>
-              <em className="mt-1 block text-crimson-deep">learn with leaders</em>
+              <span className="brand-display-caps mt-2 block text-[0.82em] text-crimson-deep">
+                Learn with Leaders
+              </span>
             </h1>
 
             <p className="mx-auto mt-5 max-w-[60em] text-[clamp(1rem,2.4vw,1.14rem)] text-ink-soft">
