@@ -29,7 +29,7 @@ export function SectionHeading({
       ) : null}
       <h2
         id={id}
-        className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] leading-[1.05] font-medium tracking-tight text-balance"
+        className="brand-display text-[clamp(1.45rem,3.5vw,2rem)] leading-[1.1] text-balance"
       >
         {children}
       </h2>
