@@ -262,4 +262,4 @@ export function isoToFlag(iso2: string): string {
 }
 
 export const DEFAULT_COUNTRY: CountryCode =
-  COUNTRY_CODES.find(c => c.iso2 === 'IN') || COUNTRY_CODES[0];
+  COUNTRY_CODES.find(c => c.iso2 === 'IN') || (COUNTRY_CODES[0] as CountryCode);

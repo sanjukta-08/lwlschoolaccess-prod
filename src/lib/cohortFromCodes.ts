@@ -90,7 +90,8 @@ export function earliestStartDateFromCodes(codes: string[] | null | undefined): 
   if (!decoded.length) return null;
   const future = decoded.filter((c) => !c.isPast);
   const pick = future.length ? future[0] : decoded[decoded.length - 1];
-  const d = pick.date!;
+  const d = pick?.date;
+  if (!d) return null;
   return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
 }
 
