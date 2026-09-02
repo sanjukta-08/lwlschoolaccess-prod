@@ -189,8 +189,20 @@ function fromNote(n: HandwrittenNote): Testimonial {
   };
 }
 
-/** Every testimonial on the site, interleaved so the grid mixes formats. */
-export const TESTIMONIALS: Testimonial[] = (() => {
+/**
+ * Every testimonial on the site, interleaved so the grid mixes formats.
+ *
+ * Built lazily: the programme catalogue is hydrated by the root loader at
+ * runtime, so deriving this at module-evaluation time would tag every quote
+ * with the fallback track instead of its real pathway. Recomputed whenever the
+ * catalogue size changes.
+ */
+let cache: Testimonial[] | null = null;
+let cacheKey = -1;
+
+export function allTestimonials(): Testimonial[] {
+  if (cache && cacheKey === PROGRAMMES.length) return cache;
+
   const written = LEARNER_QUOTES.map(fromQuote);
   const linkedin = APPROVED_LINKEDIN.map(fromStory);
   const instagram = APPROVED_INSTAGRAM.map(fromStory);
@@ -207,10 +219,14 @@ export const TESTIMONIALS: Testimonial[] = (() => {
       if (item) out.push(item);
     }
   }
-  return out;
-})();
 
-export const TESTIMONIAL_TOTAL = TESTIMONIALS.length;
+  cache = out;
+  cacheKey = PROGRAMMES.length;
+  return out;
+}
+
+export const testimonialTotal = () => allTestimonials().length;
+
 
 /* ------------------------------------------------------------------ *
  * Filtering
@@ -244,7 +260,7 @@ export function isDefaultTestimonialSearch(s: TestimonialSearch) {
 
 export function filterTestimonials(
   s: TestimonialSearch,
-  list: Testimonial[] = TESTIMONIALS,
+  list: Testimonial[] = allTestimonials(),
 ): Testimonial[] {
   const q = s.q.trim().toLowerCase();
   return list.filter((t) => {
@@ -279,9 +295,10 @@ export function testimonialFacets(s: TestimonialSearch) {
 }
 
 /** Programme labels that actually have feedback, alphabetically. */
-export const TESTIMONIAL_PROGRAMMES: string[] = [
-  ...new Set(TESTIMONIALS.map((t) => t.programme)),
-].sort((a, b) => a.localeCompare(b));
+export const testimonialProgrammes = (): string[] =>
+  [...new Set(allTestimonials().map((t) => t.programme))].sort((a, b) =>
+    a.localeCompare(b),
+  );
 
 export const RESEARCH_SCHOLARS_LABEL = RESEARCH_SCHOLARS;
 
