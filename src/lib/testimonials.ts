@@ -260,7 +260,7 @@ export function isDefaultTestimonialSearch(s: TestimonialSearch) {
 
 export function filterTestimonials(
   s: TestimonialSearch,
-  list: Testimonial[] = TESTIMONIALS,
+  list: Testimonial[] = allTestimonials(),
 ): Testimonial[] {
   const q = s.q.trim().toLowerCase();
   return list.filter((t) => {
@@ -295,9 +295,10 @@ export function testimonialFacets(s: TestimonialSearch) {
 }
 
 /** Programme labels that actually have feedback, alphabetically. */
-export const TESTIMONIAL_PROGRAMMES: string[] = [
-  ...new Set(TESTIMONIALS.map((t) => t.programme)),
-].sort((a, b) => a.localeCompare(b));
+export const testimonialProgrammes = (): string[] =>
+  [...new Set(allTestimonials().map((t) => t.programme))].sort((a, b) =>
+    a.localeCompare(b),
+  );
 
 export const RESEARCH_SCHOLARS_LABEL = RESEARCH_SCHOLARS;
 

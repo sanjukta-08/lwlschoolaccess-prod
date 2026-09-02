@@ -5,7 +5,7 @@ import type { TrackKey } from "@/lib/programmes";
 import {
   FORMATS,
   FORMAT_ORDER,
-  TESTIMONIAL_PROGRAMMES,
+  testimonialProgrammes,
   isDefaultTestimonialSearch,
 } from "@/lib/testimonials";
 import type { TestimonialSearch } from "@/lib/testimonials";
@@ -97,7 +97,7 @@ export function TestimonialFilters({
             onChange={(e) => onChange({ programme: e.target.value })}
           >
             <option value="all">All programmes</option>
-            {TESTIMONIAL_PROGRAMMES.filter(
+            {testimonialProgrammes().filter(
               (p) => (facets.programme[p] ?? 0) > 0 || p === search.programme,
             ).map((p) => (
               <option key={p} value={p}>
