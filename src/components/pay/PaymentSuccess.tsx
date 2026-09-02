@@ -5,7 +5,7 @@
  */
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
 
 import { SiteHeader } from "@/components/SiteHeader";
@@ -15,7 +15,6 @@ import { getPaymentStatus } from "@/lib/portal/pay.functions";
 import { formatMoney } from "@/lib/portal/pricing";
 
 export default function PaymentSuccess({ token }: { token: string }) {
-  const navigate = useNavigate();
   const [redirecting, setRedirecting] = useState(false);
 
   const { data, isLoading } = useQuery({
@@ -130,12 +129,7 @@ export default function PaymentSuccess({ token }: { token: string }) {
               Talk to an advisor
             </a>
           </Button>
-          <Button
-            asChild
-            variant="ghost"
-            className="text-muted-foreground hover:text-foreground"
-            onClick={() => navigate({ to: "/" })}
-          >
+          <Button asChild variant="ghost" className="text-muted-foreground hover:text-foreground">
             <Link to="/pay/$param" params={{ param: token }}>
               View payment plan
             </Link>
