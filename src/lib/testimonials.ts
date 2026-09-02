@@ -189,8 +189,20 @@ function fromNote(n: HandwrittenNote): Testimonial {
   };
 }
 
-/** Every testimonial on the site, interleaved so the grid mixes formats. */
-export const TESTIMONIALS: Testimonial[] = (() => {
+/**
+ * Every testimonial on the site, interleaved so the grid mixes formats.
+ *
+ * Built lazily: the programme catalogue is hydrated by the root loader at
+ * runtime, so deriving this at module-evaluation time would tag every quote
+ * with the fallback track instead of its real pathway. Recomputed whenever the
+ * catalogue size changes.
+ */
+let cache: Testimonial[] | null = null;
+let cacheKey = -1;
+
+export function allTestimonials(): Testimonial[] {
+  if (cache && cacheKey === PROGRAMMES.length) return cache;
+
   const written = LEARNER_QUOTES.map(fromQuote);
   const linkedin = APPROVED_LINKEDIN.map(fromStory);
   const instagram = APPROVED_INSTAGRAM.map(fromStory);
@@ -207,10 +219,14 @@ export const TESTIMONIALS: Testimonial[] = (() => {
       if (item) out.push(item);
     }
   }
-  return out;
-})();
 
-export const TESTIMONIAL_TOTAL = TESTIMONIALS.length;
+  cache = out;
+  cacheKey = PROGRAMMES.length;
+  return out;
+}
+
+export const testimonialTotal = () => allTestimonials().length;
+
 
 /* ------------------------------------------------------------------ *
  * Filtering
