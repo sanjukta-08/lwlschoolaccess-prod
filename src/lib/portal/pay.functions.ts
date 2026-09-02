@@ -485,29 +485,94 @@ export const startCheckout = createServerFn({ method: "POST" })
 /* success page                                                        */
 /* ------------------------------------------------------------------ */
 
+export type PaymentStatusResult = {
+  token: string;
+  programCode: string | null;
+  programName: string;
+  programCategory: string | null;
+  paymentStatus: string;
+  amount: number | null;
+  currency: string;
+  studentName: string;
+  studentEmail: string;
+  studentMobile: string;
+  parentName: string;
+  parentEmail: string;
+  schoolName: string;
+  paidAt: string | null;
+  /** Local form slug to complete the application after a payment-first checkout. */
+  formSlug: string | null;
+  /** Partner-hosted application URL (catalogue-only payment links). */
+  externalApplyUrl: string | null;
+  /** Ready-made in-app path for the prefilled application form. */
+  applyPath: string | null;
+  /** True once the full application form has been completed for this row. */
+  applicationComplete: boolean;
+};
+
 export const getPaymentStatus = createServerFn({ method: "GET" })
   .inputValidator((data: { token?: string }) => ({ token: clean(data?.token) }))
-  .handler(async ({ data }) => {
+  .handler(async ({ data }): Promise<PaymentStatusResult | null> => {
     if (!UUID_RE.test(data["token"])) return null;
     const { siteDb } = await import("./portal.server");
-    const { data: row } = await siteDb()
+    const db = siteDb();
+    const { data: row } = await db
       .from("lwl_applications")
       .select(
-        "submission_token, program_code, program_name, payment_status, amount, currency, student_name, student_email, payment_date",
+        "submission_token, program_code, program_name, program_category, payment_status, amount, currency, student_name, student_email, student_mobile, parent_name, parent_email, school_name, payment_date, form_template_id, payment_link_id",
       )
       .eq("submission_token", data["token"])
       .maybeSingle();
     if (!row) return null;
     const r = row as Record<string, any>;
+
+    /* Which form completes this application? Prefer the exact template used at
+       submission, then legacy programme-code matching (mirrors the portal). */
+    let formSlug: string | null = null;
+    const tplQuery = r["form_template_id"]
+      ? db.from("form_templates").select("slug").eq("id", r["form_template_id"])
+      : db.from("form_templates").select("slug").eq("program_code", clean(r["program_code"]));
+    const { data: tpl } = await tplQuery.maybeSingle();
+    formSlug = clean((tpl as Record<string, any> | null)?.["slug"]) || null;
+
+    /* Catalogue-only negotiated links can point at a partner-hosted form. */
+    let externalApplyUrl: string | null = null;
+    if (!formSlug && r["payment_link_id"]) {
+      const { data: link } = await db
+        .from("payment_links")
+        .select("apply_url, is_active")
+        .eq("id", r["payment_link_id"])
+        .maybeSingle();
+      const l = link as Record<string, any> | null;
+      if (l && l["is_active"] !== false && clean(l["apply_url"])) externalApplyUrl = clean(l["apply_url"]);
+    }
+
+    const token = clean(r["submission_token"]);
+    const ref = formSlug || clean(r["program_code"]);
+    const applyPath =
+      !externalApplyUrl && ref
+        ? `/apply?ref=${encodeURIComponent(ref)}&token=${encodeURIComponent(token)}`
+        : null;
+
     return {
-      token: clean(r["submission_token"]),
+      token,
       programCode: clean(r["program_code"]) || null,
       programName: clean(r["program_name"]) || "Programme enrolment",
+      programCategory: clean(r["program_category"]) || null,
       paymentStatus: clean(r["payment_status"]) || "pending",
       amount: r["amount"] === null || r["amount"] === undefined ? null : Number(r["amount"]),
       currency: clean(r["currency"]) || "USD",
       studentName: clean(r["student_name"]),
       studentEmail: clean(r["student_email"]),
+      studentMobile: clean(r["student_mobile"]),
+      parentName: clean(r["parent_name"]),
+      parentEmail: clean(r["parent_email"]),
+      schoolName: clean(r["school_name"]),
       paidAt: r["payment_date"] ? String(r["payment_date"]) : null,
+      formSlug,
+      externalApplyUrl,
+      applyPath,
+      applicationComplete: !!clean(r["student_mobile"]) && !!clean(r["student_name"]),
     };
   });
+
