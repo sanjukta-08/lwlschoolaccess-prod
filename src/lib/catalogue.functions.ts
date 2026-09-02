@@ -29,6 +29,7 @@ export type LiveCatalogue = {
 
 type PartnerRow = {
   id: string;
+  partner_slug: string | null;
   org_name: string | null;
   website: string | null;
 };
