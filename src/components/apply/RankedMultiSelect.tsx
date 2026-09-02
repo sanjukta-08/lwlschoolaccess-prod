@@ -108,9 +108,13 @@ export function RankedMultiSelect({
       )}
 
       <p className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-        Rank {minSelections > 0 ? `at least ${minSelections}` : "your"} preference
-        {minSelections === 1 ? "" : "s"} — up to {maxSelections}
+        {minSelections > 0 && minSelections === maxSelections
+          ? `Pick ${minSelections} and rank them in order of preference`
+          : `Rank ${minSelections > 0 ? `at least ${minSelections}` : "your"} preference${
+              minSelections === 1 ? "" : "s"
+            } — up to ${maxSelections}`}
       </p>
+
     </div>
   );
 }
