@@ -103,7 +103,9 @@ export const adminDashboard = createServerFn({ method: "GET" })
           key: "paid",
           label: "Paid",
           value: paid.length,
-          hint: rows.length ? `${Math.round((paid.length / rows.length) * 100)}% of applications` : undefined,
+          ...(rows.length
+            ? { hint: `${Math.round((paid.length / rows.length) * 100)}% of applications` }
+            : {}),
         },
         { key: "revenue", label: "Collected", value: Math.round(revenue), hint: "Sum of paid amounts" },
         { key: "leads", label: "Captured leads", value: leadsRes.count ?? 0 },

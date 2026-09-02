@@ -8,7 +8,10 @@
  * `public.*` (all_programs, all_partners, all_cohorts, all_mentors) is read
  * only — never written from here.
  */
-import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { createClient } from "@supabase/supabase-js";
+
+/** Loose client type: these clients are bound to non-generated schemas. */
+type AnyClient = ReturnType<typeof createClient<any, any, any>>;
 
 export const ADMIN_ROLES = [
   "super_admin",
@@ -54,16 +57,16 @@ const keyedFetch = (key: string): typeof fetch => (input, init) => {
 
 const auth = { storage: undefined, persistSession: false, autoRefreshToken: false } as const;
 
-let _site: SupabaseClient | undefined;
-let _shared: SupabaseClient | undefined;
+let _site: AnyClient | undefined;
+let _shared: AnyClient | undefined;
 
 /** Privileged client bound to our own `lwl_site` schema. */
-export function siteDb(): SupabaseClient {
+export function siteDb(): AnyClient {
   if (_site) return _site;
   const url = env("SUPABASE_URL", "VITE_SUPABASE_URL");
   const key = env("SUPABASE_SERVICE_ROLE_KEY");
   if (!url || !key) throw new Error("Portal data layer: missing Supabase server credentials.");
-  _site = createClient(url, key, {
+  _site = createClient<any, any, any>(url, key, {
     auth,
     db: { schema: "lwl_site" },
     global: { fetch: keyedFetch(key) },
@@ -72,12 +75,12 @@ export function siteDb(): SupabaseClient {
 }
 
 /** Privileged client on the shared `public` schema — READ ONLY by convention. */
-export function sharedDb(): SupabaseClient {
+export function sharedDb(): AnyClient {
   if (_shared) return _shared;
   const url = env("SUPABASE_URL", "VITE_SUPABASE_URL");
   const key = env("SUPABASE_SERVICE_ROLE_KEY");
   if (!url || !key) throw new Error("Portal data layer: missing Supabase server credentials.");
-  _shared = createClient(url, key, { auth, global: { fetch: keyedFetch(key) } });
+  _shared = createClient<any, any, any>(url, key, { auth, global: { fetch: keyedFetch(key) } });
   return _shared;
 }
 
