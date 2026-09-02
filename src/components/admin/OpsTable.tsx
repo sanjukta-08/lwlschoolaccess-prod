@@ -216,7 +216,7 @@ export function OpsDrawer({
 }: {
   open: boolean;
   title: string;
-  subtitle?: string;
+  subtitle?: string | undefined;
   onClose: () => void;
   children: ReactNode;
 }) {
