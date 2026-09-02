@@ -381,7 +381,7 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
             : null),
         ...(s.badge ? { badge: s.badge } : {}),
         site: firstUrl(db?.program_url, s.site_url, partner?.website, ADVISOR)!,
-        apply: firstUrl(db?.apply_url, s.apply_url, db?.program_url, partner?.website, ADVISOR)!,
+        apply: applyLink(db, partner, s.apply_url, db?.program_url, partner?.website),
         cohorts,
       });
     }
