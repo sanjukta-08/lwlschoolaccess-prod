@@ -79,6 +79,8 @@ export type ApplySearch = {
   ref?: string | undefined;
   code?: string | undefined;
   form?: string | undefined;
+  /** submission_token of an already-paid application (payment-first flow). */
+  token?: string | undefined;
 };
 
 export function ApplyExperience({
@@ -102,6 +104,9 @@ export function ApplyExperience({
   const refCodeParam = looksLikeCode ? refRaw.toUpperCase() : "";
   const refSlugParam = looksLikeCode ? "" : refRaw.toLowerCase();
   const formSlugParam = (formSlug || search.form || "").trim().toLowerCase();
+  /* Payment-first flow: the family paid on /pay first, so the details they gave
+     at checkout are prefilled here and locked against editing. */
+  const paidToken = (search.token ?? "").trim();
 
   const [submitted, setSubmitted] = useState(false);
   const [dormantNotice, setDormantNotice] = useState<string | null>(null);
@@ -127,6 +132,40 @@ export function ApplyExperience({
     enabled: !!slugToLookup || !!selectedCode,
     staleTime: 5 * 60 * 1000,
   });
+
+  const { data: paidApp } = useQuery({
+    queryKey: ["apply", "paid-application", paidToken],
+    queryFn: () => getPaymentStatus({ data: { token: paidToken } }),
+    enabled: !!paidToken,
+    staleTime: 5 * 60 * 1000,
+  });
+
+  /* Fields already captured at checkout must never be editable here. */
+  const lockedFields = useMemo(() => {
+    const locked = new Set<string>();
+    if (!paidApp) return locked;
+    if (paidApp.studentName) locked.add("student_name");
+    if (paidApp.studentEmail) locked.add("student_email");
+    if (paidApp.parentName) locked.add("parent_name");
+    if (paidApp.parentEmail) locked.add("parent_email");
+    return locked;
+  }, [paidApp]);
+
+  /* Prefill once the paid application resolves. */
+  useEffect(() => {
+    if (!paidApp) return;
+    setForm((f) => ({
+      ...f,
+      program_code: f["program_code"] || paidApp.programCode || "",
+      student_name: f["student_name"] || paidApp.studentName,
+      student_email: f["student_email"] || paidApp.studentEmail,
+      student_mobile: f["student_mobile"] || paidApp.studentMobile,
+      parent_name: f["parent_name"] || paidApp.parentName,
+      parent_email: f["parent_email"] || paidApp.parentEmail,
+      school_name: f["school_name"] || paidApp.schoolName,
+    }));
+    setShowForm(true);
+  }, [paidApp]);
 
   const { data: publicTemplates = [] } = useQuery<PublicFormTemplate[]>({
     queryKey: ["apply", "templates"],
@@ -295,7 +334,7 @@ export function ApplyExperience({
 
   /* ── lead autosave ── */
   useEffect(() => {
-    if (submitted || externalApplyUrl || awaitingTemplate) return;
+    if (submitted || externalApplyUrl || awaitingTemplate || paidToken) return;
     const finalProgramCode = selectedRefCode || val("program_code") || null;
     const t = setTimeout(() => {
       void captureApplyLead({
@@ -323,7 +362,7 @@ export function ApplyExperience({
       }).catch(() => undefined);
     }, 1800);
     return () => clearTimeout(t);
-  }, [form, selectedProgram, selectedRefCode, submitted, externalApplyUrl, awaitingTemplate]);
+  }, [form, selectedProgram, selectedRefCode, submitted, externalApplyUrl, awaitingTemplate, paidToken]);
 
   /* ── validation ── */
   const validate = (): boolean => {
@@ -456,6 +495,16 @@ export function ApplyExperience({
         return;
       }
 
+      /* Payment-first: they already paid, so the form completion IS the end of
+         the journey — never bounce them back into checkout. */
+      if (paidToken) {
+        toast.success("Application completed", {
+          description: "Thank you — your payment and application are both confirmed.",
+        });
+        setSubmitted(true);
+        return;
+      }
+
       if (result.paymentStatus === "paid" && result.submissionToken) {
         toast.success("Application updated. Your payment is already confirmed.");
         window.location.assign(`/pay/success?token=${result.submissionToken}`);
@@ -494,12 +543,14 @@ export function ApplyExperience({
   const renderField = (field: FormField) => {
     const val = form[field.db_column] || "";
     const col = field.db_column.toLowerCase();
+    const isLocked = lockedFields.has(field.db_column);
 
     if (isPhoneField(field)) {
       return (
         <div className="mt-1.5">
           <PhoneInput
             value={val}
+            disabled={isLocked}
             error={!!fieldErrors[field.db_column]}
             onChange={(full) => setField(field.db_column, full)}
             placeholder={field.placeholder || field.label}
@@ -513,9 +564,12 @@ export function ApplyExperience({
         <Input
           type="email"
           value={val}
+          readOnly={isLocked}
           onChange={(e) => setField(field.db_column, e.target.value)}
           placeholder={field.placeholder || field.label}
-          className={`${inputClass} mt-1.5 ${fieldErrors[field.db_column] ? "border-destructive/60" : ""}`}
+          className={`${inputClass} mt-1.5 ${isLocked ? "cursor-not-allowed opacity-70" : ""} ${
+            fieldErrors[field.db_column] ? "border-destructive/60" : ""
+          }`}
         />
       );
     }
@@ -575,6 +629,7 @@ export function ApplyExperience({
           <Input
             type={field.type}
             value={val}
+            readOnly={isLocked}
             onChange={(e) =>
               setField(field.db_column, isName ? filterNameInput(e.target.value) : e.target.value)
             }
@@ -585,7 +640,9 @@ export function ApplyExperience({
               }
             }}
             placeholder={field.placeholder || field.label}
-            className={`${inputClass} mt-1.5 ${fieldErrors[field.db_column] ? "border-destructive/60" : ""}`}
+            className={`${inputClass} mt-1.5 ${isLocked ? "cursor-not-allowed opacity-70" : ""} ${
+              fieldErrors[field.db_column] ? "border-destructive/60" : ""
+            }`}
           />
         );
       }
