@@ -37,7 +37,7 @@ export const ADMIN_NAV: { label: string; items: NavItem[] }[] = [
     label: "Overview",
     items: [
       { label: "Dashboard", to: "/admin/dashboard", icon: LayoutDashboard, ready: true },
-      { label: "Applications", to: "/admin/applications", icon: ClipboardList },
+      { label: "Applications", to: "/admin/applications", icon: ClipboardList, ready: true },
       { label: "UTM Analytics", to: "/admin/utm-analytics", icon: BarChart3 },
     ],
   },
@@ -47,11 +47,11 @@ export const ADMIN_NAV: { label: string; items: NavItem[] }[] = [
       { label: "Form Builder", to: "/admin/form-builder", icon: FileText },
       { label: "Program Codes", to: "/admin/program-codes", icon: KeyRound },
       { label: "Promo Codes", to: "/admin/promo-codes", icon: Ticket },
-      { label: "Payments", to: "/admin/payments", icon: CreditCard },
+      { label: "Payments", to: "/admin/payments", icon: CreditCard, ready: true },
       { label: "Payment Links", to: "/admin/payment-links", icon: Link2 },
-      { label: "Mentors", to: "/admin/mentors", icon: Users },
+      { label: "Mentors", to: "/admin/mentors", icon: Users, ready: true },
       { label: "Student Leads", to: "/admin/manage-students", icon: GraduationCap },
-      { label: "Captured Leads", to: "/admin/captured-leads", icon: UserPlus },
+      { label: "Captured Leads", to: "/admin/captured-leads", icon: UserPlus, ready: true },
     ],
   },
   {
