@@ -29,6 +29,7 @@ export type LiveCatalogue = {
 
 type PartnerRow = {
   id: string;
+  partner_slug: string | null;
   org_name: string | null;
   website: string | null;
 };
@@ -111,6 +112,32 @@ type SiteCohortRow = {
 
 const ADVISOR = "https://calendly.com/learnwithleaders";
 const TIME_TBC = "Live session times confirmed on registration";
+
+/**
+ * Confirmed apply-link contract with the LWL Application Portal.
+ *
+ * LWL's own directly-run programmes resolve on the Portal's catalogue branch,
+ * which matches on `pay_slug` — programme-level and stable. Never use
+ * `program_code`: it is per-cohort and date-bound, so the link silently points
+ * at a stale intake the moment a cohort rolls over. The applicant picks the
+ * open cohort on the Portal itself.
+ *
+ * Every other partner routes to their own domain via `apply_url` verbatim.
+ */
+const APPLY_PORTAL = "https://apply.learnwithleaders.com/apply";
+const LWL_PARTNER_SLUG = "learn-with-leaders";
+
+const applyLink = (
+  program: { apply_url?: string | null; program_url?: string | null; pay_slug?: string | null } | null | undefined,
+  partner: PartnerRow | undefined,
+  ...fallbacks: (string | null | undefined)[]
+): string => {
+  if (partner?.partner_slug === LWL_PARTNER_SLUG && program?.pay_slug) {
+    return `${APPLY_PORTAL}?program=${encodeURIComponent(program.pay_slug)}`;
+  }
+  return firstUrl(program?.apply_url, ...fallbacks, ADVISOR)!;
+};
+
 
 const slugify = (s: string) =>
   s
@@ -204,7 +231,7 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
 
     const [partnersRes, programsRes, cohortsRes, siteProgRes, siteCohortRes] =
       await Promise.all([
-        pub.from("all_partners").select("id,org_name,website"),
+        pub.from("all_partners").select("id,partner_slug,org_name,website"),
         pub
           .from("all_programs")
           .select(
@@ -311,7 +338,7 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
       if (s.surface === "camp") {
         camps.push({
           slug: s.slug ?? s.code,
-          applyUrl: firstUrl(db?.apply_url, s.apply_url, db?.program_url, ADVISOR),
+          applyUrl: applyLink(db, partner, s.apply_url, db?.program_url),
           siteUrl: firstUrl(db?.program_url, s.site_url),
           priceLabel: money(db?.sticker_price ?? null, db?.price_currency ?? null),
           cohorts: cohorts.map((c) => ({
@@ -354,7 +381,7 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
             : null),
         ...(s.badge ? { badge: s.badge } : {}),
         site: firstUrl(db?.program_url, s.site_url, partner?.website, ADVISOR)!,
-        apply: firstUrl(db?.apply_url, s.apply_url, db?.program_url, partner?.website, ADVISOR)!,
+        apply: applyLink(db, partner, s.apply_url, db?.program_url, partner?.website),
         cohorts,
       });
     }
@@ -386,7 +413,7 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
           money(db.early_bird_price ?? db.sticker_price, db.price_currency) ?? "On request",
         feeR: db.early_bird_price != null ? money(db.sticker_price, db.price_currency) : null,
         site: firstUrl(db.program_url, partner?.website, ADVISOR)!,
-        apply: firstUrl(db.apply_url, db.program_url, partner?.website, ADVISOR)!,
+        apply: applyLink(db, partner, db.program_url, partner?.website),
         cohorts,
       });
     }
