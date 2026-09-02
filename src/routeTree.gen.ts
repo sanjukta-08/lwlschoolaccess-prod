@@ -24,6 +24,7 @@ import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminApplicationsRouteImport } from './routes/admin.applications'
+import { Route as AdminCapturedLeadsRouteImport } from './routes/admin.captured-leads'
 import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AdminPaymentsRouteImport } from './routes/admin.payments'
@@ -113,6 +114,11 @@ const AdminApplicationsRoute = AdminApplicationsRouteImport.update({
   path: '/admin/applications',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminCapturedLeadsRoute = AdminCapturedLeadsRouteImport.update({
+  id: '/admin/captured-leads',
+  path: '/admin/captured-leads',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminDashboardRoute = AdminDashboardRouteImport.update({
   id: '/admin/dashboard',
   path: '/admin/dashboard',
@@ -194,6 +200,7 @@ export interface FileRoutesByFullPath {
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
   '/admin/applications': typeof AdminApplicationsRoute
+  '/admin/captured-leads': typeof AdminCapturedLeadsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/payments': typeof AdminPaymentsRoute
@@ -222,6 +229,7 @@ export interface FileRoutesByTo {
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
   '/admin/applications': typeof AdminApplicationsRoute
+  '/admin/captured-leads': typeof AdminCapturedLeadsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/payments': typeof AdminPaymentsRoute
@@ -253,6 +261,7 @@ export interface FileRoutesById {
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
   '/admin/applications': typeof AdminApplicationsRoute
+  '/admin/captured-leads': typeof AdminCapturedLeadsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/payments': typeof AdminPaymentsRoute
@@ -285,6 +294,7 @@ export interface FileRouteTypes {
     | '/stories'
     | '/testimonials'
     | '/admin/applications'
+    | '/admin/captured-leads'
     | '/admin/dashboard'
     | '/admin/login'
     | '/admin/payments'
@@ -313,6 +323,7 @@ export interface FileRouteTypes {
     | '/stories'
     | '/testimonials'
     | '/admin/applications'
+    | '/admin/captured-leads'
     | '/admin/dashboard'
     | '/admin/login'
     | '/admin/payments'
@@ -343,6 +354,7 @@ export interface FileRouteTypes {
     | '/stories'
     | '/testimonials'
     | '/admin/applications'
+    | '/admin/captured-leads'
     | '/admin/dashboard'
     | '/admin/login'
     | '/admin/payments'
@@ -374,6 +386,7 @@ export interface RootRouteChildren {
   StoriesRoute: typeof StoriesRoute
   TestimonialsRoute: typeof TestimonialsRoute
   AdminApplicationsRoute: typeof AdminApplicationsRoute
+  AdminCapturedLeadsRoute: typeof AdminCapturedLeadsRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminPaymentsRoute: typeof AdminPaymentsRoute
@@ -491,6 +504,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/applications'
       fullPath: '/admin/applications'
       preLoaderRoute: typeof AdminApplicationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/captured-leads': {
+      id: '/admin/captured-leads'
+      path: '/admin/captured-leads'
+      fullPath: '/admin/captured-leads'
+      preLoaderRoute: typeof AdminCapturedLeadsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/dashboard': {
@@ -628,6 +648,7 @@ const rootRouteChildren: RootRouteChildren = {
   StoriesRoute: StoriesRoute,
   TestimonialsRoute: TestimonialsRoute,
   AdminApplicationsRoute: AdminApplicationsRoute,
+  AdminCapturedLeadsRoute: AdminCapturedLeadsRoute,
   AdminDashboardRoute: AdminDashboardRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminPaymentsRoute: AdminPaymentsRoute,
