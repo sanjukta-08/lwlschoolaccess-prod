@@ -169,13 +169,15 @@ function InternshipsPage() {
               Send a general application and we will match your experience to the right opening.
             </p>
           </div>
-          <Link
-            to="/internships/apply"
+          <a
+            href={INTERNSHIP_APPLY_URL}
+            target="_blank"
+            rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-crimson px-6 py-3.5 text-[0.95rem] font-bold text-paper no-underline shadow-lift transition-colors hover:bg-crimson-deep"
           >
-            Send a general application
+            Talk to the team
             <ArrowRight className="h-4 w-4" />
-          </Link>
+          </a>
         </div>
       </section>
 
