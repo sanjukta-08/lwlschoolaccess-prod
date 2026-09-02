@@ -26,6 +26,7 @@ import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminApplicationsRouteImport } from './routes/admin.applications'
 import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as AdminPaymentsRouteImport } from './routes/admin.payments'
 import { Route as AdminProfileSettingsRouteImport } from './routes/admin.profile-settings'
 import { Route as ApplyIndexRouteImport } from './routes/apply.index'
 import { Route as ApplyFormSlugRouteImport } from './routes/apply.$formSlug'
@@ -122,6 +123,11 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminPaymentsRoute = AdminPaymentsRouteImport.update({
+  id: '/admin/payments',
+  path: '/admin/payments',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminProfileSettingsRoute = AdminProfileSettingsRouteImport.update({
   id: '/admin/profile-settings',
   path: '/admin/profile-settings',
@@ -190,6 +196,7 @@ export interface FileRoutesByFullPath {
   '/admin/applications': typeof AdminApplicationsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/payments': typeof AdminPaymentsRoute
   '/admin/profile-settings': typeof AdminProfileSettingsRoute
   '/apply/$formSlug': typeof ApplyFormSlugRoute
   '/camps/$slug': typeof CampsSlugRoute
@@ -217,6 +224,7 @@ export interface FileRoutesByTo {
   '/admin/applications': typeof AdminApplicationsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/payments': typeof AdminPaymentsRoute
   '/admin/profile-settings': typeof AdminProfileSettingsRoute
   '/apply/$formSlug': typeof ApplyFormSlugRoute
   '/camps/$slug': typeof CampsSlugRoute
@@ -247,6 +255,7 @@ export interface FileRoutesById {
   '/admin/applications': typeof AdminApplicationsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/payments': typeof AdminPaymentsRoute
   '/admin/profile-settings': typeof AdminProfileSettingsRoute
   '/apply/$formSlug': typeof ApplyFormSlugRoute
   '/camps/$slug': typeof CampsSlugRoute
@@ -278,6 +287,7 @@ export interface FileRouteTypes {
     | '/admin/applications'
     | '/admin/dashboard'
     | '/admin/login'
+    | '/admin/payments'
     | '/admin/profile-settings'
     | '/apply/$formSlug'
     | '/camps/$slug'
@@ -305,6 +315,7 @@ export interface FileRouteTypes {
     | '/admin/applications'
     | '/admin/dashboard'
     | '/admin/login'
+    | '/admin/payments'
     | '/admin/profile-settings'
     | '/apply/$formSlug'
     | '/camps/$slug'
@@ -334,6 +345,7 @@ export interface FileRouteTypes {
     | '/admin/applications'
     | '/admin/dashboard'
     | '/admin/login'
+    | '/admin/payments'
     | '/admin/profile-settings'
     | '/apply/$formSlug'
     | '/camps/$slug'
@@ -364,6 +376,7 @@ export interface RootRouteChildren {
   AdminApplicationsRoute: typeof AdminApplicationsRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
   AdminLoginRoute: typeof AdminLoginRoute
+  AdminPaymentsRoute: typeof AdminPaymentsRoute
   AdminProfileSettingsRoute: typeof AdminProfileSettingsRoute
   ApplyFormSlugRoute: typeof ApplyFormSlugRoute
   PayParamRoute: typeof PayParamRoute
@@ -494,6 +507,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/payments': {
+      id: '/admin/payments'
+      path: '/admin/payments'
+      fullPath: '/admin/payments'
+      preLoaderRoute: typeof AdminPaymentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/profile-settings': {
       id: '/admin/profile-settings'
       path: '/admin/profile-settings'
@@ -610,6 +630,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminApplicationsRoute: AdminApplicationsRoute,
   AdminDashboardRoute: AdminDashboardRoute,
   AdminLoginRoute: AdminLoginRoute,
+  AdminPaymentsRoute: AdminPaymentsRoute,
   AdminProfileSettingsRoute: AdminProfileSettingsRoute,
   ApplyFormSlugRoute: ApplyFormSlugRoute,
   PayParamRoute: PayParamRoute,
