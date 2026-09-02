@@ -1,4 +1,4 @@
-import { queryOptions, type QueryClient } from "@tanstack/react-query";
+import { queryOptions, useSuspenseQuery, type QueryClient } from "@tanstack/react-query";
 
 import { applyLiveCamps } from "./camps";
 import { loadCatalogue, type LiveCatalogue } from "./catalogue.functions";
@@ -23,3 +23,16 @@ export const catalogueQuery = queryOptions({
  */
 export const ensureCatalogue = async (queryClient: QueryClient) =>
   hydrate(await queryClient.ensureQueryData(catalogueQuery));
+
+/**
+ * Route loaders do NOT re-run when the browser hydrates the server-rendered
+ * markup, so the synchronous stores (PROGRAMMES, camps) would stay empty on the
+ * client and every derived count would render as 0. Reading the dehydrated
+ * query here and hydrating during render keeps client and server identical.
+ */
+export const useHydratedCatalogue = () => {
+  const { data } = useSuspenseQuery(catalogueQuery);
+  hydrate(data);
+  return data;
+};
+
