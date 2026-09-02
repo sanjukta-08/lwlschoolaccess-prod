@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { internshipApplyUrl } from "@/lib/internship-apply";
 import { ArrowRight, Briefcase, Clock, MapPin, User } from "lucide-react";
 import type { Role } from "@/lib/internships";
 
