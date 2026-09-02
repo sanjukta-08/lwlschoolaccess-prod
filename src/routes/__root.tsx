@@ -12,7 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ShortlistContext, useShortlistState } from "../lib/shortlist";
-import { ensureCatalogue } from "../lib/catalogue";
+import { ensureCatalogue, useHydratedCatalogue } from "../lib/catalogue";
 
 function NotFoundComponent() {
   return (
@@ -120,16 +120,27 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+/**
+ * Fills the synchronous catalogue stores during render, which is the only point
+ * that runs on both the server and the hydrating client.
+ */
+function CatalogueProvider({ children }: { children: ReactNode }) {
+  useHydratedCatalogue();
+  return <>{children}</>;
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const shortlist = useShortlistState();
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ShortlistContext.Provider value={shortlist}>
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <Outlet />
-      </ShortlistContext.Provider>
+      <CatalogueProvider>
+        <ShortlistContext.Provider value={shortlist}>
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </ShortlistContext.Provider>
+      </CatalogueProvider>
     </QueryClientProvider>
   );
 }
