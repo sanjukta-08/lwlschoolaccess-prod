@@ -4,6 +4,7 @@ import { RoleCard } from "@/components/RoleCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SiteFooter } from "@/components/SiteFooter";
 import { DEFAULT_SEARCH } from "@/lib/finder";
+import { INTERNSHIP_APPLY_URL } from "@/lib/internship-apply";
 import { ROLES } from "@/lib/internships";
 import { REACH } from "@/lib/social-proof";
 import { ArrowRight, Globe, GraduationCap, Users } from "lucide-react";
