@@ -27,6 +27,7 @@ import { Route as AdminApplicationsRouteImport } from './routes/admin.applicatio
 import { Route as AdminCapturedLeadsRouteImport } from './routes/admin.captured-leads'
 import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as AdminMentorsRouteImport } from './routes/admin.mentors'
 import { Route as AdminPaymentsRouteImport } from './routes/admin.payments'
 import { Route as AdminProfileSettingsRouteImport } from './routes/admin.profile-settings'
 import { Route as ApplyIndexRouteImport } from './routes/apply.index'
@@ -129,6 +130,11 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminMentorsRoute = AdminMentorsRouteImport.update({
+  id: '/admin/mentors',
+  path: '/admin/mentors',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminPaymentsRoute = AdminPaymentsRouteImport.update({
   id: '/admin/payments',
   path: '/admin/payments',
@@ -203,6 +209,7 @@ export interface FileRoutesByFullPath {
   '/admin/captured-leads': typeof AdminCapturedLeadsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/mentors': typeof AdminMentorsRoute
   '/admin/payments': typeof AdminPaymentsRoute
   '/admin/profile-settings': typeof AdminProfileSettingsRoute
   '/apply/$formSlug': typeof ApplyFormSlugRoute
@@ -232,6 +239,7 @@ export interface FileRoutesByTo {
   '/admin/captured-leads': typeof AdminCapturedLeadsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/mentors': typeof AdminMentorsRoute
   '/admin/payments': typeof AdminPaymentsRoute
   '/admin/profile-settings': typeof AdminProfileSettingsRoute
   '/apply/$formSlug': typeof ApplyFormSlugRoute
@@ -264,6 +272,7 @@ export interface FileRoutesById {
   '/admin/captured-leads': typeof AdminCapturedLeadsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/mentors': typeof AdminMentorsRoute
   '/admin/payments': typeof AdminPaymentsRoute
   '/admin/profile-settings': typeof AdminProfileSettingsRoute
   '/apply/$formSlug': typeof ApplyFormSlugRoute
@@ -297,6 +306,7 @@ export interface FileRouteTypes {
     | '/admin/captured-leads'
     | '/admin/dashboard'
     | '/admin/login'
+    | '/admin/mentors'
     | '/admin/payments'
     | '/admin/profile-settings'
     | '/apply/$formSlug'
@@ -326,6 +336,7 @@ export interface FileRouteTypes {
     | '/admin/captured-leads'
     | '/admin/dashboard'
     | '/admin/login'
+    | '/admin/mentors'
     | '/admin/payments'
     | '/admin/profile-settings'
     | '/apply/$formSlug'
@@ -357,6 +368,7 @@ export interface FileRouteTypes {
     | '/admin/captured-leads'
     | '/admin/dashboard'
     | '/admin/login'
+    | '/admin/mentors'
     | '/admin/payments'
     | '/admin/profile-settings'
     | '/apply/$formSlug'
@@ -389,6 +401,7 @@ export interface RootRouteChildren {
   AdminCapturedLeadsRoute: typeof AdminCapturedLeadsRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
   AdminLoginRoute: typeof AdminLoginRoute
+  AdminMentorsRoute: typeof AdminMentorsRoute
   AdminPaymentsRoute: typeof AdminPaymentsRoute
   AdminProfileSettingsRoute: typeof AdminProfileSettingsRoute
   ApplyFormSlugRoute: typeof ApplyFormSlugRoute
@@ -527,6 +540,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/mentors': {
+      id: '/admin/mentors'
+      path: '/admin/mentors'
+      fullPath: '/admin/mentors'
+      preLoaderRoute: typeof AdminMentorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/payments': {
       id: '/admin/payments'
       path: '/admin/payments'
@@ -651,6 +671,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminCapturedLeadsRoute: AdminCapturedLeadsRoute,
   AdminDashboardRoute: AdminDashboardRoute,
   AdminLoginRoute: AdminLoginRoute,
+  AdminMentorsRoute: AdminMentorsRoute,
   AdminPaymentsRoute: AdminPaymentsRoute,
   AdminProfileSettingsRoute: AdminProfileSettingsRoute,
   ApplyFormSlugRoute: ApplyFormSlugRoute,
