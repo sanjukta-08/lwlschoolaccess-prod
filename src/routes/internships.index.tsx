@@ -97,12 +97,14 @@ function InternshipsPage() {
         >
           See open roles
         </a>
-        <Link
-          to="/internships/apply"
+        <a
+          href={INTERNSHIP_APPLY_URL}
+          target="_blank"
+          rel="noreferrer"
           className="rounded-full border-[1.5px] border-crimson/35 bg-paper px-7 py-3.5 text-[0.95rem] font-bold text-crimson no-underline transition-colors hover:border-crimson"
         >
           Apply now
-        </Link>
+        </a>
       </PageHero>
 
       <section id="roles" className="page-shell py-14">
