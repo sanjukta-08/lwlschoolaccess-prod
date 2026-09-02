@@ -25,6 +25,7 @@ import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as AdminProfileSettingsRouteImport } from './routes/admin.profile-settings'
 import { Route as CampsIndexRouteImport } from './routes/camps.index'
 import { Route as CampsSlugRouteImport } from './routes/camps.$slug'
 import { Route as InternshipsIndexRouteImport } from './routes/internships.index'
@@ -111,6 +112,11 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminProfileSettingsRoute = AdminProfileSettingsRouteImport.update({
+  id: '/admin/profile-settings',
+  path: '/admin/profile-settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CampsIndexRoute = CampsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -153,6 +159,7 @@ export interface FileRoutesByFullPath {
   '/testimonials': typeof TestimonialsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/profile-settings': typeof AdminProfileSettingsRoute
   '/camps/$slug': typeof CampsSlugRoute
   '/internships/apply': typeof InternshipsApplyRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
@@ -174,6 +181,7 @@ export interface FileRoutesByTo {
   '/testimonials': typeof TestimonialsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/profile-settings': typeof AdminProfileSettingsRoute
   '/camps/$slug': typeof CampsSlugRoute
   '/internships/apply': typeof InternshipsApplyRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
@@ -198,6 +206,7 @@ export interface FileRoutesById {
   '/testimonials': typeof TestimonialsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/profile-settings': typeof AdminProfileSettingsRoute
   '/camps/$slug': typeof CampsSlugRoute
   '/internships/apply': typeof InternshipsApplyRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
@@ -223,6 +232,7 @@ export interface FileRouteTypes {
     | '/testimonials'
     | '/admin/dashboard'
     | '/admin/login'
+    | '/admin/profile-settings'
     | '/camps/$slug'
     | '/internships/apply'
     | '/programmes/$slug'
@@ -244,6 +254,7 @@ export interface FileRouteTypes {
     | '/testimonials'
     | '/admin/dashboard'
     | '/admin/login'
+    | '/admin/profile-settings'
     | '/camps/$slug'
     | '/internships/apply'
     | '/programmes/$slug'
@@ -267,6 +278,7 @@ export interface FileRouteTypes {
     | '/testimonials'
     | '/admin/dashboard'
     | '/admin/login'
+    | '/admin/profile-settings'
     | '/camps/$slug'
     | '/internships/apply'
     | '/programmes/$slug'
@@ -291,6 +303,7 @@ export interface RootRouteChildren {
   TestimonialsRoute: typeof TestimonialsRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
   AdminLoginRoute: typeof AdminLoginRoute
+  AdminProfileSettingsRoute: typeof AdminProfileSettingsRoute
   ProgrammesSlugRoute: typeof ProgrammesSlugRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
@@ -409,6 +422,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/profile-settings': {
+      id: '/admin/profile-settings'
+      path: '/admin/profile-settings'
+      fullPath: '/admin/profile-settings'
+      preLoaderRoute: typeof AdminProfileSettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/camps/': {
       id: '/camps/'
       path: '/'
@@ -489,6 +509,7 @@ const rootRouteChildren: RootRouteChildren = {
   TestimonialsRoute: TestimonialsRoute,
   AdminDashboardRoute: AdminDashboardRoute,
   AdminLoginRoute: AdminLoginRoute,
+  AdminProfileSettingsRoute: AdminProfileSettingsRoute,
   ProgrammesSlugRoute: ProgrammesSlugRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
