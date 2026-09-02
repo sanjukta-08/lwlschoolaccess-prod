@@ -759,6 +759,16 @@ export function ApplyExperience({
               </p>
             </header>
 
+            {paidApp && paidApp.paymentStatus === "paid" && (
+              <div className="mb-8 rounded-2xl border border-primary/30 bg-primary/5 px-5 py-4 text-left">
+                <p className="text-[11px] uppercase tracking-[0.25em] text-primary">Payment received</p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Your payment for {paidApp.programName} is confirmed. Complete the remaining details below to
+                  finish the application — the fields captured at checkout are locked.
+                </p>
+              </div>
+            )}
+
             {!showForm && (
               <>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

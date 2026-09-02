@@ -161,16 +161,16 @@ export default function CheckoutExperience({ offer }: { offer: PayOffer }) {
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
-      <main className="mx-auto w-full max-w-6xl px-4 pb-24 pt-24">
+      <main className="mx-auto w-full max-w-6xl px-4 pb-20 pt-20 sm:pb-24 sm:pt-24">
         <header className="mb-10">
           <p className="text-[11px] uppercase tracking-[0.3em] text-primary">Secure checkout</p>
-          <h1 className="mt-3 font-serif text-4xl text-foreground md:text-5xl">{offer.programName}</h1>
+          <h1 className="mt-3 font-serif text-3xl text-foreground sm:text-4xl md:text-5xl">{offer.programName}</h1>
           <p className="mt-3 max-w-2xl text-muted-foreground">
             Confirm the enrolment details and complete payment. Your place is held once payment is received.
           </p>
         </header>
 
-        <div className="grid gap-8 lg:grid-cols-[1.35fr_1fr]">
+        <div className="grid gap-6 sm:gap-8 lg:grid-cols-[1.35fr_1fr]">
           {/* -------- left: programme + applicant -------- */}
           <div className="space-y-6">
             <section className="rounded-2xl border border-border p-6">
