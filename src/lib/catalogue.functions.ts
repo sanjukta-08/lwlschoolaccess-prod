@@ -338,7 +338,7 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
       if (s.surface === "camp") {
         camps.push({
           slug: s.slug ?? s.code,
-          applyUrl: firstUrl(db?.apply_url, s.apply_url, db?.program_url, ADVISOR),
+          applyUrl: applyLink(db, partner, s.apply_url, db?.program_url),
           siteUrl: firstUrl(db?.program_url, s.site_url),
           priceLabel: money(db?.sticker_price ?? null, db?.price_currency ?? null),
           cohorts: cohorts.map((c) => ({
