@@ -4,6 +4,7 @@ import { RoleCard } from "@/components/RoleCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SiteFooter } from "@/components/SiteFooter";
 import { DEFAULT_SEARCH } from "@/lib/finder";
+import { INTERNSHIP_APPLY_URL } from "@/lib/internship-apply";
 import { ROLES } from "@/lib/internships";
 import { REACH } from "@/lib/social-proof";
 import { ArrowRight, Globe, GraduationCap, Users } from "lucide-react";
@@ -97,12 +98,14 @@ function InternshipsPage() {
         >
           See open roles
         </a>
-        <Link
-          to="/internships/apply"
+        <a
+          href={INTERNSHIP_APPLY_URL}
+          target="_blank"
+          rel="noreferrer"
           className="rounded-full border-[1.5px] border-crimson/35 bg-paper px-7 py-3.5 text-[0.95rem] font-bold text-crimson no-underline transition-colors hover:border-crimson"
         >
           Apply now
-        </Link>
+        </a>
       </PageHero>
 
       <section id="roles" className="page-shell py-14">
@@ -167,13 +170,15 @@ function InternshipsPage() {
               Send a general application and we will match your experience to the right opening.
             </p>
           </div>
-          <Link
-            to="/internships/apply"
+          <a
+            href={INTERNSHIP_APPLY_URL}
+            target="_blank"
+            rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-crimson px-6 py-3.5 text-[0.95rem] font-bold text-paper no-underline shadow-lift transition-colors hover:bg-crimson-deep"
           >
-            Send a general application
+            Talk to the team
             <ArrowRight className="h-4 w-4" />
-          </Link>
+          </a>
         </div>
       </section>
 
