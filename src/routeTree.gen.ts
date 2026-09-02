@@ -23,6 +23,7 @@ import { Route as ShortlistRouteImport } from './routes/shortlist'
 import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminApplicationsRouteImport } from './routes/admin.applications'
 import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AdminProfileSettingsRouteImport } from './routes/admin.profile-settings'
@@ -106,6 +107,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/admin/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminApplicationsRoute = AdminApplicationsRouteImport.update({
+  id: '/admin/applications',
+  path: '/admin/applications',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminDashboardRoute = AdminDashboardRouteImport.update({
   id: '/admin/dashboard',
   path: '/admin/dashboard',
@@ -181,6 +187,7 @@ export interface FileRoutesByFullPath {
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
+  '/admin/applications': typeof AdminApplicationsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/profile-settings': typeof AdminProfileSettingsRoute
@@ -207,6 +214,7 @@ export interface FileRoutesByTo {
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
+  '/admin/applications': typeof AdminApplicationsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/profile-settings': typeof AdminProfileSettingsRoute
@@ -236,6 +244,7 @@ export interface FileRoutesById {
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
+  '/admin/applications': typeof AdminApplicationsRoute
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/profile-settings': typeof AdminProfileSettingsRoute
@@ -266,6 +275,7 @@ export interface FileRouteTypes {
     | '/shortlist'
     | '/stories'
     | '/testimonials'
+    | '/admin/applications'
     | '/admin/dashboard'
     | '/admin/login'
     | '/admin/profile-settings'
@@ -292,6 +302,7 @@ export interface FileRouteTypes {
     | '/shortlist'
     | '/stories'
     | '/testimonials'
+    | '/admin/applications'
     | '/admin/dashboard'
     | '/admin/login'
     | '/admin/profile-settings'
@@ -320,6 +331,7 @@ export interface FileRouteTypes {
     | '/shortlist'
     | '/stories'
     | '/testimonials'
+    | '/admin/applications'
     | '/admin/dashboard'
     | '/admin/login'
     | '/admin/profile-settings'
@@ -349,6 +361,7 @@ export interface RootRouteChildren {
   ShortlistRoute: typeof ShortlistRoute
   StoriesRoute: typeof StoriesRoute
   TestimonialsRoute: typeof TestimonialsRoute
+  AdminApplicationsRoute: typeof AdminApplicationsRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminProfileSettingsRoute: typeof AdminProfileSettingsRoute
@@ -458,6 +471,13 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/applications': {
+      id: '/admin/applications'
+      path: '/admin/applications'
+      fullPath: '/admin/applications'
+      preLoaderRoute: typeof AdminApplicationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/dashboard': {
@@ -587,6 +607,7 @@ const rootRouteChildren: RootRouteChildren = {
   ShortlistRoute: ShortlistRoute,
   StoriesRoute: StoriesRoute,
   TestimonialsRoute: TestimonialsRoute,
+  AdminApplicationsRoute: AdminApplicationsRoute,
   AdminDashboardRoute: AdminDashboardRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminProfileSettingsRoute: AdminProfileSettingsRoute,
