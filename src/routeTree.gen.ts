@@ -22,22 +22,10 @@ import { Route as ProfileBuildingRouteImport } from './routes/profile-building'
 import { Route as ShortlistRouteImport } from './routes/shortlist'
 import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
-import { Route as AdminIndexRouteImport } from './routes/admin.index'
-import { Route as AdminApplicationsRouteImport } from './routes/admin.applications'
-import { Route as AdminCapturedLeadsRouteImport } from './routes/admin.captured-leads'
-import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
-import { Route as AdminLoginRouteImport } from './routes/admin.login'
-import { Route as AdminMentorsRouteImport } from './routes/admin.mentors'
-import { Route as AdminPaymentsRouteImport } from './routes/admin.payments'
-import { Route as AdminProfileSettingsRouteImport } from './routes/admin.profile-settings'
-import { Route as ApplyIndexRouteImport } from './routes/apply.index'
-import { Route as ApplyFormSlugRouteImport } from './routes/apply.$formSlug'
 import { Route as CampsIndexRouteImport } from './routes/camps.index'
 import { Route as CampsSlugRouteImport } from './routes/camps.$slug'
 import { Route as InternshipsIndexRouteImport } from './routes/internships.index'
 import { Route as InternshipsApplyRouteImport } from './routes/internships.apply'
-import { Route as PayIndexRouteImport } from './routes/pay.index'
-import { Route as PayParamRouteImport } from './routes/pay.$param'
 import { Route as ProgrammesSlugRouteImport } from './routes/programmes.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -105,56 +93,6 @@ const TestimonialsRoute = TestimonialsRouteImport.update({
   path: '/testimonials',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminIndexRoute = AdminIndexRouteImport.update({
-  id: '/admin/',
-  path: '/admin/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminApplicationsRoute = AdminApplicationsRouteImport.update({
-  id: '/admin/applications',
-  path: '/admin/applications',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminCapturedLeadsRoute = AdminCapturedLeadsRouteImport.update({
-  id: '/admin/captured-leads',
-  path: '/admin/captured-leads',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminDashboardRoute = AdminDashboardRouteImport.update({
-  id: '/admin/dashboard',
-  path: '/admin/dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminLoginRoute = AdminLoginRouteImport.update({
-  id: '/admin/login',
-  path: '/admin/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminMentorsRoute = AdminMentorsRouteImport.update({
-  id: '/admin/mentors',
-  path: '/admin/mentors',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminPaymentsRoute = AdminPaymentsRouteImport.update({
-  id: '/admin/payments',
-  path: '/admin/payments',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminProfileSettingsRoute = AdminProfileSettingsRouteImport.update({
-  id: '/admin/profile-settings',
-  path: '/admin/profile-settings',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApplyIndexRoute = ApplyIndexRouteImport.update({
-  id: '/apply/',
-  path: '/apply/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApplyFormSlugRoute = ApplyFormSlugRouteImport.update({
-  id: '/apply/$formSlug',
-  path: '/apply/$formSlug',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const CampsIndexRoute = CampsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -174,16 +112,6 @@ const InternshipsApplyRoute = InternshipsApplyRouteImport.update({
   id: '/apply',
   path: '/apply',
   getParentRoute: () => InternshipsRoute,
-} as any)
-const PayIndexRoute = PayIndexRouteImport.update({
-  id: '/pay/',
-  path: '/pay/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PayParamRoute = PayParamRouteImport.update({
-  id: '/pay/$param',
-  path: '/pay/$param',
-  getParentRoute: () => rootRouteImport,
 } as any)
 const ProgrammesSlugRoute = ProgrammesSlugRouteImport.update({
   id: '/programmes/$slug',
@@ -205,23 +133,11 @@ export interface FileRoutesByFullPath {
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
-  '/admin/applications': typeof AdminApplicationsRoute
-  '/admin/captured-leads': typeof AdminCapturedLeadsRoute
-  '/admin/dashboard': typeof AdminDashboardRoute
-  '/admin/login': typeof AdminLoginRoute
-  '/admin/mentors': typeof AdminMentorsRoute
-  '/admin/payments': typeof AdminPaymentsRoute
-  '/admin/profile-settings': typeof AdminProfileSettingsRoute
-  '/apply/$formSlug': typeof ApplyFormSlugRoute
   '/camps/$slug': typeof CampsSlugRoute
   '/internships/apply': typeof InternshipsApplyRoute
-  '/pay/$param': typeof PayParamRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
-  '/admin/': typeof AdminIndexRoute
-  '/apply/': typeof ApplyIndexRoute
   '/camps/': typeof CampsIndexRoute
   '/internships/': typeof InternshipsIndexRoute
-  '/pay/': typeof PayIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -235,23 +151,11 @@ export interface FileRoutesByTo {
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
-  '/admin/applications': typeof AdminApplicationsRoute
-  '/admin/captured-leads': typeof AdminCapturedLeadsRoute
-  '/admin/dashboard': typeof AdminDashboardRoute
-  '/admin/login': typeof AdminLoginRoute
-  '/admin/mentors': typeof AdminMentorsRoute
-  '/admin/payments': typeof AdminPaymentsRoute
-  '/admin/profile-settings': typeof AdminProfileSettingsRoute
-  '/apply/$formSlug': typeof ApplyFormSlugRoute
   '/camps/$slug': typeof CampsSlugRoute
   '/internships/apply': typeof InternshipsApplyRoute
-  '/pay/$param': typeof PayParamRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
-  '/admin': typeof AdminIndexRoute
-  '/apply': typeof ApplyIndexRoute
   '/camps': typeof CampsIndexRoute
   '/internships': typeof InternshipsIndexRoute
-  '/pay': typeof PayIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -268,23 +172,11 @@ export interface FileRoutesById {
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
-  '/admin/applications': typeof AdminApplicationsRoute
-  '/admin/captured-leads': typeof AdminCapturedLeadsRoute
-  '/admin/dashboard': typeof AdminDashboardRoute
-  '/admin/login': typeof AdminLoginRoute
-  '/admin/mentors': typeof AdminMentorsRoute
-  '/admin/payments': typeof AdminPaymentsRoute
-  '/admin/profile-settings': typeof AdminProfileSettingsRoute
-  '/apply/$formSlug': typeof ApplyFormSlugRoute
   '/camps/$slug': typeof CampsSlugRoute
   '/internships/apply': typeof InternshipsApplyRoute
-  '/pay/$param': typeof PayParamRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
-  '/admin/': typeof AdminIndexRoute
-  '/apply/': typeof ApplyIndexRoute
   '/camps/': typeof CampsIndexRoute
   '/internships/': typeof InternshipsIndexRoute
-  '/pay/': typeof PayIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -302,23 +194,11 @@ export interface FileRouteTypes {
     | '/shortlist'
     | '/stories'
     | '/testimonials'
-    | '/admin/applications'
-    | '/admin/captured-leads'
-    | '/admin/dashboard'
-    | '/admin/login'
-    | '/admin/mentors'
-    | '/admin/payments'
-    | '/admin/profile-settings'
-    | '/apply/$formSlug'
     | '/camps/$slug'
     | '/internships/apply'
-    | '/pay/$param'
     | '/programmes/$slug'
-    | '/admin/'
-    | '/apply/'
     | '/camps/'
     | '/internships/'
-    | '/pay/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -332,23 +212,11 @@ export interface FileRouteTypes {
     | '/shortlist'
     | '/stories'
     | '/testimonials'
-    | '/admin/applications'
-    | '/admin/captured-leads'
-    | '/admin/dashboard'
-    | '/admin/login'
-    | '/admin/mentors'
-    | '/admin/payments'
-    | '/admin/profile-settings'
-    | '/apply/$formSlug'
     | '/camps/$slug'
     | '/internships/apply'
-    | '/pay/$param'
     | '/programmes/$slug'
-    | '/admin'
-    | '/apply'
     | '/camps'
     | '/internships'
-    | '/pay'
   id:
     | '__root__'
     | '/'
@@ -364,23 +232,11 @@ export interface FileRouteTypes {
     | '/shortlist'
     | '/stories'
     | '/testimonials'
-    | '/admin/applications'
-    | '/admin/captured-leads'
-    | '/admin/dashboard'
-    | '/admin/login'
-    | '/admin/mentors'
-    | '/admin/payments'
-    | '/admin/profile-settings'
-    | '/apply/$formSlug'
     | '/camps/$slug'
     | '/internships/apply'
-    | '/pay/$param'
     | '/programmes/$slug'
-    | '/admin/'
-    | '/apply/'
     | '/camps/'
     | '/internships/'
-    | '/pay/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -397,19 +253,7 @@ export interface RootRouteChildren {
   ShortlistRoute: typeof ShortlistRoute
   StoriesRoute: typeof StoriesRoute
   TestimonialsRoute: typeof TestimonialsRoute
-  AdminApplicationsRoute: typeof AdminApplicationsRoute
-  AdminCapturedLeadsRoute: typeof AdminCapturedLeadsRoute
-  AdminDashboardRoute: typeof AdminDashboardRoute
-  AdminLoginRoute: typeof AdminLoginRoute
-  AdminMentorsRoute: typeof AdminMentorsRoute
-  AdminPaymentsRoute: typeof AdminPaymentsRoute
-  AdminProfileSettingsRoute: typeof AdminProfileSettingsRoute
-  ApplyFormSlugRoute: typeof ApplyFormSlugRoute
-  PayParamRoute: typeof PayParamRoute
   ProgrammesSlugRoute: typeof ProgrammesSlugRoute
-  AdminIndexRoute: typeof AdminIndexRoute
-  ApplyIndexRoute: typeof ApplyIndexRoute
-  PayIndexRoute: typeof PayIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -505,76 +349,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TestimonialsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/': {
-      id: '/admin/'
-      path: '/admin'
-      fullPath: '/admin/'
-      preLoaderRoute: typeof AdminIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/applications': {
-      id: '/admin/applications'
-      path: '/admin/applications'
-      fullPath: '/admin/applications'
-      preLoaderRoute: typeof AdminApplicationsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/captured-leads': {
-      id: '/admin/captured-leads'
-      path: '/admin/captured-leads'
-      fullPath: '/admin/captured-leads'
-      preLoaderRoute: typeof AdminCapturedLeadsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/dashboard': {
-      id: '/admin/dashboard'
-      path: '/admin/dashboard'
-      fullPath: '/admin/dashboard'
-      preLoaderRoute: typeof AdminDashboardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/login': {
-      id: '/admin/login'
-      path: '/admin/login'
-      fullPath: '/admin/login'
-      preLoaderRoute: typeof AdminLoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/mentors': {
-      id: '/admin/mentors'
-      path: '/admin/mentors'
-      fullPath: '/admin/mentors'
-      preLoaderRoute: typeof AdminMentorsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/payments': {
-      id: '/admin/payments'
-      path: '/admin/payments'
-      fullPath: '/admin/payments'
-      preLoaderRoute: typeof AdminPaymentsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/profile-settings': {
-      id: '/admin/profile-settings'
-      path: '/admin/profile-settings'
-      fullPath: '/admin/profile-settings'
-      preLoaderRoute: typeof AdminProfileSettingsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/apply/': {
-      id: '/apply/'
-      path: '/apply'
-      fullPath: '/apply/'
-      preLoaderRoute: typeof ApplyIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/apply/$formSlug': {
-      id: '/apply/$formSlug'
-      path: '/apply/$formSlug'
-      fullPath: '/apply/$formSlug'
-      preLoaderRoute: typeof ApplyFormSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/camps/': {
       id: '/camps/'
       path: '/'
@@ -602,20 +376,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/internships/apply'
       preLoaderRoute: typeof InternshipsApplyRouteImport
       parentRoute: typeof InternshipsRoute
-    }
-    '/pay/': {
-      id: '/pay/'
-      path: '/pay'
-      fullPath: '/pay/'
-      preLoaderRoute: typeof PayIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pay/$param': {
-      id: '/pay/$param'
-      path: '/pay/$param'
-      fullPath: '/pay/$param'
-      preLoaderRoute: typeof PayParamRouteImport
-      parentRoute: typeof rootRouteImport
     }
     '/programmes/$slug': {
       id: '/programmes/$slug'
@@ -667,19 +427,7 @@ const rootRouteChildren: RootRouteChildren = {
   ShortlistRoute: ShortlistRoute,
   StoriesRoute: StoriesRoute,
   TestimonialsRoute: TestimonialsRoute,
-  AdminApplicationsRoute: AdminApplicationsRoute,
-  AdminCapturedLeadsRoute: AdminCapturedLeadsRoute,
-  AdminDashboardRoute: AdminDashboardRoute,
-  AdminLoginRoute: AdminLoginRoute,
-  AdminMentorsRoute: AdminMentorsRoute,
-  AdminPaymentsRoute: AdminPaymentsRoute,
-  AdminProfileSettingsRoute: AdminProfileSettingsRoute,
-  ApplyFormSlugRoute: ApplyFormSlugRoute,
-  PayParamRoute: PayParamRoute,
   ProgrammesSlugRoute: ProgrammesSlugRoute,
-  AdminIndexRoute: AdminIndexRoute,
-  ApplyIndexRoute: ApplyIndexRoute,
-  PayIndexRoute: PayIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
