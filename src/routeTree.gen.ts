@@ -27,6 +27,7 @@ import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AdminProfileSettingsRouteImport } from './routes/admin.profile-settings'
 import { Route as ApplyIndexRouteImport } from './routes/apply.index'
+import { Route as ApplyFormSlugRouteImport } from './routes/apply.$formSlug'
 import { Route as CampsIndexRouteImport } from './routes/camps.index'
 import { Route as CampsSlugRouteImport } from './routes/camps.$slug'
 import { Route as InternshipsIndexRouteImport } from './routes/internships.index'
@@ -123,6 +124,11 @@ const ApplyIndexRoute = ApplyIndexRouteImport.update({
   path: '/apply/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApplyFormSlugRoute = ApplyFormSlugRouteImport.update({
+  id: '/apply/$formSlug',
+  path: '/apply/$formSlug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CampsIndexRoute = CampsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -166,6 +172,7 @@ export interface FileRoutesByFullPath {
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/profile-settings': typeof AdminProfileSettingsRoute
+  '/apply/$formSlug': typeof ApplyFormSlugRoute
   '/camps/$slug': typeof CampsSlugRoute
   '/internships/apply': typeof InternshipsApplyRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
@@ -189,6 +196,7 @@ export interface FileRoutesByTo {
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/profile-settings': typeof AdminProfileSettingsRoute
+  '/apply/$formSlug': typeof ApplyFormSlugRoute
   '/camps/$slug': typeof CampsSlugRoute
   '/internships/apply': typeof InternshipsApplyRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
@@ -215,6 +223,7 @@ export interface FileRoutesById {
   '/admin/dashboard': typeof AdminDashboardRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/profile-settings': typeof AdminProfileSettingsRoute
+  '/apply/$formSlug': typeof ApplyFormSlugRoute
   '/camps/$slug': typeof CampsSlugRoute
   '/internships/apply': typeof InternshipsApplyRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
@@ -242,6 +251,7 @@ export interface FileRouteTypes {
     | '/admin/dashboard'
     | '/admin/login'
     | '/admin/profile-settings'
+    | '/apply/$formSlug'
     | '/camps/$slug'
     | '/internships/apply'
     | '/programmes/$slug'
@@ -265,6 +275,7 @@ export interface FileRouteTypes {
     | '/admin/dashboard'
     | '/admin/login'
     | '/admin/profile-settings'
+    | '/apply/$formSlug'
     | '/camps/$slug'
     | '/internships/apply'
     | '/programmes/$slug'
@@ -290,6 +301,7 @@ export interface FileRouteTypes {
     | '/admin/dashboard'
     | '/admin/login'
     | '/admin/profile-settings'
+    | '/apply/$formSlug'
     | '/camps/$slug'
     | '/internships/apply'
     | '/programmes/$slug'
@@ -316,6 +328,7 @@ export interface RootRouteChildren {
   AdminDashboardRoute: typeof AdminDashboardRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminProfileSettingsRoute: typeof AdminProfileSettingsRoute
+  ApplyFormSlugRoute: typeof ApplyFormSlugRoute
   ProgrammesSlugRoute: typeof ProgrammesSlugRoute
   AdminIndexRoute: typeof AdminIndexRoute
   ApplyIndexRoute: typeof ApplyIndexRoute
@@ -449,6 +462,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApplyIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/apply/$formSlug': {
+      id: '/apply/$formSlug'
+      path: '/apply/$formSlug'
+      fullPath: '/apply/$formSlug'
+      preLoaderRoute: typeof ApplyFormSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/camps/': {
       id: '/camps/'
       path: '/'
@@ -530,6 +550,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminDashboardRoute: AdminDashboardRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminProfileSettingsRoute: AdminProfileSettingsRoute,
+  ApplyFormSlugRoute: ApplyFormSlugRoute,
   ProgrammesSlugRoute: ProgrammesSlugRoute,
   AdminIndexRoute: AdminIndexRoute,
   ApplyIndexRoute: ApplyIndexRoute,
