@@ -32,6 +32,8 @@ import { Route as CampsIndexRouteImport } from './routes/camps.index'
 import { Route as CampsSlugRouteImport } from './routes/camps.$slug'
 import { Route as InternshipsIndexRouteImport } from './routes/internships.index'
 import { Route as InternshipsApplyRouteImport } from './routes/internships.apply'
+import { Route as PayIndexRouteImport } from './routes/pay.index'
+import { Route as PayParamRouteImport } from './routes/pay.$param'
 import { Route as ProgrammesSlugRouteImport } from './routes/programmes.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -149,6 +151,16 @@ const InternshipsApplyRoute = InternshipsApplyRouteImport.update({
   path: '/apply',
   getParentRoute: () => InternshipsRoute,
 } as any)
+const PayIndexRoute = PayIndexRouteImport.update({
+  id: '/pay/',
+  path: '/pay/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PayParamRoute = PayParamRouteImport.update({
+  id: '/pay/$param',
+  path: '/pay/$param',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProgrammesSlugRoute = ProgrammesSlugRouteImport.update({
   id: '/programmes/$slug',
   path: '/programmes/$slug',
@@ -175,11 +187,13 @@ export interface FileRoutesByFullPath {
   '/apply/$formSlug': typeof ApplyFormSlugRoute
   '/camps/$slug': typeof CampsSlugRoute
   '/internships/apply': typeof InternshipsApplyRoute
+  '/pay/$param': typeof PayParamRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/apply/': typeof ApplyIndexRoute
   '/camps/': typeof CampsIndexRoute
   '/internships/': typeof InternshipsIndexRoute
+  '/pay/': typeof PayIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -199,11 +213,13 @@ export interface FileRoutesByTo {
   '/apply/$formSlug': typeof ApplyFormSlugRoute
   '/camps/$slug': typeof CampsSlugRoute
   '/internships/apply': typeof InternshipsApplyRoute
+  '/pay/$param': typeof PayParamRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/admin': typeof AdminIndexRoute
   '/apply': typeof ApplyIndexRoute
   '/camps': typeof CampsIndexRoute
   '/internships': typeof InternshipsIndexRoute
+  '/pay': typeof PayIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -226,11 +242,13 @@ export interface FileRoutesById {
   '/apply/$formSlug': typeof ApplyFormSlugRoute
   '/camps/$slug': typeof CampsSlugRoute
   '/internships/apply': typeof InternshipsApplyRoute
+  '/pay/$param': typeof PayParamRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/apply/': typeof ApplyIndexRoute
   '/camps/': typeof CampsIndexRoute
   '/internships/': typeof InternshipsIndexRoute
+  '/pay/': typeof PayIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -254,11 +272,13 @@ export interface FileRouteTypes {
     | '/apply/$formSlug'
     | '/camps/$slug'
     | '/internships/apply'
+    | '/pay/$param'
     | '/programmes/$slug'
     | '/admin/'
     | '/apply/'
     | '/camps/'
     | '/internships/'
+    | '/pay/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -278,11 +298,13 @@ export interface FileRouteTypes {
     | '/apply/$formSlug'
     | '/camps/$slug'
     | '/internships/apply'
+    | '/pay/$param'
     | '/programmes/$slug'
     | '/admin'
     | '/apply'
     | '/camps'
     | '/internships'
+    | '/pay'
   id:
     | '__root__'
     | '/'
@@ -304,11 +326,13 @@ export interface FileRouteTypes {
     | '/apply/$formSlug'
     | '/camps/$slug'
     | '/internships/apply'
+    | '/pay/$param'
     | '/programmes/$slug'
     | '/admin/'
     | '/apply/'
     | '/camps/'
     | '/internships/'
+    | '/pay/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -329,9 +353,11 @@ export interface RootRouteChildren {
   AdminLoginRoute: typeof AdminLoginRoute
   AdminProfileSettingsRoute: typeof AdminProfileSettingsRoute
   ApplyFormSlugRoute: typeof ApplyFormSlugRoute
+  PayParamRoute: typeof PayParamRoute
   ProgrammesSlugRoute: typeof ProgrammesSlugRoute
   AdminIndexRoute: typeof AdminIndexRoute
   ApplyIndexRoute: typeof ApplyIndexRoute
+  PayIndexRoute: typeof PayIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -497,6 +523,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InternshipsApplyRouteImport
       parentRoute: typeof InternshipsRoute
     }
+    '/pay/': {
+      id: '/pay/'
+      path: '/pay'
+      fullPath: '/pay/'
+      preLoaderRoute: typeof PayIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pay/$param': {
+      id: '/pay/$param'
+      path: '/pay/$param'
+      fullPath: '/pay/$param'
+      preLoaderRoute: typeof PayParamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/programmes/$slug': {
       id: '/programmes/$slug'
       path: '/programmes/$slug'
@@ -551,9 +591,11 @@ const rootRouteChildren: RootRouteChildren = {
   AdminLoginRoute: AdminLoginRoute,
   AdminProfileSettingsRoute: AdminProfileSettingsRoute,
   ApplyFormSlugRoute: ApplyFormSlugRoute,
+  PayParamRoute: PayParamRoute,
   ProgrammesSlugRoute: ProgrammesSlugRoute,
   AdminIndexRoute: AdminIndexRoute,
   ApplyIndexRoute: ApplyIndexRoute,
+  PayIndexRoute: PayIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
