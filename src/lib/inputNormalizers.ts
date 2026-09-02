@@ -131,8 +131,8 @@ export function normalizeFormData<T extends Record<string, any>>(
 ): T {
   const out: Record<string, any> = { ...data };
   const country: string | null =
-    (typeof out.country === 'string' && out.country) ||
-    (typeof out.student_country === 'string' && out.student_country) ||
+    (typeof out["country"] === 'string' && out["country"]) ||
+    (typeof out["student_country"] === 'string' && out["student_country"]) ||
     null;
   if (fieldsMeta && fieldsMeta.length > 0) {
     for (const f of fieldsMeta) {

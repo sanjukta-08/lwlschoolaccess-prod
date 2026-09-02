@@ -146,15 +146,15 @@ export const submitApplication = createServerFn({ method: "POST" })
         return {
           ok: true,
           dormant: false,
-          submissionToken: (row?.submission_token as string | null) ?? null,
-          paymentStatus: (row?.payment_status as string | null) ?? null,
-          rowId: (row?.row_id as string | null) ?? null,
+          submissionToken: (row?.["submission_token"] as string | null) ?? null,
+          paymentStatus: (row?.["payment_status"] as string | null) ?? null,
+          rowId: (row?.["row_id"] as string | null) ?? null,
         };
       }
-      lastError = { message: error.message, code: (error as { code?: string }).code };
-      const code = lastError.code ?? "";
+      lastError = { message: error.message, code: (error as { code?: string }).code ?? undefined };
+      const code = lastError?.code ?? "";
       const transient =
-        !code || code.startsWith("5") || code === "PGRST301" || /network|fetch|timeout/i.test(lastError?.message);
+        !code || code.startsWith("5") || code === "PGRST301" || /network|fetch|timeout/i.test(lastError?.message ?? "");
       if (!transient) break;
       await new Promise((r) => setTimeout(r, 400 * 2 ** attempt));
     }

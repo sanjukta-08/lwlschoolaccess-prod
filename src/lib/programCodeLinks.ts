@@ -6,8 +6,8 @@
 // (e.g. ZL-HSA-FD01-141126). When LWL Console updates a cohort's date the
 // `ref_code` text changes, but the catalogue row keeps the same `id`. So the
 // link of record is the row **id**, stored on the template as
-// `settings.program_code_ids`. The human-readable codes stay alongside in
-// `settings.program_codes` (and `form_templates.program_code` for the primary)
+// `settings["program_code_ids"]`. The human-readable codes stay alongside in
+// `settings["program_codes"]` (and `form_templates.program_code` for the primary)
 // as a resolved snapshot, so every downstream consumer — /pay, /apply, Stripe
 // metadata, reconciliation, emails, other platforms — keeps reading plain text.
 //
@@ -78,14 +78,14 @@ export function resolveLinkedCodes(
 
   // 1. Linked ids win: each resolves to the catalogue's current ref_code.
   for (let i = 0; i < idList.length; i++) {
-    const id = idList[i];
+    const id = idList[i] ?? '';
     const live = codeById.get(id);
     if (live) {
       push(id, live);
       continue;
     }
     // Row no longer in the catalogue: keep the link and its last known text.
-    const fallback = codeList.length === idList.length ? codeList[i] : null;
+    const fallback = codeList.length === idList.length ? (codeList[i] ?? null) : null;
     push(id, fallback ?? null);
   }
 
@@ -105,9 +105,9 @@ export function resolveLinkedCodes(
 /** Read the stored link pair off a form_templates row. */
 export function readLinkFromTemplate(template: any): { ids: string[]; codes: string[] } {
   const settings = (template?.settings || {}) as Record<string, unknown>;
-  const ids = Array.isArray(settings.program_code_ids) ? (settings.program_code_ids as string[]) : [];
-  const codes = Array.isArray(settings.program_codes) && (settings.program_codes as string[]).length
-    ? (settings.program_codes as string[])
+  const ids = Array.isArray(settings["program_code_ids"]) ? (settings["program_code_ids"] as string[]) : [];
+  const codes = Array.isArray(settings["program_codes"]) && (settings["program_codes"] as string[]).length
+    ? (settings["program_codes"] as string[])
     : (template?.program_code ? [String(template.program_code)] : []);
   return { ids: ids.filter(Boolean).map(String), codes: codes.filter(Boolean).map(String) };
 }
