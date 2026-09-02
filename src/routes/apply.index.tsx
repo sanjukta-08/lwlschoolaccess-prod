@@ -9,6 +9,7 @@ export const Route = createFileRoute("/apply/")({
     ref: typeof search["ref"] === "string" ? search["ref"] : undefined,
     code: typeof search["code"] === "string" ? search["code"] : undefined,
     form: typeof search["form"] === "string" ? search["form"] : undefined,
+    token: typeof search["token"] === "string" ? search["token"] : undefined,
   }),
   head: () => ({
     meta: [

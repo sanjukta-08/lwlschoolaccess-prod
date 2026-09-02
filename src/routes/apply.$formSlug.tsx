@@ -8,6 +8,7 @@ export const Route = createFileRoute("/apply/$formSlug")({
     cohort: typeof search["cohort"] === "string" ? search["cohort"] : undefined,
     ref: typeof search["ref"] === "string" ? search["ref"] : undefined,
     code: typeof search["code"] === "string" ? search["code"] : undefined,
+    token: typeof search["token"] === "string" ? search["token"] : undefined,
   }),
   head: ({ params }) => {
     const label = params.formSlug

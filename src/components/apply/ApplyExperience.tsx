@@ -53,6 +53,7 @@ import {
   listProgramCodes,
   submitApplication,
 } from "@/lib/portal/apply.functions";
+import { getPaymentStatus } from "@/lib/portal/pay.functions";
 import { PROGRAMMES, TYPE_NAME } from "@/lib/programmes";
 import { captureUtmParams, getStoredUtmParams } from "@/lib/utm";
 
