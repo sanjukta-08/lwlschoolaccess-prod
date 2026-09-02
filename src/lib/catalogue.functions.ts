@@ -205,7 +205,7 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
 
     const [partnersRes, programsRes, cohortsRes, siteProgRes, siteCohortRes] =
       await Promise.all([
-        pub.from("all_partners").select("id,org_name,website"),
+        pub.from("all_partners").select("id,partner_slug,org_name,website"),
         pub
           .from("all_programs")
           .select(
