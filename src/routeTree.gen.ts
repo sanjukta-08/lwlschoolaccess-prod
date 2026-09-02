@@ -22,6 +22,10 @@ import { Route as ProfileBuildingRouteImport } from './routes/profile-building'
 import { Route as ShortlistRouteImport } from './routes/shortlist'
 import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
+import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as AdminProfileSettingsRouteImport } from './routes/admin.profile-settings'
 import { Route as CampsIndexRouteImport } from './routes/camps.index'
 import { Route as CampsSlugRouteImport } from './routes/camps.$slug'
 import { Route as InternshipsIndexRouteImport } from './routes/internships.index'
@@ -93,6 +97,26 @@ const TestimonialsRoute = TestimonialsRouteImport.update({
   path: '/testimonials',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/admin/dashboard',
+  path: '/admin/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminProfileSettingsRoute = AdminProfileSettingsRouteImport.update({
+  id: '/admin/profile-settings',
+  path: '/admin/profile-settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CampsIndexRoute = CampsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -133,9 +157,13 @@ export interface FileRoutesByFullPath {
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/profile-settings': typeof AdminProfileSettingsRoute
   '/camps/$slug': typeof CampsSlugRoute
   '/internships/apply': typeof InternshipsApplyRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
+  '/admin/': typeof AdminIndexRoute
   '/camps/': typeof CampsIndexRoute
   '/internships/': typeof InternshipsIndexRoute
 }
@@ -151,9 +179,13 @@ export interface FileRoutesByTo {
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/profile-settings': typeof AdminProfileSettingsRoute
   '/camps/$slug': typeof CampsSlugRoute
   '/internships/apply': typeof InternshipsApplyRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
+  '/admin': typeof AdminIndexRoute
   '/camps': typeof CampsIndexRoute
   '/internships': typeof InternshipsIndexRoute
 }
@@ -172,9 +204,13 @@ export interface FileRoutesById {
   '/shortlist': typeof ShortlistRoute
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/profile-settings': typeof AdminProfileSettingsRoute
   '/camps/$slug': typeof CampsSlugRoute
   '/internships/apply': typeof InternshipsApplyRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
+  '/admin/': typeof AdminIndexRoute
   '/camps/': typeof CampsIndexRoute
   '/internships/': typeof InternshipsIndexRoute
 }
@@ -194,9 +230,13 @@ export interface FileRouteTypes {
     | '/shortlist'
     | '/stories'
     | '/testimonials'
+    | '/admin/dashboard'
+    | '/admin/login'
+    | '/admin/profile-settings'
     | '/camps/$slug'
     | '/internships/apply'
     | '/programmes/$slug'
+    | '/admin/'
     | '/camps/'
     | '/internships/'
   fileRoutesByTo: FileRoutesByTo
@@ -212,9 +252,13 @@ export interface FileRouteTypes {
     | '/shortlist'
     | '/stories'
     | '/testimonials'
+    | '/admin/dashboard'
+    | '/admin/login'
+    | '/admin/profile-settings'
     | '/camps/$slug'
     | '/internships/apply'
     | '/programmes/$slug'
+    | '/admin'
     | '/camps'
     | '/internships'
   id:
@@ -232,9 +276,13 @@ export interface FileRouteTypes {
     | '/shortlist'
     | '/stories'
     | '/testimonials'
+    | '/admin/dashboard'
+    | '/admin/login'
+    | '/admin/profile-settings'
     | '/camps/$slug'
     | '/internships/apply'
     | '/programmes/$slug'
+    | '/admin/'
     | '/camps/'
     | '/internships/'
   fileRoutesById: FileRoutesById
@@ -253,7 +301,11 @@ export interface RootRouteChildren {
   ShortlistRoute: typeof ShortlistRoute
   StoriesRoute: typeof StoriesRoute
   TestimonialsRoute: typeof TestimonialsRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminLoginRoute: typeof AdminLoginRoute
+  AdminProfileSettingsRoute: typeof AdminProfileSettingsRoute
   ProgrammesSlugRoute: typeof ProgrammesSlugRoute
+  AdminIndexRoute: typeof AdminIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -349,6 +401,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TestimonialsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/dashboard': {
+      id: '/admin/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/profile-settings': {
+      id: '/admin/profile-settings'
+      path: '/admin/profile-settings'
+      fullPath: '/admin/profile-settings'
+      preLoaderRoute: typeof AdminProfileSettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/camps/': {
       id: '/camps/'
       path: '/'
@@ -427,7 +507,11 @@ const rootRouteChildren: RootRouteChildren = {
   ShortlistRoute: ShortlistRoute,
   StoriesRoute: StoriesRoute,
   TestimonialsRoute: TestimonialsRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminLoginRoute: AdminLoginRoute,
+  AdminProfileSettingsRoute: AdminProfileSettingsRoute,
   ProgrammesSlugRoute: ProgrammesSlugRoute,
+  AdminIndexRoute: AdminIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
