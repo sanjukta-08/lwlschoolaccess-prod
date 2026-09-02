@@ -73,7 +73,13 @@ const typeToCategory: Record<string, string> = {
   prog: "certificate",
 };
 
-export type ApplySearch = Record<string, string | undefined>;
+export type ApplySearch = {
+  program?: string | undefined;
+  cohort?: string | undefined;
+  ref?: string | undefined;
+  code?: string | undefined;
+  form?: string | undefined;
+};
 
 export function ApplyExperience({
   formSlug = "",
@@ -110,19 +116,21 @@ export function ApplyExperience({
     cohort_code: cohortParam,
   });
 
+  const val = (key: string) => form[key] ?? "";
   const slugToLookup = formSlugParam || refSlugParam;
-  const selectedCode = form.program_code || refCodeParam || programParam;
+  const selectedCode = val("program_code") || refCodeParam || programParam;
 
   const { data: formTemplate, isLoading: templateLoading } = useQuery<PublicFormTemplate | null>({
     queryKey: ["apply", "template", slugToLookup, selectedCode],
-    queryFn: () => getApplyTemplate({ data: { slug: slugToLookup, code: selectedCode } }),
+    queryFn: () =>
+      getApplyTemplate({ data: { slug: slugToLookup, code: selectedCode } }) as Promise<PublicFormTemplate | null>,
     enabled: !!slugToLookup || !!selectedCode,
     staleTime: 5 * 60 * 1000,
   });
 
   const { data: publicTemplates = [] } = useQuery<PublicFormTemplate[]>({
     queryKey: ["apply", "templates"],
-    queryFn: () => listApplyTemplates(),
+    queryFn: () => listApplyTemplates() as Promise<PublicFormTemplate[]>,
     staleTime: 60_000,
   });
 
@@ -147,7 +155,7 @@ export function ApplyExperience({
         grades: `Grades ${p.g[0]}–${p.g[1]}`,
         deliveryMode: TYPE_NAME[p.type],
         startDate: p.cohorts[0]?.d,
-      });
+      } as MergedProgram);
     }
 
     for (const template of publicTemplates) {
@@ -155,7 +163,7 @@ export function ApplyExperience({
       const slug = String(template.slug ?? "").trim().toLowerCase();
       const code = String(template.program_code ?? slug).trim();
       const category = bucketCategory(
-        String(settings.category ?? decodeProgramCategory(code) ?? ""),
+        String(settings["category"] ?? decodeProgramCategory(code) ?? ""),
       );
       if (!slug || !code || !category) continue;
       const entry = [...map.entries()].find(([, p]) => p.code === code || p.slug === slug);
@@ -166,12 +174,14 @@ export function ApplyExperience({
         code,
         slug,
         name: String(
-          existing?.name || settings.program_display_name || template.name || "Application",
+          existing?.name || settings["program_display_name"] || template.name || "Application",
         ),
         category,
         externalApplyUrl:
-          typeof settings.external_apply_url === "string" ? settings.external_apply_url : undefined,
-      });
+          typeof settings["external_apply_url"] === "string"
+            ? (settings["external_apply_url"] as string)
+            : undefined,
+      } as MergedProgram);
     }
     return [...map.values()];
   }, [publicTemplates]);
@@ -202,12 +212,12 @@ export function ApplyExperience({
       return;
     }
     if (availableCohorts.length === 1 && !selectedRefCode) {
-      setSelectedRefCode(availableCohorts[0].code);
+      setSelectedRefCode(availableCohorts[0]?.code ?? "");
     }
   }, [availableCohorts, selectedRefCode, refCodeParam]);
 
   const dynamicFields = useMemo(() => {
-    const schema = formTemplate?.schema;
+    const schema = formTemplate?.schema as FormField[] | undefined;
     return Array.isArray(schema) && schema.length > 0 ? schema.filter((f) => !f.hidden) : null;
   }, [formTemplate]);
 
@@ -221,29 +231,29 @@ export function ApplyExperience({
   }, [dynamicFields]);
 
   const matchedProgram = mergedPrograms.find(
-    (p) => p.code === form.program_code || p.slug === form.program_code,
+    (p) => p.code === val("program_code") || p.slug === val("program_code"),
   );
   const hasDirectLink = !!(formSlugParam || refSlugParam || refCodeParam || programParam);
   const awaitingTemplate = hasDirectLink && templateLoading;
 
   const selectedProgram: MergedProgram | undefined = useMemo(() => {
     if (awaitingTemplate) return undefined;
-    const settings = (formTemplate?.settings ?? {}) as Record<string, unknown>;
+    const settings = ((formTemplate?.settings ?? {}) as Record<string, unknown>);
     const templateName =
-      (settings.program_display_name as string) || (formTemplate?.name as string) || "";
+      (settings["program_display_name"] as string) || ((formTemplate as PublicFormTemplate | null)?.name as string) || "";
     if (matchedProgram) {
       if (hasDirectLink && !formTemplate) return undefined;
       return templateName ? { ...matchedProgram, name: templateName } : matchedProgram;
     }
     const slugAny = formSlugParam || refSlugParam;
     if ((slugAny || refCodeParam) && formTemplate) {
-      const code = refCodeParam || formTemplate.program_code || slugAny;
+      const code = refCodeParam || (formTemplate as PublicFormTemplate).program_code || slugAny;
       return {
         code,
         slug: slugAny || refCodeParam,
         name: templateName || "Application",
         category:
-          bucketCategory(decodeProgramCategory(code) ?? (settings.category as string)) || "camp",
+          bucketCategory(decodeProgramCategory(code) ?? (settings["category"] as string)) || "camp",
       };
     }
     return undefined;
@@ -252,7 +262,7 @@ export function ApplyExperience({
   /* ── partner-managed programmes redirect out ── */
   const externalApplyUrl = useMemo(() => {
     const url =
-      ((formTemplate?.settings ?? {}) as Record<string, unknown>).external_apply_url ??
+      (((formTemplate?.settings ?? {}) as Record<string, unknown>)).external_apply_url ??
       selectedProgram?.externalApplyUrl;
     return typeof url === "string" && /^https:\/\/\S+$/i.test(url.trim()) ? url.trim() : null;
   }, [formTemplate, selectedProgram?.externalApplyUrl]);
@@ -286,7 +296,7 @@ export function ApplyExperience({
   /* ── lead autosave ── */
   useEffect(() => {
     if (submitted || externalApplyUrl || awaitingTemplate) return;
-    const finalProgramCode = selectedRefCode || form.program_code || null;
+    const finalProgramCode = selectedRefCode || val("program_code") || null;
     const t = setTimeout(() => {
       void captureApplyLead({
         data: {
@@ -295,17 +305,17 @@ export function ApplyExperience({
             program_name: selectedProgram?.name ?? null,
             program_category:
               decodeProgramCategory(finalProgramCode || "") || selectedProgram?.category || null,
-            student_name: form.student_name || null,
-            student_email: form.student_email || null,
-            student_phone: form.student_mobile || form.student_phone || null,
-            parent_name: form.parent_name || null,
-            parent_email: form.parent_email || null,
-            parent_phone: form.parent_phone || null,
-            grade: form.grade || null,
-            school_name: form.school_name || null,
-            city: form.city || null,
-            state: form.state || null,
-            country: form.country || null,
+            student_name: val("student_name") || null,
+            student_email: val("student_email") || null,
+            student_phone: val("student_mobile") || val("student_phone") || null,
+            parent_name: val("parent_name") || null,
+            parent_email: val("parent_email") || null,
+            parent_phone: val("parent_phone") || null,
+            grade: val("grade") || null,
+            school_name: val("school_name") || null,
+            city: val("city") || null,
+            state: val("state") || null,
+            country: val("country") || null,
             raw_data: form,
             ...getStoredUtmParams(),
           },
@@ -345,11 +355,11 @@ export function ApplyExperience({
         }
       }
     } else {
-      if (!form.student_name?.trim()) errors.student_name = "Full name is required";
-      if (!form.student_email?.trim()) {
+      if (!val("student_name")?.trim()) errors.student_name = "Full name is required";
+      if (!val("student_email")?.trim()) {
         errors.student_email = "Email is required";
       } else {
-        const r = validateEmail(form.student_email);
+        const r = validateEmail(val("student_email"));
         if (!r.ok) errors.student_email = r.error || "Invalid email";
       }
       for (const k of ["parent_email", "counsellor_email"] as const) {
@@ -366,8 +376,8 @@ export function ApplyExperience({
           errors[k] = `${country.name} numbers must be ${country.lengths.join(" or ")} digits`;
         }
       }
-      if (!form.country?.trim()) errors.country = "Country is required";
-      if (!form.city?.trim()) errors.city = "City is required";
+      if (!val("country")?.trim()) errors.country = "Country is required";
+      if (!val("city")?.trim()) errors.city = "City is required";
     }
 
     setFieldErrors(errors);
@@ -380,7 +390,7 @@ export function ApplyExperience({
     if (dynamicFields && dynamicFields.length > 0) {
       return dynamicFields.filter((f) => f.required).every((f) => !!form[f.db_column]?.trim());
     }
-    return !!form.student_name && !!form.student_email;
+    return !!val("student_name") && !!val("student_email");
   }, [agreed, form, dynamicFields, availableCohorts, selectedRefCode, formIsClosed]);
 
   const handleSubmit = async () => {
@@ -395,7 +405,7 @@ export function ApplyExperience({
     setIsSubmitting(true);
     try {
       const utm = getStoredUtmParams();
-      const finalProgramCode = selectedRefCode || form.program_code || null;
+      const finalProgramCode = selectedRefCode || val("program_code") || null;
       const normalized = normalizeFormData(form, dynamicFields ?? undefined);
 
       const payload: Record<string, unknown> = {
@@ -403,7 +413,7 @@ export function ApplyExperience({
         program_name: selectedProgram?.name ?? null,
         program_category:
           decodeProgramCategory(finalProgramCode || "") || selectedProgram?.category || null,
-        form_template_id: formTemplate?.id ?? null,
+        form_template_id: (formTemplate as PublicFormTemplate | null)?.id ?? null,
         utm_source: utm.utm_source ?? null,
         utm_medium: utm.utm_medium ?? null,
         utm_campaign: utm.utm_campaign ?? null,
@@ -452,7 +462,7 @@ export function ApplyExperience({
         return;
       }
 
-      if (formTemplate?.has_payment && result.submissionToken) {
+      if ((formTemplate as PublicFormTemplate | null)?.has_payment && result.submissionToken) {
         toast.success("Application submitted! Taking you to secure checkout…");
         window.location.assign(`/pay/${result.submissionToken}`);
         return;
