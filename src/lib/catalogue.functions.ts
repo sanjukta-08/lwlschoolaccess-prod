@@ -113,6 +113,32 @@ type SiteCohortRow = {
 const ADVISOR = "https://calendly.com/learnwithleaders";
 const TIME_TBC = "Live session times confirmed on registration";
 
+/**
+ * Confirmed apply-link contract with the LWL Application Portal.
+ *
+ * LWL's own directly-run programmes resolve on the Portal's catalogue branch,
+ * which matches on `pay_slug` — programme-level and stable. Never use
+ * `program_code`: it is per-cohort and date-bound, so the link silently points
+ * at a stale intake the moment a cohort rolls over. The applicant picks the
+ * open cohort on the Portal itself.
+ *
+ * Every other partner routes to their own domain via `apply_url` verbatim.
+ */
+const APPLY_PORTAL = "https://apply.learnwithleaders.com/apply";
+const LWL_PARTNER_SLUG = "learn-with-leaders";
+
+const applyLink = (
+  program: { apply_url?: string | null; program_url?: string | null; pay_slug?: string | null } | null | undefined,
+  partner: PartnerRow | undefined,
+  ...fallbacks: (string | null | undefined)[]
+): string => {
+  if (partner?.partner_slug === LWL_PARTNER_SLUG && program?.pay_slug) {
+    return `${APPLY_PORTAL}?program=${encodeURIComponent(program.pay_slug)}`;
+  }
+  return firstUrl(program?.apply_url, ...fallbacks, ADVISOR)!;
+};
+
+
 const slugify = (s: string) =>
   s
     .toLowerCase()
