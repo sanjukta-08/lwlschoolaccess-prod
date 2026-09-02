@@ -64,14 +64,15 @@ export function RoleCard({ role }: { role: Role }) {
             </div>
           </div>
 
-          <Link
-            to="/internships/apply"
-            search={{ role: role.id }}
+          <a
+            href={internshipApplyUrl(role.id)}
+            target="_blank"
+            rel="noreferrer"
             className="group inline-flex flex-none items-center justify-center gap-2 rounded-full bg-crimson px-7 py-3.5 text-[0.92rem] font-bold text-paper no-underline shadow-lift transition-colors hover:bg-crimson-deep"
           >
             Apply for this role
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
+          </a>
         </div>
       </header>
 
