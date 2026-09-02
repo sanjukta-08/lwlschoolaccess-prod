@@ -91,7 +91,7 @@ export const listProgramCodes = createServerFn({ method: "GET" }).handler(
     const { data, error } = await siteDb().from("program_codes").select("id, ref_code");
     if (error) return [];
     return (Array.isArray(data) ? data : [])
-      .filter((r: Record<string, unknown>) => r?.id && r?.ref_code)
+      .filter((r: Record<string, unknown>) => r?.["id"] && r?.["ref_code"])
       .map((r: Record<string, unknown>) => ({ id: String(r["id"]), ref_code: String(r["ref_code"]) }));
   },
 );
@@ -136,7 +136,7 @@ export const submitApplication = createServerFn({ method: "POST" })
       };
     }
 
-    let lastError: { message: string; code?: string } | null = null;
+    let lastError: { message: string; code?: string | undefined } | null = null;
     for (let attempt = 0; attempt < 3; attempt++) {
       const { data: result, error } = await siteDb().rpc("upsert_application", {
         _payload: data.payload,

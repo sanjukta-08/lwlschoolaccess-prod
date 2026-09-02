@@ -262,7 +262,7 @@ export function ApplyExperience({
   /* ── partner-managed programmes redirect out ── */
   const externalApplyUrl = useMemo(() => {
     const url =
-      (((formTemplate?.settings ?? {}) as Record<string, unknown>)).external_apply_url ??
+      ((formTemplate?.settings ?? {}) as Record<string, unknown>)["external_apply_url"] ??
       selectedProgram?.externalApplyUrl;
     return typeof url === "string" && /^https:\/\/\S+$/i.test(url.trim()) ? url.trim() : null;
   }, [formTemplate, selectedProgram?.externalApplyUrl]);
@@ -355,12 +355,12 @@ export function ApplyExperience({
         }
       }
     } else {
-      if (!val("student_name")?.trim()) errors.student_name = "Full name is required";
+      if (!val("student_name")?.trim()) errors["student_name"] = "Full name is required";
       if (!val("student_email")?.trim()) {
-        errors.student_email = "Email is required";
+        errors["student_email"] = "Email is required";
       } else {
         const r = validateEmail(val("student_email"));
-        if (!r.ok) errors.student_email = r.error || "Invalid email";
+        if (!r.ok) errors["student_email"] = r.error || "Invalid email";
       }
       for (const k of ["parent_email", "counsellor_email"] as const) {
         if (form[k]) {
@@ -376,8 +376,8 @@ export function ApplyExperience({
           errors[k] = `${country.name} numbers must be ${country.lengths.join(" or ")} digits`;
         }
       }
-      if (!val("country")?.trim()) errors.country = "Country is required";
-      if (!val("city")?.trim()) errors.city = "City is required";
+      if (!val("country")?.trim()) errors["country"] = "Country is required";
+      if (!val("city")?.trim()) errors["city"] = "City is required";
     }
 
     setFieldErrors(errors);
@@ -444,8 +444,8 @@ export function ApplyExperience({
           "question2",
         ] as const;
         for (const k of keys) payload[k] = normalized[k] || null;
-        payload.student_name = normalized.student_name || "";
-        payload.student_email = normalized.student_email || "";
+        payload["student_name"] = normalized["student_name"] || "";
+        payload["student_email"] = normalized["student_email"] || "";
       }
 
       const result = await submitApplication({ data: { payload } });
@@ -651,7 +651,7 @@ export function ApplyExperience({
             </p>
           )}
           <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <Button onClick={() => navigate({ to: "/finder" })}>Explore more programmes</Button>
+            <Button onClick={() => navigate({ to: "/finder", search: {} as never })}>Explore more programmes</Button>
             <Button variant="outline" onClick={() => navigate({ to: "/" })}>
               Back to home
             </Button>
@@ -705,7 +705,7 @@ export function ApplyExperience({
               <>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {CATEGORY_ORDER.map((cat) => {
-                    const Icon = CATEGORY_ICONS[cat];
+                    const Icon = CATEGORY_ICONS[cat] ?? Award;
                     const count = mergedPrograms.filter((p) => p.category === cat).length;
                     const active = selectedCategory === cat;
                     return (
