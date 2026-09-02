@@ -413,7 +413,7 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
           money(db.early_bird_price ?? db.sticker_price, db.price_currency) ?? "On request",
         feeR: db.early_bird_price != null ? money(db.sticker_price, db.price_currency) : null,
         site: firstUrl(db.program_url, partner?.website, ADVISOR)!,
-        apply: firstUrl(db.apply_url, db.program_url, partner?.website, ADVISOR)!,
+        apply: applyLink(db, partner, db.program_url, partner?.website),
         cohorts,
       });
     }
