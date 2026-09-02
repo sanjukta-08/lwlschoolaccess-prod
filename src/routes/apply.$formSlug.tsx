@@ -4,10 +4,10 @@ import { ApplyExperience, type ApplySearch } from "@/components/apply/ApplyExper
 
 export const Route = createFileRoute("/apply/$formSlug")({
   validateSearch: (search: Record<string, unknown>): ApplySearch => ({
-    program: typeof search.program === "string" ? search.program : undefined,
-    cohort: typeof search.cohort === "string" ? search.cohort : undefined,
-    ref: typeof search.ref === "string" ? search.ref : undefined,
-    code: typeof search.code === "string" ? search.code : undefined,
+    program: typeof search["program"] === "string" ? search["program"] : undefined,
+    cohort: typeof search["cohort"] === "string" ? search["cohort"] : undefined,
+    ref: typeof search["ref"] === "string" ? search["ref"] : undefined,
+    code: typeof search["code"] === "string" ? search["code"] : undefined,
   }),
   head: ({ params }) => {
     const label = params.formSlug

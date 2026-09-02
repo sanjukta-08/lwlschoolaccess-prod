@@ -17,23 +17,23 @@ const SENSITIVE_SETTING_KEYS = [
 /** Never let payment keys reach the browser — same rule as the live portal RPC. */
 const sanitise = (row: Record<string, unknown> | null): PublicFormTemplate | null => {
   if (!row) return null;
-  const settings = { ...((row.settings as Record<string, unknown>) ?? {}) };
+  const settings: Record<string, any> = { ...((row["settings"] as Record<string, any>) ?? {}) };
   for (const key of SENSITIVE_SETTING_KEYS) delete settings[key];
-  const schema = Array.isArray(row.schema) ? (row.schema as FormField[]) : null;
+  const schema = Array.isArray(row["schema"]) ? (row["schema"] as FormField[]) : null;
   return {
-    id: String(row.id ?? ""),
-    name: String(row.name ?? "Application"),
-    slug: (row.slug as string | null) ?? null,
-    program_code: (row.program_code as string | null) ?? null,
+    id: String(row["id"] ?? ""),
+    name: String(row["name"] ?? "Application"),
+    slug: (row["slug"] as string | null) ?? null,
+    program_code: (row["program_code"] as string | null) ?? null,
     schema,
     settings,
-    has_payment: row.has_payment === true || Boolean((row as { stripe_price_id?: string }).stripe_price_id),
+    has_payment: row["has_payment"] === true || Boolean((row as { stripe_price_id?: string }).stripe_price_id),
   };
 };
 
 /** Every active public form template (used for programme browsing). */
 export const listApplyTemplates = createServerFn({ method: "GET" }).handler(
-  async (): Promise<PublicFormTemplate[]> => {
+  async () => {
     const { siteDb } = await import("./portal.server");
     const { data, error } = await siteDb().rpc("get_public_form_template", {});
     if (error) throw new Error(error.message);
@@ -52,7 +52,7 @@ export const getApplyTemplate = createServerFn({ method: "GET" })
     slug: (data?.slug ?? "").trim().toLowerCase(),
     code: (data?.code ?? "").trim(),
   }))
-  .handler(async ({ data }): Promise<PublicFormTemplate | null> => {
+  .handler(async ({ data }) => {
     const { siteDb } = await import("./portal.server");
     const db = siteDb();
     const first = async (args: Record<string, string>) => {
@@ -78,8 +78,8 @@ export const getApplyTemplate = createServerFn({ method: "GET" })
     const { data: all, error } = await db.rpc("get_public_form_template", {});
     if (error || !Array.isArray(all)) return null;
     const linked = (all as Record<string, unknown>[]).find((t) => {
-      const codes = (t.settings as { program_codes?: unknown } | null)?.program_codes;
-      return Array.isArray(codes) && codes.includes(data.code);
+      const codes = (t["settings"] as { program_codes?: unknown } | null)?.program_codes;
+      return Array.isArray(codes) && codes.includes(data["code"]);
     });
     return sanitise(linked ?? null);
   });
@@ -92,7 +92,7 @@ export const listProgramCodes = createServerFn({ method: "GET" }).handler(
     if (error) return [];
     return (Array.isArray(data) ? data : [])
       .filter((r: Record<string, unknown>) => r?.id && r?.ref_code)
-      .map((r: Record<string, unknown>) => ({ id: String(r.id), ref_code: String(r.ref_code) }));
+      .map((r: Record<string, unknown>) => ({ id: String(r["id"]), ref_code: String(r["ref_code"]) }));
   },
 );
 
@@ -119,7 +119,7 @@ export const submitApplication = createServerFn({ method: "POST" })
   .inputValidator((data: { payload: Record<string, unknown> }) => {
     const payload = data?.payload;
     if (!payload || typeof payload !== "object") throw new Error("Application payload missing");
-    const email = String((payload as Record<string, unknown>).student_email ?? "").trim();
+    const email = String((payload as Record<string, unknown>)["student_email"] ?? "").trim();
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       throw new Error("A valid student email is required");
     }
@@ -154,7 +154,7 @@ export const submitApplication = createServerFn({ method: "POST" })
       lastError = { message: error.message, code: (error as { code?: string }).code };
       const code = lastError.code ?? "";
       const transient =
-        !code || code.startsWith("5") || code === "PGRST301" || /network|fetch|timeout/i.test(lastError.message);
+        !code || code.startsWith("5") || code === "PGRST301" || /network|fetch|timeout/i.test(lastError?.message);
       if (!transient) break;
       await new Promise((r) => setTimeout(r, 400 * 2 ** attempt));
     }
@@ -243,7 +243,7 @@ export const captureApplyLead = createServerFn({ method: "POST" })
       .eq("lead_type", "form")
       .eq("source", "application_autosave")
       .or(`student_email.eq.${matchEmail},parent_email.eq.${matchEmail}`);
-    query = row.program_code ? query.eq("program_code", row.program_code) : query.is("program_code", null);
+    query = row["program_code"] ? query.eq("program_code", row["program_code"]) : query.is("program_code", null);
 
     const { data: existing, error } = await query.limit(1);
     const found = (Array.isArray(existing) ? existing[0] : null) as

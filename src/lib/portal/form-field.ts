@@ -25,7 +25,7 @@ export interface PublicFormTemplate {
   slug: string | null;
   program_code: string | null;
   schema: FormField[] | null;
-  settings: Record<string, unknown> | null;
+  settings: Record<string, any> | null;
   has_payment: boolean;
   is_active?: boolean;
 }
