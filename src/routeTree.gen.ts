@@ -26,6 +26,7 @@ import { Route as CampsIndexRouteImport } from './routes/camps.index'
 import { Route as CampsSlugRouteImport } from './routes/camps.$slug'
 import { Route as CampsHcusYoungGlobalLeadersSummerRouteImport } from './routes/camps.hcus-young-global-leaders-summer'
 import { Route as CampsHcusYoungGlobalLeadersWinterRouteImport } from './routes/camps.hcus-young-global-leaders-winter'
+import { Route as CampsIgniteCambridgeJudgeRouteImport } from './routes/camps.ignite-cambridge-judge'
 import { Route as InternshipsIndexRouteImport } from './routes/internships.index'
 import { Route as ProgrammesSlugRouteImport } from './routes/programmes.$slug'
 
@@ -116,6 +117,12 @@ const CampsHcusYoungGlobalLeadersWinterRoute =
     path: '/hcus-young-global-leaders-winter',
     getParentRoute: () => CampsRoute,
   } as any)
+const CampsIgniteCambridgeJudgeRoute =
+  CampsIgniteCambridgeJudgeRouteImport.update({
+    id: '/ignite-cambridge-judge',
+    path: '/ignite-cambridge-judge',
+    getParentRoute: () => CampsRoute,
+  } as any)
 const InternshipsIndexRoute = InternshipsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -144,6 +151,7 @@ export interface FileRoutesByFullPath {
   '/camps/$slug': typeof CampsSlugRoute
   '/camps/hcus-young-global-leaders-summer': typeof CampsHcusYoungGlobalLeadersSummerRoute
   '/camps/hcus-young-global-leaders-winter': typeof CampsHcusYoungGlobalLeadersWinterRoute
+  '/camps/ignite-cambridge-judge': typeof CampsIgniteCambridgeJudgeRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/camps/': typeof CampsIndexRoute
   '/internships/': typeof InternshipsIndexRoute
@@ -163,6 +171,7 @@ export interface FileRoutesByTo {
   '/camps/$slug': typeof CampsSlugRoute
   '/camps/hcus-young-global-leaders-summer': typeof CampsHcusYoungGlobalLeadersSummerRoute
   '/camps/hcus-young-global-leaders-winter': typeof CampsHcusYoungGlobalLeadersWinterRoute
+  '/camps/ignite-cambridge-judge': typeof CampsIgniteCambridgeJudgeRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/camps': typeof CampsIndexRoute
   '/internships': typeof InternshipsIndexRoute
@@ -185,6 +194,7 @@ export interface FileRoutesById {
   '/camps/$slug': typeof CampsSlugRoute
   '/camps/hcus-young-global-leaders-summer': typeof CampsHcusYoungGlobalLeadersSummerRoute
   '/camps/hcus-young-global-leaders-winter': typeof CampsHcusYoungGlobalLeadersWinterRoute
+  '/camps/ignite-cambridge-judge': typeof CampsIgniteCambridgeJudgeRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/camps/': typeof CampsIndexRoute
   '/internships/': typeof InternshipsIndexRoute
@@ -208,6 +218,7 @@ export interface FileRouteTypes {
     | '/camps/$slug'
     | '/camps/hcus-young-global-leaders-summer'
     | '/camps/hcus-young-global-leaders-winter'
+    | '/camps/ignite-cambridge-judge'
     | '/programmes/$slug'
     | '/camps/'
     | '/internships/'
@@ -227,6 +238,7 @@ export interface FileRouteTypes {
     | '/camps/$slug'
     | '/camps/hcus-young-global-leaders-summer'
     | '/camps/hcus-young-global-leaders-winter'
+    | '/camps/ignite-cambridge-judge'
     | '/programmes/$slug'
     | '/camps'
     | '/internships'
@@ -248,6 +260,7 @@ export interface FileRouteTypes {
     | '/camps/$slug'
     | '/camps/hcus-young-global-leaders-summer'
     | '/camps/hcus-young-global-leaders-winter'
+    | '/camps/ignite-cambridge-judge'
     | '/programmes/$slug'
     | '/camps/'
     | '/internships/'
@@ -391,6 +404,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CampsHcusYoungGlobalLeadersWinterRouteImport
       parentRoute: typeof CampsRoute
     }
+    '/camps/ignite-cambridge-judge': {
+      id: '/camps/ignite-cambridge-judge'
+      path: '/ignite-cambridge-judge'
+      fullPath: '/camps/ignite-cambridge-judge'
+      preLoaderRoute: typeof CampsIgniteCambridgeJudgeRouteImport
+      parentRoute: typeof CampsRoute
+    }
     '/internships/': {
       id: '/internships/'
       path: '/'
@@ -412,6 +432,7 @@ interface CampsRouteChildren {
   CampsSlugRoute: typeof CampsSlugRoute
   CampsHcusYoungGlobalLeadersSummerRoute: typeof CampsHcusYoungGlobalLeadersSummerRoute
   CampsHcusYoungGlobalLeadersWinterRoute: typeof CampsHcusYoungGlobalLeadersWinterRoute
+  CampsIgniteCambridgeJudgeRoute: typeof CampsIgniteCambridgeJudgeRoute
   CampsIndexRoute: typeof CampsIndexRoute
 }
 
@@ -421,6 +442,7 @@ const CampsRouteChildren: CampsRouteChildren = {
     CampsHcusYoungGlobalLeadersSummerRoute,
   CampsHcusYoungGlobalLeadersWinterRoute:
     CampsHcusYoungGlobalLeadersWinterRoute,
+  CampsIgniteCambridgeJudgeRoute: CampsIgniteCambridgeJudgeRoute,
   CampsIndexRoute: CampsIndexRoute,
 }
 
