@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useCallback, useEffect, useState } from "react";
+import campVideo from "@/assets/camp-video/harvard-camp-video.mp4.asset.json";
 
 const galleryImages = [
   { src: "/lovable-uploads/gallery-harvard-steps.jpg", alt: "Students on Harvard steps", label: "Harvard Campus" },
@@ -100,7 +101,7 @@ const GallerySection = () => {
         <div className="rounded-2xl overflow-hidden shadow-2xl relative">
           <video
             ref={videoRef}
-            src="/lovable-uploads/harvard-camp-video.mp4"
+            src={campVideo.url}
             autoPlay loop muted playsInline preload="auto"
             onCanPlay={tryPlay}
             onLoadedData={tryPlay}

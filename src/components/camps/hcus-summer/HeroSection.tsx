@@ -6,6 +6,8 @@ import hcusLogo from "@/assets/hcus/hcus-hero-logo.png";
 import lwlLogo from "@/assets/hcus/lwl-hero-logo.png";
 
 import { campBySlug } from "@/lib/camps";
+import heroMp4 from "@/assets/camp-video/hero-video.mp4.asset.json";
+import heroWebm from "@/assets/camp-video/hero-video.webm.asset.json";
 
 /** Apply destination for this camp, resolved live from the catalogue. */
 const registrationUrl = () =>
@@ -33,8 +35,8 @@ const HeroSection = () => {
           onLoadedData={tryPlay}
           className="hero-video w-full h-full object-cover pointer-events-none"
         >
-          <source src="/hcus/hero-video.webm" type="video/webm" />
-          <source src="/hcus/hero-video.mp4" type="video/mp4" />
+          <source src={heroWebm.url} type="video/webm" />
+          <source src={heroMp4.url} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/65 to-black/85 z-[1]" />
       </div>

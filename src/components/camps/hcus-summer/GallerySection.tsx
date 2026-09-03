@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useCallback, useEffect, useState } from "react";
+import campVideo from "@/assets/camp-video/harvard-camp-video.mp4.asset.json";
 
 const galleryImages = [
   { src: "/lovable-uploads/gallery-harvard-steps.jpg", alt: "Students on Harvard steps", label: "Harvard Campus" },
@@ -61,7 +62,7 @@ const GallerySection = () => {
 
       <div className="max-w-4xl mx-auto px-6 mt-12">
         <div className="rounded-2xl overflow-hidden shadow-2xl relative">
-          <video ref={videoRef} src="/lovable-uploads/harvard-camp-video.mp4" autoPlay loop muted playsInline preload="auto" className="w-full h-auto" />
+          <video ref={videoRef} src={campVideo.url} autoPlay loop muted playsInline preload="auto" className="w-full h-auto" />
           <button onClick={toggleMute} className="absolute bottom-4 right-4 p-2.5 bg-black/50 rounded-full text-primary-foreground" aria-label={isMuted ? "Unmute" : "Mute"}>
             {isMuted ? "🔇" : "🔊"}
           </button>
