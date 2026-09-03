@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { SiteHeader } from "@/components/SiteHeader";
+import { PageHero } from "@/components/PageHero";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SectionHeading } from "@/components/SectionHeading";
 import { CampCardGrid } from "@/components/CampCard";
@@ -19,7 +19,6 @@ import {
   type Region,
   type Season,
 } from "@/lib/camps";
-import heroImage from "@/assets/camps/camps-hero.jpg";
 import { Link } from "@tanstack/react-router";
 
 const TITLE = "Summer & Winter Camps at Harvard, Cambridge, Geneva | Learn with Leaders";
