@@ -15,6 +15,7 @@ import { IgniteContributorsSection } from "@/components/camps/ignite/IgniteContr
 import { IgniteGallerySection } from "@/components/camps/ignite/IgniteGallerySection";
 import { IgniteAwardsSection } from "@/components/camps/ignite/IgniteAwardsSection";
 import { IgniteCTASection } from "@/components/camps/ignite/IgniteCTASection";
+import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CAMP_PAGE_FONT_LINKS } from "@/components/camps/shared/fonts";
 
@@ -54,6 +55,7 @@ function IgnitePage() {
 
   return (
     <div className="camp-ignite min-h-dvh bg-background">
+      <SiteHeader />
       <IgniteHero onApplyClick={openApply} />
       <IgniteProgrammeDetails />
       <IgniteAboutSection />
