@@ -1,12 +1,20 @@
 // In-person residential camps. Separate from the online programme catalogue in
 // programmes.ts: camps travel, cost more, and are sold on the campus itself.
-import harvardSummer from "@/assets/camps/harvard-summer.jpg";
-import harvardWinter from "@/assets/camps/harvard-winter.jpg";
-import premed from "@/assets/camps/premed.jpg";
-import prelaw from "@/assets/camps/prelaw.jpg";
-import cambridge from "@/assets/camps/cambridge.jpg";
-import geneva from "@/assets/camps/geneva.jpg";
-import salamanca from "@/assets/camps/salamanca.jpg";
+import summerAsset from "@/assets/camps/card-summer.webp.asset.json";
+import winterAsset from "@/assets/camps/card-winter.webp.asset.json";
+import premedAsset from "@/assets/camps/card-premed.jpg.asset.json";
+import prelawAsset from "@/assets/camps/card-prelaw.jpg.asset.json";
+import igniteAsset from "@/assets/camps/card-ignite.webp.asset.json";
+import genevaAsset from "@/assets/camps/card-geneva.jpg.asset.json";
+import spainAsset from "@/assets/camps/card-spain.png.asset.json";
+
+const harvardSummer = summerAsset.url;
+const harvardWinter = winterAsset.url;
+const premed = premedAsset.url;
+const prelaw = prelawAsset.url;
+const cambridge = igniteAsset.url;
+const geneva = genevaAsset.url;
+const salamanca = spainAsset.url;
 
 export type Region = "usa" | "uk" | "europe";
 export type Season = "summer" | "winter";
