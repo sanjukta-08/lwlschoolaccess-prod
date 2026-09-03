@@ -54,12 +54,13 @@ export const Route = createFileRoute("/camps/")({
   component: CampsHub,
 });
 
-const chip = (active: boolean) =>
-  `rounded-full border px-3.5 py-1.5 text-[0.78rem] font-semibold transition-colors ${
+const seg = (active: boolean) =>
+  `px-4 py-1.5 text-[0.7rem] font-semibold tracking-wide uppercase transition-colors ${
     active
-      ? "border-crimson bg-crimson text-paper"
-      : "border-line bg-paper text-ink-soft hover:border-gold-line hover:text-ink"
+      ? "bg-crimson text-paper"
+      : "bg-paper text-ink-soft hover:text-crimson"
   }`;
+
 
 function CampsHub() {
   const [region, setRegion] = useState<Region | "all">("all");
@@ -180,35 +181,46 @@ function CampsHub() {
           Choose the <em className="text-crimson-deep">campus</em>
         </SectionHeading>
 
-        <div className="mt-6 mb-10 flex flex-wrap items-center gap-2">
-          <button type="button" className={chip(region === "all")} onClick={() => setRegion("all")}>
-            All destinations
-          </button>
-          {REGIONS.map((r) => (
-            <button
-              key={r.key}
-              type="button"
-              className={chip(region === r.key)}
-              onClick={() => setRegion(r.key)}
-            >
-              {r.label}
-            </button>
-          ))}
-          <span className="mx-2 hidden h-5 w-px bg-line sm:block" aria-hidden />
-          <button type="button" className={chip(season === "all")} onClick={() => setSeason("all")}>
-            Any season
-          </button>
-          {SEASONS.map((s) => (
-            <button
-              key={s.key}
-              type="button"
-              className={chip(season === s.key)}
-              onClick={() => setSeason(s.key)}
-            >
-              {s.label}
-            </button>
-          ))}
+        <div className="mt-6 mb-10 flex flex-col gap-5 border-b border-line pb-6 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-wrap items-center gap-4">
+            <span className="mono-label text-crimson">Destination</span>
+            <div className="flex divide-x divide-line border border-line">
+              <button type="button" className={seg(region === "all")} onClick={() => setRegion("all")}>
+                All
+              </button>
+              {REGIONS.map((r) => (
+                <button
+                  key={r.key}
+                  type="button"
+                  className={seg(region === r.key)}
+                  onClick={() => setRegion(r.key)}
+                >
+                  {r.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <span className="mono-label text-crimson">Season</span>
+            <div className="flex divide-x divide-line border border-line">
+              <button type="button" className={seg(season === "all")} onClick={() => setSeason("all")}>
+                Any
+              </button>
+              {SEASONS.map((s) => (
+                <button
+                  key={s.key}
+                  type="button"
+                  className={seg(season === s.key)}
+                  onClick={() => setSeason(s.key)}
+                >
+                  {s.label}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
+
 
         {camps.length ? (
           <CampCardGrid camps={camps} />
