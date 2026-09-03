@@ -14,7 +14,11 @@ export const getRouter = () => {
     defaultPreloadStaleTime: 0,
     // Ship the server's query cache to the browser so suspense queries resolve
     // from cache on hydration instead of re-fetching and blanking the page.
-    dehydrate: () => ({ queryState: dehydrate(queryClient) }),
+    dehydrate: () => ({
+      queryState: JSON.parse(
+        JSON.stringify(dehydrate(queryClient, { shouldDehydrateMutation: () => false })),
+      ) as unknown as Record<string, never>,
+    }),
     hydrate: (dehydrated: { queryState?: unknown }) => {
       if (dehydrated?.queryState) {
         hydrate(queryClient, dehydrated.queryState);
