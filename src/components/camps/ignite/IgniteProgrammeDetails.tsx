@@ -18,7 +18,7 @@ export const IgniteProgrammeDetails = () => {
               </div>
               <div>
                 <h3 className="text-sm font-bold text-black/70 uppercase tracking-wide mb-1">Dates</h3>
-                <p className="text-xl font-bold text-black">Summer 2027 — Dates to be announced</p>
+                <p className="text-xl font-bold text-black">18 - 24 July 2027</p>
               </div>
 
             </div>
