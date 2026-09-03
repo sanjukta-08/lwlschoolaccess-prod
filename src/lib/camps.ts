@@ -336,7 +336,7 @@ export const CAMPS: Camp[] = [
       "Supervised activities and Cambridge city immersion",
     ],
     notIncluded: ["International flights", "UK visa fees", "Personal spending and insurance"],
-    cohorts: [{ label: "Dates to be announced", note: "Join the interest list for the next intake" }],
+    cohorts: [{ label: "18 - 24 July 2027", start: "2027-07-18" }],
     faqs: [
       { q: "Does my child need a business idea already?", a: "No. Day one is customer discovery, and teams form around problems people actually care about." },
       { q: "Do students work alone or in teams?", a: "In small teams, with a mentor attached to each team for the week." },

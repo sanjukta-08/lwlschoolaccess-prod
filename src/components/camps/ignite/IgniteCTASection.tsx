@@ -47,7 +47,7 @@ export const IgniteCTASection = ({ onApplyClick }: IgniteCTASectionProps) => {
           </div>
           
           <p className="mt-8 text-gray-500 text-sm">
-            Summer 2027 cohort • Applications opening soon — check back shortly
+            18 - 24 July 2027 • Cambridge Judge Business School
           </p>
 
         </motion.div>

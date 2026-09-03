@@ -18,7 +18,7 @@ export const IgniteProgrammeDetails = () => {
               </div>
               <div>
                 <h3 className="text-sm font-bold text-black/70 uppercase tracking-wide mb-1">Dates</h3>
-                <p className="text-xl font-bold text-black">Summer 2027 — Dates to be announced</p>
+                <p className="text-xl font-bold text-black">18 - 24 July 2027</p>
               </div>
 
             </div>
@@ -99,7 +99,7 @@ export const IgniteProgrammeDetails = () => {
               <li className="flex items-start gap-2">
                 <span className="text-black mt-1">•</span>
                 <span>
-                  The fee covers airport pickup on the arrival day and airport drop off on the departure day. (The exact dates and pick-up location to be confirmed closer to the programme.)
+                  The fee covers airport pickup on the arrival day and airport drop off on the departure day. (The exact pick-up location and timings to be confirmed closer to the programme.)
                 </span>
               </li>
               <li className="flex items-start gap-2">
@@ -110,7 +110,7 @@ export const IgniteProgrammeDetails = () => {
               </li>
             </ul>
             <p className="text-black font-bold mt-6 ml-16">
-              Applications for Summer 2027 opening soon
+              Applications open for 18 - 24 July 2027
             </p>
 
           </div>

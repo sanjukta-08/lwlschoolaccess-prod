@@ -7,7 +7,7 @@ const termsData = [
       <>
         <strong>Check-in</strong> at the allocated college accommodation is on the{' '}
         <strong>arrival day (2:00 PM)</strong> and <strong>check-out</strong> is on the{' '}
-        <strong>departure day (10:00 AM)</strong>. Exact dates for the Summer 2027 cohort will be confirmed shortly.
+        <strong>departure day (10:00 AM)</strong>. Arrival is Sunday 18 July 2027 and departure is Saturday 24 July 2027.
       </>
     ),
   },
