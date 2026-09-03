@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { useVideoAutoplay } from "./use-video-autoplay";
 
 import heroBg from "@/assets/hcus-winter/hero-bg-winter.jpg";
-import winterVideo from "@/assets/hcus-winter/hero-winter-video-v3.mp4";
+import winterVideoAsset from "@/assets/hcus-winter/hero-winter-video-v3.mp4.asset.json";
+const winterVideo = winterVideoAsset.url;
 import hcusLogo from "@/assets/hcus-winter/hcus-hero-logo.png";
 import lwlLogo from "@/assets/hcus-winter/lwl-hero-logo.png";
 
