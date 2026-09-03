@@ -54,12 +54,13 @@ export const Route = createFileRoute("/camps/")({
   component: CampsHub,
 });
 
-const chip = (active: boolean) =>
-  `rounded-full border px-3.5 py-1.5 text-[0.78rem] font-semibold transition-colors ${
+const seg = (active: boolean) =>
+  `px-4 py-1.5 text-[0.7rem] font-semibold tracking-wide uppercase transition-colors ${
     active
-      ? "border-crimson bg-crimson text-paper"
-      : "border-line bg-paper text-ink-soft hover:border-gold-line hover:text-ink"
+      ? "bg-crimson text-paper"
+      : "bg-paper text-ink-soft hover:text-crimson"
   }`;
+
 
 function CampsHub() {
   const [region, setRegion] = useState<Region | "all">("all");
