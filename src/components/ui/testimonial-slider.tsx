@@ -28,7 +28,7 @@ export const TestimonialSlider = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState<"left" | "right">("right");
 
-  const activeContributor = contributors[currentIndex];
+  const activeContributor = contributors[currentIndex]!;
 
   const handleNext = () => {
     setDirection("right");
