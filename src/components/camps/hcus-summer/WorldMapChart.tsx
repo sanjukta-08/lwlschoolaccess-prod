@@ -1,1 +1,1 @@
-export { default } from "../hcus-shared/HCUSWorldMapChart";
+export { default } from "../shared/HCUSWorldMapChart";
