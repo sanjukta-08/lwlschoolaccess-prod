@@ -28,7 +28,7 @@ export function CampCard({ camp }: { camp: Camp }) {
       params={{ slug: camp.slug }}
       className="group flex flex-col border border-line bg-paper no-underline shadow-soft transition-colors hover:border-gold-line md:flex-row"
     >
-      <div className="h-52 w-full shrink-0 overflow-hidden border-b border-line bg-wash md:h-auto md:w-[190px] md:border-b-0 md:border-r">
+      <div className="h-56 w-full shrink-0 overflow-hidden border-b border-line bg-wash md:h-auto md:w-[270px] md:border-b-0 md:border-r">
         <img
           src={camp.image}
           alt={`${camp.host} campus, ${camp.city}`}
@@ -41,9 +41,10 @@ export function CampCard({ camp }: { camp: Camp }) {
 
       <div className="flex flex-grow flex-col">
         <div className="border-b border-line p-4">
-          <h3 className="font-serif text-[1.28rem] leading-tight font-medium text-ink transition-colors group-hover:text-crimson">
+          <h3 className="font-serif text-[1.55rem] leading-[1.15] font-semibold tracking-tight text-ink transition-colors group-hover:text-crimson">
             {camp.name}
           </h3>
+
           <div className="mt-1.5 flex items-center justify-between gap-3">
             <span className="mono-label truncate text-gold-deep">{camp.host}</span>
             <span className="mono-label shrink-0 border border-line bg-[#fbfbf9] px-1.5 py-0.5 text-[0.55rem] text-ink-soft">
