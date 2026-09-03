@@ -24,6 +24,7 @@ import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as CampsIndexRouteImport } from './routes/camps.index'
 import { Route as CampsSlugRouteImport } from './routes/camps.$slug'
+import { Route as CampsHcusYoungGlobalLeadersSummerRouteImport } from './routes/camps.hcus-young-global-leaders-summer'
 import { Route as InternshipsIndexRouteImport } from './routes/internships.index'
 import { Route as ProgrammesSlugRouteImport } from './routes/programmes.$slug'
 
@@ -102,6 +103,12 @@ const CampsSlugRoute = CampsSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => CampsRoute,
 } as any)
+const CampsHcusYoungGlobalLeadersSummerRoute =
+  CampsHcusYoungGlobalLeadersSummerRouteImport.update({
+    id: '/hcus-young-global-leaders-summer',
+    path: '/hcus-young-global-leaders-summer',
+    getParentRoute: () => CampsRoute,
+  } as any)
 const InternshipsIndexRoute = InternshipsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -128,6 +135,7 @@ export interface FileRoutesByFullPath {
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
   '/camps/$slug': typeof CampsSlugRoute
+  '/camps/hcus-young-global-leaders-summer': typeof CampsHcusYoungGlobalLeadersSummerRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/camps/': typeof CampsIndexRoute
   '/internships/': typeof InternshipsIndexRoute
@@ -145,6 +153,7 @@ export interface FileRoutesByTo {
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
   '/camps/$slug': typeof CampsSlugRoute
+  '/camps/hcus-young-global-leaders-summer': typeof CampsHcusYoungGlobalLeadersSummerRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/camps': typeof CampsIndexRoute
   '/internships': typeof InternshipsIndexRoute
@@ -165,6 +174,7 @@ export interface FileRoutesById {
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
   '/camps/$slug': typeof CampsSlugRoute
+  '/camps/hcus-young-global-leaders-summer': typeof CampsHcusYoungGlobalLeadersSummerRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/camps/': typeof CampsIndexRoute
   '/internships/': typeof InternshipsIndexRoute
@@ -186,6 +196,7 @@ export interface FileRouteTypes {
     | '/stories'
     | '/testimonials'
     | '/camps/$slug'
+    | '/camps/hcus-young-global-leaders-summer'
     | '/programmes/$slug'
     | '/camps/'
     | '/internships/'
@@ -203,6 +214,7 @@ export interface FileRouteTypes {
     | '/stories'
     | '/testimonials'
     | '/camps/$slug'
+    | '/camps/hcus-young-global-leaders-summer'
     | '/programmes/$slug'
     | '/camps'
     | '/internships'
@@ -222,6 +234,7 @@ export interface FileRouteTypes {
     | '/stories'
     | '/testimonials'
     | '/camps/$slug'
+    | '/camps/hcus-young-global-leaders-summer'
     | '/programmes/$slug'
     | '/camps/'
     | '/internships/'
@@ -351,6 +364,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CampsSlugRouteImport
       parentRoute: typeof CampsRoute
     }
+    '/camps/hcus-young-global-leaders-summer': {
+      id: '/camps/hcus-young-global-leaders-summer'
+      path: '/hcus-young-global-leaders-summer'
+      fullPath: '/camps/hcus-young-global-leaders-summer'
+      preLoaderRoute: typeof CampsHcusYoungGlobalLeadersSummerRouteImport
+      parentRoute: typeof CampsRoute
+    }
     '/internships/': {
       id: '/internships/'
       path: '/'
@@ -370,11 +390,14 @@ declare module '@tanstack/react-router' {
 
 interface CampsRouteChildren {
   CampsSlugRoute: typeof CampsSlugRoute
+  CampsHcusYoungGlobalLeadersSummerRoute: typeof CampsHcusYoungGlobalLeadersSummerRoute
   CampsIndexRoute: typeof CampsIndexRoute
 }
 
 const CampsRouteChildren: CampsRouteChildren = {
   CampsSlugRoute: CampsSlugRoute,
+  CampsHcusYoungGlobalLeadersSummerRoute:
+    CampsHcusYoungGlobalLeadersSummerRoute,
   CampsIndexRoute: CampsIndexRoute,
 }
 
