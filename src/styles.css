@@ -362,3 +362,158 @@
     animation: none;
   }
 }
+
+/* ============================================================
+   Imported camp pages (HCUS Summer, HCUS Winter, Cambridge IGNITE)
+   ------------------------------------------------------------
+   These three pages are ports of their standalone designs and keep
+   their original look. Their palette and typography are scoped to the
+   wrapper classes below so nothing here can leak into the rest of
+   the site. Fonts are loaded per-route, not globally.
+   ============================================================ */
+
+@theme inline {
+  --color-ivory: var(--ivory);
+  --color-ivory-foreground: var(--ivory-foreground);
+  --color-parchment: var(--parchment);
+  --color-parchment-dark: var(--parchment-dark);
+  --color-navy-deep: var(--navy-deep);
+  --color-navy-mid: var(--navy-mid);
+  --color-crimson-light: var(--crimson-light);
+  --color-gold-muted: var(--gold-muted);
+  --color-grey-text: var(--grey-text);
+  --color-grey-light: var(--grey-light);
+
+  --font-serif-display: "Playfair Display", Georgia, serif;
+  --font-sans-body: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --font-georgia: Georgia, "Times New Roman", serif;
+  --font-display: "Playfair Display", Georgia, serif;
+}
+
+/* ---- HCUS camps: deep navy, crimson and gold on parchment ---- */
+.camp-hcus {
+  --background: hsl(210 45% 7%);
+  --foreground: hsl(40 30% 92%);
+  --card: hsl(210 35% 11%);
+  --card-foreground: hsl(40 30% 92%);
+  --popover: hsl(210 35% 11%);
+  --popover-foreground: hsl(40 30% 92%);
+  --primary: hsl(0 72% 38%);
+  --primary-foreground: hsl(40 30% 96%);
+  --secondary: hsl(40 45% 55%);
+  --secondary-foreground: hsl(210 45% 7%);
+  --muted: hsl(210 30% 15%);
+  --muted-foreground: hsl(210 15% 60%);
+  --accent: hsl(40 55% 50%);
+  --accent-foreground: hsl(210 45% 7%);
+  --ivory: hsl(40 40% 95%);
+  --ivory-foreground: hsl(210 45% 7%);
+  --border: hsl(210 20% 20%);
+  --input: hsl(210 20% 20%);
+  --ring: hsl(0 72% 38%);
+  --radius: 0.25rem;
+  --navy-deep: hsl(210 45% 7%);
+  --navy-mid: hsl(210 35% 14%);
+  --crimson: hsl(0 72% 38%);
+  --crimson-light: hsl(0 60% 50%);
+  --gold: hsl(40 55% 50%);
+  --gold-muted: hsl(40 30% 40%);
+  --parchment: hsl(40 40% 95%);
+  --parchment-dark: hsl(40 25% 88%);
+  --grey-text: hsl(210 10% 55%);
+  --grey-light: hsl(210 10% 75%);
+
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+}
+
+.camp-hcus :is(h1, h2, h3, h4, h5, h6),
+.camp-hcus .font-serif,
+.camp-hcus .font-serif-display,
+.camp-hcus .font-display {
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+.camp-hcus .font-sans,
+.camp-hcus .font-sans-body,
+.camp-hcus .font-body {
+  font-family: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+}
+
+.camp-hcus .divider-thin {
+  width: 4rem;
+  height: 1px;
+  background: var(--accent);
+  margin-inline: auto;
+}
+
+.camp-hcus .section-padding {
+  padding-block: 6rem;
+  padding-inline: 1.5rem;
+}
+
+.camp-hcus .grain-overlay {
+  position: relative;
+}
+
+.camp-hcus .grain-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+.camp-hcus .hero-video::-webkit-media-controls,
+.camp-hcus .hero-video::-webkit-media-controls-enclosure,
+.camp-hcus .hero-video::-webkit-media-controls-panel,
+.camp-hcus .hero-video::-webkit-media-controls-play-button,
+.camp-hcus .hero-video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+  opacity: 0;
+}
+
+/* ---- Cambridge IGNITE: light editorial, graphite and gold ---- */
+.camp-ignite {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(215 25% 15%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(215 25% 15%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(215 25% 15%);
+  --primary: hsl(0 0% 12.5%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(215 30% 97%);
+  --secondary-foreground: hsl(215 45% 20%);
+  --muted: hsl(215 20% 95%);
+  --muted-foreground: hsl(215 15% 45%);
+  --accent: hsl(38 92% 50%);
+  --accent-foreground: hsl(215 45% 20%);
+  --border: hsl(215 20% 88%);
+  --input: hsl(215 20% 88%);
+  --ring: hsl(215 45% 20%);
+  --radius: 0.375rem;
+
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.camp-ignite :is(h1, h2, h3, h4, h5, h6),
+.camp-ignite .font-serif,
+.camp-ignite .font-serif-display,
+.camp-ignite .font-display {
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+.camp-ignite .font-georgia {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.camp-ignite .font-sans,
+.camp-ignite .font-body {
+  font-family: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+}
