@@ -1,5 +1,12 @@
-import { Link } from "react-router-dom";
 import { Mail, Globe } from "lucide-react";
+
+import { campBySlug } from "@/lib/camps";
+
+/** Apply destination for this camp, resolved live from the catalogue. */
+const registrationUrl = () =>
+  campBySlug("hcus-young-global-leaders-summer")?.applyUrl ??
+  "https://www.learnwithleaders.com/camps/hcusociety/";
+
 
 const Footer = () => (
   <footer className="bg-primary text-primary-foreground">
@@ -11,10 +18,10 @@ const Footer = () => (
       <p className="font-sans text-base md:text-lg text-primary-foreground/70 leading-relaxed mb-10">Limited seats available.</p>
 
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mb-14">
-        <Link to="/apply?program=harvard-summer-camp"
+        <a href={registrationUrl()} target="_blank" rel="noopener noreferrer"
           className="px-10 py-4 bg-primary-foreground text-primary font-sans text-sm md:text-base font-semibold rounded-full hover:bg-primary-foreground/90 transition-all duration-300 min-w-[220px]">
           Apply Now
-        </Link>
+        </a>
         <a href="https://calendly.com/learnwithleaders?utm_source=Harvard+summer+camp-hcus" target="_blank" rel="noopener noreferrer"
           className="px-10 py-4 bg-primary-foreground text-primary font-sans text-sm md:text-base font-semibold rounded-full hover:bg-primary-foreground/90 transition-all duration-300 min-w-[220px]">
           Book a Meeting

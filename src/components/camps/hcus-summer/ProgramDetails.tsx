@@ -1,8 +1,15 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Link } from "react-router-dom";
 import { Calendar, MapPin, GraduationCap, Clock } from "lucide-react";
 import programDetailsBg from "@/assets/program-details-bg.jpg";
+
+import { campBySlug } from "@/lib/camps";
+
+/** Apply destination for this camp, resolved live from the catalogue. */
+const registrationUrl = () =>
+  campBySlug("hcus-young-global-leaders-summer")?.applyUrl ??
+  "https://www.learnwithleaders.com/camps/hcusociety/";
+
 
 const details = [
   { icon: Calendar, label: "Dates", value: "Cohort 1: 21 – 28 June 2026\nCohort 2: 28 June – 5 July 2026\nCohort 3: 5 – 12 July 2026" },
@@ -75,10 +82,10 @@ const ProgramDetails = () => {
           </div>
 
           <div className="text-center mt-12">
-            <Link to="/apply?program=harvard-summer-camp"
+            <a href={registrationUrl()} target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-primary-foreground text-primary font-sans font-bold text-base md:text-lg uppercase tracking-[0.15em] px-12 py-5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
               Apply Now <span className="text-xl">→</span>
-            </Link>
+            </a>
             <p className="text-primary-foreground/50 font-sans text-sm mt-3">Application deadline: 30th May 2026</p>
           </div>
         </motion.div>

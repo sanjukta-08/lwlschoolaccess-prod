@@ -1,9 +1,15 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
-const REGISTRATION_URL = "/apply?program=harvard-summer-camp";
+import { campBySlug } from "@/lib/camps";
+
+/** Apply destination for this camp, resolved live from the catalogue. */
+const registrationUrl = () =>
+  campBySlug("hcus-young-global-leaders-summer")?.applyUrl ??
+  "https://www.learnwithleaders.com/camps/hcusociety/";
+
+
 
 
 const steps = [
@@ -43,14 +49,14 @@ const ApplicationProcess = () => {
           transition={{ delay: 0.5, duration: 0.7 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <Link to={REGISTRATION_URL}>
+          <a href={registrationUrl()} target="_blank" rel="noopener noreferrer">
             <Button
               size="lg"
               className="px-10 py-6 bg-primary text-primary-foreground font-sans font-bold text-[11px] tracking-[0.3em] uppercase hover:bg-primary/90 transition-all duration-500"
             >
               Apply Now
             </Button>
-          </Link>
+          </a>
         </motion.div>
       </div>
     </section>

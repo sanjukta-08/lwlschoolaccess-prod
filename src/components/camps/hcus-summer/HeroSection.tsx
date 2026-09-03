@@ -1,12 +1,18 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useVideoAutoplay } from "./use-video-autoplay";
 import heroBg from "@/assets/hcus/hero-bg.jpg";
 import hcusLogo from "@/assets/hcus/hcus-hero-logo.png";
 import lwlLogo from "@/assets/hcus/lwl-hero-logo.png";
 
-const REGISTRATION_URL = "/apply?program=harvard-summer-camp";
+import { campBySlug } from "@/lib/camps";
+
+/** Apply destination for this camp, resolved live from the catalogue. */
+const registrationUrl = () =>
+  campBySlug("hcus-young-global-leaders-summer")?.applyUrl ??
+  "https://www.learnwithleaders.com/camps/hcusociety/";
+
+
 const SCHOOL_REGISTRATION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSciaj-F5b3E5yph1cx0rwZYb1jd5jo3Hz0TR_MfBndu9LP2Mw/viewform";
 
 const HeroSection = () => {
@@ -97,14 +103,14 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 1.3 }}
         >
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link to={REGISTRATION_URL}>
+            <a href={registrationUrl()} target="_blank" rel="noopener noreferrer">
               <Button
                 size="lg"
                 className="px-12 py-6 bg-primary text-primary-foreground font-sans font-bold text-[11px] tracking-[0.3em] uppercase hover:bg-primary/90 transition-all duration-500 shadow-[0_4px_30px_rgba(139,0,0,0.35)] hover:shadow-[0_8px_40px_rgba(139,0,0,0.55)]"
               >
                 Apply Now
               </Button>
-            </Link>
+            </a>
             <a href={SCHOOL_REGISTRATION_URL} target="_blank" rel="noopener noreferrer">
               <Button
                 size="lg"

@@ -1,7 +1,14 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import headerLogos from "@/assets/header-logos.png";
+
+import { campBySlug } from "@/lib/camps";
+
+/** Apply destination for this camp, resolved live from the catalogue. */
+const registrationUrl = () =>
+  campBySlug("hcus-young-global-leaders-summer")?.applyUrl ??
+  "https://www.learnwithleaders.com/camps/hcusociety/";
+
 
 const CALENDLY_URL = "https://calendly.com/learnwithleaders?utm_source=Harvard+summer+camp-hcus&utm_medium=Harvard+summer+camp-hcus&utm_id=Harvard+summer+camp-hcus";
 
@@ -32,7 +39,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 md:h-20">
         <Link to="/" className="flex items-center shrink-0">
           <img src={headerLogos} alt="HCUS & Learn with Leaders" className="h-10 md:h-14 w-auto" />
-        </Link>
+        </a>
 
         <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
           {navLinks.map((link) => (
@@ -52,10 +59,10 @@ const Navbar = () => {
             className="px-5 py-2.5 text-xs font-semibold tracking-[0.1em] uppercase border border-primary text-primary rounded hover:bg-primary hover:text-primary-foreground transition-all duration-300 whitespace-nowrap">
             Book a Meeting
           </a>
-          <Link to="/apply?program=harvard-summer-camp"
+          <a href={registrationUrl()} target="_blank" rel="noopener noreferrer"
             className="px-5 py-2.5 text-xs font-semibold tracking-[0.1em] uppercase bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-all duration-300 whitespace-nowrap">
             Apply Now
-          </Link>
+          </a>
         </div>
 
         <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden w-10 h-10 flex items-center justify-center text-primary" aria-label="Toggle menu">
@@ -79,10 +86,10 @@ const Navbar = () => {
               className="text-center px-5 py-3.5 text-sm font-semibold tracking-[0.1em] uppercase border border-primary text-primary rounded hover:bg-primary hover:text-primary-foreground transition-all duration-300">
               Book a Meeting
             </a>
-            <Link to="/apply?program=harvard-summer-camp" onClick={() => setMenuOpen(false)}
+            <a href={registrationUrl()} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)}
               className="text-center px-5 py-3.5 text-sm font-semibold tracking-[0.1em] uppercase bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-all duration-300">
               Apply Now
-            </Link>
+            </a>
           </div>
         </div>
       )}
