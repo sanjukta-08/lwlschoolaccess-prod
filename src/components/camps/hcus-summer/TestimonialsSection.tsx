@@ -18,7 +18,7 @@ const TestimonialsSection = () => {
   const [direction, setDirection] = useState(0);
 
   const navigate = (dir: number) => { setDirection(dir); setActive((p) => (p + dir + testimonials.length) % testimonials.length); };
-  const item = testimonials[active];
+  const item = testimonials[active]!;
   const isEven = active % 2 === 0;
 
   return (

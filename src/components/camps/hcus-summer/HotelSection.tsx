@@ -29,12 +29,12 @@ const HotelSection = () => {
         </motion.div>
 
         <div className="overflow-hidden rounded-2xl mb-4">
-          <img src={hotelImages[0].src} alt={hotelImages[0].alt} className="w-full h-[280px] md:h-[420px] object-cover" />
+          <img src={hotelImages[0]!.src} alt={hotelImages[0]!.alt} className="w-full h-[280px] md:h-[420px] object-cover" />
         </div>
 
         <div className="grid grid-cols-2 gap-4 mb-12">
-          <div className="overflow-hidden rounded-2xl"><img src={hotelImages[1].src} alt={hotelImages[1].alt} className="w-full h-[180px] md:h-[280px] object-cover" /></div>
-          <div className="overflow-hidden rounded-2xl"><img src={hotelImages[2].src} alt={hotelImages[2].alt} className="w-full h-[180px] md:h-[280px] object-cover" /></div>
+          <div className="overflow-hidden rounded-2xl"><img src={hotelImages[1]!.src} alt={hotelImages[1]!.alt} className="w-full h-[180px] md:h-[280px] object-cover" /></div>
+          <div className="overflow-hidden rounded-2xl"><img src={hotelImages[2]!.src} alt={hotelImages[2]!.alt} className="w-full h-[180px] md:h-[280px] object-cover" /></div>
         </div>
 
         <div className="max-w-4xl mx-auto">

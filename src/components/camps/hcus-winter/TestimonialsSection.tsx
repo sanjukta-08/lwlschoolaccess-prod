@@ -33,7 +33,7 @@ const TestimonialsSection = () => {
     setActive(i);
   };
 
-  const item = testimonials[active];
+  const item = testimonials[active]!;
   const isEven = active % 2 === 0;
 
   const slideVariants = {

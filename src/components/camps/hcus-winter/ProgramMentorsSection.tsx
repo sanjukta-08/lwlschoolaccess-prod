@@ -26,7 +26,7 @@ const ProgramMentorsSection = () => {
     setCurrent((prev) => (prev + dir + mentors.length) % mentors.length);
   };
 
-  const mentor = mentors[current];
+  const mentor = mentors[current]!;
 
   const slideVariants = {
     enter: (dir: number) => ({ x: dir > 0 ? 300 : -300, opacity: 0, scale: 0.95 }),

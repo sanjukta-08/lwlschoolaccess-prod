@@ -47,11 +47,11 @@ const TermsSection = () => {
 
         <motion.div key={activeTab} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="bg-ivory-foreground/[0.03] border border-border rounded-2xl p-6 md:p-10">
           <div className="flex items-center gap-3 mb-8">
-            <span className="text-3xl">{categories[activeTab].icon}</span>
-            <h3 className="font-serif text-2xl md:text-3xl text-ivory-foreground">{categories[activeTab].label}</h3>
+            <span className="text-3xl">{categories[activeTab]!.icon}</span>
+            <h3 className="font-serif text-2xl md:text-3xl text-ivory-foreground">{categories[activeTab]!.label}</h3>
           </div>
           <div className="space-y-6">
-            {categories[activeTab].terms.map((term, i) => (
+            {categories[activeTab]!.terms.map((term, i) => (
               <div key={i} className="flex gap-4">
                 <div className="shrink-0 mt-1.5">
                   <div className="w-2.5 h-2.5 rounded-full bg-primary/40 ring-4 ring-primary/10" />

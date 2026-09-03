@@ -39,15 +39,15 @@ const HotelSection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="overflow-hidden rounded-2xl mb-4"
         >
-          <img src={hotelImages[0].src} alt={hotelImages[0].alt} className="w-full h-[280px] md:h-[420px] object-cover" />
+          <img src={hotelImages[0]!.src} alt={hotelImages[0]!.alt} className="w-full h-[280px] md:h-[420px] object-cover" />
         </motion.div>
 
         <div className="grid grid-cols-2 gap-4 mb-12">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, delay: 0.3 }} className="overflow-hidden rounded-2xl">
-            <img src={hotelImages[1].src} alt={hotelImages[1].alt} className="w-full h-[180px] md:h-[280px] object-cover" />
+            <img src={hotelImages[1]!.src} alt={hotelImages[1]!.alt} className="w-full h-[180px] md:h-[280px] object-cover" />
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, delay: 0.4 }} className="overflow-hidden rounded-2xl">
-            <img src={hotelImages[2].src} alt={hotelImages[2].alt} className="w-full h-[180px] md:h-[280px] object-cover" />
+            <img src={hotelImages[2]!.src} alt={hotelImages[2]!.alt} className="w-full h-[180px] md:h-[280px] object-cover" />
           </motion.div>
         </div>
 

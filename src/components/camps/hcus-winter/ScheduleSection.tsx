@@ -166,7 +166,7 @@ const ScheduleSection = () => {
               transition={{ duration: 0.3 }}
               className="mt-6 text-primary-foreground font-serif text-2xl md:text-3xl lg:text-4xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)]"
             >
-              {days[selectedDay].title}
+              {days[selectedDay]!.title}
             </motion.p>
           </AnimatePresence>
         </motion.div>
@@ -186,7 +186,7 @@ const ScheduleSection = () => {
               transition={{ duration: 0.4 }}
               className="space-y-2"
             >
-              {days[selectedDay].items.map((item, i) => (
+              {days[selectedDay]!.items.map((item, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, x: 20 }}

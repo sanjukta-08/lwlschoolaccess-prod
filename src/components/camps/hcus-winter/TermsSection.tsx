@@ -71,12 +71,12 @@ const TermsSection = () => {
           className="bg-ivory-foreground/[0.03] border border-border rounded-2xl p-6 md:p-10"
         >
           <div className="flex items-center gap-3 mb-8">
-            <span className="text-3xl">{categories[activeTab].icon}</span>
-            <h3 className="font-serif text-2xl md:text-3xl text-ivory-foreground">{categories[activeTab].label}</h3>
+            <span className="text-3xl">{categories[activeTab]!.icon}</span>
+            <h3 className="font-serif text-2xl md:text-3xl text-ivory-foreground">{categories[activeTab]!.label}</h3>
           </div>
 
           <div className="space-y-6">
-            {categories[activeTab].terms.map((term, i) => (
+            {categories[activeTab]!.terms.map((term, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, x: -10 }}

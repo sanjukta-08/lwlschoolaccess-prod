@@ -26,7 +26,7 @@ const ProgramMentorsSection = () => {
     setCurrent((p) => (p + dir + mentors.length) % mentors.length);
   };
 
-  const mentor = mentors[current];
+  const mentor = mentors[current]!;
 
   return (
     <section ref={ref} className="py-20 md:py-28 px-6 bg-primary overflow-hidden">

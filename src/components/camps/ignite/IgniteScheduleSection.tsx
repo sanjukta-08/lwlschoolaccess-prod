@@ -179,11 +179,11 @@ export const IgniteScheduleSection = () => {
               className="bg-white p-6 md:p-8 md:pr-[35%] w-full relative z-0"
             >
               <h3 className="text-2xl md:text-3xl font-semibold text-[#8B1538] mb-6">
-                {scheduleData[activeDay].dayName}
+                {scheduleData[activeDay]!.dayName}
               </h3>
 
               <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2">
-                {scheduleData[activeDay].items.map((item, index) => (
+                {scheduleData[activeDay]!.items.map((item, index) => (
                   <div key={index} className="flex gap-4 md:gap-6">
                     <span className="text-[#2B7CB3] font-medium text-sm md:text-base w-24 md:w-28 shrink-0">
                       {item.time}

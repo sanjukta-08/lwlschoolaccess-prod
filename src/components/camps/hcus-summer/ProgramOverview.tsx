@@ -39,7 +39,7 @@ const ProgramOverview = () => {
         <div className="relative">
           <div className="overflow-hidden">
             <motion.div key={current} initial={{ opacity: 0, x: 60 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }} className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {slides[current].map((prog, i) => (
+              {slides[current]!.map((prog, i) => (
                 <motion.div key={prog.title} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-8 flex flex-col items-center text-center">
                   <span className="text-4xl mb-5 block">{prog.icon}</span>

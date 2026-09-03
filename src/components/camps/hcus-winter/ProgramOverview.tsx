@@ -53,7 +53,7 @@ const ProgramOverview = () => {
               transition={{ duration: 0.5, ease: "easeInOut" }}
               className="grid grid-cols-1 md:grid-cols-3 gap-6"
             >
-              {slides[current].map((prog, i) => (
+              {slides[current]!.map((prog, i) => (
                 <motion.div
                   key={prog.title}
                   initial={{ opacity: 0, y: 20 }}

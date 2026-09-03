@@ -109,14 +109,14 @@ const ScheduleSection = () => {
           </div>
 
           <p className="mt-6 text-primary-foreground font-serif text-2xl md:text-3xl lg:text-4xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)]">
-            {days[selectedDay].title}
+            {days[selectedDay]!.title}
           </p>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, x: 40 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.8, delay: 0.2 }} className="lg:w-[65%] flex flex-col justify-center">
           <AnimatePresence mode="wait">
             <motion.div key={selectedDay} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.4 }} className="space-y-2">
-              {days[selectedDay].items.map((item, i) => (
+              {days[selectedDay]!.items.map((item, i) => (
                 <div key={i} className="flex gap-3 sm:gap-4 px-3 sm:px-5 py-2.5 sm:py-3 rounded-lg bg-black/40 backdrop-blur-md border border-primary-foreground/10">
                   <div className="shrink-0 pt-0.5">
                     <span className="inline-block px-2 sm:px-3 py-1 sm:py-1.5 rounded bg-primary/90 text-primary-foreground text-xs sm:text-sm font-sans font-semibold whitespace-nowrap">
