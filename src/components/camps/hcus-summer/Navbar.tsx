@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import headerLogos from "@/assets/header-logos.png";
 
 import { campBySlug } from "@/lib/camps";
+import brochureAsset from "@/assets/brochures/HCUS_Summer_Camp_2026.pdf.asset.json";
 
 /** Apply destination for this camp, resolved live from the catalogue. */
 const registrationUrl = () =>
@@ -17,7 +18,7 @@ const navLinks = [
   { label: "About Camp", href: "#about" },
   { label: "Schedule", href: "#schedule" },
   { label: "Testimonials", href: "#testimonials" },
-  { label: "Camp Brochure", href: "/brochures/HCUS_Summer_Camp_2026.pdf", external: true },
+  { label: "Camp Brochure", href: brochureAsset.url, external: true },
 ];
 
 const Navbar = () => {

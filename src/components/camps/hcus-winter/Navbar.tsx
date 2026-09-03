@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import headerLogos from "@/assets/hcus-winter/header-logos.png";
+import brochureAsset from "@/assets/brochures/HCUS_Winter_Camp_2026.pdf.asset.json";
 
 const REGISTRATION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSe8-WcdCzp_QSOaPtic5FHJnDfGqMt36i80LCvfJChPykmvIQ/viewform";
 const CALENDLY_URL = "https://calendly.com/learnwithleaders?utm_source=Harvard+Winter+Camp&utm_medium=Harvard+Winter+Camp&utm_id=Harvard+Winter+Camp";
@@ -9,7 +10,7 @@ const navLinks = [
   { label: "About Camp", href: "#about" },
   { label: "Schedule", href: "#schedule" },
   { label: "Testimonials", href: "#testimonials" },
-  { label: "Camp Brochure", href: "/brochures/HCUS_Winter_Camp_2026.pdf", external: true },
+  { label: "Camp Brochure", href: brochureAsset.url, external: true },
 ];
 
 const Navbar = () => {
