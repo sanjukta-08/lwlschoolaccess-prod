@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { SiteHeader } from "@/components/SiteHeader";
+import { PageHero } from "@/components/PageHero";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SectionHeading } from "@/components/SectionHeading";
 import { CampCardGrid } from "@/components/CampCard";
@@ -19,7 +19,6 @@ import {
   type Region,
   type Season,
 } from "@/lib/camps";
-import heroImage from "@/assets/camps/camps-hero.jpg";
 import { Link } from "@tanstack/react-router";
 
 const TITLE = "Summer & Winter Camps at Harvard, Cambridge, Geneva | Learn with Leaders";
@@ -84,60 +83,37 @@ function CampsHub() {
 
   return (
     <div className="min-h-dvh bg-[#fbfbf9]">
-      <SiteHeader />
+      <PageHero
+        eyebrow="In-person residency · Winter 2026 & Summer 2027"
+        title={
+          <>
+            The world is your <em className="text-crimson-deep">classroom</em>
+          </>
+        }
+        subtitle={`${CAMPS.length} residential camps at ${universities} universities across ${cities} cities - Harvard, Cambridge Judge, the University of Geneva and Salamanca. Small cohorts, undergraduate mentors, and a project your child presents before they fly home.`}
+        pills={[
+          { top: `${CAMPS.length} camps`, sub: "Summer & winter" },
+          { top: `${universities} universities`, sub: "Host campuses" },
+          { top: `${cities} cities`, sub: "Worldwide" },
+          { top: CAMP_WEEK.length ? `${CAMP_WEEK.length}-day rhythm` : "Grades 8-12", sub: "On campus" },
+        ]}
+      >
+        <a
+          href="#all-camps"
+          className="mono-label bg-crimson px-7 py-3.5 text-paper no-underline shadow-soft transition-colors hover:bg-crimson-deep"
+        >
+          Explore all camps
+        </a>
+        <a
+          href={CALENDLY_BOOKING_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="mono-label border border-line bg-paper px-7 py-3.5 text-ink no-underline shadow-soft transition-colors hover:border-gold-line hover:text-crimson"
+        >
+          Book a meeting
+        </a>
+      </PageHero>
 
-      {/* ---------- hero ---------- */}
-      <section className="page-shell grid grid-cols-1 items-center gap-12 pt-10 pb-16 lg:grid-cols-12 lg:pt-16 lg:pb-24">
-        <div className="flex flex-col gap-6 lg:col-span-6">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="mono-label border border-gold-line px-2 py-1 text-gold-deep">
-              In-person residency
-            </span>
-            <span className="mono-label text-ink-faint">Winter 2026 &amp; Summer 2027</span>
-          </div>
-
-          <h1 className="font-serif text-[clamp(2.4rem,6.4vw,4.4rem)] leading-[0.98] font-normal tracking-tight text-ink">
-            The world is your <em className="text-crimson-deep">classroom.</em>
-          </h1>
-
-          <p className="max-w-[34em] text-[1.05rem] leading-relaxed text-ink-soft">
-            {CAMPS.length} residential camps at {universities} universities across{" "}
-            {cities} cities - Harvard, Cambridge Judge, the University of Geneva and
-            Salamanca. Small cohorts, undergraduate mentors, and a project your child
-            presents before they fly home.
-          </p>
-
-          <div className="flex flex-wrap items-center gap-6 pt-1">
-            <a
-              href="#all-camps"
-              className="mono-label bg-crimson px-8 py-4 text-paper no-underline shadow-soft transition-colors hover:bg-crimson-deep"
-            >
-              Explore all camps
-            </a>
-            <div className="border-l border-line pl-6">
-              <p className="font-serif text-[0.98rem] text-ink italic">
-                &ldquo;A life-defining week on campus.&rdquo;
-              </p>
-              <p className="mono-label mt-1 text-ink-faint">Parent · Dubai</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="lg:col-span-6">
-          <div className="relative aspect-[16/10] overflow-hidden rounded-sm border border-line bg-wash shadow-lift">
-            <img
-              src={heroImage}
-              alt="International students crossing a historic university courtyard"
-              width={1600}
-              height={1000}
-              className="h-full w-full object-cover"
-            />
-            <span className="mono-label absolute right-5 bottom-5 bg-paper px-3 py-2 text-ink-soft shadow-soft">
-              On campus, not on Zoom
-            </span>
-          </div>
-        </div>
-      </section>
 
       {/* ---------- next departures ---------- */}
       <section className="border-y border-line bg-paper py-12">
