@@ -41,7 +41,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 md:h-20">
         <Link to="/" className="flex items-center shrink-0">
           <img src={headerLogos} alt="HCUS & Learn with Leaders" className="h-10 md:h-14 w-auto" />
-        </a>
+        </Link>
 
         <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
           {navLinks.map((link) => (
