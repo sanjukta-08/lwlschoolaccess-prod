@@ -110,7 +110,7 @@ export const IgniteProgrammeDetails = () => {
               </li>
             </ul>
             <p className="text-black font-bold mt-6 ml-16">
-              Applications for Summer 2027 opening soon
+              Applications open for 18 - 24 July 2027
             </p>
 
           </div>
