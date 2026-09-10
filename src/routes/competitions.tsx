@@ -8,7 +8,6 @@ import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
 import { useHydratedCatalogue } from "@/lib/catalogue";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import {
-  PROGRAMMES,
   TRACKS,
   fmtLong,
   upcomingProgrammes,
