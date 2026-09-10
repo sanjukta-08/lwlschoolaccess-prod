@@ -11,6 +11,7 @@ import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
 import { CAMPS, campBySlug, datesLabel, relatedCamps, type Camp } from "@/lib/camps";
 
 export const Route = createFileRoute("/camps/$slug")({
+  staticData: { sitemap: true },
   loader: async ({ params, context }) => {
     await ensureCatalogue(context.queryClient);
     const camp = campBySlug(params.slug);

@@ -30,6 +30,7 @@ const masterclassQuery = queryOptions({
 });
 
 export const Route = createFileRoute("/masterclasses")({
+  staticData: { sitemap: true },
   loader: ({ context }) => context.queryClient.ensureQueryData(masterclassQuery),
   head: () => ({
     meta: [

@@ -45,6 +45,7 @@ const gradeLo = () => Math.min(...PROGRAMMES.map((p) => p.g[0]));
 const gradeHi = () => Math.max(...PROGRAMMES.map((p) => p.g[1]));
 
 export const Route = createFileRoute("/finder")({
+  staticData: { sitemap: true },
   validateSearch: (search: Record<string, unknown>) => validateFinderSearch(search),
   search: { middlewares: [stripSearchParams(DEFAULT_SEARCH)] },
   head: () => ({

@@ -28,6 +28,7 @@ import {
 import { SiteFooter } from "@/components/SiteFooter";
 
 export const Route = createFileRoute("/shortlist")({
+  staticData: { sitemap: false },
   validateSearch: (search: Record<string, unknown>): { ids?: string } => {
     const raw = search["ids"];
     return typeof raw === "string" && raw ? { ids: raw } : {};

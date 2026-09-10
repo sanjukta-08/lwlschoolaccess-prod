@@ -13,6 +13,7 @@ const DESC =
   "How each Learn with Leaders programme builds a university profile: the skills your child gains, the proof you end up holding, and when to do what from Grade 5 to 12.";
 
 export const Route = createFileRoute("/profile-building")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: TITLE },

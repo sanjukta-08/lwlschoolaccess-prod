@@ -75,6 +75,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  staticData: { sitemap: false },
   // Live programme + camp schedule, loaded once before anything renders.
   loader: ({ context }) => ensureCatalogue(context.queryClient),
   head: () => ({

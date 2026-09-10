@@ -26,6 +26,7 @@ const DESC =
   "A residential entrepreneurship camp at Cambridge Judge Business School for Grades 8-12: venture sprints, college mentors, city immersion and a final pitch showcase.";
 
 export const Route = createFileRoute("/camps/ignite-cambridge-judge")({
+  staticData: { sitemap: true },
   loader: async ({ context }) => {
     await ensureCatalogue(context.queryClient);
     return null;

@@ -28,6 +28,7 @@ const DESC =
   "A residential winter leadership camp at Harvard University with the Harvard College Union Society, for Grades 8-12. January 2027 cohorts, fees, schedule and how to apply.";
 
 export const Route = createFileRoute("/camps/hcus-young-global-leaders-winter")({
+  staticData: { sitemap: true },
   loader: async ({ context }) => {
     await ensureCatalogue(context.queryClient);
     return null;

@@ -3,6 +3,7 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 
 /** Legacy /stories URL - the section is now /testimonials. */
 export const Route = createFileRoute("/stories")({
+  staticData: { sitemap: false },
   beforeLoad: ({ search }) => {
     const track = typeof search["track"] === "string" ? search["track"] : "";
     throw redirect({
