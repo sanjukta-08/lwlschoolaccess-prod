@@ -73,7 +73,7 @@ export const Route = createFileRoute("/competitions")({
           "@type": "ItemList",
           name: "Learn with Leaders competitions",
           itemListElement: upcomingProgrammes()
-            .filter((p) => p.type === "comp")
+            .filter((p) => p.type === "comp" && !p.name.toLowerCase().includes("next generation finance"))
             .map((p, i) => ({
               "@type": "ListItem",
               position: i + 1,
@@ -182,7 +182,9 @@ function CompetitionCard({ p }: { p: Programme }) {
 
 function CompetitionsPage() {
   useHydratedCatalogue();
-  const competitions = upcomingProgrammes().filter((p) => p.type === "comp");
+  const competitions = upcomingProgrammes().filter(
+    (p) => p.type === "comp" && !p.name.toLowerCase().includes("next generation finance"),
+  );
   const partners = new Set(competitions.map((p) => partnerFromUrl(p.apply)));
 
   return (
