@@ -104,6 +104,19 @@ export function SiteHeader() {
             </span>
           </Link>
         </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link
+            to="/competitions"
+            activeProps={{ className: "bg-wash text-ink" }}
+            className="flex cursor-pointer flex-col items-start rounded-xl px-3 py-2 text-left text-[0.85rem] font-semibold text-ink-soft no-underline outline-none transition-colors hover:bg-wash hover:text-ink focus:bg-wash focus:text-ink"
+            onClick={close}
+          >
+            <span>Competitions</span>
+            <span className="text-[0.72rem] font-normal text-ink-faint">
+              Onward, FinLit &amp; more
+            </span>
+          </Link>
+        </DropdownMenuItem>
       </DropdownMenuContent>
 
     </DropdownMenu>
@@ -145,6 +158,14 @@ export function SiteHeader() {
             onClick={close}
           >
             Camps (in person)
+          </Link>
+          <Link
+            to="/competitions"
+            activeProps={{ className: "bg-gold-soft text-ink" }}
+            className={mobileLinkCls}
+            onClick={close}
+          >
+            Competitions
           </Link>
         </div>
 
