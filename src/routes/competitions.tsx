@@ -13,6 +13,39 @@ import {
   upcomingProgrammes,
   type Programme,
 } from "@/lib/programmes";
+import imgFinanceMarkets from "@/assets/competitions/finance-markets.jpg";
+import imgFinanceChallenge from "@/assets/competitions/finance-challenge.jpg";
+import imgEssay from "@/assets/competitions/essay-writing.jpg";
+import imgStem from "@/assets/competitions/stem-innovation.jpg";
+import imgAi from "@/assets/competitions/ai-founders.jpg";
+import imgDebate from "@/assets/competitions/debating.jpg";
+import imgGeneric from "@/assets/competitions/generic.jpg";
+
+/** Picks the closest-matching photo for a competition from its name and track. */
+const imageFor = (p: Programme): string => {
+  const n = p.name.toLowerCase();
+  if (n.includes("wolves") || n.includes("wall street")) return imgFinanceMarkets;
+  if (n.includes("essay")) return imgEssay;
+  if (n.includes("stem")) return imgStem;
+  if (n.includes("debat")) return imgDebate;
+  if (n.includes("founder") || n.includes("ai ")) return imgAi;
+  if (n.includes("finance") || n.includes("finlit")) return imgFinanceChallenge;
+  if (p.tracks.includes("fin")) return imgFinanceMarkets;
+  if (p.tracks.includes("ai")) return imgAi;
+  if (p.tracks.includes("law")) return imgDebate;
+  if (p.tracks.includes("res")) return imgEssay;
+  return imgGeneric;
+};
+
+/** First sentence only, trimmed, so every card reads at the same length. */
+const shortAbout = (text: string, limit = 130): string => {
+  const clean = text.replace(/\s+/g, " ").trim();
+  const firstStop = clean.search(/\.\s|\.$/);
+  const sentence = firstStop > 0 ? clean.slice(0, firstStop + 1) : clean;
+  if (sentence.length <= limit) return sentence;
+  const cut = sentence.slice(0, limit);
+  return cut.slice(0, cut.lastIndexOf(" ")) + "...";
+};
 
 const TITLE = "Competitions - Learn with Leaders";
 const DESC =
