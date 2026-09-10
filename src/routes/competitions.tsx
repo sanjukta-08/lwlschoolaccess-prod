@@ -18,8 +18,18 @@ import imgFinanceChallenge from "@/assets/competitions/finance-challenge.jpg";
 import imgEssay from "@/assets/competitions/essay-writing.jpg";
 import imgStem from "@/assets/competitions/stem-innovation.jpg";
 import imgAi from "@/assets/competitions/ai-founders.jpg";
+import imgAiFounders from "@/assets/competitions/ai-founders-challenge.png.asset.json";
 import imgDebate from "@/assets/competitions/debating.jpg";
 import imgGeneric from "@/assets/competitions/generic.jpg";
+
+const isAiFoundersChallenge = (p: Programme): boolean => {
+  const n = p.name.toLowerCase();
+  return n.includes("ai founder") || n.includes("founders challenge");
+};
+
+/** Pinned first: AI Founders Challenge, then everything else in catalogue order. */
+const sortCompetitions = (a: Programme, b: Programme): number =>
+  Number(isAiFoundersChallenge(b)) - Number(isAiFoundersChallenge(a));
 
 /** Picks the closest-matching photo for a competition from its name and track. */
 const imageFor = (p: Programme): string => {
