@@ -13,6 +13,39 @@ import {
   upcomingProgrammes,
   type Programme,
 } from "@/lib/programmes";
+import imgFinanceMarkets from "@/assets/competitions/finance-markets.jpg";
+import imgFinanceChallenge from "@/assets/competitions/finance-challenge.jpg";
+import imgEssay from "@/assets/competitions/essay-writing.jpg";
+import imgStem from "@/assets/competitions/stem-innovation.jpg";
+import imgAi from "@/assets/competitions/ai-founders.jpg";
+import imgDebate from "@/assets/competitions/debating.jpg";
+import imgGeneric from "@/assets/competitions/generic.jpg";
+
+/** Picks the closest-matching photo for a competition from its name and track. */
+const imageFor = (p: Programme): string => {
+  const n = p.name.toLowerCase();
+  if (n.includes("wolves") || n.includes("wall street")) return imgFinanceMarkets;
+  if (n.includes("essay")) return imgEssay;
+  if (n.includes("stem")) return imgStem;
+  if (n.includes("debat")) return imgDebate;
+  if (n.includes("founder") || n.includes("ai ")) return imgAi;
+  if (n.includes("finance") || n.includes("finlit")) return imgFinanceChallenge;
+  if (p.tracks.includes("fin")) return imgFinanceMarkets;
+  if (p.tracks.includes("ai")) return imgAi;
+  if (p.tracks.includes("law")) return imgDebate;
+  if (p.tracks.includes("res")) return imgEssay;
+  return imgGeneric;
+};
+
+/** First sentence only, trimmed, so every card reads at the same length. */
+const shortAbout = (text: string, limit = 130): string => {
+  const clean = text.replace(/\s+/g, " ").trim();
+  const firstStop = clean.search(/\.\s|\.$/);
+  const sentence = firstStop > 0 ? clean.slice(0, firstStop + 1) : clean;
+  if (sentence.length <= limit) return sentence;
+  const cut = sentence.slice(0, limit);
+  return cut.slice(0, cut.lastIndexOf(" ")) + "...";
+};
 
 const TITLE = "Competitions - Learn with Leaders";
 const DESC =
@@ -74,59 +107,73 @@ function CompetitionCard({ p }: { p: Programme }) {
   const partner = partnerFromUrl(p.apply);
   const next = nextCohort(p);
   return (
-    <li>
+    <li className="h-full">
       <a
         href={p.apply}
         target="_blank"
         rel="noopener"
-        className="group flex h-full flex-col gap-3 rounded-2xl border border-line bg-paper p-6 no-underline shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold-line hover:shadow-lift"
+        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-paper no-underline shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold-line hover:shadow-lift"
       >
-        <div className="flex items-center justify-between gap-3">
-          <span className="mono-label inline-flex items-center gap-1.5 text-gold-deep">
+        <div className="relative aspect-[16/9] w-full overflow-hidden bg-wash">
+          <img
+            src={imageFor(p)}
+            alt={p.name}
+            loading="lazy"
+            width={1024}
+            height={576}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+          />
+          <span className="mono-label absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-paper/92 px-2.5 py-1 text-[0.66rem] text-gold-deep backdrop-blur-sm">
             <Trophy className="h-3.5 w-3.5" aria-hidden />
             {partner}
           </span>
-          <span className="mono-label text-ink-faint">{p.dur}</span>
+          <span className="mono-label absolute top-3 right-3 rounded-full bg-ink/75 px-2.5 py-1 text-[0.66rem] text-paper backdrop-blur-sm">
+            {p.dur}
+          </span>
         </div>
 
-        <h3 className="font-serif text-[1.35rem] leading-tight font-medium text-ink transition-colors group-hover:text-crimson">
-          {p.name}
-        </h3>
+        <div className="flex flex-1 flex-col gap-3 p-5">
+          <h3 className="line-clamp-2 min-h-[2.6em] font-serif text-[1.2rem] leading-tight font-medium text-ink transition-colors group-hover:text-crimson">
+            {p.name}
+          </h3>
 
-        <p className="text-[0.85rem] leading-relaxed text-ink-soft">{p.about}</p>
+          <p className="line-clamp-3 min-h-[3.9em] text-[0.85rem] leading-relaxed text-ink-soft">
+            {shortAbout(p.about)}
+          </p>
 
-        <div className="mt-auto flex flex-col gap-3 pt-2">
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[0.78rem] text-ink-soft">
-            <span className="inline-flex items-center gap-1.5">
-              <GraduationCap className="h-3.5 w-3.5 text-gold-deep" aria-hidden />
-              Grades {p.g[0]}-{p.g[1]}
-            </span>
-            {next ? (
+          <div className="mt-auto flex flex-col gap-3 border-t border-line pt-3">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[0.78rem] text-ink-soft">
               <span className="inline-flex items-center gap-1.5">
-                <CalendarDays className="h-3.5 w-3.5 text-gold-deep" aria-hidden />
-                {fmtLong(next.d)}
+                <GraduationCap className="h-3.5 w-3.5 text-gold-deep" aria-hidden />
+                Grades {p.g[0]}-{p.g[1]}
               </span>
-            ) : null}
-          </div>
+              {next ? (
+                <span className="inline-flex items-center gap-1.5">
+                  <CalendarDays className="h-3.5 w-3.5 text-gold-deep" aria-hidden />
+                  {fmtLong(next.d)}
+                </span>
+              ) : null}
+            </div>
 
-          <div className="flex flex-wrap gap-1.5">
-            {p.tracks.map((t) => (
-              <span
-                key={t}
-                className="rounded-full bg-wash px-2.5 py-0.5 text-[0.7rem] font-semibold text-ink-soft"
-              >
-                {TRACKS[t].short}
-              </span>
-            ))}
-          </div>
+            <div className="flex flex-wrap gap-1.5">
+              {p.tracks.slice(0, 3).map((t) => (
+                <span
+                  key={t}
+                  className="rounded-full bg-wash px-2.5 py-0.5 text-[0.7rem] font-semibold text-ink-soft"
+                >
+                  {TRACKS[t].short}
+                </span>
+              ))}
+            </div>
 
-          <span className="mono-label mt-1 inline-flex items-center gap-1.5 text-crimson">
-            View competition
-            <ArrowUpRight
-              className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              aria-hidden
-            />
-          </span>
+            <span className="mono-label inline-flex items-center gap-1.5 text-crimson">
+              View competition
+              <ArrowUpRight
+                className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                aria-hidden
+              />
+            </span>
+          </div>
         </div>
       </a>
     </li>
@@ -181,7 +228,7 @@ function CompetitionsPage() {
         </SectionHeading>
 
         {competitions.length ? (
-          <ul className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-8 grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {competitions.map((p) => (
               <CompetitionCard key={p.id} p={p} />
             ))}
