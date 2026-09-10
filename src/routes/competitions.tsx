@@ -150,6 +150,17 @@ function CompetitionCard({ p }: { p: Programme }) {
         </div>
 
         <div className="flex flex-1 flex-col gap-3 p-5">
+          <div className="flex flex-wrap gap-1.5">
+            {p.tracks.slice(0, 3).map((t) => (
+              <span
+                key={t}
+                className="rounded-full bg-wash px-2.5 py-0.5 text-[0.7rem] font-semibold text-ink-soft"
+              >
+                {TRACKS[t].short}
+              </span>
+            ))}
+          </div>
+
           <h3 className="line-clamp-2 font-serif text-[1.2rem] leading-tight font-medium text-ink transition-colors group-hover:text-crimson">
             {p.name}
           </h3>
@@ -159,7 +170,7 @@ function CompetitionCard({ p }: { p: Programme }) {
           </p>
 
           <div className="mt-auto flex flex-col gap-3 border-t border-line pt-3">
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[0.78rem] text-ink-soft">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[0.8rem] font-semibold text-ink">
               <span className="inline-flex items-center gap-1.5">
                 <GraduationCap className="h-3.5 w-3.5 text-gold-deep" aria-hidden />
                 Grades {p.g[0]}-{p.g[1]}
@@ -170,17 +181,6 @@ function CompetitionCard({ p }: { p: Programme }) {
                   {fmtLong(next.d)}
                 </span>
               ) : null}
-            </div>
-
-            <div className="flex flex-wrap gap-1.5">
-              {p.tracks.slice(0, 3).map((t) => (
-                <span
-                  key={t}
-                  className="rounded-full bg-wash px-2.5 py-0.5 text-[0.7rem] font-semibold text-ink-soft"
-                >
-                  {TRACKS[t].short}
-                </span>
-              ))}
             </div>
 
             <span className="mono-label inline-flex items-center gap-1.5 text-crimson">
