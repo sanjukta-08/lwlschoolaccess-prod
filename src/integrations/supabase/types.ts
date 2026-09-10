@@ -374,6 +374,78 @@ export type Database = {
           },
         ]
       }
+      automation_app_config: {
+        Row: {
+          key: string
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          key: string
+          updated_at?: string
+          value: string
+        }
+        Update: {
+          key?: string
+          updated_at?: string
+          value?: string
+        }
+        Relationships: []
+      }
+      automation_video_posts: {
+        Row: {
+          created_at: string
+          drive_file_id: string
+          drive_name: string
+          ig_caption: string | null
+          ig_error: string | null
+          ig_media_id: string | null
+          ig_status: string
+          md5_checksum: string | null
+          posted_date: string | null
+          status: string
+          storage_url: string | null
+          yt_error: string | null
+          yt_status: string
+          yt_title: string | null
+          yt_video_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          drive_file_id: string
+          drive_name: string
+          ig_caption?: string | null
+          ig_error?: string | null
+          ig_media_id?: string | null
+          ig_status?: string
+          md5_checksum?: string | null
+          posted_date?: string | null
+          status?: string
+          storage_url?: string | null
+          yt_error?: string | null
+          yt_status?: string
+          yt_title?: string | null
+          yt_video_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          drive_file_id?: string
+          drive_name?: string
+          ig_caption?: string | null
+          ig_error?: string | null
+          ig_media_id?: string | null
+          ig_status?: string
+          md5_checksum?: string | null
+          posted_date?: string | null
+          status?: string
+          storage_url?: string | null
+          yt_error?: string | null
+          yt_status?: string
+          yt_title?: string | null
+          yt_video_id?: string | null
+        }
+        Relationships: []
+      }
       doctors_applications: {
         Row: {
           agreed_to_terms: boolean
@@ -1598,6 +1670,159 @@ export type Database = {
         }
         Relationships: []
       }
+      lwl_applications: {
+        Row: {
+          admin_notes: string | null
+          amount: number | null
+          city: string | null
+          counsellor_email: string | null
+          counsellor_name: string | null
+          country: string | null
+          created_at: string
+          currency: string | null
+          form_template_id: string | null
+          grade: string | null
+          id: string
+          last_reminder_sent_at: string | null
+          last_reminder_stage: string | null
+          loa_sent_at: string | null
+          parent_email: string | null
+          parent_name: string | null
+          parent_phone: string | null
+          payment_date: string | null
+          payment_intent_id: string | null
+          payment_link_id: string | null
+          payment_mode: string | null
+          payment_status: string
+          program_category: string | null
+          program_code: string | null
+          program_name: string | null
+          question1: string | null
+          question2: string | null
+          question3: string | null
+          question4: string | null
+          registration_email_sent_at: string | null
+          registration_last_reminder_at: string | null
+          registration_reminder_count: number
+          registration_status: string
+          school_name: string | null
+          source_flow: string
+          state: string | null
+          stripe_customer_id: string | null
+          student_dob: string | null
+          student_email: string
+          student_gender: string | null
+          student_id: string | null
+          student_mobile: string | null
+          student_name: string
+          submission_token: string
+          utm_campaign: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          visa_status: string | null
+        }
+        Insert: {
+          admin_notes?: string | null
+          amount?: number | null
+          city?: string | null
+          counsellor_email?: string | null
+          counsellor_name?: string | null
+          country?: string | null
+          created_at?: string
+          currency?: string | null
+          form_template_id?: string | null
+          grade?: string | null
+          id?: string
+          last_reminder_sent_at?: string | null
+          last_reminder_stage?: string | null
+          loa_sent_at?: string | null
+          parent_email?: string | null
+          parent_name?: string | null
+          parent_phone?: string | null
+          payment_date?: string | null
+          payment_intent_id?: string | null
+          payment_link_id?: string | null
+          payment_mode?: string | null
+          payment_status?: string
+          program_category?: string | null
+          program_code?: string | null
+          program_name?: string | null
+          question1?: string | null
+          question2?: string | null
+          question3?: string | null
+          question4?: string | null
+          registration_email_sent_at?: string | null
+          registration_last_reminder_at?: string | null
+          registration_reminder_count?: number
+          registration_status?: string
+          school_name?: string | null
+          source_flow?: string
+          state?: string | null
+          stripe_customer_id?: string | null
+          student_dob?: string | null
+          student_email: string
+          student_gender?: string | null
+          student_id?: string | null
+          student_mobile?: string | null
+          student_name: string
+          submission_token?: string
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          visa_status?: string | null
+        }
+        Update: {
+          admin_notes?: string | null
+          amount?: number | null
+          city?: string | null
+          counsellor_email?: string | null
+          counsellor_name?: string | null
+          country?: string | null
+          created_at?: string
+          currency?: string | null
+          form_template_id?: string | null
+          grade?: string | null
+          id?: string
+          last_reminder_sent_at?: string | null
+          last_reminder_stage?: string | null
+          loa_sent_at?: string | null
+          parent_email?: string | null
+          parent_name?: string | null
+          parent_phone?: string | null
+          payment_date?: string | null
+          payment_intent_id?: string | null
+          payment_link_id?: string | null
+          payment_mode?: string | null
+          payment_status?: string
+          program_category?: string | null
+          program_code?: string | null
+          program_name?: string | null
+          question1?: string | null
+          question2?: string | null
+          question3?: string | null
+          question4?: string | null
+          registration_email_sent_at?: string | null
+          registration_last_reminder_at?: string | null
+          registration_reminder_count?: number
+          registration_status?: string
+          school_name?: string | null
+          source_flow?: string
+          state?: string | null
+          stripe_customer_id?: string | null
+          student_dob?: string | null
+          student_email?: string
+          student_gender?: string | null
+          student_id?: string | null
+          student_mobile?: string | null
+          student_name?: string
+          submission_token?: string
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          visa_status?: string | null
+        }
+        Relationships: []
+      }
       master_data: {
         Row: {
           city: string | null
@@ -1885,6 +2110,39 @@ export type Database = {
           utm_campaign?: string | null
           utm_medium?: string | null
           utm_source?: string | null
+        }
+        Relationships: []
+      }
+      platform_api_clients: {
+        Row: {
+          created_at: string
+          id: string
+          is_active: boolean
+          key_hash: string
+          last_used_at: string | null
+          name: string
+          platform_slug: string
+          scopes: string[]
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          key_hash: string
+          last_used_at?: string | null
+          name: string
+          platform_slug: string
+          scopes?: string[]
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          key_hash?: string
+          last_used_at?: string | null
+          name?: string
+          platform_slug?: string
+          scopes?: string[]
         }
         Relationships: []
       }
@@ -2981,6 +3239,72 @@ export type Database = {
         }
         Relationships: []
       }
+      stud_applications: {
+        Row: {
+          city: string | null
+          city_country: string | null
+          country: string | null
+          created_at: string
+          declaration_confirmed: boolean
+          email: string
+          full_name: string
+          grade: string | null
+          id: string
+          parent_details: string | null
+          parent_email: string | null
+          parent_name: string | null
+          parent_phone: string | null
+          path: string
+          path_reason: string
+          phone: string | null
+          school: string | null
+          state: string | null
+          student_dob: string | null
+        }
+        Insert: {
+          city?: string | null
+          city_country?: string | null
+          country?: string | null
+          created_at?: string
+          declaration_confirmed?: boolean
+          email: string
+          full_name: string
+          grade?: string | null
+          id?: string
+          parent_details?: string | null
+          parent_email?: string | null
+          parent_name?: string | null
+          parent_phone?: string | null
+          path: string
+          path_reason: string
+          phone?: string | null
+          school?: string | null
+          state?: string | null
+          student_dob?: string | null
+        }
+        Update: {
+          city?: string | null
+          city_country?: string | null
+          country?: string | null
+          created_at?: string
+          declaration_confirmed?: boolean
+          email?: string
+          full_name?: string
+          grade?: string | null
+          id?: string
+          parent_details?: string | null
+          parent_email?: string | null
+          parent_name?: string | null
+          parent_phone?: string | null
+          path?: string
+          path_reason?: string
+          phone?: string | null
+          school?: string | null
+          state?: string | null
+          student_dob?: string | null
+        }
+        Relationships: []
+      }
       teo_applications: {
         Row: {
           amount: number | null
@@ -3426,222 +3750,78 @@ export type Database = {
           },
         ]
       }
-      lwl_applications: {
+      codes_dropdown: {
         Row: {
-          admin_notes: string | null
-          amount: number | null
-          city: string | null
-          counsellor_email: string | null
-          counsellor_name: string | null
-          country: string | null
+          code: string | null
           created_at: string | null
-          currency: string | null
-          form_template_id: string | null
-          grade: string | null
           id: string | null
-          last_reminder_sent_at: string | null
-          last_reminder_stage: string | null
-          loa_sent_at: string | null
-          parent_email: string | null
-          parent_name: string | null
-          parent_phone: string | null
-          payment_date: string | null
-          payment_intent_id: string | null
-          payment_link_id: string | null
-          payment_mode: string | null
-          payment_status: string | null
-          program_category: string | null
-          program_code: string | null
-          program_name: string | null
-          question1: string | null
-          question2: string | null
-          question3: string | null
-          question4: string | null
-          registration_email_sent_at: string | null
-          registration_last_reminder_at: string | null
-          registration_reminder_count: number | null
-          registration_status: string | null
-          school_name: string | null
-          source_flow: string | null
-          state: string | null
-          stripe_customer_id: string | null
-          student_dob: string | null
-          student_email: string | null
-          student_gender: string | null
-          student_id: string | null
-          student_mobile: string | null
-          student_name: string | null
-          submission_token: string | null
-          utm_campaign: string | null
-          utm_medium: string | null
-          utm_source: string | null
-          visa_status: string | null
+          name: string | null
+          ref_type: string | null
         }
         Insert: {
-          admin_notes?: string | null
-          amount?: number | null
-          city?: string | null
-          counsellor_email?: string | null
-          counsellor_name?: string | null
-          country?: string | null
+          code?: string | null
           created_at?: string | null
-          currency?: string | null
-          form_template_id?: string | null
-          grade?: string | null
           id?: string | null
-          last_reminder_sent_at?: string | null
-          last_reminder_stage?: string | null
-          loa_sent_at?: string | null
-          parent_email?: string | null
-          parent_name?: string | null
-          parent_phone?: string | null
-          payment_date?: string | null
-          payment_intent_id?: string | null
-          payment_link_id?: string | null
-          payment_mode?: string | null
-          payment_status?: string | null
-          program_category?: string | null
-          program_code?: string | null
-          program_name?: string | null
-          question1?: string | null
-          question2?: string | null
-          question3?: string | null
-          question4?: string | null
-          registration_email_sent_at?: string | null
-          registration_last_reminder_at?: string | null
-          registration_reminder_count?: number | null
-          registration_status?: string | null
-          school_name?: string | null
-          source_flow?: string | null
-          state?: string | null
-          stripe_customer_id?: string | null
-          student_dob?: string | null
-          student_email?: string | null
-          student_gender?: string | null
-          student_id?: string | null
-          student_mobile?: string | null
-          student_name?: string | null
-          submission_token?: string | null
-          utm_campaign?: string | null
-          utm_medium?: string | null
-          utm_source?: string | null
-          visa_status?: string | null
+          name?: string | null
+          ref_type?: string | null
         }
         Update: {
-          admin_notes?: string | null
-          amount?: number | null
-          city?: string | null
-          counsellor_email?: string | null
-          counsellor_name?: string | null
-          country?: string | null
+          code?: string | null
           created_at?: string | null
-          currency?: string | null
-          form_template_id?: string | null
-          grade?: string | null
           id?: string | null
-          last_reminder_sent_at?: string | null
-          last_reminder_stage?: string | null
-          loa_sent_at?: string | null
-          parent_email?: string | null
-          parent_name?: string | null
-          parent_phone?: string | null
-          payment_date?: string | null
-          payment_intent_id?: string | null
-          payment_link_id?: string | null
-          payment_mode?: string | null
-          payment_status?: string | null
-          program_category?: string | null
-          program_code?: string | null
-          program_name?: string | null
-          question1?: string | null
-          question2?: string | null
-          question3?: string | null
-          question4?: string | null
-          registration_email_sent_at?: string | null
-          registration_last_reminder_at?: string | null
-          registration_reminder_count?: number | null
-          registration_status?: string | null
-          school_name?: string | null
-          source_flow?: string | null
-          state?: string | null
-          stripe_customer_id?: string | null
-          student_dob?: string | null
-          student_email?: string | null
-          student_gender?: string | null
-          student_id?: string | null
-          student_mobile?: string | null
-          student_name?: string | null
-          submission_token?: string | null
-          utm_campaign?: string | null
-          utm_medium?: string | null
-          utm_source?: string | null
-          visa_status?: string | null
+          name?: string | null
+          ref_type?: string | null
         }
         Relationships: []
       }
-      stud_applications: {
+      program_codes: {
         Row: {
-          city: string | null
-          city_country: string | null
+          batch: string | null
+          category: string | null
           country: string | null
           created_at: string | null
-          declaration_confirmed: boolean | null
-          email: string | null
-          full_name: string | null
-          grade: string | null
+          date: string | null
           id: string | null
-          parent_details: string | null
-          parent_email: string | null
-          parent_name: string | null
-          parent_phone: string | null
-          path: string | null
-          path_reason: string | null
-          phone: string | null
+          is_stale: boolean | null
+          last_synced_at: string | null
+          organisation: string | null
+          program: string | null
+          ref_code: string | null
           school: string | null
-          state: string | null
-          student_dob: string | null
+          updated_at: string | null
+          vault_id: string | null
         }
         Insert: {
-          city?: string | null
-          city_country?: string | null
+          batch?: string | null
+          category?: string | null
           country?: string | null
           created_at?: string | null
-          declaration_confirmed?: boolean | null
-          email?: string | null
-          full_name?: string | null
-          grade?: string | null
+          date?: string | null
           id?: string | null
-          parent_details?: string | null
-          parent_email?: string | null
-          parent_name?: string | null
-          parent_phone?: string | null
-          path?: string | null
-          path_reason?: string | null
-          phone?: string | null
+          is_stale?: never
+          last_synced_at?: string | null
+          organisation?: string | null
+          program?: string | null
+          ref_code?: string | null
           school?: string | null
-          state?: string | null
-          student_dob?: string | null
+          updated_at?: string | null
+          vault_id?: never
         }
         Update: {
-          city?: string | null
-          city_country?: string | null
+          batch?: string | null
+          category?: string | null
           country?: string | null
           created_at?: string | null
-          declaration_confirmed?: boolean | null
-          email?: string | null
-          full_name?: string | null
-          grade?: string | null
+          date?: string | null
           id?: string | null
-          parent_details?: string | null
-          parent_email?: string | null
-          parent_name?: string | null
-          parent_phone?: string | null
-          path?: string | null
-          path_reason?: string | null
-          phone?: string | null
+          is_stale?: never
+          last_synced_at?: string | null
+          organisation?: string | null
+          program?: string | null
+          ref_code?: string | null
           school?: string | null
-          state?: string | null
-          student_dob?: string | null
+          updated_at?: string | null
+          vault_id?: never
         }
         Relationships: []
       }
