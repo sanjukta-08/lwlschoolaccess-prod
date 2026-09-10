@@ -167,7 +167,6 @@ export function TypeSections({
         <section key={g.key} id={`t-${g.key}`} className="scroll-mt-[190px]">
           <div className="mt-8 mb-3 border-b border-line pb-2">
             <div className="flex flex-wrap items-baseline gap-3">
-              <span className="text-[1.1rem]">{TYPE_IC[g.key]}</span>
               <h3 className="font-serif text-[1.3rem] font-semibold">{g.label}</h3>
               <small className="mono-label text-ink-faint">
                 {g.rows.length} programme{g.rows.length === 1 ? "" : "s"}
