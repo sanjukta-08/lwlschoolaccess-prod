@@ -94,7 +94,7 @@ export const Route = createFileRoute("/competitions")({
               "@type": "ListItem",
               position: i + 1,
               name: p.name,
-              url: p.apply,
+              url: applyUrlFor(p),
             })),
         }),
       },
