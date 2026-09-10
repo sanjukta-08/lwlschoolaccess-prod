@@ -52,11 +52,7 @@ export function SiteFooter({ note }: { note?: string }) {
             >
               Flagship programmes
             </Link>
-            <Link
-              to="/finder"
-              search={{ ...DEFAULT_SEARCH, type: "competition" }}
-              className={linkCls}
-            >
+            <Link to="/competitions" className={linkCls}>
               Competitions
             </Link>
             <Link to="/camps" className={linkCls}>
