@@ -107,59 +107,73 @@ function CompetitionCard({ p }: { p: Programme }) {
   const partner = partnerFromUrl(p.apply);
   const next = nextCohort(p);
   return (
-    <li>
+    <li className="h-full">
       <a
         href={p.apply}
         target="_blank"
         rel="noopener"
-        className="group flex h-full flex-col gap-3 rounded-2xl border border-line bg-paper p-6 no-underline shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold-line hover:shadow-lift"
+        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-paper no-underline shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold-line hover:shadow-lift"
       >
-        <div className="flex items-center justify-between gap-3">
-          <span className="mono-label inline-flex items-center gap-1.5 text-gold-deep">
+        <div className="relative aspect-[16/9] w-full overflow-hidden bg-wash">
+          <img
+            src={imageFor(p)}
+            alt={p.name}
+            loading="lazy"
+            width={1024}
+            height={576}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+          />
+          <span className="mono-label absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-paper/92 px-2.5 py-1 text-[0.66rem] text-gold-deep backdrop-blur-sm">
             <Trophy className="h-3.5 w-3.5" aria-hidden />
             {partner}
           </span>
-          <span className="mono-label text-ink-faint">{p.dur}</span>
+          <span className="mono-label absolute top-3 right-3 rounded-full bg-ink/75 px-2.5 py-1 text-[0.66rem] text-paper backdrop-blur-sm">
+            {p.dur}
+          </span>
         </div>
 
-        <h3 className="font-serif text-[1.35rem] leading-tight font-medium text-ink transition-colors group-hover:text-crimson">
-          {p.name}
-        </h3>
+        <div className="flex flex-1 flex-col gap-3 p-5">
+          <h3 className="line-clamp-2 min-h-[2.6em] font-serif text-[1.2rem] leading-tight font-medium text-ink transition-colors group-hover:text-crimson">
+            {p.name}
+          </h3>
 
-        <p className="text-[0.85rem] leading-relaxed text-ink-soft">{p.about}</p>
+          <p className="line-clamp-3 min-h-[3.9em] text-[0.85rem] leading-relaxed text-ink-soft">
+            {shortAbout(p.about)}
+          </p>
 
-        <div className="mt-auto flex flex-col gap-3 pt-2">
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[0.78rem] text-ink-soft">
-            <span className="inline-flex items-center gap-1.5">
-              <GraduationCap className="h-3.5 w-3.5 text-gold-deep" aria-hidden />
-              Grades {p.g[0]}-{p.g[1]}
-            </span>
-            {next ? (
+          <div className="mt-auto flex flex-col gap-3 border-t border-line pt-3">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[0.78rem] text-ink-soft">
               <span className="inline-flex items-center gap-1.5">
-                <CalendarDays className="h-3.5 w-3.5 text-gold-deep" aria-hidden />
-                {fmtLong(next.d)}
+                <GraduationCap className="h-3.5 w-3.5 text-gold-deep" aria-hidden />
+                Grades {p.g[0]}-{p.g[1]}
               </span>
-            ) : null}
-          </div>
+              {next ? (
+                <span className="inline-flex items-center gap-1.5">
+                  <CalendarDays className="h-3.5 w-3.5 text-gold-deep" aria-hidden />
+                  {fmtLong(next.d)}
+                </span>
+              ) : null}
+            </div>
 
-          <div className="flex flex-wrap gap-1.5">
-            {p.tracks.map((t) => (
-              <span
-                key={t}
-                className="rounded-full bg-wash px-2.5 py-0.5 text-[0.7rem] font-semibold text-ink-soft"
-              >
-                {TRACKS[t].short}
-              </span>
-            ))}
-          </div>
+            <div className="flex flex-wrap gap-1.5">
+              {p.tracks.slice(0, 3).map((t) => (
+                <span
+                  key={t}
+                  className="rounded-full bg-wash px-2.5 py-0.5 text-[0.7rem] font-semibold text-ink-soft"
+                >
+                  {TRACKS[t].short}
+                </span>
+              ))}
+            </div>
 
-          <span className="mono-label mt-1 inline-flex items-center gap-1.5 text-crimson">
-            View competition
-            <ArrowUpRight
-              className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              aria-hidden
-            />
-          </span>
+            <span className="mono-label inline-flex items-center gap-1.5 text-crimson">
+              View competition
+              <ArrowUpRight
+                className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                aria-hidden
+              />
+            </span>
+          </div>
         </div>
       </a>
     </li>
