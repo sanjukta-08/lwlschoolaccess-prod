@@ -60,7 +60,8 @@ const partnerFromUrl = (url: string): string => {
     const host = new URL(url).hostname.replace(/^www\./, "");
     if (host.includes("onward")) return "Onward";
     if (host.includes("finlit")) return "FinLit";
-    if (host.includes("learnwithleaders")) return "Learn with Leaders";
+    if (host.includes("learnwithleaders") || host === "docs.google.com")
+      return "Learn with Leaders";
     return host.split(".")[0]!.replace(/^./, (c) => c.toUpperCase());
   } catch {
     return "Learn with Leaders";
