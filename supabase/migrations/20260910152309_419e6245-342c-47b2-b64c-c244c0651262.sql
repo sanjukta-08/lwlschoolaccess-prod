@@ -1,0 +1,1 @@
+ALTER VIEW public.all_masterclasses_public SET (security_invoker = off);
