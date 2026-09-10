@@ -73,7 +73,7 @@ export const Route = createFileRoute("/competitions")({
           "@type": "ItemList",
           name: "Learn with Leaders competitions",
           itemListElement: upcomingProgrammes()
-            .filter((p) => p.type === "comp")
+            .filter((p) => p.type === "comp" && !p.name.toLowerCase().includes("next generation finance"))
             .map((p, i) => ({
               "@type": "ListItem",
               position: i + 1,
