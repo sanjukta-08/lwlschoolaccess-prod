@@ -31,6 +31,10 @@ const isAiFoundersChallenge = (p: Programme): boolean => {
 const sortCompetitions = (a: Programme, b: Programme): number =>
   Number(isAiFoundersChallenge(b)) - Number(isAiFoundersChallenge(a));
 
+/** Apply link override for competitions whose official landing page differs from the catalogue default. */
+const applyUrlFor = (p: Programme): string =>
+  isAiFoundersChallenge(p) ? "https://joinonwards.com/competitions/register" : p.apply;
+
 /** Picks the closest-matching photo for a competition from its name and track. */
 const imageFor = (p: Programme): string => {
   const n = p.name.toLowerCase();
@@ -90,7 +94,7 @@ export const Route = createFileRoute("/competitions")({
               "@type": "ListItem",
               position: i + 1,
               name: p.name,
-              url: p.apply,
+              url: applyUrlFor(p),
             })),
         }),
       },
@@ -116,12 +120,13 @@ const partnerFromUrl = (url: string): string => {
 const nextCohort = (p: Programme) => p.cohorts[0];
 
 function CompetitionCard({ p }: { p: Programme }) {
-  const partner = partnerFromUrl(p.apply);
+  const applyUrl = applyUrlFor(p);
+  const partner = partnerFromUrl(applyUrl);
   const next = nextCohort(p);
   return (
     <li className="h-full">
       <a
-        href={p.apply}
+        href={applyUrl}
         target="_blank"
         rel="noopener"
         className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-paper no-underline shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold-line hover:shadow-lift"
