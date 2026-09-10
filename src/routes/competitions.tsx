@@ -34,6 +34,7 @@ const sortCompetitions = (a: Programme, b: Programme): number =>
 /** Picks the closest-matching photo for a competition from its name and track. */
 const imageFor = (p: Programme): string => {
   const n = p.name.toLowerCase();
+  if (isAiFoundersChallenge(p)) return imgAiFounders.url;
   if (n.includes("wolves") || n.includes("wall street")) return imgFinanceMarkets;
   if (n.includes("essay")) return imgEssay;
   if (n.includes("stem")) return imgStem;
