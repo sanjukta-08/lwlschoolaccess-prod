@@ -150,11 +150,11 @@ function CompetitionCard({ p }: { p: Programme }) {
         </div>
 
         <div className="flex flex-1 flex-col gap-3 p-5">
-          <h3 className="line-clamp-2 min-h-[2.6em] font-serif text-[1.2rem] leading-tight font-medium text-ink transition-colors group-hover:text-crimson">
+          <h3 className="line-clamp-2 font-serif text-[1.2rem] leading-tight font-medium text-ink transition-colors group-hover:text-crimson">
             {p.name}
           </h3>
 
-          <p className="line-clamp-3 min-h-[3.9em] text-[0.85rem] leading-relaxed text-ink-soft">
+          <p className="line-clamp-3 text-[0.85rem] leading-relaxed text-ink-soft">
             {shortAbout(p.about)}
           </p>
 
