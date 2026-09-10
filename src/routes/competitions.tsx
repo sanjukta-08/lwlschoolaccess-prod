@@ -31,6 +31,10 @@ const isAiFoundersChallenge = (p: Programme): boolean => {
 const sortCompetitions = (a: Programme, b: Programme): number =>
   Number(isAiFoundersChallenge(b)) - Number(isAiFoundersChallenge(a));
 
+/** Apply link override for competitions whose official landing page differs from the catalogue default. */
+const applyUrlFor = (p: Programme): string =>
+  isAiFoundersChallenge(p) ? "https://joinonwards.com/competitions/register" : p.apply;
+
 /** Picks the closest-matching photo for a competition from its name and track. */
 const imageFor = (p: Programme): string => {
   const n = p.name.toLowerCase();
