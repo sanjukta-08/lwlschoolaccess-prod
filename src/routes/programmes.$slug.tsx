@@ -10,6 +10,7 @@ import { profileImpactFor, projectsFor } from "@/lib/programme-proof";
 import { TRACKS, TYPE_NAME, feeOf, fmtLong, isPast } from "@/lib/programmes";
 
 export const Route = createFileRoute("/programmes/$slug")({
+  staticData: { sitemap: true },
   loader: async ({ params, context }) => {
     await ensureCatalogue(context.queryClient);
     const p = programmeBySlug(params.slug);

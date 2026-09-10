@@ -14,6 +14,7 @@ const DESC =
   "Join the Learn with Leaders competitions team. Open sponsorship roles for experienced managers and ambitious interns, all remote.";
 
 export const Route = createFileRoute("/internships/")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: TITLE },

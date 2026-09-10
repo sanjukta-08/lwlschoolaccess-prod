@@ -25,6 +25,7 @@ const str = (v: unknown, fallback: string) =>
   typeof v === "string" && v.length > 0 ? v : fallback;
 
 export const Route = createFileRoute("/testimonials")({
+  staticData: { sitemap: true },
   validateSearch: (search: Record<string, unknown>): TestimonialSearch => ({
     track: str(search["track"], "all"),
     programme: str(search["programme"], "all"),

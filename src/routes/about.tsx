@@ -14,6 +14,7 @@ const DESC =
   "Who we are: Ivy League student mentors, live cohorts for Grades 5–12, press coverage, students from 80+ countries and 30,000+ schools, and stories shared on LinkedIn.";
 
 export const Route = createFileRoute("/about")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: TITLE },

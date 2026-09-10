@@ -29,6 +29,7 @@ const DESC =
   "See every Learn with Leaders cohort start laid out on a month grid. Pick a month, tap a date to see what begins, and open the programme page in one click.";
 
 export const Route = createFileRoute("/calendar-month")({
+  staticData: { sitemap: true },
   validateSearch: (search: Record<string, unknown>) => validateFinderSearch(search),
   search: { middlewares: [stripSearchParams(DEFAULT_SEARCH)] },
   head: () => ({

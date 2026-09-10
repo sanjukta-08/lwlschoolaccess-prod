@@ -45,6 +45,7 @@ const gradeLo = () => Math.min(...PROGRAMMES.map((p) => p.g[0]));
 const gradeHi = () => Math.max(...PROGRAMMES.map((p) => p.g[1]));
 
 export const Route = createFileRoute("/finder")({
+  staticData: { sitemap: true },
   validateSearch: (search: Record<string, unknown>) => validateFinderSearch(search),
   search: { middlewares: [stripSearchParams(DEFAULT_SEARCH)] },
   head: () => ({
@@ -68,8 +69,10 @@ export const Route = createFileRoute("/finder")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://lwlschoolaccess.com/finder" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://lwlschoolaccess.com/finder" }],
   }),
   component: FinderPage,
 });
@@ -269,15 +272,15 @@ function FinderPage() {
 
             <div className="space-y-4">
               <div className="space-y-2">
-                <h3 className="font-serif text-[1.05rem] font-semibold text-ink">
+                <h2 className="font-serif text-[1.05rem] font-semibold text-ink">
                   Browse by subject
-                </h3>
+                </h2>
                 <DomainChips state={state} onChange={update} />
               </div>
               <div className="space-y-2">
-                <h3 className="font-serif text-[0.9rem] font-semibold text-ink-soft">
+                <h2 className="font-serif text-[0.9rem] font-semibold text-ink-soft">
                   Then by format
-                </h3>
+                </h2>
                 <TypeChips state={state} onChange={update} />
               </div>
             </div>

@@ -29,6 +29,7 @@ const DESC =
   "An immersive leadership summer camp at Harvard University with the Harvard College Union Society, for students in Grades 8-12. Dates, fees, schedule and how to apply.";
 
 export const Route = createFileRoute("/camps/hcus-young-global-leaders-summer")({
+  staticData: { sitemap: true },
   loader: async ({ context }) => {
     await ensureCatalogue(context.queryClient);
     return null;

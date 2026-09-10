@@ -75,19 +75,27 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  staticData: { sitemap: false },
   // Live programme + camp schedule, loaded once before anything renders.
   loader: ({ context }) => ensureCatalogue(context.queryClient),
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Programme Finder | Learn with Leaders" },
+      { title: "Learn with Leaders" },
       {
         name: "description",
         content:
-          "Harvard and Yale-mentored programmes for Grades 5–12: filter by grade, interest and start date.",
+          "Learn with Leaders runs live, mentored programmes, competitions, internships and camps for students in Grades 5-12.",
       },
       { name: "author", content: "Learn with Leaders" },
+      { property: "og:site_name", content: "Learn with Leaders" },
+      { property: "og:title", content: "Learn with Leaders" },
+      {
+        property: "og:description",
+        content:
+          "Learn with Leaders runs live, mentored programmes, competitions, internships and camps for students in Grades 5-12.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

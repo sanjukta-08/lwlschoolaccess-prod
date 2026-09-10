@@ -29,6 +29,7 @@ const DESC =
   "Every Learn with Leaders online programme from July 2026 to April 2027 in one calendar. Filter by interest, type and month, with Dubai and US Eastern session times.";
 
 export const Route = createFileRoute("/calendar")({
+  staticData: { sitemap: true },
   validateSearch: (search: Record<string, unknown>) => validateFinderSearch(search),
   search: { middlewares: [stripSearchParams(DEFAULT_SEARCH)] },
   head: () => ({

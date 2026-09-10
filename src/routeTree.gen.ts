@@ -21,6 +21,7 @@ import { Route as InternshipsRouteImport } from './routes/internships'
 import { Route as MasterclassesRouteImport } from './routes/masterclasses'
 import { Route as ProfileBuildingRouteImport } from './routes/profile-building'
 import { Route as ShortlistRouteImport } from './routes/shortlist'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as CampsIndexRouteImport } from './routes/camps.index'
@@ -91,6 +92,11 @@ const ShortlistRoute = ShortlistRouteImport.update({
   path: '/shortlist',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StoriesRoute = StoriesRouteImport.update({
   id: '/stories',
   path: '/stories',
@@ -153,6 +159,7 @@ export interface FileRoutesByFullPath {
   '/masterclasses': typeof MasterclassesRoute
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
   '/camps/$slug': typeof CampsSlugRoute
@@ -174,6 +181,7 @@ export interface FileRoutesByTo {
   '/masterclasses': typeof MasterclassesRoute
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
   '/camps/$slug': typeof CampsSlugRoute
@@ -198,6 +206,7 @@ export interface FileRoutesById {
   '/masterclasses': typeof MasterclassesRoute
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
   '/camps/$slug': typeof CampsSlugRoute
@@ -223,6 +232,7 @@ export interface FileRouteTypes {
     | '/masterclasses'
     | '/profile-building'
     | '/shortlist'
+    | '/sitemap.xml'
     | '/stories'
     | '/testimonials'
     | '/camps/$slug'
@@ -244,6 +254,7 @@ export interface FileRouteTypes {
     | '/masterclasses'
     | '/profile-building'
     | '/shortlist'
+    | '/sitemap.xml'
     | '/stories'
     | '/testimonials'
     | '/camps/$slug'
@@ -267,6 +278,7 @@ export interface FileRouteTypes {
     | '/masterclasses'
     | '/profile-building'
     | '/shortlist'
+    | '/sitemap.xml'
     | '/stories'
     | '/testimonials'
     | '/camps/$slug'
@@ -291,6 +303,7 @@ export interface RootRouteChildren {
   MasterclassesRoute: typeof MasterclassesRoute
   ProfileBuildingRoute: typeof ProfileBuildingRoute
   ShortlistRoute: typeof ShortlistRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StoriesRoute: typeof StoriesRoute
   TestimonialsRoute: typeof TestimonialsRoute
   ProgrammesSlugRoute: typeof ProgrammesSlugRoute
@@ -380,6 +393,13 @@ declare module '@tanstack/react-router' {
       path: '/shortlist'
       fullPath: '/shortlist'
       preLoaderRoute: typeof ShortlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/stories': {
@@ -493,6 +513,7 @@ const rootRouteChildren: RootRouteChildren = {
   MasterclassesRoute: MasterclassesRoute,
   ProfileBuildingRoute: ProfileBuildingRoute,
   ShortlistRoute: ShortlistRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   StoriesRoute: StoriesRoute,
   TestimonialsRoute: TestimonialsRoute,
   ProgrammesSlugRoute: ProgrammesSlugRoute,

@@ -26,6 +26,7 @@ const DESC =
   "In-person residential camps for Grades 8-12 at Harvard, Cambridge Judge, the University of Geneva and Salamanca. Dates, grade bands, what is included and how to apply.";
 
 export const Route = createFileRoute("/camps/")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: TITLE },

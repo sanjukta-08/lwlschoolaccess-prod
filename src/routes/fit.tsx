@@ -5,6 +5,7 @@ import { FitQuiz } from "@/components/FitQuiz";
 import { validateFitSearch } from "@/lib/fit";
 
 export const Route = createFileRoute("/fit")({
+  staticData: { sitemap: true },
   validateSearch: validateFitSearch,
   head: () => ({
     meta: [

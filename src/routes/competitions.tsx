@@ -67,6 +67,7 @@ const DESC =
   "Judged championships and challenges run by the Learn with Leaders family, including Onward and FinLit. See formats, grade bands and dates, and jump straight to each competition's official page.";
 
 export const Route = createFileRoute("/competitions")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: TITLE },
