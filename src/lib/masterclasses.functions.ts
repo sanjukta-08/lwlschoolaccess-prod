@@ -19,14 +19,17 @@ export type PublicMasterclass = {
   host_image_url: string | null;
   learning_outcomes: string[];
   apply_url: string | null;
-  recording_url: string | null;
-  status: string | null;
 };
 
 const COLS =
-  "id,title,description,series,session_number,audience,scheduled_at,duration_minutes,display_timezone,partner_name,partner_logo_url,program_name,cohort_label,host_name,host_university,host_image_url,learning_outcomes,apply_url,recording_url,status";
+  "id,title,description,series,session_number,audience,scheduled_at,duration_minutes,display_timezone,partner_name,partner_logo_url,program_name,cohort_label,host_name,host_university,host_image_url,learning_outcomes,apply_url";
 
-/** Public listing of every upcoming masterclass across all LWL partner platforms. */
+/** Public listing of upcoming masterclasses across all LWL partner platforms.
+ *
+ *  Live/past status is derived from `scheduled_at` + `duration_minutes`, never
+ *  from a stored flag. We keep sessions that started up to an hour ago so a
+ *  family can still join a live session from the landing page.
+ */
 export const listPublicMasterclasses = createServerFn({ method: "GET" }).handler(
   async (): Promise<PublicMasterclass[]> => {
     const { createClient } = await import("@supabase/supabase-js");
@@ -43,7 +46,6 @@ export const listPublicMasterclasses = createServerFn({ method: "GET" }).handler
     const { data, error } = await supabase
       .from("all_masterclasses_public")
       .select(COLS)
-      .neq("status", "cancelled")
       .gte("scheduled_at", new Date(Date.now() - 60 * 60 * 1000).toISOString())
       .order("scheduled_at", { ascending: true })
       .limit(200);
