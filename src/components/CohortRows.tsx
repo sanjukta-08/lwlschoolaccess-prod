@@ -1,7 +1,6 @@
 import ZoomBadge from "@/components/ZoomBadge";
 import {
   TRACKS,
-  TYPE_IC,
   TYPE_NAME,
   cohortGrades,
   dualTime,
@@ -75,7 +74,7 @@ function CohortRow({
           className="mono-label block text-[0.66rem]"
           style={{ color: track.color }}
         >
-          {track.ic} {track.label} · {TYPE_IC[p.type]} {TYPE_NAME[p.type]}
+          {track.label} · {TYPE_NAME[p.type]}
         </span>
         <b className="mt-0.5 block text-[0.98rem] font-bold text-ink">{p.name}</b>
         <small className="block text-[0.78rem] text-ink-soft">
@@ -168,7 +167,6 @@ export function TypeSections({
         <section key={g.key} id={`t-${g.key}`} className="scroll-mt-[190px]">
           <div className="mt-8 mb-3 border-b border-line pb-2">
             <div className="flex flex-wrap items-baseline gap-3">
-              <span className="text-[1.1rem]">{TYPE_IC[g.key]}</span>
               <h3 className="font-serif text-[1.3rem] font-semibold">{g.label}</h3>
               <small className="mono-label text-ink-faint">
                 {g.rows.length} programme{g.rows.length === 1 ? "" : "s"}

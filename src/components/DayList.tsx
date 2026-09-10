@@ -62,7 +62,6 @@ export function DayList({
                     className="inline-flex items-center gap-1.5 text-[0.72rem] font-bold"
                     style={{ color: track.color }}
                   >
-                    <span>{track.ic}</span>
                     {track.label}
                   </span>
                   {isSoon(c.d) ? (
