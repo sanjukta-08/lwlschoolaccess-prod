@@ -41,11 +41,7 @@ type ProgramRow = {
   short_description: string | null;
   description: string | null;
   categories: string[] | null;
-  target_categories: string[] | null;
-  tags: string[] | null;
   duration: string | null;
-  age_min: number | null;
-  age_max: number | null;
   eligibility_grades: string | null;
   sticker_price: number | null;
   early_bird_price: number | null;
@@ -63,8 +59,6 @@ type CohortRow = {
   end_date: string | null;
   application_deadline: string | null;
   seats_total: number | null;
-  seats_filled: number | null;
-  is_cancelled: boolean | null;
 };
 
 type SiteProgramRow = {
@@ -114,15 +108,16 @@ const ADVISOR = "https://calendly.com/learnwithleaders";
 const TIME_TBC = "Live session times confirmed on registration";
 
 /**
- * Confirmed apply-link contract with the LWL Application Portal.
+ * Shared Catalogue SOP v2 apply-link contract.
  *
- * LWL's own directly-run programmes resolve on the Portal's catalogue branch,
- * which matches on `pay_slug` — programme-level and stable. Never use
- * `program_code`: it is per-cohort and date-bound, so the link silently points
- * at a stale intake the moment a cohort rolls over. The applicant picks the
- * open cohort on the Portal itself.
+ * LWL's own programmes resolve on the Application Portal by `pay_slug`:
+ *   https://apply.learnwithleaders.com/apply/{pay_slug}
  *
- * Every other partner routes to their own domain via `apply_url` verbatim.
+ * `pay_slug` is the master programme identifier, stable across cohorts. The
+ * applicant selects the open cohort on the Portal itself. `program_code` is
+ * per-cohort and date-bound; never use it as the primary link identifier.
+ *
+ * External partners route to their own `apply_url` / `program_url` verbatim.
  */
 const APPLY_PORTAL = "https://apply.learnwithleaders.com/apply";
 const LWL_PARTNER_SLUG = "learn-with-leaders";
@@ -133,7 +128,7 @@ const applyLink = (
   ...fallbacks: (string | null | undefined)[]
 ): string => {
   if (partner?.partner_slug === LWL_PARTNER_SLUG && program?.pay_slug) {
-    return `${APPLY_PORTAL}?program=${encodeURIComponent(program.pay_slug)}`;
+    return `${APPLY_PORTAL}/${encodeURIComponent(program.pay_slug)}`;
   }
   return firstUrl(program?.apply_url, ...fallbacks, ADVISOR)!;
 };
@@ -168,7 +163,6 @@ const TRACK_RULES: [TrackKey, RegExp][] = [
 const deriveTrack = (row: ProgramRow): TrackKey => {
   const hay = [
     row.program_name,
-    (row.tags ?? []).join(" "),
     (row.categories ?? []).join(" "),
     row.short_description ?? "",
   ]
@@ -179,7 +173,7 @@ const deriveTrack = (row: ProgramRow): TrackKey => {
 };
 
 const deriveMentor = (row: ProgramRow, partner: string): MentorKey => {
-  const hay = `${row.program_name} ${(row.tags ?? []).join(" ")} ${partner}`.toLowerCase();
+  const hay = `${row.program_name} ${(row.categories ?? []).join(" ")} ${partner}`.toLowerCase();
   if (hay.includes("hpair")) return "hpair";
   if (hay.includes("yale")) return "yale";
   if (hay.includes("harvard")) return "harvard";
@@ -189,8 +183,6 @@ const deriveMentor = (row: ProgramRow, partner: string): MentorKey => {
 const deriveGrades = (row: ProgramRow): [number, number] => {
   const m = (row.eligibility_grades ?? "").match(/(\d{1,2})\s*[-–to]+\s*(\d{1,2})/);
   if (m) return [Number(m[1]), Number(m[2])];
-  if (row.age_min != null && row.age_max != null)
-    return [Math.max(1, row.age_min - 5), Math.min(12, row.age_max - 5)];
   return [6, 12];
 };
 
@@ -235,13 +227,13 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
         pub
           .from("all_programs")
           .select(
-            "id,partner_id,program_name,short_description,description,categories,target_categories,tags,duration,age_min,age_max,eligibility_grades,sticker_price,early_bird_price,price_currency,program_url,apply_url,pay_slug",
+            "id,partner_id,program_name,short_description,description,categories,duration,eligibility_grades,sticker_price,early_bird_price,price_currency,program_url,apply_url,pay_slug",
           )
           .eq("is_active", true),
         pub
           .from("all_cohorts")
           .select(
-            "id,program_id,cohort_label,start_date,end_date,application_deadline,seats_total,seats_filled,is_cancelled",
+            "id,program_id,cohort_label,start_date,end_date,application_deadline,seats_total",
           )
           .gte("start_date", today)
           .order("start_date", { ascending: true }),
@@ -254,7 +246,7 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
     );
     const programs = (programsRes.data ?? []) as ProgramRow[];
     const dbCohorts = ((cohortsRes.data ?? []) as CohortRow[]).filter(
-      (c) => !c.is_cancelled && c.start_date,
+      (c) => c.start_date,
     );
     const siteProgrammes = ((siteProgRes.data ?? []) as SiteProgramRow[]).filter(
       (r) => r.is_visible,
@@ -289,8 +281,6 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
 
       for (const c of dbProgramId ? (cohortsByProgram.get(dbProgramId) ?? []) : []) {
         const o = overrideByCohortId.get(c.id);
-        const seatsLeft =
-          c.seats_total != null ? Math.max(0, c.seats_total - (c.seats_filled ?? 0)) : null;
         const label = o?.label ?? c.cohort_label;
         out.set(c.start_date!, {
           d: c.start_date!,
@@ -301,7 +291,6 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
           ...(o?.brochure_url ? { brochure: o.brochure_url } : {}),
           ...(o?.fee_early ? { fee: { e: o.fee_early, r: o.fee_regular ?? null } } : {}),
           ...(c.application_deadline ? { deadline: c.application_deadline } : {}),
-          ...(seatsLeft != null ? { seatsLeft } : {}),
         });
       }
 
