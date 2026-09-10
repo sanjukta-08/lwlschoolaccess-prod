@@ -1,7 +1,6 @@
 import ZoomBadge from "@/components/ZoomBadge";
 import {
   TRACKS,
-  TYPE_IC,
   TYPE_NAME,
   cohortGrades,
   dualTime,
@@ -75,7 +74,7 @@ function CohortRow({
           className="mono-label block text-[0.66rem]"
           style={{ color: track.color }}
         >
-          {track.ic} {track.label} · {TYPE_IC[p.type]} {TYPE_NAME[p.type]}
+          {track.label} · {TYPE_NAME[p.type]}
         </span>
         <b className="mt-0.5 block text-[0.98rem] font-bold text-ink">{p.name}</b>
         <small className="block text-[0.78rem] text-ink-soft">
