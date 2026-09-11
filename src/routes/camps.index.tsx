@@ -120,11 +120,11 @@ function CampsHub() {
       <section className="border-y border-line bg-paper py-12">
         <div className="page-shell">
           <SectionHeading
-            eyebrow="Next departures"
+            eyebrow="Confirmed sessions"
             align="left"
-            sub="Confirmed dates first. Places are allocated in the order applications are completed."
+            sub="Here are the next confirmed cohorts. Places are allocated as soon as an application is complete."
           >
-            Book the <em className="text-crimson-deep">flights</em> around these
+            Camps starting <em className="text-crimson-deep">soon</em>
           </SectionHeading>
           <ul className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
             {upcoming.map((c) => (
