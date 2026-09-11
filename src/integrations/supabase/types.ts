@@ -22,10 +22,8 @@ export type Database = {
           created_at: string
           end_date: string | null
           id: string
-          is_cancelled: boolean
           program_code: string | null
           program_id: string
-          seats_filled: number
           seats_total: number | null
           start_date: string | null
           updated_at: string
@@ -37,10 +35,8 @@ export type Database = {
           created_at?: string
           end_date?: string | null
           id?: string
-          is_cancelled?: boolean
           program_code?: string | null
           program_id: string
-          seats_filled?: number
           seats_total?: number | null
           start_date?: string | null
           updated_at?: string
@@ -52,10 +48,8 @@ export type Database = {
           created_at?: string
           end_date?: string | null
           id?: string
-          is_cancelled?: boolean
           program_code?: string | null
           program_id?: string
-          seats_filled?: number
           seats_total?: number | null
           start_date?: string | null
           updated_at?: string
@@ -83,7 +77,6 @@ export type Database = {
           host_mentor_id: string | null
           host_name: string | null
           id: string
-          is_cancelled: boolean
           is_published: boolean
           join_url: string | null
           learning_outcomes: Json
@@ -91,7 +84,6 @@ export type Database = {
           partner_id: string
           passcode: string | null
           program_id: string | null
-          recording_url: string | null
           scheduled_at: string | null
           series: string | null
           session_number: number | null
@@ -111,7 +103,6 @@ export type Database = {
           host_mentor_id?: string | null
           host_name?: string | null
           id?: string
-          is_cancelled?: boolean
           is_published?: boolean
           join_url?: string | null
           learning_outcomes?: Json
@@ -119,7 +110,6 @@ export type Database = {
           partner_id: string
           passcode?: string | null
           program_id?: string | null
-          recording_url?: string | null
           scheduled_at?: string | null
           series?: string | null
           session_number?: number | null
@@ -139,7 +129,6 @@ export type Database = {
           host_mentor_id?: string | null
           host_name?: string | null
           id?: string
-          is_cancelled?: boolean
           is_published?: boolean
           join_url?: string | null
           learning_outcomes?: Json
@@ -147,7 +136,6 @@ export type Database = {
           partner_id?: string
           passcode?: string | null
           program_id?: string | null
-          recording_url?: string | null
           scheduled_at?: string | null
           series?: string | null
           session_number?: number | null
@@ -284,8 +272,6 @@ export type Database = {
       }
       all_programs: {
         Row: {
-          age_max: number | null
-          age_min: number | null
           apply_url: string | null
           categories: string[]
           cover_image_url: string | null
@@ -301,18 +287,13 @@ export type Database = {
           partner_id: string
           pay_slug: string | null
           price_currency: string
-          product_match_keywords: string[]
           program_name: string
           program_url: string | null
           short_description: string | null
           sticker_price: number
-          tags: string[]
-          target_categories: string[]
           updated_at: string
         }
         Insert: {
-          age_max?: number | null
-          age_min?: number | null
           apply_url?: string | null
           categories?: string[]
           cover_image_url?: string | null
@@ -328,18 +309,13 @@ export type Database = {
           partner_id: string
           pay_slug?: string | null
           price_currency?: string
-          product_match_keywords?: string[]
           program_name: string
           program_url?: string | null
           short_description?: string | null
           sticker_price: number
-          tags?: string[]
-          target_categories?: string[]
           updated_at?: string
         }
         Update: {
-          age_max?: number | null
-          age_min?: number | null
           apply_url?: string | null
           categories?: string[]
           cover_image_url?: string | null
@@ -355,13 +331,10 @@ export type Database = {
           partner_id?: string
           pay_slug?: string | null
           price_currency?: string
-          product_match_keywords?: string[]
           program_name?: string
           program_url?: string | null
           short_description?: string | null
           sticker_price?: number
-          tags?: string[]
-          target_categories?: string[]
           updated_at?: string
         }
         Relationships: [
