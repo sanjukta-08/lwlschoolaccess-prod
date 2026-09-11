@@ -122,7 +122,7 @@ function CampsHub() {
           <SectionHeading
             eyebrow="Confirmed sessions"
             align="left"
-            sub="Here are the next confirmed cohorts. Places are allocated as soon as an application is complete."
+            sub="Here are the next confirmed cohorts. Places are confirmed once the application review is complete."
           >
             Camps starting <em className="text-crimson-deep">soon</em>
           </SectionHeading>
