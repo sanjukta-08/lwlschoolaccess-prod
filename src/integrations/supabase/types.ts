@@ -444,7 +444,6 @@ export type Database = {
           parent_phone: string | null
           payment_date: string | null
           payment_id: string | null
-          payment_intent_id: string | null
           payment_status: string
           reviewed_at: string | null
           scholarship_code: string | null
@@ -483,7 +482,6 @@ export type Database = {
           parent_phone?: string | null
           payment_date?: string | null
           payment_id?: string | null
-          payment_intent_id?: string | null
           payment_status?: string
           reviewed_at?: string | null
           scholarship_code?: string | null
@@ -522,7 +520,6 @@ export type Database = {
           parent_phone?: string | null
           payment_date?: string | null
           payment_id?: string | null
-          payment_intent_id?: string | null
           payment_status?: string
           reviewed_at?: string | null
           scholarship_code?: string | null
