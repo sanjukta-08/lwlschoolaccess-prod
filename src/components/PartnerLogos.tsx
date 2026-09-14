@@ -15,7 +15,7 @@ import onward from "@/assets/partners/onward-fellowship.png.asset.json";
 import hackHarvard from "@/assets/partners/hack-harvard.svg.asset.json";
 import harvard from "@/assets/partners/harvard-veritas.png.asset.json";
 
-const LOGOS = [
+const LOGOS: Array<{ url: string; alt: string; shape?: "crest" | "wide" }> = [
   { url: worldMun.url, alt: "Harvard World Model United Nations", shape: "crest" },
   { url: cambridge.url, alt: "University of Cambridge Judge Business School Entrepreneurship Centre", shape: "wide" },
   { url: yaleGlobalAffairs.url, alt: "Yale Global Affairs World Leaders Academy", shape: "crest" },
