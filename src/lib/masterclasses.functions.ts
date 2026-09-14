@@ -10,6 +10,7 @@ export type PublicMasterclass = {
   scheduled_at: string | null;
   duration_minutes: number | null;
   display_timezone: string | null;
+  status: string | null;
   partner_name: string | null;
   partner_logo_url: string | null;
   program_name: string | null;
@@ -22,7 +23,7 @@ export type PublicMasterclass = {
 };
 
 const COLS =
-  "id,title,description,series,session_number,audience,scheduled_at,duration_minutes,display_timezone,partner_name,partner_logo_url,program_name,cohort_label,host_name,host_university,host_image_url,learning_outcomes,apply_url";
+  "id,title,description,series,session_number,audience,scheduled_at,duration_minutes,display_timezone,status,partner_name,partner_logo_url,program_name,cohort_label,host_name,host_university,host_image_url,learning_outcomes,apply_url";
 
 /** Public listing of upcoming masterclasses across all LWL partner platforms.
  *
@@ -46,6 +47,7 @@ export const listPublicMasterclasses = createServerFn({ method: "GET" }).handler
     const { data, error } = await supabase
       .from("all_masterclasses_public")
       .select(COLS)
+      .neq("status", "cancelled")
       .gte("scheduled_at", new Date(Date.now() - 60 * 60 * 1000).toISOString())
       .order("scheduled_at", { ascending: true })
       .limit(200);
