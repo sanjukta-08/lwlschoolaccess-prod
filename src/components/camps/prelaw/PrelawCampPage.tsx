@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
+import { campBySlug } from "@/lib/camps";
+import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
+
 import {
   ArrowDown,
   BookOpen,
@@ -51,8 +54,14 @@ import allisonImg from "@/assets/camps/horizons/mentors/allison.jpg.asset.json";
 import alexanderImg from "@/assets/camps/horizons/mentors/alexander.png.asset.json";
 import juheeImg from "@/assets/camps/horizons/mentors/juhee.jpg.asset.json";
 
-const BOOK_MEETING_URL = "https://bit.ly/45EWzWK";
-const APPLY_URL = "https://forms.gle/n5vvcRLgduxEA1SQ8";
+const BOOK_MEETING_URL = CALENDLY_BOOKING_URL;
+
+/**
+ * Applications are owned by the Application Portal / partner site. The live
+ * link comes from the shared catalogue; read at render so hydration wins.
+ */
+const applyUrl = () =>
+  campBySlug("prelaw-horizons-harvard")?.applyUrl ?? "https://www.learnwithleaders.com/camps/prelaw-horizons-program/";
 
 
 const days = [
@@ -337,7 +346,7 @@ function ProgramDetailsSection() {
             <div className="mt-12 border-t border-paper/30 pt-7">
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-paper/70">Application Deadline</p>
               <p className="mt-3 font-display text-2xl md:text-3xl">31 October 2026</p>
-              <a href={APPLY_URL} target="_blank" rel="noreferrer" className="mt-7 inline-flex bg-paper px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-crimson transition-colors hover:bg-ink hover:text-paper">Apply Now</a>
+              <a href={applyUrl()} target="_blank" rel="noreferrer" className="mt-7 inline-flex bg-paper px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-crimson transition-colors hover:bg-ink hover:text-paper">Apply Now</a>
             </div>
           </div>
           <div className="p-8 md:p-12 lg:p-16">
@@ -845,7 +854,7 @@ export default function PrelawCampPage() {
               Book a Meeting
             </a>
             <a
-              href={APPLY_URL}
+              href={applyUrl()}
               target="_blank"
               rel="noreferrer"
               className="border border-crimson bg-crimson px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-paper transition-colors hover:border-ink hover:bg-ink sm:px-4 sm:text-xs sm:tracking-[0.16em]"
@@ -987,7 +996,7 @@ export default function PrelawCampPage() {
                 The HUGEM Pre-Law Academy builds legal literacy, critical thinking, public service, and confidence.
               </p>
               <a
-                href={APPLY_URL}
+                href={applyUrl()}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex bg-paper px-8 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-crimson transition-colors hover:bg-ink hover:text-paper"

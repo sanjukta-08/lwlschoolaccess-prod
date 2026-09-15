@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
+import { campBySlug } from "@/lib/camps";
+import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
+
 import {
   Activity,
   AlertTriangle,
@@ -49,8 +52,14 @@ import allisonImg from "@/assets/camps/horizons/mentors/allison.jpg.asset.json";
 import alexanderImg from "@/assets/camps/horizons/mentors/alexander.png.asset.json";
 import juheeImg from "@/assets/camps/horizons/mentors/juhee.jpg.asset.json";
 
-const BOOK_MEETING_URL = "https://bit.ly/3TnVIa8";
-const APPLY_URL = "https://forms.gle/sMuYVrCD4nWnMraq8";
+const BOOK_MEETING_URL = CALENDLY_BOOKING_URL;
+
+/**
+ * Applications are owned by the Application Portal / partner site. The live
+ * link comes from the shared catalogue; read at render so hydration wins.
+ */
+const applyUrl = () =>
+  campBySlug("premed-horizons-harvard")?.applyUrl ?? "https://www.learnwithleaders.com/camps/premed-horizons-program/";
 
 const mentors = [
   {
@@ -289,7 +298,7 @@ export default function PremedCampPage() {
               Book a Meeting
             </a>
             <a
-              href={APPLY_URL}
+              href={applyUrl()}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center bg-crimson px-4 py-2 text-xs font-semibold uppercase tracking-widest text-paper hover:bg-ink transition-colors"
@@ -783,7 +792,7 @@ export default function PremedCampPage() {
           </h2>
           <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
-              href={APPLY_URL}
+              href={applyUrl()}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-crimson px-8 py-4 text-sm font-semibold uppercase tracking-[0.25em] text-paper hover:bg-paper hover:text-ink transition-colors"
@@ -924,7 +933,7 @@ function CampDetailsSection() {
                 per student
               </p>
               <a
-                href={APPLY_URL}
+                href={applyUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-8 inline-flex items-center justify-center bg-crimson px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-paper hover:bg-ink transition-colors"
