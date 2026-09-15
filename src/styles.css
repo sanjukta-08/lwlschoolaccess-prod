@@ -625,3 +625,13 @@
     animation: none;
   }
 }
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-crimson-foreground: var(--crimson-foreground);
+}
+
+:root {
+  --cream: oklch(0.965 0.012 85);
+  --crimson-foreground: #ffffff;
+}
