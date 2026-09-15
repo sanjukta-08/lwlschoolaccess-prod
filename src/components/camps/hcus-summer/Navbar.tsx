@@ -9,7 +9,7 @@ import brochureAsset from "@/assets/brochures/HCUS_Summer_Camp_2026.pdf.asset.js
 /** Apply destination for this camp, resolved live from the catalogue. */
 const registrationUrl = () =>
   campBySlug("hcus-young-global-leaders-summer")?.applyUrl ??
-  "https://www.learnwithleaders.com/camps/hcusociety/";
+  "https://apply.learnwithleaders.com/apply/harvard-summer-camp";
 
 
 const CALENDLY_URL = "https://calendly.com/learnwithleaders?utm_source=Harvard+summer+camp-hcus&utm_medium=Harvard+summer+camp-hcus&utm_id=Harvard+summer+camp-hcus";
