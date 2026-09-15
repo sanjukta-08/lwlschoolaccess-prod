@@ -42,21 +42,18 @@ export function PartnerLogos({ compact = false }: { compact?: boolean }) {
   const secondRow = LOGOS.slice(5, 11);
   const thirdRow = LOGOS.slice(11, 16);
 
-  const renderRow = (logos: typeof LOGOS, centered = false) => (
+  const renderRow = (logos: typeof LOGOS, columns: 5 | 6, width: string) => (
     <ul
-      className={`flex list-none flex-wrap items-center ${
-        centered ? "justify-center" : "justify-center sm:justify-start"
-      } gap-x-4 gap-y-5 p-0`}
+      className={`mx-auto grid w-full list-none grid-cols-2 items-center justify-items-center gap-x-3 gap-y-4 p-0 sm:grid-cols-3 ${
+        columns === 6 ? "lg:grid-cols-6" : "lg:grid-cols-5"
+      } ${width}`}
     >
       {logos.map((l) => {
         const large = l.size === "large";
         return (
           <li
             key={l.url}
-            className={`flex items-center justify-center ${
-              centered ? "px-3" : "px-2"
-            }`}
-            style={{ flex: "0 0 auto", minWidth: centered ? "140px" : "120px" }}
+            className="flex h-20 w-full min-w-0 items-center justify-center px-1 sm:h-24"
           >
             <img
               src={l.url}
@@ -67,17 +64,17 @@ export function PartnerLogos({ compact = false }: { compact?: boolean }) {
                 l.shape === "crest"
                   ? large
                     ? compact
-                      ? "max-h-20"
+                      ? "max-h-[5.25rem]"
                       : "max-h-24"
                     : compact
-                      ? "max-h-16"
+                      ? "max-h-[4.5rem]"
                       : "max-h-[4.5rem]"
                   : large
                     ? compact
-                      ? "max-h-20"
+                      ? "max-h-[5.25rem]"
                       : "max-h-24"
                     : compact
-                      ? "max-h-14"
+                      ? "max-h-[4.25rem]"
                       : "max-h-[4.5rem]"
               }`}
             />
@@ -88,10 +85,10 @@ export function PartnerLogos({ compact = false }: { compact?: boolean }) {
   );
 
   return (
-    <div className={compact ? "" : "mt-6 space-y-5"}>
-      {renderRow(firstRow)}
-      {renderRow(secondRow)}
-      {renderRow(thirdRow, true)}
+    <div className={compact ? "space-y-2" : "mt-6 space-y-3"}>
+      {renderRow(firstRow, 5, "max-w-[1060px]")}
+      {renderRow(secondRow, 6, "max-w-[1180px]")}
+      {renderRow(thirdRow, 5, "max-w-[960px]")}
     </div>
   );
 }
