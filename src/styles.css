@@ -517,3 +517,121 @@
 .camp-ignite .font-body {
   font-family: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
 }
+
+/* ============================================================
+   Imported camp pages (Pre-Med Horizons, Pre-Law Horizons)
+   ------------------------------------------------------------
+   Ports of their standalone HUGEM designs. Palette, typography and
+   the page-specific animations are scoped to .camp-horizons so
+   nothing leaks into the rest of the site. Fonts load per-route.
+   ============================================================ */
+
+.camp-horizons {
+  --ink: oklch(0.18 0.005 260);
+  --paper: oklch(1 0 0);
+  --cream: oklch(0.965 0.012 85);
+  --crimson: oklch(0.605 0.19 27);
+  --crimson-foreground: oklch(1 0 0);
+  --gold: oklch(0.72 0.13 85);
+
+  --background: var(--cream);
+  --foreground: var(--ink);
+  --muted: oklch(0.92 0.008 85);
+  --muted-foreground: oklch(0.42 0.01 260);
+  --border: oklch(0.86 0.01 85);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --accent: var(--crimson);
+  --accent-foreground: var(--crimson-foreground);
+  --radius: 0;
+
+  background: var(--cream);
+  color: var(--ink);
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+.camp-horizons ::selection {
+  background: var(--crimson);
+  color: var(--crimson-foreground);
+}
+
+.camp-horizons .font-display {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+.camp-horizons .font-script {
+  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+
+.camp-horizons .eyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.camp-horizons .text-shadow-hero {
+  text-shadow: 0 2px 24px oklch(0.18 0.005 260 / 0.35);
+}
+
+.camp-horizons .marquee-track {
+  animation: horizons-marquee 16s linear infinite;
+}
+
+.camp-horizons .outcomes-track {
+  animation: horizons-marquee 60s linear infinite;
+}
+
+.camp-horizons .animate-ken-burns {
+  animation: horizons-ken-burns 22s ease-out infinite alternate;
+}
+
+.camp-horizons .prelaw-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--paper) 18%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--paper) 12%, transparent) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+.camp-horizons .prelaw-lines {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 18px,
+    color-mix(in oklab, var(--paper) 35%, transparent) 18px,
+    color-mix(in oklab, var(--paper) 35%, transparent) 19px
+  );
+}
+
+@keyframes horizons-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes horizons-ken-burns {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.08) translate(-1.5%, -1%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .camp-horizons .marquee-track,
+  .camp-horizons .outcomes-track,
+  .camp-horizons .animate-ken-burns,
+  .camp-horizons .animate-bounce {
+    animation: none;
+  }
+}
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-crimson-foreground: var(--crimson-foreground);
+}
+
+:root {
+  --cream: oklch(0.965 0.012 85);
+  --crimson-foreground: #ffffff;
+}

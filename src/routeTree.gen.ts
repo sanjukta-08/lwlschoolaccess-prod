@@ -29,6 +29,8 @@ import { Route as CampsSlugRouteImport } from './routes/camps.$slug'
 import { Route as CampsHcusYoungGlobalLeadersSummerRouteImport } from './routes/camps.hcus-young-global-leaders-summer'
 import { Route as CampsHcusYoungGlobalLeadersWinterRouteImport } from './routes/camps.hcus-young-global-leaders-winter'
 import { Route as CampsIgniteCambridgeJudgeRouteImport } from './routes/camps.ignite-cambridge-judge'
+import { Route as CampsPrelawHorizonsHarvardRouteImport } from './routes/camps.prelaw-horizons-harvard'
+import { Route as CampsPremedHorizonsHarvardRouteImport } from './routes/camps.premed-horizons-harvard'
 import { Route as InternshipsIndexRouteImport } from './routes/internships.index'
 import { Route as ProgrammesSlugRouteImport } from './routes/programmes.$slug'
 
@@ -135,6 +137,18 @@ const CampsIgniteCambridgeJudgeRoute =
     path: '/ignite-cambridge-judge',
     getParentRoute: () => CampsRoute,
   } as any)
+const CampsPrelawHorizonsHarvardRoute =
+  CampsPrelawHorizonsHarvardRouteImport.update({
+    id: '/prelaw-horizons-harvard',
+    path: '/prelaw-horizons-harvard',
+    getParentRoute: () => CampsRoute,
+  } as any)
+const CampsPremedHorizonsHarvardRoute =
+  CampsPremedHorizonsHarvardRouteImport.update({
+    id: '/premed-horizons-harvard',
+    path: '/premed-horizons-harvard',
+    getParentRoute: () => CampsRoute,
+  } as any)
 const InternshipsIndexRoute = InternshipsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -166,6 +180,8 @@ export interface FileRoutesByFullPath {
   '/camps/hcus-young-global-leaders-summer': typeof CampsHcusYoungGlobalLeadersSummerRoute
   '/camps/hcus-young-global-leaders-winter': typeof CampsHcusYoungGlobalLeadersWinterRoute
   '/camps/ignite-cambridge-judge': typeof CampsIgniteCambridgeJudgeRoute
+  '/camps/prelaw-horizons-harvard': typeof CampsPrelawHorizonsHarvardRoute
+  '/camps/premed-horizons-harvard': typeof CampsPremedHorizonsHarvardRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/camps/': typeof CampsIndexRoute
   '/internships/': typeof InternshipsIndexRoute
@@ -188,6 +204,8 @@ export interface FileRoutesByTo {
   '/camps/hcus-young-global-leaders-summer': typeof CampsHcusYoungGlobalLeadersSummerRoute
   '/camps/hcus-young-global-leaders-winter': typeof CampsHcusYoungGlobalLeadersWinterRoute
   '/camps/ignite-cambridge-judge': typeof CampsIgniteCambridgeJudgeRoute
+  '/camps/prelaw-horizons-harvard': typeof CampsPrelawHorizonsHarvardRoute
+  '/camps/premed-horizons-harvard': typeof CampsPremedHorizonsHarvardRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/camps': typeof CampsIndexRoute
   '/internships': typeof InternshipsIndexRoute
@@ -213,6 +231,8 @@ export interface FileRoutesById {
   '/camps/hcus-young-global-leaders-summer': typeof CampsHcusYoungGlobalLeadersSummerRoute
   '/camps/hcus-young-global-leaders-winter': typeof CampsHcusYoungGlobalLeadersWinterRoute
   '/camps/ignite-cambridge-judge': typeof CampsIgniteCambridgeJudgeRoute
+  '/camps/prelaw-horizons-harvard': typeof CampsPrelawHorizonsHarvardRoute
+  '/camps/premed-horizons-harvard': typeof CampsPremedHorizonsHarvardRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/camps/': typeof CampsIndexRoute
   '/internships/': typeof InternshipsIndexRoute
@@ -239,6 +259,8 @@ export interface FileRouteTypes {
     | '/camps/hcus-young-global-leaders-summer'
     | '/camps/hcus-young-global-leaders-winter'
     | '/camps/ignite-cambridge-judge'
+    | '/camps/prelaw-horizons-harvard'
+    | '/camps/premed-horizons-harvard'
     | '/programmes/$slug'
     | '/camps/'
     | '/internships/'
@@ -261,6 +283,8 @@ export interface FileRouteTypes {
     | '/camps/hcus-young-global-leaders-summer'
     | '/camps/hcus-young-global-leaders-winter'
     | '/camps/ignite-cambridge-judge'
+    | '/camps/prelaw-horizons-harvard'
+    | '/camps/premed-horizons-harvard'
     | '/programmes/$slug'
     | '/camps'
     | '/internships'
@@ -285,6 +309,8 @@ export interface FileRouteTypes {
     | '/camps/hcus-young-global-leaders-summer'
     | '/camps/hcus-young-global-leaders-winter'
     | '/camps/ignite-cambridge-judge'
+    | '/camps/prelaw-horizons-harvard'
+    | '/camps/premed-horizons-harvard'
     | '/programmes/$slug'
     | '/camps/'
     | '/internships/'
@@ -451,6 +477,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CampsIgniteCambridgeJudgeRouteImport
       parentRoute: typeof CampsRoute
     }
+    '/camps/prelaw-horizons-harvard': {
+      id: '/camps/prelaw-horizons-harvard'
+      path: '/prelaw-horizons-harvard'
+      fullPath: '/camps/prelaw-horizons-harvard'
+      preLoaderRoute: typeof CampsPrelawHorizonsHarvardRouteImport
+      parentRoute: typeof CampsRoute
+    }
+    '/camps/premed-horizons-harvard': {
+      id: '/camps/premed-horizons-harvard'
+      path: '/premed-horizons-harvard'
+      fullPath: '/camps/premed-horizons-harvard'
+      preLoaderRoute: typeof CampsPremedHorizonsHarvardRouteImport
+      parentRoute: typeof CampsRoute
+    }
     '/internships/': {
       id: '/internships/'
       path: '/'
@@ -473,6 +513,8 @@ interface CampsRouteChildren {
   CampsHcusYoungGlobalLeadersSummerRoute: typeof CampsHcusYoungGlobalLeadersSummerRoute
   CampsHcusYoungGlobalLeadersWinterRoute: typeof CampsHcusYoungGlobalLeadersWinterRoute
   CampsIgniteCambridgeJudgeRoute: typeof CampsIgniteCambridgeJudgeRoute
+  CampsPrelawHorizonsHarvardRoute: typeof CampsPrelawHorizonsHarvardRoute
+  CampsPremedHorizonsHarvardRoute: typeof CampsPremedHorizonsHarvardRoute
   CampsIndexRoute: typeof CampsIndexRoute
 }
 
@@ -483,6 +525,8 @@ const CampsRouteChildren: CampsRouteChildren = {
   CampsHcusYoungGlobalLeadersWinterRoute:
     CampsHcusYoungGlobalLeadersWinterRoute,
   CampsIgniteCambridgeJudgeRoute: CampsIgniteCambridgeJudgeRoute,
+  CampsPrelawHorizonsHarvardRoute: CampsPrelawHorizonsHarvardRoute,
+  CampsPremedHorizonsHarvardRoute: CampsPremedHorizonsHarvardRoute,
   CampsIndexRoute: CampsIndexRoute,
 }
 
