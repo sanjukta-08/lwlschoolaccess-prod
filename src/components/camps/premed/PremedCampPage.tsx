@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
 
 import {
   Activity,
@@ -31,24 +30,24 @@ import {
   UtensilsCrossed,
 } from "lucide-react";
 
-import heroVideo from "@/assets/V1.mp4.asset.json";
-import visionImg from "@/assets/vision.jpg";
-import capstoneImg from "@/assets/capstone.jpg.asset.json";
-import visionBgImg from "@/assets/vision-bg.jpg.asset.json";
-import logoAsset from "@/assets/hugem-logo.png.asset.json";
-import lwlLogo from "@/assets/lwl-logo-white.png.asset.json";
-import hugemWhiteLogo from "@/assets/hugem-white-logo.png.asset.json";
-import harvardCampusBeautifulImg from "@/assets/harvard-campus-beautiful.jpg.asset.json";
-import outingHarvardImg from "@/assets/campus-tour.jpg.asset.json";
-import outingMfaImg from "@/assets/mfa-boston.png.asset.json";
-import mitDomeImg from "@/assets/mit-dome.jpg.asset.json";
-import hadleyImg from "@/assets/mentors/hadley.jpg.asset.json";
-import zainImg from "@/assets/mentors/zain.jpg.asset.json";
-import suhaniImg from "@/assets/mentors/suhani.jpg.asset.json";
-import leahImg from "@/assets/mentors/leah.jpg.asset.json";
-import allisonImg from "@/assets/mentors/allison.jpg.asset.json";
-import alexanderImg from "@/assets/mentors/alexander.png.asset.json";
-import juheeImg from "@/assets/mentors/juhee.jpg.asset.json";
+import heroVideo from "@/assets/camps/horizons/V1.mp4.asset.json";
+import visionImg from "@/assets/camps/horizons/vision.jpg";
+import capstoneImg from "@/assets/camps/horizons/capstone.jpg.asset.json";
+import visionBgImg from "@/assets/camps/horizons/vision-bg.jpg.asset.json";
+import logoAsset from "@/assets/camps/horizons/hugem-logo.png.asset.json";
+import lwlLogo from "@/assets/camps/horizons/lwl-logo-white.png.asset.json";
+import hugemWhiteLogo from "@/assets/camps/horizons/hugem-white-logo.png.asset.json";
+import harvardCampusBeautifulImg from "@/assets/camps/horizons/harvard-campus-beautiful.jpg.asset.json";
+import outingHarvardImg from "@/assets/camps/horizons/campus-tour.jpg.asset.json";
+import outingMfaImg from "@/assets/camps/horizons/mfa-boston.png.asset.json";
+import mitDomeImg from "@/assets/camps/horizons/mit-dome.jpg.asset.json";
+import hadleyImg from "@/assets/camps/horizons/mentors/hadley.jpg.asset.json";
+import zainImg from "@/assets/camps/horizons/mentors/zain.jpg.asset.json";
+import suhaniImg from "@/assets/camps/horizons/mentors/suhani.jpg.asset.json";
+import leahImg from "@/assets/camps/horizons/mentors/leah.jpg.asset.json";
+import allisonImg from "@/assets/camps/horizons/mentors/allison.jpg.asset.json";
+import alexanderImg from "@/assets/camps/horizons/mentors/alexander.png.asset.json";
+import juheeImg from "@/assets/camps/horizons/mentors/juhee.jpg.asset.json";
 
 const BOOK_MEETING_URL = "https://bit.ly/3TnVIa8";
 const APPLY_URL = "https://forms.gle/sMuYVrCD4nWnMraq8";
@@ -100,27 +99,6 @@ const mentors = [
 
 
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Pre-Med Academy — HUGEM" },
-      {
-        name: "description",
-        content:
-          "A pre-collegiate program for students ready to explore medicine, innovation, and policy. Five days, one capstone challenge.",
-      },
-      { property: "og:title", content: "Pre-Med Academy — HUGEM" },
-      {
-        property: "og:description",
-        content:
-          "Explore medicine, innovation, and policy through the HUGEM Pre-Med Academy — a five-day interdisciplinary pre-collegiate program.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
-  component: Index,
-});
 
 const days = [
   {
@@ -279,7 +257,7 @@ const outcomes = [
 ];
 
 
-function Index() {
+export default function PremedCampPage() {
 
   return (
     <div className="min-h-screen bg-cream text-ink">

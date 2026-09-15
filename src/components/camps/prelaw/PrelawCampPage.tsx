@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
 
 import {
   ArrowDown,
@@ -32,50 +31,29 @@ import {
   UtensilsCrossed,
 } from "lucide-react";
 
-import logoAsset from "@/assets/hugem-logo.png.asset.json";
+import logoAsset from "@/assets/camps/horizons/hugem-logo.png.asset.json";
 
-import lwlLogo from "@/assets/lwl-logo-white.png.asset.json";
-import lawLibrary from "@/assets/law-library.jpg.asset.json";
-import harvardYard from "@/assets/harvard-yard.jpg.asset.json";
-import harvardStudents from "@/assets/harvard-students.jpg.asset.json";
-import harvardCampus from "@/assets/harvard-campus-beautiful.jpg.asset.json";
-import outingHarvardImg from "@/assets/campus-tour.jpg.asset.json";
-import outingMfaImg from "@/assets/mfa-boston.png.asset.json";
-import mitDomeImg from "@/assets/mit-dome.jpg.asset.json";
-import vidHarvard from "@/assets/Vid_harvard.webm.asset.json";
-import behindTheAcademy from "@/assets/behind-the-academy.jpg.asset.json";
-import hadleyImg from "@/assets/mentors/hadley.jpg.asset.json";
-import zainImg from "@/assets/mentors/zain.jpg.asset.json";
-import suhaniImg from "@/assets/mentors/suhani.jpg.asset.json";
-import leahImg from "@/assets/mentors/leah.jpg.asset.json";
-import allisonImg from "@/assets/mentors/allison.jpg.asset.json";
-import alexanderImg from "@/assets/mentors/alexander.png.asset.json";
-import juheeImg from "@/assets/mentors/juhee.jpg.asset.json";
+import lwlLogo from "@/assets/camps/horizons/lwl-logo-white.png.asset.json";
+import lawLibrary from "@/assets/camps/horizons/law-library.jpg.asset.json";
+import harvardYard from "@/assets/camps/horizons/harvard-yard.jpg.asset.json";
+import harvardStudents from "@/assets/camps/horizons/harvard-students.jpg.asset.json";
+import harvardCampus from "@/assets/camps/horizons/harvard-campus-beautiful.jpg.asset.json";
+import outingHarvardImg from "@/assets/camps/horizons/campus-tour.jpg.asset.json";
+import outingMfaImg from "@/assets/camps/horizons/mfa-boston.png.asset.json";
+import mitDomeImg from "@/assets/camps/horizons/mit-dome.jpg.asset.json";
+import vidHarvard from "@/assets/camps/horizons/Vid_harvard.webm.asset.json";
+import behindTheAcademy from "@/assets/camps/horizons/behind-the-academy.jpg.asset.json";
+import hadleyImg from "@/assets/camps/horizons/mentors/hadley.jpg.asset.json";
+import zainImg from "@/assets/camps/horizons/mentors/zain.jpg.asset.json";
+import suhaniImg from "@/assets/camps/horizons/mentors/suhani.jpg.asset.json";
+import leahImg from "@/assets/camps/horizons/mentors/leah.jpg.asset.json";
+import allisonImg from "@/assets/camps/horizons/mentors/allison.jpg.asset.json";
+import alexanderImg from "@/assets/camps/horizons/mentors/alexander.png.asset.json";
+import juheeImg from "@/assets/camps/horizons/mentors/juhee.jpg.asset.json";
 
 const BOOK_MEETING_URL = "https://bit.ly/45EWzWK";
 const APPLY_URL = "https://forms.gle/n5vvcRLgduxEA1SQ8";
 
-export const Route = createFileRoute("/pre-law")({
-  head: () => ({
-    meta: [
-      { title: "Pre-Law Academy — HUGEM" },
-      {
-        name: "description",
-        content:
-          "A six-day HUGEM intensive exploring legal history, political theory, international law, ethics, public service, and legal advocacy.",
-      },
-      { property: "og:title", content: "Pre-Law Academy — HUGEM" },
-      {
-        property: "og:description",
-        content:
-          "Explore the law, its contradictions, and the questions shaping our world through HUGEM's six-day Pre-Law Academy.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
-  component: PreLawPage,
-});
 
 const days = [
   {
@@ -836,7 +814,7 @@ function FAQSection() {
   );
 }
 
-function PreLawPage() {
+export default function PrelawCampPage() {
 
   return (
     <div className="min-h-screen bg-cream text-ink">
