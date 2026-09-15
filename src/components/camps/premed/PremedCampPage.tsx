@@ -34,6 +34,7 @@ import {
 } from "lucide-react";
 
 import heroVideo from "@/assets/camps/horizons/V1.mp4.asset.json";
+import heroCampusPoster from "@/assets/camps/horizons/hero-campus.jpg.asset.json";
 import visionImg from "@/assets/camps/horizons/vision.jpg";
 import capstoneImg from "@/assets/camps/horizons/capstone.jpg.asset.json";
 import visionBgImg from "@/assets/camps/horizons/vision-bg.jpg.asset.json";
@@ -318,7 +319,7 @@ export default function PremedCampPage() {
             muted
             loop
             playsInline
-            poster={heroVideo.url}
+            poster={heroCampusPoster.url}
             className="h-full w-full object-cover"
             aria-label="Pre-Med Academy background video"
           />
