@@ -1,5 +1,12 @@
 import { Mail, Globe } from "lucide-react";
 
+import { campBySlug } from "@/lib/camps";
+
+/** Apply destination for this camp, resolved live from the catalogue. */
+const registrationUrl = () =>
+  campBySlug("hcus-young-global-leaders-winter")?.applyUrl ??
+  "https://apply.learnwithleaders.com/apply/harvard-winter-camp";
+
 const Footer = () => (
   <footer className="bg-primary text-primary-foreground">
     <div className="max-w-4xl mx-auto px-6 py-16 md:py-20 text-center">

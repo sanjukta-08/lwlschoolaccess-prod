@@ -8,7 +8,12 @@ const winterVideo = winterVideoAsset.url;
 import hcusLogo from "@/assets/hcus-winter/hcus-hero-logo.png";
 import lwlLogo from "@/assets/hcus-winter/lwl-hero-logo.png";
 
-const REGISTRATION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSe8-WcdCzp_QSOaPtic5FHJnDfGqMt36i80LCvfJChPykmvIQ/viewform";
+import { campBySlug } from "@/lib/camps";
+
+/** Apply destination for this camp, resolved live from the catalogue. */
+const registrationUrl = () =>
+  campBySlug("hcus-young-global-leaders-winter")?.applyUrl ??
+  "https://apply.learnwithleaders.com/apply/harvard-winter-camp";
 
 const HeroSection = () => {
   const { videoRef, tryPlay } = useVideoAutoplay();
