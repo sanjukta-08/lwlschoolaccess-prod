@@ -108,7 +108,7 @@ const ProgramDetails = () => {
             className="text-center mt-12"
           >
             <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSe8-WcdCzp_QSOaPtic5FHJnDfGqMt36i80LCvfJChPykmvIQ/viewform"
+              href={registrationUrl()}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-primary-foreground text-primary font-sans font-bold text-base md:text-lg uppercase tracking-[0.15em] px-12 py-5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"

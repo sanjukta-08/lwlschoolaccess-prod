@@ -58,7 +58,7 @@ const Navbar = () => {
             className="px-5 py-2.5 text-xs font-semibold tracking-[0.1em] uppercase border border-primary text-primary rounded hover:bg-primary hover:text-primary-foreground transition-all duration-300 whitespace-nowrap">
             Book a Meeting
           </a>
-          <a href={REGISTRATION_URL} target="_blank" rel="noopener noreferrer"
+          <a href={registrationUrl()} target="_blank" rel="noopener noreferrer"
             className="px-5 py-2.5 text-xs font-semibold tracking-[0.1em] uppercase bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-all duration-300 whitespace-nowrap">
             Apply Now
           </a>
@@ -87,7 +87,7 @@ const Navbar = () => {
               className="text-center px-5 py-3.5 text-sm font-semibold tracking-[0.1em] uppercase border border-primary text-primary rounded hover:bg-primary hover:text-primary-foreground transition-all duration-300">
               Book a Meeting
             </a>
-            <a href={REGISTRATION_URL} target="_blank" rel="noopener noreferrer"
+            <a href={registrationUrl()} target="_blank" rel="noopener noreferrer"
               className="text-center px-5 py-3.5 text-sm font-semibold tracking-[0.1em] uppercase bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-all duration-300">
               Apply Now
             </a>

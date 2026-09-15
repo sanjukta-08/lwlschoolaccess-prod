@@ -104,7 +104,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.3 }}
         >
-          <a href={REGISTRATION_URL} target="_blank" rel="noopener noreferrer">
+          <a href={registrationUrl()} target="_blank" rel="noopener noreferrer">
             <Button
               size="lg"
               className="px-12 py-6 bg-primary text-primary-foreground font-sans font-bold text-[11px] tracking-[0.3em] uppercase hover:bg-primary/90 transition-all duration-500 shadow-[0_4px_30px_rgba(139,0,0,0.35)] hover:shadow-[0_8px_40px_rgba(139,0,0,0.55)]"
