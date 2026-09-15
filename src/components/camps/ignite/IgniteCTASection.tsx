@@ -37,12 +37,12 @@ export const IgniteCTASection = ({ onApplyClick }: IgniteCTASectionProps) => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              size="lg" 
-              disabled
-              className="bg-[#8B1538] text-white hover:bg-[#8B1538] text-lg h-14 px-10 font-semibold shadow-lg opacity-90 cursor-not-allowed disabled:opacity-90"
+            <Button
+              size="lg"
+              onClick={onApplyClick}
+              className="bg-[#8B1538] text-white hover:bg-[#701029] text-lg h-14 px-10 font-semibold shadow-lg"
             >
-              Applications Opening Soon
+              Apply Now
             </Button>
           </div>
           
