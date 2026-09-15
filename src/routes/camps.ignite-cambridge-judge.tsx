@@ -50,7 +50,7 @@ function IgnitePage() {
   const openApply = () => {
     const url =
       campBySlug(SLUG)?.applyUrl ??
-      "https://www.learnwithleaders.com/camps/cambridgesummercamp/";
+      "https://apply.learnwithleaders.com/apply/cambridge-ignite";
     window.open(url, "_blank", "noopener,noreferrer");
   };
 

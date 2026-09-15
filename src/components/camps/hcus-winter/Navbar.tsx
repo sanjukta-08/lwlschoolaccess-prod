@@ -3,7 +3,12 @@ import { Menu, X } from "lucide-react";
 import headerLogos from "@/assets/hcus-winter/header-logos.png";
 import brochureAsset from "@/assets/brochures/HCUS_Winter_Camp_2026.pdf.asset.json";
 
-const REGISTRATION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSe8-WcdCzp_QSOaPtic5FHJnDfGqMt36i80LCvfJChPykmvIQ/viewform";
+import { campBySlug } from "@/lib/camps";
+
+/** Apply destination for this camp, resolved live from the catalogue. */
+const registrationUrl = () =>
+  campBySlug("hcus-young-global-leaders-winter")?.applyUrl ??
+  "https://apply.learnwithleaders.com/apply/harvard-winter-camp";
 const CALENDLY_URL = "https://calendly.com/learnwithleaders?utm_source=Harvard+Winter+Camp&utm_medium=Harvard+Winter+Camp&utm_id=Harvard+Winter+Camp";
 
 const navLinks = [
@@ -53,7 +58,7 @@ const Navbar = () => {
             className="px-5 py-2.5 text-xs font-semibold tracking-[0.1em] uppercase border border-primary text-primary rounded hover:bg-primary hover:text-primary-foreground transition-all duration-300 whitespace-nowrap">
             Book a Meeting
           </a>
-          <a href={REGISTRATION_URL} target="_blank" rel="noopener noreferrer"
+          <a href={registrationUrl()} target="_blank" rel="noopener noreferrer"
             className="px-5 py-2.5 text-xs font-semibold tracking-[0.1em] uppercase bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-all duration-300 whitespace-nowrap">
             Apply Now
           </a>
@@ -82,7 +87,7 @@ const Navbar = () => {
               className="text-center px-5 py-3.5 text-sm font-semibold tracking-[0.1em] uppercase border border-primary text-primary rounded hover:bg-primary hover:text-primary-foreground transition-all duration-300">
               Book a Meeting
             </a>
-            <a href={REGISTRATION_URL} target="_blank" rel="noopener noreferrer"
+            <a href={registrationUrl()} target="_blank" rel="noopener noreferrer"
               className="text-center px-5 py-3.5 text-sm font-semibold tracking-[0.1em] uppercase bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-all duration-300">
               Apply Now
             </a>

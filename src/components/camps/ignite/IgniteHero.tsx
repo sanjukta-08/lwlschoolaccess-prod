@@ -29,10 +29,10 @@ export const IgniteHero = ({ onApplyClick, brochureUrl }: IgniteHeroProps) => {
       >
         <Button
           size="lg"
-          disabled
-          className="bg-[#8B1538] text-white hover:bg-[#8B1538] font-bold text-base h-12 px-8 rounded-md shadow-xl opacity-90 cursor-not-allowed disabled:opacity-90"
+          onClick={onApplyClick}
+          className="bg-[#8B1538] text-white hover:bg-[#701029] font-bold text-base h-12 px-8 rounded-md shadow-xl"
         >
-          APPLICATIONS OPENING SOON
+          APPLY NOW
         </Button>
 
       </motion.div>

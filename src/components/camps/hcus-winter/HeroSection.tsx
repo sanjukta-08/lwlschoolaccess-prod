@@ -8,7 +8,12 @@ const winterVideo = winterVideoAsset.url;
 import hcusLogo from "@/assets/hcus-winter/hcus-hero-logo.png";
 import lwlLogo from "@/assets/hcus-winter/lwl-hero-logo.png";
 
-const REGISTRATION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSe8-WcdCzp_QSOaPtic5FHJnDfGqMt36i80LCvfJChPykmvIQ/viewform";
+import { campBySlug } from "@/lib/camps";
+
+/** Apply destination for this camp, resolved live from the catalogue. */
+const registrationUrl = () =>
+  campBySlug("hcus-young-global-leaders-winter")?.applyUrl ??
+  "https://apply.learnwithleaders.com/apply/harvard-winter-camp";
 
 const HeroSection = () => {
   const { videoRef, tryPlay } = useVideoAutoplay();
@@ -99,7 +104,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.3 }}
         >
-          <a href={REGISTRATION_URL} target="_blank" rel="noopener noreferrer">
+          <a href={registrationUrl()} target="_blank" rel="noopener noreferrer">
             <Button
               size="lg"
               className="px-12 py-6 bg-primary text-primary-foreground font-sans font-bold text-[11px] tracking-[0.3em] uppercase hover:bg-primary/90 transition-all duration-500 shadow-[0_4px_30px_rgba(139,0,0,0.35)] hover:shadow-[0_8px_40px_rgba(139,0,0,0.55)]"

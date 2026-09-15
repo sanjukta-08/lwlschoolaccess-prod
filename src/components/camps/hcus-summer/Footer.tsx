@@ -5,7 +5,7 @@ import { campBySlug } from "@/lib/camps";
 /** Apply destination for this camp, resolved live from the catalogue. */
 const registrationUrl = () =>
   campBySlug("hcus-young-global-leaders-summer")?.applyUrl ??
-  "https://www.learnwithleaders.com/camps/hcusociety/";
+  "https://apply.learnwithleaders.com/apply/harvard-summer-camp";
 
 
 const Footer = () => (

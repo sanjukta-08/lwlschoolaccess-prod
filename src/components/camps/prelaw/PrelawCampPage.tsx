@@ -61,7 +61,7 @@ const BOOK_MEETING_URL = CALENDLY_BOOKING_URL;
  * link comes from the shared catalogue; read at render so hydration wins.
  */
 const applyUrl = () =>
-  campBySlug("prelaw-horizons-harvard")?.applyUrl ?? "https://www.learnwithleaders.com/camps/prelaw-horizons-program/";
+  campBySlug("prelaw-horizons-harvard")?.applyUrl ?? "https://apply.learnwithleaders.com/apply/prelaw-academy";
 
 
 const days = [

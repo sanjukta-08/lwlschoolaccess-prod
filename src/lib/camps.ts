@@ -76,7 +76,7 @@ export const CAMPS: Camp[] = [
     eyebrow: "Where the future of medicine begins",
     lede: "An immersive on-campus camp for students ready to explore medicine, innovation and policy, taught by Harvard undergraduates and guest clinicians.",
     image: premed,
-    applyUrl: "https://www.learnwithleaders.com/camps/premed-horizons-program/",
+    applyUrl: "https://apply.learnwithleaders.com/apply/premed-academy",
     stats: [
       { value: "06", label: "Days of programming" },
       { value: "01", label: "Capstone challenge" },
@@ -134,7 +134,7 @@ export const CAMPS: Camp[] = [
     eyebrow: "Argue it out on campus",
     lede: "For students who want to test whether law is really for them: case reading, legal reasoning and a full moot court finale on a Harvard campus.",
     image: prelaw,
-    applyUrl: "https://www.learnwithleaders.com/camps/prelaw-horizons-program/",
+    applyUrl: "https://apply.learnwithleaders.com/apply/prelaw-academy",
     stats: [
       { value: "06", label: "Days of programming" },
       { value: "01", label: "Moot court final" },
@@ -191,7 +191,7 @@ export const CAMPS: Camp[] = [
     eyebrow: "Winter on campus",
     lede: "Empower your leadership skills at Harvard with expert mentorship, structured training and a team challenge that runs the length of the week.",
     image: harvardWinter,
-    applyUrl: "https://www.learnwithleaders.com/camps/hucswintercamp/",
+    applyUrl: "https://apply.learnwithleaders.com/apply/harvard-winter-camp",
     stats: [
       { value: "08", label: "Days on campus" },
       { value: "02", label: "Cohort options" },
@@ -249,7 +249,7 @@ export const CAMPS: Camp[] = [
     eyebrow: "Summer on campus",
     lede: "Empower your leadership skills at Harvard with expert mentorship and training, in the long light of a New England summer.",
     image: harvardSummer,
-    applyUrl: "https://www.learnwithleaders.com/camps/hcusociety/",
+    applyUrl: "https://apply.learnwithleaders.com/apply/harvard-summer-camp",
     stats: [
       { value: "08", label: "Days on campus" },
       { value: "01", label: "Team challenge" },
@@ -304,7 +304,7 @@ export const CAMPS: Camp[] = [
     eyebrow: "Build it in Cambridge",
     lede: "A venture-building week inside one of Europe's strongest start-up ecosystems, finishing with a pitch to a panel of founders and investors.",
     image: cambridge,
-    applyUrl: "https://www.learnwithleaders.com/camps/cambridgesummercamp/",
+    applyUrl: "https://apply.learnwithleaders.com/apply/cambridge-ignite",
     stats: [
       { value: "07", label: "Days on campus" },
       { value: "01", label: "Investor pitch" },
@@ -361,7 +361,7 @@ export const CAMPS: Camp[] = [
     eyebrow: "Where the world negotiates",
     lede: "A week of prototyping and policy in Geneva: the UN quarter by day, the FabLab by afternoon, and a solution presented at the end of it.",
     image: geneva,
-    applyUrl: "https://www.learnwithleaders.com/camps/genevacamp/",
+    applyUrl: "https://apply.learnwithleaders.com/apply/geneva-camp",
     stats: [
       { value: "07", label: "Days in Geneva" },
       { value: "17", label: "SDGs in play" },
@@ -418,7 +418,7 @@ export const CAMPS: Camp[] = [
     eyebrow: "Innovate. Lead. Create.",
     lede: "Build an AI-powered venture at one of the oldest universities in the world, guided by NYU faculty and Spanish founders.",
     image: salamanca,
-    applyUrl: "https://www.learnwithleaders.com/camps/salamancaspaincamp/",
+    applyUrl: "https://apply.learnwithleaders.com/apply/salamanca-entrepreneurship-ai",
     stats: [
       { value: "07", label: "Days in Spain" },
       { value: "01", label: "AI product shipped" },

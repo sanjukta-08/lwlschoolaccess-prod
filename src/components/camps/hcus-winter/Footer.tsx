@@ -1,5 +1,12 @@
 import { Mail, Globe } from "lucide-react";
 
+import { campBySlug } from "@/lib/camps";
+
+/** Apply destination for this camp, resolved live from the catalogue. */
+const registrationUrl = () =>
+  campBySlug("hcus-young-global-leaders-winter")?.applyUrl ??
+  "https://apply.learnwithleaders.com/apply/harvard-winter-camp";
+
 const Footer = () => (
   <footer className="bg-primary text-primary-foreground">
     <div className="max-w-4xl mx-auto px-6 py-16 md:py-20 text-center">
@@ -14,7 +21,7 @@ const Footer = () => (
 
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mb-14">
         <a
-          href="https://docs.google.com/forms/d/e/1FAIpQLSe8-WcdCzp_QSOaPtic5FHJnDfGqMt36i80LCvfJChPykmvIQ/viewform"
+          href={registrationUrl()}
           target="_blank" rel="noopener noreferrer"
           className="px-10 py-4 bg-primary-foreground text-primary font-sans text-sm md:text-base font-semibold rounded-full hover:bg-primary-foreground/90 transition-all duration-300 min-w-[220px]"
         >

@@ -12,7 +12,7 @@ import heroWebm from "@/assets/camp-video/hero-video.webm.asset.json";
 /** Apply destination for this camp, resolved live from the catalogue. */
 const registrationUrl = () =>
   campBySlug("hcus-young-global-leaders-summer")?.applyUrl ??
-  "https://www.learnwithleaders.com/camps/hcusociety/";
+  "https://apply.learnwithleaders.com/apply/harvard-summer-camp";
 
 
 const SCHOOL_REGISTRATION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSciaj-F5b3E5yph1cx0rwZYb1jd5jo3Hz0TR_MfBndu9LP2Mw/viewform";

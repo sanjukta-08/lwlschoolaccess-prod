@@ -3,6 +3,13 @@ import { useRef } from "react";
 import { Calendar, MapPin, GraduationCap, Clock } from "lucide-react";
 import programDetailsBg from "@/assets/hcus-winter/program-details-bg.jpg";
 
+import { campBySlug } from "@/lib/camps";
+
+/** Apply destination for this camp, resolved live from the catalogue. */
+const registrationUrl = () =>
+  campBySlug("hcus-young-global-leaders-winter")?.applyUrl ??
+  "https://apply.learnwithleaders.com/apply/harvard-winter-camp";
+
 const details = [
   { icon: Calendar, label: "Dates", value: "Cohort 1: 3 – 10 January 2027\nCohort 2: 10 – 17 January 2027" },
   { icon: MapPin, label: "Venue", value: "Harvard University\nCambridge, Massachusetts" },
@@ -108,7 +115,7 @@ const ProgramDetails = () => {
             className="text-center mt-12"
           >
             <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSe8-WcdCzp_QSOaPtic5FHJnDfGqMt36i80LCvfJChPykmvIQ/viewform"
+              href={registrationUrl()}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-primary-foreground text-primary font-sans font-bold text-base md:text-lg uppercase tracking-[0.15em] px-12 py-5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
