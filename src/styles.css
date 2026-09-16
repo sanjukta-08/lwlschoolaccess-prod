@@ -247,6 +247,7 @@
 
   :is(h1, h2, h3, h4, h5, h6) {
     font-family: "Bricolage Grotesque Variable", "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+    font-style: normal !important;
   }
 
   :focus-visible {
@@ -439,6 +440,7 @@
 .camp-hcus .font-serif-display,
 .camp-hcus .font-display {
   font-family: "Bricolage Grotesque Variable", "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  font-style: normal !important;
 }
 
 .camp-hcus .font-sans,
@@ -512,6 +514,7 @@
 .camp-ignite .font-serif-display,
 .camp-ignite .font-display {
   font-family: "Bricolage Grotesque Variable", "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  font-style: normal !important;
 }
 
 .camp-ignite .font-georgia {
