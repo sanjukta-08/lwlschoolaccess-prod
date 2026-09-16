@@ -5,3 +5,4 @@
 - [x] Replace the partial IGNITE page with the complete IGNITE Gateway design
 - [x] Verify all three pages, media, interactions, metadata, and application links
 - [x] Present fresh, unconventional typography directions for the website
+- [x] Remove italic styling from all headings and the Learn with Leaders wordmark
