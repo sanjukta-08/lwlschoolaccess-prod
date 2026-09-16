@@ -26,6 +26,8 @@ import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as CampsIndexRouteImport } from './routes/camps.index'
 import { Route as CampsSlugRouteImport } from './routes/camps.$slug'
+import { Route as CampsEntrepreneurshipAiSalamancaRouteImport } from './routes/camps.entrepreneurship-ai-salamanca'
+import { Route as CampsFutureSustainabilityInnovatorsGenevaRouteImport } from './routes/camps.future-sustainability-innovators-geneva'
 import { Route as CampsHcusYoungGlobalLeadersSummerRouteImport } from './routes/camps.hcus-young-global-leaders-summer'
 import { Route as CampsHcusYoungGlobalLeadersWinterRouteImport } from './routes/camps.hcus-young-global-leaders-winter'
 import { Route as CampsIgniteCambridgeJudgeRouteImport } from './routes/camps.ignite-cambridge-judge'
@@ -119,6 +121,18 @@ const CampsSlugRoute = CampsSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => CampsRoute,
 } as any)
+const CampsEntrepreneurshipAiSalamancaRoute =
+  CampsEntrepreneurshipAiSalamancaRouteImport.update({
+    id: '/entrepreneurship-ai-salamanca',
+    path: '/entrepreneurship-ai-salamanca',
+    getParentRoute: () => CampsRoute,
+  } as any)
+const CampsFutureSustainabilityInnovatorsGenevaRoute =
+  CampsFutureSustainabilityInnovatorsGenevaRouteImport.update({
+    id: '/future-sustainability-innovators-geneva',
+    path: '/future-sustainability-innovators-geneva',
+    getParentRoute: () => CampsRoute,
+  } as any)
 const CampsHcusYoungGlobalLeadersSummerRoute =
   CampsHcusYoungGlobalLeadersSummerRouteImport.update({
     id: '/hcus-young-global-leaders-summer',
@@ -177,6 +191,8 @@ export interface FileRoutesByFullPath {
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
   '/camps/$slug': typeof CampsSlugRoute
+  '/camps/entrepreneurship-ai-salamanca': typeof CampsEntrepreneurshipAiSalamancaRoute
+  '/camps/future-sustainability-innovators-geneva': typeof CampsFutureSustainabilityInnovatorsGenevaRoute
   '/camps/hcus-young-global-leaders-summer': typeof CampsHcusYoungGlobalLeadersSummerRoute
   '/camps/hcus-young-global-leaders-winter': typeof CampsHcusYoungGlobalLeadersWinterRoute
   '/camps/ignite-cambridge-judge': typeof CampsIgniteCambridgeJudgeRoute
@@ -201,6 +217,8 @@ export interface FileRoutesByTo {
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
   '/camps/$slug': typeof CampsSlugRoute
+  '/camps/entrepreneurship-ai-salamanca': typeof CampsEntrepreneurshipAiSalamancaRoute
+  '/camps/future-sustainability-innovators-geneva': typeof CampsFutureSustainabilityInnovatorsGenevaRoute
   '/camps/hcus-young-global-leaders-summer': typeof CampsHcusYoungGlobalLeadersSummerRoute
   '/camps/hcus-young-global-leaders-winter': typeof CampsHcusYoungGlobalLeadersWinterRoute
   '/camps/ignite-cambridge-judge': typeof CampsIgniteCambridgeJudgeRoute
@@ -228,6 +246,8 @@ export interface FileRoutesById {
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
   '/camps/$slug': typeof CampsSlugRoute
+  '/camps/entrepreneurship-ai-salamanca': typeof CampsEntrepreneurshipAiSalamancaRoute
+  '/camps/future-sustainability-innovators-geneva': typeof CampsFutureSustainabilityInnovatorsGenevaRoute
   '/camps/hcus-young-global-leaders-summer': typeof CampsHcusYoungGlobalLeadersSummerRoute
   '/camps/hcus-young-global-leaders-winter': typeof CampsHcusYoungGlobalLeadersWinterRoute
   '/camps/ignite-cambridge-judge': typeof CampsIgniteCambridgeJudgeRoute
@@ -256,6 +276,8 @@ export interface FileRouteTypes {
     | '/stories'
     | '/testimonials'
     | '/camps/$slug'
+    | '/camps/entrepreneurship-ai-salamanca'
+    | '/camps/future-sustainability-innovators-geneva'
     | '/camps/hcus-young-global-leaders-summer'
     | '/camps/hcus-young-global-leaders-winter'
     | '/camps/ignite-cambridge-judge'
@@ -280,6 +302,8 @@ export interface FileRouteTypes {
     | '/stories'
     | '/testimonials'
     | '/camps/$slug'
+    | '/camps/entrepreneurship-ai-salamanca'
+    | '/camps/future-sustainability-innovators-geneva'
     | '/camps/hcus-young-global-leaders-summer'
     | '/camps/hcus-young-global-leaders-winter'
     | '/camps/ignite-cambridge-judge'
@@ -306,6 +330,8 @@ export interface FileRouteTypes {
     | '/stories'
     | '/testimonials'
     | '/camps/$slug'
+    | '/camps/entrepreneurship-ai-salamanca'
+    | '/camps/future-sustainability-innovators-geneva'
     | '/camps/hcus-young-global-leaders-summer'
     | '/camps/hcus-young-global-leaders-winter'
     | '/camps/ignite-cambridge-judge'
@@ -456,6 +482,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CampsSlugRouteImport
       parentRoute: typeof CampsRoute
     }
+    '/camps/entrepreneurship-ai-salamanca': {
+      id: '/camps/entrepreneurship-ai-salamanca'
+      path: '/entrepreneurship-ai-salamanca'
+      fullPath: '/camps/entrepreneurship-ai-salamanca'
+      preLoaderRoute: typeof CampsEntrepreneurshipAiSalamancaRouteImport
+      parentRoute: typeof CampsRoute
+    }
+    '/camps/future-sustainability-innovators-geneva': {
+      id: '/camps/future-sustainability-innovators-geneva'
+      path: '/future-sustainability-innovators-geneva'
+      fullPath: '/camps/future-sustainability-innovators-geneva'
+      preLoaderRoute: typeof CampsFutureSustainabilityInnovatorsGenevaRouteImport
+      parentRoute: typeof CampsRoute
+    }
     '/camps/hcus-young-global-leaders-summer': {
       id: '/camps/hcus-young-global-leaders-summer'
       path: '/hcus-young-global-leaders-summer'
@@ -510,6 +550,8 @@ declare module '@tanstack/react-router' {
 
 interface CampsRouteChildren {
   CampsSlugRoute: typeof CampsSlugRoute
+  CampsEntrepreneurshipAiSalamancaRoute: typeof CampsEntrepreneurshipAiSalamancaRoute
+  CampsFutureSustainabilityInnovatorsGenevaRoute: typeof CampsFutureSustainabilityInnovatorsGenevaRoute
   CampsHcusYoungGlobalLeadersSummerRoute: typeof CampsHcusYoungGlobalLeadersSummerRoute
   CampsHcusYoungGlobalLeadersWinterRoute: typeof CampsHcusYoungGlobalLeadersWinterRoute
   CampsIgniteCambridgeJudgeRoute: typeof CampsIgniteCambridgeJudgeRoute
@@ -520,6 +562,9 @@ interface CampsRouteChildren {
 
 const CampsRouteChildren: CampsRouteChildren = {
   CampsSlugRoute: CampsSlugRoute,
+  CampsEntrepreneurshipAiSalamancaRoute: CampsEntrepreneurshipAiSalamancaRoute,
+  CampsFutureSustainabilityInnovatorsGenevaRoute:
+    CampsFutureSustainabilityInnovatorsGenevaRoute,
   CampsHcusYoungGlobalLeadersSummerRoute:
     CampsHcusYoungGlobalLeadersSummerRoute,
   CampsHcusYoungGlobalLeadersWinterRoute:
