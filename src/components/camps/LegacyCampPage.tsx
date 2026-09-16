@@ -90,6 +90,7 @@ export function LegacyCampPage({ className, html, css, applyUrl, carousels = [] 
       <style>{`${css}\n
         .legacy-camp-page { display:block; width:100%; overflow-x:clip; }
         .legacy-camp-page *, .legacy-camp-page *::before, .legacy-camp-page *::after { box-sizing:border-box; }
+        .legacy-camp-page :is(h1,h2,h3,h4,h5,h6) { font-family:"Bricolage Grotesque Variable","Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif !important; letter-spacing:0; }
         .legacy-camp-page .lwl-native-carousel { display:flex !important; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; }
         .legacy-camp-page .lwl-native-carousel::-webkit-scrollbar { display:none; }
         .legacy-camp-page .lwl-native-carousel > * { flex:0 0 calc((100% - (var(--mobile-items) - 1) * 16px) / var(--mobile-items)); scroll-snap-align:start; }
