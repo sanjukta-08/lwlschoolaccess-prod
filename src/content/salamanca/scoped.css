@@ -11312,38 +11312,10 @@
     /*  line-height: 1.8rem;*/
     font-weight: 400;
 }
-@font-face {
-    font-family: 'Optima';
-    src: url('/__l5e/assets-v1/22d24e36-6152-4b10-9110-defbe321f669/Optima.eot');
-    src: url('/__l5e/assets-v1/22d24e36-6152-4b10-9110-defbe321f669/Optima.eot?#iefix') format('embedded-opentype'), url('/__l5e/assets-v1/0d4d78ac-111f-4b7c-a7bd-0063ced07355/Optima.woff2') format('woff2'), url('/__l5e/assets-v1/0d4d78ac-111f-4b7c-a7bd-0063ced07355/Optima.woff') format('woff'), url('/__l5e/assets-v1/fc944859-ba36-4ee4-8d57-fc77cf0ad7df/Optima.ttf') format('truetype'), url('/__l5e/assets-v1/d5f1a86c-e9e0-43c1-8688-eee32643e1d5/Optima.svg#Optima') format('svg');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Optima';
-    src: url('/__l5e/assets-v1/de208fbc-71ee-4e68-8961-22b9cf8fd360/Optima-Italic.eot');
-    src: url('/__l5e/assets-v1/de208fbc-71ee-4e68-8961-22b9cf8fd360/Optima-Italic.eot?#iefix') format('embedded-opentype'), url('/__l5e/assets-v1/b9c08981-045c-4b1a-94b1-3bd0e11a5931/Optima-Italic.woff2') format('woff2'), url('/__l5e/assets-v1/b9c08981-045c-4b1a-94b1-3bd0e11a5931/Optima-Italic.woff') format('woff'), url('/__l5e/assets-v1/1f604d47-9817-4f9b-9452-26b47b2da509/Optima-Italic.ttf') format('truetype'), url('/__l5e/assets-v1/8e782247-6d38-4b68-89d8-87cc7898fb6d/Optima-Italic.svg#Optima-Italic') format('svg');
-    font-weight: 100;
-    font-style: italic;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Optima';
-    src: url('/__l5e/assets-v1/73962cd6-a79b-4f03-aa3b-a5a4c5f1d01f/Optima-Bold.eot');
-    src: url('/__l5e/assets-v1/73962cd6-a79b-4f03-aa3b-a5a4c5f1d01f/Optima-Bold.eot?#iefix') format('embedded-opentype'), url('/__l5e/assets-v1/e8eeab6a-9345-44c2-8d7a-aecb5ad7e1f9/Optima-Bold.woff2') format('woff2'), url('/__l5e/assets-v1/e8eeab6a-9345-44c2-8d7a-aecb5ad7e1f9/Optima-Bold.woff') format('woff'), url('/__l5e/assets-v1/7c80dd50-67b3-49be-84fc-3e9a439d6d59/Optima-Bold.ttf') format('truetype'), url('..fonts/Optima-Bold.svg#Optima-Bold') format('svg');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Optima';
-    src: url('/__l5e/assets-v1/c7fec7bc-9d8c-434d-a859-bdb90c3c588b/Optima-Medium.eot');
-    src: url('/__l5e/assets-v1/c7fec7bc-9d8c-434d-a859-bdb90c3c588b/Optima-Medium.eot?#iefix') format('embedded-opentype'), url('/__l5e/assets-v1/8e599cd5-9830-4024-9492-5e22cb5feea9/Optima-Medium.woff2') format('woff2'), url('/__l5e/assets-v1/8e599cd5-9830-4024-9492-5e22cb5feea9/Optima-Medium.woff') format('woff'), url('/__l5e/assets-v1/7d1de5bf-a0e2-4656-b623-78b084ad4a10/Optima-Medium.ttf') format('truetype'), url('/__l5e/assets-v1/cb6b3c9b-9d3c-49e2-80e1-eb95e040500a/Optima-Medium.svg#Optima-Medium') format('svg');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
+
+
+
+
 .salamanca-page.full-page {
     overflow: hidden !important;
 }
