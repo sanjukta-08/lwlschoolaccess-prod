@@ -67,6 +67,8 @@ const GlimpsesSection = () => {
     exit: (dir: number) => ({ x: dir > 0 ? -300 : 300, opacity: 0 }),
   };
 
+  const currentSlides = slides[current] ?? slides[0] ?? [];
+
   return (
     <section className="py-20 md:py-28" style={{ backgroundColor: "#c23b22" }}>
       <div className="container mx-auto px-4 md:px-8">
@@ -100,7 +102,7 @@ const GlimpsesSection = () => {
                 transition={{ duration: 0.5, ease: "easeInOut" }}
                 className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4"
               >
-                {slides[current].map((src, i) => (
+                {currentSlides.map((src, i) => (
                   <div
                     key={i}
                     className="aspect-[4/3] rounded-xl overflow-hidden relative group"

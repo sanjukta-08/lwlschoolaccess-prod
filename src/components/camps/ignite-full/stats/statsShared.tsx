@@ -32,7 +32,7 @@ export const useCountUp = (target: number, duration = 1500) => {
     const el = ref.current;
     if (!el) return;
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setStarted(true); observer.disconnect(); } },
+      ([entry]) => { if (entry?.isIntersecting) { setStarted(true); observer.disconnect(); } },
       { threshold: 0.3 }
     );
     observer.observe(el);

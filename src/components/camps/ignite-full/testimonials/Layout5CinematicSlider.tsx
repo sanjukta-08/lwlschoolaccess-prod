@@ -6,6 +6,7 @@ import { studentTestimonials } from "./testimonialData";
 const Layout5CinematicSlider = () => {
   const [active, setActive] = useState(0);
   const current = studentTestimonials[active];
+  if (!current) return null;
   const prev = useCallback(() => setActive((a) => (a - 1 + studentTestimonials.length) % studentTestimonials.length), []);
   const next = useCallback(() => setActive((a) => (a + 1) % studentTestimonials.length), []);
 

@@ -15,6 +15,7 @@ const facultyTestimonialsData = [
 const FacultyCinematicSlider = () => {
   const [active, setActive] = useState(0);
   const current = facultyTestimonialsData[active];
+  if (!current) return null;
   const prev = useCallback(() => setActive((a) => (a - 1 + facultyTestimonialsData.length) % facultyTestimonialsData.length), []);
   const next = useCallback(() => setActive((a) => (a + 1) % facultyTestimonialsData.length), []);
 

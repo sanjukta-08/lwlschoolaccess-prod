@@ -30,7 +30,7 @@ export const schedule: ScheduleDay[] = [
     ],
   },
   {
-    day: "Day 2", label: "Monday", shortLabel: "Mon", theme: "20 July – Monday", image: schedule2, imagePosition: "center 60%",
+    day: "Day 2", label: "Monday", shortLabel: "Mon", theme: "19 July – Monday", image: schedule2, imagePosition: "center 60%",
     items: [
       { time: "08:00 – 09:00", activity: "Breakfast in College" },
       { time: "09:00 – 10:30", activity: "Developing an Innovative Mindset: A Framework for Skill Development" },
@@ -46,7 +46,7 @@ export const schedule: ScheduleDay[] = [
     ],
   },
   {
-    day: "Day 3", label: "Tuesday", shortLabel: "Tue", theme: "21 July – Tuesday", image: schedule3, imagePosition: "center 40%",
+    day: "Day 3", label: "Tuesday", shortLabel: "Tue", theme: "20 July – Tuesday", image: schedule3, imagePosition: "center 40%",
     items: [
       { time: "08:00 – 09:00", activity: "Breakfast in College" },
       { time: "09:00 – 10:00", activity: "Reflection on the Workshop and Skills Used" },
@@ -62,7 +62,7 @@ export const schedule: ScheduleDay[] = [
     ],
   },
   {
-    day: "Day 4", label: "Wednesday", shortLabel: "Wed", theme: "22 July – Wednesday", image: schedule4, imagePosition: "center 25%",
+    day: "Day 4", label: "Wednesday", shortLabel: "Wed", theme: "21 July – Wednesday", image: schedule4, imagePosition: "center 25%",
     items: [
       { time: "08:00 – 09:00", activity: "Breakfast in College" },
       { time: "09:00 – 10:00", activity: "Track One & Two: Basics of Finance – Start-up Fundamentals" },
@@ -78,7 +78,7 @@ export const schedule: ScheduleDay[] = [
     ],
   },
   {
-    day: "Day 5", label: "Thursday", shortLabel: "Thu", theme: "23 July – Thursday", image: schedule5, imagePosition: "center 50%",
+    day: "Day 5", label: "Thursday", shortLabel: "Thu", theme: "22 July – Thursday", image: schedule5, imagePosition: "center 50%",
     items: [
       { time: "08:00 – 09:00", activity: "Breakfast in College" },
       { time: "09:00 – 10:30", activity: "Track One & Two: Leadership and Influencing Skills" },
@@ -94,7 +94,7 @@ export const schedule: ScheduleDay[] = [
     ],
   },
   {
-    day: "Day 6", label: "Friday", shortLabel: "Fri", theme: "24 July – Friday", image: schedule6, imagePosition: "center 65%",
+    day: "Day 6", label: "Friday", shortLabel: "Fri", theme: "23 July – Friday", image: schedule6, imagePosition: "center 65%",
     items: [
       { time: "08:00 – 09:00", activity: "Breakfast in College" },
       { time: "09:00 – 10:00", activity: "Designing Your Future – Career Focused Session" },

@@ -6,6 +6,7 @@ import { faculty, sectionHeader } from "./faculty/facultyData";
 const FacultySection = () => {
   const [active, setActive] = useState(0);
   const current = faculty[active];
+  if (!current) return null;
   const next = () => setActive((active + 1) % faculty.length);
   const prev = () => setActive((active - 1 + faculty.length) % faculty.length);
 

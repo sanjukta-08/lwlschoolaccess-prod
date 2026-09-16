@@ -26,6 +26,7 @@ export const DaySelector = ({ active, setActive }: Props) => (
 // Inline compact day header — no image, minimal vertical space
 export const DayHeader = ({ active }: { active: number }) => {
   const d = schedule[active];
+  if (!d) return null;
   return (
     <div className="flex items-baseline justify-between gap-4 mb-4 pb-3 border-b border-foreground/15">
       <div className="flex items-baseline gap-3">

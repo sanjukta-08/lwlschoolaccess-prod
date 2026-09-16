@@ -32,7 +32,7 @@ function useNativeInteractions(rootRef: React.RefObject<HTMLDivElement | null>, 
 
     const cleanups: Array<() => void> = [];
     root.querySelectorAll<HTMLButtonElement>("[data-bs-target]").forEach((button) => {
-      const targetSelector = button.dataset.bsTarget;
+      const targetSelector = button.dataset["bsTarget"];
       if (!targetSelector?.startsWith("#")) return;
       const target = root.querySelector<HTMLElement>(targetSelector);
       if (!target) return;
