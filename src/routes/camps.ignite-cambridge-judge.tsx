@@ -43,7 +43,7 @@ export const Route = createFileRoute("/camps/ignite-cambridge-judge")({
 function IgnitePage() {
   const applyUrl = campBySlug(SLUG)?.applyUrl ?? APPLY;
   return (
-    <div className="ignite-gateway min-h-dvh bg-background [--font-display:'Playfair_Display',serif] [--font-body:'Source_Sans_3',sans-serif] [&_.font-display]:[font-family:var(--font-display)] [&_.font-body]:[font-family:var(--font-body)]">
+    <div className="ignite-gateway min-h-dvh bg-background [--font-display:'Bricolage_Grotesque_Variable',sans-serif] [--font-body:'Source_Sans_3',sans-serif] [&_.font-display]:[font-family:var(--font-display)] [&_.font-body]:[font-family:var(--font-body)]">
       <SiteHeader />
       <HeroSection applyUrl={applyUrl} />
       <StatsGallery />

@@ -567,9 +567,9 @@
 }
 
 .camp-horizons .font-script {
-  font-family: "Playfair Display", ui-serif, Georgia, serif;
-  font-style: italic;
-  letter-spacing: 0.02em;
+  font-family: "Bricolage Grotesque Variable", "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  font-style: normal;
+  letter-spacing: 0;
 }
 
 .camp-horizons .eyebrow {
