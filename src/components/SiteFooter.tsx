@@ -4,7 +4,6 @@ import { DEFAULT_SEARCH } from "@/lib/finder";
 import { DEFAULT_FIT } from "@/lib/fit";
 import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
 import { REACH } from "@/lib/social-proof";
-import footerLogo from "@/assets/lwl_white.png.asset.json";
 
 const colCls = "flex flex-col gap-2 text-[0.82rem] text-paper/70";
 const linkCls = "no-underline text-paper/70 transition-colors hover:text-paper";
@@ -15,14 +14,13 @@ export function SiteFooter({ note }: { note?: string }) {
       <div className="page-shell">
         <div className="grid gap-10 md:grid-cols-[1.2fr_repeat(4,1fr)]">
           <div>
-            <img
-              src={footerLogo.url}
-              alt="Learn With Leaders"
-              width={120}
-              height={60}
-              loading="lazy"
-              className="h-10 w-auto"
-            />
+            <Link
+              to="/"
+              aria-label="Learn With Leaders home"
+              className="font-serif text-[1.55rem] leading-none font-semibold text-paper no-underline"
+            >
+              Learn with Leaders
+            </Link>
             <p className="mt-4 max-w-[24em] text-[0.82rem] text-paper/60">
               Live programmes mentored by students and alumni of the world's most
               selective universities. Families in {REACH.countries} countries and{" "}

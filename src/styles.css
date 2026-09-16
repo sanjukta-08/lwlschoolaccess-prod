@@ -250,6 +250,10 @@
     font-style: normal !important;
   }
 
+  :is(h1, h2, h3, h4, h5, h6) :is(em, i) {
+    font-style: normal !important;
+  }
+
   :focus-visible {
     outline: 2.5px solid var(--crimson);
     outline-offset: 2px;

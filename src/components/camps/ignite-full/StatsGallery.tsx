@@ -8,7 +8,7 @@ const StatsGallery = () => (
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
         <p className="font-body text-base md:text-xl uppercase tracking-[0.35em] mb-6 font-semibold" style={{ color: ACCENT }}>A Global Cohort</p>
         <h2 className="font-display font-bold leading-[0.95]" style={{ color: ACCENT, fontSize: "clamp(2rem, 5.5vw, 5rem)" }}>
-          Join students<br /><em className="font-normal italic">from around the world</em><br />at Cambridge.
+          Join students<br /><em className="font-normal not-italic">from around the world</em><br />at Cambridge.
         </h2>
       </motion.div>
 

@@ -5,7 +5,6 @@ import { DEFAULT_SEARCH } from "@/lib/finder";
 import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
 import { ShortlistBadge } from "@/components/ShortlistBadge";
 import { WingMark } from "@/components/WingMark";
-import logoAsset from "@/assets/lwl-logo.png.asset.json";
 import { ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
@@ -236,16 +235,10 @@ export function SiteHeader() {
       <div className="mx-auto flex h-[76px] w-full max-w-none items-center justify-between gap-6 px-4 sm:px-5 lg:px-6 xl:px-8">
         <Link
           to="/"
-          className="flex flex-none items-center gap-2.5 no-underline"
+          className="flex flex-none items-center gap-2.5 font-serif text-[clamp(1.35rem,2.2vw,1.9rem)] leading-none font-semibold text-crimson-deep no-underline"
           aria-label="Learn With Leaders home"
         >
-          <img
-            src={logoAsset.url}
-            alt="Learn With Leaders"
-            width={150}
-            height={75}
-            className="h-10 w-auto md:h-11"
-          />
+          Learn with Leaders
         </Link>
 
         <nav className="hidden items-center gap-0.5 text-[0.85rem] font-semibold md:flex">
