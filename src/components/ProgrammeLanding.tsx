@@ -162,7 +162,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       <section id="overview" className="page-shell scroll-mt-32 pt-12">
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           What your child will{" "}
-          <em className="text-crimson-deep italic">actually do</em>
+          <em className="text-crimson-deep not-italic">actually do</em>
         </h2>
         <p className="mx-auto mt-2 max-w-[40em] text-center text-[0.92rem] text-ink-soft">
           Live, mentor-led sessions - worked problems and real output, not lectures.
@@ -203,7 +203,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       {/* Skills */}
       <section id="skills" className="page-shell scroll-mt-32 pt-12">
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
-          Skills your child will <em className="text-crimson-deep italic">gain</em>
+          Skills your child will <em className="text-crimson-deep not-italic">gain</em>
         </h2>
         <p className="mx-auto mt-2 max-w-none text-center text-[0.92rem] text-ink-soft lg:whitespace-nowrap">
           Named, practised skills - grouped the way universities read them, tied to how
@@ -215,7 +215,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       {/* Projects */}
       <section id="projects" className="page-shell scroll-mt-32 pt-12">
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
-          Projects they <em className="text-crimson-deep italic">finish with</em>
+          Projects they <em className="text-crimson-deep not-italic">finish with</em>
         </h2>
         <p className="mx-auto mt-2 max-w-none text-center text-[0.92rem] text-ink-soft lg:whitespace-nowrap">
           Sample briefs from recent cohorts - the actual work that comes out of the
@@ -245,7 +245,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       <section id="profile" className="page-shell scroll-mt-32 pt-12">
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
           How this strengthens their{" "}
-          <em className="text-crimson-deep italic">university profile</em>
+          <em className="text-crimson-deep not-italic">university profile</em>
         </h2>
         <p className="mx-auto mt-2 max-w-none text-center text-[0.92rem] text-ink-soft lg:whitespace-nowrap">
           The point isn't the certificate. It's the line a family can honestly write
@@ -278,7 +278,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       {/* Cohorts */}
       <section id="dates" className="page-shell scroll-mt-32 pt-12">
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
-          Upcoming <em className="text-crimson-deep italic">cohorts</em>
+          Upcoming <em className="text-crimson-deep not-italic">cohorts</em>
         </h2>
         {cohorts.length === 0 ? (
           <p className="mt-6 text-center text-[0.9rem] text-ink-soft">
@@ -415,7 +415,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       {/* FAQ */}
       <section id="faq" className="page-shell scroll-mt-32 pt-12">
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
-          Parents usually <em className="text-crimson-deep italic">ask</em>
+          Parents usually <em className="text-crimson-deep not-italic">ask</em>
         </h2>
         <div className="mx-auto mt-6 flex max-w-[900px] flex-col gap-2.5">
           {d.faqs.map((f) => (
@@ -442,7 +442,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         <section className="page-shell pt-14">
           <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
             Families looking at this also{" "}
-            <em className="text-crimson-deep italic">consider</em>
+            <em className="text-crimson-deep not-italic">consider</em>
           </h2>
           <div className="mt-5 flex flex-wrap justify-center gap-3.5">
             {related.map((r) => {

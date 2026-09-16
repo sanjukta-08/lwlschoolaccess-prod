@@ -243,7 +243,7 @@ export const Accom9TypeFirst = () => (
         <h2 className="font-display font-bold text-foreground leading-[0.82] tracking-[-0.04em]" style={{ fontSize: "clamp(4rem, 14vw, 11rem)" }}>
           {D.title2.split(" ")[0]}<span className="text-cambridge-rust">.</span>
         </h2>
-        <h3 className="font-display italic text-foreground/70 leading-tight mt-2" style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)" }}>
+        <h3 className="font-display not-italic text-foreground/70 leading-tight mt-2" style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.75rem)" }}>
           {D.title1} the second-oldest college at Cambridge
         </h3>
       </div>
