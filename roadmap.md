@@ -4,4 +4,4 @@
 - [x] Recreate the complete Salamanca camp page from its original source
 - [x] Replace the partial IGNITE page with the complete IGNITE Gateway design
 - [x] Verify all three pages, media, interactions, metadata, and application links
-- [ ] Present three fresh, unconventional typography directions for the website
+- [x] Present fresh, unconventional typography directions for the website
