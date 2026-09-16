@@ -3,10 +3,9 @@
 ## What I found
 
 - **Geneva** and **Spain** are currently served here by the shared generic camp page.
-- In the referenced Student Website project, their cards do not open locally built pages. They embed the original pages at:
-  - `learnwithleaders.com/camps/genevacamp/`
-  - `learnwithleaders.com/camps/salamancaspaincamp/`
-- Those originals are full bespoke experiences: Geneva has its own discovery, seven-day programme, UN/CERN/WHO, academics, hackathon, badges, location, student stories and FAQ sections; Spain has its own Salamanca introduction, learning outcomes, programme details, accommodation, schedule, tours, professor, gallery, testimonials and terms.
+- The referenced Student Website project does not contain native Geneva or Spain page code; it embeds their older live pages.
+- The newly specified **Elite Summer Academy** project does contain the complete dedicated `/geneva` page: 21 sections, 78 locally stored page files, 88 images, custom styling, and six interactive carousels. This is now the Geneva source of truth.
+- Spain will still be recreated from its complete embedded original at `learnwithleaders.com/camps/salamancaspaincamp/`, which includes the Salamanca introduction, learning outcomes, programme details, accommodation, schedule, tours, professor, gallery, testimonials and terms.
 - The current IGNITE page is an earlier partial import. The referenced **IGNITE Gateway** is a separate, much fuller page with its own navigation, video-led hero, statistics/gallery, objectives, details, schedule, accommodation, activities, faculty, media, testimonials, terms and FAQ.
 
 ## What will be built
@@ -16,7 +15,7 @@ Create a standalone page at the existing URL:
 
 `/camps/future-sustainability-innovators-geneva`
 
-Reproduce the original Geneva page locally, including its visual identity, section order, interactions and full media set. It will no longer use the generic camp template or an iframe.
+Import the complete `/geneva` experience from **Remix of Elite Summer Academy**, preserving its exact 21-section structure: hero, institutional network, overview, seven experiences, SDGs, itinerary, holiday map, academics, hackathon, challenges, badges, Geneva location, excursions, instructors, logistics, accommodation, awards, testimonials, college-application value, FAQs and organisations. Preserve its visual identity and carousel interactions, but render it locally without an iframe.
 
 ### 2. Spain — complete dedicated page
 Create a standalone page at the existing URL:
@@ -45,8 +44,8 @@ with the complete **IGNITE Gateway** experience, including all source sections, 
 ## Technical approach
 
 - Add explicit TanStack routes for Geneva and Spain so they take priority over the existing dynamic camp route; keep all three current public URLs unchanged.
-- Port each design into an isolated camp component folder so its styling cannot alter the rest of the website.
-- Download and store the original Geneva and Spain page assets locally; copy the IGNITE Gateway’s complete media set into this project. No hotlinked or cross-project asset pointers will remain.
+- Port each design into an isolated camp component folder so its styling cannot alter the rest of the website. Geneva’s imported legacy HTML/CSS will be converted or safely scoped rather than injecting remote scripts or global Bootstrap behavior.
+- Transfer Geneva’s complete local media/CSS set from **Elite Summer Academy**, download Spain’s original page assets, and transfer only the media used by the live IGNITE Gateway page. Every binary will be re-uploaded into this project’s asset storage; no hotlinks or cross-project asset pointers will remain.
 - Convert source routing and controls to the project’s TanStack navigation and existing button components.
 - Load page-specific fonts through route metadata, make browser-only video/carousel behavior safe during server rendering, and retain reduced-motion support.
 - Add complete route metadata plus Course and FAQ structured data where the source content supports it.
