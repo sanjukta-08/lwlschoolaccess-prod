@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, CalendarDays, GraduationCap, Trophy } from "lucide-react";
 
-import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
 import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
 import { useHydratedCatalogue } from "@/lib/catalogue";
 import { DEFAULT_SEARCH } from "@/lib/finder";
@@ -207,36 +207,44 @@ function CompetitionsPage() {
 
   return (
     <div className="min-h-dvh bg-paper">
-      <PageHero
-        eyebrow="Judged challenges with awards and rankings"
-        title={
-          <>
-            Competitions worth <em className="text-crimson-deep">winning</em>
-          </>
-        }
-        subtitle={`Championships and challenges from the Learn with Leaders family - ${partners.size ? [...partners].join(", ") : "our partner platforms"}. Pick a competition below and you will land directly on its official page to see rules, rounds and registration.`}
-        pills={[
-          { top: `${competitions.length} competitions`, sub: "Open & upcoming" },
-          { top: `${partners.size} platforms`, sub: "LWL family" },
-          { top: "Grades 5-12", sub: "Across events" },
-          { top: "Awards & rankings", sub: "Verifiable results" },
-        ]}
-      >
-        <a
-          href="#all-competitions"
-          className="mono-label bg-crimson px-7 py-3.5 text-paper no-underline shadow-soft transition-colors hover:bg-crimson-deep"
-        >
-          Explore competitions
-        </a>
-        <a
-          href={CALENDLY_BOOKING_URL}
-          target="_blank"
-          rel="noreferrer"
-          className="mono-label border border-line bg-paper px-7 py-3.5 text-ink no-underline shadow-soft transition-colors hover:border-gold-line hover:text-crimson"
-        >
-          Book a meeting
-        </a>
-      </PageHero>
+      <SiteHeader />
+      <section className="relative isolate flex min-h-[19rem] items-center justify-center overflow-hidden border-b border-line bg-paper px-5 pb-10 pt-8 sm:min-h-[21rem] sm:px-8 lg:pb-12 lg:pt-10">
+        <div className="pointer-events-none absolute inset-0 z-0 flex select-none items-center justify-center overflow-hidden" aria-hidden>
+          <span className="font-display text-[clamp(4.5rem,15vw,15rem)] font-black uppercase leading-none text-crimson/[0.07]">
+            Competitions
+          </span>
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-5xl text-center">
+          <h1 className="font-display text-5xl font-black leading-[0.98] text-ink sm:text-6xl lg:text-7xl">
+            Explore Our <span className="text-crimson">Competitions</span>
+          </h1>
+          <p className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
+            Championships and judged challenges from the Learn with Leaders family. Explore the rules, rounds, awards, and registration for every open competition.
+          </p>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="#all-competitions"
+              className="mono-label bg-crimson px-8 py-4 text-paper no-underline shadow-soft transition-colors hover:bg-crimson-deep"
+            >
+              View all competitions
+            </a>
+            <a
+              href={CALENDLY_BOOKING_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="mono-label border border-line bg-paper px-8 py-4 text-ink no-underline shadow-soft transition-colors hover:border-gold-line hover:text-crimson"
+            >
+              Book a meeting
+            </a>
+          </div>
+        </div>
+
+        <div className="pointer-events-none absolute left-8 top-1/2 hidden h-32 w-1 -translate-y-1/2 bg-crimson/20 lg:block" aria-hidden />
+        <div className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 lg:block" aria-hidden>
+          <span className="mono-label text-crimson/35 [writing-mode:vertical-rl]">Learn with Leaders</span>
+        </div>
+      </section>
 
       <section id="all-competitions" className="page-shell py-14">
         <SectionHeading
