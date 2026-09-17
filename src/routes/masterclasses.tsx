@@ -271,6 +271,18 @@ function MasterclassCard({ m }: { m: PublicMasterclass }) {
             </p>
           ) : null}
         </div>
+        {m.partner_logo_url ? (
+          <div className="flex h-11 w-24 flex-none items-start justify-end sm:w-28">
+            <img
+              src={m.partner_logo_url}
+              alt={`${m.partner_name ?? m.program_name ?? "Programme"} logo`}
+              loading="lazy"
+              width={112}
+              height={44}
+              className="max-h-11 max-w-full object-contain object-right-top"
+            />
+          </div>
+        ) : null}
       </div>
 
       {m.description ? (
