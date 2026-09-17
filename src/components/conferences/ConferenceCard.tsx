@@ -31,54 +31,55 @@ export function ConferenceCard({
   const duration = conferenceDuration(conference);
 
   const cardContent = (
-    <div className={`group h-full overflow-hidden rounded-2xl border border-white/10 bg-[#1a1a1a] shadow-lg transition-all duration-300 ${disabled ? "cursor-default" : "hover:-translate-y-1 hover:border-[#f1b537]/50"}`}>
+    <div className={`group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-soft transition-all duration-300 ${disabled ? "cursor-default" : "hover:-translate-y-0.5 hover:border-gold-line hover:shadow-lift"}`}>
       {/* Image */}
       <div className="relative aspect-[4/3] overflow-hidden">
         <img
           src={conferenceImage(conference)}
           alt={`${conference.name} conference`}
           loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
         />
         {/* Location badge */}
         <div className="absolute left-3 top-3">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-black/75 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm">
-            <MapPin className="h-3 w-3 text-[#f1b537]" />
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-paper/92 px-3 py-1.5 text-xs font-semibold text-ink shadow-soft backdrop-blur-sm">
+            <MapPin className="h-3 w-3 text-gold-deep" aria-hidden />
             {location}
           </span>
         </div>
       </div>
 
       {/* Content */}
-      <div className="space-y-3 p-5">
-        <h3 className="line-clamp-2 text-lg font-bold leading-tight text-white transition-colors group-hover:text-[#f1b537]">
+      <div className="flex flex-1 flex-col gap-3 p-5">
+        <h3 className="line-clamp-2 font-serif text-[1.2rem] font-medium leading-tight text-ink transition-colors group-hover:text-crimson">
           {conference.name}
         </h3>
 
-        <p className="line-clamp-2 text-sm leading-relaxed text-white/60">
+        <p className="line-clamp-2 text-sm leading-relaxed text-ink-soft">
           {conference.tag || conference.about}
         </p>
 
         {/* Starts on & Duration */}
-        <div className="flex items-start gap-6 border-t border-white/10 pt-3">
+        <div className="mt-auto flex items-start gap-6 border-t border-line pt-3">
           <div>
-            <p className="mb-0.5 text-[10px] font-semibold uppercase tracking-widest text-[#f1b537]">Starts on</p>
-            <p className="whitespace-nowrap text-sm font-medium text-white">
+            <p className="mono-label mb-0.5 text-gold-deep">Starts on</p>
+            <p className="whitespace-nowrap text-sm font-semibold text-ink">
               {startsOn ?? "Dates to be announced"}
             </p>
           </div>
           {duration && (
             <div>
-              <p className="mb-0.5 text-[10px] font-semibold uppercase tracking-widest text-[#f1b537]">Duration</p>
-              <p className="whitespace-nowrap text-sm font-medium text-white">{duration}</p>
+              <p className="mono-label mb-0.5 text-gold-deep">Duration</p>
+              <p className="whitespace-nowrap text-sm font-semibold text-ink">{duration}</p>
             </div>
           )}
         </div>
 
         {/* Arrow */}
         {!disabled && (
-          <div className="flex items-center pt-1">
-            <ArrowRight className="h-4 w-4 text-white/50 transition-all group-hover:translate-x-1 group-hover:text-[#f1b537]" />
+          <div className="flex items-center gap-1.5 pt-1">
+            <span className="mono-label text-crimson">View conference</span>
+            <ArrowRight className="h-4 w-4 text-crimson transition-transform group-hover:translate-x-1" aria-hidden />
           </div>
         )}
       </div>
