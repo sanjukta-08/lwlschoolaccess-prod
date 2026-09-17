@@ -86,7 +86,6 @@ function ConferencesHub() {
     );
   }, [conferences, search]);
 
-  const cities = new Set(conferences.map((c) => conferenceLocation(c))).size;
 
   return (
     <div className="min-h-dvh bg-[#101010] text-white">
