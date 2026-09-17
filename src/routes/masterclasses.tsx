@@ -20,6 +20,7 @@ import {
 import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
 import futureDoctorsLogo from "@/assets/logo-future-doctors.png.asset.json";
 import futureLawyersLogo from "@/assets/logo-future-lawyers.png.asset.json";
+import finlitLogo from "@/assets/logo-finlit.png.asset.json";
 import onwardLogo from "@/assets/logo-onward-word.png.asset.json";
 import sirLutherLogo from "@/assets/logo-sir-luther.png.asset.json";
 import lwlLogo from "@/assets/lwl-logo.png.asset.json";
@@ -247,11 +248,13 @@ function MasterclassCard({ m }: { m: PublicMasterclass }) {
     ? futureDoctorsLogo.url
     : brandName.includes("future lawyer")
       ? futureLawyersLogo.url
+      : brandName.includes("finlit")
+        ? finlitLogo.url
       : brandName.includes("onward")
         ? onwardLogo.url
         : brandName.includes("sir luther")
           ? sirLutherLogo.url
-          : lwlLogo.url;
+          : m.partner_logo_url ?? lwlLogo.url;
   return (
     <li className="flex flex-col gap-3 rounded-[16px] border border-line bg-paper p-4 shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold-deep hover:shadow-lift">
       <div className="flex items-start gap-3.5">
@@ -294,11 +297,6 @@ function MasterclassCard({ m }: { m: PublicMasterclass }) {
             width={112}
             height={44}
             className="max-h-11 max-w-full object-contain object-right-top"
-            onError={(event) => {
-              if (m.partner_logo_url && event.currentTarget.src !== m.partner_logo_url) {
-                event.currentTarget.src = m.partner_logo_url;
-              }
-            }}
           />
         </div>
       </div>
