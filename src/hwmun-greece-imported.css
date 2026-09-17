@@ -22,8 +22,8 @@
   --radius: 0.25rem;
 
   /* Page-only extras */
-  --hwmun-navy: hsl(225 30% 23%);
-  --hwmun-gold: hsl(40 56% 51%);
+  --hwmun-navy: 225 30% 23%;
+  --hwmun-gold: 40 56% 51%;
   --gold: hsl(40 56% 51%);
   --shadow-elegant: 0 30px 60px -30px hsl(225 32% 16% / 0.25),
                     0 10px 30px -15px hsl(225 32% 16% / 0.15);
