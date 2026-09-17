@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
+import "@/hwmun-imported.css";
 import type { Programme } from "@/lib/programmes";
 import { conferenceDateLabel, conferenceGrades, conferenceLocation, conferencePrice } from "@/lib/conferences";
 import { Link } from "@tanstack/react-router";
@@ -280,7 +280,7 @@ export default function HWMUNIndia({ conference }: { conference: Programme }) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white text-gray-800" style={{ fontFamily: "'Inter', sans-serif" }}>
+    <div className="hwmun-imported min-h-screen bg-white text-gray-800" style={{ fontFamily: "'Inter', sans-serif" }}>
       <StickyNav apply={REGISTER_URL} />
  
       {/* Hero */}
