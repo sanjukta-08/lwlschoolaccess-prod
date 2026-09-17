@@ -203,7 +203,6 @@ function CompetitionsPage() {
   const competitions = upcomingProgrammes()
     .filter((p) => p.type === "comp" && !p.name.toLowerCase().includes("next generation finance"))
     .sort(sortCompetitions);
-  const partners = new Set(competitions.map((p) => partnerFromUrl(p.apply)));
 
   return (
     <div className="min-h-dvh bg-paper">
