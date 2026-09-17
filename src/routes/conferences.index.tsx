@@ -5,7 +5,6 @@ import { ensureCatalogue } from "@/lib/catalogue";
 import { PROGRAMMES } from "@/lib/programmes";
 import { conferenceLocation } from "@/lib/conferences";
 import { ConferenceCard } from "@/components/conferences/ConferenceCard";
-import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
@@ -73,7 +72,6 @@ export const Route = createFileRoute("/conferences/")({
 function ConferencesHub() {
   const { conferences } = Route.useLoaderData();
   const [search, setSearch] = useState("");
-  const destinations = new Set(conferences.map(conferenceLocation)).size;
 
   const filtered = useMemo(() => {
     const sorted = [...conferences].sort((a, b) =>
@@ -93,36 +91,46 @@ function ConferencesHub() {
 
   return (
     <div className="min-h-dvh bg-paper">
-      <PageHero
-        eyebrow="Debate · Diplomacy · Global leadership"
-        title={
-          <>
-            Conferences that build <em className="text-crimson-deep">global voices</em>
-          </>
-        }
-        subtitle="Explore live Harvard WorldMUN conferences around the world. Compare destinations, dates and formats, then open a conference to see the complete experience."
-        pills={[
-          { top: `${conferences.length} conferences`, sub: "Live catalogue" },
-          { top: `${destinations} destinations`, sub: "Across the globe" },
-          { top: "Ages 13-18", sub: "Student delegates" },
-          { top: "Debate & diplomacy", sub: "In person" },
-        ]}
-      >
-        <a
-          href="#conference-catalog"
-          className="mono-label bg-crimson px-7 py-3.5 text-paper no-underline shadow-soft transition-colors hover:bg-crimson-deep"
-        >
-          Explore conferences
-        </a>
-        <a
-          href={CALENDLY_BOOKING_URL}
-          target="_blank"
-          rel="noreferrer"
-          className="mono-label border border-line bg-paper px-7 py-3.5 text-ink no-underline shadow-soft transition-colors hover:border-gold-line hover:text-crimson"
-        >
-          Book a meeting
-        </a>
-      </PageHero>
+      <section className="relative isolate flex min-h-[31rem] items-center justify-center overflow-hidden border-b border-line bg-paper px-5 py-24 sm:min-h-[36rem] sm:px-8 lg:py-28">
+        <div className="pointer-events-none absolute inset-0 z-0 flex select-none items-center justify-center overflow-hidden" aria-hidden>
+          <span className="font-display text-[clamp(5.5rem,17vw,17rem)] font-black uppercase leading-none text-crimson/[0.07]">
+            Conferences
+          </span>
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-5xl text-center">
+          <p className="mono-label mb-7 text-ink-soft">
+            Home <span className="mx-2 text-line">/</span> <span className="text-crimson">Conferences</span>
+          </p>
+          <h1 className="font-display text-5xl font-black leading-[0.98] text-ink sm:text-6xl lg:text-7xl">
+            Explore Our <span className="text-crimson">Conferences</span>
+          </h1>
+          <p className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
+            Connecting the next generation of global leaders with world-class academic institutions and global peers.
+          </p>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="#conference-catalog"
+              className="mono-label bg-crimson px-8 py-4 text-paper no-underline shadow-soft transition-colors hover:bg-crimson-deep"
+            >
+              View all conferences
+            </a>
+            <a
+              href={CALENDLY_BOOKING_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="mono-label border border-line bg-paper px-8 py-4 text-ink no-underline shadow-soft transition-colors hover:border-gold-line hover:text-crimson"
+            >
+              Book a meeting
+            </a>
+          </div>
+        </div>
+
+        <div className="pointer-events-none absolute left-8 top-1/2 hidden h-32 w-1 -translate-y-1/2 bg-crimson/20 lg:block" aria-hidden />
+        <div className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 lg:block" aria-hidden>
+          <span className="mono-label text-crimson/35 [writing-mode:vertical-rl]">Learn with Leaders</span>
+        </div>
+      </section>
 
       {/* ---------- all conferences ---------- */}
       <section id="conference-catalog" className="page-shell scroll-mt-20 py-14">
