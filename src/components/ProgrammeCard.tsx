@@ -9,7 +9,7 @@ import {
   shortTime,
 } from "@/lib/programmes";
 import type { Match } from "@/lib/finder";
-import { slugOf } from "@/lib/programme-slug";
+import { conferenceSlugOf, slugOf } from "@/lib/programme-slug";
 import { Link } from "@tanstack/react-router";
 import { SaveButton } from "@/components/SaveButton";
 import { AddToCalendar } from "@/components/AddToCalendar";
@@ -47,17 +47,23 @@ export function ProgrammeCard({
   const outcome = outcomeOf(p);
   const hours = weeklyHoursOf(p);
   const logo = logoFor(p.id, p.tracks);
+  const detailSlug = p.type === "conf" ? conferenceSlugOf(p) : slugOf(p);
+  const detailLink = (className: string, children?: React.ReactNode) =>
+    p.type === "conf" ? (
+      <Link to="/conferences/$slug" params={{ slug: detailSlug }} aria-label={`View ${p.name}`} className={className}>
+        {children}
+      </Link>
+    ) : (
+      <Link to="/programmes/$slug" params={{ slug: detailSlug }} aria-label={`View ${p.name}`} className={className}>
+        {children}
+      </Link>
+    );
 
 
   if (compact) {
     return (
       <div className="group relative flex flex-col gap-3 px-4 py-4 transition-colors hover:bg-wash sm:flex-row sm:items-center sm:gap-6">
-        <Link
-          to="/programmes/$slug"
-          params={{ slug: slugOf(p) }}
-          aria-label={`View ${p.name}`}
-          className="absolute inset-0"
-        />
+        {detailLink("absolute inset-0")}
 
         {/* Programme */}
         <div className="flex min-w-0 flex-1 items-start gap-3 ">
@@ -128,13 +134,10 @@ export function ProgrammeCard({
         {/* Actions */}
         <div className="relative z-[2] flex flex-none items-center gap-2 sm:w-[7.75rem] sm:justify-end">
           <SaveButton p={p} c={next} />
-          <Link
-            to="/programmes/$slug"
-            params={{ slug: slugOf(p) }}
-            className="rounded-full border-[1.5px] border-ink bg-paper px-4 py-1.5 text-[0.78rem] font-bold text-ink no-underline transition-colors hover:bg-ink hover:text-paper"
-          >
-            View
-          </Link>
+          {detailLink(
+            "rounded-full border-[1.5px] border-ink bg-paper px-4 py-1.5 text-[0.78rem] font-bold text-ink no-underline transition-colors hover:bg-ink hover:text-paper",
+            "View",
+          )}
         </div>
       </div>
     );
@@ -151,12 +154,7 @@ export function ProgrammeCard({
       }
       className="relative flex animate-in flex-col overflow-hidden rounded-lg border border-line bg-paper shadow-soft transition-all duration-150 fade-in slide-in-from-bottom-2 hover:-translate-y-[3px] hover:shadow-lift"
     >
-      <Link
-        to="/programmes/$slug"
-        params={{ slug: slugOf(p) }}
-        aria-label={`View ${p.name}`}
-        className="absolute inset-0 z-[1] rounded-lg"
-      />
+      {detailLink("absolute inset-0 z-[1] rounded-lg")}
       {label ? (
         <span
           className={`absolute top-0 right-0 rounded-bl-lg px-3 py-1 text-[0.66rem] font-bold tracking-wide uppercase ${
@@ -279,20 +277,30 @@ export function ProgrammeCard({
         ) : null}
 
         <div className="mt-auto flex items-center gap-3 pt-2">
-          <Link
-            to="/programmes/$slug"
-            params={{ slug: slugOf(p) }}
-            className="relative z-[2] flex-1 rounded-xl border-2 px-4 py-2 text-center text-[0.85rem] font-bold no-underline transition-colors hover:text-paper"
-            style={{ borderColor: track.color, color: track.color }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = track.color;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "transparent";
-            }}
-          >
-            View programme
-          </Link>
+          {p.type === "conf" ? (
+            <Link
+              to="/conferences/$slug"
+              params={{ slug: detailSlug }}
+              className="relative z-[2] flex-1 rounded-xl border-2 px-4 py-2 text-center text-[0.85rem] font-bold text-crimson no-underline transition-colors hover:bg-crimson hover:text-paper"
+            >
+              View conference
+            </Link>
+          ) : (
+            <Link
+              to="/programmes/$slug"
+              params={{ slug: detailSlug }}
+              className="relative z-[2] flex-1 rounded-xl border-2 px-4 py-2 text-center text-[0.85rem] font-bold no-underline transition-colors hover:text-paper"
+              style={{ borderColor: track.color, color: track.color }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = track.color;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "transparent";
+              }}
+            >
+              View programme
+            </Link>
+          )}
           <AddToCalendar p={p} c={next} />
         </div>
       </div>

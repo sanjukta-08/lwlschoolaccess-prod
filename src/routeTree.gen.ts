@@ -15,6 +15,7 @@ import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as CalendarMonthRouteImport } from './routes/calendar-month'
 import { Route as CampsRouteImport } from './routes/camps'
 import { Route as CompetitionsRouteImport } from './routes/competitions'
+import { Route as ConferencesRouteImport } from './routes/conferences'
 import { Route as FinderRouteImport } from './routes/finder'
 import { Route as FitRouteImport } from './routes/fit'
 import { Route as InternshipsRouteImport } from './routes/internships'
@@ -33,8 +34,12 @@ import { Route as CampsHcusYoungGlobalLeadersWinterRouteImport } from './routes/
 import { Route as CampsIgniteCambridgeJudgeRouteImport } from './routes/camps.ignite-cambridge-judge'
 import { Route as CampsPrelawHorizonsHarvardRouteImport } from './routes/camps.prelaw-horizons-harvard'
 import { Route as CampsPremedHorizonsHarvardRouteImport } from './routes/camps.premed-horizons-harvard'
+import { Route as ConferenceSlugRouteImport } from './routes/conference.$slug'
+import { Route as ConferencesIndexRouteImport } from './routes/conferences.index'
+import { Route as ConferencesSlugRouteImport } from './routes/conferences.$slug'
 import { Route as InternshipsIndexRouteImport } from './routes/internships.index'
 import { Route as ProgrammesSlugRouteImport } from './routes/programmes.$slug'
+import { Route as OurOfferingsConferencesSlugRouteImport } from './routes/our-offerings.conferences.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -64,6 +69,11 @@ const CampsRoute = CampsRouteImport.update({
 const CompetitionsRoute = CompetitionsRouteImport.update({
   id: '/competitions',
   path: '/competitions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConferencesRoute = ConferencesRouteImport.update({
+  id: '/conferences',
+  path: '/conferences',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FinderRoute = FinderRouteImport.update({
@@ -163,6 +173,21 @@ const CampsPremedHorizonsHarvardRoute =
     path: '/premed-horizons-harvard',
     getParentRoute: () => CampsRoute,
   } as any)
+const ConferenceSlugRoute = ConferenceSlugRouteImport.update({
+  id: '/conference/$slug',
+  path: '/conference/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConferencesIndexRoute = ConferencesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ConferencesRoute,
+} as any)
+const ConferencesSlugRoute = ConferencesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ConferencesRoute,
+} as any)
 const InternshipsIndexRoute = InternshipsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -173,6 +198,12 @@ const ProgrammesSlugRoute = ProgrammesSlugRouteImport.update({
   path: '/programmes/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OurOfferingsConferencesSlugRoute =
+  OurOfferingsConferencesSlugRouteImport.update({
+    id: '/our-offerings/conferences/$slug',
+    path: '/our-offerings/conferences/$slug',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -181,6 +212,7 @@ export interface FileRoutesByFullPath {
   '/calendar-month': typeof CalendarMonthRoute
   '/camps': typeof CampsRouteWithChildren
   '/competitions': typeof CompetitionsRoute
+  '/conferences': typeof ConferencesRouteWithChildren
   '/finder': typeof FinderRoute
   '/fit': typeof FitRoute
   '/internships': typeof InternshipsRouteWithChildren
@@ -198,9 +230,13 @@ export interface FileRoutesByFullPath {
   '/camps/ignite-cambridge-judge': typeof CampsIgniteCambridgeJudgeRoute
   '/camps/prelaw-horizons-harvard': typeof CampsPrelawHorizonsHarvardRoute
   '/camps/premed-horizons-harvard': typeof CampsPremedHorizonsHarvardRoute
+  '/conference/$slug': typeof ConferenceSlugRoute
+  '/conferences/$slug': typeof ConferencesSlugRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/camps/': typeof CampsIndexRoute
+  '/conferences/': typeof ConferencesIndexRoute
   '/internships/': typeof InternshipsIndexRoute
+  '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -224,9 +260,13 @@ export interface FileRoutesByTo {
   '/camps/ignite-cambridge-judge': typeof CampsIgniteCambridgeJudgeRoute
   '/camps/prelaw-horizons-harvard': typeof CampsPrelawHorizonsHarvardRoute
   '/camps/premed-horizons-harvard': typeof CampsPremedHorizonsHarvardRoute
+  '/conference/$slug': typeof ConferenceSlugRoute
+  '/conferences/$slug': typeof ConferencesSlugRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/camps': typeof CampsIndexRoute
+  '/conferences': typeof ConferencesIndexRoute
   '/internships': typeof InternshipsIndexRoute
+  '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -236,6 +276,7 @@ export interface FileRoutesById {
   '/calendar-month': typeof CalendarMonthRoute
   '/camps': typeof CampsRouteWithChildren
   '/competitions': typeof CompetitionsRoute
+  '/conferences': typeof ConferencesRouteWithChildren
   '/finder': typeof FinderRoute
   '/fit': typeof FitRoute
   '/internships': typeof InternshipsRouteWithChildren
@@ -253,9 +294,13 @@ export interface FileRoutesById {
   '/camps/ignite-cambridge-judge': typeof CampsIgniteCambridgeJudgeRoute
   '/camps/prelaw-horizons-harvard': typeof CampsPrelawHorizonsHarvardRoute
   '/camps/premed-horizons-harvard': typeof CampsPremedHorizonsHarvardRoute
+  '/conference/$slug': typeof ConferenceSlugRoute
+  '/conferences/$slug': typeof ConferencesSlugRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/camps/': typeof CampsIndexRoute
+  '/conferences/': typeof ConferencesIndexRoute
   '/internships/': typeof InternshipsIndexRoute
+  '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -266,6 +311,7 @@ export interface FileRouteTypes {
     | '/calendar-month'
     | '/camps'
     | '/competitions'
+    | '/conferences'
     | '/finder'
     | '/fit'
     | '/internships'
@@ -283,9 +329,13 @@ export interface FileRouteTypes {
     | '/camps/ignite-cambridge-judge'
     | '/camps/prelaw-horizons-harvard'
     | '/camps/premed-horizons-harvard'
+    | '/conference/$slug'
+    | '/conferences/$slug'
     | '/programmes/$slug'
     | '/camps/'
+    | '/conferences/'
     | '/internships/'
+    | '/our-offerings/conferences/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -309,9 +359,13 @@ export interface FileRouteTypes {
     | '/camps/ignite-cambridge-judge'
     | '/camps/prelaw-horizons-harvard'
     | '/camps/premed-horizons-harvard'
+    | '/conference/$slug'
+    | '/conferences/$slug'
     | '/programmes/$slug'
     | '/camps'
+    | '/conferences'
     | '/internships'
+    | '/our-offerings/conferences/$slug'
   id:
     | '__root__'
     | '/'
@@ -320,6 +374,7 @@ export interface FileRouteTypes {
     | '/calendar-month'
     | '/camps'
     | '/competitions'
+    | '/conferences'
     | '/finder'
     | '/fit'
     | '/internships'
@@ -337,9 +392,13 @@ export interface FileRouteTypes {
     | '/camps/ignite-cambridge-judge'
     | '/camps/prelaw-horizons-harvard'
     | '/camps/premed-horizons-harvard'
+    | '/conference/$slug'
+    | '/conferences/$slug'
     | '/programmes/$slug'
     | '/camps/'
+    | '/conferences/'
     | '/internships/'
+    | '/our-offerings/conferences/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -349,6 +408,7 @@ export interface RootRouteChildren {
   CalendarMonthRoute: typeof CalendarMonthRoute
   CampsRoute: typeof CampsRouteWithChildren
   CompetitionsRoute: typeof CompetitionsRoute
+  ConferencesRoute: typeof ConferencesRouteWithChildren
   FinderRoute: typeof FinderRoute
   FitRoute: typeof FitRoute
   InternshipsRoute: typeof InternshipsRouteWithChildren
@@ -358,7 +418,9 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StoriesRoute: typeof StoriesRoute
   TestimonialsRoute: typeof TestimonialsRoute
+  ConferenceSlugRoute: typeof ConferenceSlugRoute
   ProgrammesSlugRoute: typeof ProgrammesSlugRoute
+  OurOfferingsConferencesSlugRoute: typeof OurOfferingsConferencesSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -403,6 +465,13 @@ declare module '@tanstack/react-router' {
       path: '/competitions'
       fullPath: '/competitions'
       preLoaderRoute: typeof CompetitionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conferences': {
+      id: '/conferences'
+      path: '/conferences'
+      fullPath: '/conferences'
+      preLoaderRoute: typeof ConferencesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/finder': {
@@ -531,6 +600,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CampsPremedHorizonsHarvardRouteImport
       parentRoute: typeof CampsRoute
     }
+    '/conference/$slug': {
+      id: '/conference/$slug'
+      path: '/conference/$slug'
+      fullPath: '/conference/$slug'
+      preLoaderRoute: typeof ConferenceSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conferences/': {
+      id: '/conferences/'
+      path: '/'
+      fullPath: '/conferences/'
+      preLoaderRoute: typeof ConferencesIndexRouteImport
+      parentRoute: typeof ConferencesRoute
+    }
+    '/conferences/$slug': {
+      id: '/conferences/$slug'
+      path: '/$slug'
+      fullPath: '/conferences/$slug'
+      preLoaderRoute: typeof ConferencesSlugRouteImport
+      parentRoute: typeof ConferencesRoute
+    }
     '/internships/': {
       id: '/internships/'
       path: '/'
@@ -543,6 +633,13 @@ declare module '@tanstack/react-router' {
       path: '/programmes/$slug'
       fullPath: '/programmes/$slug'
       preLoaderRoute: typeof ProgrammesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/our-offerings/conferences/$slug': {
+      id: '/our-offerings/conferences/$slug'
+      path: '/our-offerings/conferences/$slug'
+      fullPath: '/our-offerings/conferences/$slug'
+      preLoaderRoute: typeof OurOfferingsConferencesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -577,6 +674,20 @@ const CampsRouteChildren: CampsRouteChildren = {
 
 const CampsRouteWithChildren = CampsRoute._addFileChildren(CampsRouteChildren)
 
+interface ConferencesRouteChildren {
+  ConferencesSlugRoute: typeof ConferencesSlugRoute
+  ConferencesIndexRoute: typeof ConferencesIndexRoute
+}
+
+const ConferencesRouteChildren: ConferencesRouteChildren = {
+  ConferencesSlugRoute: ConferencesSlugRoute,
+  ConferencesIndexRoute: ConferencesIndexRoute,
+}
+
+const ConferencesRouteWithChildren = ConferencesRoute._addFileChildren(
+  ConferencesRouteChildren,
+)
+
 interface InternshipsRouteChildren {
   InternshipsIndexRoute: typeof InternshipsIndexRoute
 }
@@ -596,6 +707,7 @@ const rootRouteChildren: RootRouteChildren = {
   CalendarMonthRoute: CalendarMonthRoute,
   CampsRoute: CampsRouteWithChildren,
   CompetitionsRoute: CompetitionsRoute,
+  ConferencesRoute: ConferencesRouteWithChildren,
   FinderRoute: FinderRoute,
   FitRoute: FitRoute,
   InternshipsRoute: InternshipsRouteWithChildren,
@@ -605,7 +717,9 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StoriesRoute: StoriesRoute,
   TestimonialsRoute: TestimonialsRoute,
+  ConferenceSlugRoute: ConferenceSlugRoute,
   ProgrammesSlugRoute: ProgrammesSlugRoute,
+  OurOfferingsConferencesSlugRoute: OurOfferingsConferencesSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -58,6 +58,23 @@ export const TYPE_PROFILE: Record<TypeKey, TypeProfile> = {
       "A line that needs no explaining on a form",
     ],
   },
+  conf: {
+    purpose:
+      "Global perspective in practice. A conference asks students to research a country position, negotiate with peers, and speak under pressure in a formal committee setting.",
+    skills: [
+      "Policy research",
+      "Public speaking",
+      "Diplomatic negotiation",
+      "Resolution writing",
+      "Cross-cultural teamwork",
+    ],
+    proof: [
+      "A submitted position paper",
+      "Conference participation record",
+      "Committee work and resolution drafts",
+      "Delegate recognition when awarded",
+    ],
+  },
 };
 
 export type TrackProfile = {

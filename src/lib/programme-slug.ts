@@ -12,4 +12,9 @@ export const slugOf = (p: Programme) =>
 export const programmeBySlug = (slug: string): Programme | undefined =>
   PROGRAMMES.find((p) => slugOf(p) === slug);
 
+export const conferenceSlugOf = (p: Programme) => p.paySlug ?? p.id;
+
+export const conferenceBySlug = (slug: string): Programme | undefined =>
+  PROGRAMMES.find((p) => p.type === "conf" && conferenceSlugOf(p) === slug);
+
 export const programmePath = (p: Programme) => `/programmes/${slugOf(p)}` as const;

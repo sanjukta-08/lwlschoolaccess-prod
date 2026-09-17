@@ -4,7 +4,7 @@ import { getRouterInstance } from "@tanstack/react-start";
 import { CAMPS } from "@/lib/camps";
 import { ensureCatalogue } from "@/lib/catalogue";
 import { PROGRAMMES } from "@/lib/programmes";
-import { slugOf } from "@/lib/programme-slug";
+import { conferenceSlugOf, slugOf } from "@/lib/programme-slug";
 import {
   isSitemapRouteIncluded,
   sitemapPathForLocation,
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/sitemap.xml")({
 
         const programmesRouteId = "/programmes/$slug";
         if (isSitemapRouteIncluded(router.routesById[programmesRouteId])) {
-          for (const programme of PROGRAMMES) {
+          for (const programme of PROGRAMMES.filter((item) => item.type !== "conf")) {
             const location = router.buildLocation({
               to: programmesRouteId,
               params: { slug: slugOf(programme) },
@@ -35,6 +35,20 @@ export const Route = createFileRoute("/sitemap.xml")({
               hash: "",
             });
             const path = sitemapPathForLocation(router, location, programmesRouteId);
+            if (path) entries.push({ path });
+          }
+        }
+
+        const conferencesRouteId = "/conferences/$slug";
+        if (isSitemapRouteIncluded(router.routesById[conferencesRouteId])) {
+          for (const conference of PROGRAMMES.filter((item) => item.type === "conf")) {
+            const location = router.buildLocation({
+              to: conferencesRouteId,
+              params: { slug: conferenceSlugOf(conference) },
+              search: () => ({}),
+              hash: "",
+            });
+            const path = sitemapPathForLocation(router, location, conferencesRouteId);
             if (path) entries.push({ path });
           }
         }

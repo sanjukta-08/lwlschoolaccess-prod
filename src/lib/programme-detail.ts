@@ -418,6 +418,12 @@ const TAKEAWAYS: Record<TypeKey, string[]> = {
     "Awards for top entries",
     "A submission to show universities",
   ],
+  conf: [
+    "Conference participation record",
+    "A submitted position paper",
+    "Committee and resolution-writing experience",
+    "Delegate recognition when awarded",
+  ],
 };
 
 const derivedSteps = (p: Programme): DoStep[] => {
@@ -699,6 +705,7 @@ const PROJECT_TITLE: Record<TypeKey, string> = {
   fel: "A finished capstone, built over the fellowship",
   prog: "A short project or presentation to close the programme",
   comp: "A judged entry with a result attached",
+  conf: "A position paper and committee record from the conference",
 };
 
 const derivedProject = (p: Programme): ProjectOutcome => {

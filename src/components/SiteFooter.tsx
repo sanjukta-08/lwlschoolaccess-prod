@@ -58,6 +58,9 @@ export function SiteFooter({ note }: { note?: string }) {
             <Link to="/camps" className={linkCls}>
               Summer &amp; winter camps
             </Link>
+            <Link to="/conferences" className={linkCls}>
+              Conferences
+            </Link>
           </nav>
 
 
