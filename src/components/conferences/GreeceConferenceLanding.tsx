@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Award, CalendarDays, ChevronLeft, ChevronRight, Clock, GraduationCap, Globe2, MapPin, Mic2, Network, Users } from "lucide-react";
+import { Award, CalendarDays, ChevronLeft, ChevronRight, Clock, DollarSign, GraduationCap, Globe2, MapPin, Mic2, Network, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { Programme } from "@/lib/programmes";
 import { conferenceDateLabel, conferenceGrades, conferenceLocation, conferencePrice } from "@/lib/conferences";

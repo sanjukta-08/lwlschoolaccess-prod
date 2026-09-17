@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, CalendarDays, Globe2, Users } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { ensureCatalogue } from "@/lib/catalogue";
 import { PROGRAMMES } from "@/lib/programmes";
 import { conferenceImage } from "@/lib/conferences";
@@ -31,68 +31,28 @@ export const Route = createFileRoute("/conferences/")({
 
 function ConferencesHub() {
   const { conferences } = Route.useLoaderData();
-  const upcoming = conferences.filter((conference) => conference.cohorts.length > 0);
-  const destinations = new Set(conferences.map((conference) => conference.location).filter(Boolean)).size;
-  const lead = upcoming[0] ?? conferences[0];
-
   return (
-    <div className="min-h-dvh bg-paper">
+    <div className="min-h-dvh bg-[#080b10] text-white">
       <SiteHeader />
       <main>
-        <section className="relative flex min-h-[72vh] items-end overflow-hidden bg-ink">
-          {lead ? (
-            <img src={conferenceImage(lead)} alt="Harvard WorldMUN delegates" className="absolute inset-0 h-full w-full object-cover opacity-60" />
-          ) : null}
-          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/15" />
-          <div className="page-shell relative z-10 w-full py-16 text-paper md:py-24">
-            <p className="mono-label text-gold-line">Global conferences · Live catalogue</p>
-            <h1 className="mt-4 max-w-[13ch] font-serif text-[clamp(3rem,7vw,6rem)] leading-[0.95] font-semibold text-paper">
-              Harvard WorldMUN, worldwide
-            </h1>
-            <p className="mt-6 max-w-[45rem] text-[clamp(1rem,2vw,1.2rem)] leading-relaxed text-paper/80">
-              Step into committee rooms across the world. Research, debate, negotiate, and build friendships with students from different countries.
-            </p>
-            <a href="#destinations" className="mt-8 inline-flex items-center gap-2 bg-crimson px-7 py-3.5 font-semibold text-paper no-underline hover:bg-crimson-deep">
-              Explore destinations <ArrowRight className="h-4 w-4" aria-hidden />
-            </a>
+        <section className="relative overflow-hidden border-b border-white/10 px-6 pb-16 pt-36 md:pb-24 md:pt-48">
+          <div className="pointer-events-none absolute -right-6 top-24 select-none text-[clamp(7rem,23vw,21rem)] font-black leading-none tracking-[-0.08em] text-[#d2a84a]/[0.07]">MUN</div>
+          <div className="relative mx-auto max-w-[1600px]">
+            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#d2a84a]">Learn with Leaders · Conferences</p>
+            <h1 className="mt-7 max-w-5xl text-[clamp(3.5rem,8vw,8rem)] font-bold leading-[0.86] tracking-[-0.055em]">Global ideas.<br/><span className="text-[#d2a84a]">Global stages.</span></h1>
+            <div className="mt-10 flex flex-col justify-between gap-8 border-t border-white/20 pt-7 md:flex-row md:items-end"><p className="max-w-2xl text-lg leading-relaxed text-white/65">Join globally renowned conferences that bring ambitious students together for debate, diplomacy, and leadership.</p><a href="#destinations" className="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-[#d2a84a]">Explore conferences <ArrowRight className="h-4 w-4"/></a></div>
           </div>
         </section>
 
-        <section className="border-b border-line bg-wash py-8">
-          <div className="page-shell grid grid-cols-3 divide-x divide-line">
-            {[
-              [Globe2, `${destinations || conferences.length}`, "destinations"],
-              [CalendarDays, `${upcoming.length}`, "upcoming conferences"],
-              [Users, "Grades 6–12", "live eligibility varies"],
-            ].map(([Icon, value, label]) => {
-              const StatIcon = Icon as typeof Globe2;
-              return (
-                <div key={String(label)} className="px-3 text-center md:px-8">
-                  <StatIcon className="mx-auto h-5 w-5 text-crimson" aria-hidden />
-                  <strong className="mt-2 block font-serif text-[clamp(1.2rem,3vw,2rem)] text-ink">{String(value)}</strong>
-                  <span className="text-[0.72rem] text-ink-soft md:text-[0.82rem]">{String(label)}</span>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-
-        <section id="destinations" className="page-shell scroll-mt-24 py-20">
-          <p className="mono-label text-crimson">Conference destinations</p>
-          <div className="mt-4 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-            <h2 className="max-w-[14ch] font-serif text-[clamp(2.2rem,5vw,4rem)] leading-tight font-semibold text-ink">
-              Choose where you will represent the world
-            </h2>
-            <p className="max-w-[31rem] text-[0.95rem] leading-relaxed text-ink-soft">
-              Dates, eligibility, fees, availability, and application links below come directly from the live catalogue.
-            </p>
-          </div>
+        <section id="destinations" className="relative mx-auto max-w-[1600px] scroll-mt-24 px-6 py-20 md:py-28">
+          <span className="pointer-events-none absolute right-4 top-8 select-none text-[clamp(5rem,15vw,13rem)] font-black leading-none text-white/[0.025]">WORLD</span>
+          <div className="relative flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="text-xs uppercase tracking-[0.32em] text-[#d2a84a]">Harvard WorldMUN</p><h2 className="mt-4 text-4xl font-bold md:text-6xl">Choose your destination</h2></div><p className="max-w-md text-sm leading-relaxed text-white/50">Conference dates, eligibility, and availability are drawn from the live catalogue.</p></div>
           {conferences.length ? (
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-14 grid gap-x-7 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
               {conferences.map((conference) => <ConferenceCard key={conference.id} conference={conference} />)}
             </div>
           ) : (
-            <p className="mt-10 border border-line bg-wash p-8 text-center text-ink-soft">
+            <p className="mt-10 border border-white/15 p-8 text-center text-white/60">
               Conference dates are being updated. Please check back shortly.
             </p>
           )}
