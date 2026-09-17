@@ -14,8 +14,12 @@ const hydrate = (data: LiveCatalogue) => {
 export const catalogueQuery = queryOptions({
   queryKey: ["catalogue", "live"],
   queryFn: async () => hydrate(await loadCatalogue()),
-  staleTime: 5 * 60 * 1000,
+  staleTime: 15 * 60 * 1000,
+  gcTime: 60 * 60 * 1000,
+  refetchOnMount: false,
+  refetchOnWindowFocus: false,
 });
+
 
 /**
  * Every route loader awaits this so the catalogue is in place before any
