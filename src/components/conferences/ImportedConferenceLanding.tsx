@@ -111,7 +111,7 @@ function StickyNav({ apply }: { apply: string }) {
     const onScroll = () => {
       setScrolled(window.scrollY > 24);
       const sections = ["home", "about", "details", "committees"];
-      const visible = sections.findLast((id) => (document.getElementById(id)?.getBoundingClientRect().top ?? 9999) < 180);
+      const visible = [...sections].reverse().find((id: string) => (document.getElementById(id)?.getBoundingClientRect().top ?? 9999) < 180);
       setActive(visible ?? "home");
     };
     onScroll();
@@ -129,7 +129,8 @@ function StickyNav({ apply }: { apply: string }) {
 
 function ScheduleCarousel() {
   const [current, setCurrent] = useState(0);
-  const item = schedule[current];
+  const item = schedule[current] ?? schedule[0];
+  if (!item) return null;
   return <div className="mx-auto max-w-2xl">
     <div className="relative mx-8 min-h-80 rounded-2xl bg-[#3d1525] p-6 text-white shadow-2xl">
       <h3 className="text-center text-xl font-bold">{item.day}: {item.title}</h3>
@@ -150,6 +151,7 @@ export function ImportedConferenceLanding({ conference }: { conference: Programm
   useEffect(() => { const onScroll = () => setShowTop(window.scrollY > 500); window.addEventListener("scroll", onScroll, { passive: true }); return () => window.removeEventListener("scroll", onScroll); }, []);
   const date = conferenceDateLabel(conference);
   const location = conferenceLocation(conference);
+  const activeTestimonial = testimonials[testimonial] ?? testimonials[0];
   const details = [
     [MapPin, "Venue", conference.format ? `${conference.format} · ${location}` : location],
     [CalendarDays, "Conference Dates", date], [DollarSign, "Conference Fee", conferencePrice(conference)],
@@ -195,7 +197,7 @@ export function ImportedConferenceLanding({ conference }: { conference: Programm
 
       {host ? <section className="bg-white py-20"><div className="mx-auto max-w-5xl px-6"><div className="flex flex-col justify-between gap-6 md:flex-row md:items-center"><div><p className="font-semibold text-[#a9222e]">Hosted by</p><h2 className="mt-1 text-3xl font-bold text-[#a9222e] md:text-4xl">{host.name}</h2></div><img src={host.logo} alt={host.name} className="h-20 max-w-72 object-contain" /></div>{host.copy ? <p className="mt-8 max-w-3xl leading-relaxed text-neutral-700">{host.copy}</p> : null}{slug === "hwmun-india" ? <><img src={pathwaysAccreditation.url} alt="Pathways accreditations" className="mt-8 max-h-28 max-w-full object-contain" /><img src={pathwaysCollage.url} alt="Pathways School Gurgaon" className="mt-10 w-full rounded-2xl shadow-md" /></> : null}</div></section> : null}
 
-      {showTestimonials ? <section className="bg-white py-20"><div className="mx-auto max-w-6xl px-6"><h2 className="max-w-3xl text-3xl font-bold md:text-4xl">Hear what <span className="text-[#a9222e]">past participants</span> have to say</h2><article className="mt-10 flex flex-col gap-6 rounded-[2rem] bg-[#fdf3f4] p-7 sm:flex-row"><img src={testimonials[testimonial][0]} alt={testimonials[testimonial][2]} className="h-52 w-40 self-end object-contain object-bottom" /><div className="flex flex-1 flex-col justify-center"><p className="text-lg leading-relaxed">“{testimonials[testimonial][1]}”</p><strong className="mt-5 text-[#a9222e]">{testimonials[testimonial][2]}</strong></div></article><div className="mt-6 flex justify-end gap-3"><Button size="icon" aria-label="Previous testimonial" onClick={() => setTestimonial((testimonial + testimonials.length - 1) % testimonials.length)} className="rounded-full bg-black text-white"><ChevronLeft /></Button><Button size="icon" aria-label="Next testimonial" onClick={() => setTestimonial((testimonial + 1) % testimonials.length)} className="rounded-full bg-black text-white"><ChevronRight /></Button></div><img src={glimpses.url} alt="Glimpses from past WorldMUN conferences" className="mt-12 w-full rounded-[2rem] shadow-2xl" /></div></section> : null}
+      {showTestimonials && activeTestimonial ? <section className="bg-white py-20"><div className="mx-auto max-w-6xl px-6"><h2 className="max-w-3xl text-3xl font-bold md:text-4xl">Hear what <span className="text-[#a9222e]">past participants</span> have to say</h2><article className="mt-10 flex flex-col gap-6 rounded-[2rem] bg-[#fdf3f4] p-7 sm:flex-row"><img src={activeTestimonial[0]} alt={activeTestimonial[2]} className="h-52 w-40 self-end object-contain object-bottom" /><div className="flex flex-1 flex-col justify-center"><p className="text-lg leading-relaxed">“{activeTestimonial[1]}”</p><strong className="mt-5 text-[#a9222e]">{activeTestimonial[2]}</strong></div></article><div className="mt-6 flex justify-end gap-3"><Button size="icon" aria-label="Previous testimonial" onClick={() => setTestimonial((testimonial + testimonials.length - 1) % testimonials.length)} className="rounded-full bg-black text-white"><ChevronLeft /></Button><Button size="icon" aria-label="Next testimonial" onClick={() => setTestimonial((testimonial + 1) % testimonials.length)} className="rounded-full bg-black text-white"><ChevronRight /></Button></div><img src={glimpses.url} alt="Glimpses from past WorldMUN conferences" className="mt-12 w-full rounded-[2rem] shadow-2xl" /></div></section> : null}
 
       <section className="relative py-24"><img src={contactBackground.url} alt="" className="absolute inset-0 h-full w-full object-cover" /><div className="absolute inset-0 bg-black/35" /><div className="relative z-10 mx-auto max-w-3xl px-4 text-center"><img src={lwlLogo.url} alt="Learn with Leaders" className="mx-auto h-14" /><h2 className="mt-6 text-4xl font-bold text-white md:text-5xl">Ready to Join Us?</h2><div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row"><Button asChild size="lg" className="rounded bg-[#a9222e] px-10 text-lg text-white hover:bg-[#8a1b25]"><a href={conference.apply} target="_blank" rel="noopener noreferrer">{conference.cohorts.length ? "Register Now!" : "Register Interest"}</a></Button>{meetings[slug] ? <Button asChild size="lg" className="rounded bg-[#a9222e] px-10 text-lg text-white hover:bg-[#8a1b25]"><a href={meetings[slug]} target="_blank" rel="noopener noreferrer">Schedule a Meeting</a></Button> : null}</div><div className="mx-auto mt-10 flex max-w-xl flex-col items-center justify-center gap-4 rounded-xl bg-white p-5 text-sm text-neutral-600 sm:flex-row sm:gap-8"><a href="mailto:team@learnwithleaders.com" className="flex items-center gap-2"><Mail className="h-5 w-5 text-[#a9222e]" />team@learnwithleaders.com</a><a href="https://www.learnwithleaders.com/" className="flex items-center gap-2"><Globe className="h-5 w-5 text-[#a9222e]" />learnwithleaders.com</a></div></div></section>
     </main>
