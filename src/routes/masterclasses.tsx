@@ -24,6 +24,7 @@ import finlitLogo from "@/assets/logo-finlit.png.asset.json";
 import onwardLogo from "@/assets/logo-onward-word.png.asset.json";
 import sirLutherLogo from "@/assets/logo-sir-luther.png.asset.json";
 import lwlLogo from "@/assets/lwl-logo.png.asset.json";
+import birdAsset from "@/assets/lwl-bird-black.webp.asset.json";
 
 const TITLE = "Free Live Masterclasses - Learn with Leaders";
 const DESC =
@@ -72,6 +73,9 @@ function Shell({ children }: { children: React.ReactNode }) {
           <span className="font-display text-[clamp(4.25rem,14vw,14rem)] font-black uppercase leading-none text-crimson/[0.07]">
             Masterclasses
           </span>
+        </div>
+        <div className="pointer-events-none absolute right-0 top-1/2 z-[1] hidden w-[min(420px,32vw)] -translate-y-1/2 opacity-[0.28] sm:block lg:w-[min(480px,30vw)]" aria-hidden>
+          <img src={birdAsset.url} alt="" className="h-auto w-full object-contain object-right [mask-image:linear-gradient(to_left,black_55%,transparent_95%)]" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-5xl text-center">

@@ -21,6 +21,7 @@ import imgAi from "@/assets/competitions/ai-founders.jpg";
 import imgAiFounders from "@/assets/competitions/ai-founders-challenge.png.asset.json";
 import imgDebate from "@/assets/competitions/debating.jpg";
 import imgGeneric from "@/assets/competitions/generic.jpg";
+import birdAsset from "@/assets/lwl-bird-black.webp.asset.json";
 
 const isAiFoundersChallenge = (p: Programme): boolean => {
   const n = p.name.toLowerCase();
@@ -212,6 +213,9 @@ function CompetitionsPage() {
           <span className="font-display text-[clamp(4.5rem,15vw,15rem)] font-black uppercase leading-none text-crimson/[0.07]">
             Competitions
           </span>
+        </div>
+        <div className="pointer-events-none absolute right-0 top-1/2 z-[1] hidden w-[min(420px,32vw)] -translate-y-1/2 opacity-[0.28] sm:block lg:w-[min(480px,30vw)]" aria-hidden>
+          <img src={birdAsset.url} alt="" className="h-auto w-full object-contain object-right [mask-image:linear-gradient(to_left,black_55%,transparent_95%)]" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-5xl text-center">
