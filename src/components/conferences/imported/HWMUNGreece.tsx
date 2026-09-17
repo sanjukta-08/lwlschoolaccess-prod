@@ -10,7 +10,7 @@ import {
 import "@/hwmun-greece-imported.css";
 
 import acsCampusAsset from "@/assets/conferences/source/hwmun-greece-acs-campus.jpg.asset.json";
-import heroLwl3Asset from "@/assets/conferences/hwmun-greece.jpg.asset.json";
+import heroLwl3Asset from "@/assets/conferences/source/hwmun-greece-hero.jpg.asset.json";
 import flagsAsset from "@/assets/conferences/source/hwmun-greece-flags.jpg.asset.json";
 import unityAsset from "@/assets/conferences/source/hwmun-greece-unity-hands.jpg.asset.json";
 import harvardLogoAsset from "@/assets/conferences/source/hwmun-greece-harvard-worldmun-logo.png.asset.json";
