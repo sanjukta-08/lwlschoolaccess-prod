@@ -1,0 +1,9 @@
+/* Scoped typography for the imported HWMUN conference landing pages.
+   The source project maps Tailwind's font-display to Playfair Display; keep
+   that exact typography on these pages only, without touching the site theme. */
+.hwmun-imported .font-display {
+  font-family: "Playfair Display", Georgia, serif;
+}
+.hwmun-imported .font-serif {
+  font-family: "Playfair Display", Georgia, serif;
+}
