@@ -8,4 +8,4 @@
 - [x] Remove italic styling from all headings while preserving the official logo artwork
 - [x] Import all conference experiences and expose all twelve live HWMUN destinations
 - [x] Add live conference discovery, detail URLs, navigation, metadata, redirects, and sitemap entries
-- [ ] Verify every conference route, application link, viewport, and production build
+- [x] Verify every conference route, application link, viewport, and production build
