@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 import type { Programme } from "@/lib/programmes";
 import { conferenceDateLabel, conferenceGrades, conferenceLocation, conferencePrice } from "@/lib/conferences";
 import { Link } from "@tanstack/react-router";
@@ -6,7 +7,7 @@ import {
   Users, CalendarDays, Clock, GraduationCap, Wallet, Award,
   ChevronLeft, ChevronRight, Globe, Users2, Network, Mic, Lightbulb, BadgeCheck,
 } from "lucide-react";
-import "@/styles/hwmun-greece-imported.css";
+import "@/hwmun-greece-imported.css";
 
 import acsCampusAsset from "@/assets/conferences/source/hwmun-greece-acs-campus.jpg.asset.json";
 import heroLwl3Asset from "@/assets/conferences/hwmun-greece.jpg.asset.json";
@@ -72,7 +73,7 @@ function Nav({ apply }: { apply: string }) {
           <a href="#schedule" className="hover:text-primary transition">Schedule</a>
           <a href="#committees" className="hover:text-primary transition">Committees</a>
         </nav>
-        <Link
+        <a
           href={apply} target="_blank" rel="noopener noreferrer"
           className="hidden sm:inline-flex items-center gap-2 bg-secondary text-secondary-foreground rounded-full px-7 py-3 text-sm font-medium tracking-wide hover:bg-secondary/90 transition"
         >
@@ -115,12 +116,12 @@ function Hero({ apply }: { apply: string }) {
             more than 110 countries. Hosted in Athens — the birthplace of democracy.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Link
+            <a
               href={apply} target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-secondary text-secondary-foreground rounded-full px-8 py-4 text-sm font-medium tracking-wide hover:bg-secondary/90 transition"
             >
               Apply Now <span aria-hidden>→</span>
-            </Link>
+            </a>
           </div>
         </div>
       </div>
@@ -674,11 +675,11 @@ function CTA({ apply, conference }: { apply: string; conference: Programme }) {
         </p>
 
         <div className="mt-12 flex flex-col items-center gap-6">
-          <Link href={apply} target="_blank" rel="noopener noreferrer"
+          <a href={apply} target="_blank" rel="noopener noreferrer"
             className="group inline-flex items-center gap-4 bg-primary text-primary-foreground px-10 py-5 text-sm font-semibold tracking-[0.25em] uppercase hover:bg-primary/90 transition">
             Apply Now
             <span className="transition-transform group-hover:translate-x-1">→</span>
-          </Link>
+          </a>
 
           <div className="flex items-center gap-6 text-[11px] tracking-[0.3em] uppercase text-foreground/60">
             <span>{conferenceLocation(conference)}</span>
