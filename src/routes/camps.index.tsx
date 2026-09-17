@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { PageHero } from "@/components/PageHero";
+import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SectionHeading } from "@/components/SectionHeading";
 import { CampCardGrid } from "@/components/CampCard";
@@ -83,37 +83,45 @@ function CampsHub() {
   const universities = new Set(CAMPS.map((c) => c.host)).size;
 
   return (
-    <div className="min-h-dvh bg-[#fbfbf9]">
-      <PageHero
-        eyebrow="In-person residency · Winter 2026 & Summer 2027"
-        title={
-          <>
-            The world is your <em className="text-crimson-deep">classroom</em>
-          </>
-        }
-        subtitle={`${CAMPS.length} residential camps at ${universities} universities across ${cities} cities - Harvard, Cambridge Judge, the University of Geneva and Salamanca. Small cohorts, undergraduate mentors, and a project your child presents before they fly home.`}
-        pills={[
-          { top: `${CAMPS.length} camps`, sub: "Summer & winter" },
-          { top: `${universities} universities`, sub: "Host campuses" },
-          { top: `${cities} cities`, sub: "Worldwide" },
-          { top: CAMP_WEEK.length ? `${CAMP_WEEK.length}-day rhythm` : "Grades 8-12", sub: "On campus" },
-        ]}
-      >
-        <a
-          href="#all-camps"
-          className="mono-label bg-crimson px-7 py-3.5 text-paper no-underline shadow-soft transition-colors hover:bg-crimson-deep"
-        >
-          Explore all camps
-        </a>
-        <a
-          href={CALENDLY_BOOKING_URL}
-          target="_blank"
-          rel="noreferrer"
-          className="mono-label border border-line bg-paper px-7 py-3.5 text-ink no-underline shadow-soft transition-colors hover:border-gold-line hover:text-crimson"
-        >
-          Book a meeting
-        </a>
-      </PageHero>
+    <div className="min-h-dvh bg-paper">
+      <SiteHeader />
+      <section className="relative isolate flex min-h-[19rem] items-center justify-center overflow-hidden border-b border-line bg-paper px-5 pb-10 pt-8 sm:min-h-[21rem] sm:px-8 lg:pb-12 lg:pt-10">
+        <div className="pointer-events-none absolute inset-0 z-0 flex select-none items-center justify-center overflow-hidden" aria-hidden>
+          <span className="font-display text-[clamp(5.5rem,17vw,17rem)] font-black uppercase leading-none text-crimson/[0.07]">
+            Camps
+          </span>
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-5xl text-center">
+          <h1 className="font-display text-5xl font-black leading-[0.98] text-ink sm:text-6xl lg:text-7xl">
+            Explore Our <span className="text-crimson">Camps</span>
+          </h1>
+          <p className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
+            {CAMPS.length} residential camps at {universities} universities across {cities} cities — Harvard, Cambridge Judge, the University of Geneva and Salamanca. Small cohorts, undergraduate mentors, and a project your child presents before they fly home.
+          </p>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="#all-camps"
+              className="mono-label bg-crimson px-8 py-4 text-paper no-underline shadow-soft transition-colors hover:bg-crimson-deep"
+            >
+              View all camps
+            </a>
+            <a
+              href={CALENDLY_BOOKING_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="mono-label border border-line bg-paper px-8 py-4 text-ink no-underline shadow-soft transition-colors hover:border-gold-line hover:text-crimson"
+            >
+              Book a meeting
+            </a>
+          </div>
+        </div>
+
+        <div className="pointer-events-none absolute left-8 top-1/2 hidden h-32 w-1 -translate-y-1/2 bg-crimson/20 lg:block" aria-hidden />
+        <div className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 lg:block" aria-hidden>
+          <span className="mono-label text-crimson/35 [writing-mode:vertical-rl]">Learn with Leaders</span>
+        </div>
+      </section>
 
 
       {/* ---------- next departures ---------- */}
