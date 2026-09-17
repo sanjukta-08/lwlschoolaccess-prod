@@ -3,10 +3,17 @@ import { ensureCatalogue } from "@/lib/catalogue";
 import { conferenceBySlug } from "@/lib/programme-slug";
 import { conferenceDateLabel, conferenceImage, conferenceLocation } from "@/lib/conferences";
 import { ImportedConferenceLanding } from "@/components/conferences/ImportedConferenceLanding";
-import { GreeceConferenceLanding } from "@/components/conferences/GreeceConferenceLanding";
 import { conferenceSlugOf } from "@/lib/programme-slug";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import HWMUNAbuDhabi from "@/components/conferences/imported/HWMUNAbuDhabi";
+import HWMUNBangkok from "@/components/conferences/imported/HWMUNBangkok";
+import HWMUNCambodia from "@/components/conferences/imported/HWMUNCambodia";
+import HWMUNDubai from "@/components/conferences/imported/HWMUNDubai";
+import HWMUNGreece from "@/components/conferences/imported/HWMUNGreece";
+import HWMUNIndia from "@/components/conferences/imported/HWMUNIndia";
+import HWMUNKazakhstan from "@/components/conferences/imported/HWMUNKazakhstan";
+import HWMUNVietnam from "@/components/conferences/imported/HWMUNVietnam";
 
 export const Route = createFileRoute("/conferences/$slug")({
   staticData: { sitemap: true },
@@ -49,8 +56,21 @@ export const Route = createFileRoute("/conferences/$slug")({
 
 function ConferencePage() {
   const { conference } = Route.useLoaderData();
-  return conferenceSlugOf(conference) === "hwmun-greece"
-    ? <GreeceConferenceLanding conference={conference} />
+  const slug = conferenceSlugOf(conference);
+  const importedPages: Record<string, typeof HWMUNAbuDhabi> = {
+    "hwmun-abu-dhabi": HWMUNAbuDhabi,
+    "hwmun-bangkok": HWMUNBangkok,
+    "hwmun-cambodia": HWMUNCambodia,
+    "hwmun-dubai": HWMUNDubai,
+    "hwmun-greece": HWMUNGreece,
+    "hwmun-india": HWMUNIndia,
+    "hwmun-kazakhstan": HWMUNKazakhstan,
+    "hwmun-vietnam": HWMUNVietnam,
+  };
+  const ImportedPage = importedPages[slug];
+
+  return ImportedPage
+    ? <ImportedPage conference={conference} />
     : <ImportedConferenceLanding conference={conference} />;
 }
 

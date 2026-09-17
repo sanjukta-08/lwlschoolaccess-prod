@@ -78,7 +78,7 @@ function Nav({ apply }: { apply: string }) {
           className="hidden sm:inline-flex items-center gap-2 bg-secondary text-secondary-foreground rounded-full px-7 py-3 text-sm font-medium tracking-wide hover:bg-secondary/90 transition"
         >
           Apply Now
-        </Link>
+        </a>
       </div>
     </header>
   );
@@ -90,7 +90,7 @@ function Hero({ apply }: { apply: string }) {
       <Nav apply={apply} />
       <div className="absolute inset-0">
         <img
-          src={heroLwl3.url}
+          src={heroLwl3}
           alt="Harvard World Model United Nations Greece"
           className="absolute inset-0 h-full w-full object-contain md:object-cover object-right"
         />
