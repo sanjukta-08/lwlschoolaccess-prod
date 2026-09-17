@@ -10,12 +10,14 @@ export type TrackKey =
   | "res"
   | "lead"
   | "sat";
-export type TypeKey = "fel" | "prog" | "comp";
+export type TypeKey = "fel" | "prog" | "comp" | "conf";
 export type MentorKey = "harvard" | "hpair" | "yale" | "ivy";
 export type Fee = { e: string; r: string | null };
 
 export type Cohort = {
   d: string;
+  /** Final day for multi-day events such as conferences and camps. */
+  end?: string;
   g?: [number, number];
   fee?: Fee;
   /** Batch / cohort label as published in the master calendar. */
@@ -50,6 +52,13 @@ export type Programme = {
   badge?: string;
   site: string;
   apply: string;
+  /** Stable catalogue identifier used by dedicated experience routes. */
+  paySlug?: string;
+  /** Live catalogue facts used by in-person programme experiences. */
+  location?: string;
+  format?: string;
+  coverImage?: string;
+  categories?: string[];
   cohorts: Cohort[];
 };
 
@@ -104,12 +113,14 @@ export const TYPES: Record<TypeKey, { label: string }> = {
   fel: { label: "Fellowships" },
   prog: { label: "Programmes" },
   comp: { label: "Competitions" },
+  conf: { label: "Conferences" },
 };
 
 export const TYPE_NAME: Record<TypeKey, string> = {
   fel: "Fellowship",
   prog: "Programme",
   comp: "Competition",
+  conf: "Conference",
 };
 
 /**
@@ -225,9 +236,10 @@ export const TYPE_BLURB: Record<TypeKey, string> = {
   fel: "Mentor-led cohorts ending in a capstone or defence",
   prog: "Short live courses that build one specific skill",
   comp: "Judged challenges with awards and rankings",
+  conf: "In-person global affairs conferences for student delegates",
 };
 
-export const TYPE_ORDER: TypeKey[] = ["fel", "prog", "comp"];
+export const TYPE_ORDER: TypeKey[] = ["fel", "prog", "comp", "conf"];
 
 /** Live count of upcoming batches across the catalogue. */
 export const totalCohorts = () => PROGRAMMES.reduce((n, p) => n + p.cohorts.length, 0);
@@ -236,6 +248,7 @@ export const TYPE_IC: Record<TypeKey, string> = {
   fel: "🎓",
   prog: "📚",
   comp: "🏆",
+  conf: "🌐",
 };
 
 /** Editorially chosen flagships - the five a parent should look at first. */

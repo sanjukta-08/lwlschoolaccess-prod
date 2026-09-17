@@ -49,6 +49,9 @@ type ProgramRow = {
   program_url: string | null;
   apply_url: string | null;
   pay_slug: string | null;
+  location: string | null;
+  format: string | null;
+  cover_image_url: string | null;
 };
 
 type CohortRow = {
@@ -144,6 +147,8 @@ const slugify = (s: string) =>
 const deriveType = (row: ProgramRow): TypeKey => {
   const cats = (row.categories ?? []).join(" ").toLowerCase();
   const name = row.program_name.toLowerCase();
+  if (cats.includes("conference") || /\bhwmun\b|harvard worldmun|model united nations/.test(name))
+    return "conf";
   if (cats.includes("competition") || /championship|challenge|competition/.test(name))
     return "comp";
   if (cats.includes("fellowship") || name.includes("fellowship")) return "fel";
@@ -227,7 +232,7 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
         pub
           .from("all_programs")
           .select(
-            "id,partner_id,program_name,short_description,description,categories,duration,eligibility_grades,sticker_price,early_bird_price,price_currency,program_url,apply_url,pay_slug",
+            "id,partner_id,program_name,short_description,description,categories,duration,eligibility_grades,sticker_price,early_bird_price,price_currency,program_url,apply_url,pay_slug,location,format,cover_image_url",
           )
           .eq("is_active", true),
         pub
@@ -284,6 +289,7 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
         const label = o?.label ?? c.cohort_label;
         out.set(c.start_date!, {
           d: c.start_date!,
+          ...(c.end_date ? { end: c.end_date } : {}),
           ...(label ? { label } : {}),
           ...(o?.session_time ? { time: o.session_time } : {}),
           ...(o?.elig ? { elig: o.elig } : {}),
@@ -371,6 +377,11 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
         ...(s.badge ? { badge: s.badge } : {}),
         site: firstUrl(db?.program_url, s.site_url, partner?.website, ADVISOR)!,
         apply: applyLink(db, partner, s.apply_url, db?.program_url, partner?.website),
+        ...(db?.pay_slug ? { paySlug: db.pay_slug } : {}),
+        ...(db?.location ? { location: db.location } : {}),
+        ...(db?.format ? { format: db.format } : {}),
+        ...(db?.cover_image_url ? { coverImage: db.cover_image_url } : {}),
+        ...(db?.categories ? { categories: db.categories } : {}),
         cohorts,
       });
     }
@@ -403,6 +414,11 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
         feeR: db.early_bird_price != null ? money(db.sticker_price, db.price_currency) : null,
         site: firstUrl(db.program_url, partner?.website, ADVISOR)!,
         apply: applyLink(db, partner, db.program_url, partner?.website),
+        ...(db.pay_slug ? { paySlug: db.pay_slug } : {}),
+        ...(db.location ? { location: db.location } : {}),
+        ...(db.format ? { format: db.format } : {}),
+        ...(db.cover_image_url ? { coverImage: db.cover_image_url } : {}),
+        ...(db.categories ? { categories: db.categories } : {}),
         cohorts,
       });
     }

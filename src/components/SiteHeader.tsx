@@ -93,6 +93,19 @@ export function SiteHeader() {
         <div className="my-1 h-px bg-line" />
         <DropdownMenuItem asChild>
           <Link
+            to="/conferences"
+            activeProps={{ className: "bg-wash text-ink" }}
+            className="flex cursor-pointer flex-col items-start rounded-xl px-3 py-2 text-left text-[0.85rem] font-semibold text-ink-soft no-underline outline-none transition-colors hover:bg-wash hover:text-ink focus:bg-wash focus:text-ink"
+            onClick={close}
+          >
+            <span>Conferences</span>
+            <span className="text-[0.72rem] font-normal text-ink-faint">
+              Harvard WorldMUN destinations
+            </span>
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link
             to="/camps"
             activeProps={{ className: "bg-wash text-ink" }}
             className="flex cursor-pointer flex-col items-start rounded-xl px-3 py-2 text-left text-[0.85rem] font-semibold text-ink-soft no-underline outline-none transition-colors hover:bg-wash hover:text-ink focus:bg-wash focus:text-ink"
@@ -105,6 +118,14 @@ export function SiteHeader() {
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
+          <Link
+            to="/conferences"
+            activeProps={{ className: "bg-gold-soft text-ink" }}
+            className={mobileLinkCls}
+            onClick={close}
+          >
+            Conferences
+          </Link>
           <Link
             to="/competitions"
             activeProps={{ className: "bg-wash text-ink" }}
@@ -183,6 +204,9 @@ export function SiteHeader() {
         {mobile ? offeringsMobile : offeringsDesktop}
         <Link to="/camps" className={cls} activeProps={active} onClick={close}>
           Camps
+        </Link>
+        <Link to="/conferences" className={cls} activeProps={active} onClick={close}>
+          Conferences
         </Link>
         <Link
           to="/masterclasses"
