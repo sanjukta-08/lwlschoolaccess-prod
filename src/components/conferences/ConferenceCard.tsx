@@ -32,8 +32,8 @@ export function ConferenceCard({
 
   const cardContent = (
     <div
-      className={`group h-full overflow-hidden rounded-2xl bg-[#1a1a1a] transition-all duration-300 ${
-        disabled ? "cursor-default" : "hover:-translate-y-1"
+      className={`group h-full overflow-hidden rounded-sm border border-line bg-paper shadow-soft transition-colors ${
+        disabled ? "cursor-default" : "hover:border-gold-line"
       }`}
     >
       {/* Image */}
@@ -42,12 +42,12 @@ export function ConferenceCard({
           src={conferenceImage(conference)}
           alt={`${conference.name} conference`}
           loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
         />
         {/* Location badge */}
         <div className="absolute left-3 top-3">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-black/60 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm">
-            <MapPin className="h-3 w-3" />
+          <span className="mono-label inline-flex items-center gap-1.5 rounded-sm bg-paper/90 px-3 py-1.5 text-ink backdrop-blur-sm">
+            <MapPin className="h-3 w-3 text-crimson" />
             {location}
           </span>
         </div>
@@ -55,36 +55,36 @@ export function ConferenceCard({
 
       {/* Content */}
       <div className="space-y-3 p-5">
-        <h3 className="line-clamp-2 text-base font-bold leading-tight text-white transition-colors group-hover:text-[#f1b537]">
+        <h3 className="line-clamp-2 font-serif text-[1.1rem] font-medium leading-tight text-ink transition-colors group-hover:text-crimson">
           {conference.name}
         </h3>
 
-        <p className="line-clamp-2 text-sm text-white/50">
+        <p className="line-clamp-2 text-[0.85rem] leading-relaxed text-ink-soft">
           {conference.tag || conference.about}
         </p>
 
         {/* Starts on & Duration */}
-        <div className="flex items-start gap-6 pt-2">
+        <div className="flex items-start gap-6 border-t border-line pt-3">
           <div>
-            <p className="mb-0.5 text-[10px] uppercase tracking-wider text-white/40">Starts on</p>
-            <p className="whitespace-nowrap text-sm font-semibold text-white">
+            <p className="mono-label mb-0.5 text-gold-deep">Starts on</p>
+            <p className="whitespace-nowrap text-[0.85rem] font-medium text-ink">
               {startsOn ?? "Dates to be announced"}
             </p>
           </div>
           {duration && (
             <div>
-              <p className="mb-0.5 text-[10px] uppercase tracking-wider text-white/40">Duration</p>
-              <p className="whitespace-nowrap text-sm font-semibold text-white">{duration}</p>
+              <p className="mono-label mb-0.5 text-gold-deep">Duration</p>
+              <p className="whitespace-nowrap text-[0.85rem] font-medium text-ink">{duration}</p>
             </div>
           )}
         </div>
 
         {/* Arrow */}
-        <div className="flex items-center pt-1">
-          {!disabled && (
-            <ArrowRight className="h-4 w-4 text-white/30 transition-all group-hover:translate-x-1 group-hover:text-[#f1b537]" />
-          )}
-        </div>
+        {!disabled && (
+          <div className="flex items-center pt-1">
+            <ArrowRight className="h-4 w-4 text-ink-soft transition-all group-hover:translate-x-1 group-hover:text-crimson" />
+          </div>
+        )}
       </div>
     </div>
   );
