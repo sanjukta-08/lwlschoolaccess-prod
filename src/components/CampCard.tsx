@@ -54,7 +54,7 @@ export function CampCard({ camp }: { camp: Camp }) {
 
         <p className="text-[0.88rem] leading-relaxed text-ink-soft italic">{camp.promise}</p>
 
-        <span className="mono-label inline-flex items-center gap-2 pt-2 text-crimson transition-all group-hover:gap-3.5">
+        <span className="mono-label inline-flex w-full items-center justify-end gap-2 pt-2 text-crimson transition-all group-hover:gap-3.5">
           Explore camp <span aria-hidden>&rarr;</span>
         </span>
       </div>
