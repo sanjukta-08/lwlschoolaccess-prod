@@ -11,15 +11,15 @@ export function CampCard({ camp }: { camp: Camp }) {
     <Link
       to="/camps/$slug"
       params={{ slug: camp.slug }}
-      className="group block no-underline"
+      className="group block rounded-md border border-line bg-paper p-4 shadow-soft transition-all duration-150 no-underline hover:-translate-y-[3px] hover:border-gold-line hover:shadow-lift"
     >
-      <div className="relative mb-5 aspect-[4/5] overflow-hidden rounded-sm border border-line bg-wash">
+      <div className="relative mb-5 aspect-[16/10] overflow-hidden rounded-sm border border-line bg-wash">
         <img
           src={camp.image}
           alt={`${camp.host} campus, ${camp.city}`}
           loading="lazy"
           width={900}
-          height={1120}
+          height={560}
           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
         />
         <span className="mono-label absolute top-4 left-4 bg-paper/90 px-2 py-1 text-[0.6rem] font-bold text-crimson backdrop-blur-sm">
@@ -54,7 +54,7 @@ export function CampCard({ camp }: { camp: Camp }) {
 
         <p className="text-[0.88rem] leading-relaxed text-ink-soft italic">{camp.promise}</p>
 
-        <span className="mono-label inline-flex items-center gap-2 pt-2 text-crimson transition-all group-hover:gap-3.5">
+        <span className="mono-label inline-flex w-full items-center justify-end gap-2 pt-2 text-crimson transition-all group-hover:gap-3.5">
           Explore camp <span aria-hidden>&rarr;</span>
         </span>
       </div>
