@@ -1793,6 +1793,30 @@ export type Database = {
         }
         Relationships: []
       }
+      lwl_form_responses: {
+        Row: {
+          created_at: string
+          data: Json
+          form_name: string
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          data?: Json
+          form_name: string
+          id?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          data?: Json
+          form_name?: string
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       master_data: {
         Row: {
           city: string | null
