@@ -1,12 +1,12 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
-import { ArrowLeft, Search, X } from "lucide-react";
+import { Search, X } from "lucide-react";
 import { ensureCatalogue } from "@/lib/catalogue";
 import { PROGRAMMES } from "@/lib/programmes";
 import { conferenceLocation } from "@/lib/conferences";
 import { ConferenceCard } from "@/components/conferences/ConferenceCard";
-import { SiteHeader } from "@/components/SiteHeader";
+import { PageHero } from "@/components/PageHero";
+import { SectionHeading } from "@/components/SectionHeading";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -16,6 +16,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+
 
 const TITLE = "Harvard WorldMUN Conferences | Learn with Leaders";
 const DESC =
