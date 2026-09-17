@@ -557,6 +557,8 @@ export default function HWMUNBangkok({ conference }: { conference: Programme }) 
             {/* Show two cards on desktop, only one on mobile */}
             {[0, 1].map((offset) => {
               const idx = (currentTestimonial + offset) % testimonials.length;
+              const testimonial = testimonials[idx];
+              if (!testimonial) return null;
               return (
                 <div 
                   key={idx} 
