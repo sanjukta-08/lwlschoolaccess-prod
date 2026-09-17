@@ -93,7 +93,7 @@ function ConferencesHub() {
   return (
     <div className="min-h-dvh bg-paper">
       <SiteHeader />
-      <section className="relative isolate flex min-h-[22rem] items-center justify-center overflow-hidden border-b border-line bg-paper px-5 pb-10 pt-16 sm:min-h-[24rem] sm:px-8 lg:pb-12 lg:pt-20">
+      <section className="relative isolate flex min-h-[19rem] items-center justify-center overflow-hidden border-b border-line bg-paper px-5 pb-10 pt-8 sm:min-h-[21rem] sm:px-8 lg:pb-12 lg:pt-10">
         <div className="pointer-events-none absolute inset-0 z-0 flex select-none items-center justify-center overflow-hidden" aria-hidden>
           <span className="font-display text-[clamp(5.5rem,17vw,17rem)] font-black uppercase leading-none text-crimson/[0.07]">
             Conferences
@@ -101,9 +101,6 @@ function ConferencesHub() {
         </div>
 
         <div className="relative z-10 mx-auto max-w-5xl text-center">
-          <p className="mono-label mb-7 text-ink-soft">
-            Home <span className="mx-2 text-line">/</span> <span className="text-crimson">Conferences</span>
-          </p>
           <h1 className="font-display text-5xl font-black leading-[0.98] text-ink sm:text-6xl lg:text-7xl">
             Explore Our <span className="text-crimson">Conferences</span>
           </h1>
