@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ensureCatalogue } from "@/lib/catalogue";
 import { conferenceBySlug } from "@/lib/programme-slug";
 import { conferenceDateLabel, conferenceImage, conferenceLocation } from "@/lib/conferences";
-import { ConferenceLanding } from "@/components/conferences/ConferenceLanding";
+import { ImportedConferenceLanding } from "@/components/conferences/ImportedConferenceLanding";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 
@@ -46,7 +46,7 @@ export const Route = createFileRoute("/conferences/$slug")({
 });
 
 function ConferencePage() {
-  return <ConferenceLanding conference={Route.useLoaderData().conference} />;
+  return <ImportedConferenceLanding conference={Route.useLoaderData().conference} />;
 }
 
 function ConferenceNotFound() {
