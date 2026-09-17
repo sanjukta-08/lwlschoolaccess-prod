@@ -8,6 +8,7 @@ import { CampVideoWall } from "@/components/CampVideoWall";
 import { CampVoices } from "@/components/CampVoices";
 import { CampFaq } from "@/components/CampFaq";
 import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
+import birdAsset from "@/assets/lwl-bird-black.webp.asset.json";
 import {
   CAMPS,
   CAMP_FAQS,
@@ -90,6 +91,9 @@ function CampsHub() {
           <span className="font-display text-[clamp(5.5rem,17vw,17rem)] font-black uppercase leading-none text-crimson/[0.07]">
             Camps
           </span>
+        </div>
+        <div className="pointer-events-none absolute right-0 top-1/2 z-[1] hidden w-[min(420px,32vw)] -translate-y-1/2 opacity-[0.28] sm:block lg:w-[min(480px,30vw)]" aria-hidden>
+          <img src={birdAsset.url} alt="" className="h-auto w-full object-contain object-right [mask-image:linear-gradient(to_left,black_55%,transparent_95%)]" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-5xl text-center">
