@@ -18,6 +18,12 @@ import {
   monthLabel,
 } from "@/lib/masterclass-format";
 import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
+import futureDoctorsLogo from "@/assets/logo-future-doctors.png.asset.json";
+import futureLawyersLogo from "@/assets/logo-future-lawyers.png.asset.json";
+import finlitLogo from "@/assets/logo-finlit.png.asset.json";
+import onwardLogo from "@/assets/logo-onward-word.png.asset.json";
+import sirLutherLogo from "@/assets/logo-sir-luther.png.asset.json";
+import lwlLogo from "@/assets/lwl-logo.png.asset.json";
 
 const TITLE = "Free Live Masterclasses - Learn with Leaders";
 const DESC =
@@ -237,6 +243,18 @@ function Chips({
 function MasterclassCard({ m }: { m: PublicMasterclass }) {
   const when = m.scheduled_at;
   const soon = when ? isSoon(when) : false;
+  const brandName = `${m.partner_name ?? ""} ${m.program_name ?? ""}`.toLowerCase();
+  const fallbackLogo = brandName.includes("future doctor")
+    ? futureDoctorsLogo.url
+    : brandName.includes("future lawyer")
+      ? futureLawyersLogo.url
+      : brandName.includes("finlit")
+        ? finlitLogo.url
+      : brandName.includes("onward")
+        ? onwardLogo.url
+        : brandName.includes("sir luther")
+          ? sirLutherLogo.url
+          : m.partner_logo_url ?? lwlLogo.url;
   return (
     <li className="flex flex-col gap-3 rounded-[16px] border border-line bg-paper p-4 shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold-deep hover:shadow-lift">
       <div className="flex items-start gap-3.5">
@@ -270,6 +288,16 @@ function MasterclassCard({ m }: { m: PublicMasterclass }) {
               {m.session_number ? ` · Session ${m.session_number}` : ""}
             </p>
           ) : null}
+        </div>
+        <div className="flex h-11 w-24 flex-none items-start justify-end sm:w-28">
+          <img
+            src={fallbackLogo}
+            alt={`${m.partner_name ?? m.program_name ?? "Learn with Leaders"} logo`}
+            loading="lazy"
+            width={112}
+            height={44}
+            className="max-h-11 max-w-full object-contain object-right-top"
+          />
         </div>
       </div>
 
