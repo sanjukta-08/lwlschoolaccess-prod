@@ -359,7 +359,11 @@ function Objectives() {
   const pages: typeof list[] = [];
   for (let i = 0; i < list.length; i += perPage) {
     const slice = list.slice(i, i + perPage);
-    while (slice.length < perPage) slice.push(list[slice.length % list.length]);
+    while (slice.length < perPage) {
+      const repeated = list[slice.length % list.length];
+      if (!repeated) break;
+      slice.push(repeated);
+    }
     pages.push(slice);
   }
 
@@ -527,7 +531,7 @@ function Schedule() {
     return () => clearInterval(id);
   }, [days.length]);
 
-  const current = days[active];
+  const current = days[active] ?? days[0];
   const prev = () => setActive((p) => (p - 1 + days.length) % days.length);
   const next = () => setActive((p) => (p + 1) % days.length);
 

@@ -133,7 +133,7 @@ const committees = [
   { icon: icon26, name: "ECOSOC: Commission for Social Development (CSocD)", topic: "Collectivised Action for National Development", description: "Explore how local, community-led approaches can drive effective poverty reduction. Delegates will consider how systems-level interventions can be adapted globally across diverse international contexts." },
 ];
 
-function StickyNav() {
+function StickyNav({ apply }: { apply: string }) {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
@@ -177,7 +177,7 @@ function StickyNav() {
             </a>
           ))}
           <a
-            href={REGISTER_URL}
+            href={apply}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#a9222e] text-white px-5 py-2.5 rounded text-sm font-semibold hover:bg-[#8a1b25] transition-colors"
@@ -258,7 +258,7 @@ function ScheduleCarousel() {
 
 export default function HWMUNVietnam({ conference }: { conference: Programme }) {
   const REGISTER_URL = conference.apply;
-  const conferenceDetails = [
+  const conferenceDetails: Array<{ icon: typeof MapPin; label: string; value: string; note?: string }> = [
     { icon: MapPin, label: "Venue", value: conference.format ? `${conference.format} · ${conferenceLocation(conference)}` : conferenceLocation(conference) },
     { icon: Calendar, label: "Conference Dates", value: conferenceDateLabel(conference) },
     { icon: DollarSign, label: "Conference Fee", value: conferencePrice(conference) },
@@ -276,7 +276,7 @@ export default function HWMUNVietnam({ conference }: { conference: Programme }) 
 
   return (
     <div className="min-h-screen bg-white text-gray-800" style={{ fontFamily: "'Inter', sans-serif" }}>
-      <StickyNav />
+      <StickyNav apply={REGISTER_URL} />
 
       {/* Hero */}
       <header id="home" className="relative min-h-screen flex items-center">
@@ -405,7 +405,7 @@ export default function HWMUNVietnam({ conference }: { conference: Programme }) 
           </h2>
           <div className="grid md:grid-cols-3 gap-6 items-stretch">
             <div className="space-y-6">
-              {[objectives[0], objectives[2]].map((o) => (
+              {[objectives[0], objectives[2]].filter((o): o is (typeof objectives)[number] => Boolean(o)).map((o) => (
                 <div key={o.title} className="bg-white rounded-xl border border-gray-200 shadow-md p-6">
                   <img src={o.icon} alt="" className="w-12 h-12 mb-4" />
                   <h3 className="font-bold text-gray-900 mb-2">{o.title}</h3>
@@ -417,7 +417,7 @@ export default function HWMUNVietnam({ conference }: { conference: Programme }) 
               <img src={objectivesImg} alt="Conference Objectives" className="rounded-2xl w-full max-h-[420px] object-cover" />
             </div>
             <div className="space-y-6">
-              {[objectives[1], objectives[3]].map((o) => (
+              {[objectives[1], objectives[3]].filter((o): o is (typeof objectives)[number] => Boolean(o)).map((o) => (
                 <div key={o.title} className="bg-white rounded-xl border border-gray-200 shadow-md p-6">
                   <img src={o.icon} alt="" className="w-12 h-12 mb-4" />
                   <h3 className="font-bold text-gray-900 mb-2">{o.title}</h3>
@@ -428,10 +428,10 @@ export default function HWMUNVietnam({ conference }: { conference: Programme }) 
           </div>
           <div className="mt-8">
             <div className="bg-white rounded-xl border border-gray-200 shadow-md p-6 flex items-center gap-6">
-              <img src={objectives[4].icon} alt="" className="w-12 h-12 flex-shrink-0" />
+              <img src={objectives[4]?.icon} alt="" className="w-12 h-12 flex-shrink-0" />
               <div>
-                <h3 className="font-bold text-gray-900 mb-1">{objectives[4].title}</h3>
-                <p className="text-gray-500 text-sm">{objectives[4].description}</p>
+                <h3 className="font-bold text-gray-900 mb-1">{objectives[4]?.title}</h3>
+                <p className="text-gray-500 text-sm">{objectives[4]?.description}</p>
               </div>
             </div>
           </div>
