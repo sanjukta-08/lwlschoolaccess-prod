@@ -531,7 +531,7 @@ function Schedule() {
     return () => clearInterval(id);
   }, [days.length]);
 
-  const current = days[active] ?? days[0];
+  const current = days[active] ?? { name: "", range: "", entries: [] };
   const prev = () => setActive((p) => (p - 1 + days.length) % days.length);
   const next = () => setActive((p) => (p + 1) % days.length);
 

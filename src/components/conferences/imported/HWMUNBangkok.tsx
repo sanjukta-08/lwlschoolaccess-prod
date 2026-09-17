@@ -569,8 +569,8 @@ export default function HWMUNBangkok({ conference }: { conference: Programme }) 
                   {/* Photo container */}
                   <div className="w-full sm:w-[140px] md:w-[160px] flex items-end justify-center flex-shrink-0">
                     <img 
-                      src={testimonials[idx].image} 
-                      alt={testimonials[idx].author} 
+                      src={testimonial.image} 
+                      alt={testimonial.author} 
                       className="max-h-[200px] sm:max-h-[220px] md:max-h-[240px] w-auto object-contain object-bottom align-bottom"
                     />
                   </div>
@@ -578,11 +578,11 @@ export default function HWMUNBangkok({ conference }: { conference: Programme }) 
                   {/* Text Container */}
                   <div className="flex-1 flex flex-col justify-between pt-2">
                     <p className="text-gray-800 text-sm md:text-[15px] leading-relaxed font-medium mb-6 text-left">
-                      &ldquo;{testimonials[idx].quote}&rdquo;
+                      &ldquo;{testimonial.quote}&rdquo;
                     </p>
                     <div className="text-left">
-                      <h4 className="text-base font-bold text-[#a9222e] mb-0.5">{testimonials[idx].author}</h4>
-                      <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider">{testimonials[idx].school}</p>
+                      <h4 className="text-base font-bold text-[#a9222e] mb-0.5">{testimonial.author}</h4>
+                      <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider">{testimonial.school}</p>
                     </div>
                   </div>
                 </div>
