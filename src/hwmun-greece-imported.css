@@ -2,23 +2,23 @@
 
 .hwmun-greece-theme {
   /* Override shadcn HSL tokens to map the Ivy-League palette */
-  --background: 40 38% 96%;            /* warm ivory */
-  --foreground: 225 32% 16%;           /* deep navy ink */
-  --card: 40 38% 98%;
-  --card-foreground: 225 32% 16%;
-  --popover: 40 38% 98%;
-  --popover-foreground: 225 32% 16%;
-  --primary: 0 60% 39%;                /* crimson */
-  --primary-foreground: 40 38% 98%;
-  --secondary: 355 66% 40%;            /* brand red */
-  --secondary-foreground: 40 38% 98%;
-  --muted: 40 20% 90%;
-  --muted-foreground: 220 13% 39%;
-  --accent: 40 56% 51%;                /* parchment gold */
-  --accent-foreground: 225 32% 16%;
-  --border: 40 14% 80%;
-  --input: 40 14% 80%;
-  --ring: 0 60% 39%;
+  --background: hsl(40 38% 96%);            /* warm ivory */
+  --foreground: hsl(225 32% 16%);           /* deep navy ink */
+  --card: hsl(40 38% 98%);
+  --card-foreground: hsl(225 32% 16%);
+  --popover: hsl(40 38% 98%);
+  --popover-foreground: hsl(225 32% 16%);
+  --primary: hsl(0 60% 39%);                /* crimson */
+  --primary-foreground: hsl(40 38% 98%);
+  --secondary: hsl(355 66% 40%);            /* brand red */
+  --secondary-foreground: hsl(40 38% 98%);
+  --muted: hsl(40 20% 90%);
+  --muted-foreground: hsl(220 13% 39%);
+  --accent: hsl(40 56% 51%);                /* parchment gold */
+  --accent-foreground: hsl(225 32% 16%);
+  --border: hsl(40 14% 80%);
+  --input: hsl(40 14% 80%);
+  --ring: hsl(0 60% 39%);
   --radius: 0.25rem;
 
   /* Page-only extras */
@@ -29,8 +29,8 @@
                     0 10px 30px -15px hsl(225 32% 16% / 0.15);
   --shadow-soft: 0 4px 24px -8px hsl(225 32% 16% / 0.12);
 
-  background-color: hsl(var(--background));
-  color: hsl(var(--foreground));
+  background-color: var(--background);
+  color: var(--foreground);
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;

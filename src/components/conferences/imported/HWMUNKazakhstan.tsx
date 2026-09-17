@@ -35,6 +35,7 @@ import testimonialHarshitAsset from "@/assets/conferences/source/conferences-hwm
 import testimonialDianaAsset from "@/assets/conferences/source/conferences-hwmun-testimonial-diana.png.asset.json";
 import testimonialFilibaliAsset from "@/assets/conferences/source/conferences-hwmun-testimonial-filibali.png.asset.json";
 import glimpsesCollageAsset from "@/assets/conferences/source/conferences-hwmun-glimpses-collage.jpg.asset.json";
+import kzVideoAsset from "@/assets/conferences/source/hwmun-kazakhstan.mp4.asset.json";
 
 const hwmunHeroImg = hwmunHeroImgAsset.url;
 const worldmunLogo = worldmunLogoAsset.url;
@@ -68,6 +69,7 @@ const testimonialHarshit = testimonialHarshitAsset.url;
 const testimonialDiana = testimonialDianaAsset.url;
 const testimonialFilibali = testimonialFilibaliAsset.url;
 const glimpsesCollage = glimpsesCollageAsset.url;
+const kzVideo = kzVideoAsset.url;
 import {
   MapPin, Calendar, DollarSign, Clock, GraduationCap, Award,
   Mail, Globe, ArrowUp,
@@ -345,7 +347,7 @@ export default function HWMUNKazakhstan({ conference }: { conference: Programme 
           </p>
           <div className="max-w-3xl mx-auto aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-black">
             <video 
-              src="/videos/hwmun-kazakhstan.mp4" 
+              src={kzVideo} 
               controls 
               className="w-full h-full object-cover"
               preload="metadata"
