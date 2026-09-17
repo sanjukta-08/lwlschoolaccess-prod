@@ -95,17 +95,17 @@ function ConferencesHub() {
     <div className="min-h-dvh bg-paper">
       <SiteHeader />
       <section className="relative isolate flex min-h-[19rem] items-center justify-center overflow-hidden border-b border-line bg-paper px-5 pb-10 pt-8 sm:min-h-[21rem] sm:px-8 lg:pb-12 lg:pt-10">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-0 flex select-none items-center overflow-hidden pl-5 sm:pl-8" aria-hidden>
-          <span className="font-display text-[clamp(5.5rem,17vw,17rem)] font-black uppercase leading-none text-crimson/[0.07]">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-0 hidden w-[68%] select-none items-center overflow-hidden pl-8 sm:flex" aria-hidden>
+          <span className="whitespace-nowrap font-display text-[clamp(5.5rem,12vw,11rem)] font-black uppercase leading-none text-crimson/[0.06]">
             Conferences
           </span>
         </div>
-        <div className="pointer-events-none absolute right-0 top-1/2 z-[1] hidden w-[min(420px,32vw)] -translate-y-1/2 opacity-[0.28] sm:block lg:w-[min(480px,30vw)]" aria-hidden>
+        <div className="pointer-events-none absolute right-10 top-1/2 z-[1] hidden w-[min(320px,21vw)] -translate-y-1/2 opacity-20 xl:block" aria-hidden>
           <img src={birdAsset.url} alt="" className="h-auto w-full object-contain object-right [mask-image:linear-gradient(to_left,black_55%,transparent_95%)]" />
         </div>
 
-        <div className="relative z-10 mx-auto max-w-5xl text-center">
-          <h1 className="font-display text-5xl font-black leading-[0.98] text-ink sm:text-6xl lg:text-7xl">
+        <div className="relative z-10 mx-auto max-w-4xl text-center">
+          <h1 className="font-display text-5xl font-black leading-[0.98] text-ink sm:text-6xl xl:text-7xl">
             Explore Our <span className="text-crimson">Conferences</span>
           </h1>
           <p className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
