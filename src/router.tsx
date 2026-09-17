@@ -10,8 +10,14 @@ export const getRouter = () => {
     context: { queryClient },
     scrollRestoration: true,
     defaultPreload: "intent",
-    defaultPreloadDelay: 40,
-    defaultPreloadStaleTime: 0,
+    defaultPreloadDelay: 20,
+    // Keep hover-preloaded route data so the click itself is instant instead of
+    // refetching everything the preload just fetched.
+    defaultPreloadStaleTime: 5 * 60 * 1000,
+    defaultStaleTime: 5 * 60 * 1000,
+    defaultPendingMs: 150,
+    defaultPendingMinMs: 0,
+
     // Ship the server's query cache to the browser so suspense queries resolve
     // from cache on hydration instead of re-fetching and blanking the page.
     dehydrate: () => ({

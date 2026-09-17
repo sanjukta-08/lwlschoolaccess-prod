@@ -33,8 +33,12 @@ const DESC =
 const masterclassQuery = queryOptions({
   queryKey: ["masterclasses", "public"],
   queryFn: () => listPublicMasterclasses(),
-  staleTime: 5 * 60 * 1000,
+  staleTime: 15 * 60 * 1000,
+  gcTime: 60 * 60 * 1000,
+  refetchOnMount: false,
+  refetchOnWindowFocus: false,
 });
+
 
 export const Route = createFileRoute("/masterclasses")({
   staticData: { sitemap: true },
