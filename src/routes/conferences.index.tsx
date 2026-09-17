@@ -6,6 +6,7 @@ import { PROGRAMMES } from "@/lib/programmes";
 import { conferenceLocation } from "@/lib/conferences";
 import { ConferenceCard } from "@/components/conferences/ConferenceCard";
 import { SectionHeading } from "@/components/SectionHeading";
+import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
 import { Input } from "@/components/ui/input";
@@ -91,6 +92,7 @@ function ConferencesHub() {
 
   return (
     <div className="min-h-dvh bg-paper">
+      <SiteHeader />
       <section className="relative isolate flex min-h-[22rem] items-center justify-center overflow-hidden border-b border-line bg-paper px-5 pb-10 pt-16 sm:min-h-[24rem] sm:px-8 lg:pb-12 lg:pt-20">
         <div className="pointer-events-none absolute inset-0 z-0 flex select-none items-center justify-center overflow-hidden" aria-hidden>
           <span className="font-display text-[clamp(5.5rem,17vw,17rem)] font-black uppercase leading-none text-crimson/[0.07]">
@@ -134,38 +136,42 @@ function ConferencesHub() {
 
       {/* ---------- all conferences ---------- */}
       <section id="conference-catalog" className="page-shell scroll-mt-20 py-14">
-        <SectionHeading
-          eyebrow="All conferences"
-          align="left"
-          sub="Search by conference name or destination. Every listing and date below comes from the live catalogue."
-        >
-          Choose your <em className="text-crimson-deep">destination</em>
-        </SectionHeading>
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <SectionHeading
+            eyebrow="All conferences"
+            align="left"
+            sub="Search by conference name or destination. Every listing and date below comes from the live catalogue."
+          >
+            Choose your <em className="text-crimson-deep">destination</em>
+          </SectionHeading>
 
-        <div className="my-8 flex flex-col gap-4 border-y border-line py-5 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-ink-soft">Showing <span className="font-semibold text-ink">{filtered.length}</span> conferences</p>
-          <div className="relative w-full sm:w-80 md:w-96">
-            <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-ink-faint" aria-hidden />
-            <Input
-              type="text"
-              placeholder="Search conferences..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="h-12 rounded-2xl border-line bg-paper pl-12 pr-10 text-base text-ink shadow-soft placeholder:text-ink-faint focus:border-gold-line"
-            />
-            {search && (
-              <button
-                onClick={() => setSearch("")}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-ink-faint transition-colors hover:text-crimson"
-                aria-label="Clear search"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            )}
+          <div className="w-full shrink-0 sm:w-80 md:w-96">
+            <p className="mb-2 text-sm text-ink-soft">
+              Showing <span className="font-semibold text-ink">{filtered.length}</span> conferences
+            </p>
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-ink-faint" aria-hidden />
+              <Input
+                type="text"
+                placeholder="Search conferences..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="h-12 rounded-2xl border-line bg-paper pl-12 pr-10 text-base text-ink shadow-soft placeholder:text-ink-faint focus:border-gold-line"
+              />
+              {search && (
+                <button
+                  onClick={() => setSearch("")}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-ink-faint transition-colors hover:text-crimson"
+                  aria-label="Clear search"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
+            </div>
           </div>
         </div>
 
-        <div>
+        <div className="mt-10">
           {filtered.length > 0 ? (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {filtered.map((conference) => (
