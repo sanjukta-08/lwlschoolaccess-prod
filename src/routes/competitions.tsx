@@ -209,7 +209,7 @@ function CompetitionsPage() {
     <div className="min-h-dvh bg-paper">
       <SiteHeader />
       <section className="relative isolate flex min-h-[19rem] items-center justify-center overflow-hidden border-b border-line bg-paper px-5 pb-10 pt-8 sm:min-h-[21rem] sm:px-8 lg:pb-12 lg:pt-10">
-        <div className="pointer-events-none absolute inset-0 z-0 flex select-none items-center justify-center overflow-hidden" aria-hidden>
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-0 flex select-none items-center overflow-hidden pl-5 sm:pl-8" aria-hidden>
           <span className="font-display text-[clamp(4.5rem,15vw,15rem)] font-black uppercase leading-none text-crimson/[0.07]">
             Competitions
           </span>
