@@ -91,7 +91,7 @@ function ConferencesHub() {
 
   return (
     <div className="min-h-dvh bg-paper">
-      <section className="relative isolate flex min-h-[31rem] items-center justify-center overflow-hidden border-b border-line bg-paper px-5 py-24 sm:min-h-[36rem] sm:px-8 lg:py-28">
+      <section className="relative isolate flex min-h-[22rem] items-center justify-center overflow-hidden border-b border-line bg-paper px-5 pb-10 pt-16 sm:min-h-[24rem] sm:px-8 lg:pb-12 lg:pt-20">
         <div className="pointer-events-none absolute inset-0 z-0 flex select-none items-center justify-center overflow-hidden" aria-hidden>
           <span className="font-display text-[clamp(5.5rem,17vw,17rem)] font-black uppercase leading-none text-crimson/[0.07]">
             Conferences
