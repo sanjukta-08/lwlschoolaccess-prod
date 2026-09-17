@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
-import { PageHero } from "@/components/PageHero";
 import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
 import { SectionHeading } from "@/components/SectionHeading";
 import { WingMark } from "@/components/WingMark";
 import { listPublicMasterclasses, type PublicMasterclass } from "@/lib/masterclasses.functions";
@@ -60,16 +60,45 @@ export const Route = createFileRoute("/masterclasses")({
 function Shell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-paper">
-      <PageHero
-        eyebrow="Live on Zoom · Free to attend"
-        title={
-          <>
-            Upcoming <em className="text-crimson-deep">masterclasses</em>
-          </>
-        }
-        subtitle="One place for every free masterclass across the Learn with Leaders family of programmes - hosted live by Ivy League student mentors. Pick a session, apply in one click, join from anywhere."
-      />
-      <div className="page-shell py-10">{children}</div>
+      <SiteHeader />
+      <section className="relative isolate flex min-h-[19rem] items-center justify-center overflow-hidden border-b border-line bg-paper px-5 pb-10 pt-8 sm:min-h-[21rem] sm:px-8 lg:pb-12 lg:pt-10">
+        <div className="pointer-events-none absolute inset-0 z-0 flex select-none items-center justify-center overflow-hidden" aria-hidden>
+          <span className="font-display text-[clamp(4.25rem,14vw,14rem)] font-black uppercase leading-none text-crimson/[0.07]">
+            Masterclasses
+          </span>
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-5xl text-center">
+          <h1 className="font-display text-5xl font-black leading-[0.98] text-ink sm:text-6xl lg:text-7xl">
+            Explore Our <span className="text-crimson">Masterclasses</span>
+          </h1>
+          <p className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
+            Free live sessions with Ivy League student mentors across the Learn with Leaders family of programmes. Choose a session and join from anywhere.
+          </p>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="#masterclass-schedule"
+              className="mono-label bg-crimson px-8 py-4 text-paper no-underline shadow-soft transition-colors hover:bg-crimson-deep"
+            >
+              View all masterclasses
+            </a>
+            <a
+              href={CALENDLY_BOOKING_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="mono-label border border-line bg-paper px-8 py-4 text-ink no-underline shadow-soft transition-colors hover:border-gold-line hover:text-crimson"
+            >
+              Book a meeting
+            </a>
+          </div>
+        </div>
+
+        <div className="pointer-events-none absolute left-8 top-1/2 hidden h-32 w-1 -translate-y-1/2 bg-crimson/20 lg:block" aria-hidden />
+        <div className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 lg:block" aria-hidden>
+          <span className="mono-label text-crimson/35 [writing-mode:vertical-rl]">Learn with Leaders</span>
+        </div>
+      </section>
+      <div id="masterclass-schedule" className="page-shell scroll-mt-20 py-10">{children}</div>
       <SiteFooter />
     </div>
   );
