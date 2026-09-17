@@ -9,3 +9,4 @@
 - [x] Import all conference experiences and expose all twelve live HWMUN destinations
 - [x] Add live conference discovery, detail URLs, navigation, metadata, redirects, and sitemap entries
 - [x] Verify every conference route, application link, viewport, and production build
+- [x] Align the Conferences listing page with the Camps and Competitions visual language
