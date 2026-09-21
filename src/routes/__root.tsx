@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ShortlistContext, useShortlistState } from "../lib/shortlist";
 import { ensureCatalogue, useHydratedCatalogue } from "../lib/catalogue";
+import { UtmForwarder } from "../components/UtmForwarder";
 
 function NotFoundComponent() {
   return (
