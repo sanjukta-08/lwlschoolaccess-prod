@@ -27,6 +27,8 @@ const json = (body: unknown, status = 200) =>
   });
 
 export const Route = createFileRoute("/api/public/track-relay")({
+  staticData: { sitemap: false },
+
   server: {
     handlers: {
       OPTIONS: () => new Response(null, { headers: cors }),
