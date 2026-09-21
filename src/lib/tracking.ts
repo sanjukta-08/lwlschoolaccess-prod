@@ -62,23 +62,34 @@ export async function startSession() {
   if (!enabled() || starting) return starting ?? undefined;
   starting = (async () => {
     const visitorId = getVisitorId();
-    const result = await call("session_start", {
-      visitor_id: visitorId,
-      page_url: window.location.href,
-      page_path: window.location.pathname,
-      referrer_url: document.referrer || null,
-      device_type: /Mobi/.test(navigator.userAgent) ? "mobile" : "desktop",
-      browser: navigator.userAgent,
-      ...getUtm(),
-    });
-    sessionId = (result as { session_id?: string } | null)?.session_id ?? null;
-    if (sessionId) {
-      try {
-        sessionStorage.setItem(SESSION_ID_KEY, sessionId);
-      } catch {
-        /* private mode */
+
+    // A full page load inside the same tab continues the existing session
+    // instead of opening a second one (which would land as a "direct" visit and
+    // inflate session counts).
+    const existing = readSessionId();
+    if (existing) {
+      sessionId = existing;
+      void call("session_heartbeat", { session_id: existing });
+    } else {
+      const result = await call("session_start", {
+        visitor_id: visitorId,
+        page_url: window.location.href,
+        page_path: window.location.pathname,
+        referrer_url: document.referrer || null,
+        device_type: /Mobi/.test(navigator.userAgent) ? "mobile" : "desktop",
+        browser: navigator.userAgent,
+        ...getUtm(),
+      });
+      sessionId = (result as { session_id?: string } | null)?.session_id ?? null;
+      if (sessionId) {
+        try {
+          sessionStorage.setItem(SESSION_ID_KEY, sessionId);
+        } catch {
+          /* private mode */
+        }
       }
     }
+
 
     // Real session-duration numbers: heartbeat while the tab lives, final
     // beacon on close.
