@@ -1400,6 +1400,7 @@ export type Database = {
           country: string | null
           created_at: string
           currency: string | null
+          entry_mode: string | null
           grade: string | null
           hear_about: string | null
           id: string
@@ -1425,7 +1426,16 @@ export type Database = {
           student_name: string
           student_phone: string | null
           submission_token: string
+          team_member_2_email: string | null
+          team_member_2_grade: string | null
+          team_member_2_name: string | null
+          team_member_2_school: string | null
+          team_member_3_email: string | null
+          team_member_3_grade: string | null
+          team_member_3_name: string | null
+          team_member_3_school: string | null
           timezone: string | null
+          track: string
           user_agent: string | null
           utm_campaign: string
           utm_medium: string
@@ -1442,6 +1452,7 @@ export type Database = {
           country?: string | null
           created_at?: string
           currency?: string | null
+          entry_mode?: string | null
           grade?: string | null
           hear_about?: string | null
           id?: string
@@ -1467,7 +1478,16 @@ export type Database = {
           student_name: string
           student_phone?: string | null
           submission_token?: string
+          team_member_2_email?: string | null
+          team_member_2_grade?: string | null
+          team_member_2_name?: string | null
+          team_member_2_school?: string | null
+          team_member_3_email?: string | null
+          team_member_3_grade?: string | null
+          team_member_3_name?: string | null
+          team_member_3_school?: string | null
           timezone?: string | null
+          track?: string
           user_agent?: string | null
           utm_campaign?: string
           utm_medium?: string
@@ -1484,6 +1504,7 @@ export type Database = {
           country?: string | null
           created_at?: string
           currency?: string | null
+          entry_mode?: string | null
           grade?: string | null
           hear_about?: string | null
           id?: string
@@ -1509,7 +1530,16 @@ export type Database = {
           student_name?: string
           student_phone?: string | null
           submission_token?: string
+          team_member_2_email?: string | null
+          team_member_2_grade?: string | null
+          team_member_2_name?: string | null
+          team_member_2_school?: string | null
+          team_member_3_email?: string | null
+          team_member_3_grade?: string | null
+          team_member_3_name?: string | null
+          team_member_3_school?: string | null
           timezone?: string | null
+          track?: string
           user_agent?: string | null
           utm_campaign?: string
           utm_medium?: string
@@ -1916,7 +1946,6 @@ export type Database = {
           program_code: string | null
           promo_code: string | null
           referral_source: string | null
-          scholarship_code: string | null
           school_name: string | null
           state: string | null
           stripe_customer_id: string | null
@@ -1957,7 +1986,6 @@ export type Database = {
           program_code?: string | null
           promo_code?: string | null
           referral_source?: string | null
-          scholarship_code?: string | null
           school_name?: string | null
           state?: string | null
           stripe_customer_id?: string | null
@@ -1998,7 +2026,6 @@ export type Database = {
           program_code?: string | null
           promo_code?: string | null
           referral_source?: string | null
-          scholarship_code?: string | null
           school_name?: string | null
           state?: string | null
           stripe_customer_id?: string | null
