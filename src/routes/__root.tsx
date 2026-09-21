@@ -150,6 +150,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <CatalogueProvider>
         <ShortlistContext.Provider value={shortlist}>
+          <UtmForwarder />
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
         </ShortlistContext.Provider>
