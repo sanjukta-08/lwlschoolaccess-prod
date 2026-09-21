@@ -7,12 +7,13 @@ const DECORATED_FLAG = "data-utm-forwarded";
 
 /**
  * Captures attribution from the current URL on every navigation and rewrites
- * outbound links (Application Portal apply/pay pages, partner sites) so the
- * UTM tags a visitor arrived with are never lost on redirect.
+ * outbound links (Application Portal apply/pay pages, partner sites) at the
+ * moment they are used, so the UTM tags a visitor arrived with are never lost
+ * on redirect.
  *
- * Every outbound anchor in the document is decorated — including hardcoded
- * <a href> markup in the imported camp/conference pages — so copied links,
- * middle clicks and normal clicks all carry attribution.
+ * Decoration happens on interaction rather than as a DOM sweep, so it works on
+ * the hardcoded <a href> markup in the imported camp/conference pages without
+ * rewriting server-rendered HTML before React hydrates it.
  */
 export function UtmForwarder() {
   const href = useRouterState({ select: (state) => state.location.href });
@@ -23,9 +24,12 @@ export function UtmForwarder() {
   }, [href]);
 
   useEffect(() => {
-    let frame = 0;
+    const decorate = (event: Event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const anchor = target.closest("a[href]");
+      if (!(anchor instanceof HTMLAnchorElement)) return;
 
-    const decorateAnchor = (anchor: HTMLAnchorElement) => {
       const raw = anchor.getAttribute("href");
       if (!raw || !/^https?:\/\//i.test(raw)) return; // internal links keep attribution in storage
       if (anchor.getAttribute(DECORATED_FLAG) === raw) return;
@@ -35,40 +39,26 @@ export function UtmForwarder() {
       if (next !== raw) {
         anchor.setAttribute("href", next);
         anchor.setAttribute(DECORATED_FLAG, next);
-      } else {
-        anchor.setAttribute(DECORATED_FLAG, raw);
       }
     };
 
-    const sweep = () => {
-      frame = 0;
-      document
-        .querySelectorAll<HTMLAnchorElement>('a[href^="http"]')
-        .forEach(decorateAnchor);
-    };
-
-    const scheduleSweep = () => {
-      if (frame) return;
-      frame = window.requestAnimationFrame(sweep);
-    };
-
-    // Catch links added by any later render, lightbox, accordion or carousel.
-    const observer = new MutationObserver(scheduleSweep);
-    observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["href"] });
-
-    // Last line of defence for a link about to be followed.
-    const onInteract = (event: Event) => {
-      const target = event.target;
-      if (!(target instanceof Element)) return;
-      const anchor = target.closest("a[href]");
-      if (anchor instanceof HTMLAnchorElement) decorateAnchor(anchor);
-    };
-    const events: (keyof DocumentEventMap)[] = ["pointerdown", "mousedown", "click", "auxclick", "contextmenu", "keydown"];
+    // Covers left click, middle click, keyboard activation, drag and
+    // right-click "copy link address" — every way a link leaves this site.
+    const events: (keyof DocumentEventMap)[] = [
+      "pointerdown",
+      "mousedown",
+      "mouseover",
+      "touchstart",
+      "click",
+      "auxclick",
+      "contextmenu",
+      "keydown",
+      "dragstart",
+      "focusin",
+    ];
     for (const name of events) {
-      document.addEventListener(name, onInteract, { capture: true, passive: true });
+      document.addEventListener(name, decorate, { capture: true, passive: true });
     }
-
-    sweep();
 
     // Programmatic opens (window.open).
     const nativeOpen = window.open.bind(window);
@@ -78,14 +68,12 @@ export function UtmForwarder() {
     }) as typeof window.open;
 
     return () => {
-      observer.disconnect();
-      if (frame) window.cancelAnimationFrame(frame);
       for (const name of events) {
-        document.removeEventListener(name, onInteract, { capture: true });
+        document.removeEventListener(name, decorate, { capture: true });
       }
       window.open = nativeOpen;
     };
-  }, [href]);
+  }, []);
 
   return null;
 }
