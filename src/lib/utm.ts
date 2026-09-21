@@ -161,6 +161,20 @@ export function getFirstTouchUtm(): UtmParams {
   return readStore(safeStorage("local"), FIRST_TOUCH_KEY);
 }
 
+/**
+ * The three canonical attribution fields the shared tracking endpoint expects,
+ * with the platform's standard direct/website/direct fallback.
+ */
+export function getUtm(): { utm_source: string; utm_medium: string; utm_campaign: string } {
+  const stored = getStoredUtm();
+  return {
+    utm_source: stored["utm_source"] || "direct",
+    utm_medium: stored["utm_medium"] || "website",
+    utm_campaign: stored["utm_campaign"] || "direct",
+  };
+}
+
+
 /** Only the standard tracking keys — what gets forwarded downstream. */
 function forwardableParams(stored: UtmParams): UtmParams {
   const out: UtmParams = {};

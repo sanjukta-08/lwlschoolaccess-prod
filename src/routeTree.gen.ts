@@ -39,6 +39,7 @@ import { Route as ConferencesIndexRouteImport } from './routes/conferences.index
 import { Route as ConferencesSlugRouteImport } from './routes/conferences.$slug'
 import { Route as InternshipsIndexRouteImport } from './routes/internships.index'
 import { Route as ProgrammesSlugRouteImport } from './routes/programmes.$slug'
+import { Route as ApiPublicTrackRelayRouteImport } from './routes/api/public/track-relay'
 import { Route as OurOfferingsConferencesSlugRouteImport } from './routes/our-offerings.conferences.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -198,6 +199,11 @@ const ProgrammesSlugRoute = ProgrammesSlugRouteImport.update({
   path: '/programmes/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicTrackRelayRoute = ApiPublicTrackRelayRouteImport.update({
+  id: '/api/public/track-relay',
+  path: '/api/public/track-relay',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OurOfferingsConferencesSlugRoute =
   OurOfferingsConferencesSlugRouteImport.update({
     id: '/our-offerings/conferences/$slug',
@@ -236,6 +242,7 @@ export interface FileRoutesByFullPath {
   '/camps/': typeof CampsIndexRoute
   '/conferences/': typeof ConferencesIndexRoute
   '/internships/': typeof InternshipsIndexRoute
+  '/api/public/track-relay': typeof ApiPublicTrackRelayRoute
   '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
 }
 export interface FileRoutesByTo {
@@ -266,6 +273,7 @@ export interface FileRoutesByTo {
   '/camps': typeof CampsIndexRoute
   '/conferences': typeof ConferencesIndexRoute
   '/internships': typeof InternshipsIndexRoute
+  '/api/public/track-relay': typeof ApiPublicTrackRelayRoute
   '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
 }
 export interface FileRoutesById {
@@ -300,6 +308,7 @@ export interface FileRoutesById {
   '/camps/': typeof CampsIndexRoute
   '/conferences/': typeof ConferencesIndexRoute
   '/internships/': typeof InternshipsIndexRoute
+  '/api/public/track-relay': typeof ApiPublicTrackRelayRoute
   '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
 }
 export interface FileRouteTypes {
@@ -335,6 +344,7 @@ export interface FileRouteTypes {
     | '/camps/'
     | '/conferences/'
     | '/internships/'
+    | '/api/public/track-relay'
     | '/our-offerings/conferences/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -365,6 +375,7 @@ export interface FileRouteTypes {
     | '/camps'
     | '/conferences'
     | '/internships'
+    | '/api/public/track-relay'
     | '/our-offerings/conferences/$slug'
   id:
     | '__root__'
@@ -398,6 +409,7 @@ export interface FileRouteTypes {
     | '/camps/'
     | '/conferences/'
     | '/internships/'
+    | '/api/public/track-relay'
     | '/our-offerings/conferences/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -420,6 +432,7 @@ export interface RootRouteChildren {
   TestimonialsRoute: typeof TestimonialsRoute
   ConferenceSlugRoute: typeof ConferenceSlugRoute
   ProgrammesSlugRoute: typeof ProgrammesSlugRoute
+  ApiPublicTrackRelayRoute: typeof ApiPublicTrackRelayRoute
   OurOfferingsConferencesSlugRoute: typeof OurOfferingsConferencesSlugRoute
 }
 
@@ -635,6 +648,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgrammesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/track-relay': {
+      id: '/api/public/track-relay'
+      path: '/api/public/track-relay'
+      fullPath: '/api/public/track-relay'
+      preLoaderRoute: typeof ApiPublicTrackRelayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/our-offerings/conferences/$slug': {
       id: '/our-offerings/conferences/$slug'
       path: '/our-offerings/conferences/$slug'
@@ -719,6 +739,7 @@ const rootRouteChildren: RootRouteChildren = {
   TestimonialsRoute: TestimonialsRoute,
   ConferenceSlugRoute: ConferenceSlugRoute,
   ProgrammesSlugRoute: ProgrammesSlugRoute,
+  ApiPublicTrackRelayRoute: ApiPublicTrackRelayRoute,
   OurOfferingsConferencesSlugRoute: OurOfferingsConferencesSlugRoute,
 }
 export const routeTree = rootRouteImport

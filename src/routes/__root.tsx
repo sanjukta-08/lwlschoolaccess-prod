@@ -14,6 +14,8 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ShortlistContext, useShortlistState } from "../lib/shortlist";
 import { ensureCatalogue, useHydratedCatalogue } from "../lib/catalogue";
 import { UtmForwarder } from "../components/UtmForwarder";
+import { TrackingProvider } from "../components/TrackingProvider";
+
 
 function NotFoundComponent() {
   return (
@@ -151,6 +153,8 @@ function RootComponent() {
       <CatalogueProvider>
         <ShortlistContext.Provider value={shortlist}>
           <UtmForwarder />
+          <TrackingProvider />
+
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
         </ShortlistContext.Provider>
