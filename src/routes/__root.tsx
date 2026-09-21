@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ShortlistContext, useShortlistState } from "../lib/shortlist";
 import { ensureCatalogue, useHydratedCatalogue } from "../lib/catalogue";
+import { UtmForwarder } from "../components/UtmForwarder";
 
 function NotFoundComponent() {
   return (
@@ -149,6 +150,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <CatalogueProvider>
         <ShortlistContext.Provider value={shortlist}>
+          <UtmForwarder />
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
         </ShortlistContext.Provider>
