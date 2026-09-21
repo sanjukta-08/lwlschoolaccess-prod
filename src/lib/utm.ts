@@ -178,8 +178,9 @@ function shouldDecorateHost(host: string): boolean {
 }
 
 /**
- * Appends the stored attribution to a URL. Existing query values win, so a
- * link that already carries its own utm_* is never rewritten.
+ * Appends the stored attribution to a URL. Existing query values win, so a link
+ * that already carries its own utm_* is never rewritten, and the rest of the URL
+ * is left byte-for-byte alone (no re-encoding of existing parameters).
  */
 export function withUtm(url: string, stored: UtmParams = getStoredUtm()): string {
   const forward = forwardableParams(stored);
@@ -191,10 +192,17 @@ export function withUtm(url: string, stored: UtmParams = getStoredUtm()): string
     const parsed = new URL(url, base);
     if (!/^https?:$/.test(parsed.protocol)) return url;
     if (!shouldDecorateHost(parsed.hostname)) return url;
-    for (const [key, value] of Object.entries(forward)) {
-      if (!parsed.searchParams.has(key)) parsed.searchParams.set(key, value);
-    }
-    return url.startsWith("/") ? `${parsed.pathname}${parsed.search}${parsed.hash}` : parsed.toString();
+
+    const existing = parsed.searchParams;
+    const additions = Object.entries(forward)
+      .filter(([key]) => !existing.has(key))
+      .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`);
+    if (additions.length === 0) return url;
+
+    const [beforeHash, ...hashParts] = url.split("#");
+    const hash = hashParts.length > 0 ? `#${hashParts.join("#")}` : "";
+    const separator = beforeHash!.includes("?") ? (beforeHash!.endsWith("?") ? "" : "&") : "?";
+    return `${beforeHash}${separator}${additions.join("&")}${hash}`;
   } catch {
     return url;
   }
