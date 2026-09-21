@@ -347,6 +347,331 @@ export type Database = {
           },
         ]
       }
+      analytics_conversions: {
+        Row: {
+          amount: number | null
+          conversion_type: string
+          currency: string | null
+          id: string
+          occurred_at: string
+          partner_id: string
+          program_code: string | null
+          session_id: string | null
+          source_id: string
+          source_table: string
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          visitor_id: string | null
+        }
+        Insert: {
+          amount?: number | null
+          conversion_type: string
+          currency?: string | null
+          id?: string
+          occurred_at?: string
+          partner_id: string
+          program_code?: string | null
+          session_id?: string | null
+          source_id: string
+          source_table: string
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          visitor_id?: string | null
+        }
+        Update: {
+          amount?: number | null
+          conversion_type?: string
+          currency?: string | null
+          id?: string
+          occurred_at?: string
+          partner_id?: string
+          program_code?: string | null
+          session_id?: string | null
+          source_id?: string
+          source_table?: string
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          visitor_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "analytics_conversions_partner_id_fkey"
+            columns: ["partner_id"]
+            isOneToOne: false
+            referencedRelation: "all_partners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "analytics_conversions_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "analytics_sessions"
+            referencedColumns: ["session_id"]
+          },
+          {
+            foreignKeyName: "analytics_conversions_visitor_id_fkey"
+            columns: ["visitor_id"]
+            isOneToOne: false
+            referencedRelation: "analytics_visitors"
+            referencedColumns: ["visitor_id"]
+          },
+        ]
+      }
+      analytics_events: {
+        Row: {
+          element_label: string | null
+          event_type: string
+          id: string
+          metadata: Json
+          occurred_at: string
+          page_path: string | null
+          page_url: string | null
+          partner_id: string
+          program_code: string | null
+          session_id: string
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          utm_term: string | null
+          visitor_id: string
+        }
+        Insert: {
+          element_label?: string | null
+          event_type: string
+          id?: string
+          metadata?: Json
+          occurred_at?: string
+          page_path?: string | null
+          page_url?: string | null
+          partner_id: string
+          program_code?: string | null
+          session_id: string
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+          visitor_id: string
+        }
+        Update: {
+          element_label?: string | null
+          event_type?: string
+          id?: string
+          metadata?: Json
+          occurred_at?: string
+          page_path?: string | null
+          page_url?: string | null
+          partner_id?: string
+          program_code?: string | null
+          session_id?: string
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+          visitor_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "analytics_events_partner_id_fkey"
+            columns: ["partner_id"]
+            isOneToOne: false
+            referencedRelation: "all_partners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "analytics_events_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "analytics_sessions"
+            referencedColumns: ["session_id"]
+          },
+          {
+            foreignKeyName: "analytics_events_visitor_id_fkey"
+            columns: ["visitor_id"]
+            isOneToOne: false
+            referencedRelation: "analytics_visitors"
+            referencedColumns: ["visitor_id"]
+          },
+        ]
+      }
+      analytics_sessions: {
+        Row: {
+          browser: string | null
+          city: string | null
+          country: string | null
+          device_type: string | null
+          duration_seconds: number | null
+          ended_at: string | null
+          entry_page_path: string | null
+          entry_page_url: string | null
+          ip: unknown
+          last_active_at: string
+          os: string | null
+          partner_id: string
+          referrer_url: string | null
+          region: string | null
+          session_id: string
+          started_at: string
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          utm_term: string | null
+          visitor_id: string
+        }
+        Insert: {
+          browser?: string | null
+          city?: string | null
+          country?: string | null
+          device_type?: string | null
+          duration_seconds?: number | null
+          ended_at?: string | null
+          entry_page_path?: string | null
+          entry_page_url?: string | null
+          ip?: unknown
+          last_active_at?: string
+          os?: string | null
+          partner_id: string
+          referrer_url?: string | null
+          region?: string | null
+          session_id?: string
+          started_at?: string
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+          visitor_id: string
+        }
+        Update: {
+          browser?: string | null
+          city?: string | null
+          country?: string | null
+          device_type?: string | null
+          duration_seconds?: number | null
+          ended_at?: string | null
+          entry_page_path?: string | null
+          entry_page_url?: string | null
+          ip?: unknown
+          last_active_at?: string
+          os?: string | null
+          partner_id?: string
+          referrer_url?: string | null
+          region?: string | null
+          session_id?: string
+          started_at?: string
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+          visitor_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "analytics_sessions_partner_id_fkey"
+            columns: ["partner_id"]
+            isOneToOne: false
+            referencedRelation: "all_partners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "analytics_sessions_visitor_id_fkey"
+            columns: ["visitor_id"]
+            isOneToOne: false
+            referencedRelation: "analytics_visitors"
+            referencedColumns: ["visitor_id"]
+          },
+        ]
+      }
+      analytics_visitors: {
+        Row: {
+          browser: string | null
+          device_type: string | null
+          first_city: string | null
+          first_country: string | null
+          first_ip: unknown
+          first_partner_id: string | null
+          first_region: string | null
+          first_seen_at: string
+          first_utm_campaign: string | null
+          first_utm_content: string | null
+          first_utm_medium: string | null
+          first_utm_source: string | null
+          known_email: string | null
+          last_city: string | null
+          last_country: string | null
+          last_ip: unknown
+          last_region: string | null
+          last_seen_at: string
+          os: string | null
+          total_sessions: number
+          visitor_id: string
+        }
+        Insert: {
+          browser?: string | null
+          device_type?: string | null
+          first_city?: string | null
+          first_country?: string | null
+          first_ip?: unknown
+          first_partner_id?: string | null
+          first_region?: string | null
+          first_seen_at?: string
+          first_utm_campaign?: string | null
+          first_utm_content?: string | null
+          first_utm_medium?: string | null
+          first_utm_source?: string | null
+          known_email?: string | null
+          last_city?: string | null
+          last_country?: string | null
+          last_ip?: unknown
+          last_region?: string | null
+          last_seen_at?: string
+          os?: string | null
+          total_sessions?: number
+          visitor_id: string
+        }
+        Update: {
+          browser?: string | null
+          device_type?: string | null
+          first_city?: string | null
+          first_country?: string | null
+          first_ip?: unknown
+          first_partner_id?: string | null
+          first_region?: string | null
+          first_seen_at?: string
+          first_utm_campaign?: string | null
+          first_utm_content?: string | null
+          first_utm_medium?: string | null
+          first_utm_source?: string | null
+          known_email?: string | null
+          last_city?: string | null
+          last_country?: string | null
+          last_ip?: unknown
+          last_region?: string | null
+          last_seen_at?: string
+          os?: string | null
+          total_sessions?: number
+          visitor_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "analytics_visitors_first_partner_id_fkey"
+            columns: ["first_partner_id"]
+            isOneToOne: false
+            referencedRelation: "all_partners"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       automation_app_config: {
         Row: {
           key: string
@@ -3346,6 +3671,39 @@ export type Database = {
         }
         Relationships: []
       }
+      utm_sources: {
+        Row: {
+          contact_email: string | null
+          created_at: string
+          display_name: string
+          id: string
+          is_active: boolean
+          notes: string | null
+          source_kind: string
+          source_slug: string
+        }
+        Insert: {
+          contact_email?: string | null
+          created_at?: string
+          display_name: string
+          id?: string
+          is_active?: boolean
+          notes?: string | null
+          source_kind?: string
+          source_slug: string
+        }
+        Update: {
+          contact_email?: string | null
+          created_at?: string
+          display_name?: string
+          id?: string
+          is_active?: boolean
+          notes?: string | null
+          source_kind?: string
+          source_slug?: string
+        }
+        Relationships: []
+      }
       week_without_walls_inquiries: {
         Row: {
           backup_dates: string | null
@@ -3564,6 +3922,30 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "all_cohorts"
             referencedColumns: ["program_id", "id"]
+          },
+        ]
+      }
+      analytics_funnel_by_source: {
+        Row: {
+          applications: number | null
+          apply_page_sessions: number | null
+          partner_id: string | null
+          pay_page_sessions: number | null
+          payments: number | null
+          platform_name: string | null
+          revenue: number | null
+          sessions: number | null
+          utm_campaign: string | null
+          utm_medium: string | null
+          utm_source: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "analytics_sessions_partner_id_fkey"
+            columns: ["partner_id"]
+            isOneToOne: false
+            referencedRelation: "all_partners"
+            referencedColumns: ["id"]
           },
         ]
       }
