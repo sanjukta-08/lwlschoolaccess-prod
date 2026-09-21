@@ -46,7 +46,7 @@ const MAX_VALUE_LENGTH = 200;
 
 /** Hosts we never decorate: social/search/video destinations, not our funnel. */
 const SKIP_HOST_PATTERNS = [
-  /(^|\.)google\.[a-z.]+$/i,
+  /^(www\.)?google\.[a-z.]+$/i,
   /(^|\.)youtube\.com$/i,
   /(^|\.)youtu\.be$/i,
   /(^|\.)facebook\.com$/i,
