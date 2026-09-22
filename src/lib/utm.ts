@@ -302,3 +302,37 @@ export function openWithUtm(url: string) {
   if (typeof window === "undefined") return;
   window.open(withUtm(url), "_blank", "noopener,noreferrer");
 }
+
+/**
+ * Builds a link for an automated system send (payment reminder, camp drip).
+ *
+ * These always report as campaign=auto-reminder + source=lwl-automation,
+ * whoever originally referred the person, and the medium must exist in
+ * public.all_utm_mediums (lwl-automation is the registered default).
+ *
+ * Existing parameters on the link are never overwritten, so a link that already
+ * carries its own tags keeps them.
+ */
+export function buildAutomatedSendUrl(url: string, medium: string = AUTOMATION_MEDIUM): string {
+  return withUtm(url, {
+    utm_campaign: AUTOMATION_CAMPAIGN,
+    utm_source: AUTOMATION_SOURCE,
+    utm_medium: normalizeUtmValue(medium) || AUTOMATION_MEDIUM,
+  });
+}
+
+/**
+ * Builds a link for a manually launched campaign send.
+ * `medium` must have been checked against public.all_utm_mediums first —
+ * use `checkUtmMedium` in src/lib/utm-registry.functions.ts.
+ */
+export function buildCampaignUrl(
+  url: string,
+  parts: { campaign: string; source: string; medium: string },
+): string {
+  const campaign = normalizeUtmValue(parts.campaign);
+  const source = normalizeUtmValue(parts.source);
+  const medium = normalizeUtmValue(parts.medium);
+  if (!campaign || !source || !medium) return url;
+  return withUtm(url, { utm_campaign: campaign, utm_source: source, utm_medium: medium });
+}
