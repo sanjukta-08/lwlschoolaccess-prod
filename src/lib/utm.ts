@@ -241,15 +241,12 @@ export function getFirstTouchUtm(): UtmParams {
 
 /**
  * The three canonical attribution fields the shared tracking endpoint expects,
- * with the platform's standard direct/website/direct fallback.
+ * with the platform's standard direct/website/direct fallback. Runs through
+ * resolveUtm so a single value per field is guaranteed, even if an older stored
+ * value was written with a separator by earlier code.
  */
 export function getUtm(): { utm_source: string; utm_medium: string; utm_campaign: string } {
-  const stored = getStoredUtm();
-  return {
-    utm_source: stored["utm_source"] || "direct",
-    utm_medium: stored["utm_medium"] || "website",
-    utm_campaign: stored["utm_campaign"] || "direct",
-  };
+  return resolveUtm(getStoredUtm(), {});
 }
 
 
