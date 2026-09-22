@@ -19,22 +19,19 @@ export type UtmMedium = {
   person: string | null;
 };
 
-async function publicClient() {
-  const { createClient } = await import("@supabase/supabase-js");
-  const url = process.env["SUPABASE_URL"] ?? process.env["VITE_SUPABASE_URL"];
-  const key =
-    process.env["SUPABASE_PUBLISHABLE_KEY"] ?? process.env["VITE_SUPABASE_PUBLISHABLE_KEY"];
-  if (!url || !key) return null;
-  return createClient(url, key, {
-    auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
-  });
+/**
+ * The vocabulary table lists staff names, so it is not exposed to anonymous
+ * readers; these lookups run server-side only.
+ */
+async function registryClient() {
+  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  return supabaseAdmin;
 }
 
 /** Every sender/platform currently cleared to send. */
 export const listUtmMediums = createServerFn({ method: "GET" }).handler(
   async (): Promise<UtmMedium[]> => {
-    const supabase = await publicClient();
-    if (!supabase) return [];
+    const supabase = await registryClient();
     const { data, error } = await supabase
       .from("all_utm_mediums")
       .select("medium_slug,display_name,platform,person")
@@ -60,8 +57,7 @@ export const checkUtmMedium = createServerFn({ method: "GET" })
   }))
   .handler(async ({ data }): Promise<{ medium: string; known: boolean }> => {
     if (!data.medium) return { medium: "", known: false };
-    const supabase = await publicClient();
-    if (!supabase) return { medium: data.medium, known: false };
+    const supabase = await registryClient();
     const { data: rows, error } = await supabase
       .from("all_utm_mediums")
       .select("medium_slug")
