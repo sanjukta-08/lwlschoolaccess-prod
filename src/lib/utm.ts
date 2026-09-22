@@ -44,6 +44,78 @@ const LAST_TOUCH_KEY = "lwl_utm_last";
 const FIRST_TOUCH_KEY = "lwl_utm_first";
 const MAX_VALUE_LENGTH = 200;
 
+/**
+ * Naming convention (finalised across all LWL platforms):
+ *  - utm_campaign = the initiative            (future-doctors, harvard-horizons)
+ *  - utm_source   = the audience / dataset    (paid-schools, india-students) — wide, evolving, not gated
+ *  - utm_medium   = platform + person         (npf-akbar, wati-ayush, linkedin-jatin)
+ *                   and MUST exist in public.all_utm_mediums before any send
+ *
+ * Automated system sends (payment reminders, camp drips) always report as the
+ * pair below, whoever originally referred the person.
+ */
+export const AUTOMATION_CAMPAIGN = "auto-reminder";
+export const AUTOMATION_SOURCE = "lwl-automation";
+export const AUTOMATION_MEDIUM = "lwl-automation";
+
+const DEFAULT_UTM = {
+  utm_source: "direct",
+  utm_medium: "website",
+  utm_campaign: "direct",
+} as const;
+
+/**
+ * One value per field — never two joined by a separator.
+ *
+ * Production rows elsewhere ended up as "direct,auto-reminder" /
+ * "website,email" because a merge appended the new touch to the old one. Any
+ * value that already carries a separator is repaired here by keeping its LAST
+ * segment (the newer touch), and nothing in this module ever concatenates.
+ */
+export function normalizeUtmValue(value: unknown): string {
+  if (typeof value !== "string") return "";
+  const lastSegment = value
+    .split(/[,;|]/)
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .pop();
+  if (!lastSegment) return "";
+  return lastSegment.trim().slice(0, MAX_VALUE_LENGTH);
+}
+
+/** Picks exactly one value: the new touch if it carries one, else what we already hold. */
+export function pickUtmValue(incoming: unknown, stored: unknown, fallback = ""): string {
+  return normalizeUtmValue(incoming) || normalizeUtmValue(stored) || fallback;
+}
+
+/**
+ * Reconciles a new touch against the attribution already on file for the same
+ * visitor/application. Field-by-field, single value, newest touch wins.
+ */
+export function resolveUtm(
+  incoming: Record<string, unknown> = {},
+  stored: Record<string, unknown> = {},
+): { utm_source: string; utm_medium: string; utm_campaign: string } {
+  const campaign = pickUtmValue(
+    incoming["utm_campaign"],
+    stored["utm_campaign"],
+    DEFAULT_UTM.utm_campaign,
+  );
+  // An automated send is always the auto-reminder / lwl-automation pair.
+  if (campaign === AUTOMATION_CAMPAIGN) {
+    return {
+      utm_campaign: AUTOMATION_CAMPAIGN,
+      utm_source: AUTOMATION_SOURCE,
+      utm_medium: pickUtmValue(incoming["utm_medium"], stored["utm_medium"], AUTOMATION_MEDIUM),
+    };
+  }
+  return {
+    utm_campaign: campaign,
+    utm_source: pickUtmValue(incoming["utm_source"], stored["utm_source"], DEFAULT_UTM.utm_source),
+    utm_medium: pickUtmValue(incoming["utm_medium"], stored["utm_medium"], DEFAULT_UTM.utm_medium),
+  };
+}
+
 /** Hosts we never decorate: social/search/video destinations, not our funnel. */
 const SKIP_HOST_PATTERNS = [
   /^(www\.)?google\.[a-z.]+$/i,
