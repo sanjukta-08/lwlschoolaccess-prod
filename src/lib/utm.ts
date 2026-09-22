@@ -44,6 +44,78 @@ const LAST_TOUCH_KEY = "lwl_utm_last";
 const FIRST_TOUCH_KEY = "lwl_utm_first";
 const MAX_VALUE_LENGTH = 200;
 
+/**
+ * Naming convention (finalised across all LWL platforms):
+ *  - utm_campaign = the initiative            (future-doctors, harvard-horizons)
+ *  - utm_source   = the audience / dataset    (paid-schools, india-students) — wide, evolving, not gated
+ *  - utm_medium   = platform + person         (npf-akbar, wati-ayush, linkedin-jatin)
+ *                   and MUST exist in public.all_utm_mediums before any send
+ *
+ * Automated system sends (payment reminders, camp drips) always report as the
+ * pair below, whoever originally referred the person.
+ */
+export const AUTOMATION_CAMPAIGN = "auto-reminder";
+export const AUTOMATION_SOURCE = "lwl-automation";
+export const AUTOMATION_MEDIUM = "lwl-automation";
+
+const DEFAULT_UTM = {
+  utm_source: "direct",
+  utm_medium: "website",
+  utm_campaign: "direct",
+} as const;
+
+/**
+ * One value per field — never two joined by a separator.
+ *
+ * Production rows elsewhere ended up as "direct,auto-reminder" /
+ * "website,email" because a merge appended the new touch to the old one. Any
+ * value that already carries a separator is repaired here by keeping its LAST
+ * segment (the newer touch), and nothing in this module ever concatenates.
+ */
+export function normalizeUtmValue(value: unknown): string {
+  if (typeof value !== "string") return "";
+  const lastSegment = value
+    .split(/[,;|]/)
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .pop();
+  if (!lastSegment) return "";
+  return lastSegment.trim().slice(0, MAX_VALUE_LENGTH);
+}
+
+/** Picks exactly one value: the new touch if it carries one, else what we already hold. */
+export function pickUtmValue(incoming: unknown, stored: unknown, fallback = ""): string {
+  return normalizeUtmValue(incoming) || normalizeUtmValue(stored) || fallback;
+}
+
+/**
+ * Reconciles a new touch against the attribution already on file for the same
+ * visitor/application. Field-by-field, single value, newest touch wins.
+ */
+export function resolveUtm(
+  incoming: Record<string, unknown> = {},
+  stored: Record<string, unknown> = {},
+): { utm_source: string; utm_medium: string; utm_campaign: string } {
+  const campaign = pickUtmValue(
+    incoming["utm_campaign"],
+    stored["utm_campaign"],
+    DEFAULT_UTM.utm_campaign,
+  );
+  // An automated send is always the auto-reminder / lwl-automation pair.
+  if (campaign === AUTOMATION_CAMPAIGN) {
+    return {
+      utm_campaign: AUTOMATION_CAMPAIGN,
+      utm_source: AUTOMATION_SOURCE,
+      utm_medium: pickUtmValue(incoming["utm_medium"], stored["utm_medium"], AUTOMATION_MEDIUM),
+    };
+  }
+  return {
+    utm_campaign: campaign,
+    utm_source: pickUtmValue(incoming["utm_source"], stored["utm_source"], DEFAULT_UTM.utm_source),
+    utm_medium: pickUtmValue(incoming["utm_medium"], stored["utm_medium"], DEFAULT_UTM.utm_medium),
+  };
+}
+
 /** Hosts we never decorate: social/search/video destinations, not our funnel. */
 const SKIP_HOST_PATTERNS = [
   /^(www\.)?google\.[a-z.]+$/i,
@@ -132,8 +204,14 @@ export function captureUtmFromLocation(
 
   if (Object.keys(fresh).length > 0) {
     const referrer = documentReferrer ?? (typeof document === "undefined" ? "" : document.referrer);
+    const previous = readStore(session, LAST_TOUCH_KEY);
+    // Field-by-field: the new touch wins, otherwise we keep what we already
+    // held. Values are never joined — one value per field, always.
+    const resolved = resolveUtm(fresh, previous);
     const enriched: UtmParams = {
+      ...previous,
       ...fresh,
+      ...resolved,
       lwl_landing_path: pathname,
       lwl_landed_at: new Date().toISOString(),
       ...(referrer && !referrer.startsWith(window.location.origin)
@@ -163,15 +241,12 @@ export function getFirstTouchUtm(): UtmParams {
 
 /**
  * The three canonical attribution fields the shared tracking endpoint expects,
- * with the platform's standard direct/website/direct fallback.
+ * with the platform's standard direct/website/direct fallback. Runs through
+ * resolveUtm so a single value per field is guaranteed, even if an older stored
+ * value was written with a separator by earlier code.
  */
 export function getUtm(): { utm_source: string; utm_medium: string; utm_campaign: string } {
-  const stored = getStoredUtm();
-  return {
-    utm_source: stored["utm_source"] || "direct",
-    utm_medium: stored["utm_medium"] || "website",
-    utm_campaign: stored["utm_campaign"] || "direct",
-  };
+  return resolveUtm(getStoredUtm(), {});
 }
 
 
@@ -226,4 +301,38 @@ export function withUtm(url: string, stored: UtmParams = getStoredUtm()): string
 export function openWithUtm(url: string) {
   if (typeof window === "undefined") return;
   window.open(withUtm(url), "_blank", "noopener,noreferrer");
+}
+
+/**
+ * Builds a link for an automated system send (payment reminder, camp drip).
+ *
+ * These always report as campaign=auto-reminder + source=lwl-automation,
+ * whoever originally referred the person, and the medium must exist in
+ * public.all_utm_mediums (lwl-automation is the registered default).
+ *
+ * Existing parameters on the link are never overwritten, so a link that already
+ * carries its own tags keeps them.
+ */
+export function buildAutomatedSendUrl(url: string, medium: string = AUTOMATION_MEDIUM): string {
+  return withUtm(url, {
+    utm_campaign: AUTOMATION_CAMPAIGN,
+    utm_source: AUTOMATION_SOURCE,
+    utm_medium: normalizeUtmValue(medium) || AUTOMATION_MEDIUM,
+  });
+}
+
+/**
+ * Builds a link for a manually launched campaign send.
+ * `medium` must have been checked against public.all_utm_mediums first —
+ * use `checkUtmMedium` in src/lib/utm-registry.functions.ts.
+ */
+export function buildCampaignUrl(
+  url: string,
+  parts: { campaign: string; source: string; medium: string },
+): string {
+  const campaign = normalizeUtmValue(parts.campaign);
+  const source = normalizeUtmValue(parts.source);
+  const medium = normalizeUtmValue(parts.medium);
+  if (!campaign || !source || !medium) return url;
+  return withUtm(url, { utm_campaign: campaign, utm_source: source, utm_medium: medium });
 }
