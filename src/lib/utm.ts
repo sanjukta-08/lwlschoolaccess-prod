@@ -204,8 +204,14 @@ export function captureUtmFromLocation(
 
   if (Object.keys(fresh).length > 0) {
     const referrer = documentReferrer ?? (typeof document === "undefined" ? "" : document.referrer);
+    const previous = readStore(session, LAST_TOUCH_KEY);
+    // Field-by-field: the new touch wins, otherwise we keep what we already
+    // held. Values are never joined — one value per field, always.
+    const resolved = resolveUtm(fresh, previous);
     const enriched: UtmParams = {
+      ...previous,
       ...fresh,
+      ...resolved,
       lwl_landing_path: pathname,
       lwl_landed_at: new Date().toISOString(),
       ...(referrer && !referrer.startsWith(window.location.origin)
