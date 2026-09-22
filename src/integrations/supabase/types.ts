@@ -592,6 +592,39 @@ export type Database = {
           },
         ]
       }
+      all_utm_mediums: {
+        Row: {
+          created_at: string
+          display_name: string
+          id: string
+          is_active: boolean
+          medium_slug: string
+          notes: string | null
+          person: string | null
+          platform: string | null
+        }
+        Insert: {
+          created_at?: string
+          display_name: string
+          id?: string
+          is_active?: boolean
+          medium_slug: string
+          notes?: string | null
+          person?: string | null
+          platform?: string | null
+        }
+        Update: {
+          created_at?: string
+          display_name?: string
+          id?: string
+          is_active?: boolean
+          medium_slug?: string
+          notes?: string | null
+          person?: string | null
+          platform?: string | null
+        }
+        Relationships: []
+      }
       all_utm_sources: {
         Row: {
           contact_email: string | null
