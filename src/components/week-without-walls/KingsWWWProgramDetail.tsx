@@ -38,7 +38,7 @@ export default function KingsWWWProgramDetail({ program }: { program: KingsProgr
         <div className="absolute inset-0 bg-foreground/70" />
         <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/35 to-foreground/30" />
         <div className="relative mx-auto w-full max-w-6xl px-4 py-14 text-background sm:px-6 md:px-8">
-          <LogoLockup />
+          <LogoLockup logo={program.logo} />
           <p className="mt-8 text-xs font-bold uppercase tracking-[0.2em] text-primary-on-dark sm:text-sm">{program.eyebrow}</p>
           <h1 className="mx-auto mt-4 max-w-5xl font-display text-4xl font-extrabold leading-tight sm:text-6xl lg:text-7xl">{program.title}</h1>
           <p className="mt-4 font-display text-xl font-bold text-primary-on-dark sm:text-2xl">{program.tagline}</p>
