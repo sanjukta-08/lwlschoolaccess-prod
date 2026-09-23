@@ -1,6 +1,7 @@
 import kingsLogoAsset from "@/assets/kings-www/kings-school-logo-color.png.asset.json";
 import hpairLogoAsset from "@/assets/kings-www/hpair-logo-new.png.asset.json";
-import onwardSealAsset from "@/assets/kings-www/onward-fellowship-seal.png.asset.json";
+import lwlLogoAsset from "@/assets/lwl-logo.png.asset.json";
+import lwlWhiteAsset from "@/assets/lwl_white.png.asset.json";
 import heroImageAsset from "@/assets/kings-www/student-group.jpg.asset.json";
 import aiImageAsset from "@/assets/kings-www/classroom-session.jpg.asset.json";
 import leadershipImageAsset from "@/assets/kings-www/forum-discussion.jpg.asset.json";
@@ -48,7 +49,8 @@ export type KingsProgram = {
 export const kingsWwwAssets = {
   kingsLogo: kingsLogoAsset.url,
   hpairLogo: hpairLogoAsset.url,
-  onwardSeal: onwardSealAsset.url,
+  lwlLogo: lwlLogoAsset.url,
+  lwlWhite: lwlWhiteAsset.url,
   heroImage: heroImageAsset.url,
   aiImage: aiImageAsset.url,
   leadershipImage: leadershipImageAsset.url,
