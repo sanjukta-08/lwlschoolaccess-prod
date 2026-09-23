@@ -219,7 +219,7 @@ export function SiteHeader() {
         </Link>
         <Link
           to="/week-without-walls/kings"
-          className={cls}
+          className={`${cls} whitespace-nowrap`}
           activeProps={active}
           onClick={close}
         >
