@@ -3,7 +3,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import KingsWWWProgramDetail from "@/components/week-without-walls/KingsWWWProgramDetail";
 import { kingsProgramsBySlug, sharedFacts } from "@/components/week-without-walls/kings-data";
 
-export const Route = createFileRoute("/week-without-walls/kings/")({
+export const Route = createFileRoute("/week-without-walls/kings/$programSlug")({
   staticData: { sitemap: true },
   loader: ({ params }) => {
     const program = kingsProgramsBySlug[params.programSlug];
