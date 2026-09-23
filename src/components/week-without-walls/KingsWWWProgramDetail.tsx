@@ -4,12 +4,18 @@ import { ArrowLeft, CalendarDays, Check, Download, MapPin, Users } from "lucide-
 import { Button } from "@/components/ui/button";
 import { kingsWwwAssets, sharedFacts, type KingsProgram } from "./kings-data";
 
-function LogoLockup() {
+function LogoLockup({ logo }: { logo?: string }) {
   return (
     <div className="inline-flex items-stretch overflow-hidden rounded-lg border border-border bg-background">
       <div className="flex h-20 w-24 items-center justify-center px-4 sm:h-24 sm:w-28"><img src={kingsWwwAssets.kingsLogo} alt="Kings’ School Al Barsha" className="h-14 w-auto object-contain sm:h-16" /></div>
       <span className="my-4 w-px bg-border" aria-hidden="true" />
       <div className="flex h-20 items-center justify-center px-4 sm:h-24 sm:px-6"><img src={kingsWwwAssets.hpairLogo} alt="HPAIR" className="h-10 w-auto max-w-[190px] object-contain sm:h-12 sm:max-w-[250px]" /></div>
+      {logo && (
+        <>
+          <span className="my-4 w-px bg-border" aria-hidden="true" />
+          <div className="flex h-20 items-center justify-center px-4 sm:h-24 sm:px-6"><img src={logo} alt="FinLit AI" className="h-9 w-auto object-contain sm:h-10" /></div>
+        </>
+      )}
     </div>
   );
 }
