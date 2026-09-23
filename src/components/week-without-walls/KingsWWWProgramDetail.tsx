@@ -4,7 +4,7 @@ import { ArrowLeft, CalendarDays, Check, Download, MapPin, Users } from "lucide-
 import { Button } from "@/components/ui/button";
 import { kingsWwwAssets, sharedFacts, type KingsProgram } from "./kings-data";
 
-function LogoLockup({ logo }: { logo?: string }) {
+function LogoLockup({ logo }: { logo?: string | undefined }) {
   return (
     <div className="inline-flex items-stretch overflow-hidden rounded-lg border border-border bg-background">
       <div className="flex h-20 w-24 items-center justify-center px-4 sm:h-24 sm:w-28"><img src={kingsWwwAssets.kingsLogo} alt="Kings’ School Al Barsha" className="h-14 w-auto object-contain sm:h-16" /></div>
