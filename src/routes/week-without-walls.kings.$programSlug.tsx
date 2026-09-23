@@ -14,13 +14,13 @@ export const Route = createFileRoute("/week-without-walls/kings/$programSlug")({
     if (!loaderData) {
       return {
         meta: [
-          { title: "Program not found | Kings’ School Al Barsha x Onward" },
+          { title: "Program not found | Week Without Walls at Kings’ School Al Barsha" },
           { name: "robots", content: "noindex" },
         ],
       };
     }
     const { program } = loaderData;
-    const title = `${program.title} | Kings’ School Al Barsha x Onward`;
+    const title = `${program.title} | Week Without Walls at Kings’ School Al Barsha`;
     const description = `${program.description} ${sharedFacts.dates} at Kings’ School Al Barsha.`;
     return {
       meta: [
@@ -40,7 +40,7 @@ export const Route = createFileRoute("/week-without-walls/kings/$programSlug")({
             "@type": "Course",
             name: program.title,
             description,
-            provider: { "@type": "Organization", name: "Onward" },
+            provider: { "@type": "Organization", name: "Learn with Leaders" },
             educationalLevel: program.years,
             locationCreated: sharedFacts.location,
           }),
