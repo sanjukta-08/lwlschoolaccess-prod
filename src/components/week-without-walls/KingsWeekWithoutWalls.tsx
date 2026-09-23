@@ -7,7 +7,6 @@ import {
   CalendarDays,
   Check,
   Download,
-  Filter,
   Menu,
   Presentation,
   Sparkles,
@@ -17,9 +16,9 @@ import {
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import {
-  allYears,
   kingsFaqs,
   kingsPrograms,
   kingsWwwAssets,
@@ -28,80 +27,32 @@ import {
   type YearFilterValue,
 } from "./kings-data";
 
-const filterGroups: { key: "all" | "junior" | "senior"; label: string; hint: string }[] = [
-  { key: "all", label: "All years", hint: "Years 7–13" },
-  { key: "junior", label: "Junior", hint: "Years 7–9" },
-  { key: "senior", label: "Senior", hint: "Years 10–13" },
+const filterGroups: { key: YearFilterValue; label: string }[] = [
+  { key: "all", label: "All years" },
+  { key: "junior", label: "Years 7–9" },
+  { key: "senior", label: "Years 10–13" },
 ];
 
-function YearFilterBar({
+function CompactYearFilter({
   filter,
   onChange,
-  showing,
-  total,
 }: {
   filter: YearFilterValue;
   onChange: (value: YearFilterValue) => void;
-  showing: number;
-  total: number;
 }) {
   return (
-    <div className="sticky top-16 z-40 mb-10 border-2 border-foreground/35 bg-background/95 p-4 backdrop-blur-md sm:top-20 sm:p-5">
-      <div className="grid gap-4 md:grid-cols-[168px_1fr] md:items-start">
-        <div className="flex items-center gap-2 pt-2">
-          <Filter className="h-4 w-4 shrink-0 text-primary" />
-          <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
-            Filter by year
-          </span>
-        </div>
-
-        <div>
-          <div className="flex flex-wrap gap-2">
-            {filterGroups.map((item) => (
-              <button
-                key={item.key}
-                type="button"
-                aria-pressed={filter === item.key}
-                onClick={() => onChange(item.key)}
-                className={cn(
-                  "border px-4 py-2 transition-colors",
-                  filter === item.key
-                    ? "border-primary bg-primary text-primary-foreground"
-                    : "border-border bg-background text-muted-foreground hover:border-primary/50 hover:text-foreground",
-                )}
-              >
-                <span className="font-display text-sm font-bold">{item.label}</span>
-                <span className="ml-2 hidden text-[10px] font-semibold uppercase tracking-[0.14em] opacity-70 sm:inline">
-                  {item.hint}
-                </span>
-              </button>
-            ))}
-          </div>
-
-          <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-border pt-3">
-            {allYears.map((year) => (
-              <button
-                key={year}
-                type="button"
-                aria-pressed={filter === year}
-                onClick={() => onChange(year)}
-                className={cn(
-                  "min-w-[76px] border px-3 py-2 text-sm font-semibold transition-colors",
-                  filter === year
-                    ? "border-primary bg-primary text-primary-foreground"
-                    : "border-border bg-background text-muted-foreground hover:border-primary/50 hover:text-foreground",
-                )}
-              >
-                Year {year}
-              </button>
-            ))}
-            <span className="ml-auto pt-1 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-              {showing} of {total} programs
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Select value={String(filter)} onValueChange={(value) => onChange(value as YearFilterValue)}>
+      <SelectTrigger className="h-9 w-[150px] rounded-none border-foreground/30 bg-background px-3 text-xs font-bold uppercase tracking-[0.08em] shadow-none">
+        <SelectValue placeholder="Filter" />
+      </SelectTrigger>
+      <SelectContent align="end" className="rounded-none">
+        {filterGroups.map((item) => (
+          <SelectItem key={item.key} value={String(item.key)} className="rounded-none text-xs font-semibold uppercase tracking-[0.08em]">
+            {item.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
   );
 }
 
@@ -122,9 +73,8 @@ function KingsNavbar() {
   return (
     <nav className="fixed inset-x-0 top-0 z-50 border-b border-border/50 bg-background/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 md:h-20 md:px-8">
-        <button type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="flex flex-col leading-none select-none text-left">
-          <span className="font-display text-lg font-black uppercase tracking-[0.2em] text-primary sm:text-xl md:text-2xl">Onward</span>
-          <span className="mt-0.5 text-[9px] font-semibold uppercase tracking-[0.22em] text-muted-foreground sm:text-[10px]">Week Without Walls</span>
+        <button type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-left leading-none select-none">
+          <span className="font-display text-sm font-black uppercase tracking-[0.16em] text-primary sm:text-base md:text-lg">Week Without Walls</span>
         </button>
         <div className="hidden items-center gap-7 md:flex">
           {navLinks.map((link) => (
@@ -226,12 +176,12 @@ export default function KingsWeekWithoutWalls() {
     <div className="kings-www min-h-screen bg-background text-foreground">
       <KingsNavbar />
 
-      <header className="relative flex min-h-[92svh] items-center overflow-hidden pt-20 text-center">
+      <header className="relative flex min-h-[88svh] items-start overflow-hidden pt-20 text-center">
         <img src={kingsWwwAssets.heroImage} alt="Students taking part in a collaborative Week Without Walls experience" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-foreground/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/40 to-transparent" />
-        <div className="relative mx-auto w-full max-w-7xl px-4 py-12 text-background sm:px-6 sm:py-16 md:px-8">
-          <div className="mb-7 inline-flex items-stretch overflow-hidden rounded-lg border border-border bg-background">
+        <div className="relative mx-auto w-full max-w-[90rem] px-4 pb-12 pt-16 text-background sm:px-6 sm:pb-16 sm:pt-20 md:px-8 lg:pt-24">
+          <div className="mb-5 inline-flex items-stretch overflow-hidden rounded-lg border border-border bg-background">
             <div className="flex h-24 w-28 items-center justify-center px-5 sm:h-28 sm:w-32">
               <img src={kingsWwwAssets.kingsLogo} alt="Kings’ School Al Barsha" className="h-16 w-auto object-contain sm:h-20" />
             </div>
@@ -240,9 +190,9 @@ export default function KingsWeekWithoutWalls() {
               <img src={kingsWwwAssets.hpairLogo} alt="HPAIR" className="h-16 w-auto max-w-[230px] object-contain sm:h-20 sm:max-w-[300px]" />
             </div>
           </div>
-          <p className="mb-5 text-xs font-bold uppercase tracking-[0.24em] text-primary sm:text-sm">Kings’ School Al Barsha · 1–5 February 2027</p>
-          <h1 className="mx-auto max-w-5xl font-display text-5xl font-extrabold leading-[0.98] sm:text-6xl md:text-7xl lg:text-8xl">
-            A Week Without Walls.
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.24em] text-primary sm:text-sm">Kings’ School Al Barsha · 1–5 February 2027</p>
+          <h1 className="mx-auto max-w-[82rem] font-display text-4xl font-extrabold leading-[0.98] sm:text-6xl md:text-7xl xl:text-8xl">
+            <span className="block whitespace-nowrap">A Week Without Walls.</span>
             <span className="mt-2 block font-semibold text-primary">Five paths into the real world.</span>
           </h1>
           <p className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-background/80 sm:text-lg">
@@ -286,21 +236,28 @@ export default function KingsWeekWithoutWalls() {
               <h2 className="font-display text-3xl font-extrabold sm:text-5xl">Five programs. Two age groups. One extraordinary week.</h2>
             </div>
 
-            <YearFilterBar filter={filter} onChange={setFilter} showing={visible.length} total={kingsPrograms.length} />
-
             {visible.length === 0 && (
-              <p className="border border-border bg-background p-10 text-center text-sm text-muted-foreground">
-                No programs match this selection.
-              </p>
+              <div>
+                <div className="mb-6 flex items-center justify-between gap-4 border-b border-foreground pb-4">
+                  <span className="font-display text-2xl font-extrabold sm:text-3xl">Programs</span>
+                  <CompactYearFilter filter={filter} onChange={setFilter} />
+                </div>
+                <p className="border border-border bg-background p-10 text-center text-sm text-muted-foreground">
+                  No programs match this selection.
+                </p>
+              </div>
             )}
 
             {senior.length > 0 && (
               <div className={junior.length > 0 ? "mb-16" : ""}>
-                <div className="mb-6 flex items-center gap-4 border-b border-foreground pb-4">
-                  <span className="font-display text-2xl font-extrabold sm:text-3xl">Years 10–13</span>
-                  <span className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                    {senior.length} {senior.length === 1 ? "program" : "programs"}
-                  </span>
+                <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-foreground pb-4">
+                  <div className="flex items-center gap-4">
+                    <span className="font-display text-2xl font-extrabold sm:text-3xl">Years 10–13</span>
+                    <span className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                      {senior.length} {senior.length === 1 ? "program" : "programs"}
+                    </span>
+                  </div>
+                  <CompactYearFilter filter={filter} onChange={setFilter} />
                 </div>
                 <div className="space-y-6">
                   {senior.map((programme) => <ProgrammeCard key={programme.title} programme={programme} />)}
@@ -310,11 +267,14 @@ export default function KingsWeekWithoutWalls() {
 
             {junior.length > 0 && (
               <div>
-                <div className="mb-6 flex items-center gap-4 border-b border-foreground pb-4">
-                  <span className="font-display text-2xl font-extrabold sm:text-3xl">Years 7–9</span>
-                  <span className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                    {junior.length} {junior.length === 1 ? "program" : "programs"}
-                  </span>
+                <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-foreground pb-4">
+                  <div className="flex items-center gap-4">
+                    <span className="font-display text-2xl font-extrabold sm:text-3xl">Years 7–9</span>
+                    <span className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                      {junior.length} {junior.length === 1 ? "program" : "programs"}
+                    </span>
+                  </div>
+                  {senior.length === 0 && <CompactYearFilter filter={filter} onChange={setFilter} />}
                 </div>
                 <div className="space-y-6">
                   {junior.map((programme) => <ProgrammeCard key={programme.title} programme={programme} />)}
