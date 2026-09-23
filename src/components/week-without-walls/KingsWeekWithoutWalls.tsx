@@ -223,7 +223,7 @@ export default function KingsWeekWithoutWalls() {
   const junior = visible.filter((programme) => programme.years === "Years 7–9");
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="kings-www min-h-screen bg-background text-foreground">
       <KingsNavbar />
 
       <header className="relative flex min-h-[92svh] items-center overflow-hidden pt-20 text-center">

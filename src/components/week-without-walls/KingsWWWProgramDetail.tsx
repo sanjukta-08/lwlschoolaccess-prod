@@ -16,7 +16,7 @@ function LogoLockup() {
 
 export default function KingsWWWProgramDetail({ program }: { program: KingsProgram }) {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="kings-www min-h-screen bg-background text-foreground">
       <nav className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/95 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 md:h-20 md:px-8">
           <Link to="/week-without-walls/kings" className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.1em]"><ArrowLeft className="h-4 w-4" /> All programs</Link>
