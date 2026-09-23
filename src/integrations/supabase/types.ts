@@ -839,6 +839,7 @@ export type Database = {
           reviewed_at: string | null
           scholarship_code: string | null
           school: string | null
+          session_id: string | null
           student_dob: string | null
           student_email: string
           student_name: string
@@ -848,6 +849,7 @@ export type Database = {
           utm_campaign: string
           utm_medium: string
           utm_source: string
+          visitor_id: string | null
         }
         Insert: {
           agreed_to_terms?: boolean
@@ -877,6 +879,7 @@ export type Database = {
           reviewed_at?: string | null
           scholarship_code?: string | null
           school?: string | null
+          session_id?: string | null
           student_dob?: string | null
           student_email: string
           student_name: string
@@ -886,6 +889,7 @@ export type Database = {
           utm_campaign?: string
           utm_medium?: string
           utm_source?: string
+          visitor_id?: string | null
         }
         Update: {
           agreed_to_terms?: boolean
@@ -915,6 +919,7 @@ export type Database = {
           reviewed_at?: string | null
           scholarship_code?: string | null
           school?: string | null
+          session_id?: string | null
           student_dob?: string | null
           student_email?: string
           student_name?: string
@@ -924,6 +929,7 @@ export type Database = {
           utm_campaign?: string
           utm_medium?: string
           utm_source?: string
+          visitor_id?: string | null
         }
         Relationships: []
       }
@@ -1809,6 +1815,7 @@ export type Database = {
           referrer: string | null
           refunded_amount: number
           school: string | null
+          session_id: string | null
           source_url: string | null
           state: string | null
           stripe_customer_id: string | null
@@ -1831,6 +1838,7 @@ export type Database = {
           utm_campaign: string
           utm_medium: string
           utm_source: string
+          visitor_id: string | null
         }
         Insert: {
           amount?: number | null
@@ -1861,6 +1869,7 @@ export type Database = {
           referrer?: string | null
           refunded_amount?: number
           school?: string | null
+          session_id?: string | null
           source_url?: string | null
           state?: string | null
           stripe_customer_id?: string | null
@@ -1883,6 +1892,7 @@ export type Database = {
           utm_campaign?: string
           utm_medium?: string
           utm_source?: string
+          visitor_id?: string | null
         }
         Update: {
           amount?: number | null
@@ -1913,6 +1923,7 @@ export type Database = {
           referrer?: string | null
           refunded_amount?: number
           school?: string | null
+          session_id?: string | null
           source_url?: string | null
           state?: string | null
           stripe_customer_id?: string | null
@@ -1935,6 +1946,7 @@ export type Database = {
           utm_campaign?: string
           utm_medium?: string
           utm_source?: string
+          visitor_id?: string | null
         }
         Relationships: []
       }
@@ -2338,6 +2350,7 @@ export type Database = {
           promo_code: string | null
           referral_source: string | null
           school_name: string | null
+          session_id: string | null
           state: string | null
           stripe_customer_id: string | null
           stub_source: string | null
@@ -2350,6 +2363,7 @@ export type Database = {
           utm_campaign: string | null
           utm_medium: string | null
           utm_source: string | null
+          visitor_id: string | null
         }
         Insert: {
           amount_currency?: string | null
@@ -2378,6 +2392,7 @@ export type Database = {
           promo_code?: string | null
           referral_source?: string | null
           school_name?: string | null
+          session_id?: string | null
           state?: string | null
           stripe_customer_id?: string | null
           stub_source?: string | null
@@ -2390,6 +2405,7 @@ export type Database = {
           utm_campaign?: string | null
           utm_medium?: string | null
           utm_source?: string | null
+          visitor_id?: string | null
         }
         Update: {
           amount_currency?: string | null
@@ -2418,6 +2434,7 @@ export type Database = {
           promo_code?: string | null
           referral_source?: string | null
           school_name?: string | null
+          session_id?: string | null
           state?: string | null
           stripe_customer_id?: string | null
           stub_source?: string | null
@@ -2430,6 +2447,7 @@ export type Database = {
           utm_campaign?: string | null
           utm_medium?: string | null
           utm_source?: string | null
+          visitor_id?: string | null
         }
         Relationships: [
           {
