@@ -61,7 +61,7 @@ export const Route = createFileRoute("/api/public/track-relay")({
           const text = await res.text();
           if (!res.ok) {
             console.error(`[track-relay] central track failed [${res.status}]: ${text}`);
-            return json({ error: "track_failed", status: res.status, details: text }, res.status);
+            return json({ ok: false, error: "track_failed", status: res.status }, 200);
           }
           return new Response(text || "{}", {
             status: 200,
@@ -69,7 +69,7 @@ export const Route = createFileRoute("/api/public/track-relay")({
           });
         } catch (e) {
           console.error("[track-relay] error", e instanceof Error ? e.message : e);
-          return json({ error: "track_unreachable" }, 502);
+          return json({ ok: false, error: "track_unreachable" }, 200);
         }
       },
     },
