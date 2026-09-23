@@ -37,6 +37,7 @@ export type KingsProgram = {
   duration: string;
   recognition: string;
   image: string;
+  logo?: string;
   brochure: string;
   outcomes: string[];
   curriculum: CurriculumDay[];
@@ -50,6 +51,7 @@ export type KingsProgram = {
 export const kingsWwwAssets = {
   kingsLogo: kingsLogoAsset.url,
   hpairLogo: hpairLogoAsset.url,
+  finlitLogo: finlitLogoAsset.url,
   lwlLogo: lwlLogoAsset.url,
   lwlWhite: lwlWhiteAsset.url,
   heroImage: heroImageAsset.url,
