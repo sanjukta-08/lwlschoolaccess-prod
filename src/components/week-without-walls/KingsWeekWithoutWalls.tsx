@@ -73,9 +73,9 @@ function KingsNavbar() {
   return (
     <nav className="fixed inset-x-0 top-0 z-50 border-b border-border/50 bg-background/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 md:h-20 md:px-8">
-        <button type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="flex items-center gap-3 text-left leading-none select-none">
-          <img src={kingsWwwAssets.lwlLogo} alt="Learn with Leaders" className="h-9 w-auto object-contain md:h-11" />
-          <span className="font-display text-sm font-black uppercase tracking-[0.16em] text-primary sm:text-base md:text-lg">Week Without Walls</span>
+        <button type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="flex flex-col items-start gap-1.5 leading-none select-none">
+          <img src={kingsWwwAssets.lwlLogo} alt="Learn with Leaders" className="h-7 w-auto object-contain md:h-8" />
+          <span className="text-[9px] font-bold uppercase tracking-[0.32em] text-gold sm:text-[10px]">Week Without Walls</span>
         </button>
         <div className="hidden items-center gap-7 md:flex">
           {navLinks.map((link) => (

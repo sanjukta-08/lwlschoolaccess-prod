@@ -20,9 +20,9 @@ export default function KingsWWWProgramDetail({ program }: { program: KingsProgr
       <nav className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/95 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 md:h-20 md:px-8">
           <Link to="/week-without-walls/kings" className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.1em]"><ArrowLeft className="h-4 w-4" /> All programs</Link>
-          <Link to="/week-without-walls/kings" className="flex items-center gap-3 leading-none select-none">
-            <img src={kingsWwwAssets.lwlLogo} alt="Learn with Leaders" className="h-9 w-auto object-contain md:h-10" />
-            <span className="font-display text-xs font-black uppercase tracking-[0.16em] text-primary sm:text-sm">Week Without Walls</span>
+          <Link to="/week-without-walls/kings" className="flex flex-col items-end gap-1.5 leading-none select-none">
+            <img src={kingsWwwAssets.lwlLogo} alt="Learn with Leaders" className="h-7 w-auto object-contain md:h-8" />
+            <span className="text-[9px] font-bold uppercase tracking-[0.32em] text-gold sm:text-[10px]">Week Without Walls</span>
           </Link>
         </div>
       </nav>
