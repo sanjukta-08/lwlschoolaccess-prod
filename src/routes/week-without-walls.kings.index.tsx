@@ -6,7 +6,7 @@ import { kingsFaqs } from "@/components/week-without-walls/kings-data";
 const TITLE = "Week Without Walls | Kings’ School Al Barsha x Onward";
 const DESC = "Five immersive programs for Kings’ School Al Barsha students in Years 7–13, delivered on campus from 1–5 February 2027 with HPAIR, FinLit AI and Onward.";
 
-export const Route = createFileRoute("/week-without-walls/kings")({
+export const Route = createFileRoute("/week-without-walls/kings/")({
   staticData: { sitemap: true },
   head: () => ({
     meta: [

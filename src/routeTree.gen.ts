@@ -43,7 +43,8 @@ import { Route as ProgrammesSlugRouteImport } from './routes/programmes.$slug'
 import { Route as WeekWithoutWallsKingsRouteImport } from './routes/week-without-walls.kings'
 import { Route as ApiPublicTrackRelayRouteImport } from './routes/api/public/track-relay'
 import { Route as OurOfferingsConferencesSlugRouteImport } from './routes/our-offerings.conferences.$slug'
-import { Route as WeekWithoutWallsKingsRouteImport } from './routes/week-without-walls.kings.'
+import { Route as WeekWithoutWallsKingsIndexRouteImport } from './routes/week-without-walls.kings.index'
+import { Route as WeekWithoutWallsKingsProgramSlugRouteImport } from './routes/week-without-walls.kings.$programSlug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -223,11 +224,18 @@ const OurOfferingsConferencesSlugRoute =
     path: '/our-offerings/conferences/$slug',
     getParentRoute: () => rootRouteImport,
   } as any)
-const WeekWithoutWallsKingsRoute = WeekWithoutWallsKingsRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => WeekWithoutWallsKingsRoute,
-} as any)
+const WeekWithoutWallsKingsIndexRoute =
+  WeekWithoutWallsKingsIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => WeekWithoutWallsKingsRoute,
+  } as any)
+const WeekWithoutWallsKingsProgramSlugRoute =
+  WeekWithoutWallsKingsProgramSlugRouteImport.update({
+    id: '/$programSlug',
+    path: '/$programSlug',
+    getParentRoute: () => WeekWithoutWallsKingsRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -262,9 +270,10 @@ export interface FileRoutesByFullPath {
   '/camps/': typeof CampsIndexRoute
   '/conferences/': typeof ConferencesIndexRoute
   '/internships/': typeof InternshipsIndexRoute
-  '/week-without-walls/kings/': typeof WeekWithoutWallsKingsRoute
   '/api/public/track-relay': typeof ApiPublicTrackRelayRoute
   '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
+  '/week-without-walls/kings/$programSlug': typeof WeekWithoutWallsKingsProgramSlugRoute
+  '/week-without-walls/kings/': typeof WeekWithoutWallsKingsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -295,9 +304,10 @@ export interface FileRoutesByTo {
   '/camps': typeof CampsIndexRoute
   '/conferences': typeof ConferencesIndexRoute
   '/internships': typeof InternshipsIndexRoute
-  '/week-without-walls/kings': typeof WeekWithoutWallsKingsRoute
   '/api/public/track-relay': typeof ApiPublicTrackRelayRoute
   '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
+  '/week-without-walls/kings/$programSlug': typeof WeekWithoutWallsKingsProgramSlugRoute
+  '/week-without-walls/kings': typeof WeekWithoutWallsKingsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -333,9 +343,10 @@ export interface FileRoutesById {
   '/camps/': typeof CampsIndexRoute
   '/conferences/': typeof ConferencesIndexRoute
   '/internships/': typeof InternshipsIndexRoute
-  '/week-without-walls/kings/': typeof WeekWithoutWallsKingsRoute
   '/api/public/track-relay': typeof ApiPublicTrackRelayRoute
   '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
+  '/week-without-walls/kings/$programSlug': typeof WeekWithoutWallsKingsProgramSlugRoute
+  '/week-without-walls/kings/': typeof WeekWithoutWallsKingsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -372,9 +383,10 @@ export interface FileRouteTypes {
     | '/camps/'
     | '/conferences/'
     | '/internships/'
-    | '/week-without-walls/kings/'
     | '/api/public/track-relay'
     | '/our-offerings/conferences/$slug'
+    | '/week-without-walls/kings/$programSlug'
+    | '/week-without-walls/kings/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -405,9 +417,10 @@ export interface FileRouteTypes {
     | '/camps'
     | '/conferences'
     | '/internships'
-    | '/week-without-walls/kings'
     | '/api/public/track-relay'
     | '/our-offerings/conferences/$slug'
+    | '/week-without-walls/kings/$programSlug'
+    | '/week-without-walls/kings'
   id:
     | '__root__'
     | '/'
@@ -442,9 +455,10 @@ export interface FileRouteTypes {
     | '/camps/'
     | '/conferences/'
     | '/internships/'
-    | '/week-without-walls/kings/'
     | '/api/public/track-relay'
     | '/our-offerings/conferences/$slug'
+    | '/week-without-walls/kings/$programSlug'
+    | '/week-without-walls/kings/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -715,7 +729,14 @@ declare module '@tanstack/react-router' {
       id: '/week-without-walls/kings/'
       path: '/'
       fullPath: '/week-without-walls/kings/'
-      preLoaderRoute: typeof WeekWithoutWallsKingsRouteImport
+      preLoaderRoute: typeof WeekWithoutWallsKingsIndexRouteImport
+      parentRoute: typeof WeekWithoutWallsKingsRoute
+    }
+    '/week-without-walls/kings/$programSlug': {
+      id: '/week-without-walls/kings/$programSlug'
+      path: '/$programSlug'
+      fullPath: '/week-without-walls/kings/$programSlug'
+      preLoaderRoute: typeof WeekWithoutWallsKingsProgramSlugRouteImport
       parentRoute: typeof WeekWithoutWallsKingsRoute
     }
   }
@@ -777,11 +798,13 @@ const InternshipsRouteWithChildren = InternshipsRoute._addFileChildren(
 )
 
 interface WeekWithoutWallsKingsRouteChildren {
-  WeekWithoutWallsKingsRoute: typeof WeekWithoutWallsKingsRoute
+  WeekWithoutWallsKingsProgramSlugRoute: typeof WeekWithoutWallsKingsProgramSlugRoute
+  WeekWithoutWallsKingsIndexRoute: typeof WeekWithoutWallsKingsIndexRoute
 }
 
 const WeekWithoutWallsKingsRouteChildren: WeekWithoutWallsKingsRouteChildren = {
-  WeekWithoutWallsKingsRoute: WeekWithoutWallsKingsRoute,
+  WeekWithoutWallsKingsProgramSlugRoute: WeekWithoutWallsKingsProgramSlugRoute,
+  WeekWithoutWallsKingsIndexRoute: WeekWithoutWallsKingsIndexRoute,
 }
 
 const WeekWithoutWallsKingsRouteWithChildren =
