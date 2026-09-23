@@ -73,7 +73,8 @@ function KingsNavbar() {
   return (
     <nav className="fixed inset-x-0 top-0 z-50 border-b border-border/50 bg-background/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 md:h-20 md:px-8">
-        <button type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="text-left leading-none select-none">
+        <button type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="flex items-center gap-3 text-left leading-none select-none">
+          <img src={kingsWwwAssets.lwlLogo} alt="Learn with Leaders" className="h-9 w-auto object-contain md:h-11" />
           <span className="font-display text-sm font-black uppercase tracking-[0.16em] text-primary sm:text-base md:text-lg">Week Without Walls</span>
         </button>
         <div className="hidden items-center gap-7 md:flex">
@@ -190,10 +191,10 @@ export default function KingsWeekWithoutWalls() {
               <img src={kingsWwwAssets.hpairLogo} alt="HPAIR" className="h-16 w-auto max-w-[230px] object-contain sm:h-20 sm:max-w-[300px]" />
             </div>
           </div>
-          <p className="mb-4 text-xs font-bold uppercase tracking-[0.24em] text-primary sm:text-sm">Kings’ School Al Barsha · 1–5 February 2027</p>
+          <p className="mb-4 text-xs font-bold uppercase tracking-[0.24em] text-primary-on-dark sm:text-sm">Kings’ School Al Barsha · 1–5 February 2027</p>
           <h1 className="mx-auto max-w-[82rem] font-display text-4xl font-extrabold leading-[0.98] sm:text-6xl md:text-7xl xl:text-8xl">
             <span className="block whitespace-nowrap">A Week Without Walls.</span>
-            <span className="mt-2 block font-semibold text-primary">Five paths into the real world.</span>
+            <span className="mt-2 block font-semibold text-background">Five paths into the real world.</span>
           </h1>
           <p className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-background/80 sm:text-lg">
             Five days of ambitious, hands-on work in enterprise, finance, social impact, leadership and communication, designed for Kings’ students in Years 7–13.
@@ -333,8 +334,8 @@ export default function KingsWeekWithoutWalls() {
               <div className="flex h-20 items-center overflow-hidden rounded-lg bg-background px-5">
                 <img src={kingsWwwAssets.hpairLogo} alt="HPAIR" className="h-11 w-auto max-w-[210px] object-contain" />
               </div>
-              <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-lg bg-background p-2">
-                <img src={kingsWwwAssets.onwardSeal} alt="Onward Fellowship" className="h-16 w-16 object-contain" />
+              <div className="flex h-20 items-center justify-center overflow-hidden rounded-lg bg-background px-5">
+                <img src={kingsWwwAssets.lwlLogo} alt="Learn with Leaders" className="h-12 w-auto object-contain" />
               </div>
             </div>
           </div>
@@ -358,11 +359,11 @@ export default function KingsWeekWithoutWalls() {
 
       <footer className="border-t border-background/10 bg-foreground px-4 py-10 text-background sm:px-6 md:px-8">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 text-center sm:flex-row sm:text-left">
-          <div className="flex flex-col leading-none select-none">
-            <span className="font-display text-2xl font-black uppercase tracking-[0.2em] text-primary md:text-3xl">Onward</span>
-            <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-background/60">Week Without Walls</span>
+          <div className="flex flex-col items-center gap-2 leading-none select-none sm:items-start">
+            <img src={kingsWwwAssets.lwlWhite} alt="Learn with Leaders" className="h-9 w-auto object-contain" />
+            <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-background/60">Week Without Walls</span>
           </div>
-          <p className="text-xs text-background/50">© 2027 Onward · An initiative of Learn with Leaders</p>
+          <p className="text-xs text-background/50">© 2027 Learn with Leaders · Week Without Walls at Kings’ School Al Barsha</p>
         </div>
       </footer>
     </div>

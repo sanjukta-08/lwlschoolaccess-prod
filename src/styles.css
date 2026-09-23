@@ -281,6 +281,10 @@
   --ring: var(--crimson);
 }
 
+.kings-www .text-primary-on-dark {
+  color: oklch(0.75 0.16 18);
+}
+
 .kings-www :is(h1, h2, h3, h4, h5, h6),
 .kings-www .font-display {
   letter-spacing: 0;

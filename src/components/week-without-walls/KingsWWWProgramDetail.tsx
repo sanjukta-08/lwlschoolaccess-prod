@@ -20,9 +20,9 @@ export default function KingsWWWProgramDetail({ program }: { program: KingsProgr
       <nav className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/95 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 md:h-20 md:px-8">
           <Link to="/week-without-walls/kings" className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.1em]"><ArrowLeft className="h-4 w-4" /> All programs</Link>
-          <Link to="/week-without-walls/kings" className="flex flex-col leading-none text-right select-none">
-            <span className="font-display text-lg font-black uppercase tracking-[0.2em] text-primary sm:text-xl md:text-2xl">Onward</span>
-            <span className="mt-0.5 text-[9px] font-semibold uppercase tracking-[0.22em] text-muted-foreground sm:text-[10px]">Week Without Walls</span>
+          <Link to="/week-without-walls/kings" className="flex items-center gap-3 leading-none select-none">
+            <img src={kingsWwwAssets.lwlLogo} alt="Learn with Leaders" className="h-9 w-auto object-contain md:h-10" />
+            <span className="font-display text-xs font-black uppercase tracking-[0.16em] text-primary sm:text-sm">Week Without Walls</span>
           </Link>
         </div>
       </nav>
@@ -33,9 +33,9 @@ export default function KingsWWWProgramDetail({ program }: { program: KingsProgr
         <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/35 to-foreground/30" />
         <div className="relative mx-auto w-full max-w-6xl px-4 py-14 text-background sm:px-6 md:px-8">
           <LogoLockup />
-          <p className="mt-8 text-xs font-bold uppercase tracking-[0.2em] text-primary sm:text-sm">{program.eyebrow}</p>
+          <p className="mt-8 text-xs font-bold uppercase tracking-[0.2em] text-primary-on-dark sm:text-sm">{program.eyebrow}</p>
           <h1 className="mx-auto mt-4 max-w-5xl font-display text-4xl font-extrabold leading-tight sm:text-6xl lg:text-7xl">{program.title}</h1>
-          <p className="mt-4 font-display text-xl font-bold text-primary sm:text-2xl">{program.tagline}</p>
+          <p className="mt-4 font-display text-xl font-bold text-primary-on-dark sm:text-2xl">{program.tagline}</p>
           <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-background/85 sm:text-lg">{program.description}</p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button asChild size="lg" className="rounded-none font-bold uppercase tracking-[0.08em]"><a href="#curriculum">Explore curriculum</a></Button>
@@ -116,7 +116,7 @@ export default function KingsWWWProgramDetail({ program }: { program: KingsProgr
       </main>
 
       <footer className="border-t border-border bg-foreground px-4 py-10 text-background sm:px-6 md:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 text-center sm:flex-row sm:text-left"><div className="flex flex-col leading-none select-none"><span className="font-display text-2xl font-black uppercase tracking-[0.2em] text-primary md:text-3xl">Onward</span><span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-background/60">Week Without Walls</span></div><Link to="/week-without-walls/kings" className="text-sm font-bold uppercase tracking-[0.1em]">Explore all five programs</Link></div>
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 text-center sm:flex-row sm:text-left"><div className="flex flex-col items-center gap-2 leading-none select-none sm:items-start"><img src={kingsWwwAssets.lwlWhite} alt="Learn with Leaders" className="h-9 w-auto object-contain" /><span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-background/60">Week Without Walls</span></div><Link to="/week-without-walls/kings" className="text-sm font-bold uppercase tracking-[0.1em]">Explore all five programs</Link></div>
       </footer>
     </div>
   );
