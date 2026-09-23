@@ -108,6 +108,7 @@ export const kingsPrograms: KingsProgram[] = [
     duration: "5 campus days + 15-day live sprint",
     recognition: "Certificate of Participation from HPAIR",
     image: kingsWwwAssets.leadershipImage,
+    logo: kingsWwwAssets.finlitLogo,
     brochure: sovereignBrochureAsset.url,
     outcomes: [
       "A live MarketWatch paper portfolio with a clear investment thesis",
@@ -260,6 +261,7 @@ export const kingsPrograms: KingsProgram[] = [
     duration: "5 campus days + 15-day live sprint",
     recognition: "Junior Certificate of Venture Excellence",
     image: kingsWwwAssets.ventureImage,
+    logo: kingsWwwAssets.finlitLogo,
     brochure: juniorBrochureAsset.url,
     outcomes: ["A USD 100,000 virtual portfolio in familiar real-world businesses", "A Brand Detective card, Basket Map and trade diary", "An age-appropriate understanding of revenue, profit, trends and diversification", "A four-slide money story presented by every team member"],
     curriculum: [
