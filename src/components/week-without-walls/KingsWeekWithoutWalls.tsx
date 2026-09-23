@@ -122,7 +122,10 @@ function ProgrammeCard({ programme }: { programme: KingsProgram }) {
           </div>
         </div>
         <div className="p-6 sm:p-8 lg:p-10">
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-primary">{programme.partner}</p>
+          <div className="mb-3 flex items-center justify-between gap-4">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">{programme.partner}</p>
+            {programme.logo && <img src={programme.logo} alt="FinLit AI" className="h-9 w-auto shrink-0 object-contain" />}
+          </div>
           <h3 className="mb-4 font-display text-2xl font-extrabold leading-tight sm:text-3xl">{programme.title}</h3>
           <p className="mb-6 text-sm leading-relaxed text-muted-foreground sm:text-base">{programme.summary}</p>
           <div className="mb-6 border-l-2 border-primary bg-muted/60 px-5 py-4">

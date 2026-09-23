@@ -1,5 +1,6 @@
 import kingsLogoAsset from "@/assets/kings-www/kings-school-logo-color.png.asset.json";
 import hpairLogoAsset from "@/assets/kings-www/hpair-logo-new.png.asset.json";
+import finlitLogoAsset from "@/assets/finlit-logo-ai.png.asset.json";
 import lwlLogoAsset from "@/assets/lwl-logo.png.asset.json";
 import lwlWhiteAsset from "@/assets/lwl_white.png.asset.json";
 import heroImageAsset from "@/assets/kings-www/student-group.jpg.asset.json";
@@ -36,6 +37,7 @@ export type KingsProgram = {
   duration: string;
   recognition: string;
   image: string;
+  logo?: string;
   brochure: string;
   outcomes: string[];
   curriculum: CurriculumDay[];
@@ -49,6 +51,7 @@ export type KingsProgram = {
 export const kingsWwwAssets = {
   kingsLogo: kingsLogoAsset.url,
   hpairLogo: hpairLogoAsset.url,
+  finlitLogo: finlitLogoAsset.url,
   lwlLogo: lwlLogoAsset.url,
   lwlWhite: lwlWhiteAsset.url,
   heroImage: heroImageAsset.url,
@@ -105,6 +108,7 @@ export const kingsPrograms: KingsProgram[] = [
     duration: "5 campus days + 15-day live sprint",
     recognition: "Certificate of Participation from HPAIR",
     image: kingsWwwAssets.leadershipImage,
+    logo: kingsWwwAssets.finlitLogo,
     brochure: sovereignBrochureAsset.url,
     outcomes: [
       "A live MarketWatch paper portfolio with a clear investment thesis",
@@ -257,6 +261,7 @@ export const kingsPrograms: KingsProgram[] = [
     duration: "5 campus days + 15-day live sprint",
     recognition: "Junior Certificate of Venture Excellence",
     image: kingsWwwAssets.ventureImage,
+    logo: kingsWwwAssets.finlitLogo,
     brochure: juniorBrochureAsset.url,
     outcomes: ["A USD 100,000 virtual portfolio in familiar real-world businesses", "A Brand Detective card, Basket Map and trade diary", "An age-appropriate understanding of revenue, profit, trends and diversification", "A four-slide money story presented by every team member"],
     curriculum: [

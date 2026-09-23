@@ -4,12 +4,18 @@ import { ArrowLeft, CalendarDays, Check, Download, MapPin, Users } from "lucide-
 import { Button } from "@/components/ui/button";
 import { kingsWwwAssets, sharedFacts, type KingsProgram } from "./kings-data";
 
-function LogoLockup() {
+function LogoLockup({ logo }: { logo?: string | undefined }) {
   return (
     <div className="inline-flex items-stretch overflow-hidden rounded-lg border border-border bg-background">
       <div className="flex h-20 w-24 items-center justify-center px-4 sm:h-24 sm:w-28"><img src={kingsWwwAssets.kingsLogo} alt="Kings’ School Al Barsha" className="h-14 w-auto object-contain sm:h-16" /></div>
       <span className="my-4 w-px bg-border" aria-hidden="true" />
       <div className="flex h-20 items-center justify-center px-4 sm:h-24 sm:px-6"><img src={kingsWwwAssets.hpairLogo} alt="HPAIR" className="h-10 w-auto max-w-[190px] object-contain sm:h-12 sm:max-w-[250px]" /></div>
+      {logo && (
+        <>
+          <span className="my-4 w-px bg-border" aria-hidden="true" />
+          <div className="flex h-20 items-center justify-center px-4 sm:h-24 sm:px-6"><img src={logo} alt="FinLit AI" className="h-9 w-auto object-contain sm:h-10" /></div>
+        </>
+      )}
     </div>
   );
 }
@@ -32,7 +38,7 @@ export default function KingsWWWProgramDetail({ program }: { program: KingsProgr
         <div className="absolute inset-0 bg-foreground/70" />
         <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/35 to-foreground/30" />
         <div className="relative mx-auto w-full max-w-6xl px-4 py-14 text-background sm:px-6 md:px-8">
-          <LogoLockup />
+          <LogoLockup logo={program.logo} />
           <p className="mt-8 text-xs font-bold uppercase tracking-[0.2em] text-primary-on-dark sm:text-sm">{program.eyebrow}</p>
           <h1 className="mx-auto mt-4 max-w-5xl font-display text-4xl font-extrabold leading-tight sm:text-6xl lg:text-7xl">{program.title}</h1>
           <p className="mt-4 font-display text-xl font-bold text-primary-on-dark sm:text-2xl">{program.tagline}</p>
