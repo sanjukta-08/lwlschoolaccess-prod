@@ -208,8 +208,12 @@ export function captureUtmFromLocation(
     // Field-by-field: the new touch wins, otherwise we keep what we already
     // held. Values are never joined — one value per field, always.
     const resolved = resolveUtm(fresh, previous);
+    // Newest touch wins for EVERY field: the new touch replaces the stored
+    // last-touch record outright, so no stale click IDs (gclid, fbclid…),
+    // utm_content/utm_term or referrer from a previous tagged link survive
+    // and leak onto apply/pay URLs. First touch in localStorage still keeps
+    // the original attribution separately.
     const enriched: UtmParams = {
-      ...previous,
       ...fresh,
       ...resolved,
       lwl_landing_path: pathname,
