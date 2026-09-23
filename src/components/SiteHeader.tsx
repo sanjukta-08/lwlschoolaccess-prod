@@ -166,6 +166,22 @@ export function SiteHeader() {
             </Link>
           ))}
           <Link
+            to="/conferences"
+            activeProps={{ className: "bg-gold-soft text-ink" }}
+            className={mobileLinkCls}
+            onClick={close}
+          >
+            Conferences
+          </Link>
+          <Link
+            to="/week-without-walls/kings"
+            activeProps={{ className: "bg-gold-soft text-ink" }}
+            className={mobileLinkCls}
+            onClick={close}
+          >
+            Week Without Walls
+          </Link>
+          <Link
             to="/camps"
             activeProps={{ className: "bg-gold-soft text-ink" }}
             className={mobileLinkCls}
@@ -200,6 +216,14 @@ export function SiteHeader() {
         </Link>
         <Link to="/conferences" className={cls} activeProps={active} onClick={close}>
           Conferences
+        </Link>
+        <Link
+          to="/week-without-walls/kings"
+          className={`${cls} whitespace-nowrap`}
+          activeProps={active}
+          onClick={close}
+        >
+          Week Without Walls
         </Link>
         <Link
           to="/masterclasses"

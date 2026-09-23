@@ -61,6 +61,9 @@ export function SiteFooter({ note }: { note?: string }) {
             <Link to="/conferences" className={linkCls}>
               Conferences
             </Link>
+            <Link to="/week-without-walls/kings" className={linkCls}>
+              Week Without Walls
+            </Link>
           </nav>
 
 
