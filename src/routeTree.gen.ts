@@ -25,6 +25,7 @@ import { Route as ShortlistRouteImport } from './routes/shortlist'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
+import { Route as WeekWithoutWallsRouteImport } from './routes/week-without-walls'
 import { Route as CampsIndexRouteImport } from './routes/camps.index'
 import { Route as CampsSlugRouteImport } from './routes/camps.$slug'
 import { Route as CampsEntrepreneurshipAiSalamancaRouteImport } from './routes/camps.entrepreneurship-ai-salamanca'
@@ -39,8 +40,10 @@ import { Route as ConferencesIndexRouteImport } from './routes/conferences.index
 import { Route as ConferencesSlugRouteImport } from './routes/conferences.$slug'
 import { Route as InternshipsIndexRouteImport } from './routes/internships.index'
 import { Route as ProgrammesSlugRouteImport } from './routes/programmes.$slug'
+import { Route as WeekWithoutWallsKingsRouteImport } from './routes/week-without-walls.kings'
 import { Route as ApiPublicTrackRelayRouteImport } from './routes/api/public/track-relay'
 import { Route as OurOfferingsConferencesSlugRouteImport } from './routes/our-offerings.conferences.$slug'
+import { Route as WeekWithoutWallsKingsRouteImport } from './routes/week-without-walls.kings.'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -122,6 +125,11 @@ const TestimonialsRoute = TestimonialsRouteImport.update({
   path: '/testimonials',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WeekWithoutWallsRoute = WeekWithoutWallsRouteImport.update({
+  id: '/week-without-walls',
+  path: '/week-without-walls',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CampsIndexRoute = CampsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -199,6 +207,11 @@ const ProgrammesSlugRoute = ProgrammesSlugRouteImport.update({
   path: '/programmes/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WeekWithoutWallsKingsRoute = WeekWithoutWallsKingsRouteImport.update({
+  id: '/kings',
+  path: '/kings',
+  getParentRoute: () => WeekWithoutWallsRoute,
+} as any)
 const ApiPublicTrackRelayRoute = ApiPublicTrackRelayRouteImport.update({
   id: '/api/public/track-relay',
   path: '/api/public/track-relay',
@@ -210,6 +223,11 @@ const OurOfferingsConferencesSlugRoute =
     path: '/our-offerings/conferences/$slug',
     getParentRoute: () => rootRouteImport,
   } as any)
+const WeekWithoutWallsKingsRoute = WeekWithoutWallsKingsRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => WeekWithoutWallsKingsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -228,6 +246,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
+  '/week-without-walls': typeof WeekWithoutWallsRouteWithChildren
   '/camps/$slug': typeof CampsSlugRoute
   '/camps/entrepreneurship-ai-salamanca': typeof CampsEntrepreneurshipAiSalamancaRoute
   '/camps/future-sustainability-innovators-geneva': typeof CampsFutureSustainabilityInnovatorsGenevaRoute
@@ -239,9 +258,11 @@ export interface FileRoutesByFullPath {
   '/conference/$slug': typeof ConferenceSlugRoute
   '/conferences/$slug': typeof ConferencesSlugRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
+  '/week-without-walls/kings': typeof WeekWithoutWallsKingsRouteWithChildren
   '/camps/': typeof CampsIndexRoute
   '/conferences/': typeof ConferencesIndexRoute
   '/internships/': typeof InternshipsIndexRoute
+  '/week-without-walls/kings/': typeof WeekWithoutWallsKingsRoute
   '/api/public/track-relay': typeof ApiPublicTrackRelayRoute
   '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
 }
@@ -259,6 +280,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
+  '/week-without-walls': typeof WeekWithoutWallsRouteWithChildren
   '/camps/$slug': typeof CampsSlugRoute
   '/camps/entrepreneurship-ai-salamanca': typeof CampsEntrepreneurshipAiSalamancaRoute
   '/camps/future-sustainability-innovators-geneva': typeof CampsFutureSustainabilityInnovatorsGenevaRoute
@@ -273,6 +295,7 @@ export interface FileRoutesByTo {
   '/camps': typeof CampsIndexRoute
   '/conferences': typeof ConferencesIndexRoute
   '/internships': typeof InternshipsIndexRoute
+  '/week-without-walls/kings': typeof WeekWithoutWallsKingsRoute
   '/api/public/track-relay': typeof ApiPublicTrackRelayRoute
   '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
 }
@@ -294,6 +317,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
+  '/week-without-walls': typeof WeekWithoutWallsRouteWithChildren
   '/camps/$slug': typeof CampsSlugRoute
   '/camps/entrepreneurship-ai-salamanca': typeof CampsEntrepreneurshipAiSalamancaRoute
   '/camps/future-sustainability-innovators-geneva': typeof CampsFutureSustainabilityInnovatorsGenevaRoute
@@ -305,9 +329,11 @@ export interface FileRoutesById {
   '/conference/$slug': typeof ConferenceSlugRoute
   '/conferences/$slug': typeof ConferencesSlugRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
+  '/week-without-walls/kings': typeof WeekWithoutWallsKingsRouteWithChildren
   '/camps/': typeof CampsIndexRoute
   '/conferences/': typeof ConferencesIndexRoute
   '/internships/': typeof InternshipsIndexRoute
+  '/week-without-walls/kings/': typeof WeekWithoutWallsKingsRoute
   '/api/public/track-relay': typeof ApiPublicTrackRelayRoute
   '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
 }
@@ -330,6 +356,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/stories'
     | '/testimonials'
+    | '/week-without-walls'
     | '/camps/$slug'
     | '/camps/entrepreneurship-ai-salamanca'
     | '/camps/future-sustainability-innovators-geneva'
@@ -341,9 +368,11 @@ export interface FileRouteTypes {
     | '/conference/$slug'
     | '/conferences/$slug'
     | '/programmes/$slug'
+    | '/week-without-walls/kings'
     | '/camps/'
     | '/conferences/'
     | '/internships/'
+    | '/week-without-walls/kings/'
     | '/api/public/track-relay'
     | '/our-offerings/conferences/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -361,6 +390,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/stories'
     | '/testimonials'
+    | '/week-without-walls'
     | '/camps/$slug'
     | '/camps/entrepreneurship-ai-salamanca'
     | '/camps/future-sustainability-innovators-geneva'
@@ -375,6 +405,7 @@ export interface FileRouteTypes {
     | '/camps'
     | '/conferences'
     | '/internships'
+    | '/week-without-walls/kings'
     | '/api/public/track-relay'
     | '/our-offerings/conferences/$slug'
   id:
@@ -395,6 +426,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/stories'
     | '/testimonials'
+    | '/week-without-walls'
     | '/camps/$slug'
     | '/camps/entrepreneurship-ai-salamanca'
     | '/camps/future-sustainability-innovators-geneva'
@@ -406,9 +438,11 @@ export interface FileRouteTypes {
     | '/conference/$slug'
     | '/conferences/$slug'
     | '/programmes/$slug'
+    | '/week-without-walls/kings'
     | '/camps/'
     | '/conferences/'
     | '/internships/'
+    | '/week-without-walls/kings/'
     | '/api/public/track-relay'
     | '/our-offerings/conferences/$slug'
   fileRoutesById: FileRoutesById
@@ -430,6 +464,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StoriesRoute: typeof StoriesRoute
   TestimonialsRoute: typeof TestimonialsRoute
+  WeekWithoutWallsRoute: typeof WeekWithoutWallsRouteWithChildren
   ConferenceSlugRoute: typeof ConferenceSlugRoute
   ProgrammesSlugRoute: typeof ProgrammesSlugRoute
   ApiPublicTrackRelayRoute: typeof ApiPublicTrackRelayRoute
@@ -550,6 +585,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TestimonialsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/week-without-walls': {
+      id: '/week-without-walls'
+      path: '/week-without-walls'
+      fullPath: '/week-without-walls'
+      preLoaderRoute: typeof WeekWithoutWallsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/camps/': {
       id: '/camps/'
       path: '/'
@@ -648,6 +690,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgrammesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/week-without-walls/kings': {
+      id: '/week-without-walls/kings'
+      path: '/kings'
+      fullPath: '/week-without-walls/kings'
+      preLoaderRoute: typeof WeekWithoutWallsKingsRouteImport
+      parentRoute: typeof WeekWithoutWallsRoute
+    }
     '/api/public/track-relay': {
       id: '/api/public/track-relay'
       path: '/api/public/track-relay'
@@ -661,6 +710,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/our-offerings/conferences/$slug'
       preLoaderRoute: typeof OurOfferingsConferencesSlugRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/week-without-walls/kings/': {
+      id: '/week-without-walls/kings/'
+      path: '/'
+      fullPath: '/week-without-walls/kings/'
+      preLoaderRoute: typeof WeekWithoutWallsKingsRouteImport
+      parentRoute: typeof WeekWithoutWallsKingsRoute
     }
   }
 }
@@ -720,6 +776,30 @@ const InternshipsRouteWithChildren = InternshipsRoute._addFileChildren(
   InternshipsRouteChildren,
 )
 
+interface WeekWithoutWallsKingsRouteChildren {
+  WeekWithoutWallsKingsRoute: typeof WeekWithoutWallsKingsRoute
+}
+
+const WeekWithoutWallsKingsRouteChildren: WeekWithoutWallsKingsRouteChildren = {
+  WeekWithoutWallsKingsRoute: WeekWithoutWallsKingsRoute,
+}
+
+const WeekWithoutWallsKingsRouteWithChildren =
+  WeekWithoutWallsKingsRoute._addFileChildren(
+    WeekWithoutWallsKingsRouteChildren,
+  )
+
+interface WeekWithoutWallsRouteChildren {
+  WeekWithoutWallsKingsRoute: typeof WeekWithoutWallsKingsRouteWithChildren
+}
+
+const WeekWithoutWallsRouteChildren: WeekWithoutWallsRouteChildren = {
+  WeekWithoutWallsKingsRoute: WeekWithoutWallsKingsRouteWithChildren,
+}
+
+const WeekWithoutWallsRouteWithChildren =
+  WeekWithoutWallsRoute._addFileChildren(WeekWithoutWallsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -737,6 +817,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StoriesRoute: StoriesRoute,
   TestimonialsRoute: TestimonialsRoute,
+  WeekWithoutWallsRoute: WeekWithoutWallsRouteWithChildren,
   ConferenceSlugRoute: ConferenceSlugRoute,
   ProgrammesSlugRoute: ProgrammesSlugRoute,
   ApiPublicTrackRelayRoute: ApiPublicTrackRelayRoute,
