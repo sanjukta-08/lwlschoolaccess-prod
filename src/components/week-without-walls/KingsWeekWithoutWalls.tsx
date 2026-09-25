@@ -196,7 +196,7 @@ export default function KingsWeekWithoutWalls() {
           </div>
           <p className="mb-4 text-xs font-bold uppercase tracking-[0.24em] text-primary-on-dark sm:text-sm">Kings’ School Al Barsha · 1–5 February 2027</p>
           <h1 className="mx-auto max-w-[82rem] font-display text-4xl font-extrabold leading-[0.98] sm:text-6xl md:text-7xl xl:text-8xl">
-            <span className="block whitespace-nowrap">A Week Without Walls.</span>
+            <span className="block sm:whitespace-nowrap">A Week Without Walls.</span>
             <span className="mt-2 block font-semibold text-background">Five paths into the real world.</span>
           </h1>
           <p className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-background/80 sm:text-lg">
