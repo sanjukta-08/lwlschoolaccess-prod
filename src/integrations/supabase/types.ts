@@ -2324,27 +2324,25 @@ export type Database = {
       }
       onward_applications: {
         Row: {
-          amount_currency: string | null
-          amount_paid_minor: number | null
+          amount: number | null
           city: string | null
           cohort: string | null
           cohort_id: string | null
           completion_status: string
           completion_token: string | null
           country: string | null
-          created_at: string | null
+          created_at: string
+          currency: string | null
           entry_source: string
           form_submitted_at: string | null
           grade_level: string | null
           id: string
-          paid_at: string | null
           parent_email: string | null
           parent_name: string | null
           parent_phone: string | null
           pathway: string | null
           payment_date: string | null
           payment_id: string | null
-          payment_intent_id: string | null
           payment_status: string | null
           program_code: string | null
           promo_code: string | null
@@ -2366,27 +2364,25 @@ export type Database = {
           visitor_id: string | null
         }
         Insert: {
-          amount_currency?: string | null
-          amount_paid_minor?: number | null
+          amount?: number | null
           city?: string | null
           cohort?: string | null
           cohort_id?: string | null
           completion_status?: string
           completion_token?: string | null
           country?: string | null
-          created_at?: string | null
+          created_at?: string
+          currency?: string | null
           entry_source?: string
           form_submitted_at?: string | null
           grade_level?: string | null
           id?: string
-          paid_at?: string | null
           parent_email?: string | null
           parent_name?: string | null
           parent_phone?: string | null
           pathway?: string | null
           payment_date?: string | null
           payment_id?: string | null
-          payment_intent_id?: string | null
           payment_status?: string | null
           program_code?: string | null
           promo_code?: string | null
@@ -2408,27 +2404,25 @@ export type Database = {
           visitor_id?: string | null
         }
         Update: {
-          amount_currency?: string | null
-          amount_paid_minor?: number | null
+          amount?: number | null
           city?: string | null
           cohort?: string | null
           cohort_id?: string | null
           completion_status?: string
           completion_token?: string | null
           country?: string | null
-          created_at?: string | null
+          created_at?: string
+          currency?: string | null
           entry_source?: string
           form_submitted_at?: string | null
           grade_level?: string | null
           id?: string
-          paid_at?: string | null
           parent_email?: string | null
           parent_name?: string | null
           parent_phone?: string | null
           pathway?: string | null
           payment_date?: string | null
           payment_id?: string | null
-          payment_intent_id?: string | null
           payment_status?: string | null
           program_code?: string | null
           promo_code?: string | null
@@ -4076,6 +4070,7 @@ export type Database = {
       normalize_grade_level: { Args: { input: string }; Returns: string }
       normalize_place_name: { Args: { input: string }; Returns: string }
       research_role: { Args: { _user_id: string }; Returns: string }
+      unaccent: { Args: { "": string }; Returns: string }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
