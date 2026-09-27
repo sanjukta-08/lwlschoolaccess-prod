@@ -153,13 +153,18 @@ function ProgrammeCard({ programme }: { programme: KingsProgram }) {
               <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">Program Fee</p>
               <p className="font-display text-xl font-bold">USD 650 <span className="font-body text-sm font-normal text-muted-foreground">per student</span></p>
             </div>
-            <div className="flex flex-col gap-2 sm:flex-row">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-end">
               <Button asChild variant="outline" className="rounded-none font-bold uppercase tracking-[0.1em]">
                 <Link to="/week-without-walls/kings/$programSlug" params={{ programSlug: programme.slug }}>View details</Link>
               </Button>
-              <Button asChild className="rounded-none font-bold uppercase tracking-[0.1em]">
+              <Button asChild variant="outline" className="rounded-none font-bold uppercase tracking-[0.1em]">
                 <a href={programme.brochure} target="_blank" rel="noopener noreferrer">
-                  View brochure <Download />
+                  Brochure <Download />
+                </a>
+              </Button>
+              <Button asChild className="rounded-none font-bold uppercase tracking-[0.1em]">
+                <a href={programme.applyUrl} target="_blank" rel="noopener noreferrer">
+                  Apply Now
                 </a>
               </Button>
             </div>
@@ -197,10 +202,10 @@ export default function KingsWeekWithoutWalls() {
           <p className="mb-4 text-xs font-bold uppercase tracking-[0.24em] text-primary-on-dark sm:text-sm">Kings’ School Al Barsha · 1–5 February 2027</p>
           <h1 className="mx-auto max-w-[82rem] font-display text-4xl font-extrabold leading-[0.98] sm:text-6xl md:text-7xl xl:text-8xl">
             <span className="block sm:whitespace-nowrap">A Week Without Walls.</span>
-            <span className="mt-2 block font-semibold text-background">Five paths into the real world.</span>
+            <span className="mt-2 block font-semibold text-background">Three paths into the real world.</span>
           </h1>
           <p className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-background/80 sm:text-lg">
-            Five days of ambitious, hands-on work in enterprise, finance, social impact, leadership and communication, designed for Kings’ students in Years 7–13.
+            Five days of ambitious, hands-on work in finance, social impact, leadership and communication, designed for Kings’ students in Years 7–13.
           </p>
         </div>
       </header>
@@ -219,7 +224,7 @@ export default function KingsWeekWithoutWalls() {
               <div className="mt-8 grid grid-cols-2 border-2 border-foreground/35 sm:grid-cols-4">
                 {[
                   ["5", "Campus days"],
-                  ["5", "Programs"],
+                  ["3", "Programs"],
                   ["7–13", "Year groups"],
                   ["1:20", "Mentor ratio"],
                 ].map(([value, label], index) => (
@@ -237,7 +242,7 @@ export default function KingsWeekWithoutWalls() {
           <div className="mx-auto max-w-7xl">
             <div className="mx-auto mb-10 max-w-4xl text-center">
               <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-primary">Choose a program</p>
-              <h2 className="font-display text-3xl font-extrabold sm:text-5xl">Five programs. Two age groups. One extraordinary week.</h2>
+              <h2 className="font-display text-3xl font-extrabold sm:text-5xl">Three programs. Two age groups. One extraordinary week.</h2>
             </div>
 
             {visible.length === 0 && (
@@ -330,7 +335,7 @@ export default function KingsWeekWithoutWalls() {
           <div className="mx-auto flex max-w-7xl flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-3xl">
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-primary">Program details</p>
-              <h2 className="font-display text-3xl font-extrabold sm:text-5xl">One week. Five ways to create something meaningful.</h2>
+              <h2 className="font-display text-3xl font-extrabold sm:text-5xl">One week. Three ways to create something meaningful.</h2>
               <p className="mt-4 text-background/70">Program Fee: USD 650 per student · Kings’ School Al Barsha · 1–5 February 2027</p>
             </div>
             <div className="flex flex-wrap items-center gap-3">
