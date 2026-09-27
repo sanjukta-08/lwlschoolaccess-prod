@@ -44,7 +44,8 @@ export default function KingsWWWProgramDetail({ program }: { program: KingsProgr
           <p className="mt-4 font-display text-xl font-bold text-primary-on-dark sm:text-2xl">{program.tagline}</p>
           <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-background/85 sm:text-lg">{program.description}</p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button asChild size="lg" className="rounded-none font-bold uppercase tracking-[0.08em]"><a href="#curriculum">Explore curriculum</a></Button>
+            <Button asChild size="lg" className="rounded-none font-bold uppercase tracking-[0.08em]"><a href={program.applyUrl} target="_blank" rel="noopener noreferrer">Apply Now</a></Button>
+            <Button asChild size="lg" variant="secondary" className="rounded-none font-bold uppercase tracking-[0.08em]"><a href="#curriculum">Explore curriculum</a></Button>
             <Button asChild size="lg" variant="secondary" className="rounded-none font-bold uppercase tracking-[0.08em]"><a href={program.brochure} target="_blank" rel="noopener noreferrer">View brochure <Download /></a></Button>
           </div>
         </div>
@@ -116,7 +117,7 @@ export default function KingsWWWProgramDetail({ program }: { program: KingsProgr
         <section className="px-4 py-12 sm:px-6 sm:py-16 md:px-8">
           <div className="mx-auto grid max-w-7xl border-2 border-foreground/30 lg:grid-cols-[1fr_0.7fr]">
             <div className="p-7 sm:p-10"><p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-primary">Mentorship</p><h2 className="font-display text-3xl font-extrabold sm:text-4xl">{program.mentorTitle}</h2><p className="mt-5 max-w-3xl leading-relaxed text-muted-foreground">{program.mentorDescription}</p></div>
-            <div className="border-t border-foreground/30 bg-muted/50 p-7 sm:p-10 lg:border-l lg:border-t-0"><p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">Program details</p><p className="mt-3 font-display text-2xl font-bold text-primary">{sharedFacts.fee}</p><p className="mt-3 text-sm leading-relaxed text-muted-foreground">{program.recognition}</p><Button asChild className="mt-6 rounded-none font-bold uppercase tracking-[0.08em]"><a href={program.brochure} target="_blank" rel="noopener noreferrer">View full brochure <Download /></a></Button></div>
+            <div className="border-t border-foreground/30 bg-muted/50 p-7 sm:p-10 lg:border-l lg:border-t-0"><p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">Program details</p><p className="mt-3 font-display text-2xl font-bold text-primary">{sharedFacts.fee}</p><p className="mt-3 text-sm leading-relaxed text-muted-foreground">{program.recognition}</p><div className="mt-6 flex flex-col gap-2"><Button asChild className="rounded-none font-bold uppercase tracking-[0.08em]"><a href={program.applyUrl} target="_blank" rel="noopener noreferrer">Apply Now</a></Button><Button asChild variant="outline" className="rounded-none font-bold uppercase tracking-[0.08em]"><a href={program.brochure} target="_blank" rel="noopener noreferrer">View full brochure <Download /></a></Button></div></div>
           </div>
         </section>
       </main>
