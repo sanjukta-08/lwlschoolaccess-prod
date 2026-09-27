@@ -123,7 +123,7 @@ export default function KingsWWWProgramDetail({ program }: { program: KingsProgr
       </main>
 
       <footer className="border-t border-border bg-foreground px-4 py-10 text-background sm:px-6 md:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 text-center sm:flex-row sm:text-left"><div className="flex flex-col items-center gap-2 leading-none select-none sm:items-start"><img src={kingsWwwAssets.lwlWhite} alt="Learn with Leaders" className="h-9 w-auto object-contain" /><span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-background/60">Week Without Walls</span></div><Link to="/week-without-walls/kings" className="text-sm font-bold uppercase tracking-[0.1em]">Explore all five programs</Link></div>
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 text-center sm:flex-row sm:text-left"><div className="flex flex-col items-center gap-2 leading-none select-none sm:items-start"><img src={kingsWwwAssets.lwlWhite} alt="Learn with Leaders" className="h-9 w-auto object-contain" /><span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-background/60">Week Without Walls</span></div><Link to="/week-without-walls/kings" className="text-sm font-bold uppercase tracking-[0.1em]">Explore all three programs</Link></div>
       </footer>
     </div>
   );
