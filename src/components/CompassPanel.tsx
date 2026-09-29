@@ -15,7 +15,6 @@ import { Shimmer } from "@/components/ai-elements/shimmer";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -119,7 +118,7 @@ function CompassPanel() {
         side="right"
         className="flex h-dvh w-screen max-w-none flex-col gap-0 overflow-hidden border-gold-line bg-background p-0 sm:w-[430px] sm:max-w-[430px]"
       >
-        <SheetHeader className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-b border-gold-line bg-gold-soft px-4 py-3.5 pr-14 text-left">
+        <SheetHeader className="border-b border-gold-line bg-gold-soft px-4 py-3.5 pr-14 text-left">
           <div className="flex min-w-0 items-center gap-3">
             <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-gold bg-crimson">
               <img
@@ -136,11 +135,6 @@ function CompassPanel() {
               </SheetDescription>
             </div>
           </div>
-          <SheetClose asChild>
-            <Button variant="ghost" size="sm" className="shrink-0 text-xs text-crimson">
-              Close
-            </Button>
-          </SheetClose>
         </SheetHeader>
 
         <a
