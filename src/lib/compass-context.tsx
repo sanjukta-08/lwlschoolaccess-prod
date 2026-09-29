@@ -1,4 +1,5 @@
 import { askCompass, type CompassReply } from "@/lib/compass.functions";
+import { resolveSaved, useShortlist } from "@/lib/shortlist";
 import { getUtm } from "@/lib/utm";
 import { useMatches, useRouterState } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
@@ -36,6 +37,26 @@ const welcomeMessage = (text: string): CompassMessage => ({
 });
 
 const WELCOME = welcomeMessage(GENERIC_WELCOME);
+
+/**
+ * Greeting for a family that has already saved programmes via the site's
+ * "Save for later" list — reuses the same shortlist data the Save buttons use.
+ */
+function savedWelcome(pageName: string | null, saved: string[]): string {
+  const list =
+    saved.length === 1
+      ? saved[0]!
+      : `${saved[0]}, ${saved[1]}${saved.length > 2 ? ` and ${saved.length - 2} more` : ""}`;
+  // On a detail page, mention what's on screen too — unless it's already among
+  // the saved names (then the saved framing covers it; don't say it twice).
+  if (pageName && !saved.includes(pageName)) {
+    const pronoun = saved.length === 1 ? "it compares" : "they compare";
+    return `Looking at ${pageName}? I’m Compass — I also see you’ve already saved ${list}. Want me to check how ${pronoun} with what’s on this page, or is there something else you’re weighing?`;
+  }
+  return saved.length === 1
+    ? `Hello, I’m Compass. I see you’ve already saved ${saved[0]} — want help comparing it with similar options, or is there something else you’re weighing?`
+    : `Hello, I’m Compass. I see you’ve saved a few options already (${list}) — want help comparing them, or looking at something new?`;
+}
 
 /** Per-tab conversation store: survives navigation and reloads, cleared when the tab closes. */
 const STORAGE_KEY = "compass:session:v1";
@@ -91,6 +112,15 @@ export function CompassProvider({ children }: { children: ReactNode }) {
   const [busy, setBusy] = useState(false);
   const [limitReached, setLimitReached] = useState(false);
   const [restored, setRestored] = useState(false);
+  // What the family has already "Saved" on the site (same store the Save buttons use).
+  const { ready: shortlistReady, items: savedItems } = useShortlist();
+  const savedNames = useMemo(
+    () =>
+      shortlistReady
+        ? [...new Set(resolveSaved(savedItems).map(({ p }) => p.name))]
+        : [],
+    [shortlistReady, savedItems],
+  );
 
   // Rehydrate this tab's conversation after hydration (never during render, to avoid SSR mismatch).
   useEffect(() => {
@@ -125,19 +155,22 @@ export function CompassProvider({ children }: { children: ReactNode }) {
     }
   }, [restored, messages, sessionId, limitReached]);
 
-  // Until the first user turn, the greeting follows the page the visitor is on.
+  // Until the first user turn, the greeting follows the page the visitor is on
+  // — and reflects anything they've already saved, so Compass knows the loop.
   const shownMessages = useMemo(
     () =>
       messages.length === 1 && messages[0]!.id === WELCOME.id
         ? [
             welcomeMessage(
-              pageName
-                ? `Looking at ${pageName}? I’m Compass — want me to check if it fits your child, or compare it with similar options across the Learn with Leaders group?`
-                : GENERIC_WELCOME,
+              savedNames.length > 0
+                ? savedWelcome(pageName, savedNames)
+                : pageName
+                  ? `Looking at ${pageName}? I’m Compass — want me to check if it fits your child, or compare it with similar options across the Learn with Leaders group?`
+                  : GENERIC_WELCOME,
             ),
           ]
         : messages,
-    [messages, pageName],
+    [messages, pageName, savedNames],
   );
 
   // Pages with their own fixed bottom action bar mark it with data-compass-offset;
