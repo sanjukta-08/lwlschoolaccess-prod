@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Compass concierge: `askCompass` server fn (src/lib/compass.functions.ts) → compass.server.ts; searches via loadCatalogue + all_masterclasses_public, logs to lwl_site.concierge_* with service role — reuses the existing applyLink contract and keeps writes server-only.
