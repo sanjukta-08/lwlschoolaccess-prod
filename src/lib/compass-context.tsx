@@ -1,4 +1,5 @@
 import { askCompass, type CompassReply } from "@/lib/compass.functions";
+import { resolveSaved, useShortlist } from "@/lib/shortlist";
 import { getUtm } from "@/lib/utm";
 import { useMatches, useRouterState } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
@@ -36,6 +37,26 @@ const welcomeMessage = (text: string): CompassMessage => ({
 });
 
 const WELCOME = welcomeMessage(GENERIC_WELCOME);
+
+/**
+ * Greeting for a family that has already saved programmes via the site's
+ * "Save for later" list — reuses the same shortlist data the Save buttons use.
+ */
+function savedWelcome(pageName: string | null, saved: string[]): string {
+  const list =
+    saved.length === 1
+      ? saved[0]!
+      : `${saved[0]}, ${saved[1]}${saved.length > 2 ? ` and ${saved.length - 2} more` : ""}`;
+  // On a detail page, mention what's on screen too — unless it's already among
+  // the saved names (then the saved framing covers it; don't say it twice).
+  if (pageName && !saved.includes(pageName)) {
+    const pronoun = saved.length === 1 ? "it compares" : "they compare";
+    return `Looking at ${pageName}? I’m Compass — I also see you’ve already saved ${list}. Want me to check how ${pronoun} with what’s on this page, or is there something else you’re weighing?`;
+  }
+  return saved.length === 1
+    ? `Hello, I’m Compass. I see you’ve already saved ${saved[0]} — want help comparing it with similar options, or is there something else you’re weighing?`
+    : `Hello, I’m Compass. I see you’ve saved a few options already (${list}) — want help comparing them, or looking at something new?`;
+}
 
 /** Per-tab conversation store: survives navigation and reloads, cleared when the tab closes. */
 const STORAGE_KEY = "compass:session:v1";
