@@ -125,6 +125,7 @@ export function buildRows(cat: LiveCatalogue, masterclasses: PublicMasterclass[]
       next_date: next.d,
       view_url: `${SITE}${view}`,
       apply_url: p.apply,
+      blurb: blurbOf(p.tag, p.about),
       _g: p.g,
       _cats: cats,
       _text: `${p.name} ${p.tag} ${p.about} ${(p.categories ?? []).join(" ")} ${typeLabel}`.toLowerCase(),
