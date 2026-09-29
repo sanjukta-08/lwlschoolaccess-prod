@@ -4,7 +4,7 @@ import { z } from "zod";
 
 import { loadCatalogue } from "./catalogue.functions";
 import { listPublicMasterclasses } from "./masterclasses.functions";
-import { buildRows, searchRows, type SearchResult } from "./compass-search.server";
+import { buildRows, searchRows, toPublic, type SearchResult } from "./compass-search.server";
 import type { CompassReply } from "./compass.functions";
 
 const MODEL = "openai/gpt-6-astra";
@@ -38,6 +38,7 @@ Hard rules:
 - Masterclass blurbs may name the actual host ("Hosted by ..."); you may name that host for that masterclass only. For programmes and fellowships (not masterclasses), you may call get_mentors and cite its real profiles as general social proof about the mentor network ("mentors from our network include ..."), but NEVER claim a specific mentor teaches, leads or is assigned to a specific programme — no such link exists in the data.
 - The get_mentors caveat is ONLY about mentor-to-programme LINKAGE (no specific mentor is tied to a specific non-masterclass programme) — it says nothing about whether the programme itself, its price, or its dates are real. search_catalogue results are fully verified the moment they are returned in this conversation — keep these two facts separate and never blur them; never cast retroactive doubt on a previously-shown catalogue result, re-open it, or call it "unconfirmed".
 - Only call check_promo_code when the user actually gives you a code. Never invent, guess or suggest promo codes that weren't provided. Report the result plainly — if the code is invalid, expired, not yet active or fully used, say so directly, and state the discount only as the tool returned it.
+- When the user asks to compare specific options that were already shown in this conversation, call compare_programmes with their ids (2-3) instead of re-describing them in prose — the interface renders a side-by-side table. Keep your text to brief framing of the key trade-off plus one follow-up question.
 - If the family mentions more than one child (different grades or interests), track each child as a separate thread in the conversation. Search separately for each when needed — call search_catalogue once per child, even in the same turn — and always make clear which child each recommendation or question is for (e.g. by name or grade).
 ${
   leadDone
@@ -129,6 +130,7 @@ export async function runCompass(input: Input): Promise<CompassReply> {
 
   const surfaced = new Map<string, SearchResult>();
   const toolLogs: { content: string; ids: string[] }[] = [];
+  let compareIds: string[] | undefined;
 
   const tools = {
     search_catalogue: tool({
@@ -140,6 +142,32 @@ export async function runCompass(input: Input): Promise<CompassReply> {
         for (const r of results) surfaced.set(r.id, r);
         toolLogs.push({ content: JSON.stringify({ query: q, results }), ids: results.map((r) => r.id) });
         return { count: results.length, results };
+      },
+    }),
+    compare_programmes: tool({
+      description:
+        "Show 2-3 options already surfaced in this conversation side by side. Pass their ids exactly as returned by search_catalogue. Returns the same result objects.",
+      inputSchema: z.object({ ids: z.array(z.string()).min(2).max(3) }),
+      execute: async ({ ids }) => {
+        const { data: prior } = await db
+          .from("concierge_messages")
+          .select("surfaced_program_ids")
+          .eq("session_id", sid);
+        const allowed = new Set<string>([
+          ...surfaced.keys(),
+          ...((prior ?? []) as { surfaced_program_ids: string[] | null }[]).flatMap((r) => r.surfaced_program_ids ?? []),
+        ]);
+        const all = await rows();
+        const results = ids
+          .filter((id, i) => allowed.has(id) && ids.indexOf(id) === i)
+          .map((id) => { const r = all.find((x) => x.id === id); return r ? toPublic(r) : undefined; })
+          .filter((r): r is SearchResult => !!r);
+        for (const r of results) surfaced.set(r.id, r);
+        if (results.length >= 2) compareIds = results.map((r) => r.id);
+        toolLogs.push({ content: JSON.stringify({ compare_programmes: ids, results }), ids: results.map((r) => r.id) });
+        return results.length >= 2
+          ? { count: results.length, results }
+          : { count: results.length, results, error: "Need at least 2 ids already shown in this conversation" };
       },
     }),
     get_mentors: tool({
@@ -287,5 +315,5 @@ export async function runCompass(input: Input): Promise<CompassReply> {
     { session_id: sid, role: "assistant", content: reply, surfaced_program_ids: surfacedIds },
   ]);
 
-  return { sessionId: sid, reply, results: [...surfaced.values()], leadCaptured, limitReached: false, ...(err ? { error: err } : {}) };
+  return { sessionId: sid, reply, results: [...surfaced.values()], ...(compareIds ? { compareIds } : {}), leadCaptured, limitReached: false, ...(err ? { error: err } : {}) };
 }

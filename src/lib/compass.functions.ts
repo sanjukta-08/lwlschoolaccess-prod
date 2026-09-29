@@ -6,6 +6,8 @@ export type CompassReply = {
   sessionId: string;
   reply: string;
   results: SearchResult[];
+  /** ids (subset of results) the model asked to show side by side via compare_programmes. */
+  compareIds?: string[];
   leadCaptured: boolean;
   limitReached: boolean;
   error?: { status: number; message: string };
