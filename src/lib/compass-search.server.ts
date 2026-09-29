@@ -38,6 +38,8 @@ export type SearchResult = {
   next_date: string | null;
   view_url: string;
   apply_url: string | null;
+  /** Short honest copy from the catalogue itself (about/tag/theme/description), capped at 200 chars. */
+  blurb: string;
 };
 
 const SITE = "https://lwlschoolaccess.com";
@@ -83,6 +85,12 @@ const parseMoney = (s: string | null | undefined): number | null => {
   return m ? Number(m[1]) : null;
 };
 
+/** Join whatever descriptive text a row carries into a single trimmed blurb (max 200 chars). */
+const blurbOf = (...parts: (string | null | undefined)[]): string => {
+  const text = parts.filter(Boolean).join(" ").replace(/\s+/g, " ").trim();
+  return text.length > 200 ? `${text.slice(0, 197).trimEnd()}…` : text;
+};
+
 type Row = SearchResult & {
   _g: [number, number] | null;
   _cats: CompassCategory[];
@@ -117,6 +125,7 @@ export function buildRows(cat: LiveCatalogue, masterclasses: PublicMasterclass[]
       next_date: next.d,
       view_url: `${SITE}${view}`,
       apply_url: p.apply,
+      blurb: blurbOf(p.tag, p.about),
       _g: p.g,
       _cats: cats,
       _text: `${p.name} ${p.tag} ${p.about} ${(p.categories ?? []).join(" ")} ${typeLabel}`.toLowerCase(),
@@ -143,6 +152,7 @@ export function buildRows(cat: LiveCatalogue, masterclasses: PublicMasterclass[]
       next_date: next,
       view_url: `${SITE}/camps/${live.slug}`,
       apply_url: live.applyUrl,
+      blurb: blurbOf(ed.theme, ed.promise),
       _g: parseGrades(ed.gradeBand),
       _cats: theme ? [theme] : [],
       _text: `${ed.name} ${ed.theme} ${ed.promise} ${ed.city} ${ed.country} camp residential`.toLowerCase(),
@@ -166,6 +176,7 @@ export function buildRows(cat: LiveCatalogue, masterclasses: PublicMasterclass[]
       next_date: m.scheduled_at,
       view_url: `${SITE}/masterclasses`,
       apply_url: m.apply_url,
+      blurb: blurbOf(m.description),
       _g: parseGrades(m.audience),
       _cats: (Object.keys(CAT_RE) as CompassCategory[]).filter((c) => CAT_RE[c].test(text)),
       _text: text.toLowerCase(),
