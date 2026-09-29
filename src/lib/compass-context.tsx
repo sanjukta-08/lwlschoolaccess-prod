@@ -37,6 +37,14 @@ const welcomeMessage = (text: string): CompassMessage => ({
 
 const WELCOME = welcomeMessage(GENERIC_WELCOME);
 
+/** Per-tab conversation store: survives navigation and reloads, cleared when the tab closes. */
+const STORAGE_KEY = "compass:session:v1";
+type StoredConversation = {
+  sessionId?: string | undefined;
+  messages: CompassMessage[];
+  limitReached: boolean;
+};
+
 /** Name of the programme/camp/conference the current detail page already loaded, if any. */
 function pageItemName(loaderData: unknown): string | null {
   if (!loaderData || typeof loaderData !== "object") return null;
@@ -82,6 +90,40 @@ export function CompassProvider({ children }: { children: ReactNode }) {
   const [messages, setMessages] = useState<CompassMessage[]>([WELCOME]);
   const [busy, setBusy] = useState(false);
   const [limitReached, setLimitReached] = useState(false);
+  const [restored, setRestored] = useState(false);
+
+  // Rehydrate this tab's conversation after hydration (never during render, to avoid SSR mismatch).
+  useEffect(() => {
+    try {
+      const raw = window.sessionStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const saved = JSON.parse(raw) as Partial<StoredConversation>;
+        if (Array.isArray(saved.messages) && saved.messages.length > 0) {
+          setMessages(saved.messages);
+          if (typeof saved.sessionId === "string") setSessionId(saved.sessionId);
+          setLimitReached(saved.limitReached === true);
+        }
+      }
+    } catch {
+      /* unreadable storage: start fresh */
+    }
+    setRestored(true);
+  }, []);
+
+  // Persist only once a real conversation exists; the bare welcome stays page-aware.
+  useEffect(() => {
+    if (!restored) return;
+    try {
+      if (messages.length === 1 && messages[0]!.id === WELCOME.id) {
+        window.sessionStorage.removeItem(STORAGE_KEY);
+        return;
+      }
+      const data: StoredConversation = { sessionId, messages, limitReached };
+      window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    } catch {
+      /* quota or privacy mode: keep in memory only */
+    }
+  }, [restored, messages, sessionId, limitReached]);
 
   // Until the first user turn, the greeting follows the page the visitor is on.
   const shownMessages = useMemo(
