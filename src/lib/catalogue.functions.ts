@@ -382,6 +382,7 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
         ...(db?.format ? { format: db.format } : {}),
         ...(db?.cover_image_url ? { coverImage: db.cover_image_url } : {}),
         ...(db?.categories ? { categories: db.categories } : {}),
+        ...(partner?.org_name ? { partnerName: partner.org_name } : {}),
         cohorts,
       });
     }
@@ -419,6 +420,7 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
         ...(db.format ? { format: db.format } : {}),
         ...(db.cover_image_url ? { coverImage: db.cover_image_url } : {}),
         ...(db.categories ? { categories: db.categories } : {}),
+        ...(partner?.org_name ? { partnerName: partner.org_name } : {}),
         cohorts,
       });
     }

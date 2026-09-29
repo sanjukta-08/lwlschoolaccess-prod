@@ -59,6 +59,8 @@ export type Programme = {
   format?: string;
   coverImage?: string;
   categories?: string[];
+  /** Owning platform/partner name from all_partners.org_name. */
+  partnerName?: string;
   cohorts: Cohort[];
 };
 
