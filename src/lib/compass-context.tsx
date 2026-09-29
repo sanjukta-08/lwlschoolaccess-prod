@@ -106,6 +106,10 @@ export function CompassProvider({ children }: { children: ReactNode }) {
     select: (matches) => pageItemName(matches[matches.length - 1]?.loaderData),
   });
   const [open, setOpen] = useState(false);
+  // The admin area is an internal tool — never show the customer-facing launcher there.
+  const isAdminRoute = useRouterState({
+    select: (state) => state.location.pathname.startsWith("/admin"),
+  });
   const [hasOpened, setHasOpened] = useState(false);
   const [sessionId, setSessionId] = useState<string>();
   const [messages, setMessages] = useState<CompassMessage[]>([WELCOME]);
@@ -274,22 +278,26 @@ export function CompassProvider({ children }: { children: ReactNode }) {
   return (
     <CompassContext.Provider value={value}>
       {children}
-      <Button
-        type="button"
-        onClick={() => changeOpen(true)}
-        aria-label="Open Compass concierge"
-        data-compass-launcher
-        style={liftPx ? { bottom: liftPx + 12 } : undefined}
-        className={`${open ? "hidden " : ""}fixed right-4 bottom-4 z-[70] h-12 gap-2 rounded-full border border-gold bg-crimson px-4 text-primary-foreground shadow-lift motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 sm:right-6 sm:bottom-6`}
-      >
-        <img src={birdAsset.url} alt="" aria-hidden="true" className="h-7 w-7 object-contain" />
-        <span className="font-bold">Compass</span>
-      </Button>
-      {hasOpened ? (
-        <Suspense fallback={null}>
-          <LazyCompassPanel />
-        </Suspense>
-      ) : null}
+      {isAdminRoute ? null : (
+        <>
+          <Button
+            type="button"
+            onClick={() => changeOpen(true)}
+            aria-label="Open Compass concierge"
+            data-compass-launcher
+            style={liftPx ? { bottom: liftPx + 12 } : undefined}
+            className={`${open ? "hidden " : ""}fixed right-4 bottom-4 z-[70] h-12 gap-2 rounded-full border border-gold bg-crimson px-4 text-primary-foreground shadow-lift motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 sm:right-6 sm:bottom-6`}
+          >
+            <img src={birdAsset.url} alt="" aria-hidden="true" className="h-7 w-7 object-contain" />
+            <span className="font-bold">Compass</span>
+          </Button>
+          {hasOpened ? (
+            <Suspense fallback={null}>
+              <LazyCompassPanel />
+            </Suspense>
+          ) : null}
+        </>
+      )}
     </CompassContext.Provider>
   );
 }

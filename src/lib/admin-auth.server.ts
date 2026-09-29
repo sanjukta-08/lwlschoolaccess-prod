@@ -20,12 +20,6 @@ export function getAdminSession() {
 
 export function passwordMatches(input: string): boolean {
   const expected = process.env["LWL_ADMIN_PANEL_PASSWORD"];
-  console.log(
-    "[admin-login] submitted length:",
-    input.length,
-    "expected length:",
-    expected ? expected.length : 0
-  );
   if (!expected) return false; // no password set → nobody gets in
   const a = createHash("sha256").update(input, "utf8").digest();
   const b = createHash("sha256").update(expected, "utf8").digest();
