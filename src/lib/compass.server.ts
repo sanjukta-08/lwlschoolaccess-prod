@@ -12,10 +12,11 @@ const MAX_MESSAGES = 40; // user + assistant turns logged per session
 const ADVISOR = "https://calendly.com/learnwithleaders";
 
 type Input = {
-  sessionId?: string;
+  sessionId?: string | undefined;
   messages: { role: "user" | "assistant"; content: string }[];
-  sourcePage?: string;
-  utm?: { utm_source?: string; utm_medium?: string; utm_campaign?: string };
+  sourcePage?: string | undefined;
+  utm?: { utm_source?: string | undefined; utm_medium?: string | undefined; utm_campaign?: string | undefined } | undefined;
+};
 };
 
 const SYSTEM = (leadDone: boolean) => `You are Compass, the AI concierge for the Learn with Leaders group. You are an AI assistant — say so if asked, and never claim to be human.
