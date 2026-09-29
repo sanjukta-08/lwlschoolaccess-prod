@@ -34,6 +34,9 @@ import {
 
 import { regionLabel } from "@/lib/regions";
 import { SiteFooter } from "@/components/SiteFooter";
+import { Button } from "@/components/ui/button";
+import { useCompass } from "@/lib/compass-context";
+import { MessageCircleQuestion } from "lucide-react";
 
 const TITLE = "Programme Finder | Learn with Leaders";
 const DESC =
@@ -80,6 +83,7 @@ export const Route = createFileRoute("/finder")({
 function FinderPage() {
   const state = Route.useSearch();
   const navigate = useNavigate({ from: Route.fullPath });
+  const compass = useCompass();
   const [visible, setVisible] = useState(PAGE);
 
   const update = (patch: Partial<FinderSearch>) => {
@@ -90,10 +94,7 @@ function FinderPage() {
   const matches = getMatches(state);
   const cohortCount = matches.reduce((n, m) => n + 1 + m.others.length, 0);
   const narrowed =
-    state.interest !== "all" ||
-    state.grade !== "all" ||
-    state.region !== "all" ||
-    !!state.q;
+    state.interest !== "all" || state.grade !== "all" || state.region !== "all" || !!state.q;
   const groups = useMemo(() => groupMatches(matches, state.sort), [matches, state.sort]);
 
   // Paginate across the whole ordered result set, then show only the groups
@@ -132,7 +133,6 @@ function FinderPage() {
   if (state.region !== "all")
     chips.push({ label: regionLabel(state.region), clear: { region: "all" } });
 
-
   let fallback = matches.length ? [] : getMatches(state, { ignoreMonth: true });
   let fallbackNote = "in other months";
   if (!matches.length && !fallback.length && state.region !== "all") {
@@ -165,7 +165,11 @@ function FinderPage() {
       {state.grade === "all" ? (
         " for every grade"
       ) : (
-        <> for <em className="text-crimson-deep">{BAND_LABEL[state.grade] ?? `Grade ${state.grade}`}</em></>
+        <>
+          {" "}
+          for{" "}
+          <em className="text-crimson-deep">{BAND_LABEL[state.grade] ?? `Grade ${state.grade}`}</em>
+        </>
       )}
       {state.month !== "all" ? (
         <>
@@ -175,8 +179,7 @@ function FinderPage() {
       {state.region !== "all" ? (
         <>
           {" "}
-          at a workable hour in{" "}
-          <em className="text-crimson-deep">{regionLabel(state.region)}</em>
+          at a workable hour in <em className="text-crimson-deep">{regionLabel(state.region)}</em>
         </>
       ) : null}
     </>
@@ -234,8 +237,7 @@ function FinderPage() {
                 {PROGRAMMES.length} programmes · Grades {gradeLo()}–{gradeHi()}
               </span>
               <h1 className="font-serif text-[clamp(1.8rem,4.4vw,2.7rem)] leading-[1.1] font-medium tracking-tight">
-                Find the programme that{" "}
-                <em className="text-crimson-deep">fits</em> your child
+                Find the programme that <em className="text-crimson-deep">fits</em> your child
               </h1>
             </div>
             <ul className="flex flex-wrap justify-center gap-2">
@@ -269,7 +271,6 @@ function FinderPage() {
           </aside>
 
           <main className="w-full min-w-0 flex-1 space-y-8">
-
             <div className="space-y-4">
               <div className="space-y-2">
                 <h2 className="font-serif text-[1.05rem] font-semibold text-ink">
@@ -287,7 +288,6 @@ function FinderPage() {
 
             <section id="all-programmes" className="scroll-mt-6">
               <div className="mb-4 flex flex-wrap items-end justify-between gap-x-6 gap-y-3 border-b border-line pb-4">
-
                 <div className="min-w-0">
                   <h2 className="font-serif text-[clamp(1.15rem,2.6vw,1.5rem)] leading-snug font-medium">
                     {headline}
@@ -299,6 +299,16 @@ function FinderPage() {
                   </p>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => compass.setOpen(true)}
+                    className="border-gold-line bg-gold-soft text-crimson hover:border-gold hover:bg-gold-soft"
+                  >
+                    <MessageCircleQuestion />
+                    Not sure where to start? Ask Compass
+                  </Button>
                   <Segmented
                     value={state.sort}
                     onChange={(v) => update({ sort: v })}
@@ -355,9 +365,7 @@ function FinderPage() {
                           </h3>
                           <small className="mono-label text-ink-faint">
                             {groups.find((x) => x.key === g.key)?.rows.length} option
-                            {groups.find((x) => x.key === g.key)?.rows.length === 1
-                              ? ""
-                              : "s"}
+                            {groups.find((x) => x.key === g.key)?.rows.length === 1 ? "" : "s"}
                           </small>
                         </div>
                         <ResultGroup
@@ -395,19 +403,14 @@ function FinderPage() {
                       Nothing matches that exact combination
                     </h3>
                     <p className="mx-auto max-w-[34em] text-[0.88rem] text-ink-soft">
-                      Your child doesn&apos;t have to wait long - these are the closest
-                      fits {fallbackNote}. Or clear a filter to widen the search.
+                      Your child doesn&apos;t have to wait long - these are the closest fits{" "}
+                      {fallbackNote}. Or clear a filter to widen the search.
                     </p>
                   </div>
                   {fallback.length ? (
                     <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                       {fallback.slice(0, 3).map((m, i) => (
-                        <ProgrammeCard
-                          key={m.p.id}
-                          match={m}
-                          index={i}
-                          region={state.region}
-                        />
+                        <ProgrammeCard key={m.p.id} match={m} index={i} region={state.region} />
                       ))}
                     </div>
                   ) : null}
@@ -415,11 +418,10 @@ function FinderPage() {
               )}
             </section>
 
-
             <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-line bg-paper px-5 py-4">
               <p className="max-w-[38em] text-[0.84rem] text-ink-soft">
-                Prefer to plan around dates? Every cohort, month by month, with US
-                Eastern times alongside Dubai.
+                Prefer to plan around dates? Every cohort, month by month, with US Eastern times
+                alongside Dubai.
               </p>
               <Link
                 to="/calendar"
@@ -457,8 +459,7 @@ function FinderPage() {
           Not sure which one <em>fits</em>?
         </h2>
         <p className="mx-auto mt-3 max-w-[34em] text-[0.93rem] text-paper/80">
-          Tell us about your child and an advisor will recommend the right pathway - no
-          obligation.
+          Tell us about your child and an advisor will recommend the right pathway - no obligation.
         </p>
         <a
           href="https://www.learnwithleaders.com/"
@@ -471,7 +472,6 @@ function FinderPage() {
       </section>
 
       <SiteFooter />
-
     </div>
   );
 }
@@ -524,11 +524,9 @@ function DomainChips({
   return (
     <div className="relative">
       <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] md:flex-wrap md:overflow-visible">
-
         {trackKeys.map((key) => {
           const pressed = state.interest === key;
-          const label =
-            key === "all" ? "All subjects" : TRACKS[key as keyof typeof TRACKS].label;
+          const label = key === "all" ? "All subjects" : TRACKS[key as keyof typeof TRACKS].label;
           return (
             <button
               key={key}
@@ -560,7 +558,6 @@ function DomainChips({
         className="pointer-events-none absolute top-0 right-0 h-full w-8 bg-gradient-to-l from-wash to-transparent md:hidden"
         aria-hidden="true"
       />
-
     </div>
   );
 }
@@ -585,8 +582,7 @@ function TypeChips({
       <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] md:flex-wrap md:overflow-visible">
         {typeKeys.map((key) => {
           const pressed = state.type === key;
-          const label =
-            key === "all" ? "All formats" : TYPES[key as keyof typeof TYPES].label;
+          const label = key === "all" ? "All formats" : TYPES[key as keyof typeof TYPES].label;
           return (
             <button
               key={key}
@@ -618,11 +614,9 @@ function TypeChips({
         className="pointer-events-none absolute top-0 right-0 h-full w-8 bg-gradient-to-l from-wash to-transparent md:hidden"
         aria-hidden="true"
       />
-
     </div>
   );
 }
-
 
 function Segmented({
   value,
