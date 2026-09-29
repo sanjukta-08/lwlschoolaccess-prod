@@ -273,12 +273,49 @@ export async function runCompass(input: Input): Promise<CompassReply> {
 
   const messages: ModelMessage[] = input.messages.slice(-MAX_MESSAGES).map((m) => ({ role: m.role, content: m.content }));
 
+  // --- grounding: options already shown earlier in this session --------
+  // Prior tool results are not replayed in the text-only history, so give the
+  // model an id → name → platform reference, grouped per earlier reply in order.
+  let grounding = "";
+  {
+    const { data: shown } = await db
+      .from("concierge_messages")
+      .select("surfaced_program_ids, created_at")
+      .eq("session_id", sid)
+      .eq("role", "assistant")
+      .order("created_at", { ascending: true });
+    const groups = ((shown ?? []) as { surfaced_program_ids: string[] | null }[])
+      .map((r) => [...new Set(r.surfaced_program_ids ?? [])])
+      .filter((g) => g.length > 0);
+    if (groups.length) {
+      const all = await rows();
+      const byId = new Map(all.map((r) => [r.id, r]));
+      const seen = new Set<string>();
+      const blocks: string[] = [];
+      groups.forEach((g, gi) => {
+        const lines = g
+          .map((id, i) => {
+            const r = byId.get(id);
+            if (!r) return undefined;
+            seen.add(id);
+            const p = toPublic(r);
+            return `  ${i + 1}. ${p.id} — ${p.name} — ${p.platform}`;
+          })
+          .filter(Boolean);
+        if (lines.length) blocks.push(`Earlier reply ${gi + 1}${gi === groups.length - 1 ? " (most recent)" : ""}, in the order shown:\n${lines.join("\n")}`);
+      });
+      if (seen.size) {
+        grounding = `\n\nOptions already shown to this user in this conversation (id — name — platform), for resolving references like "the first two" or a name. Positional references normally mean the most recent set. These were genuinely retrieved from search_catalogue and shown as cards — they are confirmed. Do NOT repeat this list to the user, it's for your own grounding only:\n${blocks.join("\n")}`;
+      }
+    }
+  }
+
   let reply = "";
   let err: CompassReply["error"];
   try {
     const result = streamText({
       model: provider.responses(MODEL),
-      system: SYSTEM(leadCaptured),
+      system: SYSTEM(leadCaptured) + grounding,
       messages,
       tools,
       stopWhen: stepCountIs(50),
