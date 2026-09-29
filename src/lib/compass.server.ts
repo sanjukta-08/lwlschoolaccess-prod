@@ -4,7 +4,7 @@ import { z } from "zod";
 
 import { loadCatalogue } from "./catalogue.functions";
 import { listPublicMasterclasses } from "./masterclasses.functions";
-import { buildRows, searchRows, type SearchResult } from "./compass-search.server";
+import { buildRows, searchRows, toPublic, type SearchResult } from "./compass-search.server";
 import type { CompassReply } from "./compass.functions";
 
 const MODEL = "openai/gpt-6-astra";
