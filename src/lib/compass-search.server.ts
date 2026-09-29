@@ -178,7 +178,7 @@ export function buildRows(cat: LiveCatalogue, masterclasses: PublicMasterclass[]
 }
 
 /** Rank: grade match > category match > budget fit > soonest start. */
-export function searchRows(rows: Row[], q: SearchParams, limit = 6): SearchResult[] {
+export function searchRows(rows: Row[], q: SearchParams, limit = 3): SearchResult[] {
   const now = new Date();
   const monthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 1).toISOString().slice(0, 10);
   const lo = q.grade_min ?? q.grade_max;

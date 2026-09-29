@@ -126,7 +126,7 @@ export async function runCompass(input: Input): Promise<CompassReply> {
   const tools = {
     search_catalogue: tool({
       description:
-        "Search the live Learn with Leaders group catalogue (programmes, fellowships, competitions, conferences, camps, masterclasses). Returns ranked matches with platform, grades, format, fee, next date, view and apply links.",
+        "Search the live Learn with Leaders group catalogue (programmes, fellowships, competitions, conferences, camps, masterclasses). Returns the top 3 ranked matches with platform, grades, format, fee, next date, view and apply links.",
       inputSchema: searchSchema,
       execute: async (q) => {
         const results = searchRows(await rows(), q);
