@@ -329,14 +329,11 @@ function CompassPanel() {
                       .map((id) => message.results?.find((r) => r.id === id))
                       .filter((r): r is CompassResult => !!r)}
                   />
-                ) : null}
-                {message.results?.some((r) => !message.compareIds?.includes(r.id)) ? (
+                ) : message.results?.length ? (
                   <div className="grid w-full gap-2.5">
-                    {message.results
-                      .filter((r) => !message.compareIds?.includes(r.id))
-                      .map((result) => (
-                        <ResultCard key={`${message.id}-${result.id}`} result={result} />
-                      ))}
+                    {message.results.map((result) => (
+                      <ResultCard key={`${message.id}-${result.id}`} result={result} />
+                    ))}
                   </div>
                 ) : null}
               </Message>
