@@ -34,6 +34,9 @@ import {
 
 import { regionLabel } from "@/lib/regions";
 import { SiteFooter } from "@/components/SiteFooter";
+import { Button } from "@/components/ui/button";
+import { useCompass } from "@/lib/compass-context";
+import { MessageCircleQuestion } from "lucide-react";
 
 const TITLE = "Programme Finder | Learn with Leaders";
 const DESC =
@@ -80,6 +83,7 @@ export const Route = createFileRoute("/finder")({
 function FinderPage() {
   const state = Route.useSearch();
   const navigate = useNavigate({ from: Route.fullPath });
+  const compass = useCompass();
   const [visible, setVisible] = useState(PAGE);
 
   const update = (patch: Partial<FinderSearch>) => {
@@ -299,6 +303,16 @@ function FinderPage() {
                   </p>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => compass.setOpen(true)}
+                    className="border-gold-line bg-gold-soft text-crimson hover:border-gold hover:bg-gold-soft"
+                  >
+                    <MessageCircleQuestion />
+                    Not sure where to start? Ask Compass
+                  </Button>
                   <Segmented
                     value={state.sort}
                     onChange={(v) => update({ sort: v })}

@@ -15,6 +15,7 @@ import { ShortlistContext, useShortlistState } from "../lib/shortlist";
 import { ensureCatalogue, useHydratedCatalogue } from "../lib/catalogue";
 import { UtmForwarder } from "../components/UtmForwarder";
 import { TrackingProvider } from "../components/TrackingProvider";
+import { CompassProvider } from "../lib/compass-context";
 
 
 function NotFoundComponent() {
@@ -152,11 +153,13 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <CatalogueProvider>
         <ShortlistContext.Provider value={shortlist}>
-          <UtmForwarder />
-          <TrackingProvider />
+          <CompassProvider>
+            <UtmForwarder />
+            <TrackingProvider />
 
-          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-          <Outlet />
+            {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+            <Outlet />
+          </CompassProvider>
         </ShortlistContext.Provider>
       </CatalogueProvider>
     </QueryClientProvider>
