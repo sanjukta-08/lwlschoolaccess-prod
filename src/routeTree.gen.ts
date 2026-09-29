@@ -16,6 +16,7 @@ import { Route as CalendarMonthRouteImport } from './routes/calendar-month'
 import { Route as CampsRouteImport } from './routes/camps'
 import { Route as CompetitionsRouteImport } from './routes/competitions'
 import { Route as ConferencesRouteImport } from './routes/conferences'
+import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as FinderRouteImport } from './routes/finder'
 import { Route as FitRouteImport } from './routes/fit'
 import { Route as InternshipsRouteImport } from './routes/internships'
@@ -79,6 +80,11 @@ const CompetitionsRoute = CompetitionsRouteImport.update({
 const ConferencesRoute = ConferencesRouteImport.update({
   id: '/conferences',
   path: '/conferences',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExploreRoute = ExploreRouteImport.update({
+  id: '/explore',
+  path: '/explore',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FinderRoute = FinderRouteImport.update({
@@ -245,6 +251,7 @@ export interface FileRoutesByFullPath {
   '/camps': typeof CampsRouteWithChildren
   '/competitions': typeof CompetitionsRoute
   '/conferences': typeof ConferencesRouteWithChildren
+  '/explore': typeof ExploreRoute
   '/finder': typeof FinderRoute
   '/fit': typeof FitRoute
   '/internships': typeof InternshipsRouteWithChildren
@@ -281,6 +288,7 @@ export interface FileRoutesByTo {
   '/calendar': typeof CalendarRoute
   '/calendar-month': typeof CalendarMonthRoute
   '/competitions': typeof CompetitionsRoute
+  '/explore': typeof ExploreRoute
   '/finder': typeof FinderRoute
   '/fit': typeof FitRoute
   '/masterclasses': typeof MasterclassesRoute
@@ -318,6 +326,7 @@ export interface FileRoutesById {
   '/camps': typeof CampsRouteWithChildren
   '/competitions': typeof CompetitionsRoute
   '/conferences': typeof ConferencesRouteWithChildren
+  '/explore': typeof ExploreRoute
   '/finder': typeof FinderRoute
   '/fit': typeof FitRoute
   '/internships': typeof InternshipsRouteWithChildren
@@ -358,6 +367,7 @@ export interface FileRouteTypes {
     | '/camps'
     | '/competitions'
     | '/conferences'
+    | '/explore'
     | '/finder'
     | '/fit'
     | '/internships'
@@ -394,6 +404,7 @@ export interface FileRouteTypes {
     | '/calendar'
     | '/calendar-month'
     | '/competitions'
+    | '/explore'
     | '/finder'
     | '/fit'
     | '/masterclasses'
@@ -430,6 +441,7 @@ export interface FileRouteTypes {
     | '/camps'
     | '/competitions'
     | '/conferences'
+    | '/explore'
     | '/finder'
     | '/fit'
     | '/internships'
@@ -469,6 +481,7 @@ export interface RootRouteChildren {
   CampsRoute: typeof CampsRouteWithChildren
   CompetitionsRoute: typeof CompetitionsRoute
   ConferencesRoute: typeof ConferencesRouteWithChildren
+  ExploreRoute: typeof ExploreRoute
   FinderRoute: typeof FinderRoute
   FitRoute: typeof FitRoute
   InternshipsRoute: typeof InternshipsRouteWithChildren
@@ -534,6 +547,13 @@ declare module '@tanstack/react-router' {
       path: '/conferences'
       fullPath: '/conferences'
       preLoaderRoute: typeof ConferencesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore': {
+      id: '/explore'
+      path: '/explore'
+      fullPath: '/explore'
+      preLoaderRoute: typeof ExploreRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/finder': {
@@ -831,6 +851,7 @@ const rootRouteChildren: RootRouteChildren = {
   CampsRoute: CampsRouteWithChildren,
   CompetitionsRoute: CompetitionsRoute,
   ConferencesRoute: ConferencesRouteWithChildren,
+  ExploreRoute: ExploreRoute,
   FinderRoute: FinderRoute,
   FitRoute: FitRoute,
   InternshipsRoute: InternshipsRouteWithChildren,
