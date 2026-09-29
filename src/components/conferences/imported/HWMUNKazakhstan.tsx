@@ -676,7 +676,7 @@ export default function HWMUNKazakhstan({ conference }: { conference: Programme 
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-[#1a1a1a] border border-white/10 text-white/70 hover:text-white hover:bg-[#2a2a2a] transition-all shadow-lg"
-          aria-label="Scroll to top"
+          data-compass-offset="true" aria-label="Scroll to top"
         >
           <ArrowUp className="w-5 h-5" />
         </button>
