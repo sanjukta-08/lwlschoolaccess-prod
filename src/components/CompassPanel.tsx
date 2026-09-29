@@ -151,7 +151,7 @@ function buildSummary(messages: ReturnType<typeof useCompass>["messages"]) {
   if (!seen.size) return "";
   const lines = [...seen.values()].map(
     (r) =>
-      `• ${r.name} (${r.platform})\n  Fee: ${r.fee} · Next date: ${formatDate(r.next_date)}\n  ${withUtm(r.view_url)}`,
+      `• ${r.name} (${r.platform})\n  Fee: ${r.fee} · Next date: ${formatDate(r.next_date)}${r.deadline ? ` · Apply by ${formatDate(r.deadline)}` : ""}\n  ${withUtm(r.view_url)}`,
   );
   return `Options from Compass, the Learn with Leaders concierge:\n\n${lines.join("\n\n")}`;
 }
