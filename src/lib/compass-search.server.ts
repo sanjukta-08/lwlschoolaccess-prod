@@ -38,6 +38,8 @@ export type SearchResult = {
   next_date: string | null;
   view_url: string;
   apply_url: string | null;
+  /** Short honest copy from the catalogue itself (about/tag/theme/description), capped at 200 chars. */
+  blurb: string;
 };
 
 const SITE = "https://lwlschoolaccess.com";
@@ -81,6 +83,12 @@ const parseGrades = (s: string | null | undefined): [number, number] | null => {
 const parseMoney = (s: string | null | undefined): number | null => {
   const m = (s ?? "").replace(/,/g, "").match(/(\d+(?:\.\d+)?)/);
   return m ? Number(m[1]) : null;
+};
+
+/** Join whatever descriptive text a row carries into a single trimmed blurb (max 200 chars). */
+const blurbOf = (...parts: (string | null | undefined)[]): string => {
+  const text = parts.filter(Boolean).join(" ").replace(/\s+/g, " ").trim();
+  return text.length > 200 ? `${text.slice(0, 197).trimEnd()}…` : text;
 };
 
 type Row = SearchResult & {
