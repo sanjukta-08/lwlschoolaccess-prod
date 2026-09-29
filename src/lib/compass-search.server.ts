@@ -217,9 +217,12 @@ export function searchRows(rows: Row[], q: SearchParams, limit = 3): SearchResul
     .filter((x) => x.grade >= 0 && ((!cats.length && !kw) || x.cat + x.key > 0))
     .sort((a, b) => b.score - a.score || (a.r.next_date ?? "9").localeCompare(b.r.next_date ?? "9"));
 
-  return scored.slice(0, limit).map(({ r }) => {
-    const { _g, _cats, _text, _feeNum, _free, _kind, ...pub } = r;
-    void _g; void _cats; void _text; void _feeNum; void _free; void _kind;
-    return pub;
-  });
+  return scored.slice(0, limit).map(({ r }) => toPublic(r));
+}
+
+/** Strip internal ranking fields. */
+export function toPublic(r: Row): SearchResult {
+  const { _g, _cats, _text, _feeNum, _free, _kind, ...pub } = r;
+  void _g; void _cats; void _text; void _feeNum; void _free; void _kind;
+  return pub;
 }

@@ -160,7 +160,7 @@ export async function runCompass(input: Input): Promise<CompassReply> {
         const all = await rows();
         const results = ids
           .filter((id, i) => allowed.has(id) && ids.indexOf(id) === i)
-          .map((id) => all.find((r) => r.row.id === id)?.row)
+          .map((id) => { const r = all.find((x) => x.id === id); return r ? toPublic(r) : undefined; })
           .filter((r): r is SearchResult => !!r);
         for (const r of results) surfaced.set(r.id, r);
         if (results.length >= 2) compareIds = results.map((r) => r.id);
