@@ -180,7 +180,7 @@ export async function runCompass(input: Input): Promise<CompassReply> {
         };
         const norm = (s: string) => s.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, " ").trim();
         const position = (ref: string): number | undefined => {
-          const t = norm(ref).replace(/^(the|option|no\.?|number|#)\s*/g, "").replace(/\s*(one|option)$/g, "").trim();
+          const t = norm(ref).replace(/^(the|option|no\.?|number|#)\s*/g, "").replace(/\s+(one|option)$/g, "").trim();
           if (t === "last" || t === "final") return recent.length;
           if (/^#?\d+$/.test(t)) return Number(t.replace("#", ""));
           if (ORD[t]) return ORD[t];
