@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as CalendarMonthRouteImport } from './routes/calendar-month'
 import { Route as CampsRouteImport } from './routes/camps'
@@ -27,6 +28,8 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as WeekWithoutWallsRouteImport } from './routes/week-without-walls'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as CampsIndexRouteImport } from './routes/camps.index'
 import { Route as CampsSlugRouteImport } from './routes/camps.$slug'
 import { Route as CampsEntrepreneurshipAiSalamancaRouteImport } from './routes/camps.entrepreneurship-ai-salamanca'
@@ -55,6 +58,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CalendarRoute = CalendarRouteImport.update({
@@ -136,6 +144,16 @@ const WeekWithoutWallsRoute = WeekWithoutWallsRouteImport.update({
   id: '/week-without-walls',
   path: '/week-without-walls',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AdminRoute,
 } as any)
 const CampsIndexRoute = CampsIndexRouteImport.update({
   id: '/',
@@ -246,6 +264,7 @@ const WeekWithoutWallsKingsProgramSlugRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
   '/calendar': typeof CalendarRoute
   '/calendar-month': typeof CalendarMonthRoute
   '/camps': typeof CampsRouteWithChildren
@@ -262,6 +281,7 @@ export interface FileRoutesByFullPath {
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
   '/week-without-walls': typeof WeekWithoutWallsRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
   '/camps/$slug': typeof CampsSlugRoute
   '/camps/entrepreneurship-ai-salamanca': typeof CampsEntrepreneurshipAiSalamancaRoute
   '/camps/future-sustainability-innovators-geneva': typeof CampsFutureSustainabilityInnovatorsGenevaRoute
@@ -274,6 +294,7 @@ export interface FileRoutesByFullPath {
   '/conferences/$slug': typeof ConferencesSlugRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/week-without-walls/kings': typeof WeekWithoutWallsKingsRouteWithChildren
+  '/admin/': typeof AdminIndexRoute
   '/camps/': typeof CampsIndexRoute
   '/conferences/': typeof ConferencesIndexRoute
   '/internships/': typeof InternshipsIndexRoute
@@ -298,6 +319,7 @@ export interface FileRoutesByTo {
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
   '/week-without-walls': typeof WeekWithoutWallsRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
   '/camps/$slug': typeof CampsSlugRoute
   '/camps/entrepreneurship-ai-salamanca': typeof CampsEntrepreneurshipAiSalamancaRoute
   '/camps/future-sustainability-innovators-geneva': typeof CampsFutureSustainabilityInnovatorsGenevaRoute
@@ -309,6 +331,7 @@ export interface FileRoutesByTo {
   '/conference/$slug': typeof ConferenceSlugRoute
   '/conferences/$slug': typeof ConferencesSlugRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
+  '/admin': typeof AdminIndexRoute
   '/camps': typeof CampsIndexRoute
   '/conferences': typeof ConferencesIndexRoute
   '/internships': typeof InternshipsIndexRoute
@@ -321,6 +344,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
   '/calendar': typeof CalendarRoute
   '/calendar-month': typeof CalendarMonthRoute
   '/camps': typeof CampsRouteWithChildren
@@ -337,6 +361,7 @@ export interface FileRoutesById {
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
   '/week-without-walls': typeof WeekWithoutWallsRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
   '/camps/$slug': typeof CampsSlugRoute
   '/camps/entrepreneurship-ai-salamanca': typeof CampsEntrepreneurshipAiSalamancaRoute
   '/camps/future-sustainability-innovators-geneva': typeof CampsFutureSustainabilityInnovatorsGenevaRoute
@@ -349,6 +374,7 @@ export interface FileRoutesById {
   '/conferences/$slug': typeof ConferencesSlugRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/week-without-walls/kings': typeof WeekWithoutWallsKingsRouteWithChildren
+  '/admin/': typeof AdminIndexRoute
   '/camps/': typeof CampsIndexRoute
   '/conferences/': typeof ConferencesIndexRoute
   '/internships/': typeof InternshipsIndexRoute
@@ -362,6 +388,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/admin'
     | '/calendar'
     | '/calendar-month'
     | '/camps'
@@ -378,6 +405,7 @@ export interface FileRouteTypes {
     | '/stories'
     | '/testimonials'
     | '/week-without-walls'
+    | '/admin/login'
     | '/camps/$slug'
     | '/camps/entrepreneurship-ai-salamanca'
     | '/camps/future-sustainability-innovators-geneva'
@@ -390,6 +418,7 @@ export interface FileRouteTypes {
     | '/conferences/$slug'
     | '/programmes/$slug'
     | '/week-without-walls/kings'
+    | '/admin/'
     | '/camps/'
     | '/conferences/'
     | '/internships/'
@@ -414,6 +443,7 @@ export interface FileRouteTypes {
     | '/stories'
     | '/testimonials'
     | '/week-without-walls'
+    | '/admin/login'
     | '/camps/$slug'
     | '/camps/entrepreneurship-ai-salamanca'
     | '/camps/future-sustainability-innovators-geneva'
@@ -425,6 +455,7 @@ export interface FileRouteTypes {
     | '/conference/$slug'
     | '/conferences/$slug'
     | '/programmes/$slug'
+    | '/admin'
     | '/camps'
     | '/conferences'
     | '/internships'
@@ -436,6 +467,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/admin'
     | '/calendar'
     | '/calendar-month'
     | '/camps'
@@ -452,6 +484,7 @@ export interface FileRouteTypes {
     | '/stories'
     | '/testimonials'
     | '/week-without-walls'
+    | '/admin/login'
     | '/camps/$slug'
     | '/camps/entrepreneurship-ai-salamanca'
     | '/camps/future-sustainability-innovators-geneva'
@@ -464,6 +497,7 @@ export interface FileRouteTypes {
     | '/conferences/$slug'
     | '/programmes/$slug'
     | '/week-without-walls/kings'
+    | '/admin/'
     | '/camps/'
     | '/conferences/'
     | '/internships/'
@@ -476,6 +510,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AdminRoute: typeof AdminRouteWithChildren
   CalendarRoute: typeof CalendarRoute
   CalendarMonthRoute: typeof CalendarMonthRoute
   CampsRoute: typeof CampsRouteWithChildren
@@ -512,6 +547,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/calendar': {
@@ -625,6 +667,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/week-without-walls'
       preLoaderRoute: typeof WeekWithoutWallsRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof AdminRoute
     }
     '/camps/': {
       id: '/camps/'
@@ -762,6 +818,18 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AdminRouteChildren {
+  AdminLoginRoute: typeof AdminLoginRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminLoginRoute: AdminLoginRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 interface CampsRouteChildren {
   CampsSlugRoute: typeof CampsSlugRoute
   CampsEntrepreneurshipAiSalamancaRoute: typeof CampsEntrepreneurshipAiSalamancaRoute
@@ -846,6 +914,7 @@ const WeekWithoutWallsRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AdminRoute: AdminRouteWithChildren,
   CalendarRoute: CalendarRoute,
   CalendarMonthRoute: CalendarMonthRoute,
   CampsRoute: CampsRouteWithChildren,
