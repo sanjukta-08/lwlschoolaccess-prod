@@ -209,6 +209,9 @@ export function SiteHeader() {
         <Link to="/conferences" className={cls} activeProps={active} onClick={close}>
           Conferences
         </Link>
+        <Link to="/competitions" className={cls} activeProps={active} onClick={close}>
+          Competitions
+        </Link>
         <Link
           to="/masterclasses"
           className={cls}
@@ -228,14 +231,6 @@ export function SiteHeader() {
           Calendar
         </Link>
 
-        <Link
-          to="/profile-building"
-          className={cls}
-          activeProps={active}
-          onClick={close}
-        >
-          Profile building
-        </Link>
         <Link
           to="/testimonials"
           search={DEFAULT_TESTIMONIAL_SEARCH}
