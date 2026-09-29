@@ -22,7 +22,7 @@ export type CompassMessage = {
   role: "user" | "assistant";
   parts: [{ type: "text"; text: string }];
   results?: CompassResult[];
-  compareIds?: string[];
+  compareIds?: string[] | undefined;
 };
 
 const GENERIC_WELCOME =
@@ -44,8 +44,8 @@ function pageItemName(loaderData: unknown): string | null {
     v && typeof v === "object" && typeof (v as { name?: unknown }).name === "string"
       ? ((v as { name: string }).name)
       : null;
-  if (typeof d.name === "string") return d.name;
-  return pick(d.camp) ?? pick(d.conference) ?? pick(d.programme) ?? pick(d.program) ?? null;
+  if (typeof d["name"] === "string") return d["name"];
+  return pick(d["camp"]) ?? pick(d["conference"]) ?? pick(d["programme"]) ?? pick(d["program"]) ?? null;
 }
 
 type CompassContextValue = {
