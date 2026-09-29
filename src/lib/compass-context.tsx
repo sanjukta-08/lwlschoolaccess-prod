@@ -106,6 +106,10 @@ export function CompassProvider({ children }: { children: ReactNode }) {
     select: (matches) => pageItemName(matches[matches.length - 1]?.loaderData),
   });
   const [open, setOpen] = useState(false);
+  // The admin area is an internal tool — never show the customer-facing launcher there.
+  const isAdminRoute = useRouterState({
+    select: (state) => state.location.pathname.startsWith("/admin"),
+  });
   const [hasOpened, setHasOpened] = useState(false);
   const [sessionId, setSessionId] = useState<string>();
   const [messages, setMessages] = useState<CompassMessage[]>([WELCOME]);
