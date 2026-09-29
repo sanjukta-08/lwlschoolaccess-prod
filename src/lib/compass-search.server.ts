@@ -1,6 +1,7 @@
 // Compass search: ranks the live catalogue (programmes, camps, masterclasses).
 // Data comes from loadCatalogue (editorial overlay + applyLink contract) and the
 // public-safe all_masterclasses_public view. Nothing here is hardcoded catalogue data.
+import { audienceLabel } from "./masterclass-format";
 import type { LiveCatalogue } from "./catalogue.functions";
 import type { PublicMasterclass } from "./masterclasses.functions";
 import { CAMPS } from "./camps";
@@ -175,7 +176,7 @@ export function buildRows(cat: LiveCatalogue, masterclasses: PublicMasterclass[]
       name: m.title,
       platform: m.partner_name ?? "Learn with Leaders",
       type: "masterclass",
-      grades: m.audience ?? "Open to students",
+      grades: audienceLabel(m.audience),
       format: "Live online",
       fee: "Free",
       next_date: m.scheduled_at,

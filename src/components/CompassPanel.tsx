@@ -158,6 +158,7 @@ function buildSummary(messages: ReturnType<typeof useCompass>["messages"]) {
 
 function SharePanel({ summary }: { summary: string }) {
   const [copied, setCopied] = useState(false);
+  const [copyError, setCopyError] = useState(false);
   if (!summary) {
     return (
       <p className="border-b border-line bg-paper px-4 py-3 text-xs text-ink-soft">
@@ -169,22 +170,32 @@ function SharePanel({ summary }: { summary: string }) {
     try {
       await navigator.clipboard.writeText(summary);
       setCopied(true);
+      setCopyError(false);
       window.setTimeout(() => setCopied(false), 2000);
     } catch {
       setCopied(false);
+      setCopyError(true);
+      window.setTimeout(() => setCopyError(false), 3000);
     }
   };
   return (
-    <div className="flex gap-2 border-b border-line bg-paper px-4 py-3">
-      <Button type="button" variant="outline" size="sm" className="flex-1" onClick={() => void copy()}>
-        {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
-        {copied ? "Copied" : "Copy summary"}
-      </Button>
-      <Button asChild size="sm" className="flex-1 bg-crimson text-primary-foreground hover:bg-crimson-deep">
-        <a href={`https://wa.me/?text=${encodeURIComponent(summary)}`} target="_blank" rel="noreferrer">
-          Share on WhatsApp <ArrowUpRight className="h-3.5 w-3.5" />
-        </a>
-      </Button>
+    <div className="border-b border-line bg-paper px-4 py-3">
+      <div className="flex gap-2">
+        <Button type="button" variant="outline" size="sm" className="flex-1" onClick={() => void copy()}>
+          {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+          {copied ? "Copied" : "Copy summary"}
+        </Button>
+        <Button asChild size="sm" className="flex-1 bg-crimson text-primary-foreground hover:bg-crimson-deep">
+          <a href={`https://wa.me/?text=${encodeURIComponent(summary)}`} target="_blank" rel="noreferrer">
+            Share on WhatsApp <ArrowUpRight className="h-3.5 w-3.5" />
+          </a>
+        </Button>
+      </div>
+      {copyError ? (
+        <p role="status" className="mt-2 text-xs text-crimson-deep">
+          Couldn&apos;t copy — try selecting the text manually.
+        </p>
+      ) : null}
     </div>
   );
 }
