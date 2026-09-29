@@ -35,6 +35,9 @@ export function SiteFooter({ note }: { note?: string }) {
             <Link to="/fit" search={DEFAULT_FIT} className={`${linkCls} font-bold text-gold hover:text-gold`}>
               Find the right fit (quiz)
             </Link>
+            <Link to="/explore" className={linkCls}>
+              Explore by type (guided)
+            </Link>
             <Link to="/finder" search={DEFAULT_SEARCH} className={linkCls}>
               Programme Finder
             </Link>
