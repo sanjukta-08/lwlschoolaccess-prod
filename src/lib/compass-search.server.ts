@@ -176,6 +176,7 @@ export function buildRows(cat: LiveCatalogue, masterclasses: PublicMasterclass[]
       next_date: m.scheduled_at,
       view_url: `${SITE}/masterclasses`,
       apply_url: m.apply_url,
+      blurb: blurbOf(m.description),
       _g: parseGrades(m.audience),
       _cats: (Object.keys(CAT_RE) as CompassCategory[]).filter((c) => CAT_RE[c].test(text)),
       _text: text.toLowerCase(),
