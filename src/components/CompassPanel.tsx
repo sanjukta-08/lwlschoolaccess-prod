@@ -3,11 +3,7 @@ import {
   ConversationContent,
   ConversationScrollButton,
 } from "@/components/ai-elements/conversation";
-import {
-  Message,
-  MessageContent,
-  MessageResponse,
-} from "@/components/ai-elements/message";
+import { Message, MessageContent, MessageResponse } from "@/components/ai-elements/message";
 import {
   PromptInput,
   PromptInputFooter,
@@ -72,7 +68,9 @@ function ResultCard({ result }: { result: CompassResult }) {
         </div>
         <div className="flex min-w-0 items-center gap-2">
           <CalendarDays className="h-3.5 w-3.5 shrink-0 text-gold-deep" />
-          <dd>{formatDate(result.next_date)} · {result.fee}</dd>
+          <dd>
+            {formatDate(result.next_date)} · {result.fee}
+          </dd>
         </div>
       </dl>
       <div className="mt-3 flex items-center gap-2">
@@ -80,7 +78,11 @@ function ResultCard({ result }: { result: CompassResult }) {
           <a href={withUtm(result.view_url)}>View</a>
         </Button>
         {result.apply_url ? (
-          <Button asChild size="sm" className="flex-1 bg-crimson text-primary-foreground hover:bg-crimson-deep">
+          <Button
+            asChild
+            size="sm"
+            className="flex-1 bg-crimson text-primary-foreground hover:bg-crimson-deep"
+          >
             <a href={withUtm(result.apply_url)} target="_blank" rel="noreferrer">
               Apply <ArrowUpRight className="h-3.5 w-3.5" />
             </a>
@@ -120,7 +122,12 @@ function CompassPanel() {
         <SheetHeader className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-b border-gold-line bg-gold-soft px-4 py-3.5 pr-14 text-left">
           <div className="flex min-w-0 items-center gap-3">
             <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-gold bg-crimson">
-              <img src={birdAsset.url} alt="" aria-hidden="true" className="h-7 w-7 object-contain" />
+              <img
+                src={birdAsset.url}
+                alt=""
+                aria-hidden="true"
+                className="h-7 w-7 object-contain"
+              />
             </div>
             <div className="min-w-0">
               <SheetTitle className="truncate text-base font-bold text-ink">Compass</SheetTitle>
@@ -145,7 +152,11 @@ function CompassPanel() {
           Talk to a human advisor <ArrowUpRight className="h-3.5 w-3.5" />
         </a>
 
-        <Conversation className="min-h-0 bg-background" aria-live="polite" aria-label="Compass conversation">
+        <Conversation
+          className="min-h-0 bg-background"
+          aria-live="polite"
+          aria-label="Compass conversation"
+        >
           <ConversationContent className="gap-5 px-4 py-5">
             {messages.map((message) => (
               <Message key={message.id} from={message.role}>
