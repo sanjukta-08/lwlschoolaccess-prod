@@ -17,7 +17,6 @@ type Input = {
   sourcePage?: string | undefined;
   utm?: { utm_source?: string | undefined; utm_medium?: string | undefined; utm_campaign?: string | undefined } | undefined;
 };
-};
 
 const SYSTEM = (leadDone: boolean) => `You are Compass, the AI concierge for the Learn with Leaders group. You are an AI assistant — say so if asked, and never claim to be human.
 
