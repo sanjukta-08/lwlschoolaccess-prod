@@ -29,6 +29,7 @@ import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as WeekWithoutWallsRouteImport } from './routes/week-without-walls'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as CampsIndexRouteImport } from './routes/camps.index'
 import { Route as CampsSlugRouteImport } from './routes/camps.$slug'
@@ -45,6 +46,8 @@ import { Route as ConferencesSlugRouteImport } from './routes/conferences.$slug'
 import { Route as InternshipsIndexRouteImport } from './routes/internships.index'
 import { Route as ProgrammesSlugRouteImport } from './routes/programmes.$slug'
 import { Route as WeekWithoutWallsKingsRouteImport } from './routes/week-without-walls.kings'
+import { Route as AdminSessionsIndexRouteImport } from './routes/admin.sessions.index'
+import { Route as AdminSessionsIdRouteImport } from './routes/admin.sessions.$id'
 import { Route as ApiPublicTrackRelayRouteImport } from './routes/api/public/track-relay'
 import { Route as OurOfferingsConferencesSlugRouteImport } from './routes/our-offerings.conferences.$slug'
 import { Route as WeekWithoutWallsKingsIndexRouteImport } from './routes/week-without-walls.kings.index'
@@ -150,6 +153,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminLeadsRoute = AdminLeadsRouteImport.update({
+  id: '/leads',
+  path: '/leads',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -237,6 +245,16 @@ const WeekWithoutWallsKingsRoute = WeekWithoutWallsKingsRouteImport.update({
   path: '/kings',
   getParentRoute: () => WeekWithoutWallsRoute,
 } as any)
+const AdminSessionsIndexRoute = AdminSessionsIndexRouteImport.update({
+  id: '/sessions/',
+  path: '/sessions/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSessionsIdRoute = AdminSessionsIdRouteImport.update({
+  id: '/sessions/$id',
+  path: '/sessions/$id',
+  getParentRoute: () => AdminRoute,
+} as any)
 const ApiPublicTrackRelayRoute = ApiPublicTrackRelayRouteImport.update({
   id: '/api/public/track-relay',
   path: '/api/public/track-relay',
@@ -281,6 +299,7 @@ export interface FileRoutesByFullPath {
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
   '/week-without-walls': typeof WeekWithoutWallsRouteWithChildren
+  '/admin/leads': typeof AdminLeadsRoute
   '/admin/login': typeof AdminLoginRoute
   '/camps/$slug': typeof CampsSlugRoute
   '/camps/entrepreneurship-ai-salamanca': typeof CampsEntrepreneurshipAiSalamancaRoute
@@ -298,9 +317,11 @@ export interface FileRoutesByFullPath {
   '/camps/': typeof CampsIndexRoute
   '/conferences/': typeof ConferencesIndexRoute
   '/internships/': typeof InternshipsIndexRoute
+  '/admin/sessions/$id': typeof AdminSessionsIdRoute
   '/api/public/track-relay': typeof ApiPublicTrackRelayRoute
   '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
   '/week-without-walls/kings/$programSlug': typeof WeekWithoutWallsKingsProgramSlugRoute
+  '/admin/sessions/': typeof AdminSessionsIndexRoute
   '/week-without-walls/kings/': typeof WeekWithoutWallsKingsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -319,6 +340,7 @@ export interface FileRoutesByTo {
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
   '/week-without-walls': typeof WeekWithoutWallsRouteWithChildren
+  '/admin/leads': typeof AdminLeadsRoute
   '/admin/login': typeof AdminLoginRoute
   '/camps/$slug': typeof CampsSlugRoute
   '/camps/entrepreneurship-ai-salamanca': typeof CampsEntrepreneurshipAiSalamancaRoute
@@ -335,9 +357,11 @@ export interface FileRoutesByTo {
   '/camps': typeof CampsIndexRoute
   '/conferences': typeof ConferencesIndexRoute
   '/internships': typeof InternshipsIndexRoute
+  '/admin/sessions/$id': typeof AdminSessionsIdRoute
   '/api/public/track-relay': typeof ApiPublicTrackRelayRoute
   '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
   '/week-without-walls/kings/$programSlug': typeof WeekWithoutWallsKingsProgramSlugRoute
+  '/admin/sessions': typeof AdminSessionsIndexRoute
   '/week-without-walls/kings': typeof WeekWithoutWallsKingsIndexRoute
 }
 export interface FileRoutesById {
@@ -361,6 +385,7 @@ export interface FileRoutesById {
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
   '/week-without-walls': typeof WeekWithoutWallsRouteWithChildren
+  '/admin/leads': typeof AdminLeadsRoute
   '/admin/login': typeof AdminLoginRoute
   '/camps/$slug': typeof CampsSlugRoute
   '/camps/entrepreneurship-ai-salamanca': typeof CampsEntrepreneurshipAiSalamancaRoute
@@ -378,9 +403,11 @@ export interface FileRoutesById {
   '/camps/': typeof CampsIndexRoute
   '/conferences/': typeof ConferencesIndexRoute
   '/internships/': typeof InternshipsIndexRoute
+  '/admin/sessions/$id': typeof AdminSessionsIdRoute
   '/api/public/track-relay': typeof ApiPublicTrackRelayRoute
   '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
   '/week-without-walls/kings/$programSlug': typeof WeekWithoutWallsKingsProgramSlugRoute
+  '/admin/sessions/': typeof AdminSessionsIndexRoute
   '/week-without-walls/kings/': typeof WeekWithoutWallsKingsIndexRoute
 }
 export interface FileRouteTypes {
@@ -405,6 +432,7 @@ export interface FileRouteTypes {
     | '/stories'
     | '/testimonials'
     | '/week-without-walls'
+    | '/admin/leads'
     | '/admin/login'
     | '/camps/$slug'
     | '/camps/entrepreneurship-ai-salamanca'
@@ -422,9 +450,11 @@ export interface FileRouteTypes {
     | '/camps/'
     | '/conferences/'
     | '/internships/'
+    | '/admin/sessions/$id'
     | '/api/public/track-relay'
     | '/our-offerings/conferences/$slug'
     | '/week-without-walls/kings/$programSlug'
+    | '/admin/sessions/'
     | '/week-without-walls/kings/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -443,6 +473,7 @@ export interface FileRouteTypes {
     | '/stories'
     | '/testimonials'
     | '/week-without-walls'
+    | '/admin/leads'
     | '/admin/login'
     | '/camps/$slug'
     | '/camps/entrepreneurship-ai-salamanca'
@@ -459,9 +490,11 @@ export interface FileRouteTypes {
     | '/camps'
     | '/conferences'
     | '/internships'
+    | '/admin/sessions/$id'
     | '/api/public/track-relay'
     | '/our-offerings/conferences/$slug'
     | '/week-without-walls/kings/$programSlug'
+    | '/admin/sessions'
     | '/week-without-walls/kings'
   id:
     | '__root__'
@@ -484,6 +517,7 @@ export interface FileRouteTypes {
     | '/stories'
     | '/testimonials'
     | '/week-without-walls'
+    | '/admin/leads'
     | '/admin/login'
     | '/camps/$slug'
     | '/camps/entrepreneurship-ai-salamanca'
@@ -501,9 +535,11 @@ export interface FileRouteTypes {
     | '/camps/'
     | '/conferences/'
     | '/internships/'
+    | '/admin/sessions/$id'
     | '/api/public/track-relay'
     | '/our-offerings/conferences/$slug'
     | '/week-without-walls/kings/$programSlug'
+    | '/admin/sessions/'
     | '/week-without-walls/kings/'
   fileRoutesById: FileRoutesById
 }
@@ -675,6 +711,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/leads': {
+      id: '/admin/leads'
+      path: '/leads'
+      fullPath: '/admin/leads'
+      preLoaderRoute: typeof AdminLeadsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/login': {
       id: '/admin/login'
       path: '/login'
@@ -787,6 +830,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WeekWithoutWallsKingsRouteImport
       parentRoute: typeof WeekWithoutWallsRoute
     }
+    '/admin/sessions/': {
+      id: '/admin/sessions/'
+      path: '/sessions'
+      fullPath: '/admin/sessions/'
+      preLoaderRoute: typeof AdminSessionsIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/sessions/$id': {
+      id: '/admin/sessions/$id'
+      path: '/sessions/$id'
+      fullPath: '/admin/sessions/$id'
+      preLoaderRoute: typeof AdminSessionsIdRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/api/public/track-relay': {
       id: '/api/public/track-relay'
       path: '/api/public/track-relay'
@@ -819,13 +876,19 @@ declare module '@tanstack/react-router' {
 }
 
 interface AdminRouteChildren {
+  AdminLeadsRoute: typeof AdminLeadsRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  AdminSessionsIdRoute: typeof AdminSessionsIdRoute
+  AdminSessionsIndexRoute: typeof AdminSessionsIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminLeadsRoute: AdminLeadsRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminIndexRoute: AdminIndexRoute,
+  AdminSessionsIdRoute: AdminSessionsIdRoute,
+  AdminSessionsIndexRoute: AdminSessionsIndexRoute,
 }
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
