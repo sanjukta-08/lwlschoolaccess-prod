@@ -112,6 +112,15 @@ export function CompassProvider({ children }: { children: ReactNode }) {
   const [busy, setBusy] = useState(false);
   const [limitReached, setLimitReached] = useState(false);
   const [restored, setRestored] = useState(false);
+  // What the family has already "Saved" on the site (same store the Save buttons use).
+  const { ready: shortlistReady, items: savedItems } = useShortlist();
+  const savedNames = useMemo(
+    () =>
+      shortlistReady
+        ? [...new Set(resolveSaved(savedItems).map(({ p }) => p.name))]
+        : [],
+    [shortlistReady, savedItems],
+  );
 
   // Rehydrate this tab's conversation after hydration (never during render, to avoid SSR mismatch).
   useEffect(() => {
@@ -146,19 +155,22 @@ export function CompassProvider({ children }: { children: ReactNode }) {
     }
   }, [restored, messages, sessionId, limitReached]);
 
-  // Until the first user turn, the greeting follows the page the visitor is on.
+  // Until the first user turn, the greeting follows the page the visitor is on
+  // — and reflects anything they've already saved, so Compass knows the loop.
   const shownMessages = useMemo(
     () =>
       messages.length === 1 && messages[0]!.id === WELCOME.id
         ? [
             welcomeMessage(
-              pageName
-                ? `Looking at ${pageName}? I’m Compass — want me to check if it fits your child, or compare it with similar options across the Learn with Leaders group?`
-                : GENERIC_WELCOME,
+              savedNames.length > 0
+                ? savedWelcome(pageName, savedNames)
+                : pageName
+                  ? `Looking at ${pageName}? I’m Compass — want me to check if it fits your child, or compare it with similar options across the Learn with Leaders group?`
+                  : GENERIC_WELCOME,
             ),
           ]
         : messages,
-    [messages, pageName],
+    [messages, pageName, savedNames],
   );
 
   // Pages with their own fixed bottom action bar mark it with data-compass-offset;
