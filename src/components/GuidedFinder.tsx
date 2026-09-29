@@ -208,7 +208,7 @@ export function GuidedFinder() {
                     <div className="min-w-0">
                       <h3 className="text-[0.98rem] font-bold text-ink">{p.name}</h3>
                       <p className="mt-0.5 text-[0.8rem] text-ink-soft">
-                        Grades {lo}–{hi} · starts {startLabel(next.d)} · {feeOf(p, next).e}
+                        Grades {lo}–{hi} · {startLabel(next.d)} · {feeOf(p, next).e}
                       </p>
                     </div>
                     <Link
