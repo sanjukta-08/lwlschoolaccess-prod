@@ -88,6 +88,7 @@ function CompareTable({ items }: { items: CompassResult[] }) {
     ["Format", (r) => r.format],
     ["Fee", (r) => r.fee],
     ["Next date", (r) => formatDate(r.next_date)],
+    ["Apply by", (r) => (r.deadline ? formatDate(r.deadline) : "—")],
     ["About", (r) => r.blurb || "—"],
   ];
   return (
@@ -215,6 +216,12 @@ function ResultCard({ result }: { result: CompassResult }) {
             {formatDate(result.next_date)} · {result.fee}
           </dd>
         </div>
+        {result.deadline ? (
+          <div className="flex min-w-0 items-center gap-2">
+            <CalendarDays className="h-3.5 w-3.5 shrink-0 text-crimson" />
+            <dd>Apply by {formatDate(result.deadline)}</dd>
+          </div>
+        ) : null}
       </dl>
       <div className="mt-3 flex items-center gap-2">
         <Button asChild variant="outline" size="sm" className="flex-1">
