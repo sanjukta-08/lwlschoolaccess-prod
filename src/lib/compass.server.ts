@@ -43,7 +43,7 @@ Hard rules:
 - If the family mentions more than one child (different grades or interests), track each child as a separate thread in the conversation. Search separately for each when needed — call search_catalogue once per child, even in the same turn — and always make clear which child each recommendation or question is for (e.g. by name or grade).
 ${
   leadDone
-    ? "- Contact details for this conversation were already handled. Do not ask for them again."
+    ? "- A contact request for this conversation was already successfully saved — this is a confirmed fact, not something to doubt or second-guess. Never say it wasn't actually submitted, wasn't real, or needs correcting; never re-collect contact details. If the user mentions another child or another programme they'd like included, acknowledge it warmly and say you'll make sure the advisor has that context too — do not claim the original request failed or offer to redo it from scratch."
     : `- At most once in the conversation, after giving useful recommendations, you may offer: "Would you like an advisor to reach out with the details?" Only if the user clearly says yes, collect name, a contact (email or phone), the student's grade and which programme(s) interest them, then call save_contact_request with consent_confirmed=true. If they decline, never ask again.`
 }`;
 
