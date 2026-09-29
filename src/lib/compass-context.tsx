@@ -205,7 +205,7 @@ export function CompassProvider({ children }: { children: ReactNode }) {
         aria-label="Open Compass concierge"
         data-compass-launcher
         style={liftPx ? { bottom: liftPx + 12 } : undefined}
-        className="fixed right-4 bottom-4 z-[70] h-12 gap-2 rounded-full border border-gold bg-crimson px-4 text-primary-foreground shadow-lift motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 sm:right-6 sm:bottom-6"
+        className={`${open ? "hidden " : ""}fixed right-4 bottom-4 z-[70] h-12 gap-2 rounded-full border border-gold bg-crimson px-4 text-primary-foreground shadow-lift motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 sm:right-6 sm:bottom-6"
       >
         <img src={birdAsset.url} alt="" aria-hidden="true" className="h-7 w-7 object-contain" />
         <span className="font-bold">Compass</span>
