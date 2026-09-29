@@ -38,7 +38,7 @@ Hard rules:
 - Masterclass blurbs may name the actual host ("Hosted by ..."); you may name that host for that masterclass only. For programmes and fellowships (not masterclasses), you may call get_mentors and cite its real profiles as general social proof about the mentor network ("mentors from our network include ..."), but NEVER claim a specific mentor teaches, leads or is assigned to a specific programme — no such link exists in the data.
 - The get_mentors caveat is ONLY about mentor-to-programme LINKAGE (no specific mentor is tied to a specific non-masterclass programme) — it says nothing about whether the programme itself, its price, or its dates are real. search_catalogue results are fully verified the moment they are returned in this conversation — keep these two facts separate and never blur them; never cast retroactive doubt on a previously-shown catalogue result, re-open it, or call it "unconfirmed".
 - Only call check_promo_code when the user actually gives you a code. Never invent, guess or suggest promo codes that weren't provided. Report the result plainly — if the code is invalid, expired, not yet active or fully used, say so directly, and state the discount only as the tool returned it.
-- When asked to compare options — whether named directly or referenced positionally/relatively ("the first two", "the second one", "that one and this one") — resolve the reference against results already surfaced earlier in this conversation and call compare_programmes with their exact ids directly. Do NOT call search_catalogue again first, and do NOT claim previously-shown options are unavailable, unretrieved or unverified — they are already confirmed. Only ask the user to clarify if the reference is genuinely ambiguous (e.g. more than 3 candidates could match), never when it's simply positional.
+- When asked to compare options — whether named directly or referenced positionally/relatively ("the first two", "the second one", "that one and this one") — call compare_programmes immediately, passing what the user said as refs: a name or distinctive part of it, or a position ("1", "2", "first", "second", "last"). For "the first two" pass ["1", "2"]. You do not need to know or recall any id — the server resolves refs against everything already shown in this conversation. Do NOT call search_catalogue again first, and do NOT claim previously-shown options are unavailable, unretrieved or unverified — they are already confirmed. Only if the tool reports specific refs as unresolved, ask the user to clarify just those.
 - If the family mentions more than one child (different grades or interests), track each child as a separate thread in the conversation. Search separately for each when needed — call search_catalogue once per child, even in the same turn — and always make clear which child each recommendation or question is for (e.g. by name or grade).
 ${
   leadDone
@@ -146,28 +146,77 @@ export async function runCompass(input: Input): Promise<CompassReply> {
     }),
     compare_programmes: tool({
       description:
-        "Show 2-3 options already surfaced in this conversation side by side. Pass their ids exactly as returned by search_catalogue. Returns the same result objects.",
-      inputSchema: z.object({ ids: z.array(z.string()).min(2).max(3) }),
-      execute: async ({ ids }) => {
+        "Show 2-3 options already shown in this conversation side by side. Pass what the user said for each option as refs — a name (or distinctive part of it) or a position among the options just shown ('1', 'first', '2nd', 'last'). Resolution to real catalogue rows happens server-side; you never need ids. Returns the resolved result objects plus any refs that could not be resolved.",
+      inputSchema: z.object({
+        refs: z
+          .array(z.string())
+          .min(2)
+          .max(3)
+          .describe("Each item is the programme's name (or a distinctive part of it) OR its position among the options already shown, e.g. '1', 'first', '2nd'"),
+      }),
+      execute: async ({ refs }) => {
         const { data: prior } = await db
           .from("concierge_messages")
-          .select("surfaced_program_ids")
-          .eq("session_id", sid);
+          .select("role, surfaced_program_ids, created_at")
+          .eq("session_id", sid)
+          .order("created_at", { ascending: true });
+        const priorRows = (prior ?? []) as { role: string; surfaced_program_ids: string[] | null }[];
         const allowed = new Set<string>([
+          ...priorRows.flatMap((r) => r.surfaced_program_ids ?? []),
           ...surfaced.keys(),
-          ...((prior ?? []) as { surfaced_program_ids: string[] | null }[]).flatMap((r) => r.surfaced_program_ids ?? []),
         ]);
         const all = await rows();
-        const results = ids
-          .filter((id, i) => allowed.has(id) && ids.indexOf(id) === i)
-          .map((id) => { const r = all.find((x) => x.id === id); return r ? toPublic(r) : undefined; })
-          .filter((r): r is SearchResult => !!r);
+        const byId = new Map(all.map((r) => [r.id, r]));
+        const pool = [...allowed].filter((id) => byId.has(id));
+
+        // Most recently shown set, in display order: this turn's search results if any,
+        // otherwise the latest earlier assistant reply that surfaced options.
+        const thisTurn = [...surfaced.keys()];
+        const lastPrior = [...priorRows].reverse().find((r) => r.role === "assistant" && (r.surfaced_program_ids ?? []).length);
+        const recent = [...new Set(thisTurn.length ? thisTurn : (lastPrior?.surfaced_program_ids ?? []))].filter((id) => byId.has(id));
+
+        const ORD: Record<string, number> = {
+          first: 1, "1st": 1, one: 1, second: 2, "2nd": 2, two: 2, third: 3, "3rd": 3, three: 3,
+        };
+        const norm = (s: string) => s.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, " ").trim();
+        const position = (ref: string): number | undefined => {
+          const t = norm(ref).replace(/^(the|option|no\.?|number|#)\s*/g, "").replace(/\s*(one|option)$/g, "").trim();
+          if (t === "last" || t === "final") return recent.length;
+          if (/^#?\d+$/.test(t)) return Number(t.replace("#", ""));
+          if (ORD[t]) return ORD[t];
+          const words = t.split(" ");
+          for (const w of words) if (ORD[w] && words.length <= 2) return ORD[w];
+          return undefined;
+        };
+
+        const resolved: string[] = [];
+        const unresolved: { ref: string; reason: string }[] = [];
+        for (const ref of refs) {
+          const raw = ref.trim();
+          if (allowed.has(raw) && byId.has(raw)) { resolved.push(raw); continue; }
+          const pos = position(raw);
+          if (pos !== undefined) {
+            const id = recent[pos - 1];
+            if (id) resolved.push(id);
+            else unresolved.push({ ref, reason: `no option at position ${pos} (only ${recent.length} shown most recently)` });
+            continue;
+          }
+          const q = norm(raw);
+          const matches = q ? pool.filter((id) => norm(byId.get(id)!.name).includes(q)) : [];
+          const inRecent = matches.filter((id) => recent.includes(id));
+          if (matches.length === 1) resolved.push(matches[0]!);
+          else if (inRecent.length === 1) resolved.push(inRecent[0]!);
+          else if (!matches.length) unresolved.push({ ref, reason: "no previously shown option matches this name" });
+          else unresolved.push({ ref, reason: `ambiguous — matches ${matches.map((id) => byId.get(id)!.name).join(", ")}` });
+        }
+
+        const results = [...new Set(resolved)].map((id) => toPublic(byId.get(id)!));
         for (const r of results) surfaced.set(r.id, r);
         if (results.length >= 2) compareIds = results.map((r) => r.id);
-        toolLogs.push({ content: JSON.stringify({ compare_programmes: ids, results }), ids: results.map((r) => r.id) });
+        toolLogs.push({ content: JSON.stringify({ compare_programmes: refs, results, unresolved }), ids: results.map((r) => r.id) });
         return results.length >= 2
-          ? { count: results.length, results }
-          : { count: results.length, results, error: "Need at least 2 ids already shown in this conversation" };
+          ? { count: results.length, results, ...(unresolved.length ? { unresolved } : {}) }
+          : { count: results.length, results, unresolved, error: "Fewer than 2 refs resolved — ask the user to clarify only the unresolved ones" };
       },
     }),
     get_mentors: tool({
