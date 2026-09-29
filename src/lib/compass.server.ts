@@ -35,6 +35,9 @@ Hard rules:
 - Never require contact details to give recommendations.
 - Keep the conversation going: after sharing options or answering a question, never close in a way that sounds final (avoid "let me know if you need anything else"-style endings). End with an engaging, specific follow-up that invites the next step in their decision — e.g. asking what matters most to them (schedule, cost, mentor background, outcomes), offering to compare two options, or asking about the student's specific goals or interests. The conversation should feel like an ongoing helpful back-and-forth, not a single Q&A.
 - You represent the Learn with Leaders group commercially, not just as a neutral directory — actively build the case for enrolling. Speak to real outcomes and value (mentorship from Harvard/Yale/MIT students, what the student walks away with, how it strengthens their profile, applications and skills), and proactively address likely hesitations (cost, time commitment, "will this actually help my child") with genuine, confident reassurance. Each search_catalogue result carries a 'blurb' — the programme's own catalogue copy (what it is, what students gain). That blurb is the one exception where descriptive (non-logistics) content from a result may be spoken to directly: it is genuine catalogue copy, so use it as the real, honest source for outcome and value claims when making the case — but still never claim anything beyond what the blurb or other fields actually say. Persuasion must come from honestly explaining real value — never from inventing urgency, scarcity, testimonials, or any fact not in the catalogue (the never-state-a-fact-not-from-search_catalogue rule stays absolute and overrides this). Where natural, nudge toward a concrete next step (view details, apply, or the advisor call) rather than leaving things open-ended.
+- Masterclass blurbs may name the actual host ("Hosted by ..."); you may name that host for that masterclass only. For programmes and fellowships (not masterclasses), you may call get_mentors and cite its real profiles as general social proof about the mentor network ("mentors from our network include ..."), but NEVER claim a specific mentor teaches, leads or is assigned to a specific programme — no such link exists in the data.
+- Only call check_promo_code when the user actually gives you a code. Never invent, guess or suggest promo codes that weren't provided. Report the result plainly — if the code is invalid, expired, not yet active or fully used, say so directly, and state the discount only as the tool returned it.
+- If the family mentions more than one child (different grades or interests), track each child as a separate thread in the conversation. Search separately for each when needed — call search_catalogue once per child, even in the same turn — and always make clear which child each recommendation or question is for (e.g. by name or grade).
 ${
   leadDone
     ? "- Contact details for this conversation were already handled. Do not ask for them again."
@@ -136,6 +139,74 @@ export async function runCompass(input: Input): Promise<CompassReply> {
         for (const r of results) surfaced.set(r.id, r);
         toolLogs.push({ content: JSON.stringify({ query: q, results }), ids: results.map((r) => r.id) });
         return { count: results.length, results };
+      },
+    }),
+    get_mentors: tool({
+      description:
+        "Get a small sample of real, active mentors from the group's mentor network (name, university, short bio). Not linked to any specific programme — use only as general social proof.",
+      inputSchema: z.object({ university: nz(z.string()).describe("Optional university filter, e.g. 'Harvard', or null") }),
+      execute: async ({ university }) => {
+        let q = supabaseAdmin.from("all_mentors").select("full_name, university, bio").eq("is_active", true).not("bio", "is", null);
+        if (university) q = q.ilike("university", `%${university.replace(/[%_,]/g, "")}%`);
+        const { data, error } = await q.limit(40);
+        if (error) return { count: 0, mentors: [], error: "Could not load mentors" };
+        const mentors = (data ?? [])
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 5)
+          .map((m) => ({
+            name: m.full_name,
+            university: m.university,
+            bio: (m.bio ?? "").replace(/\s+/g, " ").trim().slice(0, 160),
+          }));
+        toolLogs.push({ content: JSON.stringify({ get_mentors: { university }, mentors: mentors.map((m) => m.name) }), ids: [] });
+        return { count: mentors.length, mentors, note: "General mentor network — not assigned to any specific programme." };
+      },
+    }),
+    check_promo_code: tool({
+      description:
+        "Check a promo code the user provided. Returns whether it is valid now, the discount type/value, and the programme it's scoped to. Only call with a code the user actually gave.",
+      inputSchema: z.object({
+        code: z.string().min(1).max(64),
+        program_id: nz(z.string()).describe("id of the programme the user wants to use it on, if known, or null"),
+      }),
+      execute: async ({ code, program_id }) => {
+        const clean = code.trim().replace(/[%_]/g, "");
+        const { data, error } = await supabaseAdmin
+          .from("promo_codes")
+          .select("code, is_active, starts_at, expires_at, max_redemptions, redemption_count, discount_type, discount_value, currency, program_id, program_name")
+          .ilike("code", clean)
+          .limit(5);
+        let res: Record<string, unknown>;
+        if (error) res = { valid: false, reason: "Could not check the code right now" };
+        else {
+          const rows = data ?? [];
+          const now = Date.now();
+          const pick = (program_id && rows.find((r) => r.program_id === program_id)) || rows[0];
+          if (!pick) res = { valid: false, reason: "Code not found" };
+          else {
+            const reason = !pick.is_active
+              ? "Code is not active"
+              : pick.starts_at && Date.parse(pick.starts_at) > now
+                ? "Code is not active yet"
+                : pick.expires_at && Date.parse(pick.expires_at) <= now
+                  ? "Code has expired"
+                  : pick.max_redemptions != null && pick.redemption_count >= pick.max_redemptions
+                    ? "Code has been fully used"
+                    : program_id && pick.program_id !== program_id
+                      ? "Code is for a different programme"
+                      : null;
+            res = {
+              valid: !reason,
+              ...(reason ? { reason } : {}),
+              discount_type: pick.discount_type,
+              discount_value: pick.discount_value,
+              currency: pick.currency,
+              program_name: pick.program_name,
+            };
+          }
+        }
+        toolLogs.push({ content: JSON.stringify({ check_promo_code: { code: clean, program_id }, result: res }), ids: [] });
+        return res;
       },
     }),
     ...(leadCaptured
