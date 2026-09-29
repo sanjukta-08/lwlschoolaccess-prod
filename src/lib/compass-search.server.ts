@@ -152,6 +152,7 @@ export function buildRows(cat: LiveCatalogue, masterclasses: PublicMasterclass[]
       next_date: next,
       view_url: `${SITE}/camps/${live.slug}`,
       apply_url: live.applyUrl,
+      blurb: blurbOf(ed.theme, ed.promise),
       _g: parseGrades(ed.gradeBand),
       _cats: theme ? [theme] : [],
       _text: `${ed.name} ${ed.theme} ${ed.promise} ${ed.city} ${ed.country} camp residential`.toLowerCase(),
