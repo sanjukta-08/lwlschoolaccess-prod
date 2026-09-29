@@ -1,6 +1,6 @@
 import { askCompass, type CompassReply } from "@/lib/compass.functions";
 import { getUtm } from "@/lib/utm";
-import { useRouterState } from "@tanstack/react-router";
+import { useMatches, useRouterState } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import {
   createContext,
@@ -22,18 +22,31 @@ export type CompassMessage = {
   role: "user" | "assistant";
   parts: [{ type: "text"; text: string }];
   results?: CompassResult[];
+  compareIds?: string[];
 };
 
-const WELCOME: CompassMessage = {
+const GENERIC_WELCOME =
+  "Hello, I’m Compass. I can help you find the right programme, masterclass, or camp across the Learn with Leaders group. What are you looking for?";
+
+const welcomeMessage = (text: string): CompassMessage => ({
   id: "compass-welcome",
   role: "assistant",
-  parts: [
-    {
-      type: "text",
-      text: "Hello, I’m Compass. I can help you find the right programme, masterclass, or camp across the Learn with Leaders group. What are you looking for?",
-    },
-  ],
-};
+  parts: [{ type: "text", text }],
+});
+
+const WELCOME = welcomeMessage(GENERIC_WELCOME);
+
+/** Name of the programme/camp/conference the current detail page already loaded, if any. */
+function pageItemName(loaderData: unknown): string | null {
+  if (!loaderData || typeof loaderData !== "object") return null;
+  const d = loaderData as Record<string, unknown>;
+  const pick = (v: unknown) =>
+    v && typeof v === "object" && typeof (v as { name?: unknown }).name === "string"
+      ? ((v as { name: string }).name)
+      : null;
+  if (typeof d.name === "string") return d.name;
+  return pick(d.camp) ?? pick(d.conference) ?? pick(d.programme) ?? pick(d.program) ?? null;
+}
 
 type CompassContextValue = {
   open: boolean;
@@ -59,12 +72,30 @@ export function CompassProvider({ children }: { children: ReactNode }) {
   const sourcePage = useRouterState({
     select: (state) => `${state.location.pathname}${state.location.searchStr || ""}`,
   });
+  const pageName = useMatches({
+    select: (matches) => pageItemName(matches[matches.length - 1]?.loaderData),
+  });
   const [open, setOpen] = useState(false);
   const [hasOpened, setHasOpened] = useState(false);
   const [sessionId, setSessionId] = useState<string>();
   const [messages, setMessages] = useState<CompassMessage[]>([WELCOME]);
   const [busy, setBusy] = useState(false);
   const [limitReached, setLimitReached] = useState(false);
+
+  // Until the first user turn, the greeting follows the page the visitor is on.
+  const shownMessages = useMemo(
+    () =>
+      messages.length === 1 && messages[0]!.id === WELCOME.id
+        ? [
+            welcomeMessage(
+              pageName
+                ? `Looking at ${pageName}? I’m Compass — want me to check if it fits your child, or compare it with similar options across the Learn with Leaders group?`
+                : GENERIC_WELCOME,
+            ),
+          ]
+        : messages,
+    [messages, pageName],
+  );
 
   const changeOpen = useCallback((next: boolean) => {
     setOpen(next);
@@ -81,7 +112,7 @@ export function CompassProvider({ children }: { children: ReactNode }) {
         role: "user",
         parts: [{ type: "text", text }],
       };
-      const nextMessages = [...messages, userMessage];
+      const nextMessages = [...shownMessages, userMessage];
       setMessages(nextMessages);
       setBusy(true);
 
@@ -106,6 +137,7 @@ export function CompassProvider({ children }: { children: ReactNode }) {
             role: "assistant",
             parts: [{ type: "text", text: response.reply }],
             results: response.results,
+            compareIds: response.compareIds,
           },
         ]);
       } catch {
@@ -126,12 +158,12 @@ export function CompassProvider({ children }: { children: ReactNode }) {
         setBusy(false);
       }
     },
-    [busy, limitReached, messages, runCompass, sessionId, sourcePage],
+    [busy, limitReached, shownMessages, runCompass, sessionId, sourcePage],
   );
 
   const value = useMemo(
-    () => ({ open, setOpen: changeOpen, messages, busy, limitReached, sendMessage }),
-    [open, changeOpen, messages, busy, limitReached, sendMessage],
+    () => ({ open, setOpen: changeOpen, messages: shownMessages, busy, limitReached, sendMessage }),
+    [open, changeOpen, shownMessages, busy, limitReached, sendMessage],
   );
 
   return (
