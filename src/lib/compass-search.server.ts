@@ -36,6 +36,8 @@ export type SearchResult = {
   format: string;
   fee: string;
   next_date: string | null;
+  /** Application deadline (ISO date) for the matched cohort, when the data carries one. */
+  deadline: string | null;
   view_url: string;
   apply_url: string | null;
   /** Short honest copy from the catalogue itself (about/tag/theme/description), capped at 200 chars. */
@@ -123,6 +125,7 @@ export function buildRows(cat: LiveCatalogue, masterclasses: PublicMasterclass[]
       format: p.format ?? (p.location ? `In person · ${p.location}` : "Live online"),
       fee: p.feeR && p.feeR !== p.feeE ? `${p.feeE} (early) / ${p.feeR}` : p.feeE,
       next_date: next.d,
+      deadline: next.deadline ?? null,
       view_url: `${SITE}${view}`,
       apply_url: p.apply,
       blurb: blurbOf(p.tag, p.about),
@@ -150,6 +153,8 @@ export function buildRows(cat: LiveCatalogue, masterclasses: PublicMasterclass[]
       format: `In person · ${ed.city}, ${ed.country}`,
       fee: live.priceLabel ?? "On request",
       next_date: next,
+      // LiveCamp cohorts don't carry deadline data (dropped in catalogue.functions.ts) — known gap.
+      deadline: null,
       view_url: `${SITE}/camps/${live.slug}`,
       apply_url: live.applyUrl,
       blurb: blurbOf(ed.theme, ed.promise),
@@ -174,6 +179,7 @@ export function buildRows(cat: LiveCatalogue, masterclasses: PublicMasterclass[]
       format: "Live online",
       fee: "Free",
       next_date: m.scheduled_at,
+      deadline: null,
       view_url: `${SITE}/masterclasses`,
       apply_url: m.apply_url,
       blurb: blurbOf(
