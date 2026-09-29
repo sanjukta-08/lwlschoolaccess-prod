@@ -481,7 +481,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       ) : null}
 
       {/* Sticky apply bar */}
-      <div className="fixed inset-x-0 bottom-0 z-60 border-t border-line bg-paper shadow-[0_-8px_24px_-16px_rgba(28,34,48,0.35)]">
+      <div data-compass-offset className="fixed inset-x-0 bottom-0 z-60 border-t border-line bg-paper shadow-[0_-8px_24px_-16px_rgba(28,34,48,0.35)]">
         <div className="page-shell flex items-center justify-between gap-4 py-3">
           <div>
             <b className="font-serif text-[1.15rem] font-semibold">{fee.e}</b>

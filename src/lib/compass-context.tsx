@@ -8,6 +8,7 @@ import {
   Suspense,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
   type ReactNode,
@@ -97,6 +98,35 @@ export function CompassProvider({ children }: { children: ReactNode }) {
     [messages, pageName],
   );
 
+  // Pages with their own fixed bottom action bar mark it with data-compass-offset;
+  // the launcher sits just above whichever one is visible so neither covers the other.
+  const [liftPx, setLiftPx] = useState(0);
+  useEffect(() => {
+    const measure = () => {
+      let h = 0;
+      document.querySelectorAll<HTMLElement>("[data-compass-offset]").forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.height > 0 && getComputedStyle(el).display !== "none") h = Math.max(h, window.innerHeight - r.top);
+      });
+      setLiftPx(h > 0 ? Math.ceil(h) : 0);
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    document.querySelectorAll("[data-compass-offset]").forEach((el) => ro.observe(el));
+    const mo = new MutationObserver(() => {
+      ro.disconnect();
+      document.querySelectorAll("[data-compass-offset]").forEach((el) => ro.observe(el));
+      measure();
+    });
+    mo.observe(document.body, { childList: true, subtree: true });
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      mo.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [sourcePage]);
+
   const changeOpen = useCallback((next: boolean) => {
     setOpen(next);
     if (next) setHasOpened(true);
@@ -173,7 +203,9 @@ export function CompassProvider({ children }: { children: ReactNode }) {
         type="button"
         onClick={() => changeOpen(true)}
         aria-label="Open Compass concierge"
-        className="fixed right-4 bottom-4 z-40 h-12 gap-2 rounded-full border border-gold bg-crimson px-4 text-primary-foreground shadow-lift motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 sm:right-6 sm:bottom-6"
+        data-compass-launcher
+        style={liftPx ? { bottom: liftPx + 12 } : undefined}
+        className="fixed right-4 bottom-4 z-[70] h-12 gap-2 rounded-full border border-gold bg-crimson px-4 text-primary-foreground shadow-lift motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 sm:right-6 sm:bottom-6"
       >
         <img src={birdAsset.url} alt="" aria-hidden="true" className="h-7 w-7 object-contain" />
         <span className="font-bold">Compass</span>
