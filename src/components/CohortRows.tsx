@@ -1,0 +1,191 @@
+import ZoomBadge from "@/components/ZoomBadge";
+import {
+  TRACKS,
+  TYPE_NAME,
+  cohortGrades,
+  dualTime,
+  feeOf,
+  timeOf,
+  fmtShort,
+  isSoon,
+  parseISO,
+  type Cohort,
+  type Programme,
+} from "@/lib/programmes";
+import type { Entry, MonthGroup, TypeGroup } from "@/lib/finder";
+import { slugOf } from "@/lib/programme-slug";
+import { Link } from "@tanstack/react-router";
+import { SaveButton } from "@/components/SaveButton";
+import { AddToCalendar } from "@/components/AddToCalendar";
+import { countdownLabel } from "@/lib/shortlist";
+
+/** Opens a Drive flyer/brochure without nesting an anchor inside the row link. */
+function DocLink({ href, label }: { href: string; label: string }) {
+  return (
+    <button
+      type="button"
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        window.open(href, "_blank", "noopener");
+      }}
+      className="rounded-md border border-line bg-paper px-1.5 py-0.5 font-mono text-[0.66rem] font-semibold tracking-[0.04em] text-ink-soft uppercase transition-colors hover:border-gold hover:text-gold"
+    >
+      {label}
+    </button>
+  );
+}
+
+function CohortRow({
+  p,
+  c,
+  others,
+}: {
+  p: Programme;
+  c: Cohort;
+  others?: Cohort[];
+}) {
+  const track = TRACKS[p.tracks[0]!];
+  const [lo, hi] = cohortGrades(p, c);
+  const fee = feeOf(p, c);
+  const date = parseISO(c.d);
+
+  return (
+    <Link
+      to="/programmes/$slug"
+      params={{ slug: slugOf(p) }}
+      style={{ borderLeftColor: track.color }}
+      className="flex w-full items-center gap-4 rounded-2xl border border-line border-l-[4px] bg-paper px-4 py-3.5 text-left text-ink no-underline transition-all hover:-translate-y-px hover:shadow-lift"
+    >
+      <span className="w-[54px] shrink-0 text-center">
+        <b
+          className="block font-serif text-[1.5rem] leading-none font-semibold"
+          style={{ color: track.color }}
+        >
+          {date.getDate()}
+        </b>
+        <small className="mono-label text-ink-faint">
+          {date.toLocaleDateString("en-GB", { month: "short" })}
+        </small>
+      </span>
+
+      <span className="min-w-0 flex-1">
+        <span
+          className="mono-label block text-[0.66rem]"
+          style={{ color: track.color }}
+        >
+          {track.label} · {TYPE_NAME[p.type]}
+        </span>
+        <b className="mt-0.5 block text-[0.98rem] font-bold text-ink">{p.name}</b>
+        <small className="block text-[0.78rem] text-ink-soft">
+          Grades {lo}–{hi} · {p.dur} · {dualTime(timeOf(p, c))} · <ZoomBadge />
+        </small>
+        {c.label || c.flyer || c.brochure ? (
+          <span className="mt-1.5 flex flex-wrap items-center gap-1.5">
+            {c.label ? (
+              <span className="rounded-md border border-line bg-wash px-1.5 py-0.5 font-mono text-[0.66rem] tracking-[0.04em] text-ink-soft uppercase">
+                {c.label}
+              </span>
+            ) : null}
+            {c.flyer ? <DocLink href={c.flyer} label="Flyer" /> : null}
+            {c.brochure ? <DocLink href={c.brochure} label="Brochure" /> : null}
+          </span>
+        ) : null}
+        {others?.length ? (
+          <span className="mt-1.5 flex flex-wrap items-center gap-1.5 text-[0.72rem] text-ink-faint">
+            Also starts
+            {others.map((o) => (
+              <span
+                key={o.d}
+                className="rounded-md border border-line bg-wash px-1.5 py-0.5 font-mono text-[0.68rem] text-ink-soft"
+              >
+                {fmtShort(o.d)}
+              </span>
+            ))}
+          </span>
+        ) : null}
+      </span>
+
+      <span className="flex shrink-0 flex-col items-end gap-1.5">
+        <span className="font-serif text-[1.05rem] font-semibold">{fee.e}</span>
+        {isSoon(c.d) ? (
+          <span className="rounded-md bg-gold/12 px-2 py-0.5 text-[0.62rem] font-bold tracking-[0.06em] uppercase text-gold">
+            Starting soon
+          </span>
+        ) : countdownLabel(c.d) ? (
+          <span className="rounded-md bg-gold/12 px-2 py-0.5 text-[0.62rem] font-bold tracking-[0.06em] uppercase text-gold">
+            {countdownLabel(c.d)}
+          </span>
+        ) : (
+          <span className="hidden rounded-md bg-track-fin/10 px-2 py-0.5 text-[0.62rem] font-bold tracking-[0.06em] uppercase text-track-fin sm:inline">
+            Applications open
+          </span>
+        )}
+        <span className="flex items-center gap-1.5">
+          <AddToCalendar p={p} c={c} />
+          <SaveButton p={p} c={c} />
+        </span>
+      </span>
+    </Link>
+  );
+}
+
+export function MonthSections({
+  groups,
+}: {
+  groups: MonthGroup[];
+}) {
+  return (
+    <div>
+      {groups.map((g) => (
+        <section key={g.key} id={`m-${g.key}`} className="scroll-mt-[190px]">
+          <div className="mt-8 mb-3 flex items-baseline gap-3 border-b border-line pb-2">
+            <h3 className="font-serif text-[1.3rem] font-semibold">{g.label}</h3>
+            <small className="mono-label text-ink-faint">
+              {g.rows.length} cohort{g.rows.length === 1 ? "" : "s"}
+            </small>
+          </div>
+          <div className="flex flex-col gap-2">
+            {g.rows.map((e: Entry) => (
+              <CohortRow key={e.p.id + e.c.d} p={e.p} c={e.c} />
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  );
+}
+
+export function TypeSections({
+  groups,
+}: {
+  groups: TypeGroup[];
+}) {
+  return (
+    <div>
+      {groups.map((g) => (
+        <section key={g.key} id={`t-${g.key}`} className="scroll-mt-[190px]">
+          <div className="mt-8 mb-3 border-b border-line pb-2">
+            <div className="flex flex-wrap items-baseline gap-3">
+              <h3 className="font-serif text-[1.3rem] font-semibold">{g.label}</h3>
+              <small className="mono-label text-ink-faint">
+                {g.rows.length} programme{g.rows.length === 1 ? "" : "s"}
+              </small>
+            </div>
+            <p className="mt-1 text-[0.82rem] text-ink-soft">{g.sub}</p>
+          </div>
+          <div className="flex flex-col gap-2">
+            {g.rows.map((r) => (
+              <CohortRow
+                key={r.p.id}
+                p={r.p}
+                c={r.next}
+                others={r.others}
+              />
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  );
+}

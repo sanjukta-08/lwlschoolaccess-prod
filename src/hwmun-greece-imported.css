@@ -1,0 +1,81 @@
+/* Scoped theme for HWMUN Greece landing page. All overrides nested under .hwmun-greece-theme. */
+
+.hwmun-greece-theme {
+  /* Override shadcn HSL tokens to map the Ivy-League palette */
+  --background: hsl(40 38% 96%);            /* warm ivory */
+  --foreground: hsl(225 32% 16%);           /* deep navy ink */
+  --card: hsl(40 38% 98%);
+  --card-foreground: hsl(225 32% 16%);
+  --popover: hsl(40 38% 98%);
+  --popover-foreground: hsl(225 32% 16%);
+  --primary: hsl(0 60% 39%);                /* crimson */
+  --primary-foreground: hsl(40 38% 98%);
+  --secondary: hsl(355 66% 40%);            /* brand red */
+  --secondary-foreground: hsl(40 38% 98%);
+  --muted: hsl(40 20% 90%);
+  --muted-foreground: hsl(220 13% 39%);
+  --accent: hsl(40 56% 51%);                /* parchment gold */
+  --accent-foreground: hsl(225 32% 16%);
+  --border: hsl(40 14% 80%);
+  --input: hsl(40 14% 80%);
+  --ring: hsl(0 60% 39%);
+  --radius: 0.25rem;
+
+  /* Page-only extras */
+  --hwmun-navy: 225 30% 23%;
+  --hwmun-gold: 40 56% 51%;
+  --gold: hsl(40 56% 51%);
+  --shadow-elegant: 0 30px 60px -30px hsl(225 32% 16% / 0.25),
+                    0 10px 30px -15px hsl(225 32% 16% / 0.15);
+  --shadow-soft: 0 4px 24px -8px hsl(225 32% 16% / 0.12);
+
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.hwmun-greece-theme .font-serif {
+  font-family: 'Cormorant Garamond', ui-serif, Georgia, serif;
+}
+.hwmun-greece-theme .font-sans {
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+.hwmun-greece-theme h1,
+.hwmun-greece-theme h2,
+.hwmun-greece-theme h3,
+.hwmun-greece-theme h4,
+.hwmun-greece-theme h5 {
+  font-family: 'Cormorant Garamond', ui-serif, Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+.hwmun-greece-theme .eyebrow {
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.hwmun-greece-theme .rule {
+  display: inline-block;
+  width: 2.5rem;
+  height: 1px;
+  background: currentColor;
+  vertical-align: middle;
+  opacity: 0.6;
+}
+
+@keyframes hwmun-greece-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hwmun-greece-theme .animate-fade-in {
+  animation: hwmun-greece-fade-in 0.6s ease-out both;
+}

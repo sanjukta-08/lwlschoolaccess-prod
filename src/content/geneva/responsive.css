@@ -1,0 +1,677 @@
+@media screen and (max-width:1920px) {}
+@media screen and (max-width:1600px) {
+  .navbar .nav-link {
+    margin: 0 20px;
+  }
+  .conxe {
+    padding: 10px;
+  }
+  .fttwo .conxe p, .edpaxe p, .dezde p, .conidew, .ftfefteen li p {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .fttwo .conxe p strong {
+    margin: 23px 0 14px 0;
+  }
+  .ftten ul li p strong {
+    font-size: 13px;
+    display: block;
+    margin: 0;
+  }
+  .imixes img {
+    width: 30%;
+  }
+  .ftfourteen .accdeoxe {
+    width: 49%;
+  }
+  .ftfefteen li {
+    min-height: 430px;
+  }
+  .nodes {
+    height: 656px;
+  }
+  .dees {
+    height: 680px;
+  }
+}
+@media screen and (max-width:1366px) {}
+@media screen and (max-width:1280px) {
+  .navbar .nav-link {
+    margin: 0 14px;
+    font-size: 16px;
+  }
+  .ftone h1 {
+    font-size: 38px;
+  }
+  .fttwo .conxe {
+    min-height: 268px;
+  }
+  .edpaxe {
+    background: #fff;
+    box-shadow: 0px 0px 5px #cfcfcf;
+    margin: 10px;
+    padding: 14px;
+    min-height: 292px;
+    border-radius: 11px;
+  }
+  .allheade {
+    font-size: 29px;
+    line-height: 33px;
+  }
+  .thoexe {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 30px;
+    margin: 22px 0 11px 0;
+    text-transform: uppercase;
+  }
+  .thoexe span {
+    font-size: 16px;
+  }
+  .bidie {
+    height: 574px;
+    width: 100%;
+  }
+  .accordion-button, .accordion-item:first-of-type .accordion-button, .accordion-button:not(.collapsed) {
+    font-size: 17px;
+    font-weight: 500;
+    padding: 9px;
+  }
+  .ftfour .leide.topfredt .conede .allheade {
+    border: none;
+    font-size: 29px;
+    line-height: 33px;
+  }
+  .desed {
+    object-fit: cover;
+    height: 813px;
+    width: 100%;
+  }
+  .fttwo .conxe p, .edpaxe p, .dezde p, .conidew, .ftfefteen li p, .diede p, .dezde p, .accordion-body p {
+    font-size: 14px;
+    line-height: 19px;
+  }
+  .ftnine {
+    padding: 18px 0 50px;
+  }
+  .ftnine #instructors .item > img {
+    height: 260px;
+  }
+  .fteleven .container {
+    top: 8%;
+  }
+  .dees {
+    height: 554px;
+  }
+  .alise .conde span {
+    font-size: 21px;
+  }
+  .tesbg {
+    height: 647px;
+  }
+  /* #testimonials {
+    margin-top: 14%;
+  } */
+  .ftfourteen .accdeoxe {
+    width: 49%;
+    margin: 0 0 0 5%;
+  }
+  .ftfourteen .allheade {
+    line-height: 38px;
+    font-size: 35px;
+  }
+  .bigtet {
+    font-size: 24px;
+    margin-bottom: 27px;
+  }
+  .ftfefteen li {
+    min-height: 398px;
+  }
+  .ftfefteen li:last-child {
+    margin: 0 0 0 1.4%;
+  }
+  .ftfefteen .allheade {
+    font-size: 30px;
+  }
+  .nodes {
+    height: 566px;
+  }
+
+.contde {
+    width: 82%;
+}
+	.dsed ul li {
+    width: 45%;
+}
+
+}
+@media screen and (max-width:1169px) {
+  .edpaxe {
+    min-height: 231px;
+  }
+  .bidie {
+    height: 614px;
+  }
+  .desed {
+    height: 781px;
+  }
+  .conede p {
+    font-size: 16px;
+  }
+  .contde {
+    width: 83%;
+  }
+  .tesbg {
+    height: 950px;
+  }
+  #testimonials.owl-theme .owl-dots .owl-dot span {
+    border: solid 1px #ffffff;
+  }
+  #testimonials.owl-theme .owl-dots .owl-dot.active span, #testimonials.owl-theme .owl-dots .owl-dot:hover span {
+    background: #ffffff;
+  }
+  .ftthirteen .conxe {
+    border: none;
+    min-height: 151px;
+  }
+  .dieade {
+    font-size: 24px;
+  }
+
+    .contde {
+        width: 81%;
+    }}
+@media screen and (max-width:991px) {
+  .navbar .nav-link {
+    margin: 0 9px;
+    font-size: 14px;
+  }
+  .ftone h1 {
+    font-size: 31px;
+  }
+  .logoxe img {
+    object-fit: contain;
+    height: 43px;
+    margin: 0 10px;
+  }
+  .toime {
+    height: 731px;
+  }
+  .fttwo .conxe {
+    min-height: 229px;
+  }
+  .bdoe {
+    padding: 10px;
+  }
+  .ftthree .bgdes {
+    height: 739px;
+  }
+  .ftthree .container, .fteltwfw .container {
+    top: 5%;
+  }
+  .ftten ul li p {
+    font-size: 12px;
+    line-height: 17px;
+  }
+  .conde {
+    padding: 20px;
+    width: 100%;
+  }
+  .dees {
+    height: 506px;
+  }
+  .tesbg {
+    height: 815px;
+  }
+  .allheade {
+    font-size: 25px;
+    line-height: 37px;
+  }
+  .slixe {
+    font-size: 19px;
+    margin: 0 0 29px 0;
+    line-height: 24px;
+  }
+  .ftthirteen .conxe span {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+    margin: 0 0 9px 0;
+  }
+  #supports.owl-carousel .owl-item img {
+    height: 64px;
+  }
+  .ftthirteen .conxe {
+    min-height: 149px;
+  }
+  .ftfourteen .allheade {
+    line-height: 27px;
+    font-size: 24px;
+  }
+  .ftfefteen li {
+    min-height: 446px;
+    padding: 15px;
+  }
+  .ftfefteen li:last-child {
+    margin: 0 0 0 1.3%;
+  }
+  .nodes {
+    height: 608px;
+  }
+
+    .contde {
+        width: 75%;
+        vertical-align: top;
+    }
+    .dsed ul li {
+        width: 43%;
+    }}
+@media screen and (max-width:767px) {
+  .ftone h1 {
+    font-size: 23px;
+    margin-bottom: 20px;
+    padding: 0 0 8px 0;
+    border-bottom: 2px solid #fff;
+  }
+  .ftone h2.onede {
+    padding: 5px 17px;
+    margin: 0 auto 15px;
+    border-radius: 1px 15px 2px 15px;
+    font-size: 17px;
+  }
+  .ftone h2.ondede {
+    font-size: 18px;
+  }
+  .ftone h3 {
+    font-size: 18px;
+  }
+  .heiese {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+  }
+  .elide {
+    margin: 0 auto;
+    padding: 6px 14px;
+    border-radius: 5px;
+    font-size: 15px;
+  }
+  .aplvy {
+    display: block;
+    margin: 22px 0;
+  }
+  .aplvy a {
+    font-size: 14px;
+    padding: 3px 17px;
+    margin: 9px;
+    border-radius: 51px;
+    line-height: 29px;
+    border: solid 2px #fff;
+  }
+  .logoxe img {
+    object-fit: contain;
+    height: 29px;
+    margin: 10px;
+  }
+  .logoxe {
+    border-radius: 6px;
+    padding: 8px 0;
+  }
+  .toime {
+    height: 566px;
+  }
+  p {
+    font-size: 16px;
+  }
+  .ftthree .bgdes {
+    height: 688px;
+  }
+  .leide {
+    position: relative;
+    width: 100%;
+    text-align: left;
+    display: block;
+  }
+  .riimdew {
+    width: 100%;
+    display: block;
+    vertical-align: middle;
+    padding: 10px 0 0;
+  }
+  .bidie {
+    height: 581px;
+  }
+  .ftfour {
+    padding-bottom: 27px;
+  }
+  .widiew {
+    margin-top: 27px;
+  }
+  .conidew {
+    min-height: 194px;
+  }
+  .bigtet {
+    font-size: 18px;
+    margin-bottom: 22px;
+  }
+  .fteight {
+    padding: 30px 0 0;
+  }
+  .ftnine {
+    padding: 0 0 30px;
+  }
+  .ftnine #instructors .item > img {
+    height: 240px;
+  }
+  .dde p {
+    font-size: 14px;
+    max-height: 280px;
+    min-height: 160px;
+    padding-bottom: 15px;
+    padding-right: 20px;
+  }
+  .tet strong {
+    font-size: 19px;
+  }
+  .ftten ul li, .ftten ul li:nth-child(5), .ftten ul li:last-child, .ftten ul li:nth-child(6), .ftten ul li:nth-child(7) {
+    width: 46%;
+    display: inline-block;
+    float: left;
+    border-right: none;
+    border-bottom: solid 1px #207fac;
+    padding: 10px;
+    margin: 10px;
+  }
+  .ftten ul li .conxe {
+    min-height: 118px;
+  }
+  .ftten ul li img {
+    height: 34px;
+  }
+  .ftten ul li .conxe span {
+    font-size: 15px;
+    margin: 0 0 1px 0;
+    display: block;
+  }
+  .ftten .aplvy {
+    padding: 5px 0 0;
+    margin: 0;
+  }
+  .ftten ul li:nth-child(7), .ftten ul li:last-child {
+    border-bottom: none;
+  }
+  .ftten {
+    padding: 30px 0;
+  }
+  .dees {
+    height: 435px;
+  }
+  .dsed {
+    display: block;
+    width: 100%;
+    vertical-align: middle;
+    padding: 0;
+  }
+  .dsed ul li img {
+    width: 58px;
+  }
+  .contde, .alise .conde {
+    font-size: 12px;
+  }
+  .contde strong {
+    display: block;
+    font-size: 14px;
+  }
+  .alise .conde span {
+    font-size: 17px;
+    margin-bottom: 10px;
+  }
+  .alise {
+    padding: 10px;
+  }
+  /* #testimonials {
+    margin-top: 23%;
+  } */
+  .owl-carousel .owl-item .alise img {
+    width: 31px;
+    float: right;
+  }
+  .tesbg {
+    height: 980px;
+  }
+  .ftfourteen .allheade br {
+    display: none;
+  }
+  .ftfourteen .accdeoxe {
+    width: 100%;
+    margin: 10px 0 0;
+  }
+  .accordion-button, .accordion-item:first-of-type .accordion-button, .accordion-button:not(.collapsed) {
+    font-size: 15px;
+    font-weight: 500;
+    padding: 7px;
+  }
+  .accordion-body {
+    background: #f3f3f3;
+  }
+  .ftfourteen {
+    padding-bottom: 30px;
+  }
+  .ftfefteen li:last-child {
+    margin: 0 0 0 1%;
+  }
+  .imidew img {
+    width: 74px;
+    margin: 0 10px 0 0;
+  }
+  .imidew {
+    margin: 0 0 15px 0;
+  }
+  .ftfefteen li {
+    min-height: 499px;
+  }
+  .nodes {
+    height: 659px;
+  }
+  footer {
+    padding: 30px 0;
+  }
+   .hide-on-mobile{
+    display:none !important;
+  }
+
+.dsed ul li {
+        width: 100%;
+        margin: 10px 0;
+    }}
+@media screen and (max-width:640px) {
+  .logoxe img {
+    object-fit: contain;
+    height: 29px;
+    margin: 4px;
+  }
+  [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+  .fttwo {
+    padding: 30px 0;
+  }
+  .edpaxe {
+    min-height: auto;
+  }
+  .mobxe .allheade {
+    border: none;
+    color: rgb(32, 127, 173);
+    margin: 0 auto 12px;
+  }
+  .thoexe {
+    font-size: 17px;
+    line-height: 20px;
+  }
+  .thoexe span {
+    font-size: 11px;
+  }
+  .dde {
+    padding: 10px;
+    min-height: 0;
+  }
+  .ftnine #instructors .item > img {
+    height: 265px;
+  }
+  .dde p {
+    max-height: 224px;
+    min-height: 140px;
+  }
+  .ftten ul li, .ftten ul li:nth-child(5), .ftten ul li:last-child, .ftten ul li:nth-child(6), .ftten ul li:nth-child(7) {
+    width: 47%;
+    padding: 10px;
+    margin: 5px;
+  }
+
+  .tesbg {
+    height: 980px;
+  }
+  .slixe {
+    font-size: 17px;
+    margin: 0 0 20px 0;
+    line-height: 21px;
+  }
+  .ftthirteen .conxe {
+    min-height: auto;
+  }
+  .ftfefteen li:last-child {
+    margin: 0 0 0 0.5%;
+  }
+  .nodes {
+    height: 729px;
+  }
+  .ftfefteen .container {
+    top: 4%;
+  }
+  .ftfefteen li {
+    min-height: 577px;
+  }
+  .soicone {
+    display: block;
+    margin: 10px 0;
+  }
+  .ftext {
+    font-size: 12px;
+  }
+  .mobxe .allheade, .fteltwfw .allheade, .ftthirteen .allheade, .ftfefteen .allheade, .allheade {
+    font-size: 20px;
+    line-height: 25px;
+  }
+
+	.dsed {    margin: 30px 0;} .dsed .bigtet {
+    margin-bottom: 9px;
+}
+.linebg {
+    height: 10px;
+}}
+@media screen and (max-width:479px) {
+  .ftone h1 {
+    font-size: 20px;
+    margin-bottom: 14px;
+    padding: 0 0 8px 0;
+    border-bottom: 1px solid #fff;
+  }
+  .ftone h3 {
+    font-size: 15px;
+    padding: 4px 15px;
+    margin: 10px auto;
+  }
+  .heiese {
+    font-size: 15px;
+  }
+  .aplvy a {
+    margin: 9px 3px 0;
+  }
+  .logoxe img {
+    object-fit: contain;
+    height: 28px;
+    margin: 4px;
+  }
+  .toime {
+    height: 493px;
+  }
+  .fttwo .conxe {
+    min-height: 244px;
+  }
+  .ftthree .bgdes {
+    height: 730px;
+  }
+  .ftthree .bgdes {
+    height: 714px;
+  }
+  .imixes img {
+    margin: 0 9px 0 0;
+  }
+  .certificate {
+    display: block;
+    width: 100%;
+    vertical-align: middle;
+  }
+  .ftfefteen li {
+    min-height: 614px;
+  }
+  .ftfefteen li, .ftfefteen li:last-child {
+    min-height: auto;
+    width: 100%;
+    margin: 10px 0 0;
+  }
+  .aplvy {
+    display: block;
+    margin: 12px 0;
+  }
+  .ftfefteen .allheade {
+    margin: 0 auto 5px;
+  }
+  .ftfour .conede .allheade {
+    line-height: 26px;
+  }
+  .owl-theme .owl-dots .owl-dot span {
+    width: 8px;
+    height: 8px;
+    margin: 4px;
+  }
+ 
+}
+@media screen and (max-width:440px) {
+  .toime {
+    height: 561px;
+  }
+  .ftthree .bgdes {
+    height: 805px;
+  }
+  .imdise {
+    min-height: 442px;
+  }
+  .desed {
+    height: 723px;
+  }
+  .ftten ul li .conxe {
+    min-height: 134px;
+  }
+  .imixes img {
+    margin: 0 6px 0 0;
+  }
+  .nodes {
+    height: 801px;
+  }
+  #supports .item {
+    border: solid 1px #ccc;
+    padding: 10px;
+    border-radius: 10px;
+  }
+}
+@media screen and (max-width:380px) {
+  .nodes {
+    height: 848px;
+  }
+}
+@media screen and (max-width:359px) {}
+@media screen and (max-width:320px) {}

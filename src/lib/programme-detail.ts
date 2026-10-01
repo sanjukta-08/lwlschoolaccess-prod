@@ -1,0 +1,820 @@
+// Per-programme landing page content. Hand-written for the flagships, derived
+// from the catalogue for everything else so every page reads complete.
+
+import { TRACK_PROFILE, TYPE_PROFILE } from "./profile-building";
+import {
+  PROGRAMMES,
+  TRACKS,
+  TYPE_NAME,
+  type Programme,
+  type TypeKey,
+} from "./programmes";
+
+export type DoStep = { title: string; body: string };
+export type ProjectOutcome = { title: string; body: string; proof: string[] };
+export type Faq = { q: string; a: string };
+
+export type ProgrammeDetail = {
+  lede: string;
+  cohortSize: string;
+  ageLabel: string;
+  doSteps: DoStep[];
+  takeaways: string[];
+  skills: string[];
+  project: ProjectOutcome;
+  mentorTitle: string;
+  mentorBody: string;
+  faqs: Faq[];
+};
+
+export { slugOf, programmeBySlug, programmePath } from "./programme-slug";
+import { slugOf } from "./programme-slug";
+
+/* ---------- hand-written detail for the flagships ---------- */
+
+const drJojoDetail: Partial<ProgrammeDetail> = {
+  lede: "An intensive 4-day leadership and entrepreneurship accelerator led by Dr. Jojo O'Driscoll-Kearney (Harvard Business Impact Faculty & Hult Professor, ex-Meta CLO) for students of Mas Camarena School, Spain - combining strategic problem solving, venture creation, business modeling, and executive presentation across live 3-hour Zoom sessions.",
+  cohortSize: "Live Interactive Zoom Cohort",
+  ageLabel: "Mas Camarena School Students (Grades 8–12)",
+  doSteps: [
+    {
+      title: "Session 1 (April 10): Leadership Foundations & Strategic Vision",
+      body: "Discover core leadership styles, personal branding, team dynamics, and strategic decision-making frameworks guided by Dr. Jojo.",
+    },
+    {
+      title: "Session 2 (April 11): Entrepreneurial Mindset & Opportunity Discovery",
+      body: "Identify real-world market gaps, brainstorm high-impact venture ideas, and formulate customer value propositions.",
+    },
+    {
+      title: "Session 3 (April 17): Business Models & Financial Strategy",
+      body: "Develop financial awareness, revenue streams, unit economics, customer acquisition loops, and go-to-market strategies.",
+    },
+    {
+      title: "Session 4 (April 18): Pitching & Executive Presentation",
+      body: "Refine pitch decks, deliver executive venture presentations live on Zoom, and receive direct personalized feedback from Dr. Jojo.",
+    },
+  ],
+  takeaways: [
+    "Certificate of Leadership & Entrepreneurship Completion",
+    "Custom Venture Pitch Deck & Business Model Canvas",
+    "Executive Mentorship & Direct Feedback from Dr. Jojo",
+    "Verifiable Profile Artefact for University Applications",
+  ],
+  skills: [
+    "Strategic Leadership",
+    "Venture Creation & Business Modeling",
+    "Public Speaking & Executive Pitching",
+    "Market Research & Financial Awareness",
+    "Design Thinking & Problem Solving",
+  ],
+  project: {
+    title: "Venture Accelerator Pitch Deck & Business Canvas",
+    body: "Students build a complete venture proposal, value proposition canvas, and executive pitch deck presented live during the final session.",
+    proof: [
+      "Executive Venture Pitch Deck (PDF)",
+      "Business Model Canvas & Strategy Map",
+      "Official Certificate from Learn with Leaders",
+    ],
+  },
+  mentorTitle: "Led by Dr. Jojo & Senior Industry Mentors",
+  mentorBody: "Interactive, high-energy live learning designed specifically to give students real-world leadership tools and entrepreneurial confidence.",
+  faqs: [
+    {
+      q: "Who is this program for?",
+      a: "This program is specially organized for students of Mas Camarena School, Spain (Grades 8–12) looking to build leadership and entrepreneurial skills.",
+    },
+    {
+      q: "What are the session dates and timings?",
+      a: "The program takes place over 4 days: April 10th, 11th and April 17th, 18th. Each session is 3 hours long, conducted live via Zoom.",
+    },
+    {
+      q: "What technical setup is required?",
+      a: "A laptop or tablet with a stable internet connection, webcam, and Zoom installed.",
+    },
+    {
+      q: "Will students receive a certificate?",
+      a: "Yes, all students who complete the sessions and present their final venture project receive an official Certificate of Completion.",
+    },
+  ],
+};
+
+const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
+  "lea-dr-jojo": drJojoDetail,
+  "leadership-entrepreneurship-accelerator": drJojoDetail,
+  "leadership-and-entrepreneurship-accelerator-program-by-dr-jojo": drJojoDetail,
+  fdf: {
+    lede: "An 8-week pre-med fellowship where your child solves 16+ real clinical cases with a dedicated Harvard student mentor - in a cohort of just 4 to 6 students, ending in a capstone project and Demo Day.",
+    cohortSize: "4–6 students",
+    doSteps: [
+      {
+        title: "Solve 16+ real clinical cases",
+        body: "Work through genuine medical scenarios the way clinicians do - symptoms, tests, differentials, decisions.",
+      },
+      {
+        title: "Debate medical ethics",
+        body: "Argue the hard questions doctors face, and learn to defend a position with evidence.",
+      },
+      {
+        title: "Explore healthcare careers",
+        body: "See the paths beyond \u201Cdoctor\u201D - and what it actually takes to get into each one.",
+      },
+      {
+        title: "Build a capstone project",
+        body: "Choose one of four project tracks and build something portfolio-ready over the fellowship.",
+      },
+      {
+        title: "Present at Demo Day",
+        body: "Stand up and present the capstone - the confidence moment parents tell us about most.",
+      },
+    ],
+    takeaways: [
+      "Certificate of Completion",
+      "Letter of Participation",
+      "Portfolio-ready capstone",
+      "Weekly parent progress reports",
+    ],
+    mentorTitle: "A dedicated Harvard student mentor, not a rotating cast",
+    mentorBody:
+      "Each cohort of 4–6 students works with one Harvard student mentor for all eight weeks - someone recently through the pre-med journey themselves, who learns your child's strengths and pushes them accordingly.",
+    faqs: [
+      {
+        q: "Is my child ready for this?",
+        a: "The fellowship is built for Grades 8–12 (ages 13–18) who are curious about medicine - no prior medical knowledge is needed. For Grades 5–8, the Junior Doctor Fellowship is the better on-ramp.",
+      },
+      {
+        q: "How much time does it take each week?",
+        a: "One live 90-minute session on Saturdays, plus light case preparation between sessions. It's designed to sit alongside school, not compete with it.",
+      },
+      {
+        q: "How will I know how my child is doing?",
+        a: "You receive a written progress report every week from the mentor, and you're invited to the Demo Day presentation at the end.",
+      },
+    ],
+  },
+  jdf: {
+    lede: "A gentle, case-based first step into medicine for Grades 5–8: six medical mysteries, the human body system by system, and a capstone health project presented at Demo Day.",
+    cohortSize: "Small live cohort",
+    doSteps: [
+      {
+        title: "Solve six medical mysteries",
+        body: "Role-play the clinician: gather clues, rule things out and reach a diagnosis with a mentor guiding the reasoning.",
+      },
+      {
+        title: "Explore the body system by system",
+        body: "Heart, lungs, brain, immunity - taught through cases rather than textbook diagrams.",
+      },
+      {
+        title: "Build a Casebook Portfolio",
+        body: "Every case gets written up, so your child finishes with something tangible they are proud of.",
+      },
+      {
+        title: "Present a capstone health project",
+        body: "A short, well-rehearsed Demo Day presentation - usually the first time they present to adults outside school.",
+      },
+    ],
+    takeaways: [
+      "Certificate of Completion",
+      "Casebook Portfolio",
+      "Demo Day presentation experience",
+      "Weekly parent progress reports",
+    ],
+    mentorTitle: "Mentors who make medicine feel possible",
+    mentorBody:
+      "Sessions are led by mentors from top universities who are close enough in age to be relatable and experienced enough to be trusted. The tone is curious and encouraging - never a lecture.",
+    faqs: [
+      {
+        q: "Is Grade 5 too young?",
+        a: "No. The cases are written for ages 10–14 and use everyday language. Curiosity matters far more than science background.",
+      },
+      {
+        q: "What if my child is shy?",
+        a: "Cohorts are deliberately small so quieter students get spoken to by name every session, and Demo Day is rehearsed before it happens.",
+      },
+      {
+        q: "What comes next?",
+        a: "Most families move on to the Future Doctors Fellowship in Grade 8 or 9, which goes far deeper into clinical reasoning.",
+      },
+    ],
+  },
+  flf: {
+    lede: "A Harvard student-mentored pre-law fellowship: how US courts really work, FIRAC case analysis, LSAT fundamentals, AI & the Law - finishing with a live Moot Court simulation.",
+    doSteps: [
+      {
+        title: "Read and break down real cases",
+        body: "Learn FIRAC - facts, issue, rule, analysis, conclusion - the method law students use from week one.",
+      },
+      {
+        title: "Write like a lawyer",
+        body: "Short legal memos with a clear position, evidence and a conclusion that holds up under questioning.",
+      },
+      {
+        title: "Debate AI & the Law and legal ethics",
+        body: "The questions the profession is arguing about right now, argued by your child with a mentor pushing back.",
+      },
+      {
+        title: "Argue a live Moot Court",
+        body: "Stand up, present a case, take questions - the moment most students say made law feel real.",
+      },
+    ],
+    takeaways: [
+      "Certificate of Completion",
+      "Letter of Participation",
+      "Written legal memo for the portfolio",
+      "Moot Court experience",
+    ],
+    mentorTitle: "Taught by Harvard students, not a recorded course",
+    mentorBody:
+      "Mentors are current Harvard students who have been through competitive admissions and debate rooms recently. Every session is live, and every memo gets individual feedback.",
+    faqs: [
+      {
+        q: "Does my child need debate experience?",
+        a: "No. Structure is taught from scratch, and the Moot Court is scaffolded across the fellowship so nobody is thrown in cold.",
+      },
+      {
+        q: "Is this only useful for future lawyers?",
+        a: "The core skills - reading closely, arguing with evidence, writing tightly - transfer to any competitive university application.",
+      },
+      {
+        q: "How is progress shared with parents?",
+        a: "You get feedback on written work and an invitation to the Moot Court session at the end.",
+      },
+    ],
+  },
+  finlit: {
+    lede: "An AI-native finance fellowship with HPAIR: investing, financial analysis, fraud detection and venture strategy - with a real project defended live before a mentor panel.",
+    doSteps: [
+      {
+        title: "Learn how money actually works",
+        body: "Markets, valuation, risk and budgeting taught through live company examples rather than definitions.",
+      },
+      {
+        title: "Analyse real companies",
+        body: "Read statements, build a simple model and form a view your child can justify with numbers.",
+      },
+      {
+        title: "Use AI as a research analyst",
+        body: "Practise AI-assisted research the way analysts now do - including spotting where the AI is wrong.",
+      },
+      {
+        title: "Investigate financial fraud",
+        body: "Work famous fraud cases backwards and learn the red flags professionals look for.",
+      },
+      {
+        title: "Defend a capstone project",
+        body: "An investment thesis, budgeting tool or venture pitch, presented and questioned by a mentor panel.",
+      },
+    ],
+    takeaways: [
+      "Certificate of Completion",
+      "Capstone investment thesis or venture pitch",
+      "AI research workflow they keep using",
+      "Mentor panel feedback",
+    ],
+    mentorTitle: "Delivered in partnership with HPAIR",
+    mentorBody:
+      "Mentors come from the Harvard Project for Asian and International Relations network and from finance itself, so the standard for the final defence is set by people who do this professionally.",
+    faqs: [
+      {
+        q: "Does my child need maths beyond school level?",
+        a: "No. Comfortable arithmetic and curiosity are enough; the modelling is taught step by step.",
+      },
+      {
+        q: "Is this about picking stocks?",
+        a: "No. It is about reasoning with financial evidence - which is what universities and employers actually value.",
+      },
+      {
+        q: "How long is each session?",
+        a: "Two hours on Saturdays across eight weeks, with light preparation between sessions.",
+      },
+    ],
+  },
+  ail: {
+    lede: "Three build weekends where your child ships a real AI product using Claude, Cursor, Lovable and Perplexity - ending in a live Demo Day and a public Builder Profile.",
+    doSteps: [
+      {
+        title: "Find a problem worth solving",
+        body: "Start from something your child actually cares about, then scope it down to something buildable.",
+      },
+      {
+        title: "Build with professional AI tools",
+        body: "Claude, Lovable, Cursor and Perplexity used the way working builders use them - not toy exercises.",
+      },
+      {
+        title: "Ship a working product",
+        body: "A live link other people can use, iterated on with mentor feedback across the build days.",
+      },
+      {
+        title: "Present at Demo Day",
+        body: "A short founder-style demo to mentors and parents, with a recorded demo video to keep.",
+      },
+    ],
+    takeaways: [
+      "Certificate of Completion",
+      "A live AI product with a public link",
+      "Public Builder Profile",
+      "Demo video for applications",
+    ],
+    mentorTitle: "A 1:20 Harvard mentor ratio on every build day",
+    mentorBody:
+      "Build days are staffed so that no student sits stuck. Mentors are Harvard students who build with these tools themselves and review each product as it is shipped.",
+    faqs: [
+      {
+        q: "Does my child need to code?",
+        a: "No. The tools are AI-first, so students go from idea to working product without prior programming experience - though coders go deeper.",
+      },
+      {
+        q: "What will they have to show afterwards?",
+        a: "A live product link, a demo video and a public Builder Profile - all of which sit well in a university application.",
+      },
+      {
+        q: "Is a laptop required?",
+        a: "Yes, a laptop with a stable connection. Everything else runs in the browser.",
+      },
+    ],
+  },
+  rpf: {
+    lede: "An eight-week mentored fellowship that takes your child from research question to a genuinely published paper - with publication guaranteed.",
+    doSteps: [
+      {
+        title: "Choose a defensible research question",
+        body: "Narrow a broad interest into something a school student can actually investigate well.",
+      },
+      {
+        title: "Review the literature properly",
+        body: "Find, read and cite real sources - the skill most first-year undergraduates arrive without.",
+      },
+      {
+        title: "Write to journal structure",
+        body: "Abstract, method, findings, discussion - drafted and redrafted with a mentor line by line.",
+      },
+      {
+        title: "Submit and publish",
+        body: "Guided submission through to publication, so the work exists at a permanent link.",
+      },
+    ],
+    takeaways: [
+      "Published paper with a citable link",
+      "Certificate of Completion",
+      "Mentor letter of participation",
+      "Academic writing method they reuse",
+    ],
+    mentorTitle: "One research mentor for the whole eight weeks",
+    mentorBody:
+      "Your child works with a single mentor who knows the paper as well as they do, which is why drafts improve quickly rather than circling.",
+    faqs: [
+      {
+        q: "What does the publication guarantee mean?",
+        a: "Students who complete the fellowship and follow mentor feedback are guaranteed publication in a student-appropriate journal.",
+      },
+      {
+        q: "Which subjects are possible?",
+        a: "Sciences, social sciences, economics, public health and humanities are all supported - the question matters more than the field.",
+      },
+      {
+        q: "How much writing is involved?",
+        a: "Expect a few hours a week between sessions. It is the most demanding programme we run, and the most rewarding.",
+      },
+    ],
+  },
+  irf: {
+    lede: "Four months with Harvard Student Agencies mentors, turning your child's chosen cause into measurable impact and a published research paper.",
+    doSteps: [
+      {
+        title: "Define the impact goal",
+        body: "Pick a cause and define what success looks like in numbers, not intentions.",
+      },
+      {
+        title: "Research the evidence base",
+        body: "Understand what has already been tried, and what the data says about why it worked or failed.",
+      },
+      {
+        title: "Run a real initiative",
+        body: "Execute something small and real, then measure the outcome honestly.",
+      },
+      {
+        title: "Publish the findings",
+        body: "Write the work up to publication standard so it stands as proof, not a claim.",
+      },
+    ],
+    takeaways: [
+      "Published research paper",
+      "Evidence of a real-world initiative",
+      "Certificate and mentor letter",
+      "Portfolio-ready impact write-up",
+    ],
+    mentorTitle: "Mentored through Harvard Student Agencies",
+    mentorBody:
+      "Mentors hold students to a university standard of evidence over four months - long enough for the work to become substantial rather than a one-off project.",
+    faqs: [
+      {
+        q: "Four months alongside school - is that realistic?",
+        a: "Yes. The pace is deliberately steady, with fortnightly checkpoints rather than intense sprints.",
+      },
+      {
+        q: "Who is this best suited to?",
+        a: "Grades 8–12 students who already have a cause they care about and want proof of impact for applications.",
+      },
+      {
+        q: "Is prior research experience needed?",
+        a: "No, but the fellowship expects consistency. Students who show up every fortnight finish with something exceptional.",
+      },
+    ],
+  },
+  fef: {
+    lede: "Three weekends of building a venture from scratch - customer conversations, a working model, unit economics and a live pitch to mentors.",
+    doSteps: [
+      {
+        title: "Test an idea with real people",
+        body: "Talk to potential customers before building anything, and let the answers change the plan.",
+      },
+      {
+        title: "Build the business model",
+        body: "Pricing, costs and unit economics your child can explain on one page.",
+      },
+      {
+        title: "Make a first version",
+        body: "A prototype, landing page or service anyone can actually try.",
+      },
+      {
+        title: "Pitch to a mentor panel",
+        body: "Seven minutes, real questions, honest feedback - and a pitch deck to keep.",
+      },
+    ],
+    takeaways: [
+      "Certificate of Completion",
+      "Pitch deck and business model",
+      "Prototype or landing page",
+      "Mentor panel feedback",
+    ],
+    mentorTitle: "Mentors who have actually built things",
+    mentorBody:
+      "Sessions are led by student founders and operators, so feedback is practical rather than theoretical - what to cut, what to test next, what nobody will pay for.",
+    faqs: [
+      {
+        q: "Does my child need a business idea already?",
+        a: "No. The first weekend is about finding and testing ideas, so students arriving with nothing are fine.",
+      },
+      {
+        q: "Is this useful without starting a company?",
+        a: "Yes - the pitching, numbers and customer-research skills show up in interviews and applications immediately.",
+      },
+      {
+        q: "How are teams formed?",
+        a: "Students can work solo or in small teams; mentors help match complementary interests.",
+      },
+    ],
+  },
+};
+
+/* ---------- derived defaults by type ---------- */
+
+const TAKEAWAYS: Record<TypeKey, string[]> = {
+  fel: [
+    "Certificate of Completion",
+    "Letter of Participation",
+    "Portfolio-ready capstone",
+    "Parent progress updates",
+  ],
+  prog: [
+    "Certificate of Completion",
+    "Project or portfolio artefact",
+    "Live mentor feedback",
+    "Parent progress updates",
+  ],
+  comp: [
+    "Certificate of Participation",
+    "Judging feedback and ranking",
+    "Awards for top entries",
+    "A submission to show universities",
+  ],
+  conf: [
+    "Conference participation record",
+    "A submitted position paper",
+    "Committee and resolution-writing experience",
+    "Delegate recognition when awarded",
+  ],
+};
+
+const derivedSteps = (p: Programme): DoStep[] => {
+  const track = TRACKS[p.tracks[0]!].label.toLowerCase();
+  const kind = TYPE_NAME[p.type].toLowerCase();
+  if (p.type === "comp")
+    return [
+      {
+        title: "Understand what judges reward",
+        body: `A live briefing on the ${p.name} rubric, so your child knows what a winning entry looks like before starting.`,
+      },
+      {
+        title: "Research and build the entry",
+        body: `Structured work across ${p.dur.toLowerCase()}, with checkpoints rather than a last-minute scramble.`,
+      },
+      {
+        title: "Submit and get judged",
+        body: "Entries are assessed by the organising panel, with feedback and rankings returned to every participant.",
+      },
+    ];
+  return [
+    {
+      title: `Learn ${track} the applied way`,
+      body: `${p.tag} Every session is live and mentor-led, with discussion instead of lecture.`,
+    },
+    {
+      title: "Work on something real each week",
+      body: `Across ${p.dur.toLowerCase()}, students produce work rather than notes - cases, drafts, builds or analyses depending on the ${kind}.`,
+    },
+    {
+      title: "Get individual mentor feedback",
+      body: "Cohorts are kept small so mentors know each student by name and push them at the right level.",
+    },
+    {
+      title: "Finish with something to show",
+      body: "A final project or presentation your child can put in front of a university, a school or you.",
+    },
+  ];
+};
+
+const derivedFaqs = (p: Programme): Faq[] => [
+  {
+    q: "Is my child the right age for this?",
+    a: `It is designed for Grades ${p.g[0]}–${p.g[1]}. No prior background is assumed - mentors calibrate to the cohort in the first session.`,
+  },
+  {
+    q: "How much time does it take?",
+    a: `${p.dur} in total, with live sessions ${p.time.replace(/^\s+/, "").toLowerCase()} plus light preparation in between. It is built to sit alongside school.`,
+  },
+  {
+    q: "What if we miss a session?",
+    a: "Tell the team in advance and they will share the materials and arrange a catch-up so your child rejoins without falling behind.",
+  },
+  {
+    q: "How do we pay and confirm a place?",
+    a: `Places are confirmed on the ${p.name} application page. Fees shown here are correct at time of publishing - always confirm on the programme page before paying.`,
+  },
+];
+
+
+/* ---------- hand-written skills + finished project for the flagships ---------- */
+
+const WRITTEN_OUTCOME: Record<string, Pick<ProgrammeDetail, "skills" | "project">> = {
+  fdf: {
+    skills: [
+      "Clinical case reasoning",
+      "Differential diagnosis basics",
+      "Reading and summarising clinical papers",
+      "Medical ethics argument",
+      "Presenting a case to adults",
+      "Writing for a specialist reader",
+    ],
+    project: {
+      title: "A pre-med capstone, presented on Demo Day",
+      body: "Your child picks one of four project tracks and builds it across the fellowship with their Harvard student mentor - a clinical case study, a public-health brief, a research review or a health-tech concept - then defends it live on Demo Day.",
+      proof: [
+        "A written capstone your child can attach to applications",
+        "A recorded Demo Day presentation for the portfolio",
+        "Written mentor feedback from a Harvard student mentor",
+        "16+ solved clinical cases to talk about in interviews",
+      ],
+    },
+  },
+  jdf: {
+    skills: [
+      "Anatomy and physiology fundamentals",
+      "Symptom-to-system thinking",
+      "Note-taking from a live expert",
+      "Speaking about medicine accurately",
+      "Team case discussion",
+    ],
+    project: {
+      title: "A first medical case write-up",
+      body: "The fellowship closes with your child presenting a case they have worked through themselves - the first genuine piece of medical work in the profile, and the natural bridge into the Future Doctors Fellowship.",
+      proof: [
+        "A case write-up in your child's own words",
+        "Named completion certificate",
+        "A clear yes or no on medicine as a direction",
+      ],
+    },
+  },
+  flf: {
+    skills: [
+      "FIRAC case analysis",
+      "Statutory and case reading",
+      "Cross-examination and rebuttal",
+      "Legal writing structure",
+      "LSAT-style logical reasoning",
+      "Advocacy under time pressure",
+    ],
+    project: {
+      title: "A written brief plus a live moot",
+      body: "Your child prepares a legal brief on a real problem and then argues it in a live moot court against peers, with a mentor sitting as bench - the closest a school student gets to actual advocacy.",
+      proof: [
+        "A written legal brief for the portfolio",
+        "A mooting record and judge feedback",
+        "AI-and-the-law reading notes worth quoting in interviews",
+      ],
+    },
+  },
+  finlit: {
+    skills: [
+      "Three-statement financial modelling",
+      "Valuation basics",
+      "Fraud and red-flag analysis",
+      "Market and industry research",
+      "AI tools for financial analysis",
+      "Pitching numbers to a room",
+    ],
+    project: {
+      title: "An investment case, defended live",
+      body: "The fellowship ends with your child building and presenting an investment or valuation case on a real company - the work an analyst does in week one of the job.",
+      proof: [
+        "A valuation or investment deck",
+        "A working spreadsheet model",
+        "A recorded pitch for the portfolio",
+      ],
+    },
+  },
+  ail: {
+    skills: [
+      "Python fundamentals",
+      "Prompt and model evaluation",
+      "Building with no-code and AI tools",
+      "Product thinking and scoping",
+      "Documenting work in a repo",
+      "Demoing to non-technical adults",
+    ],
+    project: {
+      title: "A working AI build, with a repo and a demo",
+      body: "Your child ships something that actually runs - an AI tool or agent solving a problem they chose - documented in a public repository with a short demo video anyone can open.",
+      proof: [
+        "A working prototype with a public link or repo",
+        "A two-minute demo video",
+        "A written build log showing the decisions made",
+      ],
+    },
+  },
+  rpf: {
+    skills: [
+      "Literature review and search",
+      "Research question design",
+      "Method selection and limitations",
+      "Academic citation and referencing",
+      "Editing to journal standard",
+      "Working to a supervisor's brief",
+    ],
+    project: {
+      title: "A publishable research paper",
+      body: "Your child writes a full paper with a research mentor, from question to submission, aimed at a student-appropriate journal or preprint venue - the strongest single line available to a school student.",
+      proof: [
+        "A submitted or published paper with a permanent link",
+        "A supervisor's letter or written reference",
+        "A citable title for the CV and Common App",
+      ],
+    },
+  },
+  irf: {
+    skills: [
+      "Field research and interviews",
+      "Impact measurement",
+      "Stakeholder writing",
+      "Project management",
+      "Data presentation",
+    ],
+    project: {
+      title: "An impact project with numbers attached",
+      body: "The fellowship pairs research with real-world action, so your child finishes with a documented initiative - what they did, who it affected and what changed, measured rather than described.",
+      proof: [
+        "A research-backed impact report",
+        "Numbers you can quote on an application",
+        "Letters from the people or organisations involved",
+      ],
+    },
+  },
+  fef: {
+    skills: [
+      "Customer discovery interviews",
+      "MVP building with AI and no-code",
+      "Unit economics and pricing",
+      "Investor pitching",
+      "Iterating on user feedback",
+    ],
+    project: {
+      title: "A launched MVP and an investor pitch",
+      body: "Your child takes one idea from interview to validated MVP with real users, then delivers a live investor pitch - a venture that exists rather than a business plan in a drawer.",
+      proof: [
+        "A live product or service link",
+        "First users, sign-ups or revenue",
+        "A pitch deck and recorded pitch",
+      ],
+    },
+  },
+  fcf: {
+    skills: [
+      "Systems thinking",
+      "Stakeholder research",
+      "Campaign and project design",
+      "Team facilitation",
+      "Public advocacy",
+    ],
+    project: {
+      title: "A launched social impact project",
+      body: "Your child designs and runs a real social impact project in their own community, ending with a presentation of what changed and what it cost to get there.",
+      proof: [
+        "A live project with documented outcomes",
+        "Photos, numbers and testimonials",
+        "A leadership story with evidence behind it",
+      ],
+    },
+  },
+  ydf: {
+    skills: [
+      "Rebuttal structure",
+      "Impromptu speaking",
+      "Evidence and sourcing",
+      "Judging your own weaknesses",
+      "Composure under cross-examination",
+    ],
+    project: {
+      title: "A recorded final debate",
+      body: "The fellowship closes with a full adjudicated debate, recorded, so your child leaves with footage of themselves arguing well - the most useful thing for interview practice later.",
+      proof: [
+        "Recorded speeches for the portfolio",
+        "Adjudicator feedback in writing",
+        "A debate record to build tournament entries on",
+      ],
+    },
+  },
+  mun: {
+    skills: [
+      "Researching a country brief fast",
+      "Public speaking without notes",
+      "Negotiation and caucusing",
+      "Resolution and clause drafting",
+      "Parliamentary procedure",
+    ],
+    project: {
+      title: "A position paper and a passed resolution",
+      body: "Your child represents a country in committee, writes the position paper, builds alliances in caucus and works a resolution through to a vote - the whole diplomatic cycle in one conference.",
+      proof: [
+        "A submitted position paper",
+        "Resolution drafts your child helped write",
+        "Delegate award or committee recognition",
+      ],
+    },
+  },
+};
+
+const uniq = (xs: string[]) => Array.from(new Set(xs));
+
+const derivedSkills = (p: Programme): string[] =>
+  uniq([
+    ...p.tracks.flatMap((t) => TRACK_PROFILE[t].skills),
+    ...TYPE_PROFILE[p.type].skills,
+  ]).slice(0, 7);
+
+const PROJECT_TITLE: Record<TypeKey, string> = {
+  fel: "A finished capstone, built over the fellowship",
+  prog: "A short project or presentation to close the programme",
+  comp: "A judged entry with a result attached",
+  conf: "A position paper and committee record from the conference",
+};
+
+const derivedProject = (p: Programme): ProjectOutcome => {
+  const primary = TRACK_PROFILE[p.tracks[0]!];
+  return {
+    title: PROJECT_TITLE[p.type],
+    body: `${primary.story} By the end of ${p.name}, the aim is simple: ${primary.outcome.charAt(0).toLowerCase()}${primary.outcome.slice(1)}`,
+    proof: TYPE_PROFILE[p.type].proof,
+  };
+};
+
+export const detailFor = (p: Programme): ProgrammeDetail => {
+  const w = WRITTEN[p.id] ?? (p.paySlug ? WRITTEN[p.paySlug] : undefined) ?? WRITTEN[slugOf(p)] ?? {};
+  return {
+    lede: w.lede ?? `${p.tag} ${p.about}`.trim(),
+    cohortSize: w.cohortSize ?? "Small live cohort",
+    ageLabel: w.ageLabel ?? `Grades ${p.g[0]}–${p.g[1]} (${p.g[0] + 5}–${p.g[1] + 5})`,
+    doSteps: w.doSteps ?? derivedSteps(p),
+    takeaways: w.takeaways ?? TAKEAWAYS[p.type],
+    skills: w.skills ?? WRITTEN_OUTCOME[p.id]?.skills ?? derivedSkills(p),
+    project: w.project ?? WRITTEN_OUTCOME[p.id]?.project ?? derivedProject(p),
+    mentorTitle: w.mentorTitle ?? "Live mentors, every single session",
+    mentorBody:
+      w.mentorBody ??
+      `${p.name} is taught live by mentors from leading universities and partner organisations - never pre-recorded. Small cohorts mean your child is spoken to by name, not counted in an audience.`,
+    faqs: w.faqs ?? derivedFaqs(p),
+  };
+};
+
+/** Three sensible next reads: same interest first, then same grade band. */
+export const relatedProgrammes = (p: Programme): Programme[] => {
+  const sameTrack = PROGRAMMES.filter(
+    (o) => o.id !== p.id && o.tracks.some((t) => p.tracks.includes(t)),
+  );
+  const overlapping = PROGRAMMES.filter(
+    (o) =>
+      o.id !== p.id &&
+      !sameTrack.includes(o) &&
+      o.g[0] <= p.g[1] &&
+      o.g[1] >= p.g[0],
+  );
+  return [...sameTrack, ...overlapping].slice(0, 3);
+};

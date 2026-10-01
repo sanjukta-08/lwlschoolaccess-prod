@@ -1,0 +1,541 @@
+import { useCallback, useEffect, useState } from "react";
+import linkedinMark from "@/assets/linkedin-logo.webp.asset.json";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import type { LinkedInStory } from "@/lib/social-proof";
+
+export function LinkedInGlyph({ className = "" }: { className?: string }) {
+  return (
+    <img
+      src={linkedinMark.url}
+      alt=""
+      aria-hidden
+      width={24}
+      height={24}
+      loading="lazy"
+      className={`inline-block h-6 w-6 shrink-0 rounded-[5px] object-cover ${className}`}
+    />
+  );
+}
+
+export function InstagramGlyph({ className = "" }: { className?: string }) {
+  return (
+    <span
+      aria-hidden
+      className={`inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-[7px] bg-[linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7)] text-paper ${className}`}
+    >
+      <svg viewBox="0 0 24 24" fill="none" className="h-3.5 w-3.5">
+        <rect
+          x="3"
+          y="3"
+          width="18"
+          height="18"
+          rx="5"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
+        <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2" />
+        <circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" />
+      </svg>
+    </span>
+  );
+}
+
+function SourceGlyph({
+  story,
+  className = "",
+}: {
+  story: LinkedInStory;
+  className?: string;
+}) {
+  return story.source === "instagram" ? (
+    <InstagramGlyph className={className} />
+  ) : (
+    <LinkedInGlyph className={className} />
+  );
+}
+
+const SOURCE_LABEL: Record<LinkedInStory["source"], string> = {
+  linkedin: "LinkedIn",
+  instagram: "Instagram",
+};
+
+
+/** LinkedIn-style reaction stack. */
+function ReactionStack({ story }: { story: LinkedInStory }) {
+  return (
+    <span className="flex items-center gap-2">
+        <span aria-hidden className="flex items-center -space-x-1">
+        <span className="flex h-5 w-5 items-center justify-center rounded-full border border-paper bg-[#0a66c2] text-[0.55rem] text-paper">
+          <svg className="h-2.5 w-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M2 20h2c.55 0 1-.45 1-1v-9c0-.55-.45-1-1-1H2v11zm19.83-7.12c.11-.25.17-.52.17-.8V11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 2 7.58 7.59C7.21 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1c0-.03-.01-.06-.01-.09z"/></svg>
+        </span>
+        <span className="flex h-5 w-5 items-center justify-center rounded-full border border-paper bg-crimson text-[0.55rem] text-paper">
+          <svg className="h-2.5 w-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </span>
+        <span className="flex h-5 w-5 items-center justify-center rounded-full border border-paper bg-gold text-[0.55rem] text-ink">
+          <svg className="h-2.5 w-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </span>
+        <span className="flex h-5 w-5 items-center justify-center rounded-full border border-paper bg-ink/25" />
+      </span>
+      <span className="text-[0.78rem] font-semibold text-ink-soft">{story.reactions}</span>
+    </span>
+  );
+}
+
+function Reactions({ story }: { story: LinkedInStory }) {
+  return (
+    <span className="flex items-center gap-1.5">
+      <span className="font-semibold text-ink">{story.reactions}</span> reactions
+    </span>
+  );
+}
+
+function StoryTile({
+  story,
+  onOpen,
+}: {
+  story: LinkedInStory;
+  onOpen: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onOpen}
+      aria-label={`Open ${SOURCE_LABEL[story.source]} story from ${story.name}`}
+      className="group flex h-full flex-col rounded-2xl border border-line bg-paper p-6 text-left shadow-soft transition-transform hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none"
+    >
+      <header className="flex items-start gap-3.5">
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-crimson/10 font-serif text-[0.95rem] font-bold text-crimson-deep">
+          {story.initials}
+        </span>
+        <div className="min-w-0 flex-1">
+          <div className="text-[0.95rem] font-bold leading-tight text-ink">{story.name}</div>
+          <div className="truncate text-[0.78rem] text-ink-faint">{story.role}</div>
+        </div>
+        <div className="flex items-center gap-1">
+          <SourceGlyph story={story} className="h-6 w-6" />
+          <span aria-hidden className="text-[0.95rem] leading-none text-ink-faint">
+            ⋮
+          </span>
+        </div>
+      </header>
+
+      <div className="mt-4">
+        <h3 className="text-[1.05rem] font-bold leading-snug text-ink">
+          {story.when}
+        </h3>
+      </div>
+
+      {story.image ? (
+        <img
+          src={story.image}
+          alt={story.imageAlt ?? `${SOURCE_LABEL[story.source]} post by ${story.name}`}
+          width={640}
+          height={400}
+          loading="lazy"
+          className="mt-4 w-full rounded-xl border border-line object-cover"
+        />
+      ) : (
+        <p className="mt-4 text-[0.9rem] leading-relaxed text-ink-soft line-clamp-5">
+          {story.text}
+        </p>
+      )}
+
+      <div className="mt-4 flex items-center justify-between border-b border-line pb-3.5 text-[0.78rem] text-ink-faint">
+        <ReactionStack story={story} />
+        <span className="flex items-center gap-1.5">
+          <span className="font-semibold text-ink">{story.comments}</span> comments
+        </span>
+      </div>
+
+      <div className="mt-auto flex items-center justify-between gap-3 pt-3.5">
+        <div className="flex flex-wrap items-center gap-1.5">
+          {story.tag ? (
+            <span className="rounded-full bg-crimson/8 px-2.5 py-1 text-[0.72rem] font-semibold text-crimson-deep">
+              #{story.tag}
+            </span>
+          ) : null}
+        </div>
+        {!story.placeholder ? (
+          <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-[0.7rem] font-semibold text-ink-soft">
+            <SourceGlyph story={story} className="h-3.5 w-3.5 rounded-[3px]" />
+            Real {SOURCE_LABEL[story.source]} post
+          </span>
+        ) : null}
+      </div>
+    </button>
+  );
+}
+
+function StoryLightbox({
+  stories,
+  index,
+  onClose,
+  onIndex,
+}: {
+  stories: LinkedInStory[];
+  index: number | null;
+  onClose: () => void;
+  onIndex: (i: number) => void;
+}) {
+  const open = index !== null;
+  const story = open ? stories[index!] : undefined;
+
+  const step = useCallback(
+    (delta: number) => {
+      if (index === null || stories.length === 0) return;
+      onIndex((index + delta + stories.length) % stories.length);
+    },
+    [index, onIndex, stories.length],
+  );
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") step(1);
+      if (e.key === "ArrowLeft") step(-1);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open, step]);
+
+  if (!story) return null;
+
+  return (
+    <Dialog open={open} onOpenChange={(v) => (v ? null : onClose())}>
+      <DialogContent className="max-h-[88vh] max-w-[720px] overflow-y-auto bg-paper p-0">
+        <div className="flex items-start gap-3 border-b border-line p-5">
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-crimson/10 font-serif text-[0.95rem] font-bold text-crimson-deep">
+            {story.initials}
+          </span>
+          <div className="min-w-0 flex-1">
+            <DialogTitle className="text-[1rem] font-bold text-ink">
+              {story.name}
+            </DialogTitle>
+            <DialogDescription className="text-[0.8rem] text-ink-faint">
+              {story.role}
+            </DialogDescription>
+            <div className="mono-label mt-1 text-ink-faint">
+              {story.when}{story.tag ? ` · #${story.tag}` : ""}
+            </div>
+          </div>
+          <SourceGlyph story={story} className="h-7 w-7" />
+        </div>
+
+        <div className="p-5">
+          {story.image ? (
+            <img
+              src={story.image}
+              alt={story.imageAlt ?? `${SOURCE_LABEL[story.source]} post by ${story.name}`}
+
+              className="w-full rounded-xl border border-line"
+            />
+          ) : null}
+          <p className="mt-4 text-[0.95rem] leading-relaxed whitespace-pre-line text-ink-soft">
+            {story.text}
+          </p>
+          {story.placeholder ? (
+            <p className="mono-label mt-4 text-ink-faint">
+              Illustrative story - real posts are published with the family's permission.
+            </p>
+          ) : (
+            <p className="mono-label mt-4 text-ink-faint">
+              Published by {story.name} on {SOURCE_LABEL[story.source]}, shared with permission.
+            </p>
+          )}
+
+        </div>
+
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-line px-5 py-4 text-[0.8rem] text-ink-faint">
+          <Reactions story={story} />
+          <span>{story.comments} comments</span>
+          {story.postUrl ? (
+            <a
+              href={story.postUrl}
+              target="_blank"
+              rel="noopener"
+              className="font-bold text-crimson no-underline hover:underline"
+            >
+              View on {SOURCE_LABEL[story.source]} →
+            </a>
+          ) : null}
+        </div>
+
+        {stories.length > 1 ? (
+          <div className="flex items-center justify-between gap-3 border-t border-line px-5 py-3.5">
+            <button
+              type="button"
+              onClick={() => step(-1)}
+              className="rounded-full border border-line px-4 py-2 text-[0.8rem] font-semibold text-ink-soft transition-colors hover:bg-wash"
+            >
+              ← Previous
+            </button>
+            <span className="mono-label text-ink-faint">
+              {index! + 1} / {stories.length}
+            </span>
+            <button
+              type="button"
+              onClick={() => step(1)}
+              className="rounded-full border border-line px-4 py-2 text-[0.8rem] font-semibold text-ink-soft transition-colors hover:bg-wash"
+            >
+              Next →
+            </button>
+          </div>
+        ) : null}
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function windowOf<T>(items: T[], start: number, count: number) {
+  if (items.length === 0) return [] as { item: T; index: number }[];
+  return Array.from({ length: Math.min(count, items.length) }, (_, k) => {
+    const index = (start + k) % items.length;
+    return { item: items[index] as T, index };
+  });
+}
+
+function SideArrows({
+  onPrev,
+  onNext,
+  label,
+}: {
+  onPrev: () => void;
+  onNext: () => void;
+  label: string;
+}) {
+  return (
+    <>
+      <button
+        type="button"
+        onClick={onPrev}
+        aria-label={`Previous ${label}`}
+        className="absolute left-0 top-1/2 z-10 hidden h-10 w-10 -translate-x-[calc(100%+0.5rem)] -translate-y-1/2 items-center justify-center rounded-full border border-gold/40 bg-gold-soft text-gold-deep shadow-soft ring-2 ring-paper transition-colors hover:bg-gold hover:text-paper sm:flex"
+      >
+        <span aria-hidden>←</span>
+      </button>
+      <button
+        type="button"
+        onClick={onNext}
+        aria-label={`Next ${label}`}
+        className="absolute right-0 top-1/2 z-10 hidden h-10 w-10 translate-x-[calc(100%+0.5rem)] -translate-y-1/2 items-center justify-center rounded-full border border-gold/40 bg-gold-soft text-gold-deep shadow-soft ring-2 ring-paper transition-colors hover:bg-gold hover:text-paper sm:flex"
+      >
+        <span aria-hidden>→</span>
+      </button>
+    </>
+  );
+}
+
+/** Three cards at a time, sliding one card per tick in a continuous loop. */
+function StoryCarousel({
+  stories,
+  onOpen,
+}: {
+  stories: LinkedInStory[];
+  onOpen: (i: number) => void;
+}) {
+  const perPage = 3;
+  const [start, setStart] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const canSlide = stories.length > perPage;
+
+  useEffect(() => {
+    if (paused || !canSlide) return;
+    const id = window.setInterval(
+      () => setStart((s) => (s + 1) % stories.length),
+      6500,
+    );
+    return () => window.clearInterval(id);
+  }, [paused, canSlide, stories.length]);
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
+    >
+      <div key={start} className="grid animate-fade-in gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {windowOf(stories, start, perPage).map(({ item, index }) => (
+          <StoryTile key={`${item.id}-${index}`} story={item} onOpen={() => onOpen(index)} />
+        ))}
+      </div>
+
+      {canSlide ? (
+        <SideArrows
+          label="stories"
+          onPrev={() => setStart((s) => (s - 1 + stories.length) % stories.length)}
+          onNext={() => setStart((s) => (s + 1) % stories.length)}
+        />
+      ) : null}
+    </div>
+  );
+}
+
+
+/** Continuous one-card-per-tick loop with side arrows. */
+function StoryMarquee({
+  stories,
+  onOpen,
+}: {
+  stories: LinkedInStory[];
+  onOpen: (i: number) => void;
+}) {
+  const [paused, setPaused] = useState(false);
+  const perPage = 3;
+  const [start, setStart] = useState(0);
+  const canSlide = stories.length > perPage;
+
+  useEffect(() => {
+    if (paused || !canSlide) return;
+    const id = window.setInterval(
+      () => setStart((s) => (s + 1) % stories.length),
+      6000,
+    );
+    return () => window.clearInterval(id);
+  }, [paused, canSlide, stories.length]);
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
+    >
+      <div key={start} className="grid animate-fade-in gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {windowOf(stories, start, perPage).map(({ item: s, index }) => (
+          <button
+            key={`${s.id}-${index}`}
+            type="button"
+            onClick={() => onOpen(index)}
+            aria-label={`Open ${SOURCE_LABEL[s.source]} post from ${s.name}`}
+            className="rounded-2xl border border-line bg-paper p-5 text-left shadow-soft transition-transform hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-crimson focus-visible:outline-none"
+          >
+            <header className="flex items-center gap-3">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-crimson/10 font-serif text-[0.9rem] font-bold text-crimson-deep">
+                {s.initials}
+              </span>
+              <div className="min-w-0 flex-1">
+                <div className="truncate text-[0.95rem] font-bold leading-tight text-ink">
+                  {s.name}
+                </div>
+                <div className="truncate text-[0.76rem] text-ink-faint">{s.role}</div>
+              </div>
+              <SourceGlyph story={s} className="h-6 w-6" />
+            </header>
+            {s.image ? (
+              <img
+                src={s.image}
+                alt={s.imageAlt ?? `${SOURCE_LABEL[s.source]} post by ${s.name}`}
+                width={640}
+                height={640}
+                loading="lazy"
+                className="mt-4 w-full rounded-xl border border-line bg-wash object-contain"
+              />
+            ) : (
+              <p className="mt-4 line-clamp-5 text-[0.9rem] leading-relaxed text-ink-soft">
+                {s.text}
+              </p>
+            )}
+            <div className="mt-4 flex items-center justify-between gap-3 text-[0.78rem] text-ink-faint">
+              <span className="truncate font-semibold text-ink-soft">{s.when}</span>
+              {s.tag ? (
+                <span className="shrink-0 rounded-full bg-crimson/8 px-2.5 py-1 text-[0.7rem] font-semibold text-crimson-deep">
+                  #{s.tag}
+                </span>
+              ) : null}
+            </div>
+          </button>
+        ))}
+      </div>
+
+      {canSlide ? (
+        <SideArrows
+          label="posts"
+          onPrev={() => setStart((s) => (s - 1 + stories.length) % stories.length)}
+          onNext={() => setStart((s) => (s + 1) % stories.length)}
+        />
+      ) : null}
+    </div>
+  );
+}
+
+
+
+export function StoryGallery({
+  stories,
+  limit,
+  variant = "grid",
+}: {
+  stories: LinkedInStory[];
+  limit?: number;
+  /** "carousel" shows three cards at a time and auto-advances through the set. "marquee" scrolls continuously. */
+  variant?: "grid" | "strip" | "carousel" | "marquee";
+}) {
+  const shown = limit ? stories.slice(0, limit) : stories;
+  const [open, setOpen] = useState<number | null>(null);
+
+  if (shown.length === 0) return null;
+
+  if (variant === "carousel") {
+    return (
+      <>
+        <StoryCarousel stories={shown} onOpen={setOpen} />
+        <StoryLightbox
+          stories={shown}
+          index={open}
+          onClose={() => setOpen(null)}
+          onIndex={setOpen}
+        />
+      </>
+    );
+  }
+
+  if (variant === "marquee") {
+    return (
+      <>
+        <StoryMarquee stories={shown} onOpen={setOpen} />
+        <StoryLightbox
+          stories={shown}
+          index={open}
+          onClose={() => setOpen(null)}
+          onIndex={setOpen}
+        />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <div
+        className={
+          variant === "strip"
+            ? "grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+            : "grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+        }
+      >
+        {shown.map((s, i) => (
+          <StoryTile
+            key={s.id}
+            story={s}
+            onOpen={() => setOpen(i)}
+          />
+        ))}
+      </div>
+
+
+      <StoryLightbox
+        stories={shown}
+        index={open}
+        onClose={() => setOpen(null)}
+        onIndex={setOpen}
+      />
+    </>
+  );
+}
