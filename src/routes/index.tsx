@@ -12,7 +12,6 @@ import {
   cohortGrades,
   feeOf,
   fmtShort,
-  upcomingProgrammes,
   type TrackKey,
 } from "@/lib/programmes";
 import { DEFAULT_SEARCH } from "@/lib/finder";
