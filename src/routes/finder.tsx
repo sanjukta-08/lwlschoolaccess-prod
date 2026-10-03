@@ -20,7 +20,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { PROGRAMMES, TRACKS, TYPES, TYPE_NAME } from "@/lib/programmes";
+import { PROGRAMMES, upcomingProgrammes, TRACKS, TYPES, TYPE_NAME } from "@/lib/programmes";
 import {
   BAND_LABEL,
   DEFAULT_SEARCH,
@@ -234,7 +234,7 @@ function FinderPage() {
             <div>
               <span className="mono-label mb-2 inline-flex items-center justify-center gap-2 text-crimson">
                 <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
-                {PROGRAMMES.length} programmes · Grades {gradeLo()}–{gradeHi()}
+                {upcomingProgrammes().length} programmes · Grades {gradeLo()}–{gradeHi()}
               </span>
               <h1 className="font-serif text-[clamp(1.8rem,4.4vw,2.7rem)] leading-[1.1] font-medium tracking-tight">
                 Find the programme that <em className="text-crimson-deep">fits</em> your child
@@ -244,7 +244,7 @@ function FinderPage() {
               {[
                 ["Harvard & Yale Student Mentors", "Taught by leaders"],
                 ["Live on Zoom", "Dubai + US Eastern"],
-                [`Grades ${gradeLo()}–${gradeHi()}`, `${PROGRAMMES.length} programmes`],
+                [`Grades ${gradeLo()}–${gradeHi()}`, `${upcomingProgrammes().length} programmes`],
               ].map(([top, sub]) => (
                 <li
                   key={top}

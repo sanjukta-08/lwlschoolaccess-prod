@@ -1,7 +1,7 @@
-import { PROGRAMMES, totalCohorts } from "@/lib/programmes";
+import { PROGRAMMES, upcomingProgrammes, totalCohorts } from "@/lib/programmes";
 
 const stats = (): { value: string; label: string }[] => [
-  { value: String(PROGRAMMES.length), label: "Programmes" },
+  { value: String(upcomingProgrammes().length), label: "Programmes" },
   { value: String(totalCohorts()), label: "Upcoming cohorts" },
   { value: "10", label: "Months ahead" },
   { value: "Harvard · Yale", label: "Mentors from" },
