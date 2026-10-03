@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
 import { useHydratedCatalogue } from "@/lib/catalogue";
 import { DEFAULT_SEARCH } from "@/lib/finder";
+import { slugOf } from "@/lib/programme-slug";
 import {
   TRACKS,
   fmtLong,
@@ -28,13 +29,12 @@ const isAiFoundersChallenge = (p: Programme): boolean => {
   return n.includes("ai founder") || n.includes("founders challenge");
 };
 
-/** Pinned first: AI Founders Challenge, then everything else in catalogue order. */
-const sortCompetitions = (a: Programme, b: Programme): number =>
-  Number(isAiFoundersChallenge(b)) - Number(isAiFoundersChallenge(a));
+const firstDate = (p: Programme): string =>
+  [...p.cohorts].map((c) => c.d).sort()[0] ?? "9999-12-31";
 
-/** Apply link override for competitions whose official landing page differs from the catalogue default. */
-const applyUrlFor = (p: Programme): string =>
-  isAiFoundersChallenge(p) ? "https://joinonwards.com/competitions/register" : p.apply;
+/** Earliest upcoming start date first; undated competitions last. */
+const sortCompetitions = (a: Programme, b: Programme): number =>
+  firstDate(a).localeCompare(firstDate(b));
 
 /** Picks the closest-matching photo for a competition from its name and track. */
 const imageFor = (p: Programme): string => {
@@ -96,7 +96,7 @@ export const Route = createFileRoute("/competitions")({
               "@type": "ListItem",
               position: i + 1,
               name: p.name,
-              url: applyUrlFor(p),
+              url: `https://lwlschoolaccess.com/programmes/${slugOf(p)}`,
             })),
         }),
       },
@@ -119,18 +119,16 @@ const partnerFromUrl = (url: string): string => {
   }
 };
 
-const nextCohort = (p: Programme) => p.cohorts[0];
+const nextCohort = (p: Programme) => [...p.cohorts].sort((a, b) => a.d.localeCompare(b.d))[0];
 
 function CompetitionCard({ p }: { p: Programme }) {
-  const applyUrl = applyUrlFor(p);
-  const partner = partnerFromUrl(applyUrl);
+  const partner = partnerFromUrl(p.apply);
   const next = nextCohort(p);
   return (
     <li className="h-full">
-      <a
-        href={applyUrl}
-        target="_blank"
-        rel="noopener"
+      <Link
+        to="/programmes/$slug"
+        params={{ slug: slugOf(p) }}
         className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-paper no-underline shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold-line hover:shadow-lift"
       >
         <div className="relative aspect-[16/9] w-full overflow-hidden bg-wash">
@@ -194,7 +192,7 @@ function CompetitionCard({ p }: { p: Programme }) {
             </span>
           </div>
         </div>
-      </a>
+      </Link>
     </li>
   );
 }
