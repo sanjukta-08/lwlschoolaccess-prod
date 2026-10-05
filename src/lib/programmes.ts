@@ -113,14 +113,14 @@ export const MENTOR_ORDER: MentorKey[] = ["harvard", "hpair", "yale", "ivy"];
 
 export const TYPES: Record<TypeKey, { label: string }> = {
   fel: { label: "Fellowships" },
-  prog: { label: "Programmes" },
+  prog: { label: "Programs" },
   comp: { label: "Competitions" },
   conf: { label: "Conferences" },
 };
 
 export const TYPE_NAME: Record<TypeKey, string> = {
   fel: "Fellowship",
-  prog: "Programme",
+  prog: "Program",
   comp: "Competition",
   conf: "Conference",
 };
@@ -334,7 +334,7 @@ export const OUTCOMES: Outcome[] = [
   },
   {
     title: "Mentor letters and certificates on file",
-    body: "Named, dated, verifiable documents from every programme - ready when a university or scholarship asks.",
+    body: "Named, dated, verifiable documents from every program - ready when a university or scholarship asks.",
     type: "comp",
   },
 ];

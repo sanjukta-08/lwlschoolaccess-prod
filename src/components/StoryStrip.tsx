@@ -112,10 +112,10 @@ export default function StoryStrip() {
           title={
             <>
               What learners said about{" "}
-              <em className="text-crimson-deep font-extrabold">each programme</em>
+              <em className="text-crimson-deep font-extrabold">each program</em>
             </>
           }
-          sub="Unedited answers from end-of-programme feedback forms, labelled with the cohort they came from. Tap any card to read the full note."
+          sub="Unedited answers from end-of-program feedback forms, labelled with the cohort they came from. Tap any card to read the full note."
           action={<SeeAll label="Read all learner feedback" />}
         />
         <div className="mt-4">

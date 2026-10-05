@@ -87,7 +87,7 @@ function Shell({ children }: { children: React.ReactNode }) {
             Explore Our <span className="text-crimson">Masterclasses</span>
           </h1>
           <p className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
-            Free live sessions with Ivy League student mentors across the Learn with Leaders family of programmes. Choose a session and join from anywhere.
+            Free live sessions with Ivy League student mentors across the Learn with Leaders family of programs. Choose a session and join from anywhere.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <a

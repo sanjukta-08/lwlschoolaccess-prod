@@ -22,7 +22,7 @@ export const Route = createFileRoute("/programmes/$slug")({
     if (!p) {
       return {
         meta: [
-          { title: "Programme not found - Learn with Leaders" },
+          { title: "Program not found - Learn with Leaders" },
           { name: "robots", content: "noindex" },
         ],
       };
@@ -121,7 +121,7 @@ function ProgrammeNotFound() {
       <SiteHeader />
       <main className="mx-auto max-w-[760px] px-5 py-24 text-center">
         <h1 className="font-serif text-[2rem] font-semibold">
-          We couldn't find that programme
+          We couldn't find that program
         </h1>
         <p className="mt-3 text-ink-soft">
           It may have been renamed or retired. Browse the full catalogue instead.
@@ -131,7 +131,7 @@ function ProgrammeNotFound() {
           search={DEFAULT_SEARCH}
           className="mt-7 inline-block rounded-full bg-crimson px-6 py-3 text-[0.9rem] font-bold text-paper no-underline"
         >
-          Open the Programme Finder →
+          Open the Program Finder →
         </Link>
       </main>
     </div>

@@ -10,12 +10,12 @@ export function ProfileTypeBlocks() {
     <section id="by-type" className="scroll-mt-24 py-14">
       <div className="page-shell">
         <header className="mb-8 mx-auto max-w-[46em] text-center">
-          <span className="mono-label text-crimson">Programme by programme</span>
+          <span className="mono-label text-crimson">Program by program</span>
           <h2 className="mt-2 font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
-            What each kind of programme <em className="text-crimson-deep">builds</em>
+            What each kind of program <em className="text-crimson-deep">builds</em>
           </h2>
           <p className="mt-2.5 text-[0.93rem] text-ink-soft">
-            The five kinds of programme do different jobs on a profile. Read the job
+            The five kinds of program do different jobs on a profile. Read the job
             first, then pick the field - that order stops families buying five of the
             same thing.
           </p>

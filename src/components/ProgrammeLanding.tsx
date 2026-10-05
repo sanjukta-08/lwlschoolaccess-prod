@@ -55,7 +55,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         <div className="page-shell pt-10 pb-11 text-center">
           <p className="mono-label mb-4 text-ink-faint">
             <Link to="/finder" search={DEFAULT_SEARCH} className="no-underline hover:underline">
-              Programmes
+              Programs
             </Link>{" "}
             / <b style={{ color: track.color }}>{track.label}</b>
           </p>
@@ -474,7 +474,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
               search={DEFAULT_SEARCH}
               className="rounded-full border-[1.5px] border-line bg-ink px-6 py-3 text-[0.9rem] font-bold text-paper no-underline shadow-soft transition-transform hover:-translate-y-0.5 hover:brightness-110"
             >
-              ← Browse all programmes
+              ← Browse all programs
             </Link>
           </div>
         </section>

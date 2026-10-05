@@ -35,13 +35,13 @@ export const Route = createFileRoute("/shortlist")({
   },
   head: () => ({
     meta: [
-      { title: "My saved programmes | Learn with Leaders" },
+      { title: "My saved programs | Learn with Leaders" },
       {
         name: "description",
         content:
-          "The programmes you saved, with start dates, fees and calendar reminders you can share with a parent.",
+          "The programs you saved, with start dates, fees and calendar reminders you can share with a parent.",
       },
-      { property: "og:title", content: "My saved programmes | Learn with Leaders" },
+      { property: "og:title", content: "My saved programs | Learn with Leaders" },
       {
         property: "og:description",
         content: "Your shortlist of Learn with Leaders cohorts, with dates and reminders.",
@@ -94,7 +94,7 @@ function ShortlistPage() {
         eyebrow="Your list · saved on this device"
         title={
           rows.length
-            ? `${rows.length} programme${rows.length === 1 ? "" : "s"} on your shortlist`
+            ? `${rows.length} program${rows.length === 1 ? "" : "s"} on your shortlist`
             : "Your shortlist is empty"
         }
         subtitle={
@@ -218,7 +218,7 @@ function ShortlistPage() {
           <section className="mt-8">
             <h2 className="font-serif text-[1.3rem] font-semibold">Start with a top pick</h2>
             <p className="mt-1 text-[0.9rem] text-ink-soft">
-              Tap the heart on any programme to save it here.
+              Tap the heart on any program to save it here.
             </p>
             <div className="mt-4 grid gap-3 sm:grid-cols-3">
               {TRENDING.slice(0, 3).map(({ id, why }) => {
@@ -246,7 +246,7 @@ function ShortlistPage() {
               search={DEFAULT_SEARCH}
               className="mt-5 inline-block rounded-xl bg-crimson px-4 py-2 text-[0.85rem] font-bold text-paper no-underline"
             >
-              Browse all programmes
+              Browse all programs
             </Link>
           </section>
         )}

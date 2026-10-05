@@ -90,13 +90,13 @@ export function TestimonialFilters({
           </select>
         </Field>
 
-        <Field icon={<Users className="h-3.5 w-3.5" />} label="Programme">
+        <Field icon={<Users className="h-3.5 w-3.5" />} label="Program">
           <select
             className={fieldCls}
             value={search.programme}
             onChange={(e) => onChange({ programme: e.target.value })}
           >
-            <option value="all">All programmes</option>
+            <option value="all">All programs</option>
             {testimonialProgrammes().filter(
               (p) => (facets.programme[p] ?? 0) > 0 || p === search.programme,
             ).map((p) => (
@@ -130,7 +130,7 @@ export function TestimonialFilters({
             type="search"
             value={search.q}
             onChange={(e) => onChange({ q: e.target.value })}
-            placeholder="Name, word, programme"
+            placeholder="Name, word, program"
             className="w-full rounded-xl border border-line bg-paper px-3 py-2 text-[0.84rem] text-ink outline-none transition-colors placeholder:text-ink-faint focus-visible:border-gold"
           />
         </Field>

@@ -45,7 +45,7 @@ export function TrendingTop5({ state, variant = "section" }: Props) {
   if (!picks.length) return null;
 
   const titleLead = activeInterest ? `Top ${activeInterest.label}` : "Top 5";
-  const titleNoun = activeType ? activeType.label.toLowerCase() : "programmes";
+  const titleNoun = activeType ? activeType.label.toLowerCase() : "programs";
 
   if (variant === "strip" || variant === "rail") {
     return (
@@ -119,7 +119,7 @@ export function TrendingTop5({ state, variant = "section" }: Props) {
                         e.currentTarget.style.backgroundColor = "transparent";
                       }}
                     >
-                      View programme
+                      View program
                     </Link>
                   </div>
                 </div>

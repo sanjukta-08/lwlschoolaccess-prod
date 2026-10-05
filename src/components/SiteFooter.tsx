@@ -24,14 +24,14 @@ export function SiteFooter({ note }: { note?: string }) {
               className="h-10 w-auto"
             />
             <p className="mt-4 max-w-[24em] text-[0.82rem] text-paper/60">
-              Live programmes mentored by students and alumni of the world's most
+              Live programs mentored by students and alumni of the world's most
               selective universities. Families in {REACH.countries} countries and{" "}
               {REACH.schools} schools.
             </p>
           </div>
 
-          <nav className={colCls} aria-label="Programmes">
-            <span className="mono-label text-gold">Programmes</span>
+          <nav className={colCls} aria-label="Programs">
+            <span className="mono-label text-gold">Programs</span>
             <Link to="/fit" search={DEFAULT_FIT} className={`${linkCls} font-bold text-gold hover:text-gold`}>
               Find the right fit (quiz)
             </Link>
@@ -39,7 +39,7 @@ export function SiteFooter({ note }: { note?: string }) {
               Explore by type (guided)
             </Link>
             <Link to="/finder" search={DEFAULT_SEARCH} className={linkCls}>
-              Programme Finder
+              Program Finder
             </Link>
             <Link
               to="/finder"
@@ -53,7 +53,7 @@ export function SiteFooter({ note }: { note?: string }) {
               search={{ ...DEFAULT_SEARCH, type: "programme" }}
               className={linkCls}
             >
-              Flagship programmes
+              Flagship programs
             </Link>
             <Link to="/competitions" className={linkCls}>
               Competitions
@@ -137,7 +137,7 @@ export function SiteFooter({ note }: { note?: string }) {
         <p className="mt-12 border-t border-paper/10 pt-6 text-[0.75rem] text-paper/50">
           © Learn with Leaders.{" "}
           {note ??
-            "Programme details and fees correct at time of publishing; confirm on each programme page. Session times are US Eastern, shown with approximate Dubai (GMT+4) equivalents."}
+            "Program details and fees correct at time of publishing; confirm on each program page. Session times are US Eastern, shown with approximate Dubai (GMT+4) equivalents."}
         </p>
       </div>
     </footer>

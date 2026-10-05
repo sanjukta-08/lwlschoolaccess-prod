@@ -10,7 +10,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 
 const TITLE = "Profile Building Explained | Learn with Leaders";
 const DESC =
-  "How each Learn with Leaders programme builds a university profile: the skills your child gains, the proof you end up holding, and when to do what from Grade 5 to 12.";
+  "How each Learn with Leaders program builds a university profile: the skills your child gains, the proof you end up holding, and when to do what from Grade 5 to 12.";
 
 export const Route = createFileRoute("/profile-building")({
   staticData: { sitemap: true },
@@ -54,7 +54,7 @@ function ProfileBuildingPage() {
         subtitle={
           <>
             Universities read a story, not a list of certificates. This page sets out
-            exactly what each kind of programme contributes to that story, the skills your
+            exactly what each kind of program contributes to that story, the skills your
             child practises, and the proof you are left holding at the end - the things an
             admissions officer can actually check.
           </>
@@ -70,7 +70,7 @@ function ProfileBuildingPage() {
           search={DEFAULT_SEARCH}
           className="rounded-full bg-crimson px-6 py-3 text-[0.88rem] font-bold text-paper no-underline hover:bg-crimson-deep"
         >
-          Find the right programme
+          Find the right program
         </Link>
         <Link
           to="/calendar"
@@ -115,18 +115,18 @@ function ProfileBuildingPage() {
       <ProfileTypeBlocks />
       <ProfileTrackTable />
 
-      {/* Programme to proof */}
+      {/* Program to proof */}
       <section className="page-shell py-14">
         <div>
           <header className="mb-7 mx-auto max-w-[46em] text-center">
             <span className="mono-label text-crimson">The conversion</span>
             <h2 className="mt-2 font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
-              From one programme to <em className="text-crimson-deep">one line</em> on
+              From one program to <em className="text-crimson-deep">one line</em> on
               an application
             </h2>
             <p className="mt-2.5 text-[0.93rem] text-ink-soft">
               Most families stop at "completed". These six moves are what turn a
-              completed programme into something a university can verify.
+              completed program into something a university can verify.
             </p>
           </header>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -219,7 +219,7 @@ function ProfileBuildingPage() {
             search={DEFAULT_SEARCH}
             className="rounded-full bg-crimson px-6 py-3 text-[0.88rem] font-bold text-paper no-underline hover:bg-crimson-deep"
           >
-            Browse all 38 programmes
+            Browse all 38 programs
           </Link>
           <Link
             to="/"

@@ -56,7 +56,7 @@ function AboutPage() {
         }
         subtitle={
           <>
-            Live programmes mentored by students and alumni of the world's most selective
+            Live programs mentored by students and alumni of the world's most selective
             universities, joined by young people from {REACH.countries} countries and{" "}
             {REACH.schools} schools.
           </>
@@ -72,7 +72,7 @@ function AboutPage() {
           search={DEFAULT_SEARCH}
           className="rounded-full bg-crimson px-7 py-3.5 text-[0.95rem] font-bold text-paper no-underline shadow-lift transition-colors hover:bg-crimson-deep"
         >
-          Open the Programme Finder
+          Open the Program Finder
         </Link>
         <a
           href="#press"

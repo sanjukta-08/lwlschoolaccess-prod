@@ -185,7 +185,7 @@ function InternshipsPage() {
 
       <section className="rounded-t-[28px] bg-ink px-5 py-16 text-center text-paper">
         <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
-          Explore our programmes
+          Explore our programs
         </h2>
         <p className="mx-auto mt-3 mb-6 max-w-[52em] text-[0.95rem] text-paper/70">
           Discover live cohorts for students aged 10-18, mentored by students and alumni of the
@@ -197,7 +197,7 @@ function InternshipsPage() {
             search={DEFAULT_SEARCH}
             className="rounded-full bg-paper px-7 py-3.5 text-[0.95rem] font-bold text-ink no-underline"
           >
-            Open the Programme Finder
+            Open the Program Finder
           </Link>
           <Link
             to="/about"

@@ -45,7 +45,7 @@ export function FinderPanel({
 
   const search = (
     <label className="relative block w-full">
-      <span className="sr-only">Search programmes</span>
+      <span className="sr-only">Search programs</span>
       <input
         type="search"
         value={state.q}

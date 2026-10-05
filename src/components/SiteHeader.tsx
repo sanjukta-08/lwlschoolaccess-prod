@@ -23,13 +23,13 @@ const mobileLinkCls =
 
 const offeringItems: { label: string; interest: TrackKey | "all"; description?: string }[] = [
   { label: "All offerings", interest: "all", description: "Browse everything" },
-  { label: TRACKS.med.label, interest: "med", description: "Fellowships, programmes & competitions" },
-  { label: TRACKS.law.label, interest: "law", description: "Fellowships, programmes & competitions" },
-  { label: TRACKS.fin.label, interest: "fin", description: "Fellowships, programmes & competitions" },
-  { label: TRACKS.ai.label, interest: "ai", description: "Fellowships, programmes & competitions" },
-  { label: TRACKS.res.label, interest: "res", description: "Fellowships, programmes & competitions" },
-  { label: TRACKS.lead.label, interest: "lead", description: "Fellowships, programmes & competitions" },
-  { label: TRACKS.sat.label, interest: "sat", description: "Fellowships, programmes & competitions" },
+  { label: TRACKS.med.label, interest: "med", description: "Fellowships, programs & competitions" },
+  { label: TRACKS.law.label, interest: "law", description: "Fellowships, programs & competitions" },
+  { label: TRACKS.fin.label, interest: "fin", description: "Fellowships, programs & competitions" },
+  { label: TRACKS.ai.label, interest: "ai", description: "Fellowships, programs & competitions" },
+  { label: TRACKS.res.label, interest: "res", description: "Fellowships, programs & competitions" },
+  { label: TRACKS.lead.label, interest: "lead", description: "Fellowships, programs & competitions" },
+  { label: TRACKS.sat.label, interest: "sat", description: "Fellowships, programs & competitions" },
 ];
 
 export function SiteHeader() {

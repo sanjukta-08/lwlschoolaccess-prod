@@ -34,7 +34,7 @@ import pathwayLeadership from "@/assets/pathway-leadership.webp";
 import pathwayExams from "@/assets/pathway-exams.webp";
 import { ArrowUpRight } from "lucide-react";
 
-const TITLE = "Learn with Leaders - Harvard & Yale-mentored programmes, Grades 5–12";
+const TITLE = "Learn with Leaders - Harvard & Yale-mentored programs, Grades 5–12";
 const DESC =
   "Live, Ivy League student-mentored fellowships, competitions, internships and conferences for students in Grades 5–12, from anywhere in the world.";
 
@@ -118,7 +118,7 @@ function HomePage() {
             <div className="mb-6 inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-gold-line bg-paper/95 px-4 py-2 text-gold-deep shadow-soft backdrop-blur-md">
               <WingMark size={14} />
               <span className="mono-label text-[0.72rem] tracking-wider text-ink font-bold">
-                Online programmes for Grades 5-12 · 2026-27
+                Online programs for Grades 5-12 · 2026-27
               </span>
             </div>
 
@@ -141,7 +141,7 @@ function HomePage() {
                 search={DEFAULT_SEARCH}
                 className="rounded-full bg-crimson px-8 py-3.5 text-[1rem] font-bold text-paper no-underline shadow-lift transition-all hover:bg-crimson-deep hover:scale-[1.02]"
               >
-                Find the right programme →
+                Find the right program →
               </Link>
               <Link
                 to="/calendar"
@@ -174,7 +174,7 @@ function HomePage() {
 
             <dl className="mx-auto mt-9 grid max-w-[860px] grid-cols-2 items-stretch divide-gold-line/70 rounded-[24px] border border-gold-line/80 bg-paper/90 px-4 py-5 shadow-lift backdrop-blur-md sm:flex sm:px-6 sm:divide-x">
               {[
-                [String(upcomingProgrammes().length), "Programmes"],
+                [String(upcomingProgrammes().length), "Programs"],
                 [String(totalCohorts()), "Upcoming cohorts"],
                 ["426+", "Students published"],
                 ["5-12", "Grades covered"],
@@ -229,7 +229,7 @@ function HomePage() {
                         {PATHWAY_PROMISE[k]}
                       </small>
                       <small className="mono-label mt-1.5 block text-[0.7rem] text-ink-faint">
-                        {n} programme{n === 1 ? "" : "s"}
+                        {n} program{n === 1 ? "" : "s"}
                       </small>
                     </span>
                     <img
@@ -326,7 +326,7 @@ function HomePage() {
                   </span>
                   <span className="px-3.5 pb-4">
                     <span className="block rounded-full border border-ink px-4 py-2.5 text-center text-[0.7rem] font-bold tracking-[0.18em] uppercase text-ink transition-colors group-hover:bg-ink group-hover:text-paper">
-                      View programme
+                      View program
                     </span>
                   </span>
                 </Link>
@@ -340,7 +340,7 @@ function HomePage() {
               search={DEFAULT_SEARCH}
               className="rounded-full bg-crimson px-7 py-3.5 text-[0.95rem] font-bold text-paper no-underline shadow-lift transition-colors hover:bg-crimson-deep"
             >
-              See all programmes →
+              See all programs →
             </Link>
           </p>
         </div>
@@ -351,7 +351,7 @@ function HomePage() {
 
           <SectionHeading
             eyebrow="Trusted collaborations"
-            sub="Programme partners and corporate internship hosts across the 2026-27 calendar."
+            sub="Program partners and corporate internship hosts across the 2026-27 calendar."
           >
             Delivered with <em className="text-crimson-deep">partners</em>{" "}
             students recognise
@@ -392,7 +392,7 @@ function HomePage() {
             search={DEFAULT_SEARCH}
             className="text-[0.9rem] font-bold text-crimson no-underline hover:underline"
           >
-            Explore programmes for grades 5-12 →
+            Explore programs for grades 5-12 →
           </Link>
         </div>
       </section>
@@ -421,7 +421,7 @@ function HomePage() {
 
       <section className="rounded-t-[28px] bg-ink px-5 py-12 text-center text-paper">
         <h2 className="font-display text-[clamp(1.75rem,4vw,2.5rem)] font-extrabold leading-tight">
-          Ready to find <em className="text-gold font-extrabold">their</em> programme?
+          Ready to find <em className="text-gold font-extrabold">their</em> program?
         </h2>
         <p className="mx-auto mt-1 mb-6 max-w-[52em] text-[0.95rem] leading-relaxed text-paper/70">
           Thirty seconds with the finder, or a short conversation with an advisor -
@@ -433,7 +433,7 @@ function HomePage() {
             search={DEFAULT_SEARCH}
             className="rounded-full bg-paper px-7 py-3.5 text-[0.95rem] font-bold text-ink no-underline"
           >
-            Open the Programme Finder
+            Open the Program Finder
           </Link>
           <a
             href={CALENDLY_BOOKING_URL}

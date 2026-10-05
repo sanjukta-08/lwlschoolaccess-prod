@@ -80,7 +80,7 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   staticData: { sitemap: false },
-  // Live programme + camp schedule, loaded once before anything renders.
+  // Live program + camp schedule, loaded once before anything renders.
   loader: ({ context }) => ensureCatalogue(context.queryClient),
   head: () => ({
     meta: [
@@ -90,7 +90,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Learn with Leaders runs live, mentored programmes, competitions, internships and camps for students in Grades 5-12.",
+          "Learn with Leaders runs live, mentored programs, competitions, internships and camps for students in Grades 5-12.",
       },
       { name: "author", content: "Learn with Leaders" },
       { property: "og:site_name", content: "Learn with Leaders" },
@@ -98,7 +98,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "Learn with Leaders runs live, mentored programmes, competitions, internships and camps for students in Grades 5-12.",
+          "Learn with Leaders runs live, mentored programs, competitions, internships and camps for students in Grades 5-12.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

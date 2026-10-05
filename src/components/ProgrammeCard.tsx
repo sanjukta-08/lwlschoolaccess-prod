@@ -298,7 +298,7 @@ export function ProgrammeCard({
                 e.currentTarget.style.backgroundColor = "transparent";
               }}
             >
-              View programme
+              View program
             </Link>
           )}
           <AddToCalendar p={p} c={next} />
