@@ -33,7 +33,7 @@ import { slugOf } from "./programme-slug";
 /* ---------- hand-written detail for the flagships ---------- */
 
 const drJojoDetail: Partial<ProgrammeDetail> = {
-  lede: "An intensive 4-day leadership and entrepreneurship accelerator led by Dr. Jojo O'Driscoll-Kearney (Harvard Business Impact Faculty & Hult Professor, ex-Meta CLO) for students of Mas Camarena School, Spain - combining strategic problem solving, venture creation, business modeling, and executive presentation across live 3-hour Zoom sessions.",
+  lede: "An intensive 4-day Pre-University Entrepreneurship & Venture Building Programme led by Dr. Jojo O'Driscoll-Kearney (Harvard Business Impact Faculty & Hult Professor, ex-Meta CLO) for students of Mas Camarena School, Spain - combining strategic problem solving, venture creation, business modeling, and executive presentation across live 3-hour Zoom sessions.",
   cohortSize: "Live Interactive Zoom Cohort",
   ageLabel: "Mas Camarena School Students (Grades 8–12)",
   doSteps: [
@@ -55,7 +55,7 @@ const drJojoDetail: Partial<ProgrammeDetail> = {
     },
   ],
   takeaways: [
-    "Certificate of Leadership & Entrepreneurship Completion",
+    "Certificate of Entrepreneurship & Venture Building Completion",
     "Custom Venture Pitch Deck & Business Model Canvas",
     "Executive Mentorship & Direct Feedback from Dr. Jojo",
     "Verifiable Profile Artefact for University Applications",
@@ -100,6 +100,7 @@ const drJojoDetail: Partial<ProgrammeDetail> = {
 
 const WRITTEN: Record<string, Partial<ProgrammeDetail>> = {
   "lea-dr-jojo": drJojoDetail,
+  "entrepreneurship-venturebuilding-program": drJojoDetail,
   "leadership-entrepreneurship-accelerator": drJojoDetail,
   "leadership-and-entrepreneurship-accelerator-program-by-dr-jojo": drJojoDetail,
   fdf: {

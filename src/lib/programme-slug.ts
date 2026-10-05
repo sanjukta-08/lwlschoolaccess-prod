@@ -28,6 +28,6 @@ export const conferenceBySlug = (slug: string): Programme | undefined =>
   PROGRAMMES.find((p) => p.type === "conf" && conferenceSlugOf(p) === slug);
 
 export const programmePath = (p: Programme) => {
-  if (p.id === "lea-dr-jojo") return "/leadership-entrepreneurship-accelerator" as const;
+  if (p.id === "lea-dr-jojo") return "/entrepreneurship-venturebuilding-program" as const;
   return `/programmes/${slugOf(p)}` as const;
 };

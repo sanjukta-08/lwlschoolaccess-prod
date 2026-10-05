@@ -1,13 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ensureCatalogue } from "@/lib/catalogue";
 import { campBySlug } from "@/lib/camps";
-import PrelawCampPage from "@/components/camps/prelaw/PrelawCampPage";
-import { HORIZONS_FONT_LINKS } from "@/components/camps/shared/fonts";
+import { LegacyCampPage } from "@/components/camps/LegacyCampPage";
+import { pageHtml } from "@/content/prelaw/content";
+import pageCss from "@/content/prelaw/scoped.css?raw";
 
+const SLUG = "prelaw-horizons-harvard";
 const TITLE =
   "Pre-Law Horizons Program at Harvard University | Learn with Leaders";
 const DESC =
   "A residential pre-law camp on the Harvard campus with HUGEM, for Grades 9-12: legal reasoning, landmark cases, international law, ethics and a moot court finale. Dates, inclusions and how to apply.";
+const APPLY = "https://apply.learnwithleaders.com/apply/pre-law-horizons";
 
 export const Route = createFileRoute("/camps/prelaw-horizons-harvard")({
   staticData: { sitemap: true },
@@ -24,49 +27,18 @@ export const Route = createFileRoute("/camps/prelaw-horizons-harvard")({
       { property: "og:type", content: "article" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: HORIZONS_FONT_LINKS,
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Course",
-          name: "Pre-Law Horizons Program",
-          description: DESC,
-          provider: {
-            "@type": "Organization",
-            name: "Learn with Leaders",
-            url: "https://www.learnwithleaders.com",
-          },
-          locationCreated: {
-            "@type": "Place",
-            name: "Harvard University, Cambridge, USA",
-          },
-        }),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: (campBySlug("prelaw-horizons-harvard")?.faqs ?? []).map(
-            (f) => ({
-              "@type": "Question",
-              name: f.q,
-              acceptedAnswer: { "@type": "Answer", text: f.a },
-            }),
-          ),
-        }),
-      },
+    links: [
+      { rel: "canonical", href: "https://lwlschoolaccess.com/camps/prelaw-horizons-harvard" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" },
     ],
   }),
   component: PrelawHorizonsRoute,
 });
 
 function PrelawHorizonsRoute() {
-  return (
-    <div className="camp-horizons min-h-dvh">
-      <PrelawCampPage />
-    </div>
-  );
+  const applyUrl = campBySlug(SLUG)?.applyUrl ?? APPLY;
+  return <LegacyCampPage className="prelaw-page" html={pageHtml} css={pageCss} applyUrl={applyUrl} />;
 }
+

@@ -17,11 +17,11 @@ import { Route as CalendarMonthRouteImport } from './routes/calendar-month'
 import { Route as CampsRouteImport } from './routes/camps'
 import { Route as CompetitionsRouteImport } from './routes/competitions'
 import { Route as ConferencesRouteImport } from './routes/conferences'
+import { Route as EntrepreneurshipVenturebuildingProgramRouteImport } from './routes/entrepreneurship-venturebuilding-program'
 import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as FinderRouteImport } from './routes/finder'
 import { Route as FitRouteImport } from './routes/fit'
 import { Route as InternshipsRouteImport } from './routes/internships'
-import { Route as LeadershipEntrepreneurshipAcceleratorRouteImport } from './routes/leadership-entrepreneurship-accelerator'
 import { Route as MasterclassesRouteImport } from './routes/masterclasses'
 import { Route as ProfileBuildingRouteImport } from './routes/profile-building'
 import { Route as ShortlistRouteImport } from './routes/shortlist'
@@ -94,6 +94,12 @@ const ConferencesRoute = ConferencesRouteImport.update({
   path: '/conferences',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EntrepreneurshipVenturebuildingProgramRoute =
+  EntrepreneurshipVenturebuildingProgramRouteImport.update({
+    id: '/entrepreneurship-venturebuilding-program',
+    path: '/entrepreneurship-venturebuilding-program',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ExploreRoute = ExploreRouteImport.update({
   id: '/explore',
   path: '/explore',
@@ -114,12 +120,6 @@ const InternshipsRoute = InternshipsRouteImport.update({
   path: '/internships',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LeadershipEntrepreneurshipAcceleratorRoute =
-  LeadershipEntrepreneurshipAcceleratorRouteImport.update({
-    id: '/leadership-entrepreneurship-accelerator',
-    path: '/leadership-entrepreneurship-accelerator',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 const MasterclassesRoute = MasterclassesRouteImport.update({
   id: '/masterclasses',
   path: '/masterclasses',
@@ -295,11 +295,11 @@ export interface FileRoutesByFullPath {
   '/camps': typeof CampsRouteWithChildren
   '/competitions': typeof CompetitionsRoute
   '/conferences': typeof ConferencesRouteWithChildren
+  '/entrepreneurship-venturebuilding-program': typeof EntrepreneurshipVenturebuildingProgramRoute
   '/explore': typeof ExploreRoute
   '/finder': typeof FinderRoute
   '/fit': typeof FitRoute
   '/internships': typeof InternshipsRouteWithChildren
-  '/leadership-entrepreneurship-accelerator': typeof LeadershipEntrepreneurshipAcceleratorRoute
   '/masterclasses': typeof MasterclassesRoute
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
@@ -338,10 +338,10 @@ export interface FileRoutesByTo {
   '/calendar': typeof CalendarRoute
   '/calendar-month': typeof CalendarMonthRoute
   '/competitions': typeof CompetitionsRoute
+  '/entrepreneurship-venturebuilding-program': typeof EntrepreneurshipVenturebuildingProgramRoute
   '/explore': typeof ExploreRoute
   '/finder': typeof FinderRoute
   '/fit': typeof FitRoute
-  '/leadership-entrepreneurship-accelerator': typeof LeadershipEntrepreneurshipAcceleratorRoute
   '/masterclasses': typeof MasterclassesRoute
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
@@ -383,11 +383,11 @@ export interface FileRoutesById {
   '/camps': typeof CampsRouteWithChildren
   '/competitions': typeof CompetitionsRoute
   '/conferences': typeof ConferencesRouteWithChildren
+  '/entrepreneurship-venturebuilding-program': typeof EntrepreneurshipVenturebuildingProgramRoute
   '/explore': typeof ExploreRoute
   '/finder': typeof FinderRoute
   '/fit': typeof FitRoute
   '/internships': typeof InternshipsRouteWithChildren
-  '/leadership-entrepreneurship-accelerator': typeof LeadershipEntrepreneurshipAcceleratorRoute
   '/masterclasses': typeof MasterclassesRoute
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
@@ -431,11 +431,11 @@ export interface FileRouteTypes {
     | '/camps'
     | '/competitions'
     | '/conferences'
+    | '/entrepreneurship-venturebuilding-program'
     | '/explore'
     | '/finder'
     | '/fit'
     | '/internships'
-    | '/leadership-entrepreneurship-accelerator'
     | '/masterclasses'
     | '/profile-building'
     | '/shortlist'
@@ -474,10 +474,10 @@ export interface FileRouteTypes {
     | '/calendar'
     | '/calendar-month'
     | '/competitions'
+    | '/entrepreneurship-venturebuilding-program'
     | '/explore'
     | '/finder'
     | '/fit'
-    | '/leadership-entrepreneurship-accelerator'
     | '/masterclasses'
     | '/profile-building'
     | '/shortlist'
@@ -518,11 +518,11 @@ export interface FileRouteTypes {
     | '/camps'
     | '/competitions'
     | '/conferences'
+    | '/entrepreneurship-venturebuilding-program'
     | '/explore'
     | '/finder'
     | '/fit'
     | '/internships'
-    | '/leadership-entrepreneurship-accelerator'
     | '/masterclasses'
     | '/profile-building'
     | '/shortlist'
@@ -565,11 +565,11 @@ export interface RootRouteChildren {
   CampsRoute: typeof CampsRouteWithChildren
   CompetitionsRoute: typeof CompetitionsRoute
   ConferencesRoute: typeof ConferencesRouteWithChildren
+  EntrepreneurshipVenturebuildingProgramRoute: typeof EntrepreneurshipVenturebuildingProgramRoute
   ExploreRoute: typeof ExploreRoute
   FinderRoute: typeof FinderRoute
   FitRoute: typeof FitRoute
   InternshipsRoute: typeof InternshipsRouteWithChildren
-  LeadershipEntrepreneurshipAcceleratorRoute: typeof LeadershipEntrepreneurshipAcceleratorRoute
   MasterclassesRoute: typeof MasterclassesRoute
   ProfileBuildingRoute: typeof ProfileBuildingRoute
   ShortlistRoute: typeof ShortlistRoute
@@ -641,6 +641,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConferencesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/entrepreneurship-venturebuilding-program': {
+      id: '/entrepreneurship-venturebuilding-program'
+      path: '/entrepreneurship-venturebuilding-program'
+      fullPath: '/entrepreneurship-venturebuilding-program'
+      preLoaderRoute: typeof EntrepreneurshipVenturebuildingProgramRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/explore': {
       id: '/explore'
       path: '/explore'
@@ -667,13 +674,6 @@ declare module '@tanstack/react-router' {
       path: '/internships'
       fullPath: '/internships'
       preLoaderRoute: typeof InternshipsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/leadership-entrepreneurship-accelerator': {
-      id: '/leadership-entrepreneurship-accelerator'
-      path: '/leadership-entrepreneurship-accelerator'
-      fullPath: '/leadership-entrepreneurship-accelerator'
-      preLoaderRoute: typeof LeadershipEntrepreneurshipAcceleratorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/masterclasses': {
@@ -1004,12 +1004,12 @@ const rootRouteChildren: RootRouteChildren = {
   CampsRoute: CampsRouteWithChildren,
   CompetitionsRoute: CompetitionsRoute,
   ConferencesRoute: ConferencesRouteWithChildren,
+  EntrepreneurshipVenturebuildingProgramRoute:
+    EntrepreneurshipVenturebuildingProgramRoute,
   ExploreRoute: ExploreRoute,
   FinderRoute: FinderRoute,
   FitRoute: FitRoute,
   InternshipsRoute: InternshipsRouteWithChildren,
-  LeadershipEntrepreneurshipAcceleratorRoute:
-    LeadershipEntrepreneurshipAcceleratorRoute,
   MasterclassesRoute: MasterclassesRoute,
   ProfileBuildingRoute: ProfileBuildingRoute,
   ShortlistRoute: ShortlistRoute,

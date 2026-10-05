@@ -30,7 +30,8 @@ export const Route = createFileRoute("/camps/future-sustainability-innovators-ge
     links: [
       { rel: "canonical", href: "https://lwlschoolaccess.com/camps/future-sustainability-innovators-geneva" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" },
     ],
   }),
   component: GenevaCampPage,

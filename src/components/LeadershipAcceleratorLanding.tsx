@@ -21,6 +21,7 @@ import {
   ShieldCheck,
   ChevronDown,
   GraduationCap,
+  Tag,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -111,7 +112,7 @@ export function LeadershipAcceleratorLanding() {
     {
       icon: Award,
       title: "Official Certificate of Completion",
-      description: "Recognized Certificate awarded for completing the Leadership & Entrepreneurship Accelerator.",
+      description: "Recognized Certificate awarded for completing the Pre-University Entrepreneurship & Venture Building Programme.",
     },
     {
       icon: Users,
@@ -127,7 +128,7 @@ export function LeadershipAcceleratorLanding() {
 
   const skills = [
     "Strategic Leadership",
-    "Venture Creation",
+    "Venture Building",
     "Business Model Canvas",
     "Executive Pitching",
     "Financial Awareness",
@@ -139,11 +140,15 @@ export function LeadershipAcceleratorLanding() {
   const faqs = [
     {
       q: "Who is this program specifically designed for?",
-      a: "This accelerator is organized for students of Mas Camarena School, Spain (Grades 8–12 / Ages 13–18) who wish to build strategic leadership, entrepreneurial skills, and executive presentation confidence.",
+      a: "This programme is organized for students of Mas Camarena School, Spain (Grades 8–12 / Ages 13–18) who wish to build strategic leadership, venture building skills, and executive presentation confidence.",
+    },
+    {
+      q: "What is the tuition fee for the programme?",
+      a: "The tuition fee is EUR 350 per student. This covers the full 4-day intensive live programme (12 hours live on Zoom), direct mentorship and live pitch review with Dr. Jojo, Business Model Canvas tools, and an official Certificate of Completion.",
     },
     {
       q: "What are the session dates and schedule?",
-      a: "The program spans 4 days: Friday & Saturday, April 10 & 11, and Friday & Saturday, April 17 & 18, 2026. Each session is 3 hours long, delivered live via Zoom.",
+      a: "The program spans 4 days: Friday & Saturday, April 10 & 11, and Friday & Saturday, April 17 & 18, 2027. Each session is 3 hours long, delivered live via Zoom.",
     },
     {
       q: "What is the mode of delivery?",
@@ -155,7 +160,7 @@ export function LeadershipAcceleratorLanding() {
     },
     {
       q: "Will participants receive a certificate?",
-      a: "Yes, all students who complete the 4 sessions and present their final project receive an official Certificate of Completion.",
+      a: "Yes, all students who complete the 4 sessions and present their final venture project receive an official Certificate of Completion.",
     },
   ];
 
@@ -178,6 +183,7 @@ export function LeadershipAcceleratorLanding() {
             <a href="#outcomes" className="hover:text-crimson-deep transition-colors no-underline">Outcomes</a>
             <a href="#dr-jojo" className="hover:text-crimson-deep transition-colors no-underline">Faculty</a>
             <a href="#schedule" className="hover:text-crimson-deep transition-colors no-underline">Schedule</a>
+            <a href="#pricing" className="hover:text-crimson-deep transition-colors no-underline">Pricing</a>
             <a href="#faq" className="hover:text-crimson-deep transition-colors no-underline">FAQ</a>
           </nav>
 
@@ -201,6 +207,7 @@ export function LeadershipAcceleratorLanding() {
           <a href="#outcomes" className="shrink-0 hover:text-crimson-deep no-underline">Outcomes</a>
           <a href="#dr-jojo" className="shrink-0 hover:text-crimson-deep no-underline">Faculty</a>
           <a href="#schedule" className="shrink-0 hover:text-crimson-deep no-underline">Schedule</a>
+          <a href="#pricing" className="shrink-0 hover:text-crimson-deep no-underline">Pricing</a>
           <a href="#faq" className="shrink-0 hover:text-crimson-deep no-underline">FAQ</a>
         </div>
       </header>
@@ -232,19 +239,19 @@ export function LeadershipAcceleratorLanding() {
           <div className="mb-6 inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-gold-line/90 bg-paper/95 px-5 py-2 text-gold-deep shadow-soft backdrop-blur-md">
             <WingMark size={14} />
             <span className="mono-label text-[0.76rem] font-extrabold tracking-wider text-ink">
-              Mas Camarena School, Spain · Live Online Accelerator
+              Mas Camarena School, Spain · Live Online Programme
             </span>
           </div>
 
           {/* Main Title */}
-          <h1 className="mx-auto max-w-[980px] font-display text-[clamp(2.5rem,6.5vw,4.8rem)] font-extrabold leading-[1.03] tracking-tight text-ink">
-            Leadership &amp; Entrepreneurship{" "}
+          <h1 className="mx-auto max-w-[1000px] font-display text-[clamp(2.2rem,5.8vw,4.5rem)] font-extrabold leading-[1.03] tracking-tight text-ink">
+            Pre-University Entrepreneurship &amp;{" "}
             <span className="bg-gradient-to-r from-crimson via-crimson-deep to-gold-deep bg-clip-text text-transparent">
-              Accelerator Program
+              Venture Building Programme
             </span>
           </h1>
 
-          <p className="mx-auto mt-4 max-w-[50em] font-serif text-[clamp(1.25rem,3vw,1.7rem)] font-semibold text-crimson-deep">
+          <p className="mx-auto mt-4 max-w-[50em] font-serif text-[clamp(1.2rem,2.8vw,1.6rem)] font-semibold text-crimson-deep">
             Led by Dr. Jojo O&apos;Driscoll-Kearney
           </p>
           <p className="mx-auto mt-1 max-w-[50em] text-[0.92rem] font-extrabold tracking-widest text-gold-deep uppercase">
@@ -252,7 +259,7 @@ export function LeadershipAcceleratorLanding() {
           </p>
 
           <p className="mx-auto mt-5 max-w-[58em] text-[clamp(1.05rem,2.2vw,1.2rem)] leading-relaxed text-ink-soft">
-            A transformative 4-day intensive accelerator for high school students to build strategic leadership,
+            A transformative 4-day intensive pre-university programme for high school students to build strategic leadership,
             venture creation frameworks, business modeling, and executive pitch confidence.
           </p>
 
@@ -271,7 +278,11 @@ export function LeadershipAcceleratorLanding() {
           </div>
 
           {/* Feature Highlight Badges (Placed below Apply Buttons) */}
-          <div className="mt-6 flex flex-wrap justify-center gap-2.5 max-w-[800px] mx-auto">
+          <div className="mt-6 flex flex-wrap justify-center gap-2.5 max-w-[850px] mx-auto">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1.5 text-[0.8rem] font-bold text-emerald-800 dark:text-emerald-300">
+              <Tag size={14} />
+              Fee: EUR 350
+            </span>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-gold-line/60 bg-gold/10 px-3.5 py-1.5 text-[0.8rem] font-bold text-gold-deep">
               <Sparkles size={14} />
               4 Days · 12 Hours Live
@@ -768,6 +779,90 @@ export function LeadershipAcceleratorLanding() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* --- PRICING & TUITION SECTION --- */}
+      <section id="pricing" className="py-16 border-b border-line bg-gradient-to-b from-paper via-wash to-paper relative overflow-hidden">
+        {/* Decorative background glow */}
+        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[700px] rounded-full bg-gradient-to-tr from-gold/15 via-crimson/10 to-transparent blur-3xl opacity-70" />
+
+        <div className="page-shell relative z-10 max-w-[1020px]">
+          <div className="text-center max-w-[700px] mx-auto mb-10">
+            <span className="mono-label mb-2 inline-flex items-center gap-2 text-gold-deep font-bold uppercase tracking-wider">
+              <WingMark size={14} />
+              Programme Fee
+            </span>
+            <h2 className="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-extrabold leading-tight text-ink">
+              Program <em className="text-crimson-deep">Pricing</em>
+            </h2>
+          </div>
+
+          {/* Pricing Card */}
+          <div className="mx-auto max-w-[720px] rounded-3xl border-2 border-gold-line/80 bg-paper/95 p-8 sm:p-10 shadow-lift backdrop-blur-md relative">
+            <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 mb-6 border-b border-line pb-6">
+              <div>
+                <span className="mono-label block text-[0.74rem] font-extrabold uppercase tracking-wider text-ink-faint">
+                  Total Programme Fee
+                </span>
+                <div className="flex items-baseline gap-2 mt-1">
+                  <span className="font-display text-[clamp(2.8rem,5vw,3.8rem)] font-black text-ink leading-none">
+                    EUR 350
+                  </span>
+                  <span className="text-[0.92rem] font-bold text-ink-soft">
+                    / student
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-4 mb-8">
+              <h3 className="font-display text-[1.05rem] font-bold text-ink">
+                What&apos;s Included in the Fee:
+              </h3>
+              <ul className="grid gap-3 sm:grid-cols-2 text-[0.88rem] text-ink-soft">
+                <li className="flex items-start gap-2.5">
+                  <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-emerald-600" />
+                  <span><strong>12 Hours Live</strong> interactive Zoom masterclasses across 4 session days</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-emerald-600" />
+                  <span><strong>Direct Mentorship</strong> &amp; live pitch review by Dr. Jojo O&apos;Driscoll-Kearney</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-emerald-600" />
+                  <span><strong>Business Model Canvas</strong> &amp; Executive Venture Pitch Deck frameworks</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-emerald-600" />
+                  <span><strong>Official Certificate</strong> of Completion from Learn with Leaders</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-emerald-600" />
+                  <span><strong>Letter of Recommendation</strong> opportunity for standout venture pitches</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-emerald-600" />
+                  <span><strong>School Cohort</strong> exclusive to Mas Camarena School (Grades 8–12)</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="pt-4 flex flex-col sm:flex-row items-center gap-4 justify-between border-t border-line/60">
+              <a
+                href={APPLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto rounded-full bg-gradient-to-r from-crimson to-crimson-deep px-8 py-3.5 text-center text-[0.98rem] font-bold text-paper shadow-[0_4px_20px_rgba(184,41,47,0.3)] transition-all hover:-translate-y-0.5 hover:shadow-[0_6px_25px_rgba(184,41,47,0.45)] no-underline"
+              >
+                Apply Now for EUR 350 →
+              </a>
+              <div className="flex items-center gap-2 text-[0.78rem] font-semibold text-ink-soft">
+                <ShieldCheck size={16} className="text-emerald-600 shrink-0" />
+                <span>Secure Online Registration via Learn with Leaders</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
