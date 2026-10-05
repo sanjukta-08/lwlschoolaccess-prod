@@ -406,18 +406,14 @@ export function LeadershipAcceleratorLanding() {
               </div>
             </div>
 
-            {/* MIDDLE BENTO ROW: 3 Equal Day Cards (01, 02, 03) */}
+            {/* MIDDLE BENTO ROW: 3 Core Methodological Pillars */}
             <div className="grid gap-6 md:grid-cols-3">
-              {/* Day 1 Card */}
+              {/* Pillar 1 Card */}
               <div className="group relative flex flex-col justify-between rounded-3xl border border-gold-line/70 bg-wash p-7 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-gold-line hover:shadow-lift">
-                <span className="absolute top-5 right-6 font-display text-[3.2rem] font-black leading-none text-crimson/10 group-hover:text-crimson/20 transition-colors select-none">
-                  01
-                </span>
-                
                 <div>
                   <div className="mb-4 inline-flex items-center gap-1.5 rounded-xl bg-crimson/10 px-3.5 py-1.5 text-[0.78rem] font-extrabold text-crimson">
                     <Sparkles size={14} />
-                    Day 1 · Foundation
+                    Strategic Thinking
                   </div>
 
                   <h3 className="font-display text-[1.25rem] font-extrabold text-ink mb-2">
@@ -425,7 +421,7 @@ export function LeadershipAcceleratorLanding() {
                   </h3>
 
                   <p className="text-[0.88rem] leading-relaxed text-ink-soft">
-                    They figure out their own strengths and values, then learn how founders actually think, using the same Design Thinking process Stanford and IDEO use, with AI as their brainstorming partner.
+                    Students figure out their unique strengths and values, then learn how founders actually think — using the same Design Thinking process Stanford and IDEO use, with AI as their brainstorming partner.
                   </p>
                 </div>
 
@@ -435,57 +431,49 @@ export function LeadershipAcceleratorLanding() {
                 </div>
               </div>
 
-              {/* Day 2 Card */}
+              {/* Pillar 2 Card */}
               <div className="group relative flex flex-col justify-between rounded-3xl border border-gold-line/70 bg-wash p-7 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-gold-line hover:shadow-lift">
-                <span className="absolute top-5 right-6 font-display text-[3.2rem] font-black leading-none text-gold-deep/15 group-hover:text-gold-deep/25 transition-colors select-none">
-                  02
-                </span>
-                
                 <div>
                   <div className="mb-4 inline-flex items-center gap-1.5 rounded-xl bg-gold/15 px-3.5 py-1.5 text-[0.78rem] font-extrabold text-gold-deep">
                     <Users size={14} />
-                    Day 2 · Leadership
+                    Leadership &amp; Teamwork
                   </div>
 
                   <h3 className="font-display text-[1.25rem] font-extrabold text-ink mb-2">
-                    Team Leadership &amp; Pitching
+                    Team Leadership &amp; Collaboration
                   </h3>
 
                   <p className="text-[0.88rem] leading-relaxed text-ink-soft">
-                    They form a team, learn how to lead without needing a title, and learn to pitch like a founder to Harvard mentors and school faculty. Real feedback, real Q&amp;A.
+                    Students form venture teams, learn how to influence and lead without needing a formal title, and practice presenting ideas with constructive mentor Q&amp;A and peer collaboration.
                   </p>
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-gold-line/40 flex items-center justify-between text-[0.76rem] font-bold text-gold-deep">
                   <span>Lead Without Title</span>
-                  <span>Harvard Mentors Q&amp;A</span>
+                  <span>Mentor Q&amp;A &amp; Feedback</span>
                 </div>
               </div>
 
-              {/* Day 3 Card */}
+              {/* Pillar 3 Card */}
               <div className="group relative flex flex-col justify-between rounded-3xl border border-gold-line/70 bg-wash p-7 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-gold-line hover:shadow-lift">
-                <span className="absolute top-5 right-6 font-display text-[3.2rem] font-black leading-none text-purple-600/10 group-hover:text-purple-600/20 transition-colors select-none">
-                  03
-                </span>
-                
                 <div>
                   <div className="mb-4 inline-flex items-center gap-1.5 rounded-xl bg-purple-500/10 px-3.5 py-1.5 text-[0.78rem] font-extrabold text-purple-600">
                     <TrendingUp size={14} />
-                    Day 3 · Acceleration
+                    Venture Creation
                   </div>
 
                   <h3 className="font-display text-[1.25rem] font-extrabold text-ink mb-2">
-                    Venture Acceleration &amp; Pitch
+                    Business Models &amp; Pitching
                   </h3>
 
                   <p className="text-[0.88rem] leading-relaxed text-ink-soft">
-                    They have a business that many of them have started before the judges even enter the room. She accelerates potential at pace.
+                    Students develop complete Business Model Canvases and executive pitch decks, gaining the confidence to present live startup ideas directly to mentors and faculty.
                   </p>
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-gold-line/40 flex items-center justify-between text-[0.76rem] font-bold text-purple-600">
-                  <span>Live Startup Pitch</span>
-                  <span>Judge Panel Review</span>
+                  <span>Business Model Canvas</span>
+                  <span>Executive Pitch Deck</span>
                 </div>
               </div>
             </div>
