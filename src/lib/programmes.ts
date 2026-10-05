@@ -132,13 +132,13 @@ export const TYPE_NAME: Record<TypeKey, string> = {
  */
 export const DR_JOJO_PROGRAMME: Programme = {
   id: "lea-dr-jojo",
-  name: "Pre-University Entrepreneurship & Venture Building Programme",
+  name: "Pre-University Entrepreneurship & Venture Building Program",
   type: "prog",
   tracks: ["ai", "lead"],
   mentor: "ivy",
   g: [8, 12],
   tag: "4-Day Live Accelerator for Mas Camarena School, Spain Students",
-  about: "A high-impact pre-university entrepreneurship and venture building programme led by Dr. Jojo O'Driscoll-Kearney (Harvard Business Impact Faculty & Hult Professor, ex-Meta CLO) for Mas Camarena School students in Spain.",
+  about: "A high-impact pre-university entrepreneurship and venture building program led by Dr. Jojo O'Driscoll-Kearney (Harvard Business Impact Faculty & Hult Professor, ex-Meta CLO) for Mas Camarena School students in Spain.",
   dur: "4 Days (3-Hour Sessions)",
   time: "3-hour live sessions on Zoom",
   feeE: "EUR 350",

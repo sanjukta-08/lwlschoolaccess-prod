@@ -3,8 +3,8 @@ import { ensureCatalogue } from "@/lib/catalogue";
 import { DR_JOJO_PROGRAMME } from "@/lib/programmes";
 import { LeadershipAcceleratorLanding } from "@/components/LeadershipAcceleratorLanding";
 
-const TITLE = "Pre-University Entrepreneurship & Venture Building Programme by Dr. Jojo O'Driscoll-Kearney | Learn with Leaders";
-const DESC = "4-day live Zoom Pre-University Entrepreneurship & Venture Building Programme by Dr. Jojo O'Driscoll-Kearney for Mas Camarena School, Spain students (April 10, 11 & 17, 18). 3-hour sessions, business modeling, and venture pitching. Fee: EUR 350.";
+const TITLE = "Pre-University Entrepreneurship & Venture Building Program by Dr. Jojo O'Driscoll-Kearney | Learn with Leaders";
+const DESC = "4-day live Zoom Pre-University Entrepreneurship & Venture Building Program by Dr. Jojo O'Driscoll-Kearney for Mas Camarena School, Spain students (April 10, 11 & 17, 18). 3-hour sessions, business modeling, and venture pitching. Fee: EUR 350.";
 
 export const Route = createFileRoute(
   "/entrepreneurship-venturebuilding-program"

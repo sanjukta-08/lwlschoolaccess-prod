@@ -112,7 +112,7 @@ export function LeadershipAcceleratorLanding() {
     {
       icon: Award,
       title: "Official Certificate of Completion",
-      description: "Recognized Certificate awarded for completing the Pre-University Entrepreneurship & Venture Building Programme.",
+      description: "Recognized Certificate awarded for completing the Pre-University Entrepreneurship & Venture Building Program.",
     },
     {
       icon: Users,
@@ -140,11 +140,11 @@ export function LeadershipAcceleratorLanding() {
   const faqs = [
     {
       q: "Who is this program specifically designed for?",
-      a: "This programme is organized for students of Mas Camarena School, Spain (Grades 8–12 / Ages 13–18) who wish to build strategic leadership, venture building skills, and executive presentation confidence.",
+      a: "This program is organized for students of Mas Camarena School, Spain (Grades 8–12 / Ages 13–18) who wish to build strategic leadership, venture building skills, and executive presentation confidence.",
     },
     {
-      q: "What is the tuition fee for the programme?",
-      a: "The tuition fee is EUR 350 per student. This covers the full 4-day intensive live programme (12 hours live on Zoom), direct mentorship and live pitch review with Dr. Jojo, Business Model Canvas tools, and an official Certificate of Completion.",
+      q: "What is the tuition fee for the program?",
+      a: "The tuition fee is EUR 350 per student. This covers the full 4-day intensive live program (12 hours live on Zoom), direct mentorship and live pitch review with Dr. Jojo, Business Model Canvas tools, and an official Certificate of Completion.",
     },
     {
       q: "What are the session dates and schedule?",
@@ -239,7 +239,7 @@ export function LeadershipAcceleratorLanding() {
           <div className="mb-6 inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-gold-line/90 bg-paper/95 px-5 py-2 text-gold-deep shadow-soft backdrop-blur-md">
             <WingMark size={14} />
             <span className="mono-label text-[0.76rem] font-extrabold tracking-wider text-ink">
-              Mas Camarena School, Spain · Live Online Programme
+              Mas Camarena School, Spain · Live Online Program
             </span>
           </div>
 
@@ -247,7 +247,7 @@ export function LeadershipAcceleratorLanding() {
           <h1 className="mx-auto max-w-[1000px] font-display text-[clamp(2.2rem,5.8vw,4.5rem)] font-extrabold leading-[1.03] tracking-tight text-ink">
             Pre-University Entrepreneurship &amp;{" "}
             <span className="bg-gradient-to-r from-crimson via-crimson-deep to-gold-deep bg-clip-text text-transparent">
-              Venture Building Programme
+              Venture Building Program
             </span>
           </h1>
 
@@ -259,7 +259,7 @@ export function LeadershipAcceleratorLanding() {
           </p>
 
           <p className="mx-auto mt-5 max-w-[58em] text-[clamp(1.05rem,2.2vw,1.2rem)] leading-relaxed text-ink-soft">
-            A transformative 4-day intensive pre-university programme for high school students to build strategic leadership,
+            A transformative 4-day intensive pre-university program for high school students to build strategic leadership,
             venture creation frameworks, business modeling, and executive pitch confidence.
           </p>
 
@@ -353,7 +353,7 @@ export function LeadershipAcceleratorLanding() {
           <div className="mx-auto max-w-[860px] text-center mb-12">
             <span className="mono-label mb-2.5 inline-flex items-center gap-2 text-gold-deep font-bold uppercase tracking-wider">
               <WingMark size={14} />
-              About the Programme
+              About the Program
             </span>
             <h2 className="font-display text-[clamp(2.2rem,4.8vw,3.6rem)] font-extrabold leading-[1.05] text-ink">
               Building Real Founders,{" "}
@@ -492,7 +492,7 @@ export function LeadershipAcceleratorLanding() {
                   </h3>
 
                   <p className="text-[0.86rem] text-ink-soft leading-relaxed">
-                    Longer programmes build in key University admission enhancers designed to create verifiable proof of student impact and initiative.
+                    Longer programs build in key University admission enhancers designed to create verifiable proof of student impact and initiative.
                   </p>
                 </div>
 
@@ -677,7 +677,7 @@ export function LeadershipAcceleratorLanding() {
               <div className="space-y-3">
                 <div>
                   <span className="mono-label text-[0.7rem] font-bold text-gold-deep uppercase tracking-wider block mb-1">
-                    Program Lead &amp; Dean of Programmes
+                    Program Lead &amp; Dean of Programs
                   </span>
                   <h3 className="font-display text-[1.4rem] font-extrabold text-ink">
                     Dr. Jojo O&apos;Driscoll-Kearney
@@ -780,7 +780,7 @@ export function LeadershipAcceleratorLanding() {
           <div className="text-center max-w-[700px] mx-auto mb-10">
             <span className="mono-label mb-2 inline-flex items-center gap-2 text-gold-deep font-bold uppercase tracking-wider">
               <WingMark size={14} />
-              Programme Fee
+              Program Fee
             </span>
             <h2 className="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-extrabold leading-tight text-ink">
               Program <em className="text-crimson-deep">Pricing</em>
@@ -792,7 +792,7 @@ export function LeadershipAcceleratorLanding() {
             <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 mb-6 border-b border-line pb-6">
               <div>
                 <span className="mono-label block text-[0.74rem] font-extrabold uppercase tracking-wider text-ink-faint">
-                  Total Programme Fee
+                  Total Program Fee
                 </span>
                 <div className="flex items-baseline gap-2 mt-1">
                   <span className="font-display text-[clamp(2.8rem,5vw,3.8rem)] font-black text-ink leading-none">
