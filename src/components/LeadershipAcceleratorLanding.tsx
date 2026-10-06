@@ -233,7 +233,7 @@ export function LeadershipAcceleratorLanding() {
           </div>
 
           {/* Main Title */}
-          <h1 className="mx-auto max-w-[1000px] font-display text-[clamp(2.1rem,4.8vw,4rem)] font-extrabold leading-[1.04] tracking-tight text-ink">
+          <h1 className="mx-auto max-w-[1040px] font-display text-[clamp(2.35rem,5.2vw,4.35rem)] font-extrabold leading-[1.03] tracking-tight text-ink">
             Pre-University Entrepreneurship &amp;{" "}
             <span className="bg-gradient-to-r from-crimson via-crimson-deep to-gold-deep bg-clip-text text-transparent">
               Venture Building Program
