@@ -213,7 +213,7 @@ export function LeadershipAcceleratorLanding() {
       </header>
 
       {/* --- HERO SECTION --- */}
-      <section className="relative overflow-hidden border-b border-gold-line/50 bg-gradient-to-b from-wash via-paper to-wash pt-3 pb-8">
+      <section className="relative overflow-hidden border-b border-gold-line/50 bg-gradient-to-b from-wash via-paper to-wash pt-5 pb-12">
         {/* Decorative Grid Pattern Overlay */}
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#c5a059_1.2px,transparent_1.2px)] [background-size:32px_32px] opacity-35" />
 
@@ -225,40 +225,40 @@ export function LeadershipAcceleratorLanding() {
 
         <div className="page-shell relative z-10 text-center">
           {/* Top Pill with Glow */}
-          <div className="mb-3 inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-gold-line/90 bg-paper/95 px-4 py-1.5 text-gold-deep shadow-soft backdrop-blur-md">
-            <WingMark size={13} />
-            <span className="mono-label text-[0.74rem] font-extrabold tracking-wider text-ink">
+          <div className="mb-4 inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-gold-line/90 bg-paper/95 px-4.5 py-1.5 text-gold-deep shadow-soft backdrop-blur-md">
+            <WingMark size={14} />
+            <span className="mono-label text-[0.76rem] font-extrabold tracking-wider text-ink">
               Mas Camarena School, Spain · Live Online Program
             </span>
           </div>
 
           {/* Main Title */}
-          <h1 className="mx-auto max-w-[950px] font-display text-[clamp(1.75rem,4vw,3.2rem)] font-extrabold leading-[1.05] tracking-tight text-ink">
+          <h1 className="mx-auto max-w-[1000px] font-display text-[clamp(2.1rem,4.8vw,4rem)] font-extrabold leading-[1.04] tracking-tight text-ink">
             Pre-University Entrepreneurship &amp;{" "}
             <span className="bg-gradient-to-r from-crimson via-crimson-deep to-gold-deep bg-clip-text text-transparent">
               Venture Building Program
             </span>
           </h1>
 
-          <p className="mx-auto mt-2 max-w-[50em] font-serif text-[clamp(1.05rem,2.2vw,1.35rem)] font-semibold text-crimson-deep">
+          <p className="mx-auto mt-3.5 max-w-[50em] font-serif text-[clamp(1.15rem,2.5vw,1.5rem)] font-semibold text-crimson-deep">
             Led by Dr. Jojo O&apos;Driscoll-Kearney
           </p>
-          <p className="mx-auto mt-0.5 max-w-[50em] text-[0.8rem] font-extrabold tracking-widest text-gold-deep uppercase">
+          <p className="mx-auto mt-1 max-w-[50em] text-[0.84rem] font-extrabold tracking-widest text-gold-deep uppercase">
             Dean of the Program
           </p>
 
-          <p className="mx-auto mt-3 max-w-[54em] text-[clamp(0.92rem,1.8vw,1.05rem)] leading-relaxed text-ink-soft">
+          <p className="mx-auto mt-4 max-w-[54em] text-[clamp(1rem,2vw,1.12rem)] leading-relaxed text-ink-soft">
             A transformative 4-day intensive pre-university program for high school students to build strategic leadership,
             venture creation frameworks, business modeling, and executive pitch confidence.
           </p>
 
           {/* Action Buttons */}
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3.5">
             <a
               href={APPLY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full bg-gradient-to-r from-crimson to-crimson-deep px-7 py-3 text-[0.95rem] font-bold text-paper shadow-[0_4px_24px_rgba(184,41,47,0.35)] transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(184,41,47,0.5)] no-underline"
+              className="rounded-full bg-gradient-to-r from-crimson to-crimson-deep px-8 py-3.5 text-[1rem] font-bold text-paper shadow-[0_4px_24px_rgba(184,41,47,0.35)] transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(184,41,47,0.5)] no-underline"
             >
               Apply Now →
             </a>
@@ -267,68 +267,68 @@ export function LeadershipAcceleratorLanding() {
           </div>
 
           {/* Feature Highlight Badges (Placed below Apply Buttons) */}
-          <div className="mt-3 flex flex-wrap justify-center gap-2 max-w-[950px] mx-auto">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-[0.76rem] font-bold text-emerald-800 dark:text-emerald-300">
-              <Tag size={13} />
+          <div className="mt-4 flex flex-wrap justify-center gap-2 max-w-[900px] mx-auto">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1.5 text-[0.78rem] font-bold text-emerald-800 dark:text-emerald-300">
+              <Tag size={14} />
               Fee: EUR 350
             </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-gold-line/60 bg-gold/10 px-3 py-1 text-[0.76rem] font-bold text-gold-deep">
-              <Sparkles size={13} />
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-gold-line/60 bg-gold/10 px-3.5 py-1.5 text-[0.78rem] font-bold text-gold-deep">
+              <Sparkles size={14} />
               4 Days · 12 Hours Live
             </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-[0.76rem] font-bold text-blue-700 dark:text-blue-400">
-              <Video size={13} />
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 px-3.5 py-1.5 text-[0.78rem] font-bold text-blue-700 dark:text-blue-400">
+              <Video size={14} />
               Live Interactive Zoom Masterclasses
             </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-[0.76rem] font-bold text-purple-700 dark:text-purple-400">
-              <Award size={13} />
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 px-3.5 py-1.5 text-[0.78rem] font-bold text-purple-700 dark:text-purple-400">
+              <Award size={14} />
               Verifiable Pitch Deck &amp; Certificate
             </span>
           </div>
 
           {/* Quick Facts Grid (Hero Level) */}
-          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4 max-w-[1120px] mx-auto text-left">
-            <div className="group flex items-start gap-3 rounded-2xl border border-gold-line/70 bg-paper/90 p-3.5 sm:p-4 shadow-soft backdrop-blur-md transition-all hover:-translate-y-0.5 hover:shadow-lift">
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 max-w-[1120px] mx-auto text-left">
+            <div className="group flex items-start gap-3.5 rounded-2xl border border-gold-line/70 bg-paper/90 p-4 sm:p-4.5 shadow-soft backdrop-blur-md transition-all hover:-translate-y-1 hover:shadow-lift">
               <div className="rounded-xl bg-crimson/10 p-2.5 text-crimson group-hover:bg-crimson group-hover:text-white transition-colors shrink-0">
-                <Calendar size={20} />
+                <Calendar size={22} />
               </div>
               <div>
-                <span className="mono-label block text-[0.64rem] text-ink-faint uppercase font-bold tracking-wider">Start Date</span>
-                <b className="mt-0.5 block text-[0.9rem] font-extrabold text-ink whitespace-nowrap">10th April 2027</b>
-                <small className="text-[0.72rem] text-ink-soft">4 Live Session Days</small>
+                <span className="mono-label block text-[0.66rem] text-ink-faint uppercase font-bold tracking-wider">Start Date</span>
+                <b className="mt-0.5 block text-[0.92rem] font-extrabold text-ink whitespace-nowrap">10th April 2027</b>
+                <small className="text-[0.74rem] text-ink-soft">4 Live Session Days</small>
               </div>
             </div>
 
-            <div className="group flex items-start gap-3 rounded-2xl border border-gold-line/70 bg-paper/90 p-3.5 sm:p-4 shadow-soft backdrop-blur-md transition-all hover:-translate-y-0.5 hover:shadow-lift">
+            <div className="group flex items-start gap-3.5 rounded-2xl border border-gold-line/70 bg-paper/90 p-4 sm:p-4.5 shadow-soft backdrop-blur-md transition-all hover:-translate-y-1 hover:shadow-lift">
               <div className="rounded-xl bg-gold/15 p-2.5 text-gold-deep group-hover:bg-gold-deep group-hover:text-white transition-colors shrink-0">
-                <Clock size={20} />
+                <Clock size={22} />
               </div>
               <div>
-                <span className="mono-label block text-[0.64rem] text-ink-faint uppercase font-bold tracking-wider">Session Duration</span>
-                <b className="mt-0.5 block text-[0.9rem] font-extrabold text-ink">3-Hour Sessions</b>
-                <small className="text-[0.72rem] text-ink-soft">Interactive &amp; Live</small>
+                <span className="mono-label block text-[0.66rem] text-ink-faint uppercase font-bold tracking-wider">Session Duration</span>
+                <b className="mt-0.5 block text-[0.92rem] font-extrabold text-ink">3-Hour Sessions</b>
+                <small className="text-[0.74rem] text-ink-soft">Interactive &amp; Live</small>
               </div>
             </div>
 
-            <div className="group flex items-start gap-3 rounded-2xl border border-gold-line/70 bg-paper/90 p-3.5 sm:p-4 shadow-soft backdrop-blur-md transition-all hover:-translate-y-0.5 hover:shadow-lift">
+            <div className="group flex items-start gap-3.5 rounded-2xl border border-gold-line/70 bg-paper/90 p-4 sm:p-4.5 shadow-soft backdrop-blur-md transition-all hover:-translate-y-1 hover:shadow-lift">
               <div className="rounded-xl bg-blue-500/10 p-2.5 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors shrink-0">
-                <Video size={20} />
+                <Video size={22} />
               </div>
               <div>
-                <span className="mono-label block text-[0.64rem] text-ink-faint uppercase font-bold tracking-wider">Learning Mode</span>
-                <b className="mt-0.5 block text-[0.9rem] font-extrabold text-ink">Online via Zoom</b>
-                <small className="text-[0.72rem] text-ink-soft">Live Discussions &amp; Pitching</small>
+                <span className="mono-label block text-[0.66rem] text-ink-faint uppercase font-bold tracking-wider">Learning Mode</span>
+                <b className="mt-0.5 block text-[0.92rem] font-extrabold text-ink">Online via Zoom</b>
+                <small className="text-[0.74rem] text-ink-soft">Live Discussions &amp; Pitching</small>
               </div>
             </div>
 
-            <div className="group flex items-start gap-3 rounded-2xl border border-gold-line/70 bg-paper/90 p-3.5 sm:p-4 shadow-soft backdrop-blur-md transition-all hover:-translate-y-0.5 hover:shadow-lift">
+            <div className="group flex items-start gap-3.5 rounded-2xl border border-gold-line/70 bg-paper/90 p-4 sm:p-4.5 shadow-soft backdrop-blur-md transition-all hover:-translate-y-1 hover:shadow-lift">
               <div className="rounded-xl bg-purple-500/10 p-2.5 text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors shrink-0">
-                <GraduationCap size={20} />
+                <GraduationCap size={22} />
               </div>
               <div>
-                <span className="mono-label block text-[0.64rem] text-ink-faint uppercase font-bold tracking-wider">Audience &amp; Grades</span>
-                <b className="mt-0.5 block text-[0.9rem] font-extrabold text-ink">Mas Camarena School</b>
-                <small className="text-[0.72rem] text-ink-soft">Grades 8–12 (Ages 13–18)</small>
+                <span className="mono-label block text-[0.66rem] text-ink-faint uppercase font-bold tracking-wider">Audience &amp; Grades</span>
+                <b className="mt-0.5 block text-[0.92rem] font-extrabold text-ink">Mas Camarena School</b>
+                <small className="text-[0.74rem] text-ink-soft">Grades 8–12 (Ages 13–18)</small>
               </div>
             </div>
           </div>
