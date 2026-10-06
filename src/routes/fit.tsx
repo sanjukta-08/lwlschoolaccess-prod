@@ -9,17 +9,17 @@ export const Route = createFileRoute("/fit")({
   validateSearch: validateFitSearch,
   head: () => ({
     meta: [
-      { title: "Find the right programme for your child - Learn with Leaders" },
+      { title: "Find the right program for your child - Learn with Leaders" },
       {
         name: "description",
         content:
-          "Answer five short questions and get three programmes matched to your child's grade, interests, time and timezone - with the outcome each one ends in.",
+          "Answer five short questions and get three programs matched to your child's grade, interests, time and timezone - with the outcome each one ends in.",
       },
-      { property: "og:title", content: "Find the right programme for your child" },
+      { property: "og:title", content: "Find the right program for your child" },
       {
         property: "og:description",
         content:
-          "Five questions, three matched programmes, and the exact outcome each one ends in.",
+          "Five questions, three matched programs, and the exact outcome each one ends in.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

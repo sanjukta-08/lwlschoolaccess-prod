@@ -26,7 +26,7 @@ const totalUpcoming = () =>
 
 const TITLE = "Full Calendar 2026–27 | Learn with Leaders";
 const DESC =
-  "Every Learn with Leaders online programme from July 2026 to April 2027 in one calendar. Filter by interest, type and month, with Dubai and US Eastern session times.";
+  "Every Learn with Leaders online program from July 2026 to April 2027 in one calendar. Filter by interest, type and month, with Dubai and US Eastern session times.";
 
 export const Route = createFileRoute("/calendar")({
   staticData: { sitemap: true },
@@ -98,7 +98,7 @@ function CalendarPage() {
                 Every <em className="text-crimson-deep">start date</em>, in one calendar
               </h1>
               <p className="mx-auto mt-2.5 max-w-[54em] text-[0.94rem] text-ink-soft">
-                Filter by subject, format or month, then tap any row to open the programme
+                Filter by subject, format or month, then tap any row to open the program
                 page. Session times are shown in Dubai time (GMT+4) with US Eastern
                 alongside.
               </p>
@@ -106,7 +106,7 @@ function CalendarPage() {
 
             <ul className="flex flex-wrap justify-center gap-2">
               {[
-                [`${PROGRAMMES.length} programmes`, `${totalUpcoming()} cohorts`],
+                [`${PROGRAMMES.length} programs`, `${totalUpcoming()} cohorts`],
                 ["Live on Zoom", "Dubai + US Eastern"],
                 [`Grades ${gradeLo()}–${gradeHi()}`, "Harvard & Yale student mentors"],
               ].map(([top, sub]) => (
@@ -135,7 +135,7 @@ function CalendarPage() {
                 search={DEFAULT_SEARCH}
                 className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-line bg-paper px-4 py-2 text-[0.82rem] font-semibold text-ink-soft no-underline hover:border-ink-soft hover:text-ink"
               >
-                Open the programme finder
+                Open the program finder
               </Link>
             </div>
           </section>

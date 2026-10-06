@@ -20,7 +20,7 @@ import FAQSection from "@/components/camps/ignite-full/FAQSection";
 const SLUG = "ignite-cambridge-judge";
 const APPLY = "https://apply.learnwithleaders.com/apply/cambridge-ignite";
 const TITLE = "IGNITE Young Minds at Cambridge Judge | Learn with Leaders";
-const DESC = "A seven-day residential entrepreneurship programme at Cambridge Judge Entrepreneurship Centre for students aged 15–18.";
+const DESC = "A seven-day residential entrepreneurship program at Cambridge Judge Entrepreneurship Centre for students aged 15–18.";
 
 export const Route = createFileRoute("/camps/ignite-cambridge-judge")({
   staticData: { sitemap: true },

@@ -113,7 +113,7 @@ function AboutPage() {
 
       <section className="rounded-t-[28px] bg-ink px-5 py-16 text-center text-paper">
         <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
-          Ready to find <em className="text-gold">their</em> programme?
+          Ready to find <em className="text-gold">their</em> program?
         </h2>
         <p className="mx-auto mt-3 mb-6 max-w-[52em] text-[0.95rem] text-paper/70">
           Thirty seconds with the finder, or a short conversation with an advisor -
@@ -125,7 +125,7 @@ function AboutPage() {
             search={DEFAULT_SEARCH}
             className="rounded-full bg-paper px-7 py-3.5 text-[0.95rem] font-bold text-ink no-underline"
           >
-            Open the Programme Finder
+            Open the Program Finder
           </Link>
           <a
             href="https://www.learnwithleaders.com/"

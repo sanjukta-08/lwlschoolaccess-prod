@@ -224,17 +224,6 @@ export function LeadershipAcceleratorLanding() {
         <div className="pointer-events-none absolute top-10 left-1/2 -translate-x-1/2 h-36 w-[650px] rounded-full bg-gold/20 blur-[90px]" />
 
         <div className="page-shell relative z-10 text-center">
-          {/* Top School Logo Lockup */}
-          <div className="mb-6 flex justify-center items-center">
-            <div className="group rounded-2xl border-2 border-gold-line/70 bg-white/95 px-7 py-3.5 shadow-lift backdrop-blur-md transition-all hover:scale-[1.02] hover:shadow-glow">
-              <img
-                src="/mas-camarena-logo.png"
-                alt="Complejo Educativo Mas Camarena International School - IB World School"
-                className="h-12 sm:h-14 md:h-16 w-auto max-w-full object-contain"
-              />
-            </div>
-          </div>
-
           {/* Top Pill with Glow */}
           <div className="mb-6 inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-gold-line/90 bg-paper/95 px-5 py-2 text-gold-deep shadow-soft backdrop-blur-md">
             <WingMark size={14} />
@@ -255,7 +244,7 @@ export function LeadershipAcceleratorLanding() {
             Led by Dr. Jojo O&apos;Driscoll-Kearney
           </p>
           <p className="mx-auto mt-1 max-w-[50em] text-[0.92rem] font-extrabold tracking-widest text-gold-deep uppercase">
-            Harvard Business Impact Faculty &amp; Hult Professor · Former Meta CLO
+            Dean of the Program
           </p>
 
           <p className="mx-auto mt-5 max-w-[58em] text-[clamp(1.05rem,2.2vw,1.2rem)] leading-relaxed text-ink-soft">

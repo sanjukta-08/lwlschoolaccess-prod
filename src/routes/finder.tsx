@@ -38,9 +38,9 @@ import { Button } from "@/components/ui/button";
 import { useCompass } from "@/lib/compass-context";
 import { MessageCircleQuestion } from "lucide-react";
 
-const TITLE = "Programme Finder | Learn with Leaders";
+const TITLE = "Program Finder | Learn with Leaders";
 const DESC =
-  "Find the right Harvard and Yale-mentored programme for your child in under 30 seconds. Filter by grade, interest, type and start date.";
+  "Find the right Harvard and Yale-mentored program for your child in under 30 seconds. Filter by grade, interest, type and start date.";
 
 const PAGE = 12;
 
@@ -159,8 +159,8 @@ function FinderPage() {
       ) : null}
       {matches.length}
       {state.type === "all"
-        ? " programme"
-        : ` ${TYPE_NAME[state.type as keyof typeof TYPE_NAME]?.toLowerCase() ?? "programme"}`}
+        ? " program"
+        : ` ${TYPE_NAME[state.type as keyof typeof TYPE_NAME]?.toLowerCase() ?? "program"}`}
       {matches.length === 1 ? "" : "s"}
       {state.grade === "all" ? (
         " for every grade"
@@ -234,17 +234,17 @@ function FinderPage() {
             <div>
               <span className="mono-label mb-2 inline-flex items-center justify-center gap-2 text-crimson">
                 <span className="h-1.5 w-1.5 rounded-full bg-crimson" />
-                {upcomingProgrammes().length} programmes · Grades {gradeLo()}–{gradeHi()}
+                {upcomingProgrammes().length} programs · Grades {gradeLo()}–{gradeHi()}
               </span>
               <h1 className="font-serif text-[clamp(1.8rem,4.4vw,2.7rem)] leading-[1.1] font-medium tracking-tight">
-                Find the programme that <em className="text-crimson-deep">fits</em> your child
+                Find the program that <em className="text-crimson-deep">fits</em> your child
               </h1>
             </div>
             <ul className="flex flex-wrap justify-center gap-2">
               {[
                 ["Harvard & Yale Student Mentors", "Taught by leaders"],
                 ["Live on Zoom", "Dubai + US Eastern"],
-                [`Grades ${gradeLo()}–${gradeHi()}`, `${upcomingProgrammes().length} programmes`],
+                [`Grades ${gradeLo()}–${gradeHi()}`, `${upcomingProgrammes().length} programs`],
               ].map(([top, sub]) => (
                 <li
                   key={top}

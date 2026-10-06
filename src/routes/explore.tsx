@@ -7,17 +7,17 @@ export const Route = createFileRoute("/explore")({
   staticData: { sitemap: true },
   head: () => ({
     meta: [
-      { title: "Explore programmes by type - Learn with Leaders" },
+      { title: "Explore programs by type - Learn with Leaders" },
       {
         name: "description",
         content:
-          "A guided three-step flow: pick a programme type, a grade and a subject, and see every matching programme with its next start date and fee.",
+          "A guided three-step flow: pick a program type, a grade and a subject, and see every matching program with its next start date and fee.",
       },
-      { property: "og:title", content: "Explore programmes by type" },
+      { property: "og:title", content: "Explore programs by type" },
       {
         property: "og:description",
         content:
-          "Pick a programme type, a grade and a subject - see every matching programme in three steps.",
+          "Pick a program type, a grade and a subject - see every matching program in three steps.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -40,7 +40,7 @@ function ExplorePage() {
         subtitle={
           <>
             Camps, competitions, masterclasses, conferences and more - choose the kind of
-            experience, tell us the grade and subject, and see every matching programme
+            experience, tell us the grade and subject, and see every matching program
             with its next start date.
           </>
         }

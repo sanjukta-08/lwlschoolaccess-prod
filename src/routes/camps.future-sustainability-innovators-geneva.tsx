@@ -6,7 +6,7 @@ import { pageHtml } from "@/content/geneva/content";
 import pageCss from "@/content/geneva/scoped.css?raw";
 
 const SLUG = "future-sustainability-innovators-geneva";
-const TITLE = "Future Sustainability Innovators Programme — Geneva";
+const TITLE = "Future Sustainability Innovators Program — Geneva";
 const DESC = "A seven-day sustainability, innovation and global institutions camp in Geneva for students aged 13–17.";
 const APPLY = "https://apply.learnwithleaders.com/apply/geneva-camp";
 const CAROUSELS = [

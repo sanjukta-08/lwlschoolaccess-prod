@@ -26,7 +26,7 @@ const totalUpcoming = () =>
 
 const TITLE = "Month-by-month cohort calendar | Learn with Leaders";
 const DESC =
-  "See every Learn with Leaders cohort start laid out on a month grid. Pick a month, tap a date to see what begins, and open the programme page in one click.";
+  "See every Learn with Leaders cohort start laid out on a month grid. Pick a month, tap a date to see what begins, and open the program page in one click.";
 
 export const Route = createFileRoute("/calendar-month")({
   staticData: { sitemap: true },
@@ -114,13 +114,13 @@ function MonthCalendarPage() {
               <p className="mx-auto mt-2.5 max-w-[54em] text-[0.94rem] text-ink-soft">
                 Every start date on a real month grid. Move through the months, tap a date
                 to see everything that begins that day, and click a cohort to open its
-                programme page.
+                program page.
               </p>
             </div>
 
             <ul className="flex flex-wrap justify-center gap-2">
               {[
-                [`${PROGRAMMES.length} programmes`, `${totalUpcoming()} cohorts`],
+                [`${PROGRAMMES.length} programs`, `${totalUpcoming()} cohorts`],
                 ["Live on Zoom", "Dubai + US Eastern"],
                 [`Grades ${gradeLo()}–${gradeHi()}`, "Harvard & Yale student mentors"],
               ].map(([top, sub]) => (
@@ -149,7 +149,7 @@ function MonthCalendarPage() {
                 search={DEFAULT_SEARCH}
                 className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-line bg-paper px-4 py-2 text-[0.82rem] font-semibold text-ink-soft no-underline hover:border-ink-soft hover:text-ink"
               >
-                Browse all programmes
+                Browse all programs
               </Link>
             </div>
           </section>
