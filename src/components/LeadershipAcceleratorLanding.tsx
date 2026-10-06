@@ -244,7 +244,7 @@ export function LeadershipAcceleratorLanding() {
             Led by Dr. Jojo O&apos;Driscoll-Kearney
           </p>
           <p className="mx-auto mt-1 max-w-[50em] text-[0.92rem] font-extrabold tracking-widest text-gold-deep uppercase">
-            Harvard Business Impact Faculty &amp; Hult Professor · Former Meta CLO
+            Dean of Programs
           </p>
 
           <p className="mx-auto mt-5 max-w-[58em] text-[clamp(1.05rem,2.2vw,1.2rem)] leading-relaxed text-ink-soft">
