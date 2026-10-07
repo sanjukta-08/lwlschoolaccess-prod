@@ -92,6 +92,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Learn with Leaders runs live, mentored programs, competitions, internships and camps for students in Grades 5-12.",
       },
+      {
+        name: "google-site-verification",
+        content: "nVSq8_VNrPKWnCSIhV1xgcpsjSESKgCPc7JQ5_DvDy4",
+      },
       { name: "author", content: "Learn with Leaders" },
       { property: "og:site_name", content: "Learn with Leaders" },
       { property: "og:title", content: "Learn with Leaders" },
