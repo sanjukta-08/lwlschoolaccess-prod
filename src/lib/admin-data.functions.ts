@@ -7,6 +7,7 @@ import { buildRows, toPublic } from "./compass-search.server";
 
 async function db() {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (supabaseAdmin as unknown as { schema: (s: string) => any }).schema("lwl_site");
 }
 
@@ -78,6 +79,7 @@ export const adminLeads = createServerFn({ method: "GET" }).handler(async () => 
     nameLookup(),
   ]);
   if (error) throw new Error(error.message);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return ((data ?? []) as any[]).map((r) => ({
     id: r.id as string,
     session_id: (r.session_id ?? null) as string | null,
@@ -115,6 +117,7 @@ export const adminSessions = createServerFn({ method: "GET" }).handler(async () 
     .order("created_at", { ascending: false })
     .limit(100);
   if (error) throw new Error(error.message);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const list = (data ?? []) as any[];
   const counts = new Map<string, number>();
   if (list.length) {
@@ -169,6 +172,7 @@ export const adminTranscript = createServerFn({ method: "GET" })
         utm_medium: string | null;
         utm_campaign: string | null;
       },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       messages: ((msgs.data ?? []) as any[]).map((m) => ({
         id: m.id as string,
         role: m.role as string,

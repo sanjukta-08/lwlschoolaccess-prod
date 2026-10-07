@@ -91,6 +91,7 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
   const { withinRateLimit } = await import("./rate-limit.server");
   // lwl_site isn't in the generated public types.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const db = (supabaseAdmin as unknown as { schema: (s: string) => any }).schema("lwl_site");
 
   // --- session -------------------------------------------------------
