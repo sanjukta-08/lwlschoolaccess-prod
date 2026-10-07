@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getWebRequest } from "@tanstack/react-start/server";
+import { getRequest } from "@tanstack/react-start/server";
 import { AnswersSchema, ResultSchema, promptFor } from "./fit-prompt";
 import { fitCandidates, fitPayload, rulesResult, validateFitSearch, type FitResult } from "./fit";
 
@@ -18,7 +18,7 @@ export const recommendProgrammes = createServerFn({ method: "POST" })
     // of the two public AI endpoints to script into an unbounded bill. Over
     // the limit -> degrade to the free rules-based result instead of erroring.
     const { clientIpFrom, withinRateLimit } = await import("./rate-limit.server");
-    const clientIp = clientIpFrom(getWebRequest());
+    const clientIp = clientIpFrom(getRequest());
     if (!(await withinRateLimit("recommend", clientIp))) return fallback;
 
     try {
