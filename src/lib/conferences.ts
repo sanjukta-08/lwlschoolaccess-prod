@@ -39,7 +39,8 @@ export const conferenceDateLabel = (conference: Programme) => {
     month: "short",
     year: end && end.getFullYear() === start.getFullYear() ? undefined : "numeric",
   });
-  if (!end || cohort.end === cohort.d) return start.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+  if (!end || cohort.end === cohort.d)
+    return start.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
   return `${startLabel} – ${end.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}`;
 };
 

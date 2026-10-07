@@ -182,10 +182,7 @@ export function parseUtmParams(search: string): UtmParams {
  * every client-side navigation, so a tagged link to any page is captured even
  * when the visitor arrives mid-journey.
  */
-export function captureUtmFromLocation(
-  href?: string,
-  documentReferrer?: string,
-): UtmParams {
+export function captureUtmFromLocation(href?: string, documentReferrer?: string): UtmParams {
   if (typeof window === "undefined") return {};
   const url = href ?? window.location.href;
   let search = "";
@@ -253,7 +250,6 @@ export function getUtm(): { utm_source: string; utm_medium: string; utm_campaign
   return resolveUtm(getStoredUtm(), {});
 }
 
-
 /** Only the standard tracking keys — what gets forwarded downstream. */
 function forwardableParams(stored: UtmParams): UtmParams {
   const out: UtmParams = {};
@@ -281,7 +277,8 @@ export function withUtm(url: string, stored: UtmParams = getStoredUtm()): string
   if (!/^https?:\/\//i.test(url) && !url.startsWith("/")) return url;
 
   try {
-    const base = typeof window === "undefined" ? "https://lwlschoolaccess.com" : window.location.origin;
+    const base =
+      typeof window === "undefined" ? "https://lwlschoolaccess.com" : window.location.origin;
     const parsed = new URL(url, base);
     if (!/^https?:$/.test(parsed.protocol)) return url;
     if (!shouldDecorateHost(parsed.hostname)) return url;

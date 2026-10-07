@@ -25,7 +25,9 @@ const StatsSection = () => {
           >
             <p className="font-serif text-5xl sm:text-7xl md:text-8xl font-bold text-ivory-foreground leading-none mb-3">
               {stat.number}
-              {stat.suffix && <span className="text-5xl sm:text-6xl md:text-7xl">{stat.suffix}</span>}
+              {stat.suffix && (
+                <span className="text-5xl sm:text-6xl md:text-7xl">{stat.suffix}</span>
+              )}
             </p>
             <p className="font-sans text-sm sm:text-base md:text-lg uppercase tracking-[0.2em] text-ivory-foreground/70 mt-4 font-semibold">
               {stat.label}

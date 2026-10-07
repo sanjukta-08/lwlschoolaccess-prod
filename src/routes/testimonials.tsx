@@ -43,7 +43,7 @@ export const Route = createFileRoute("/testimonials")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "/testimonials" }],
-        scripts: [
+    scripts: [
       {
         type: "application/ld+json",
         children: JSON.stringify({
@@ -103,8 +103,8 @@ function TestimonialsPage() {
                 What families say <em className="text-crimson-deep">afterwards</em>
               </h1>
               <p className="mx-auto mt-2 max-w-[58em] text-[0.95rem] leading-relaxed text-ink-soft">
-                Every quote, post, clip and handwritten note we have permission to
-                share, in one searchable place.
+                Every quote, post, clip and handwritten note we have permission to share, in one
+                searchable place.
               </p>
             </div>
           </section>

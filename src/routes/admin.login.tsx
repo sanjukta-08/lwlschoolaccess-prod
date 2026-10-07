@@ -41,7 +41,11 @@ function AdminLogin() {
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-background px-4">
-      <form method="post" onSubmit={onSubmit} className="w-full max-w-sm space-y-4 rounded-lg border border-border bg-card p-6">
+      <form
+        method="post"
+        onSubmit={onSubmit}
+        className="w-full max-w-sm space-y-4 rounded-lg border border-border bg-card p-6"
+      >
         <h1 className="text-xl font-semibold text-foreground">Admin sign in</h1>
         <input
           name="password"

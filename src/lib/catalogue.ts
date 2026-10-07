@@ -20,7 +20,6 @@ export const catalogueQuery = queryOptions({
   refetchOnWindowFocus: false,
 });
 
-
 /**
  * Every route loader awaits this so the catalogue is in place before any
  * component renders, on the server and in the browser alike.
@@ -39,4 +38,3 @@ export const useHydratedCatalogue = () => {
   hydrate(data);
   return data;
 };
-

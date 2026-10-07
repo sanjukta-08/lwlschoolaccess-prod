@@ -6,7 +6,6 @@ import genevaPoster2 from "@/assets/geneva-clip-2-poster.webp.asset.json";
 import genevaPoster3 from "@/assets/geneva-clip-3-poster.webp.asset.json";
 
 export const ABOUT = {
-
   kicker: "About Learn with Leaders",
   headline: "Ivy League mentors, live cohorts, and proof universities can check.",
   body: "Learn with Leaders runs live, small-group programs for students in Grades 5–12, mentored by student leaders from Harvard, Yale, MIT, Stanford and Princeton, and delivered with partners like Harvard Student Agencies, HPAIR and Harvard Model Congress. Every pathway is built backwards from an outcome - a capstone project, a published paper, a judged pitch, a moot court, a portfolio - so a child finishes with something real to show, not just another certificate.",
@@ -41,32 +40,28 @@ export type PressItem = {
 export const PRESS: PressItem[] = [
   {
     publication: "Forbes",
-    headline:
-      "How Ivy League student mentors are reshaping what a high-school résumé looks like",
+    headline: "How Ivy League student mentors are reshaping what a high-school résumé looks like",
     date: "2026",
     url: "https://www.forbes.com/",
     placeholder: true,
   },
   {
     publication: "Forbes India",
-    headline:
-      "Beyond grades: the rise of outcome-first enrichment for school students",
+    headline: "Beyond grades: the rise of outcome-first enrichment for school students",
     date: "2025",
     url: "https://www.forbesindia.com/",
     placeholder: true,
   },
   {
     publication: "Gulf News",
-    headline:
-      "UAE families turn to live global cohorts to build university-ready profiles",
+    headline: "UAE families turn to live global cohorts to build university-ready profiles",
     date: "2025",
     url: "https://gulfnews.com/",
     placeholder: true,
   },
   {
     publication: "Khaleej Times",
-    headline:
-      "Harvard and Yale mentors bring research fellowships to Dubai classrooms",
+    headline: "Harvard and Yale mentors bring research fellowships to Dubai classrooms",
     date: "2025",
     url: "https://www.khaleejtimes.com/",
     placeholder: true,
@@ -477,9 +472,7 @@ export const APPROVED_INSTAGRAM = INSTAGRAM_POSTS.filter((s) => s.approved);
 /** Stories matching any of the given track keys, most-reacted first. */
 export function storiesForTracks(tracks: TrackKey[], limit = 3): LinkedInStory[] {
   const rank = (a: LinkedInStory, b: LinkedInStory) => b.reactions - a.reactions;
-  const matched = APPROVED_STORIES.filter((s) =>
-    s.tags.some((t) => tracks.includes(t)),
-  ).sort(rank);
+  const matched = APPROVED_STORIES.filter((s) => s.tags.some((t) => tracks.includes(t))).sort(rank);
   const fallback = [...APPROVED_STORIES].sort(rank);
   const out = [...matched];
   for (const s of fallback) {
@@ -491,9 +484,7 @@ export function storiesForTracks(tracks: TrackKey[], limit = 3): LinkedInStory[]
 
 /** Videos matching any of the given track keys, falling back to the newest set. */
 export function videosForTracks(tracks: TrackKey[], limit = 3): VideoTestimonial[] {
-  const matched = VIDEO_TESTIMONIALS.filter((v) =>
-    v.tags.some((t) => tracks.includes(t)),
-  );
+  const matched = VIDEO_TESTIMONIALS.filter((v) => v.tags.some((t) => tracks.includes(t)));
   const out = [...matched];
   for (const v of VIDEO_TESTIMONIALS) {
     if (out.length >= limit) break;

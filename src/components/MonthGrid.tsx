@@ -30,9 +30,10 @@ function buildWeeks(month: Date) {
 }
 
 const iso = (d: Date) =>
-  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(
-    d.getDate(),
-  ).padStart(2, "0")}`;
+  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(
+    2,
+    "0",
+  )}`;
 
 export function MonthGrid({
   month,
@@ -82,11 +83,7 @@ export function MonthGrid({
                 <div
                   key={key}
                   className={`relative min-h-[12.5vh] border-r border-line p-2 transition-all last:border-r-0 xl:min-h-[12vh] ${
-                    day
-                      ? isWeekend
-                        ? "bg-wash/60"
-                        : "bg-paper"
-                      : "bg-wash/80"
+                    day ? (isWeekend ? "bg-wash/60" : "bg-paper") : "bg-wash/80"
                   } ${hasCohorts ? "hover:bg-gold-soft/35" : ""} ${
                     isSelected
                       ? "bg-gold-soft/70 ring-1 ring-inset ring-gold/55 shadow-[inset_0_0_0_1px_var(--gold-line)]"
@@ -166,7 +163,8 @@ export function MonthGrid({
                 type="button"
                 onClick={() => onSelectDay(d)}
                 aria-label={`Show cohorts starting ${d}`}
-                className="mt-0.5 flex-none font-mono text-[0.78rem] font-semibold text-crimson">
+                className="mt-0.5 flex-none font-mono text-[0.78rem] font-semibold text-crimson"
+              >
                 {new Date(d + "T00:00:00").toLocaleDateString("en-GB", {
                   day: "2-digit",
                   month: "short",
@@ -179,7 +177,10 @@ export function MonthGrid({
                     to="/programmes/$slug"
                     params={{ slug: slugOf(e.p) }}
                     className="text-[0.85rem] font-semibold text-ink no-underline"
-                    style={{ borderLeft: `3px solid ${TRACKS[e.p.tracks[0]!].color}`, paddingLeft: 8 }}
+                    style={{
+                      borderLeft: `3px solid ${TRACKS[e.p.tracks[0]!].color}`,
+                      paddingLeft: 8,
+                    }}
                   >
                     {e.p.name}
                   </Link>
@@ -187,8 +188,7 @@ export function MonthGrid({
               </span>
             </div>
           ))}
-        {Array.from(byDay.keys()).filter((d) => d.startsWith(monthKey(month))).length ===
-        0 ? (
+        {Array.from(byDay.keys()).filter((d) => d.startsWith(monthKey(month))).length === 0 ? (
           <p className="px-4 py-8 text-center text-[0.88rem] text-ink-soft">
             No cohorts start this month with these filters.
           </p>

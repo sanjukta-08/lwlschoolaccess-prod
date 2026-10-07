@@ -2,11 +2,7 @@
  * FAQPage JSON-LD for long-form landing pages that own their FAQ copy
  * inside a component (rather than in the route's head()).
  */
-export function FAQSchema({
-  faqs,
-}: {
-  faqs: { question: string; answer: string }[];
-}) {
+export function FAQSchema({ faqs }: { faqs: { question: string; answer: string }[] }) {
   const data = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -18,10 +14,6 @@ export function FAQSchema({
   };
 
   return (
-    <script
-      type="application/ld+json"
-      // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-    />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
   );
 }

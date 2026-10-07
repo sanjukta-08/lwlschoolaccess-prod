@@ -72,10 +72,12 @@ function pageItemName(loaderData: unknown): string | null {
   const d = loaderData as Record<string, unknown>;
   const pick = (v: unknown) =>
     v && typeof v === "object" && typeof (v as { name?: unknown }).name === "string"
-      ? ((v as { name: string }).name)
+      ? (v as { name: string }).name
       : null;
   if (typeof d["name"] === "string") return d["name"];
-  return pick(d["camp"]) ?? pick(d["conference"]) ?? pick(d["programme"]) ?? pick(d["program"]) ?? null;
+  return (
+    pick(d["camp"]) ?? pick(d["conference"]) ?? pick(d["programme"]) ?? pick(d["program"]) ?? null
+  );
 }
 
 type CompassContextValue = {
@@ -119,10 +121,7 @@ export function CompassProvider({ children }: { children: ReactNode }) {
   // What the family has already "Saved" on the site (same store the Save buttons use).
   const { ready: shortlistReady, items: savedItems } = useShortlist();
   const savedNames = useMemo(
-    () =>
-      shortlistReady
-        ? [...new Set(resolveSaved(savedItems).map(({ p }) => p.name))]
-        : [],
+    () => (shortlistReady ? [...new Set(resolveSaved(savedItems).map(({ p }) => p.name))] : []),
     [shortlistReady, savedItems],
   );
 
@@ -185,7 +184,8 @@ export function CompassProvider({ children }: { children: ReactNode }) {
       let h = 0;
       document.querySelectorAll<HTMLElement>("[data-compass-offset]").forEach((el) => {
         const r = el.getBoundingClientRect();
-        if (r.height > 0 && getComputedStyle(el).display !== "none") h = Math.max(h, window.innerHeight - r.top);
+        if (r.height > 0 && getComputedStyle(el).display !== "none")
+          h = Math.max(h, window.innerHeight - r.top);
       });
       setLiftPx(h > 0 ? Math.ceil(h) : 0);
     };

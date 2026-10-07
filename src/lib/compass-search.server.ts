@@ -9,13 +9,7 @@ import { TYPES, type TrackKey } from "./programmes";
 import { programmePath, conferenceSlugOf } from "./programme-slug";
 
 export type CompassCategory =
-  | "medicine"
-  | "law"
-  | "finance"
-  | "ai_tech"
-  | "research"
-  | "leadership"
-  | "test_prep";
+  "medicine" | "law" | "finance" | "ai_tech" | "research" | "leadership" | "test_prep";
 
 export type SearchParams = {
   grade_min: number | null;
@@ -114,8 +108,16 @@ export function buildRows(cat: LiveCatalogue, masterclasses: PublicMasterclass[]
     if (!next) continue; // not listable without an upcoming cohort
     const typeLabel = TYPES[p.type]?.label ?? "Programme";
     const kind: SearchResult["type"] =
-      p.type === "fel" ? "fellowship" : p.type === "comp" ? "competition" : p.type === "conf" ? "conference" : "programme";
-    const cats = (Object.keys(CAT_TRACK) as CompassCategory[]).filter((c) => p.tracks.includes(CAT_TRACK[c]));
+      p.type === "fel"
+        ? "fellowship"
+        : p.type === "comp"
+          ? "competition"
+          : p.type === "conf"
+            ? "conference"
+            : "programme";
+    const cats = (Object.keys(CAT_TRACK) as CompassCategory[]).filter((c) =>
+      p.tracks.includes(CAT_TRACK[c]),
+    );
     const view = p.type === "conf" ? `/conferences/${conferenceSlugOf(p)}` : programmePath(p);
     rows.push({
       id: p.id,
@@ -132,7 +134,8 @@ export function buildRows(cat: LiveCatalogue, masterclasses: PublicMasterclass[]
       blurb: blurbOf(p.tag, p.about),
       _g: p.g,
       _cats: cats,
-      _text: `${p.name} ${p.tag} ${p.about} ${(p.categories ?? []).join(" ")} ${typeLabel}`.toLowerCase(),
+      _text:
+        `${p.name} ${p.tag} ${p.about} ${(p.categories ?? []).join(" ")} ${typeLabel}`.toLowerCase(),
       _feeNum: parseMoney(p.feeE),
       _free: false,
       _kind: "programme",
@@ -142,7 +145,10 @@ export function buildRows(cat: LiveCatalogue, masterclasses: PublicMasterclass[]
   for (const live of cat.camps) {
     const ed = CAMPS.find((c) => c.slug === live.slug);
     if (!ed) continue;
-    const next = live.cohorts.map((c) => c.start).filter((d): d is string => !!d && d >= now).sort()[0];
+    const next = live.cohorts
+      .map((c) => c.start)
+      .filter((d): d is string => !!d && d >= now)
+      .sort()[0];
     if (!next) continue;
     const theme = CAMP_THEME[ed.themeKey];
     rows.push({
@@ -161,7 +167,8 @@ export function buildRows(cat: LiveCatalogue, masterclasses: PublicMasterclass[]
       blurb: blurbOf(ed.theme, ed.promise),
       _g: parseGrades(ed.gradeBand),
       _cats: theme ? [theme] : [],
-      _text: `${ed.name} ${ed.theme} ${ed.promise} ${ed.city} ${ed.country} camp residential`.toLowerCase(),
+      _text:
+        `${ed.name} ${ed.theme} ${ed.promise} ${ed.city} ${ed.country} camp residential`.toLowerCase(),
       _feeNum: parseMoney(live.priceLabel),
       _free: false,
       _kind: "camp",
@@ -184,7 +191,9 @@ export function buildRows(cat: LiveCatalogue, masterclasses: PublicMasterclass[]
       view_url: `${SITE}/masterclasses`,
       apply_url: m.apply_url,
       blurb: blurbOf(
-        m.host_name ? `Hosted by ${m.host_name}${m.host_university ? ` (${m.host_university})` : ""}.` : null,
+        m.host_name
+          ? `Hosted by ${m.host_name}${m.host_university ? ` (${m.host_university})` : ""}.`
+          : null,
         m.description,
       ),
       _g: parseGrades(m.audience),
@@ -211,18 +220,33 @@ export function searchRows(rows: Row[], q: SearchParams, limit = 3): SearchResul
   const scored = rows
     .filter((r) => !q.type || q.type === "any" || r._kind === q.type)
     .filter((r) => q.timing !== "this_month" || (r.next_date ?? "") < monthEnd)
-    .filter((r) => !fmt || r.format.toLowerCase().includes(fmt) || (fmt.includes("online") && r.format.toLowerCase().includes("online")))
+    .filter(
+      (r) =>
+        !fmt ||
+        r.format.toLowerCase().includes(fmt) ||
+        (fmt.includes("online") && r.format.toLowerCase().includes("online")),
+    )
     .map((r) => {
       const grade = lo == null ? 0 : r._g ? (r._g[0] <= hi! && r._g[1] >= lo ? 1 : -1) : 0;
       const cat = cats.length ? (r._cats.some((c) => cats.includes(c)) ? 1 : 0) : 0;
-      const key = kw ? (kw.split(/\s+/).some((w) => w.length > 2 && r._text.includes(w)) ? 1 : 0) : 0;
+      const key = kw
+        ? kw.split(/\s+/).some((w) => w.length > 2 && r._text.includes(w))
+          ? 1
+          : 0
+        : 0;
       const budget =
-        q.budget_max_usd == null ? 0 : r._free || (r._feeNum != null && r._feeNum <= q.budget_max_usd) ? 1 : -1;
+        q.budget_max_usd == null
+          ? 0
+          : r._free || (r._feeNum != null && r._feeNum <= q.budget_max_usd)
+            ? 1
+            : -1;
       return { r, grade, cat, key, budget, score: grade * 1000 + (cat + key) * 100 + budget * 10 };
     })
     // Drop clear mismatches: wrong grades, or nothing matching the asked topic.
     .filter((x) => x.grade >= 0 && ((!cats.length && !kw) || x.cat + x.key > 0))
-    .sort((a, b) => b.score - a.score || (a.r.next_date ?? "9").localeCompare(b.r.next_date ?? "9"));
+    .sort(
+      (a, b) => b.score - a.score || (a.r.next_date ?? "9").localeCompare(b.r.next_date ?? "9"),
+    );
 
   return scored.slice(0, limit).map(({ r }) => toPublic(r));
 }
@@ -230,6 +254,11 @@ export function searchRows(rows: Row[], q: SearchParams, limit = 3): SearchResul
 /** Strip internal ranking fields. */
 export function toPublic(r: Row): SearchResult {
   const { _g, _cats, _text, _feeNum, _free, _kind, ...pub } = r;
-  void _g; void _cats; void _text; void _feeNum; void _free; void _kind;
+  void _g;
+  void _cats;
+  void _text;
+  void _feeNum;
+  void _free;
+  void _kind;
   return pub;
 }

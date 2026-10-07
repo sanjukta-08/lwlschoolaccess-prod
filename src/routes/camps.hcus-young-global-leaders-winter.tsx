@@ -22,8 +22,7 @@ import ApplicationProcess from "@/components/camps/hcus-winter/ApplicationProces
 import Footer from "@/components/camps/hcus-winter/Footer";
 import { CAMP_PAGE_FONT_LINKS } from "@/components/camps/shared/fonts";
 
-const TITLE =
-  "HCUS Young Global Leaders Winter Camp at Harvard University | Learn with Leaders";
+const TITLE = "HCUS Young Global Leaders Winter Camp at Harvard University | Learn with Leaders";
 const DESC =
   "A residential winter leadership camp at Harvard University with the Harvard College Union Society, for Grades 8-12. January 2027 cohorts, fees, schedule and how to apply.";
 

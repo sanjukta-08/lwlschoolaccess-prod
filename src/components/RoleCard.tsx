@@ -2,13 +2,7 @@ import { internshipApplyUrl } from "@/lib/internship-apply";
 import { ArrowRight, Briefcase, Clock, MapPin, User } from "lucide-react";
 import type { Role } from "@/lib/internships";
 
-function Meta({
-  icon: Icon,
-  label,
-}: {
-  icon: typeof MapPin;
-  label: string;
-}) {
+function Meta({ icon: Icon, label }: { icon: typeof MapPin; label: string }) {
   return (
     <span className="inline-flex items-center gap-2 rounded-full border border-line bg-paper px-3 py-1.5 text-[0.78rem] font-medium text-ink-soft">
       <Icon className="h-3.5 w-3.5 text-gold" />
@@ -81,7 +75,9 @@ export function RoleCard({ role }: { role: Role }) {
         <div className="space-y-8 px-6 py-8 sm:px-9 lg:border-r lg:border-line">
           <div>
             <h3 className="mono-label mb-4 text-ink-faint">About the role</h3>
-            <p className="max-w-[46em] text-[0.95rem] leading-relaxed text-ink-soft">{role.about}</p>
+            <p className="max-w-[46em] text-[0.95rem] leading-relaxed text-ink-soft">
+              {role.about}
+            </p>
           </div>
           <div className="h-px bg-line" />
           <NumberedList title="What you'll do" items={role.responsibilities} />

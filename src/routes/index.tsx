@@ -60,7 +60,6 @@ export const Route = createFileRoute("/")({
 const StoryStrip = lazy(() => import("@/components/StoryStrip"));
 const HandwrittenNotes = lazy(() => import("@/components/HandwrittenNotes"));
 
-
 const FEATURED = ["fdf", "rpf", "ail", "finlit"];
 
 const PATHWAY_ART: Record<TrackKey, string> = {
@@ -111,7 +110,6 @@ function HomePage() {
 
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(58%_52%_at_50%_38%,rgba(255,255,255,0.92),rgba(255,255,255,0)_72%)]" />
 
-
         <div className="relative">
           <SiteHeader />
           <section className="mx-auto max-w-[1150px] px-5 pt-8 pb-14 text-center">
@@ -130,9 +128,9 @@ function HomePage() {
             </h1>
 
             <p className="mx-auto mt-6 max-w-[62em] text-[clamp(1.05rem,2.5vw,1.2rem)] font-medium leading-relaxed text-ink-soft">
-              Live fellowships, competitions, corporate internships and MUN conferences,
-              mentored by students from Harvard, Yale, MIT, Stanford and Princeton -
-              joined by families in the Gulf, India, Southeast Asia and beyond.
+              Live fellowships, competitions, corporate internships and MUN conferences, mentored by
+              students from Harvard, Yale, MIT, Stanford and Princeton - joined by families in the
+              Gulf, India, Southeast Asia and beyond.
             </p>
 
             <div className="mt-7 flex flex-wrap justify-center gap-3.5">
@@ -186,9 +184,7 @@ function HomePage() {
                   <dt className="font-display text-[1.75rem] leading-none font-extrabold text-ink">
                     {v}
                   </dt>
-                  <dd className="mono-label mt-1.5 text-ink-faint sm:whitespace-nowrap">
-                    {l}
-                  </dd>
+                  <dd className="mono-label mt-1.5 text-ink-faint sm:whitespace-nowrap">{l}</dd>
                 </div>
               ))}
             </dl>
@@ -196,7 +192,10 @@ function HomePage() {
         </div>
       </div>
 
-      <section id="pathways" className="scroll-mt-24 border-y border-gold-line/60 bg-wash px-5 py-12">
+      <section
+        id="pathways"
+        className="scroll-mt-24 border-y border-gold-line/60 bg-wash px-5 py-12"
+      >
         <div className="mx-auto max-w-[1180px]">
           <SectionHeading
             eyebrow="Where to begin"
@@ -318,7 +317,10 @@ function HomePage() {
                       </span>
                       <span className="mt-2 flex items-center justify-between text-[0.9rem]">
                         <b className="font-semibold text-ink">{fmtShort(c.d)}</b>
-                        <b className="font-serif text-[1.05rem] font-semibold" style={{ color: "var(--sp)" }}>
+                        <b
+                          className="font-serif text-[1.05rem] font-semibold"
+                          style={{ color: "var(--sp)" }}
+                        >
                           {feeOf(p, c).e}
                         </b>
                       </span>
@@ -332,7 +334,6 @@ function HomePage() {
                 </Link>
               );
             })}
-
           </div>
           <p className="mt-8 text-center">
             <Link
@@ -348,13 +349,11 @@ function HomePage() {
 
       <section className="px-5 py-11">
         <div className="mx-auto max-w-[1280px]">
-
           <SectionHeading
             eyebrow="Trusted collaborations"
             sub="Program partners and corporate internship hosts across the 2026-27 calendar."
           >
-            Delivered with <em className="text-crimson-deep">partners</em>{" "}
-            students recognise
+            Delivered with <em className="text-crimson-deep">partners</em> students recognise
           </SectionHeading>
           <div className="mt-4">
             <PartnerLogos compact />
@@ -378,15 +377,12 @@ function HomePage() {
         </Suspense>
       </section>
 
-
       <section className="px-5">
         <div className="mx-auto flex max-w-[1100px] flex-wrap items-center justify-center gap-x-5 gap-y-2 rounded-2xl border border-gold/35 bg-gold/8 px-6 py-4">
           <span aria-hidden className="text-gold">
             ✦
           </span>
-          <span className="text-[0.9rem] text-ink-soft">
-            Want your child to be here next?
-          </span>
+          <span className="text-[0.9rem] text-ink-soft">Want your child to be here next?</span>
           <Link
             to="/finder"
             search={DEFAULT_SEARCH}
@@ -404,8 +400,8 @@ function HomePage() {
               Bringing this to your school?
             </h3>
             <p className="mt-1.5 max-w-[34em] text-[0.9rem] text-ink-soft">
-              We partner with schools across the UAE, India, Thailand, South Korea and
-              beyond - from single cohorts to co-branded pathways.
+              We partner with schools across the UAE, India, Thailand, South Korea and beyond - from
+              single cohorts to co-branded pathways.
             </p>
           </div>
           <a
@@ -424,8 +420,8 @@ function HomePage() {
           Ready to find <em className="text-gold font-extrabold">their</em> program?
         </h2>
         <p className="mx-auto mt-1 mb-6 max-w-[52em] text-[0.95rem] leading-relaxed text-paper/70">
-          Thirty seconds with the finder, or a short conversation with an advisor -
-          whichever suits you.
+          Thirty seconds with the finder, or a short conversation with an advisor - whichever suits
+          you.
         </p>
         <div className="flex flex-wrap justify-center gap-3.5">
           <Link
@@ -447,7 +443,6 @@ function HomePage() {
       </section>
 
       <SiteFooter />
-
     </div>
   );
 }

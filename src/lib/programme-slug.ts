@@ -18,7 +18,7 @@ export const programmeBySlug = (slug: string): Programme | undefined => {
       p.paySlug === slug ||
       slugOf(p) === norm ||
       p.id.toLowerCase().replace(/[^a-z0-9]+/g, "-") === norm ||
-      (p.paySlug && p.paySlug.toLowerCase().replace(/[^a-z0-9]+/g, "-") === norm)
+      (p.paySlug && p.paySlug.toLowerCase().replace(/[^a-z0-9]+/g, "-") === norm),
   );
 };
 

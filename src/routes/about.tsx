@@ -50,8 +50,7 @@ function AboutPage() {
         eyebrow="Learn with Leaders · since 2019"
         title={
           <>
-            Learn <em className="text-crimson-deep">with</em> leaders - and finish with
-            proof.
+            Learn <em className="text-crimson-deep">with</em> leaders - and finish with proof.
           </>
         }
         subtitle={
@@ -90,14 +89,13 @@ function AboutPage() {
 
       <section className="page-shell py-16">
         <div className="flex w-full flex-wrap items-center justify-between gap-5 rounded-[22px] border border-line bg-gradient-to-br from-wash-deep to-paper px-8 py-7">
-
           <div>
             <h2 className="font-serif text-[clamp(1.25rem,3vw,1.6rem)] font-semibold">
               Bringing this to your school?
             </h2>
             <p className="mt-1.5 max-w-[34em] text-[0.9rem] text-ink-soft">
-              From a single cohort to a co-branded, multi-term pathway - we work with
-              school leadership and counselling teams across the world.
+              From a single cohort to a co-branded, multi-term pathway - we work with school
+              leadership and counselling teams across the world.
             </p>
           </div>
           <a
@@ -116,8 +114,8 @@ function AboutPage() {
           Ready to find <em className="text-gold">their</em> program?
         </h2>
         <p className="mx-auto mt-3 mb-6 max-w-[52em] text-[0.95rem] text-paper/70">
-          Thirty seconds with the finder, or a short conversation with an advisor -
-          whichever suits you.
+          Thirty seconds with the finder, or a short conversation with an advisor - whichever suits
+          you.
         </p>
         <div className="flex flex-wrap justify-center gap-3.5">
           <Link

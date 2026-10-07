@@ -15,7 +15,12 @@ import onward from "@/assets/partners/onward-fellowship.png.asset.json";
 import hackHarvard from "@/assets/partners/hack-harvard.svg.asset.json";
 import harvard from "@/assets/partners/harvard-veritas.png.asset.json";
 
-const LOGOS: Array<{ url: string; alt: string; shape?: "crest" | "wide"; size?: "default" | "large" }> = [
+const LOGOS: Array<{
+  url: string;
+  alt: string;
+  shape?: "crest" | "wide";
+  size?: "default" | "large";
+}> = [
   // First line
   { url: hpair.url, alt: "Harvard Project for Asian and International Relations", size: "large" },
   { url: hcus.url, alt: "Harvard College Union Society" },
@@ -23,8 +28,18 @@ const LOGOS: Array<{ url: string; alt: string; shape?: "crest" | "wide"; size?: 
   { url: hmc.url, alt: "Harvard Model Congress", size: "large" },
   { url: huso.url, alt: "Harvard Undergraduate Science Olympiad" },
   // Second line
-  { url: cambridge.url, alt: "University of Cambridge Judge Business School Entrepreneurship Centre", shape: "wide", size: "large" },
-  { url: yaleGlobalAffairs.url, alt: "Yale Global Affairs World Leaders Academy", shape: "crest", size: "large" },
+  {
+    url: cambridge.url,
+    alt: "University of Cambridge Judge Business School Entrepreneurship Centre",
+    shape: "wide",
+    size: "large",
+  },
+  {
+    url: yaleGlobalAffairs.url,
+    alt: "Yale Global Affairs World Leaders Academy",
+    shape: "crest",
+    size: "large",
+  },
   { url: onward.url, alt: "Onward Fellowship", shape: "crest", size: "large" },
   { url: harvard.url, alt: "Harvard University", shape: "wide" },
   { url: worldMun.url, alt: "Harvard World Model United Nations", shape: "crest" },

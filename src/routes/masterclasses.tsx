@@ -39,7 +39,6 @@ const masterclassQuery = queryOptions({
   refetchOnWindowFocus: false,
 });
 
-
 export const Route = createFileRoute("/masterclasses")({
   staticData: { sitemap: true },
   loader: ({ context }) => context.queryClient.ensureQueryData(masterclassQuery),
@@ -73,13 +72,23 @@ function Shell({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen bg-paper">
       <SiteHeader />
       <section className="relative isolate flex min-h-[19rem] items-center justify-center overflow-hidden border-b border-line bg-paper px-5 pb-10 pt-8 sm:min-h-[21rem] sm:px-8 lg:pb-12 lg:pt-10">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-0 hidden w-[68%] select-none items-center overflow-hidden pl-8 sm:flex" aria-hidden>
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0 z-0 hidden w-[68%] select-none items-center overflow-hidden pl-8 sm:flex"
+          aria-hidden
+        >
           <span className="whitespace-nowrap font-display text-[clamp(4.25rem,11vw,10rem)] font-black uppercase leading-none text-crimson/[0.06]">
             Masterclasses
           </span>
         </div>
-        <div className="pointer-events-none absolute right-10 top-1/2 z-[1] hidden w-[min(320px,21vw)] -translate-y-1/2 opacity-20 xl:block" aria-hidden>
-          <img src={birdAsset.url} alt="" className="h-auto w-full object-contain object-right [mask-image:linear-gradient(to_left,black_55%,transparent_95%)]" />
+        <div
+          className="pointer-events-none absolute right-10 top-1/2 z-[1] hidden w-[min(320px,21vw)] -translate-y-1/2 opacity-20 xl:block"
+          aria-hidden
+        >
+          <img
+            src={birdAsset.url}
+            alt=""
+            className="h-auto w-full object-contain object-right [mask-image:linear-gradient(to_left,black_55%,transparent_95%)]"
+          />
         </div>
 
         <div className="relative z-10 mx-auto max-w-4xl text-center">
@@ -87,7 +96,8 @@ function Shell({ children }: { children: React.ReactNode }) {
             Explore Our <span className="text-crimson">Masterclasses</span>
           </h1>
           <p className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
-            Free live sessions with Ivy League student mentors across the Learn with Leaders family of programs. Choose a session and join from anywhere.
+            Free live sessions with Ivy League student mentors across the Learn with Leaders family
+            of programs. Choose a session and join from anywhere.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <a
@@ -107,12 +117,22 @@ function Shell({ children }: { children: React.ReactNode }) {
           </div>
         </div>
 
-        <div className="pointer-events-none absolute left-8 top-1/2 hidden h-32 w-1 -translate-y-1/2 bg-crimson/20 lg:block" aria-hidden />
-        <div className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 lg:block" aria-hidden>
-          <span className="mono-label text-crimson/35 [writing-mode:vertical-rl]">Learn with Leaders</span>
+        <div
+          className="pointer-events-none absolute left-8 top-1/2 hidden h-32 w-1 -translate-y-1/2 bg-crimson/20 lg:block"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 lg:block"
+          aria-hidden
+        >
+          <span className="mono-label text-crimson/35 [writing-mode:vertical-rl]">
+            Learn with Leaders
+          </span>
         </div>
       </section>
-      <div id="masterclass-schedule" className="page-shell scroll-mt-20 py-10">{children}</div>
+      <div id="masterclass-schedule" className="page-shell scroll-mt-20 py-10">
+        {children}
+      </div>
       <SiteFooter />
     </div>
   );
@@ -258,11 +278,11 @@ function MasterclassCard({ m }: { m: PublicMasterclass }) {
       ? futureLawyersLogo.url
       : brandName.includes("finlit")
         ? finlitLogo.url
-      : brandName.includes("onward")
-        ? onwardLogo.url
-        : brandName.includes("sir luther")
-          ? sirLutherLogo.url
-          : m.partner_logo_url ?? lwlLogo.url;
+        : brandName.includes("onward")
+          ? onwardLogo.url
+          : brandName.includes("sir luther")
+            ? sirLutherLogo.url
+            : (m.partner_logo_url ?? lwlLogo.url);
   return (
     <li className="flex flex-col gap-3 rounded-[16px] border border-line bg-paper p-4 shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold-deep hover:shadow-lift">
       <div className="flex items-start gap-3.5">
@@ -310,9 +330,7 @@ function MasterclassCard({ m }: { m: PublicMasterclass }) {
       </div>
 
       {m.description ? (
-        <p className="line-clamp-3 text-[0.88rem] leading-relaxed text-ink-soft">
-          {m.description}
-        </p>
+        <p className="line-clamp-3 text-[0.88rem] leading-relaxed text-ink-soft">{m.description}</p>
       ) : null}
 
       {m.learning_outcomes.length ? (

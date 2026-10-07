@@ -7,42 +7,69 @@ const registrationUrl = () =>
   campBySlug("hcus-young-global-leaders-summer")?.applyUrl ??
   "https://apply.learnwithleaders.com/apply/harvard-summer-camp";
 
-
 const Footer = () => (
   <footer className="bg-primary text-primary-foreground">
     <div className="max-w-4xl mx-auto px-6 py-16 md:py-20 text-center">
-      <h2 className="font-serif text-3xl md:text-5xl text-primary-foreground mb-6">Ready to Begin Your Journey?</h2>
+      <h2 className="font-serif text-3xl md:text-5xl text-primary-foreground mb-6">
+        Ready to Begin Your Journey?
+      </h2>
       <p className="font-sans text-sm sm:text-base md:text-lg text-primary-foreground/70 leading-relaxed mb-2 whitespace-nowrap overflow-x-auto">
         Secure your place at the Young Global Leaders Summer Camp at Harvard University.
       </p>
-      <p className="font-sans text-base md:text-lg text-primary-foreground/70 leading-relaxed mb-10">Limited seats available.</p>
+      <p className="font-sans text-base md:text-lg text-primary-foreground/70 leading-relaxed mb-10">
+        Limited seats available.
+      </p>
 
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mb-14">
-        <a href={registrationUrl()} target="_blank" rel="noopener noreferrer"
-          className="px-10 py-4 bg-primary-foreground text-primary font-sans text-sm md:text-base font-semibold rounded-full hover:bg-primary-foreground/90 transition-all duration-300 min-w-[220px]">
+        <a
+          href={registrationUrl()}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-10 py-4 bg-primary-foreground text-primary font-sans text-sm md:text-base font-semibold rounded-full hover:bg-primary-foreground/90 transition-all duration-300 min-w-[220px]"
+        >
           Apply Now
         </a>
-        <a href="https://calendly.com/learnwithleaders?utm_source=Harvard+summer+camp-hcus" target="_blank" rel="noopener noreferrer"
-          className="px-10 py-4 bg-primary-foreground text-primary font-sans text-sm md:text-base font-semibold rounded-full hover:bg-primary-foreground/90 transition-all duration-300 min-w-[220px]">
+        <a
+          href="https://calendly.com/learnwithleaders?utm_source=Harvard+summer+camp-hcus"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-10 py-4 bg-primary-foreground text-primary font-sans text-sm md:text-base font-semibold rounded-full hover:bg-primary-foreground/90 transition-all duration-300 min-w-[220px]"
+        >
           Book a Meeting
         </a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSciaj-F5b3E5yph1cx0rwZYb1jd5jo3Hz0TR_MfBndu9LP2Mw/viewform" target="_blank" rel="noopener noreferrer"
-          className="px-10 py-4 bg-primary-foreground text-primary font-sans text-sm md:text-base font-semibold rounded-full hover:bg-primary-foreground/90 transition-all duration-300 min-w-[220px]">
+        <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLSciaj-F5b3E5yph1cx0rwZYb1jd5jo3Hz0TR_MfBndu9LP2Mw/viewform"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-10 py-4 bg-primary-foreground text-primary font-sans text-sm md:text-base font-semibold rounded-full hover:bg-primary-foreground/90 transition-all duration-300 min-w-[220px]"
+        >
           Register as a School
         </a>
       </div>
 
       <div className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-10 mb-10">
-        <a href="mailto:team@learnwithleaders.com" className="flex items-center gap-2.5 font-sans text-sm text-primary-foreground/70 hover:text-primary-foreground">
-          <Mail className="w-4 h-4" />team@learnwithleaders.com
+        <a
+          href="mailto:team@learnwithleaders.com"
+          className="flex items-center gap-2.5 font-sans text-sm text-primary-foreground/70 hover:text-primary-foreground"
+        >
+          <Mail className="w-4 h-4" />
+          team@learnwithleaders.com
         </a>
-        <a href="https://www.learnwithleaders.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 font-sans text-sm text-primary-foreground/70 hover:text-primary-foreground">
-          <Globe className="w-4 h-4" />www.learnwithleaders.com
+        <a
+          href="https://www.learnwithleaders.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2.5 font-sans text-sm text-primary-foreground/70 hover:text-primary-foreground"
+        >
+          <Globe className="w-4 h-4" />
+          www.learnwithleaders.com
         </a>
       </div>
 
       <div className="border-t border-primary-foreground/15 pt-6">
-        <p className="text-primary-foreground/40 text-xs font-sans">© 2026 Learn with Leaders · All rights reserved</p>
+        <p className="text-primary-foreground/40 text-xs font-sans">
+          © 2026 Learn with Leaders · All rights reserved
+        </p>
       </div>
     </div>
   </footer>

@@ -73,7 +73,6 @@ export const validateFinderSearch = (raw: Record<string, unknown>): FinderSearch
   calView: str(raw["calView"], "month") === "type" ? "type" : "month",
 });
 
-
 export const BANDS: Record<string, [number, number]> = {
   b57: [5, 7],
   b810: [8, 10],
@@ -100,9 +99,7 @@ export const gradeOptions = () => {
 /** Months that still contain at least one upcoming cohort. */
 export const monthOptions = () => {
   const months = new Set<string>();
-  upcomingProgrammes().forEach((p) =>
-    p.cohorts.forEach((c) => months.add(c.d.slice(0, 7))),
-  );
+  upcomingProgrammes().forEach((p) => p.cohorts.forEach((c) => months.add(c.d.slice(0, 7))));
   const list = Array.from(months)
     .sort()
     .map((m) => ({
@@ -141,19 +138,12 @@ export const durationOptions = () => [
   ...DURATION_ORDER.map((d) => ({ value: d, label: DURATIONS[d] })),
 ];
 
-const matchMonth = (c: Cohort, month: string) =>
-  month === "all" || c.d.startsWith(month);
+const matchMonth = (c: Cohort, month: string) => month === "all" || c.d.startsWith(month);
 
 const matchQuery = (p: Programme, q: string) => {
   const needle = q.trim().toLowerCase();
   if (!needle) return true;
-  const haystack = [
-    p.name,
-    p.tag,
-    p.about,
-    p.dur,
-    ...p.tracks.map((t) => TRACKS[t].label),
-  ]
+  const haystack = [p.name, p.tag, p.about, p.dur, ...p.tracks.map((t) => TRACKS[t].label)]
     .join(" ")
     .toLowerCase();
   return needle.split(/\s+/).every((word) => haystack.includes(word));
@@ -180,10 +170,7 @@ export function getMatches(state: FinderSearch, o: MatchOptions = {}): Match[] {
     if (!o.ignoreRegion && !fitsRegion(p, state.region)) return;
     const eligible = p.cohorts
       .filter((c) => !isPast(c.d))
-      .filter(
-        (c) =>
-          matchGrade(p, c, state.grade) && (o.ignoreMonth || matchMonth(c, state.month)),
-      )
+      .filter((c) => matchGrade(p, c, state.grade) && (o.ignoreMonth || matchMonth(c, state.month)))
       .sort((a, b) => a.d.localeCompare(b.d));
     if (eligible.length) {
       out.push({ p, next: eligible[0]!, others: eligible.slice(1) });
@@ -325,4 +312,3 @@ export function facetCounts(
 }
 
 export type { TypeKey };
-

@@ -12,13 +12,7 @@ import {
 
 import type { VideoTestimonial } from "@/lib/social-proof";
 
-function VideoCard({
-  video,
-  onPlay,
-}: {
-  video: VideoTestimonial;
-  onPlay: () => void;
-}) {
+function VideoCard({ video, onPlay }: { video: VideoTestimonial; onPlay: () => void }) {
   return (
     <figure className="overflow-hidden rounded-2xl border border-line bg-paper shadow-soft">
       <button
@@ -28,10 +22,7 @@ function VideoCard({
         className="group relative block aspect-[9/13] w-full overflow-hidden bg-ink/5"
       >
         <img
-          src={
-            video.poster ??
-            `https://drive.google.com/thumbnail?id=${video.fileId}&sz=w800`
-          }
+          src={video.poster ?? `https://drive.google.com/thumbnail?id=${video.fileId}&sz=w800`}
           alt=""
           aria-hidden
           loading="lazy"
@@ -95,9 +86,7 @@ function VideoLightbox({
               </DialogClose>
             </div>
             <div className="border-t border-line px-5 py-3.5">
-              <DialogTitle className="text-[1rem] font-bold text-ink">
-                {video.name}
-              </DialogTitle>
+              <DialogTitle className="text-[1rem] font-bold text-ink">{video.name}</DialogTitle>
               <DialogDescription className="mono-label mt-1 text-ink-faint">
                 {video.cohort}
               </DialogDescription>
@@ -152,21 +141,21 @@ function VideoCarousel({
             <span aria-hidden>←</span>
           </button>
           <span className="flex items-center gap-2.5">
-          {Array.from({ length: pages }).map((_, p) => (
-            <button
-              key={p}
-              type="button"
-              onClick={() => setPage(p)}
-              aria-label={`Show clips ${p * perPage + 1}-${Math.min(
-                (p + 1) * perPage,
-                videos.length,
-              )}`}
-              aria-current={p === page}
-              className={`h-2 rounded-full transition-all ${
-                p === page ? "w-7 bg-crimson" : "w-2 bg-ink/20 hover:bg-ink/35"
-              }`}
-            />
-          ))}
+            {Array.from({ length: pages }).map((_, p) => (
+              <button
+                key={p}
+                type="button"
+                onClick={() => setPage(p)}
+                aria-label={`Show clips ${p * perPage + 1}-${Math.min(
+                  (p + 1) * perPage,
+                  videos.length,
+                )}`}
+                aria-current={p === page}
+                className={`h-2 rounded-full transition-all ${
+                  p === page ? "w-7 bg-crimson" : "w-2 bg-ink/20 hover:bg-ink/35"
+                }`}
+              />
+            ))}
           </span>
           <button
             type="button"

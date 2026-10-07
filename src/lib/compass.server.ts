@@ -15,10 +15,18 @@ type Input = {
   sessionId?: string | undefined;
   messages: { role: "user" | "assistant"; content: string }[];
   sourcePage?: string | undefined;
-  utm?: { utm_source?: string | undefined; utm_medium?: string | undefined; utm_campaign?: string | undefined } | undefined;
+  utm?:
+    | {
+        utm_source?: string | undefined;
+        utm_medium?: string | undefined;
+        utm_campaign?: string | undefined;
+      }
+    | undefined;
 };
 
-const SYSTEM = (leadDone: boolean) => `You are Compass, the AI concierge for the Learn with Leaders group. You are an AI assistant — say so if asked, and never claim to be human.
+const SYSTEM = (
+  leadDone: boolean,
+) => `You are Compass, the AI concierge for the Learn with Leaders group. You are an AI assistant — say so if asked, and never claim to be human.
 
 You help parents and students find the right programme, masterclass or camp across the group's platforms (Learn with Leaders, Onward Fellowship, Future Doctors, Sir Luther Center, FinLit AI, Future Lawyers, SAT Instinct, Purpose Playbook and other partners).
 
@@ -51,19 +59,27 @@ const nz = <T extends z.ZodTypeAny>(t: T) => t.nullable();
 
 const searchSchema = z.object({
   grade_min: nz(z.number()).describe("Lowest school grade (1-12) of the student, or null"),
-  grade_max: nz(z.number()).describe("Highest school grade (1-12), or null; same as grade_min for one student"),
+  grade_max: nz(z.number()).describe(
+    "Highest school grade (1-12), or null; same as grade_min for one student",
+  ),
   categories: nz(
-    z.array(z.enum(["medicine", "law", "finance", "ai_tech", "research", "leadership", "test_prep"])),
+    z.array(
+      z.enum(["medicine", "law", "finance", "ai_tech", "research", "leadership", "test_prep"]),
+    ),
   ).describe("Subject areas of interest, or null"),
   type: nz(z.enum(["programme", "masterclass", "camp", "any"])),
   format: nz(z.string()).describe("e.g. 'online' or 'in person', or null"),
   budget_max_usd: nz(z.number()).describe("Maximum budget in USD, or null"),
-  keyword: nz(z.string()).describe("Free-text keyword, e.g. 'Harvard', 'debate', 'Geneva', or null"),
+  keyword: nz(z.string()).describe(
+    "Free-text keyword, e.g. 'Harvard', 'debate', 'Geneva', or null",
+  ),
   timing: nz(z.enum(["soonest", "this_month", "flexible"])),
 });
 
 const leadSchema = z.object({
-  consent_confirmed: z.boolean().describe("True only if the user explicitly agreed to be contacted"),
+  consent_confirmed: z
+    .boolean()
+    .describe("True only if the user explicitly agreed to be contacted"),
   name: z.string(),
   contact: z.string().describe("Email or phone number"),
   grade: nz(z.string()),
@@ -75,12 +91,17 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
   const { withinRateLimit } = await import("./rate-limit.server");
   // lwl_site isn't in the generated public types.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const db = (supabaseAdmin as unknown as { schema: (s: string) => any }).schema("lwl_site");
 
   // --- session -------------------------------------------------------
   let sessionId = input.sessionId;
   if (sessionId) {
-    const { data } = await db.from("concierge_sessions").select("id").eq("id", sessionId).maybeSingle();
+    const { data } = await db
+      .from("concierge_sessions")
+      .select("id")
+      .eq("id", sessionId)
+      .maybeSingle();
     if (!data) sessionId = undefined;
   }
   if (!sessionId) {
@@ -112,7 +133,11 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
   const sid = sessionId!;
 
   const [{ count }, { data: lead }] = await Promise.all([
-    db.from("concierge_messages").select("id", { count: "exact", head: true }).eq("session_id", sid).in("role", ["user", "assistant"]),
+    db
+      .from("concierge_messages")
+      .select("id", { count: "exact", head: true })
+      .eq("session_id", sid)
+      .in("role", ["user", "assistant"]),
     db.from("concierge_leads").select("id").eq("session_id", sid).maybeSingle(),
   ]);
   let leadCaptured = !!lead;
@@ -142,18 +167,29 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
 
   const last = input.messages[input.messages.length - 1]!;
   if (last.role === "user") {
-    await db.from("concierge_messages").insert({ session_id: sid, role: "user", content: last.content });
+    await db
+      .from("concierge_messages")
+      .insert({ session_id: sid, role: "user", content: last.content });
   }
 
   const key = process.env["LOVABLE_API_KEY"];
   if (!key) {
-    return { sessionId: sid, reply: "Compass is not configured yet.", results: [], leadCaptured, limitReached: false, error: { status: 500, message: "Missing AI key" } };
+    return {
+      sessionId: sid,
+      reply: "Compass is not configured yet.",
+      results: [],
+      leadCaptured,
+      limitReached: false,
+      error: { status: 500, message: "Missing AI key" },
+    };
   }
 
   // --- live catalogue (lazy, once per turn) ----------------------------
   let rowsP: Promise<ReturnType<typeof buildRows>> | undefined;
   const rows = () =>
-    (rowsP ??= Promise.all([loadCatalogue(), listPublicMasterclasses().catch(() => [])]).then(([c, m]) => buildRows(c, m)));
+    (rowsP ??= Promise.all([loadCatalogue(), listPublicMasterclasses().catch(() => [])]).then(
+      ([c, m]) => buildRows(c, m),
+    ));
 
   const surfaced = new Map<string, SearchResult>();
   const toolLogs: { content: string; ids: string[] }[] = [];
@@ -167,7 +203,10 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
       execute: async (q) => {
         const results = searchRows(await rows(), q);
         for (const r of results) surfaced.set(r.id, r);
-        toolLogs.push({ content: JSON.stringify({ query: q, results }), ids: results.map((r) => r.id) });
+        toolLogs.push({
+          content: JSON.stringify({ query: q, results }),
+          ids: results.map((r) => r.id),
+        });
         return { count: results.length, results };
       },
     }),
@@ -179,7 +218,9 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
           .array(z.string())
           .min(2)
           .max(3)
-          .describe("Each item is the programme's name (or a distinctive part of it) OR its position among the options already shown, e.g. '1', 'first', '2nd'"),
+          .describe(
+            "Each item is the programme's name (or a distinctive part of it) OR its position among the options already shown, e.g. '1', 'first', '2nd'",
+          ),
       }),
       execute: async ({ refs }) => {
         const { data: prior } = await db
@@ -187,7 +228,10 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
           .select("role, surfaced_program_ids, created_at")
           .eq("session_id", sid)
           .order("created_at", { ascending: true });
-        const priorRows = (prior ?? []) as { role: string; surfaced_program_ids: string[] | null }[];
+        const priorRows = (prior ?? []) as {
+          role: string;
+          surfaced_program_ids: string[] | null;
+        }[];
         const allowed = new Set<string>([
           ...priorRows.flatMap((r) => r.surfaced_program_ids ?? []),
           ...surfaced.keys(),
@@ -199,15 +243,36 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
         // Most recently shown set, in display order: this turn's search results if any,
         // otherwise the latest earlier assistant reply that surfaced options.
         const thisTurn = [...surfaced.keys()];
-        const lastPrior = [...priorRows].reverse().find((r) => r.role === "assistant" && (r.surfaced_program_ids ?? []).length);
-        const recent = [...new Set(thisTurn.length ? thisTurn : (lastPrior?.surfaced_program_ids ?? []))].filter((id) => byId.has(id));
+        const lastPrior = [...priorRows]
+          .reverse()
+          .find((r) => r.role === "assistant" && (r.surfaced_program_ids ?? []).length);
+        const recent = [
+          ...new Set(thisTurn.length ? thisTurn : (lastPrior?.surfaced_program_ids ?? [])),
+        ].filter((id) => byId.has(id));
 
         const ORD: Record<string, number> = {
-          first: 1, "1st": 1, one: 1, second: 2, "2nd": 2, two: 2, third: 3, "3rd": 3, three: 3,
+          first: 1,
+          "1st": 1,
+          one: 1,
+          second: 2,
+          "2nd": 2,
+          two: 2,
+          third: 3,
+          "3rd": 3,
+          three: 3,
         };
-        const norm = (s: string) => s.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, " ").trim();
+        const norm = (s: string) =>
+          s
+            .toLowerCase()
+            .normalize("NFKD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/\s+/g, " ")
+            .trim();
         const position = (ref: string): number | undefined => {
-          const t = norm(ref).replace(/^(the|option|no\.?|number|#)\s*/g, "").replace(/\s+(one|option)$/g, "").trim();
+          const t = norm(ref)
+            .replace(/^(the|option|no\.?|number|#)\s*/g, "")
+            .replace(/\s+(one|option)$/g, "")
+            .trim();
           if (t === "last" || t === "final") return recent.length;
           if (/^#?\d+$/.test(t)) return Number(t.replace("#", ""));
           if (ORD[t]) return ORD[t];
@@ -220,12 +285,19 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
         const unresolved: { ref: string; reason: string }[] = [];
         for (const ref of refs) {
           const raw = ref.trim();
-          if (allowed.has(raw) && byId.has(raw)) { resolved.push(raw); continue; }
+          if (allowed.has(raw) && byId.has(raw)) {
+            resolved.push(raw);
+            continue;
+          }
           const pos = position(raw);
           if (pos !== undefined) {
             const id = recent[pos - 1];
             if (id) resolved.push(id);
-            else unresolved.push({ ref, reason: `no option at position ${pos} (only ${recent.length} shown most recently)` });
+            else
+              unresolved.push({
+                ref,
+                reason: `no option at position ${pos} (only ${recent.length} shown most recently)`,
+              });
             continue;
           }
           const q = norm(raw);
@@ -233,25 +305,45 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
           const inRecent = matches.filter((id) => recent.includes(id));
           if (matches.length === 1) resolved.push(matches[0]!);
           else if (inRecent.length === 1) resolved.push(inRecent[0]!);
-          else if (!matches.length) unresolved.push({ ref, reason: "no previously shown option matches this name" });
-          else unresolved.push({ ref, reason: `ambiguous — matches ${matches.map((id) => byId.get(id)!.name).join(", ")}` });
+          else if (!matches.length)
+            unresolved.push({ ref, reason: "no previously shown option matches this name" });
+          else
+            unresolved.push({
+              ref,
+              reason: `ambiguous — matches ${matches.map((id) => byId.get(id)!.name).join(", ")}`,
+            });
         }
 
         const results = [...new Set(resolved)].map((id) => toPublic(byId.get(id)!));
         for (const r of results) surfaced.set(r.id, r);
         if (results.length >= 2) compareIds = results.map((r) => r.id);
-        toolLogs.push({ content: JSON.stringify({ compare_programmes: refs, results, unresolved }), ids: results.map((r) => r.id) });
+        toolLogs.push({
+          content: JSON.stringify({ compare_programmes: refs, results, unresolved }),
+          ids: results.map((r) => r.id),
+        });
         return results.length >= 2
           ? { count: results.length, results, ...(unresolved.length ? { unresolved } : {}) }
-          : { count: results.length, results, unresolved, error: "Fewer than 2 refs resolved — ask the user to clarify only the unresolved ones" };
+          : {
+              count: results.length,
+              results,
+              unresolved,
+              error:
+                "Fewer than 2 refs resolved — ask the user to clarify only the unresolved ones",
+            };
       },
     }),
     get_mentors: tool({
       description:
         "Get a small sample of real, active mentors from the group's mentor network (name, university, short bio). Not linked to any specific programme — use only as general social proof.",
-      inputSchema: z.object({ university: nz(z.string()).describe("Optional university filter, e.g. 'Harvard', or null") }),
+      inputSchema: z.object({
+        university: nz(z.string()).describe("Optional university filter, e.g. 'Harvard', or null"),
+      }),
       execute: async ({ university }) => {
-        let q = supabaseAdmin.from("all_mentors").select("full_name, university, bio").eq("is_active", true).not("bio", "is", null);
+        let q = supabaseAdmin
+          .from("all_mentors")
+          .select("full_name, university, bio")
+          .eq("is_active", true)
+          .not("bio", "is", null);
         if (university) q = q.ilike("university", `%${university.replace(/[%_,]/g, "")}%`);
         const { data, error } = await q.limit(40);
         if (error) return { count: 0, mentors: [], error: "Could not load mentors" };
@@ -263,8 +355,18 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
             university: m.university,
             bio: (m.bio ?? "").replace(/\s+/g, " ").trim().slice(0, 160),
           }));
-        toolLogs.push({ content: JSON.stringify({ get_mentors: { university }, mentors: mentors.map((m) => m.name) }), ids: [] });
-        return { count: mentors.length, mentors, note: "General mentor network — not assigned to any specific programme." };
+        toolLogs.push({
+          content: JSON.stringify({
+            get_mentors: { university },
+            mentors: mentors.map((m) => m.name),
+          }),
+          ids: [],
+        });
+        return {
+          count: mentors.length,
+          mentors,
+          note: "General mentor network — not assigned to any specific programme.",
+        };
       },
     }),
     check_promo_code: tool({
@@ -272,13 +374,17 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
         "Check a promo code the user provided. Returns whether it is valid now, the discount type/value, and the programme it's scoped to. Only call with a code the user actually gave.",
       inputSchema: z.object({
         code: z.string().min(1).max(64),
-        program_id: nz(z.string()).describe("id of the programme the user wants to use it on, if known, or null"),
+        program_id: nz(z.string()).describe(
+          "id of the programme the user wants to use it on, if known, or null",
+        ),
       }),
       execute: async ({ code, program_id }) => {
         const clean = code.trim().replace(/[%_]/g, "");
         const { data, error } = await supabaseAdmin
           .from("promo_codes")
-          .select("code, is_active, starts_at, expires_at, max_redemptions, redemption_count, discount_type, discount_value, currency, program_id, program_name")
+          .select(
+            "code, is_active, starts_at, expires_at, max_redemptions, redemption_count, discount_type, discount_value, currency, program_id, program_name",
+          )
           .ilike("code", clean)
           .limit(5);
         let res: Record<string, unknown>;
@@ -310,7 +416,10 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
             };
           }
         }
-        toolLogs.push({ content: JSON.stringify({ check_promo_code: { code: clean, program_id }, result: res }), ids: [] });
+        toolLogs.push({
+          content: JSON.stringify({ check_promo_code: { code: clean, program_id }, result: res }),
+          ids: [],
+        });
         return res;
       },
     }),
@@ -334,7 +443,10 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
               });
               if (error) return { saved: false, reason: "Could not save" };
               leadCaptured = true;
-              toolLogs.push({ content: JSON.stringify({ lead_saved: true, programs: l.interested_program_ids }), ids: l.interested_program_ids });
+              toolLogs.push({
+                content: JSON.stringify({ lead_saved: true, programs: l.interested_program_ids }),
+                ids: l.interested_program_ids,
+              });
               return { saved: true };
             },
           }),
@@ -347,7 +459,9 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
     headers: { "Lovable-API-Key": key, "X-Lovable-AIG-SDK": "vercel-ai-sdk" },
   });
 
-  const messages: ModelMessage[] = input.messages.slice(-MAX_MESSAGES).map((m) => ({ role: m.role, content: m.content }));
+  const messages: ModelMessage[] = input.messages
+    .slice(-MAX_MESSAGES)
+    .map((m) => ({ role: m.role, content: m.content }));
 
   // --- grounding: options already shown earlier in this session --------
   // Prior tool results are not replayed in the text-only history, so give the
@@ -378,7 +492,10 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
             return `  ${i + 1}. ${p.id} — ${p.name} — ${p.platform}`;
           })
           .filter(Boolean);
-        if (lines.length) blocks.push(`Earlier reply ${gi + 1}${gi === groups.length - 1 ? " (most recent)" : ""}, in the order shown:\n${lines.join("\n")}`);
+        if (lines.length)
+          blocks.push(
+            `Earlier reply ${gi + 1}${gi === groups.length - 1 ? " (most recent)" : ""}, in the order shown:\n${lines.join("\n")}`,
+          );
       });
       if (seen.size) {
         grounding = `\n\nOptions already shown to this user in this conversation (id — name — platform), for resolving references like "the first two" or a name. Positional references normally mean the most recent set. These were genuinely retrieved from search_catalogue and shown as cards — they are confirmed. Do NOT repeat this list to the user, it's for your own grounding only:\n${blocks.join("\n")}`;
@@ -424,9 +541,22 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
 
   const surfacedIds = [...surfaced.keys()];
   await db.from("concierge_messages").insert([
-    ...toolLogs.map((t) => ({ session_id: sid, role: "tool", content: t.content, surfaced_program_ids: t.ids })),
+    ...toolLogs.map((t) => ({
+      session_id: sid,
+      role: "tool",
+      content: t.content,
+      surfaced_program_ids: t.ids,
+    })),
     { session_id: sid, role: "assistant", content: reply, surfaced_program_ids: surfacedIds },
   ]);
 
-  return { sessionId: sid, reply, results: [...surfaced.values()], ...(compareIds ? { compareIds } : {}), leadCaptured, limitReached: false, ...(err ? { error: err } : {}) };
+  return {
+    sessionId: sid,
+    reply,
+    results: [...surfaced.values()],
+    ...(compareIds ? { compareIds } : {}),
+    leadCaptured,
+    limitReached: false,
+    ...(err ? { error: err } : {}),
+  };
 }

@@ -20,7 +20,6 @@ import ZoomBadge from "@/components/ZoomBadge";
 import { TrackIcon } from "@/lib/track-icons";
 import { logoFor } from "@/lib/programme-logos";
 
-
 type Props = {
   match: Match;
   index?: number;
@@ -50,15 +49,24 @@ export function ProgrammeCard({
   const detailSlug = p.type === "conf" ? conferenceSlugOf(p) : slugOf(p);
   const detailLink = (className: string, children?: React.ReactNode) =>
     p.type === "conf" ? (
-      <Link to="/conferences/$slug" params={{ slug: detailSlug }} aria-label={`View ${p.name}`} className={className}>
+      <Link
+        to="/conferences/$slug"
+        params={{ slug: detailSlug }}
+        aria-label={`View ${p.name}`}
+        className={className}
+      >
         {children}
       </Link>
     ) : (
-      <Link to="/programmes/$slug" params={{ slug: detailSlug }} aria-label={`View ${p.name}`} className={className}>
+      <Link
+        to="/programmes/$slug"
+        params={{ slug: detailSlug }}
+        aria-label={`View ${p.name}`}
+        className={className}
+      >
         {children}
       </Link>
     );
-
 
   if (compact) {
     return (
@@ -67,26 +75,16 @@ export function ProgrammeCard({
 
         {/* Programme */}
         <div className="flex min-w-0 flex-1 items-start gap-3 ">
-          <span
-            className="mt-[3px] flex-none"
-            aria-hidden
-            style={{ color: track.color }}
-          >
+          <span className="mt-[3px] flex-none" aria-hidden style={{ color: track.color }}>
             <TrackIcon track={p.tracks[0]!} className="h-[1.15rem] w-[1.15rem]" />
           </span>
 
           <span className="min-w-0">
-            <b className="block text-[0.95rem] leading-snug font-bold text-ink">
-              {p.name}
-            </b>
-            <small className="mt-0.5 block truncate text-[0.8rem] text-ink-soft">
-              {outcome}
-            </small>
+            <b className="block text-[0.95rem] leading-snug font-bold text-ink">{p.name}</b>
+            <small className="mt-0.5 block truncate text-[0.8rem] text-ink-soft">{outcome}</small>
             <small className="mt-1 block truncate font-mono text-[0.7rem] text-ink-faint">
-              {showType ? `${TYPE_NAME[p.type]} · ` : ""}Grades {lo}–{hi} · {p.dur} · ~
-              {hours}h/week
+              {showType ? `${TYPE_NAME[p.type]} · ` : ""}Grades {lo}–{hi} · {p.dur} · ~{hours}h/week
             </small>
-
           </span>
         </div>
 
@@ -104,10 +102,8 @@ export function ProgrammeCard({
           <div className="hidden md:block md:w-[9.5rem] md:flex-none" />
         )}
 
-
         {/* Schedule */}
         <div className="flex flex-col gap-0.5 sm:w-[10.5rem] sm:flex-none sm:items-end sm:text-right">
-
           <span className="font-mono text-[0.76rem] font-semibold text-ink">
             {startLabel(next.d)}
           </span>
@@ -125,9 +121,7 @@ export function ProgrammeCard({
             {fee.e}
           </span>
           {discounted ? (
-            <small className="font-mono text-[0.68rem] text-ink-faint line-through">
-              {fee.r}
-            </small>
+            <small className="font-mono text-[0.68rem] text-ink-faint line-through">{fee.r}</small>
           ) : null}
         </div>
 
@@ -142,7 +136,6 @@ export function ProgrammeCard({
       </div>
     );
   }
-
 
   return (
     <article
@@ -250,7 +243,6 @@ export function ProgrammeCard({
           <span className="text-ink-faint">·</span>
           <span>Fee {fee.e}</span>
         </p>
-
 
         {discounted ? (
           <div className="flex flex-wrap items-baseline gap-2.5">

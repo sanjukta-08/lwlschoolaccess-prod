@@ -2,13 +2,7 @@ import { detailFor } from "@/lib/programme-detail";
 import { projectsFor } from "@/lib/programme-proof";
 import type { Programme } from "@/lib/programmes";
 
-export function ProjectShowcase({
-  programme: p,
-  color,
-}: {
-  programme: Programme;
-  color: string;
-}) {
+export function ProjectShowcase({ programme: p, color }: { programme: Programme; color: string }) {
   const projects = projectsFor(p);
   const d = detailFor(p);
 
@@ -29,10 +23,7 @@ export function ProjectShowcase({
               <b className="mono-label block text-ink-faint">What they hand in</b>
               {pr.output}
             </p>
-            <span
-              className="mt-auto pt-4 text-[0.76rem] font-bold"
-              style={{ color }}
-            >
+            <span className="mt-auto pt-4 text-[0.76rem] font-bold" style={{ color }}>
               {pr.timeline}
             </span>
           </article>
@@ -45,9 +36,7 @@ export function ProjectShowcase({
           <p className="mt-2 text-[0.88rem] text-ink-soft">{d.project.body}</p>
         </div>
         <div>
-          <span className="mono-label block text-ink-faint">
-            What you end up holding
-          </span>
+          <span className="mono-label block text-ink-faint">What you end up holding</span>
           <ul className="mt-2.5 flex list-none flex-col gap-2 p-0">
             {d.project.proof.map((x) => (
               <li key={x} className="flex items-start gap-2 text-[0.85rem]">

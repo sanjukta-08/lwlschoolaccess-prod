@@ -33,15 +33,14 @@ function ExplorePage() {
         eyebrow="Guided explorer · 3 steps"
         title={
           <>
-            Start with the type.{" "}
-            <em className="text-crimson-deep">We&apos;ll do the narrowing.</em>
+            Start with the type. <em className="text-crimson-deep">We&apos;ll do the narrowing.</em>
           </>
         }
         subtitle={
           <>
             Camps, competitions, masterclasses, conferences and more - choose the kind of
-            experience, tell us the grade and subject, and see every matching program
-            with its next start date.
+            experience, tell us the grade and subject, and see every matching program with its next
+            start date.
           </>
         }
       />

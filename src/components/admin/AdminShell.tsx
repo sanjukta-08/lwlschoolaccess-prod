@@ -4,7 +4,13 @@ import type { ReactNode } from "react";
 import { adminLogout } from "@/lib/admin.functions";
 
 export const fmtDateTime = (iso: string) =>
-  new Date(iso).toLocaleString("en-GB", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" });
+  new Date(iso).toLocaleString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
 export function AdminShell({ title, children }: { title: string; children: ReactNode }) {
   const router = useRouter();
@@ -14,9 +20,23 @@ export function AdminShell({ title, children }: { title: string; children: React
     <main className="mx-auto max-w-6xl px-4 py-10">
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border pb-4">
         <div className="flex items-center gap-6">
-          <Link to="/admin" className="font-semibold text-foreground">Compass admin</Link>
-          <Link to="/admin/leads" className={nav} activeProps={{ className: "text-sm text-foreground font-medium" }}>Leads</Link>
-          <Link to="/admin/sessions" className={nav} activeProps={{ className: "text-sm text-foreground font-medium" }}>Conversations</Link>
+          <Link to="/admin" className="font-semibold text-foreground">
+            Compass admin
+          </Link>
+          <Link
+            to="/admin/leads"
+            className={nav}
+            activeProps={{ className: "text-sm text-foreground font-medium" }}
+          >
+            Leads
+          </Link>
+          <Link
+            to="/admin/sessions"
+            className={nav}
+            activeProps={{ className: "text-sm text-foreground font-medium" }}
+          >
+            Conversations
+          </Link>
         </div>
         <button
           onClick={async () => {

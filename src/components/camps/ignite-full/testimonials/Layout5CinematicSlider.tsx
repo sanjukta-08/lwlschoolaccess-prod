@@ -6,8 +6,10 @@ import { studentTestimonials } from "./testimonialData";
 const Layout5CinematicSlider = () => {
   const [active, setActive] = useState(0);
   const current = studentTestimonials[active];
-  if (!current) return null;
-  const prev = useCallback(() => setActive((a) => (a - 1 + studentTestimonials.length) % studentTestimonials.length), []);
+  const prev = useCallback(
+    () => setActive((a) => (a - 1 + studentTestimonials.length) % studentTestimonials.length),
+    [],
+  );
   const next = useCallback(() => setActive((a) => (a + 1) % studentTestimonials.length), []);
 
   useEffect(() => {
@@ -15,14 +17,24 @@ const Layout5CinematicSlider = () => {
     return () => clearInterval(timer);
   }, [next]);
 
+  if (!current) return null;
+
   return (
     <div className="relative bg-card rounded-2xl shadow-prestigious py-12 px-8 md:py-16 md:px-20 overflow-hidden min-h-[340px] flex items-center">
-      <span className="absolute top-0 left-6 text-[12rem] md:text-[16rem] font-display text-muted-foreground/5 leading-none select-none pointer-events-none">"</span>
+      <span className="absolute top-0 left-6 text-[12rem] md:text-[16rem] font-display text-muted-foreground/5 leading-none select-none pointer-events-none">
+        "
+      </span>
 
-      <button onClick={prev} className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-[#c23b22] hover:text-primary-foreground hover:border-[#c23b22] transition-colors z-10">
+      <button
+        onClick={prev}
+        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-[#c23b22] hover:text-primary-foreground hover:border-[#c23b22] transition-colors z-10"
+      >
         <ChevronLeft size={18} />
       </button>
-      <button onClick={next} className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-[#c23b22] hover:text-primary-foreground hover:border-[#c23b22] transition-colors z-10">
+      <button
+        onClick={next}
+        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-[#c23b22] hover:text-primary-foreground hover:border-[#c23b22] transition-colors z-10"
+      >
         <ChevronRight size={18} />
       </button>
 
@@ -46,9 +58,9 @@ const Layout5CinematicSlider = () => {
             </div>
           </div>
           <div className="mt-2">
-              <p className="font-display font-bold text-foreground text-lg">{current.name}</p>
-              <p className="text-sm text-muted-foreground">{current.detail}</p>
-              <p className="text-sm text-[#c23b22] font-medium">{current.school}</p>
+            <p className="font-display font-bold text-foreground text-lg">{current.name}</p>
+            <p className="text-sm text-muted-foreground">{current.detail}</p>
+            <p className="text-sm text-[#c23b22] font-medium">{current.school}</p>
           </div>
         </motion.div>
       </AnimatePresence>

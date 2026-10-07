@@ -1,22 +1,24 @@
-import { motion } from 'framer-motion';
-import { Award, Globe, FileCheck } from 'lucide-react';
-import cambridgeQuad from '@/assets/cambridge/cambridge-quad.jpg';
+import { motion } from "framer-motion";
+import { Award, Globe, FileCheck } from "lucide-react";
+import cambridgeQuad from "@/assets/cambridge/cambridge-quad.jpg";
 
 const awards = [
   {
     icon: Award,
-    title: 'Get Certificates from the Entrepreneurship Centre at Cambridge Judge Business School',
-    description: 'These certificates can be valuable assets in pursuing further education or advancing in a career',
+    title: "Get Certificates from the Entrepreneurship Centre at Cambridge Judge Business School",
+    description:
+      "These certificates can be valuable assets in pursuing further education or advancing in a career",
   },
   {
     icon: Globe,
-    title: 'Build a Global Network',
-    description: 'Connect with mentors from Cambridge Judge Business School Entrepreneurship Centre and international students, and gain real-world skills',
+    title: "Build a Global Network",
+    description:
+      "Connect with mentors from Cambridge Judge Business School Entrepreneurship Centre and international students, and gain real-world skills",
   },
   {
     icon: FileCheck,
-    title: 'Portfolio Enhancement',
-    description: 'Enhance your resume and student portfolio with certificates and presentations',
+    title: "Portfolio Enhancement",
+    description: "Enhance your resume and student portfolio with certificates and presentations",
   },
 ];
 
@@ -25,13 +27,13 @@ export const IgniteAwardsSection = () => {
     <section className="relative overflow-hidden">
       {/* Lime/Yellow-green gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#C5D631] via-[#D4E157] to-[#E8F5E9]" />
-      
+
       {/* Cambridge building background at bottom */}
-      <div 
+      <div
         className="absolute bottom-0 left-0 right-0 h-[300px] md:h-[400px] bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${cambridgeQuad})` }}
       />
-      
+
       <div className="relative container mx-auto px-4 py-16 md:py-24">
         {/* Section Header */}
         <motion.div
@@ -66,9 +68,7 @@ export const IgniteAwardsSection = () => {
               <h3 className="text-[#8B1538] font-semibold text-lg mb-3 leading-tight">
                 {award.title}
               </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                {award.description}
-              </p>
+              <p className="text-gray-600 text-sm leading-relaxed">{award.description}</p>
             </motion.div>
           ))}
         </div>

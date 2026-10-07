@@ -24,7 +24,8 @@ const ScheduleSection = () => {
               Your Week <span className="text-cambridge-rust italic">at a Glance</span>
             </h2>
             <p className="mt-5 max-w-2xl mx-auto font-body text-base md:text-lg text-muted-foreground leading-relaxed">
-              Every session, mentor hour and cultural moment — laid out in full. Tap a day to explore.
+              Every session, mentor hour and cultural moment — laid out in full. Tap a day to
+              explore.
             </p>
             <div className="mx-auto mt-8 h-px w-24 bg-cambridge-rust/60" />
           </motion.div>

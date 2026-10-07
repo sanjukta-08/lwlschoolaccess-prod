@@ -66,13 +66,22 @@ export function ConferenceLanding({ conference }: { conference: Programme }) {
               {conference.tag || conference.about}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="h-12 rounded-sm bg-crimson px-7 text-paper hover:bg-crimson-deep">
+              <Button
+                asChild
+                size="lg"
+                className="h-12 rounded-sm bg-crimson px-7 text-paper hover:bg-crimson-deep"
+              >
                 <a href={conference.apply} target="_blank" rel="noopener">
                   {hasDates ? "Apply now" : "Register interest"}
                   <ArrowRight aria-hidden />
                 </a>
               </Button>
-              <Button asChild variant="outline" size="lg" className="h-12 rounded-sm border-paper/50 bg-paper/10 px-7 text-paper hover:bg-paper hover:text-ink">
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="h-12 rounded-sm border-paper/50 bg-paper/10 px-7 text-paper hover:bg-paper hover:text-ink"
+              >
                 <a href="#details">View conference details</a>
               </Button>
             </div>
@@ -103,8 +112,16 @@ export function ConferenceLanding({ conference }: { conference: Programme }) {
               {conference.about || conference.tag}
             </p>
             <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-              {["Committee research and preparation", "Formal debate and negotiation", "Resolution writing", "Cross-cultural collaboration"].map((item) => (
-                <li key={item} className="flex items-center gap-3 border-t border-line pt-3 text-[0.9rem] font-semibold text-ink">
+              {[
+                "Committee research and preparation",
+                "Formal debate and negotiation",
+                "Resolution writing",
+                "Cross-cultural collaboration",
+              ].map((item) => (
+                <li
+                  key={item}
+                  className="flex items-center gap-3 border-t border-line pt-3 text-[0.9rem] font-semibold text-ink"
+                >
                   <Check className="h-4 w-4 flex-none text-gold" aria-hidden />
                   {item}
                 </li>
@@ -145,7 +162,11 @@ export function ConferenceLanding({ conference }: { conference: Programme }) {
                 {conferenceDateLabel(conference)} · {conferenceGrades(conference)}
               </p>
             </div>
-            <Button asChild size="lg" className="h-12 rounded-sm bg-crimson px-8 text-paper hover:bg-crimson-deep">
+            <Button
+              asChild
+              size="lg"
+              className="h-12 rounded-sm bg-crimson px-8 text-paper hover:bg-crimson-deep"
+            >
               <a href={conference.apply} target="_blank" rel="noopener">
                 {hasDates ? "Apply now" : "Register interest"}
                 <ArrowRight aria-hidden />

@@ -1,12 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import {
-  PATHWAY,
-  PROGRAMMES,
-  TRACKS,
-  cohortGrades,
-  fmtShort,
-  isPast,
-} from "@/lib/programmes";
+import { PATHWAY, PROGRAMMES, TRACKS, cohortGrades, fmtShort, isPast } from "@/lib/programmes";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { slugOf } from "@/lib/programme-slug";
 
@@ -20,9 +13,9 @@ export function ProfilePathway() {
             Plan your <em className="text-crimson-deep">profile building</em> with us
           </h2>
           <p className="mx-auto mt-2.5 max-w-[44em] text-[0.93rem] text-ink-soft">
-            Universities look for a story, not a scatter of certificates. Here is the
-            four-step path we recommend - explore early, go deep in the middle years,
-            make it application-ready, then turn it into proof a university can verify.
+            Universities look for a story, not a scatter of certificates. Here is the four-step path
+            we recommend - explore early, go deep in the middle years, make it application-ready,
+            then turn it into proof a university can verify.
           </p>
         </header>
 
@@ -38,9 +31,7 @@ export function ProfilePathway() {
                   {stage.band}
                 </span>
               </div>
-              <h3 className="mt-2 font-serif text-[1.25rem] font-semibold">
-                {stage.title}
-              </h3>
+              <h3 className="mt-2 font-serif text-[1.25rem] font-semibold">{stage.title}</h3>
               <p className="mt-1.5 text-[0.86rem] text-ink-soft">{stage.goal}</p>
 
               {stage.outcomes ? (
@@ -49,13 +40,9 @@ export function ProfilePathway() {
                   {stage.outcomes.map((o) => {
                     const inner = (
                       <>
-                        <span className="mt-[0.15rem] shrink-0 text-[0.8rem] text-crimson">
-                          ✓
-                        </span>
+                        <span className="mt-[0.15rem] shrink-0 text-[0.8rem] text-crimson">✓</span>
                         <span>
-                          <b className="block text-[0.85rem] font-semibold text-ink">
-                            {o.title}
-                          </b>
+                          <b className="block text-[0.85rem] font-semibold text-ink">{o.title}</b>
                           <small className="block text-[0.74rem] leading-snug text-ink-faint">
                             {o.body}
                           </small>
@@ -104,35 +91,33 @@ export function ProfilePathway() {
                   })}
                 </div>
               ) : (
-              <div className="mt-4 flex flex-col gap-2">
-                <span className="mono-label text-ink-faint">Start here</span>
-                {stage.ids.map((id) => {
-                  const p = PROGRAMMES.find((x) => x.id === id);
-                  if (!p) return null;
-                  const next = p.cohorts
-                    .filter((c) => !isPast(c.d))
-                    .sort((a, b) => a.d.localeCompare(b.d))[0];
-                  const track = TRACKS[p.tracks[0]!];
-                  const [lo, hi] = cohortGrades(p, next);
-                  return (
-                    <Link
-                      key={id}
-                      to="/programmes/$slug"
-                      params={{ slug: slugOf(p) }}
-                      className="rounded-xl border border-line bg-wash px-3 py-2.5 text-left no-underline transition-colors hover:border-ink-soft"
-                    >
-                      <b className="block text-[0.87rem] font-semibold text-ink">
-                        {p.name}
-                      </b>
-                      <small className="block text-[0.74rem] text-ink-faint">
-                        <span style={{ color: track.color }}>{track.label}</span> · Grades{" "}
-                        {lo}–{hi}
-                        {next ? ` · next ${fmtShort(next.d)}` : ""}
-                      </small>
-                    </Link>
-                  );
-                })}
-              </div>
+                <div className="mt-4 flex flex-col gap-2">
+                  <span className="mono-label text-ink-faint">Start here</span>
+                  {stage.ids.map((id) => {
+                    const p = PROGRAMMES.find((x) => x.id === id);
+                    if (!p) return null;
+                    const next = p.cohorts
+                      .filter((c) => !isPast(c.d))
+                      .sort((a, b) => a.d.localeCompare(b.d))[0];
+                    const track = TRACKS[p.tracks[0]!];
+                    const [lo, hi] = cohortGrades(p, next);
+                    return (
+                      <Link
+                        key={id}
+                        to="/programmes/$slug"
+                        params={{ slug: slugOf(p) }}
+                        className="rounded-xl border border-line bg-wash px-3 py-2.5 text-left no-underline transition-colors hover:border-ink-soft"
+                      >
+                        <b className="block text-[0.87rem] font-semibold text-ink">{p.name}</b>
+                        <small className="block text-[0.74rem] text-ink-faint">
+                          <span style={{ color: track.color }}>{track.label}</span> · Grades {lo}–
+                          {hi}
+                          {next ? ` · next ${fmtShort(next.d)}` : ""}
+                        </small>
+                      </Link>
+                    );
+                  })}
+                </div>
               )}
             </article>
           ))}

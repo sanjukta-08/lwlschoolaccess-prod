@@ -2,10 +2,26 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const steps = [
-  { step: "01", title: "Inquiry", description: "Explore the program details and reach out with any questions." },
-  { step: "02", title: "Application", description: "Submit your application with academic records and a personal statement." },
-  { step: "03", title: "Review", description: "Our admissions committee carefully reviews each application." },
-  { step: "04", title: "Acceptance", description: "Receive your acceptance letter and secure your place in the cohort." },
+  {
+    step: "01",
+    title: "Inquiry",
+    description: "Explore the program details and reach out with any questions.",
+  },
+  {
+    step: "02",
+    title: "Application",
+    description: "Submit your application with academic records and a personal statement.",
+  },
+  {
+    step: "03",
+    title: "Review",
+    description: "Our admissions committee carefully reviews each application.",
+  },
+  {
+    step: "04",
+    title: "Acceptance",
+    description: "Receive your acceptance letter and secure your place in the cohort.",
+  },
 ];
 
 const ApplicationProcess = () => {
@@ -21,8 +37,12 @@ const ApplicationProcess = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <p className="text-primary uppercase tracking-[0.3em] text-sm md:text-base font-sans font-semibold mb-4">Admissions</p>
-          <h2 className="font-serif text-4xl md:text-5xl text-ivory-foreground mb-6">Application Process</h2>
+          <p className="text-primary uppercase tracking-[0.3em] text-sm md:text-base font-sans font-semibold mb-4">
+            Admissions
+          </p>
+          <h2 className="font-serif text-4xl md:text-5xl text-ivory-foreground mb-6">
+            Application Process
+          </h2>
           <div className="w-16 h-px bg-primary mx-auto" />
         </motion.div>
 
@@ -40,7 +60,9 @@ const ApplicationProcess = () => {
                 <div className="hidden md:block absolute top-6 left-[calc(50%+3rem)] right-[-3rem] h-px bg-primary/40" />
               )}
               <h3 className="font-serif text-xl text-ivory-foreground mb-3">{s.title}</h3>
-              <p className="text-ivory-foreground/60 text-base font-sans leading-relaxed">{s.description}</p>
+              <p className="text-ivory-foreground/60 text-base font-sans leading-relaxed">
+                {s.description}
+              </p>
             </motion.div>
           ))}
         </div>

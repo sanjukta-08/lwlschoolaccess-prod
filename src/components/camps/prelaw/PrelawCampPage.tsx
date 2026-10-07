@@ -61,8 +61,8 @@ const BOOK_MEETING_URL = CALENDLY_BOOKING_URL;
  * link comes from the shared catalogue; read at render so hydration wins.
  */
 const applyUrl = () =>
-  campBySlug("prelaw-horizons-harvard")?.applyUrl ?? "https://apply.learnwithleaders.com/apply/prelaw-academy";
-
+  campBySlug("prelaw-horizons-harvard")?.applyUrl ??
+  "https://apply.learnwithleaders.com/apply/prelaw-academy";
 
 const days = [
   {
@@ -77,8 +77,7 @@ const days = [
       },
       {
         name: "Introduction to Political Theory & Legal Grounding",
-        question:
-          "From ancient Greece to contemporary society — why does law exist?",
+        question: "From ancient Greece to contemporary society — why does law exist?",
       },
       { name: "Guest Lecture" },
     ],
@@ -91,8 +90,7 @@ const days = [
     sessions: [
       {
         name: "Types of Government",
-        question:
-          "What are the differences between democracy, theocracy, and autocracy?",
+        question: "What are the differences between democracy, theocracy, and autocracy?",
       },
       {
         name: "History of the United States",
@@ -150,8 +148,7 @@ const days = [
       },
       {
         name: "Capstone Project Briefing",
-        question:
-          "You are a policymaker in your home country. Make one change to the law.",
+        question: "You are a policymaker in your home country. Make one change to the law.",
       },
     ],
   },
@@ -168,18 +165,15 @@ const days = [
       },
       {
         name: "Afternoon — Giving Back as an Attorney",
-        question:
-          "What does it look like to build a career around service rather than status?",
+        question: "What does it look like to build a career around service rather than status?",
       },
       {
         name: "Public Interest Law & Government Service Panel",
-        question:
-          "Legal aid, public defense, prosecution, and nonprofit advocacy careers.",
+        question: "Legal aid, public defense, prosecution, and nonprofit advocacy careers.",
       },
       {
         name: "Workshop — Pro Bono & Community Advocacy",
-        question:
-          "How do lawyers use their license to serve people who can't afford one?",
+        question: "How do lawyers use their license to serve people who can't afford one?",
       },
     ],
   },
@@ -191,13 +185,11 @@ const days = [
     sessions: [
       {
         name: "Capstone Presentations",
-        question:
-          "Students argue their proposed legal change before a panel.",
+        question: "Students argue their proposed legal change before a panel.",
       },
       {
         name: "Awards & Certificate Ceremony",
-        question:
-          "Recognition for outstanding capstone arguments and program achievement.",
+        question: "Recognition for outstanding capstone arguments and program achievement.",
       },
       { name: "Closing Address" },
       { name: "Farewell Celebration" },
@@ -215,7 +207,6 @@ const heroData = {
     "A six-day intensive for students ready to explore the law — its history, its contradictions, and the pressing questions that define our world.",
 };
 
-
 const visionParagraphs = [
   "From the courts of ancient Athens to the chambers of the United Nations, the law has always reflected the societies that write it — and the individuals brave enough to challenge it. The HUGEM Pre-Law Academy invites students into that conversation.",
   "Over six intensive days, students engage with legal theory, political history, international law, ethics, and public service. They hear from Harvard Law School professors, practicing lawyers, and law students on the front lines of change.",
@@ -228,11 +219,21 @@ function VisionSection() {
       <div className="mx-auto max-w-[1500px] px-5 py-24 lg:px-10 lg:py-36">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div>
-            <div className="text-xs font-semibold uppercase tracking-[0.28em] text-crimson">Program Vision</div>
-            <h2 className="mt-6 font-display text-5xl leading-[0.92] md:text-7xl lg:text-[5.5rem]">The law is a <span className="text-crimson">living argument.</span></h2>
-            <p className="mt-8 max-w-xl border-l-4 border-crimson pl-6 text-xl font-semibold leading-snug text-ink/90 md:text-2xl">It is an argument about power, fairness, and human possibility.</p>
+            <div className="text-xs font-semibold uppercase tracking-[0.28em] text-crimson">
+              Program Vision
+            </div>
+            <h2 className="mt-6 font-display text-5xl leading-[0.92] md:text-7xl lg:text-[5.5rem]">
+              The law is a <span className="text-crimson">living argument.</span>
+            </h2>
+            <p className="mt-8 max-w-xl border-l-4 border-crimson pl-6 text-xl font-semibold leading-snug text-ink/90 md:text-2xl">
+              It is an argument about power, fairness, and human possibility.
+            </p>
           </div>
-          <div className="space-y-8 border-t border-ink/20 pt-8 text-lg leading-relaxed text-ink/75 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-16">{visionParagraphs.map((text) => <p key={text}>{text}</p>)}</div>
+          <div className="space-y-8 border-t border-ink/20 pt-8 text-lg leading-relaxed text-ink/75 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-16">
+            {visionParagraphs.map((text) => (
+              <p key={text}>{text}</p>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -244,9 +245,16 @@ function ScheduleSection() {
     <section id="schedule" className="bg-cream">
       <div className="mx-auto max-w-[1500px] px-5 py-24 lg:px-10 lg:py-32">
         <div className="border-b border-ink/15 pb-10 text-center">
-          <div className="text-xs font-semibold uppercase tracking-[0.28em] text-crimson">Program Schedule</div>
-          <h2 className="mt-5 font-display text-5xl leading-[0.95] md:text-7xl">The six-day docket.</h2>
-          <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-ink/70">Each day adds a new layer of context before students argue their own proposal on Saturday.</p>
+          <div className="text-xs font-semibold uppercase tracking-[0.28em] text-crimson">
+            Program Schedule
+          </div>
+          <h2 className="mt-5 font-display text-5xl leading-[0.95] md:text-7xl">
+            The six-day docket.
+          </h2>
+          <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-ink/70">
+            Each day adds a new layer of context before students argue their own proposal on
+            Saturday.
+          </p>
         </div>
 
         <ol className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -254,15 +262,33 @@ function ScheduleSection() {
             const final = item.day === "06";
             const dayLabel = `Day ${parseInt(item.day)}`;
             return (
-              <li key={item.day} className={`${final ? "border-t-4 border-crimson bg-crimson text-paper" : "border-t-4 border-ink bg-paper text-ink"} p-6 text-center md:p-8`}>
-                <span className={`text-[10px] font-semibold uppercase tracking-[0.2em] ${final ? "text-paper/70" : "text-crimson"}`}>{dayLabel} · {item.weekday}</span>
-                <item.icon className={`mx-auto mt-4 h-6 w-6 ${final ? "text-paper/70" : "text-crimson"}`} strokeWidth={1.5} />
+              <li
+                key={item.day}
+                className={`${final ? "border-t-4 border-crimson bg-crimson text-paper" : "border-t-4 border-ink bg-paper text-ink"} p-6 text-center md:p-8`}
+              >
+                <span
+                  className={`text-[10px] font-semibold uppercase tracking-[0.2em] ${final ? "text-paper/70" : "text-crimson"}`}
+                >
+                  {dayLabel} · {item.weekday}
+                </span>
+                <item.icon
+                  className={`mx-auto mt-4 h-6 w-6 ${final ? "text-paper/70" : "text-crimson"}`}
+                  strokeWidth={1.5}
+                />
                 <h3 className="mt-4 font-display text-2xl leading-tight">{item.title}</h3>
-                <ul className={`mt-7 divide-y text-sm ${final ? "divide-paper/20" : "divide-ink/10"}`}>
+                <ul
+                  className={`mt-7 divide-y text-sm ${final ? "divide-paper/20" : "divide-ink/10"}`}
+                >
                   {item.sessions.map((session) => (
                     <li key={session.name} className="py-3">
                       <span className="font-semibold">{session.name}</span>
-                      {session.question ? <p className={`mt-1 leading-relaxed ${final ? "text-paper/70" : "text-ink/60"}`}>{session.question}</p> : null}
+                      {session.question ? (
+                        <p
+                          className={`mt-1 leading-relaxed ${final ? "text-paper/70" : "text-ink/60"}`}
+                        >
+                          {session.question}
+                        </p>
+                      ) : null}
                     </li>
                   ))}
                 </ul>
@@ -275,15 +301,30 @@ function ScheduleSection() {
   );
 }
 
-
-
 function ProgramDetailsSection() {
   const details = [
     { label: "Dates", value: "11 - 17 January 2027" },
-    { label: "Format", value: <>Day Program<br /><span className="text-paper/60">(Mon - Sat)</span></> },
+    {
+      label: "Format",
+      value: (
+        <>
+          Day Program
+          <br />
+          <span className="text-paper/60">(Mon - Sat)</span>
+        </>
+      ),
+    },
     { label: "Location", value: "Harvard University, Cambridge, MA" },
     { label: "Eligibility", value: "Grades 8 - 12" },
-    { label: "Program Hours", value: <>9 am - 4 pm (Mon - Fri)<br />9 am - 12 pm (Sat)</> },
+    {
+      label: "Program Hours",
+      value: (
+        <>
+          9 am - 4 pm (Mon - Fri)
+          <br />9 am - 12 pm (Sat)
+        </>
+      ),
+    },
   ];
 
   const included = [
@@ -310,29 +351,35 @@ function ProgramDetailsSection() {
         <div className="prelaw-grid absolute inset-0 opacity-15" aria-hidden />
         <div className="absolute inset-0 flex items-center justify-center px-5 text-center">
           <div>
-            <div className="text-[11px] font-semibold uppercase tracking-[0.3em] text-paper/75">In-person at Harvard University</div>
-            <p className="mx-auto mt-5 max-w-3xl font-display text-3xl leading-tight text-paper md:text-5xl">Six days inside the rooms where the law is studied.</p>
+            <div className="text-[11px] font-semibold uppercase tracking-[0.3em] text-paper/75">
+              In-person at Harvard University
+            </div>
+            <p className="mx-auto mt-5 max-w-3xl font-display text-3xl leading-tight text-paper md:text-5xl">
+              Six days inside the rooms where the law is studied.
+            </p>
           </div>
         </div>
       </div>
       <div className="bg-ink text-paper">
-
         <div className="mx-auto max-w-[1500px] px-5 py-24 lg:px-10 lg:py-32">
           <div className="flex flex-col gap-8 border-b border-paper/20 pb-10 lg:flex-row lg:items-end lg:justify-between">
             <h2 className="font-display text-5xl leading-[0.95] md:text-7xl">Program Details</h2>
-            <p className="max-w-md text-lg leading-relaxed text-paper/65">A focused academic program at Harvard University for students in Grades 8–12.</p>
+            <p className="max-w-md text-lg leading-relaxed text-paper/65">
+              A focused academic program at Harvard University for students in Grades 8–12.
+            </p>
           </div>
           <dl className="grid grid-cols-1 border-paper/20 md:grid-cols-2 lg:grid-cols-5">
-              {details.map((item) => (
-                <div key={item.label} className="border-b border-paper/20 py-8 md:px-6 lg:border-r lg:px-7 lg:last:border-r-0">
-                  <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-crimson">
-                    {item.label}
-                  </dt>
-                  <dd className="mt-3 font-display text-xl leading-tight text-paper">
-                    {item.value}
-                  </dd>
-                </div>
-              ))}
+            {details.map((item) => (
+              <div
+                key={item.label}
+                className="border-b border-paper/20 py-8 md:px-6 lg:border-r lg:px-7 lg:last:border-r-0"
+              >
+                <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-crimson">
+                  {item.label}
+                </dt>
+                <dd className="mt-3 font-display text-xl leading-tight text-paper">{item.value}</dd>
+              </div>
+            ))}
           </dl>
         </div>
       </div>
@@ -340,18 +387,40 @@ function ProgramDetailsSection() {
       <div className="bg-paper">
         <div className="mx-auto grid max-w-[1500px] lg:grid-cols-[0.85fr_1.15fr]">
           <div className="bg-crimson p-8 text-paper md:p-12 lg:p-16">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-paper/70">Tuition & Fees</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-paper/70">
+              Tuition & Fees
+            </p>
             <div className="mt-5 font-display text-5xl md:text-6xl">1500 USD</div>
             <p className="mt-2 text-xs uppercase tracking-[0.18em] text-paper/70">per student</p>
             <div className="mt-12 border-t border-paper/30 pt-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-paper/70">Application Deadline</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-paper/70">
+                Application Deadline
+              </p>
               <p className="mt-3 font-display text-2xl md:text-3xl">31 October 2026</p>
-              <a href={applyUrl()} target="_blank" rel="noreferrer" className="mt-7 inline-flex bg-paper px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-crimson transition-colors hover:bg-ink hover:text-paper">Apply Now</a>
+              <a
+                href={applyUrl()}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-7 inline-flex bg-paper px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-crimson transition-colors hover:bg-ink hover:text-paper"
+              >
+                Apply Now
+              </a>
             </div>
           </div>
           <div className="p-8 md:p-12 lg:p-16">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-crimson">Everything included</p>
-            <ul className="mt-7 grid gap-px bg-ink/15 md:grid-cols-2">{included.map((item) => <li key={item.text} className="flex min-h-24 items-center gap-4 bg-paper p-5"><item.icon className="h-6 w-6 shrink-0 text-crimson" strokeWidth={1.5} /><span className="text-sm font-semibold leading-relaxed text-ink/75">{item.text}</span></li>)}</ul>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-crimson">
+              Everything included
+            </p>
+            <ul className="mt-7 grid gap-px bg-ink/15 md:grid-cols-2">
+              {included.map((item) => (
+                <li key={item.text} className="flex min-h-24 items-center gap-4 bg-paper p-5">
+                  <item.icon className="h-6 w-6 shrink-0 text-crimson" strokeWidth={1.5} />
+                  <span className="text-sm font-semibold leading-relaxed text-ink/75">
+                    {item.text}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
@@ -474,7 +543,6 @@ function HeroSection() {
             <span className="inline-flex items-center gap-3 bg-paper px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.18em] text-ink">
               Dates: <span className="text-crimson">11th - 17th January 2027</span>
             </span>
-
           </div>
           <p className="mt-8 max-w-2xl text-base leading-relaxed text-paper/75 md:text-lg">
             {heroData.brief}
@@ -486,13 +554,14 @@ function HeroSection() {
         aria-label="Continue to program vision"
         className="absolute bottom-20 left-1/2 z-30 flex -translate-x-1/2 flex-col items-center gap-2 text-paper/70 transition-colors hover:text-paper"
       >
-        <span className="text-[10px] font-semibold uppercase tracking-[0.25em]">Enter the argument</span>
+        <span className="text-[10px] font-semibold uppercase tracking-[0.25em]">
+          Enter the argument
+        </span>
         <ArrowDown className="h-5 w-5 animate-bounce text-crimson" />
       </a>
     </section>
   );
 }
-
 
 const mentors = [
   {
@@ -545,11 +614,16 @@ function MentorsSection() {
       <div className="mx-auto max-w-[1500px] px-5 py-24 lg:px-10 lg:py-32">
         <div className="mb-12 grid gap-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
-            <div className="text-xs font-semibold uppercase tracking-[0.28em] text-crimson">Harvard Student Mentors</div>
-            <h2 className="mt-5 font-display text-5xl leading-[0.95] md:text-7xl">Counsel from those <span className="text-crimson">already arguing.</span></h2>
+            <div className="text-xs font-semibold uppercase tracking-[0.28em] text-crimson">
+              Harvard Student Mentors
+            </div>
+            <h2 className="mt-5 font-display text-5xl leading-[0.95] md:text-7xl">
+              Counsel from those <span className="text-crimson">already arguing.</span>
+            </h2>
           </div>
           <p className="max-w-md text-lg leading-relaxed text-ink/70 lg:col-span-5">
-            Current Harvard undergraduates from HUGEM lead every session — sharing research, campus life, and the questions that shaped their own journeys.
+            Current Harvard undergraduates from HUGEM lead every session — sharing research, campus
+            life, and the questions that shaped their own journeys.
           </p>
         </div>
 
@@ -629,7 +703,9 @@ function MentorCarousel() {
             </div>
             <div className="mt-5">
               <h3 className="font-display text-2xl leading-tight md:text-3xl">{m.name}</h3>
-              <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-crimson">{m.role}</p>
+              <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-crimson">
+                {m.role}
+              </p>
               <p className="mt-4 text-sm leading-relaxed text-ink/70 md:text-base">{m.bio}</p>
             </div>
           </article>
@@ -675,21 +751,27 @@ function HugemSection() {
             </div>
 
             <div className="flex flex-col justify-center lg:col-span-7">
-              <div className="text-xs font-semibold uppercase tracking-[0.28em] text-crimson">Behind the Academy</div>
+              <div className="text-xs font-semibold uppercase tracking-[0.28em] text-crimson">
+                Behind the Academy
+              </div>
               <h2 className="mt-6 font-display text-5xl leading-[0.95] md:text-6xl lg:text-7xl">
-                HUGEM — <span className="text-crimson">teaching youth the responsibility of global citizenship.</span>
+                HUGEM —{" "}
+                <span className="text-crimson">
+                  teaching youth the responsibility of global citizenship.
+                </span>
               </h2>
               <p className="mt-8 text-lg leading-relaxed text-paper/80">
                 Each year, HUGEM develops programs around the central theme of{" "}
-                <span className="text-paper">global citizenship</span> — first, by helping students see how
-                challenges in their own community intersect with the most pressing international issues, and
-                second, by building the skills to act on them.
+                <span className="text-paper">global citizenship</span> — first, by helping students
+                see how challenges in their own community intersect with the most pressing
+                international issues, and second, by building the skills to act on them.
               </p>
               <p className="mt-6 text-lg leading-relaxed text-paper/70">
-                Leadership workshops, entrepreneurial pitch challenges, and pre-professional conferences combine
-                learning from Harvard Trainers, hands-on problem-solving, and networking with peers — so students
-                embrace their education and future careers with empathy, autonomy, and the ability to make an
-                actionable impact locally, nationally, and internationally.
+                Leadership workshops, entrepreneurial pitch challenges, and pre-professional
+                conferences combine learning from Harvard Trainers, hands-on problem-solving, and
+                networking with peers — so students embrace their education and future careers with
+                empathy, autonomy, and the ability to make an actionable impact locally, nationally,
+                and internationally.
               </p>
 
               <div className="mt-10 grid gap-px bg-paper/15 sm:grid-cols-2">
@@ -704,7 +786,9 @@ function HugemSection() {
                   },
                 ].map((p) => (
                   <div key={p.title} className="bg-ink p-6">
-                    <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-crimson">{p.title}</h3>
+                    <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-crimson">
+                      {p.title}
+                    </h3>
                     <p className="mt-3 text-base leading-relaxed text-paper/70">{p.body}</p>
                   </div>
                 ))}
@@ -714,16 +798,25 @@ function HugemSection() {
 
           <div className="mt-24 grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
-              <div className="text-xs font-semibold uppercase tracking-[0.28em] text-crimson">Our Impact</div>
-              <h3 className="mt-5 font-display text-4xl leading-[0.95] md:text-5xl">Building a global movement of young leaders.</h3>
+              <div className="text-xs font-semibold uppercase tracking-[0.28em] text-crimson">
+                Our Impact
+              </div>
+              <h3 className="mt-5 font-display text-4xl leading-[0.95] md:text-5xl">
+                Building a global movement of young leaders.
+              </h3>
             </div>
             <div className="lg:col-span-8">
               <div className="grid grid-cols-2 gap-px bg-paper/15 lg:grid-cols-4">
                 {hugemImpact.map(({ value, label, Icon }) => (
                   <div key={label} className="group bg-ink p-6">
-                    <Icon className="mb-6 h-7 w-7 text-crimson transition-transform duration-300 group-hover:-translate-y-1" strokeWidth={1.5} />
+                    <Icon
+                      className="mb-6 h-7 w-7 text-crimson transition-transform duration-300 group-hover:-translate-y-1"
+                      strokeWidth={1.5}
+                    />
                     <div className="font-display text-4xl leading-none sm:text-5xl">{value}</div>
-                    <div className="mt-3 max-w-[16ch] text-[11px] uppercase leading-relaxed tracking-[0.14em] text-paper/55">{label}</div>
+                    <div className="mt-3 max-w-[16ch] text-[11px] uppercase leading-relaxed tracking-[0.14em] text-paper/55">
+                      {label}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -781,8 +874,12 @@ function FAQSection() {
       <div className="mx-auto max-w-[1500px] px-5 py-24 lg:px-10 lg:py-32">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-4">
-            <div className="text-xs font-semibold uppercase tracking-[0.28em] text-crimson">FAQ</div>
-            <h2 className="mt-5 font-display text-5xl leading-[0.95] md:text-6xl">Questions, <span className="text-crimson">answered.</span></h2>
+            <div className="text-xs font-semibold uppercase tracking-[0.28em] text-crimson">
+              FAQ
+            </div>
+            <h2 className="mt-5 font-display text-5xl leading-[0.95] md:text-6xl">
+              Questions, <span className="text-crimson">answered.</span>
+            </h2>
             <p className="mt-7 max-w-sm text-lg leading-relaxed text-ink/70">
               Everything you need to know before joining the Pre-Law Academy at Harvard University.
             </p>
@@ -800,17 +897,26 @@ function FAQSection() {
                       className="flex w-full items-start justify-between gap-6 text-left"
                       aria-expanded={isOpen}
                     >
-                      <span className="font-display text-xl leading-tight md:text-2xl">{faq.question}</span>
+                      <span className="font-display text-xl leading-tight md:text-2xl">
+                        {faq.question}
+                      </span>
                       <span
                         className={`mt-1 inline-flex shrink-0 items-center justify-center border p-2 transition-colors duration-300 ${
                           isOpen ? "border-crimson bg-crimson text-paper" : "border-ink/20 text-ink"
                         }`}
                       >
-                        <Plus className={`h-4 w-4 transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`} strokeWidth={2} />
+                        <Plus
+                          className={`h-4 w-4 transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}
+                          strokeWidth={2}
+                        />
                       </span>
                     </button>
-                    <div className={`overflow-hidden transition-all duration-300 ease-out ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
-                      <p className="max-w-3xl pt-4 text-lg leading-relaxed text-ink/70">{faq.answer}</p>
+                    <div
+                      className={`overflow-hidden transition-all duration-300 ease-out ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
+                    >
+                      <p className="max-w-3xl pt-4 text-lg leading-relaxed text-ink/70">
+                        {faq.answer}
+                      </p>
                     </div>
                   </div>
                 );
@@ -824,7 +930,6 @@ function FAQSection() {
 }
 
 export default function PrelawCampPage() {
-
   return (
     <div className="min-h-screen bg-cream text-ink">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-paper/95 backdrop-blur-md">
@@ -839,10 +944,18 @@ export default function PrelawCampPage() {
             />
           </a>
           <nav className="hidden items-center gap-8 text-base font-semibold md:flex lg:text-lg">
-            <a href="#vision" className="transition-colors hover:text-crimson">Vision</a>
-            <a href="#program-details" className="transition-colors hover:text-crimson">Details</a>
-            <a href="#mentors" className="transition-colors hover:text-crimson">Mentors</a>
-            <a href="#faq" className="transition-colors hover:text-crimson">FAQ</a>
+            <a href="#vision" className="transition-colors hover:text-crimson">
+              Vision
+            </a>
+            <a href="#program-details" className="transition-colors hover:text-crimson">
+              Details
+            </a>
+            <a href="#mentors" className="transition-colors hover:text-crimson">
+              Mentors
+            </a>
+            <a href="#faq" className="transition-colors hover:text-crimson">
+              FAQ
+            </a>
           </nav>
           <div className="flex items-center gap-2 sm:gap-3">
             <a
@@ -868,7 +981,6 @@ export default function PrelawCampPage() {
       <main>
         <HeroSection />
 
-
         <VisionSection />
 
         <section className="relative overflow-hidden bg-crimson text-paper">
@@ -876,7 +988,8 @@ export default function PrelawCampPage() {
           <div className="relative mx-auto max-w-[1500px] px-5 py-24 lg:px-10 lg:py-32">
             <Scale className="h-10 w-10 text-paper/70" strokeWidth={1.25} />
             <blockquote className="mt-8 max-w-6xl font-display text-4xl leading-[1.05] md:text-6xl lg:text-7xl">
-              “Law is not what lawyers know. It is a question every generation must answer for itself.”
+              “Law is not what lawyers know. It is a question every generation must answer for
+              itself.”
             </blockquote>
           </div>
         </section>
@@ -885,11 +998,16 @@ export default function PrelawCampPage() {
           <div className="mx-auto max-w-[1500px] px-5 py-24 lg:px-10 lg:py-32">
             <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
               <div>
-                <div className="text-xs font-semibold uppercase tracking-[0.28em] text-crimson">The Framework</div>
-                <h2 className="mt-5 font-display text-5xl leading-none md:text-7xl">Building tomorrow's legal minds.</h2>
+                <div className="text-xs font-semibold uppercase tracking-[0.28em] text-crimson">
+                  The Framework
+                </div>
+                <h2 className="mt-5 font-display text-5xl leading-none md:text-7xl">
+                  Building tomorrow's legal minds.
+                </h2>
               </div>
               <p className="max-w-md text-lg leading-relaxed text-ink/70">
-                Legal literacy, critical thinking, public service, and the confidence to argue for change.
+                Legal literacy, critical thinking, public service, and the confidence to argue for
+                change.
               </p>
             </div>
 
@@ -917,7 +1035,10 @@ export default function PrelawCampPage() {
                 <article key={item.title} className="group bg-paper p-8 md:min-h-[390px] md:p-10">
                   <div className="flex items-center justify-between">
                     <span className="font-display text-4xl text-crimson">{item.number}</span>
-                    <item.icon className="h-7 w-7 text-ink/50 transition-colors group-hover:text-crimson" strokeWidth={1.5} />
+                    <item.icon
+                      className="h-7 w-7 text-ink/50 transition-colors group-hover:text-crimson"
+                      strokeWidth={1.5}
+                    />
                   </div>
                   <h3 className="mt-20 font-display text-3xl">{item.title}</h3>
                   <p className="mt-5 text-lg leading-relaxed text-ink/70">{item.text}</p>
@@ -946,8 +1067,12 @@ export default function PrelawCampPage() {
             <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/20 to-transparent" />
             <div className="relative flex h-full items-end p-8 md:p-14">
               <div>
-                <div className="text-xs font-semibold uppercase tracking-[0.28em] text-paper/60">Final Policy Capstone</div>
-                <h2 className="mt-5 font-display text-5xl leading-[0.95] md:text-7xl">Argue your case.</h2>
+                <div className="text-xs font-semibold uppercase tracking-[0.28em] text-paper/60">
+                  Final Policy Capstone
+                </div>
+                <h2 className="mt-5 font-display text-5xl leading-[0.95] md:text-7xl">
+                  Argue your case.
+                </h2>
               </div>
             </div>
           </div>
@@ -958,7 +1083,9 @@ export default function PrelawCampPage() {
                 You are a policymaker in your home country. Make one change to the law.
               </p>
               <p className="mt-7 text-lg leading-relaxed text-paper/70">
-                On the final day, students argue their proposed legal change before a panel. Outstanding capstone arguments and program achievement are recognized during the awards and certificate ceremony.
+                On the final day, students argue their proposed legal change before a panel.
+                Outstanding capstone arguments and program achievement are recognized during the
+                awards and certificate ceremony.
               </p>
               <div className="mt-10 grid gap-px bg-paper/15 sm:grid-cols-3">
                 {[
@@ -970,7 +1097,9 @@ export default function PrelawCampPage() {
                   return (
                     <div key={label as string} className="bg-ink p-6">
                       <Mark className="h-6 w-6 text-crimson" strokeWidth={1.5} />
-                      <div className="mt-4 text-sm font-semibold uppercase tracking-[0.18em]">{label as string}</div>
+                      <div className="mt-4 text-sm font-semibold uppercase tracking-[0.18em]">
+                        {label as string}
+                      </div>
                     </div>
                   );
                 })}
@@ -989,11 +1118,14 @@ export default function PrelawCampPage() {
           <div className="mx-auto grid max-w-[1500px] grid-cols-12 gap-8 px-5 py-24 lg:px-10 lg:py-32">
             <div className="col-span-12 lg:col-span-8">
               <ScrollText className="h-9 w-9 text-paper/70" strokeWidth={1.4} />
-              <h2 className="mt-8 font-display text-5xl leading-[0.95] md:text-7xl">Enter the conversation. Leave ready to change it.</h2>
+              <h2 className="mt-8 font-display text-5xl leading-[0.95] md:text-7xl">
+                Enter the conversation. Leave ready to change it.
+              </h2>
             </div>
             <div className="col-span-12 flex flex-col items-start justify-end gap-8 lg:col-span-4">
               <p className="text-xl leading-relaxed text-paper/80">
-                The HUGEM Pre-Law Academy builds legal literacy, critical thinking, public service, and confidence.
+                The HUGEM Pre-Law Academy builds legal literacy, critical thinking, public service,
+                and confidence.
               </p>
               <a
                 href={applyUrl()}
@@ -1009,10 +1141,11 @@ export default function PrelawCampPage() {
       </main>
 
       <footer className="bg-ink text-paper">
-
         <div className="border-t border-paper/15">
           <div className="mx-auto flex max-w-[1500px] flex-col items-center px-5 py-14 text-center lg:px-10">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-paper/60">In collaboration with</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-paper/60">
+              In collaboration with
+            </p>
             <img
               src={lwlLogo.url}
               alt="Learn with Leaders"
@@ -1022,11 +1155,24 @@ export default function PrelawCampPage() {
               loading="lazy"
             />
             <div className="mt-8 flex flex-col gap-2 text-sm text-paper/70 md:flex-row md:gap-8">
-              <a href="mailto:team@learnwithleaders.com" className="transition-colors hover:text-crimson">team@learnwithleaders.com</a>
-              <a href="https://www.learnwithleaders.com" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-crimson">www.learnwithleaders.com</a>
+              <a
+                href="mailto:team@learnwithleaders.com"
+                className="transition-colors hover:text-crimson"
+              >
+                team@learnwithleaders.com
+              </a>
+              <a
+                href="https://www.learnwithleaders.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-crimson"
+              >
+                www.learnwithleaders.com
+              </a>
             </div>
             <p className="mt-8 text-xs text-paper/40">
-              Harvard Undergraduate Global Education Movement · Pre-Law Academy at Harvard University · 11 – 17 January 2027
+              Harvard Undergraduate Global Education Movement · Pre-Law Academy at Harvard
+              University · 11 – 17 January 2027
             </p>
           </div>
         </div>
@@ -1034,7 +1180,10 @@ export default function PrelawCampPage() {
         <div className="border-t border-paper/15">
           <div className="mx-auto flex max-w-[1500px] items-center justify-between px-5 py-6 lg:px-10">
             <p className="text-xs text-paper/40">© HUGEM 2027</p>
-            <a href="#top" className="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-paper/70 transition-colors hover:text-crimson">
+            <a
+              href="#top"
+              className="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-paper/70 transition-colors hover:text-crimson"
+            >
               Back to top <ArrowDown className="h-4 w-4 rotate-180" />
             </a>
           </div>

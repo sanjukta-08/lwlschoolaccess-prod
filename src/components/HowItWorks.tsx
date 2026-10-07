@@ -41,14 +41,15 @@ export function HowItWorks() {
   return (
     <section id="how" className="scroll-mt-20 bg-paper px-5 py-10">
       <div className="page-shell">
-        <SectionHeading
-          sub="Three steps from curiosity to a confirmed seat in the right cohort."
-        >
+        <SectionHeading sub="Three steps from curiosity to a confirmed seat in the right cohort.">
           How it <em className="text-crimson-deep">works</em>
         </SectionHeading>
         <div className="relative mt-4 grid gap-4 md:grid-cols-3">
           {STEPS.map((s) => (
-            <div key={s.n} className="rounded-2xl border border-line bg-paper/80 p-5 backdrop-blur-sm">
+            <div
+              key={s.n}
+              className="rounded-2xl border border-line bg-paper/80 p-5 backdrop-blur-sm"
+            >
               <span className="mono-label text-crimson">{s.n}</span>
               <h3 className="mt-2 font-display text-[1.15rem] font-bold">{s.t}</h3>
               <p className="mt-2 text-[0.88rem] text-ink-soft">{s.d}</p>
@@ -64,9 +65,7 @@ export function WhyLwl() {
   return (
     <section id="why" className="scroll-mt-20 bg-wash py-10">
       <div className="page-shell">
-        <SectionHeading
-          sub="The details parents ask about most, built into every programme we run."
-        >
+        <SectionHeading sub="The details parents ask about most, built into every programme we run.">
           Why <em className="text-crimson-deep">Learn with Leaders</em>
         </SectionHeading>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">

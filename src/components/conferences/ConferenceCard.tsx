@@ -1,11 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, MapPin } from "lucide-react";
 import type { Programme } from "@/lib/programmes";
-import {
-  conferenceDateLabel,
-  conferenceImage,
-  conferenceLocation,
-} from "@/lib/conferences";
+import { conferenceDateLabel, conferenceImage, conferenceLocation } from "@/lib/conferences";
 import { conferenceSlugOf } from "@/lib/programme-slug";
 
 /** Duration label derived from the live cohort start/end dates. */
@@ -31,7 +27,9 @@ export function ConferenceCard({
   const duration = conferenceDuration(conference);
 
   const cardContent = (
-    <div className={`group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-soft transition-all duration-300 ${disabled ? "cursor-default" : "hover:-translate-y-0.5 hover:border-gold-line hover:shadow-lift"}`}>
+    <div
+      className={`group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-soft transition-all duration-300 ${disabled ? "cursor-default" : "hover:-translate-y-0.5 hover:border-gold-line hover:shadow-lift"}`}
+    >
       {/* Image */}
       <div className="relative aspect-[4/3] overflow-hidden">
         <img
@@ -79,7 +77,10 @@ export function ConferenceCard({
         {!disabled && (
           <div className="flex items-center gap-1.5 pt-1">
             <span className="mono-label text-crimson">View conference</span>
-            <ArrowRight className="h-4 w-4 text-crimson transition-transform group-hover:translate-x-1" aria-hidden />
+            <ArrowRight
+              className="h-4 w-4 text-crimson transition-transform group-hover:translate-x-1"
+              aria-hidden
+            />
           </div>
         )}
       </div>

@@ -53,10 +53,10 @@ function ProfileBuildingPage() {
         }
         subtitle={
           <>
-            Universities read a story, not a list of certificates. This page sets out
-            exactly what each kind of program contributes to that story, the skills your
-            child practises, and the proof you are left holding at the end - the things an
-            admissions officer can actually check.
+            Universities read a story, not a list of certificates. This page sets out exactly what
+            each kind of program contributes to that story, the skills your child practises, and the
+            proof you are left holding at the end - the things an admissions officer can actually
+            check.
           </>
         }
         pills={[
@@ -102,9 +102,7 @@ function ProfileBuildingPage() {
                     {stage.band}
                   </span>
                 </div>
-                <h3 className="mt-2 font-serif text-[1.15rem] font-semibold">
-                  {stage.title}
-                </h3>
+                <h3 className="mt-2 font-serif text-[1.15rem] font-semibold">{stage.title}</h3>
                 <p className="mt-1.5 text-[0.84rem] text-ink-soft">{stage.goal}</p>
               </li>
             ))}
@@ -121,12 +119,11 @@ function ProfileBuildingPage() {
           <header className="mb-7 mx-auto max-w-[46em] text-center">
             <span className="mono-label text-crimson">The conversion</span>
             <h2 className="mt-2 font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
-              From one program to <em className="text-crimson-deep">one line</em> on
-              an application
+              From one program to <em className="text-crimson-deep">one line</em> on an application
             </h2>
             <p className="mt-2.5 text-[0.93rem] text-ink-soft">
-              Most families stop at "completed". These six moves are what turn a
-              completed program into something a university can verify.
+              Most families stop at "completed". These six moves are what turn a completed program
+              into something a university can verify.
             </p>
           </header>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

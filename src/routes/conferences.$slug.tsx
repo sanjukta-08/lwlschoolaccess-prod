@@ -24,10 +24,20 @@ export const Route = createFileRoute("/conferences/$slug")({
     return { conference };
   },
   head: ({ loaderData }) => {
-    if (!loaderData) return { meta: [{ title: "Conference not found | Learn with Leaders" }, { name: "robots", content: "noindex" }] };
+    if (!loaderData)
+      return {
+        meta: [
+          { title: "Conference not found | Learn with Leaders" },
+          { name: "robots", content: "noindex" },
+        ],
+      };
     const { conference } = loaderData;
     const title = `${conference.name} | Learn with Leaders`;
-    const description = `${conference.tag || conference.about} ${conferenceDateLabel(conference)} in ${conferenceLocation(conference)}.`.slice(0, 158);
+    const description =
+      `${conference.tag || conference.about} ${conferenceDateLabel(conference)} in ${conferenceLocation(conference)}.`.slice(
+        0,
+        158,
+      );
     return {
       meta: [
         { title },
@@ -37,17 +47,27 @@ export const Route = createFileRoute("/conferences/$slug")({
         { property: "og:type", content: "article" },
         { name: "twitter:card", content: "summary_large_image" },
       ],
-      scripts: [{ type: "application/ld+json", children: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "EducationEvent",
-        name: conference.name,
-        description,
-        ...(conference.cohorts[0] ? { startDate: conference.cohorts[0].d, endDate: conference.cohorts[0].end ?? conference.cohorts[0].d } : {}),
-        location: { "@type": "Place", name: conferenceLocation(conference) },
-        organizer: { "@type": "Organization", name: "Learn with Leaders" },
-        image: conferenceImage(conference),
-        url: conference.apply,
-      }) }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "EducationEvent",
+            name: conference.name,
+            description,
+            ...(conference.cohorts[0]
+              ? {
+                  startDate: conference.cohorts[0].d,
+                  endDate: conference.cohorts[0].end ?? conference.cohorts[0].d,
+                }
+              : {}),
+            location: { "@type": "Place", name: conferenceLocation(conference) },
+            organizer: { "@type": "Organization", name: "Learn with Leaders" },
+            image: conferenceImage(conference),
+            url: conference.apply,
+          }),
+        },
+      ],
     };
   },
   notFoundComponent: ConferenceNotFound,
@@ -69,9 +89,11 @@ function ConferencePage() {
   };
   const ImportedPage = importedPages[slug];
 
-  return ImportedPage
-    ? <ImportedPage conference={conference} />
-    : <ImportedConferenceLanding conference={conference} />;
+  return ImportedPage ? (
+    <ImportedPage conference={conference} />
+  ) : (
+    <ImportedConferenceLanding conference={conference} />
+  );
 }
 
 function ConferenceNotFound() {
@@ -80,8 +102,15 @@ function ConferenceNotFound() {
       <SiteHeader />
       <main className="page-shell py-24 text-center">
         <h1 className="font-serif text-[2.4rem] font-semibold text-ink">Conference not found</h1>
-        <p className="mt-3 text-ink-soft">This destination may have been renamed or removed from the live catalogue.</p>
-        <Link to="/conferences" className="mt-7 inline-block bg-crimson px-7 py-3 text-paper no-underline">See all conferences</Link>
+        <p className="mt-3 text-ink-soft">
+          This destination may have been renamed or removed from the live catalogue.
+        </p>
+        <Link
+          to="/conferences"
+          className="mt-7 inline-block bg-crimson px-7 py-3 text-paper no-underline"
+        >
+          See all conferences
+        </Link>
       </main>
       <SiteFooter />
     </div>

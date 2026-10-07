@@ -15,9 +15,8 @@ export function ProfileTypeBlocks() {
             What each kind of program <em className="text-crimson-deep">builds</em>
           </h2>
           <p className="mt-2.5 text-[0.93rem] text-ink-soft">
-            The five kinds of program do different jobs on a profile. Read the job
-            first, then pick the field - that order stops families buying five of the
-            same thing.
+            The five kinds of program do different jobs on a profile. Read the job first, then pick
+            the field - that order stops families buying five of the same thing.
           </p>
         </header>
 
@@ -26,21 +25,14 @@ export function ProfileTypeBlocks() {
             const info = TYPE_PROFILE[t];
             const list = PROGRAMMES.filter((p) => p.type === t);
             return (
-              <article
-                key={t}
-                className="rounded-3xl border border-line bg-paper p-6 shadow-soft"
-              >
+              <article key={t} className="rounded-3xl border border-line bg-paper p-6 shadow-soft">
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <h3 className="font-serif text-[1.3rem] font-semibold">
-                    {TYPES[t].label}
-                  </h3>
+                  <h3 className="font-serif text-[1.3rem] font-semibold">{TYPES[t].label}</h3>
                   <span className="rounded-full bg-wash px-2.5 py-1 font-mono text-[0.7rem] font-semibold text-ink-soft">
                     {list.length} listed
                   </span>
                 </div>
-                <p className="mt-2 max-w-[60em] text-[0.9rem] text-ink-soft">
-                  {info.purpose}
-                </p>
+                <p className="mt-2 max-w-[60em] text-[0.9rem] text-ink-soft">{info.purpose}</p>
 
                 <div className="mt-5 grid gap-5 md:grid-cols-2">
                   <div>
@@ -57,9 +49,7 @@ export function ProfileTypeBlocks() {
                     </div>
                   </div>
                   <div>
-                    <span className="mono-label text-ink-faint">
-                      What you end up holding
-                    </span>
+                    <span className="mono-label text-ink-faint">What you end up holding</span>
                     <ul className="mt-2 flex flex-col gap-1.5">
                       {info.proof.map((s) => (
                         <li key={s} className="flex gap-2 text-[0.84rem] text-ink-soft">

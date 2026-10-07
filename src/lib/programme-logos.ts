@@ -17,15 +17,7 @@ import sat from "@/assets/logo-sat.png.asset.json";
 import type { TrackKey } from "@/lib/programmes";
 
 export type BrandKey =
-  | "onward"
-  | "doctors"
-  | "finlit"
-  | "luther"
-  | "lawyers"
-  | "yaleWla"
-  | "yaleIra"
-  | "hmc"
-  | "sat";
+  "onward" | "doctors" | "finlit" | "luther" | "lawyers" | "yaleWla" | "yaleIra" | "hmc" | "sat";
 
 export type Brand = { key: BrandKey; name: string; src: string; alt: string };
 
@@ -66,13 +58,7 @@ const PROGRAMME_BRANDS: Record<string, BrandKey> = {
 };
 
 // Programmes that should not display a brand logo at all.
-export const NO_LOGO_IDS = new Set([
-  "mun",
-  "fmun",
-  "wds",
-  "huceg",
-  "greenvan",
-]);
+export const NO_LOGO_IDS = new Set(["mun", "fmun", "wds", "huceg", "greenvan"]);
 
 /** Pathway fallback when a programme is not explicitly mapped above. */
 const TRACK_BRANDS: Partial<Record<TrackKey, BrandKey>> = {
@@ -87,26 +73,22 @@ const TRACK_BRANDS: Partial<Record<TrackKey, BrandKey>> = {
 
 export const brandFor = (id: string, tracks: TrackKey[] = []): Brand | undefined => {
   if (NO_LOGO_IDS.has(id)) return undefined;
-  const key =
-    PROGRAMME_BRANDS[id] ??
-    tracks.map((t) => TRACK_BRANDS[t]).find(Boolean) ??
-    "onward";
+  const key = PROGRAMME_BRANDS[id] ?? tracks.map((t) => TRACK_BRANDS[t]).find(Boolean) ?? "onward";
   return BRANDS[key];
 };
 
-export const PROGRAMME_LOGOS: Record<string, { src: string; alt: string }> =
-  Object.fromEntries(
-    Object.entries(PROGRAMME_BRANDS).map(([id, key]) => [
-      id,
-      { src: BRANDS[key].src, alt: BRANDS[key].alt },
-    ])
-  );
+export const PROGRAMME_LOGOS: Record<string, { src: string; alt: string }> = Object.fromEntries(
+  Object.entries(PROGRAMME_BRANDS).map(([id, key]) => [
+    id,
+    { src: BRANDS[key].src, alt: BRANDS[key].alt },
+  ]),
+);
 
 export const programmeLogo = (id: string) => PROGRAMME_LOGOS[id];
 
 export const logoFor = (
   id: string,
-  tracks: TrackKey[]
+  tracks: TrackKey[],
 ): { src: string; alt: string } | undefined => {
   const b = brandFor(id, tracks);
   return b ? { src: b.src, alt: b.alt } : undefined;

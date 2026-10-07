@@ -1,7 +1,7 @@
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { ArrowRight, Download } from 'lucide-react';
-import igniteHero from '@/assets/cambridge/ignite-hero.jpg';
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Download } from "lucide-react";
+import igniteHero from "@/assets/cambridge/ignite-hero.jpg";
 
 interface IgniteHeroProps {
   onApplyClick: () => void;
@@ -34,7 +34,6 @@ export const IgniteHero = ({ onApplyClick, brochureUrl }: IgniteHeroProps) => {
         >
           APPLY NOW
         </Button>
-
       </motion.div>
     </section>
   );

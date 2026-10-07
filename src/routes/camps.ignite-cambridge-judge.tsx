@@ -20,21 +20,31 @@ import FAQSection from "@/components/camps/ignite-full/FAQSection";
 const SLUG = "ignite-cambridge-judge";
 const APPLY = "https://apply.learnwithleaders.com/apply/cambridge-ignite";
 const TITLE = "IGNITE Young Minds at Cambridge Judge | Learn with Leaders";
-const DESC = "A seven-day residential entrepreneurship program at Cambridge Judge Entrepreneurship Centre for students aged 15–18.";
+const DESC =
+  "A seven-day residential entrepreneurship program at Cambridge Judge Entrepreneurship Centre for students aged 15–18.";
 
 export const Route = createFileRoute("/camps/ignite-cambridge-judge")({
   staticData: { sitemap: true },
-  loader: async ({ context }) => { await ensureCatalogue(context.queryClient); return null; },
+  loader: async ({ context }) => {
+    await ensureCatalogue(context.queryClient);
+    return null;
+  },
   head: () => ({
     meta: [
-      { title: TITLE }, { name: "description", content: DESC },
-      { property: "og:title", content: TITLE }, { property: "og:description", content: DESC },
-      { property: "og:type", content: "article" }, { name: "twitter:card", content: "summary_large_image" },
+      { title: TITLE },
+      { name: "description", content: DESC },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESC },
+      { property: "og:type", content: "article" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       { rel: "canonical", href: "https://lwlschoolaccess.com/camps/ignite-cambridge-judge" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@400;500;600;700&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@400;500;600;700&display=swap",
+      },
     ],
   }),
   component: IgnitePage,

@@ -22,12 +22,17 @@ export function useVideoAutoplay() {
     tryPlay();
 
     const observer = new IntersectionObserver(
-      (entries) => entries.forEach((e) => { if (e.isIntersecting) tryPlay(); }),
-      { threshold: 0.1 }
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) tryPlay();
+        }),
+      { threshold: 0.1 },
     );
     observer.observe(video);
 
-    const onVisible = () => { if (document.visibilityState === "visible") tryPlay(); };
+    const onVisible = () => {
+      if (document.visibilityState === "visible") tryPlay();
+    };
     const onInteraction = () => tryPlay();
     document.addEventListener("visibilitychange", onVisible);
     window.addEventListener("pointerdown", onInteraction, { once: true });

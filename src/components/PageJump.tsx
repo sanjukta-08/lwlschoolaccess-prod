@@ -1,8 +1,4 @@
-export function PageJump({
-  items,
-}: {
-  items: { id: string; label: string }[];
-}) {
+export function PageJump({ items }: { items: { id: string; label: string }[] }) {
   return (
     <nav
       aria-label="On this page"

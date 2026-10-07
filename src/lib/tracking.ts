@@ -90,7 +90,6 @@ export async function startSession() {
       }
     }
 
-
     // Real session-duration numbers: heartbeat while the tab lives, final
     // beacon on close.
     window.setInterval(() => {
@@ -103,9 +102,12 @@ export async function startSession() {
       try {
         navigator.sendBeacon(
           ENDPOINT,
-          new Blob([JSON.stringify({ action: "session_heartbeat", session_id: id, ending: true })], {
-            type: "application/json",
-          }),
+          new Blob(
+            [JSON.stringify({ action: "session_heartbeat", session_id: id, ending: true })],
+            {
+              type: "application/json",
+            },
+          ),
         );
       } catch {
         /* ignore */

@@ -11,8 +11,8 @@ export function LinkedInStories() {
             Learn with Leaders on <em className="text-crimson-deep">LinkedIn</em>
           </h2>
           <p className="mt-2 max-w-[40em] text-[0.9rem] text-ink-soft">
-            Students and parents share what they finished, not just what they attended.
-            Tap any story to read the full post.
+            Students and parents share what they finished, not just what they attended. Tap any
+            story to read the full post.
           </p>
         </div>
 

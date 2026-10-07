@@ -35,9 +35,7 @@ export function GuidedFinder() {
   const typeCounts = useMemo(() => {
     const out = {} as Record<TypeKey, number>;
     TYPE_ORDER.forEach((t) => {
-      out[t] = PROGRAMMES.filter(
-        (p) => p.type === t && p.cohorts.some((c) => !isPast(c.d)),
-      ).length;
+      out[t] = PROGRAMMES.filter((p) => p.type === t && p.cohorts.some((c) => !isPast(c.d))).length;
     });
     return out;
   }, []);
@@ -106,7 +104,8 @@ export function GuidedFinder() {
                   {TYPE_BLURB[t]}
                 </small>
                 <span className="mt-2 inline-flex items-center gap-1 text-[0.78rem] font-bold text-crimson">
-                  Choose <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                  Choose{" "}
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                 </span>
               </button>
             ))}
@@ -123,7 +122,10 @@ export function GuidedFinder() {
             We&apos;ll only show {TYPES[state.type!].label.toLowerCase()} open to that grade.
           </p>
           <div className="grid gap-2.5 sm:grid-cols-2">
-            {[{ value: "all", label: "Any grade" }, ...Object.keys(BANDS).map((b) => ({ value: b, label: BAND_LABEL[b]! }))].map((o) => (
+            {[
+              { value: "all", label: "Any grade" },
+              ...Object.keys(BANDS).map((b) => ({ value: b, label: BAND_LABEL[b]! })),
+            ].map((o) => (
               <button
                 key={o.value}
                 type="button"

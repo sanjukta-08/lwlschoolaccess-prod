@@ -1,11 +1,5 @@
 import { CalendarDays, Compass, Search, SlidersHorizontal } from "lucide-react";
-import {
-  TRACKS,
-  TYPES,
-  TYPE_ORDER,
-  type TrackKey,
-  type TypeKey,
-} from "@/lib/programmes";
+import { TRACKS, TYPES, TYPE_ORDER, type TrackKey, type TypeKey } from "@/lib/programmes";
 import { facetCounts, type FinderSearch, type MonthGroup } from "@/lib/finder";
 
 type Props = {
@@ -168,8 +162,7 @@ export function CalendarControls({
     });
   if (state.month !== "all")
     chips.push({ label: shortMonth(state.month), clear: { month: "all" } });
-  if (state.status === "soon")
-    chips.push({ label: "Starting soon", clear: { status: "all" } });
+  if (state.status === "soon") chips.push({ label: "Starting soon", clear: { status: "all" } });
 
   return (
     <div className="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur">
@@ -277,9 +270,7 @@ export function CalendarControls({
         <div className="mt-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-line pt-3">
           <div className="flex flex-wrap items-center gap-2">
             <span className="font-mono text-[0.78rem] text-ink-soft">
-              <strong className="text-[0.9rem] font-semibold text-crimson">
-                {programmeCount}
-              </strong>{" "}
+              <strong className="text-[0.9rem] font-semibold text-crimson">{programmeCount}</strong>{" "}
               programmes · {cohortCount} cohorts
             </span>
             <Seg

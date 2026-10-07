@@ -1,11 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import linkedinMark from "@/assets/linkedin-logo.webp.asset.json";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import type { LinkedInStory } from "@/lib/social-proof";
 
 export function LinkedInGlyph({ className = "" }: { className?: string }) {
@@ -29,15 +24,7 @@ export function InstagramGlyph({ className = "" }: { className?: string }) {
       className={`inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-[7px] bg-[linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7)] text-paper ${className}`}
     >
       <svg viewBox="0 0 24 24" fill="none" className="h-3.5 w-3.5">
-        <rect
-          x="3"
-          y="3"
-          width="18"
-          height="18"
-          rx="5"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
+        <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="2" />
         <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2" />
         <circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" />
       </svg>
@@ -45,13 +32,7 @@ export function InstagramGlyph({ className = "" }: { className?: string }) {
   );
 }
 
-function SourceGlyph({
-  story,
-  className = "",
-}: {
-  story: LinkedInStory;
-  className?: string;
-}) {
+function SourceGlyph({ story, className = "" }: { story: LinkedInStory; className?: string }) {
   return story.source === "instagram" ? (
     <InstagramGlyph className={className} />
   ) : (
@@ -64,20 +45,25 @@ const SOURCE_LABEL: Record<LinkedInStory["source"], string> = {
   instagram: "Instagram",
 };
 
-
 /** LinkedIn-style reaction stack. */
 function ReactionStack({ story }: { story: LinkedInStory }) {
   return (
     <span className="flex items-center gap-2">
-        <span aria-hidden className="flex items-center -space-x-1">
+      <span aria-hidden className="flex items-center -space-x-1">
         <span className="flex h-5 w-5 items-center justify-center rounded-full border border-paper bg-[#0a66c2] text-[0.55rem] text-paper">
-          <svg className="h-2.5 w-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M2 20h2c.55 0 1-.45 1-1v-9c0-.55-.45-1-1-1H2v11zm19.83-7.12c.11-.25.17-.52.17-.8V11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 2 7.58 7.59C7.21 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1c0-.03-.01-.06-.01-.09z"/></svg>
+          <svg className="h-2.5 w-2.5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M2 20h2c.55 0 1-.45 1-1v-9c0-.55-.45-1-1-1H2v11zm19.83-7.12c.11-.25.17-.52.17-.8V11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13.17 2 7.58 7.59C7.21 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1c0-.03-.01-.06-.01-.09z" />
+          </svg>
         </span>
         <span className="flex h-5 w-5 items-center justify-center rounded-full border border-paper bg-crimson text-[0.55rem] text-paper">
-          <svg className="h-2.5 w-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          <svg className="h-2.5 w-2.5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+          </svg>
         </span>
         <span className="flex h-5 w-5 items-center justify-center rounded-full border border-paper bg-gold text-[0.55rem] text-ink">
-          <svg className="h-2.5 w-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg className="h-2.5 w-2.5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+          </svg>
         </span>
         <span className="flex h-5 w-5 items-center justify-center rounded-full border border-paper bg-ink/25" />
       </span>
@@ -94,13 +80,7 @@ function Reactions({ story }: { story: LinkedInStory }) {
   );
 }
 
-function StoryTile({
-  story,
-  onOpen,
-}: {
-  story: LinkedInStory;
-  onOpen: () => void;
-}) {
+function StoryTile({ story, onOpen }: { story: LinkedInStory; onOpen: () => void }) {
   return (
     <button
       type="button"
@@ -125,9 +105,7 @@ function StoryTile({
       </header>
 
       <div className="mt-4">
-        <h3 className="text-[1.05rem] font-bold leading-snug text-ink">
-          {story.when}
-        </h3>
+        <h3 className="text-[1.05rem] font-bold leading-snug text-ink">{story.when}</h3>
       </div>
 
       {story.image ? (
@@ -213,14 +191,13 @@ function StoryLightbox({
             {story.initials}
           </span>
           <div className="min-w-0 flex-1">
-            <DialogTitle className="text-[1rem] font-bold text-ink">
-              {story.name}
-            </DialogTitle>
+            <DialogTitle className="text-[1rem] font-bold text-ink">{story.name}</DialogTitle>
             <DialogDescription className="text-[0.8rem] text-ink-faint">
               {story.role}
             </DialogDescription>
             <div className="mono-label mt-1 text-ink-faint">
-              {story.when}{story.tag ? ` · #${story.tag}` : ""}
+              {story.when}
+              {story.tag ? ` · #${story.tag}` : ""}
             </div>
           </div>
           <SourceGlyph story={story} className="h-7 w-7" />
@@ -247,7 +224,6 @@ function StoryLightbox({
               Published by {story.name} on {SOURCE_LABEL[story.source]}, shared with permission.
             </p>
           )}
-
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-line px-5 py-4 text-[0.8rem] text-ink-faint">
@@ -345,10 +321,7 @@ function StoryCarousel({
 
   useEffect(() => {
     if (paused || !canSlide) return;
-    const id = window.setInterval(
-      () => setStart((s) => (s + 1) % stories.length),
-      6500,
-    );
+    const id = window.setInterval(() => setStart((s) => (s + 1) % stories.length), 6500);
     return () => window.clearInterval(id);
   }, [paused, canSlide, stories.length]);
 
@@ -377,7 +350,6 @@ function StoryCarousel({
   );
 }
 
-
 /** Continuous one-card-per-tick loop with side arrows. */
 function StoryMarquee({
   stories,
@@ -393,10 +365,7 @@ function StoryMarquee({
 
   useEffect(() => {
     if (paused || !canSlide) return;
-    const id = window.setInterval(
-      () => setStart((s) => (s + 1) % stories.length),
-      6000,
-    );
+    const id = window.setInterval(() => setStart((s) => (s + 1) % stories.length), 6000);
     return () => window.clearInterval(id);
   }, [paused, canSlide, stories.length]);
 
@@ -466,8 +435,6 @@ function StoryMarquee({
   );
 }
 
-
-
 export function StoryGallery({
   stories,
   limit,
@@ -521,21 +488,11 @@ export function StoryGallery({
         }
       >
         {shown.map((s, i) => (
-          <StoryTile
-            key={s.id}
-            story={s}
-            onOpen={() => setOpen(i)}
-          />
+          <StoryTile key={s.id} story={s} onOpen={() => setOpen(i)} />
         ))}
       </div>
 
-
-      <StoryLightbox
-        stories={shown}
-        index={open}
-        onClose={() => setOpen(null)}
-        onIndex={setOpen}
-      />
+      <StoryLightbox stories={shown} index={open} onClose={() => setOpen(null)} onIndex={setOpen} />
     </>
   );
 }

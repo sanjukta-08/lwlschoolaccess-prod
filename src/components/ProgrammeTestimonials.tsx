@@ -23,7 +23,10 @@ export function ProgrammeTestimonials({
       </div>
 
       {featured ? (
-        <blockquote className="mt-5 rounded-[20px] border-l-4 bg-wash px-7 py-6" style={{ borderColor: color }}>
+        <blockquote
+          className="mt-5 rounded-[20px] border-l-4 bg-wash px-7 py-6"
+          style={{ borderColor: color }}
+        >
           <p className="font-serif text-[clamp(1.05rem,2.4vw,1.3rem)] leading-relaxed">
             “{featured.quote}”
           </p>
@@ -42,9 +45,7 @@ export function ProgrammeTestimonials({
             <span className="text-[0.85rem]" style={{ color }} aria-hidden>
               ★★★★★
             </span>
-            <blockquote className="mt-2 text-[0.88rem] text-ink-soft">
-              “{t.quote}”
-            </blockquote>
+            <blockquote className="mt-2 text-[0.88rem] text-ink-soft">“{t.quote}”</blockquote>
             <figcaption className="mt-3 text-[0.79rem] text-ink-faint">
               <b className="text-ink">{t.name}</b> · {t.role} · {t.city}
             </figcaption>

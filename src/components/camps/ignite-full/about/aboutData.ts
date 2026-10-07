@@ -4,7 +4,8 @@ export const aboutData = {
   subtitle1: "IGNITE Young Minds",
   subtitle2: "Programme 2026",
   lead: "This programme is designed to help students develop the essential skills needed for the future world of work.",
-  intro: "Drawing on the expertise and entrepreneurial ecosystem of the Cambridge Judge Entrepreneurship Centre, the programme builds capabilities in analytical thinking, creativity, leadership, and teamwork.",
+  intro:
+    "Drawing on the expertise and entrepreneurial ecosystem of the Cambridge Judge Entrepreneurship Centre, the programme builds capabilities in analytical thinking, creativity, leadership, and teamwork.",
   pillars: [
     {
       title: "Preparing for a Digital Future",

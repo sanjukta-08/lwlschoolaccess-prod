@@ -11,8 +11,18 @@ export interface DetailItem {
 export const details: DetailItem[] = [
   { icon: CalendarDays, label: "Dates", highlight: "18–24 July 2027" },
   { icon: Users, label: "Eligibility", highlight: "Ages 15–18" },
-  { icon: MapPin, label: "Venue", highlight: "Cambridge Judge Business School", sub: "University of Cambridge, Trumpington Street, UK" },
-  { icon: Award, label: "Recognition", highlight: "Certificate of Attendance", sub: "From the Entrepreneurship Centre at Cambridge Judge Business School" },
+  {
+    icon: MapPin,
+    label: "Venue",
+    highlight: "Cambridge Judge Business School",
+    sub: "University of Cambridge, Trumpington Street, UK",
+  },
+  {
+    icon: Award,
+    label: "Recognition",
+    highlight: "Certificate of Attendance",
+    sub: "From the Entrepreneurship Centre at Cambridge Judge Business School",
+  },
 ];
 
 export const feeIncludes = [

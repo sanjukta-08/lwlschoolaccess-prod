@@ -1,32 +1,32 @@
-import { motion } from 'framer-motion';
-import { useRef, useEffect, useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // Import gallery images
-import gardenCelebration from '@/assets/gallery/garden-celebration.jpg';
-import diningHall from '@/assets/gallery/dining-hall.jpg';
-import lectureHall from '@/assets/gallery/lecture-hall.jpg';
-import certificateCeremony from '@/assets/gallery/certificate-ceremony.jpg';
-import teamPresentation from '@/assets/gallery/team-presentation.jpg';
-import groupTour from '@/assets/gallery/group-tour.jpg';
-import natureWalk from '@/assets/gallery/nature-walk.jpg';
-import workshopActivity from '@/assets/gallery/workshop-activity.jpg';
-import outdoorSession from '@/assets/gallery/outdoor-session.jpg';
-import graduationGroup from '@/assets/gallery/graduation-group.jpg';
-import registrationDesk from '@/assets/gallery/registration-desk.jpg';
+import gardenCelebration from "@/assets/gallery/garden-celebration.jpg";
+import diningHall from "@/assets/gallery/dining-hall.jpg";
+import lectureHall from "@/assets/gallery/lecture-hall.jpg";
+import certificateCeremony from "@/assets/gallery/certificate-ceremony.jpg";
+import teamPresentation from "@/assets/gallery/team-presentation.jpg";
+import groupTour from "@/assets/gallery/group-tour.jpg";
+import natureWalk from "@/assets/gallery/nature-walk.jpg";
+import workshopActivity from "@/assets/gallery/workshop-activity.jpg";
+import outdoorSession from "@/assets/gallery/outdoor-session.jpg";
+import graduationGroup from "@/assets/gallery/graduation-group.jpg";
+import registrationDesk from "@/assets/gallery/registration-desk.jpg";
 
 const galleryImages = [
-  { src: lectureHall, alt: 'Lecture session at Cambridge' },
-  { src: diningHall, alt: 'Students at the dining hall' },
-  { src: workshopActivity, alt: 'Workshop activity session' },
-  { src: teamPresentation, alt: 'Team presentation' },
-  { src: groupTour, alt: 'Group tour at Cambridge' },
-  { src: natureWalk, alt: 'Nature walk excursion' },
-  { src: outdoorSession, alt: 'Outdoor mentoring session' },
-  { src: gardenCelebration, alt: 'Garden celebration' },
-  { src: certificateCeremony, alt: 'Certificate ceremony' },
-  { src: graduationGroup, alt: 'Graduation group photo' },
-  { src: registrationDesk, alt: 'Registration desk at Cambridge Judge Business School' },
+  { src: lectureHall, alt: "Lecture session at Cambridge" },
+  { src: diningHall, alt: "Students at the dining hall" },
+  { src: workshopActivity, alt: "Workshop activity session" },
+  { src: teamPresentation, alt: "Team presentation" },
+  { src: groupTour, alt: "Group tour at Cambridge" },
+  { src: natureWalk, alt: "Nature walk excursion" },
+  { src: outdoorSession, alt: "Outdoor mentoring session" },
+  { src: gardenCelebration, alt: "Garden celebration" },
+  { src: certificateCeremony, alt: "Certificate ceremony" },
+  { src: graduationGroup, alt: "Graduation group photo" },
+  { src: registrationDesk, alt: "Registration desk at Cambridge Judge Business School" },
 ];
 
 export const IgniteGallerySection = () => {
@@ -44,14 +44,14 @@ export const IgniteGallerySection = () => {
 
     const scroll = () => {
       if (!scrollContainer) return;
-      
+
       scrollPosition += scrollSpeed;
-      
+
       // Reset when reaching the end
       if (scrollPosition >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
         scrollPosition = 0;
       }
-      
+
       scrollContainer.scrollLeft = scrollPosition;
       animationFrameId = requestAnimationFrame(scroll);
     };
@@ -63,14 +63,14 @@ export const IgniteGallerySection = () => {
     };
   }, [isAutoScrolling]);
 
-  const handleManualScroll = (direction: 'left' | 'right') => {
+  const handleManualScroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;
     setIsAutoScrolling(false);
-    
+
     const scrollAmount = 320;
     scrollRef.current.scrollBy({
-      left: direction === 'left' ? -scrollAmount : scrollAmount,
-      behavior: 'smooth'
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
     });
 
     // Resume auto-scroll after 5 seconds
@@ -101,7 +101,7 @@ export const IgniteGallerySection = () => {
       <div className="relative">
         {/* Left Navigation Button */}
         <button
-          onClick={() => handleManualScroll('left')}
+          onClick={() => handleManualScroll("left")}
           className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-[#C94A20] text-white flex items-center justify-center shadow-lg hover:bg-[#A83D1A] transition-colors"
           aria-label="Scroll left"
         >
@@ -110,7 +110,7 @@ export const IgniteGallerySection = () => {
 
         {/* Right Navigation Button */}
         <button
-          onClick={() => handleManualScroll('right')}
+          onClick={() => handleManualScroll("right")}
           className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-[#C94A20] text-white flex items-center justify-center shadow-lg hover:bg-[#A83D1A] transition-colors"
           aria-label="Scroll right"
         >

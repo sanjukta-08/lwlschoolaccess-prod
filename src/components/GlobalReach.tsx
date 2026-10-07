@@ -8,8 +8,8 @@ export function GlobalReach() {
           Schools we <em className="text-crimson-deep">work with</em>
         </h2>
         <p className="mx-auto mt-2 max-w-[40em] text-center text-[0.9rem] text-ink-soft">
-          Students join our cohorts from international, IB, CBSE, British and American
-          curriculum schools all over the world - individually, or through their school.
+          Students join our cohorts from international, IB, CBSE, British and American curriculum
+          schools all over the world - individually, or through their school.
         </p>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">

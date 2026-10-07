@@ -112,9 +112,8 @@ function MonthCalendarPage() {
                 Cohort calendar, <em className="text-crimson-deep">month by month</em>
               </h1>
               <p className="mx-auto mt-2.5 max-w-[54em] text-[0.94rem] text-ink-soft">
-                Every start date on a real month grid. Move through the months, tap a date
-                to see everything that begins that day, and click a cohort to open its
-                program page.
+                Every start date on a real month grid. Move through the months, tap a date to see
+                everything that begins that day, and click a cohort to open its program page.
               </p>
             </div>
 
@@ -224,7 +223,9 @@ function MonthCalendarPage() {
                 </span>
                 <span
                   className={`inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full px-1 text-[0.62rem] font-bold leading-none ${
-                    i === idx ? "bg-paper/20 text-paper" : "bg-paper text-gold-deep group-hover:bg-white"
+                    i === idx
+                      ? "bg-paper/20 text-paper"
+                      : "bg-paper text-gold-deep group-hover:bg-white"
                   }`}
                 >
                   {m.rows.length}
@@ -233,7 +234,6 @@ function MonthCalendarPage() {
             ))}
           </div>
         </div>
-
 
         {months.length === 0 ? (
           <p className="py-14 text-center text-[0.92rem] text-ink-faint">
@@ -247,13 +247,7 @@ function MonthCalendarPage() {
               selected={day}
               onSelectDay={(d) => setDay(d === day ? null : d)}
             />
-            {day ? (
-              <DayList
-                day={day}
-                entries={dayEntries}
-                onClear={() => setDay(null)}
-              />
-            ) : null}
+            {day ? <DayList day={day} entries={dayEntries} onClear={() => setDay(null)} /> : null}
           </div>
         )}
 
@@ -268,7 +262,6 @@ function MonthCalendarPage() {
       </section>
 
       <SiteFooter />
-
     </div>
   );
 }

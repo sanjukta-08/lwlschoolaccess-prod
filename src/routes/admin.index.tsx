@@ -47,22 +47,40 @@ function AdminHome() {
         <Stat label="Conversations" value={data?.sessions ?? "–"} />
         <Stat label="Messages" value={data?.messages ?? "–"} />
         <Stat label="Leads" value={data?.leads ?? "–"} />
-        <Stat label="Conversion (leads ÷ conversations)" value={data ? `${data.conversion}%` : "–"} />
+        <Stat
+          label="Conversion (leads ÷ conversations)"
+          value={data ? `${data.conversion}%` : "–"}
+        />
       </div>
 
       <div className="mt-6 flex gap-3">
-        <Link to="/admin/leads" className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">View leads</Link>
-        <Link to="/admin/sessions" className="rounded-md border border-input px-4 py-2 text-sm text-foreground">View conversations</Link>
+        <Link
+          to="/admin/leads"
+          className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
+        >
+          View leads
+        </Link>
+        <Link
+          to="/admin/sessions"
+          className="rounded-md border border-input px-4 py-2 text-sm text-foreground"
+        >
+          View conversations
+        </Link>
       </div>
 
       {data && (
         <section className="mt-10">
-          <h2 className="text-lg font-semibold text-foreground">Conversations per day (last 14 days, UTC)</h2>
+          <h2 className="text-lg font-semibold text-foreground">
+            Conversations per day (last 14 days, UTC)
+          </h2>
           <ul className="mt-3 space-y-1">
             {data.byDay.map((d) => (
               <li key={d.day} className="flex items-center gap-3 text-sm">
                 <span className="w-24 text-muted-foreground">{d.day}</span>
-                <span className="h-3 rounded bg-primary" style={{ width: `${(d.count / max) * 60}%`, minWidth: d.count ? 4 : 0 }} />
+                <span
+                  className="h-3 rounded bg-primary"
+                  style={{ width: `${(d.count / max) * 60}%`, minWidth: d.count ? 4 : 0 }}
+                />
                 <span className="text-foreground">{d.count}</span>
               </li>
             ))}
@@ -73,7 +91,9 @@ function AdminHome() {
       <section className="mt-10">
         <h2 className="text-lg font-semibold text-foreground">What Compass can currently do</h2>
         <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
-          {CAPABILITIES.map((c) => <li key={c}>{c}</li>)}
+          {CAPABILITIES.map((c) => (
+            <li key={c}>{c}</li>
+          ))}
         </ul>
       </section>
     </AdminShell>

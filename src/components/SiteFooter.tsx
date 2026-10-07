@@ -24,15 +24,18 @@ export function SiteFooter({ note }: { note?: string }) {
               className="h-10 w-auto"
             />
             <p className="mt-4 max-w-[24em] text-[0.82rem] text-paper/60">
-              Live programs mentored by students and alumni of the world's most
-              selective universities. Families in {REACH.countries} countries and{" "}
-              {REACH.schools} schools.
+              Live programs mentored by students and alumni of the world's most selective
+              universities. Families in {REACH.countries} countries and {REACH.schools} schools.
             </p>
           </div>
 
           <nav className={colCls} aria-label="Programs">
             <span className="mono-label text-gold">Programs</span>
-            <Link to="/fit" search={DEFAULT_FIT} className={`${linkCls} font-bold text-gold hover:text-gold`}>
+            <Link
+              to="/fit"
+              search={DEFAULT_FIT}
+              className={`${linkCls} font-bold text-gold hover:text-gold`}
+            >
               Find the right fit (quiz)
             </Link>
             <Link to="/explore" className={linkCls}>
@@ -41,11 +44,7 @@ export function SiteFooter({ note }: { note?: string }) {
             <Link to="/finder" search={DEFAULT_SEARCH} className={linkCls}>
               Program Finder
             </Link>
-            <Link
-              to="/finder"
-              search={{ ...DEFAULT_SEARCH, sort: "month" }}
-              className={linkCls}
-            >
+            <Link to="/finder" search={{ ...DEFAULT_SEARCH, sort: "month" }} className={linkCls}>
               Starting soonest
             </Link>
             <Link
@@ -68,7 +67,6 @@ export function SiteFooter({ note }: { note?: string }) {
               Week Without Walls
             </Link>
           </nav>
-
 
           <nav className={colCls} aria-label="Dates">
             <span className="mono-label text-gold">Dates</span>
@@ -104,12 +102,7 @@ export function SiteFooter({ note }: { note?: string }) {
 
           <nav className={colCls} aria-label="Talk to us">
             <span className="mono-label text-gold">Talk to us</span>
-            <a
-              href={CALENDLY_BOOKING_URL}
-              target="_blank"
-              rel="noopener"
-              className={linkCls}
-            >
+            <a href={CALENDLY_BOOKING_URL} target="_blank" rel="noopener" className={linkCls}>
               Book a call
             </a>
             <Link to="/internships" className={linkCls}>

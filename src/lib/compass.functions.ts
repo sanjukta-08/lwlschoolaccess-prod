@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getWebRequest } from "@tanstack/react-start/server";
+import { getRequest } from "@tanstack/react-start/server";
 import { z } from "zod";
 import type { SearchResult } from "./compass-search.server";
 
@@ -36,6 +36,6 @@ export const askCompass = createServerFn({ method: "POST" })
   .handler(async ({ data }): Promise<CompassReply> => {
     const { runCompass } = await import("./compass.server");
     const { clientIpFrom } = await import("./rate-limit.server");
-    const clientIp = clientIpFrom(getWebRequest());
+    const clientIp = clientIpFrom(getRequest());
     return runCompass(data, clientIp);
   });

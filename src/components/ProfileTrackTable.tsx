@@ -3,15 +3,7 @@ import { PROGRAMMES, TRACKS, type TrackKey } from "@/lib/programmes";
 import { TRACK_PROFILE } from "@/lib/profile-building";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 
-const ORDER: TrackKey[] = [
-  "med",
-  "law",
-  "fin",
-  "ai",
-  "res",
-  "lead",
-  "sat",
-];
+const ORDER: TrackKey[] = ["med", "law", "fin", "ai", "res", "lead", "sat"];
 
 export function ProfileTrackTable() {
   return (
@@ -23,8 +15,8 @@ export function ProfileTrackTable() {
             The <em className="text-crimson-deep">skills and outcomes</em> per field
           </h2>
           <p className="mt-2.5 text-[0.93rem] text-ink-soft">
-            For each interest: the story it supports on an application, the skills your
-            child actually practises, and the outcome worth aiming at.
+            For each interest: the story it supports on an application, the skills your child
+            actually practises, and the outcome worth aiming at.
           </p>
         </header>
 
@@ -34,18 +26,12 @@ export function ProfileTrackTable() {
             const info = TRACK_PROFILE[t];
             const count = PROGRAMMES.filter((p) => p.tracks.includes(t)).length;
             return (
-              <article
-                key={t}
-                className="rounded-2xl border border-line bg-paper p-5 shadow-soft"
-              >
+              <article key={t} className="rounded-2xl border border-line bg-paper p-5 shadow-soft">
                 <div className="flex items-center gap-2">
                   <span className="text-[1.1rem]" aria-hidden>
                     {track.ic}
                   </span>
-                  <h3
-                    className="text-[1rem] font-bold"
-                    style={{ color: track.color }}
-                  >
+                  <h3 className="text-[1rem] font-bold" style={{ color: track.color }}>
                     {track.label}
                   </h3>
                   <span className="ml-auto font-mono text-[0.7rem] font-semibold text-ink-faint">

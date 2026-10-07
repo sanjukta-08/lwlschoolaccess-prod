@@ -77,16 +77,14 @@ export const LEARNER_QUOTES: LearnerQuote[] = [
     programmeId: "fdf",
   },
   {
-    quote:
-      "I've learned a lot so far on how tricky some diagnosis can be when being a doctor.",
+    quote: "I've learned a lot so far on how tricky some diagnosis can be when being a doctor.",
     name: "Vanessa S.",
     role: "Student",
     programme: "Future Doctors, Batch 2",
     programmeId: "fdf",
   },
   {
-    quote:
-      "It was really interesting to hear about the different types of medical fields.",
+    quote: "It was really interesting to hear about the different types of medical fields.",
     name: "Sadie M.",
     role: "Student",
     programme: "Future Doctors, Batch 2",
@@ -117,8 +115,7 @@ export const LEARNER_QUOTES: LearnerQuote[] = [
     programmeId: "fdf",
   },
   {
-    quote:
-      "I learned more about the reality of being a doctor and what it takes to be one.",
+    quote: "I learned more about the reality of being a doctor and what it takes to be one.",
     name: "Daniel E.",
     role: "Student",
     programme: "Future Doctors, Batch 1",
@@ -214,8 +211,7 @@ export const LEARNER_QUOTES: LearnerQuote[] = [
     programmeId: "ail",
   },
   {
-    quote:
-      "She was amazing, she helps out and tries to find other solutions if we had a problem.",
+    quote: "She was amazing, she helps out and tries to find other solutions if we had a problem.",
     name: "Ammar",
     role: "Student",
     programme: "ADNOC Cohort 1",

@@ -7,7 +7,8 @@ import pageCss from "@/content/geneva/scoped.css?raw";
 
 const SLUG = "future-sustainability-innovators-geneva";
 const TITLE = "Future Sustainability Innovators Program — Geneva";
-const DESC = "A seven-day sustainability, innovation and global institutions camp in Geneva for students aged 13–17.";
+const DESC =
+  "A seven-day sustainability, innovation and global institutions camp in Geneva for students aged 13–17.";
 const APPLY = "https://apply.learnwithleaders.com/apply/geneva-camp";
 const CAROUSELS = [
   { selector: "#network", mobile: 1, tablet: 2, desktop: 4, interval: 3500 },
@@ -20,18 +21,30 @@ const CAROUSELS = [
 
 export const Route = createFileRoute("/camps/future-sustainability-innovators-geneva")({
   staticData: { sitemap: true },
-  loader: async ({ context }) => { await ensureCatalogue(context.queryClient); return null; },
+  loader: async ({ context }) => {
+    await ensureCatalogue(context.queryClient);
+    return null;
+  },
   head: () => ({
     meta: [
-      { title: TITLE }, { name: "description", content: DESC },
-      { property: "og:title", content: TITLE }, { property: "og:description", content: DESC },
-      { property: "og:type", content: "article" }, { name: "twitter:card", content: "summary_large_image" },
+      { title: TITLE },
+      { name: "description", content: DESC },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESC },
+      { property: "og:type", content: "article" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
-      { rel: "canonical", href: "https://lwlschoolaccess.com/camps/future-sustainability-innovators-geneva" },
+      {
+        rel: "canonical",
+        href: "https://lwlschoolaccess.com/camps/future-sustainability-innovators-geneva",
+      },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap",
+      },
     ],
   }),
   component: GenevaCampPage,
@@ -39,5 +52,13 @@ export const Route = createFileRoute("/camps/future-sustainability-innovators-ge
 
 function GenevaCampPage() {
   const applyUrl = campBySlug(SLUG)?.applyUrl ?? APPLY;
-  return <LegacyCampPage className="geneva-page" html={pageHtml} css={pageCss} applyUrl={applyUrl} carousels={[...CAROUSELS]} />;
+  return (
+    <LegacyCampPage
+      className="geneva-page"
+      html={pageHtml}
+      css={pageCss}
+      applyUrl={applyUrl}
+      carousels={[...CAROUSELS]}
+    />
+  );
 }

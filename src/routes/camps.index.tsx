@@ -57,11 +57,8 @@ export const Route = createFileRoute("/camps/")({
 
 const seg = (active: boolean) =>
   `px-4 py-1.5 text-[0.7rem] font-semibold tracking-wide uppercase transition-colors ${
-    active
-      ? "bg-crimson text-paper"
-      : "bg-paper text-ink-soft hover:text-crimson"
+    active ? "bg-crimson text-paper" : "bg-paper text-ink-soft hover:text-crimson"
   }`;
-
 
 function CampsHub() {
   const [region, setRegion] = useState<Region | "all">("all");
@@ -72,14 +69,15 @@ function CampsHub() {
       sortedCamps(
         CAMPS.filter(
           (c) =>
-            (region === "all" || c.region === region) &&
-            (season === "all" || c.season === season),
+            (region === "all" || c.region === region) && (season === "all" || c.season === season),
         ),
       ),
     [region, season],
   );
 
-  const upcoming = sortedCamps(CAMPS).filter((c) => c.cohorts[0]?.start).slice(0, 3);
+  const upcoming = sortedCamps(CAMPS)
+    .filter((c) => c.cohorts[0]?.start)
+    .slice(0, 3);
   const cities = new Set(CAMPS.map((c) => c.city)).size;
   const universities = new Set(CAMPS.map((c) => c.host)).size;
 
@@ -87,13 +85,23 @@ function CampsHub() {
     <div className="min-h-dvh bg-paper">
       <SiteHeader />
       <section className="relative isolate flex min-h-[19rem] items-center justify-center overflow-hidden border-b border-line bg-paper px-5 pb-10 pt-8 sm:min-h-[21rem] sm:px-8 lg:pb-12 lg:pt-10">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-0 hidden w-[68%] select-none items-center overflow-hidden pl-8 sm:flex" aria-hidden>
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0 z-0 hidden w-[68%] select-none items-center overflow-hidden pl-8 sm:flex"
+          aria-hidden
+        >
           <span className="whitespace-nowrap font-display text-[clamp(5.5rem,12vw,11rem)] font-black uppercase leading-none text-crimson/[0.06]">
             Camps
           </span>
         </div>
-        <div className="pointer-events-none absolute right-10 top-1/2 z-[1] hidden w-[min(320px,21vw)] -translate-y-1/2 opacity-20 xl:block" aria-hidden>
-          <img src={birdAsset.url} alt="" className="h-auto w-full object-contain object-right [mask-image:linear-gradient(to_left,black_55%,transparent_95%)]" />
+        <div
+          className="pointer-events-none absolute right-10 top-1/2 z-[1] hidden w-[min(320px,21vw)] -translate-y-1/2 opacity-20 xl:block"
+          aria-hidden
+        >
+          <img
+            src={birdAsset.url}
+            alt=""
+            className="h-auto w-full object-contain object-right [mask-image:linear-gradient(to_left,black_55%,transparent_95%)]"
+          />
         </div>
 
         <div className="relative z-10 mx-auto max-w-4xl text-center">
@@ -101,7 +109,9 @@ function CampsHub() {
             Explore Our <span className="text-crimson">Camps</span>
           </h1>
           <p className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
-            {CAMPS.length} residential camps at {universities} universities across {cities} cities — Harvard, Cambridge Judge, the University of Geneva and Salamanca. Small cohorts, undergraduate mentors, and a project your child presents before they fly home.
+            {CAMPS.length} residential camps at {universities} universities across {cities} cities —
+            Harvard, Cambridge Judge, the University of Geneva and Salamanca. Small cohorts,
+            undergraduate mentors, and a project your child presents before they fly home.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <a
@@ -121,12 +131,19 @@ function CampsHub() {
           </div>
         </div>
 
-        <div className="pointer-events-none absolute left-8 top-1/2 hidden h-32 w-1 -translate-y-1/2 bg-crimson/20 lg:block" aria-hidden />
-        <div className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 lg:block" aria-hidden>
-          <span className="mono-label text-crimson/35 [writing-mode:vertical-rl]">Learn with Leaders</span>
+        <div
+          className="pointer-events-none absolute left-8 top-1/2 hidden h-32 w-1 -translate-y-1/2 bg-crimson/20 lg:block"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 lg:block"
+          aria-hidden
+        >
+          <span className="mono-label text-crimson/35 [writing-mode:vertical-rl]">
+            Learn with Leaders
+          </span>
         </div>
       </section>
-
 
       {/* ---------- next departures ---------- */}
       <section className="border-y border-line bg-paper py-12">
@@ -174,7 +191,11 @@ function CampsHub() {
           <div className="flex flex-wrap items-center gap-4">
             <span className="mono-label text-crimson">Destination</span>
             <div className="flex divide-x divide-line border border-line">
-              <button type="button" className={seg(region === "all")} onClick={() => setRegion("all")}>
+              <button
+                type="button"
+                className={seg(region === "all")}
+                onClick={() => setRegion("all")}
+              >
                 All
               </button>
               {REGIONS.map((r) => (
@@ -193,7 +214,11 @@ function CampsHub() {
           <div className="flex flex-wrap items-center gap-4">
             <span className="mono-label text-crimson">Season</span>
             <div className="flex divide-x divide-line border border-line">
-              <button type="button" className={seg(season === "all")} onClick={() => setSeason("all")}>
+              <button
+                type="button"
+                className={seg(season === "all")}
+                onClick={() => setSeason("all")}
+              >
                 Any
               </button>
               {SEASONS.map((s) => (
@@ -209,7 +234,6 @@ function CampsHub() {
             </div>
           </div>
         </div>
-
 
         {camps.length ? (
           <CampCardGrid camps={camps} />
@@ -316,4 +340,3 @@ function CampsHub() {
     </div>
   );
 }
-

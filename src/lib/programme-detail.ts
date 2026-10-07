@@ -2,13 +2,7 @@
 // from the catalogue for everything else so every page reads complete.
 
 import { TRACK_PROFILE, TYPE_PROFILE } from "./profile-building";
-import {
-  PROGRAMMES,
-  TRACKS,
-  TYPE_NAME,
-  type Programme,
-  type TypeKey,
-} from "./programmes";
+import { PROGRAMMES, TRACKS, TYPE_NAME, type Programme, type TypeKey } from "./programmes";
 
 export type DoStep = { title: string; body: string };
 export type ProjectOutcome = { title: string; body: string; proof: string[] };
@@ -77,7 +71,8 @@ const drJojoDetail: Partial<ProgrammeDetail> = {
     ],
   },
   mentorTitle: "Led by Dr. Jojo & Senior Industry Mentors",
-  mentorBody: "Interactive, high-energy live learning designed specifically to give students real-world leadership tools and entrepreneurial confidence.",
+  mentorBody:
+    "Interactive, high-energy live learning designed specifically to give students real-world leadership tools and entrepreneurial confidence.",
   faqs: [
     {
       q: "Who is this program for?",
@@ -553,7 +548,6 @@ const derivedFaqs = (p: Programme): Faq[] => [
   },
 ];
 
-
 /* ---------- hand-written skills + finished project for the flagships ---------- */
 
 const WRITTEN_OUTCOME: Record<string, Pick<ProgrammeDetail, "skills" | "project">> = {
@@ -766,10 +760,10 @@ const WRITTEN_OUTCOME: Record<string, Pick<ProgrammeDetail, "skills" | "project"
 const uniq = (xs: string[]) => Array.from(new Set(xs));
 
 const derivedSkills = (p: Programme): string[] =>
-  uniq([
-    ...p.tracks.flatMap((t) => TRACK_PROFILE[t].skills),
-    ...TYPE_PROFILE[p.type].skills,
-  ]).slice(0, 7);
+  uniq([...p.tracks.flatMap((t) => TRACK_PROFILE[t].skills), ...TYPE_PROFILE[p.type].skills]).slice(
+    0,
+    7,
+  );
 
 const PROJECT_TITLE: Record<TypeKey, string> = {
   fel: "A finished capstone, built over the fellowship",
@@ -788,7 +782,8 @@ const derivedProject = (p: Programme): ProjectOutcome => {
 };
 
 export const detailFor = (p: Programme): ProgrammeDetail => {
-  const w = WRITTEN[p.id] ?? (p.paySlug ? WRITTEN[p.paySlug] : undefined) ?? WRITTEN[slugOf(p)] ?? {};
+  const w =
+    WRITTEN[p.id] ?? (p.paySlug ? WRITTEN[p.paySlug] : undefined) ?? WRITTEN[slugOf(p)] ?? {};
   return {
     lede: w.lede ?? `${p.tag} ${p.about}`.trim(),
     cohortSize: w.cohortSize ?? "Small live cohort",
@@ -811,11 +806,7 @@ export const relatedProgrammes = (p: Programme): Programme[] => {
     (o) => o.id !== p.id && o.tracks.some((t) => p.tracks.includes(t)),
   );
   const overlapping = PROGRAMMES.filter(
-    (o) =>
-      o.id !== p.id &&
-      !sameTrack.includes(o) &&
-      o.g[0] <= p.g[1] &&
-      o.g[1] >= p.g[0],
+    (o) => o.id !== p.id && !sameTrack.includes(o) && o.g[0] <= p.g[1] && o.g[1] >= p.g[0],
   );
   return [...sameTrack, ...overlapping].slice(0, 3);
 };

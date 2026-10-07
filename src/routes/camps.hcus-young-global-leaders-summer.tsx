@@ -23,8 +23,7 @@ import FAQSection from "@/components/camps/hcus-summer/FAQSection";
 import Footer from "@/components/camps/hcus-summer/Footer";
 import { CAMP_PAGE_FONT_LINKS } from "@/components/camps/shared/fonts";
 
-const TITLE =
-  "HCUS Young Global Leaders Summer Camp at Harvard University | Learn with Leaders";
+const TITLE = "HCUS Young Global Leaders Summer Camp at Harvard University | Learn with Leaders";
 const DESC =
   "An immersive leadership summer camp at Harvard University with the Harvard College Union Society, for students in Grades 8-12. Dates, fees, schedule and how to apply.";
 

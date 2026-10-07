@@ -15,6 +15,7 @@ function sessionConfig() {
 }
 
 export function getAdminSession() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   return useSession<AdminSession>(sessionConfig());
 }
 

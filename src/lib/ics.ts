@@ -13,7 +13,8 @@ function nextDay(iso: string): string {
 }
 
 export function programmeUrl(p: Programme): string {
-  const origin = typeof window === "undefined" ? "https://www.learnwithleaders.com" : window.location.origin;
+  const origin =
+    typeof window === "undefined" ? "https://www.learnwithleaders.com" : window.location.origin;
   return `${origin}/programmes/${slugOf(p)}`;
 }
 

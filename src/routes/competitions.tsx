@@ -8,12 +8,7 @@ import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
 import { useHydratedCatalogue } from "@/lib/catalogue";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { slugOf } from "@/lib/programme-slug";
-import {
-  TRACKS,
-  fmtLong,
-  upcomingProgrammes,
-  type Programme,
-} from "@/lib/programmes";
+import { TRACKS, fmtLong, upcomingProgrammes, type Programme } from "@/lib/programmes";
 import imgFinanceMarkets from "@/assets/competitions/finance-markets.jpg";
 import imgFinanceChallenge from "@/assets/competitions/finance-challenge.jpg";
 import imgEssay from "@/assets/competitions/essay-writing.jpg";
@@ -79,9 +74,7 @@ export const Route = createFileRoute("/competitions")({
       { property: "og:url", content: "https://lwlschoolaccess.com/competitions" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [
-      { rel: "canonical", href: "https://lwlschoolaccess.com/competitions" },
-    ],
+    links: [{ rel: "canonical", href: "https://lwlschoolaccess.com/competitions" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -90,7 +83,9 @@ export const Route = createFileRoute("/competitions")({
           "@type": "ItemList",
           name: "Learn with Leaders competitions",
           itemListElement: upcomingProgrammes()
-            .filter((p) => p.type === "comp" && !p.name.toLowerCase().includes("next generation finance"))
+            .filter(
+              (p) => p.type === "comp" && !p.name.toLowerCase().includes("next generation finance"),
+            )
             .sort(sortCompetitions)
             .map((p, i) => ({
               "@type": "ListItem",
@@ -207,13 +202,23 @@ function CompetitionsPage() {
     <div className="min-h-dvh bg-paper">
       <SiteHeader />
       <section className="relative isolate flex min-h-[19rem] items-center justify-center overflow-hidden border-b border-line bg-paper px-5 pb-10 pt-8 sm:min-h-[21rem] sm:px-8 lg:pb-12 lg:pt-10">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-0 hidden w-[68%] select-none items-center overflow-hidden pl-8 sm:flex" aria-hidden>
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0 z-0 hidden w-[68%] select-none items-center overflow-hidden pl-8 sm:flex"
+          aria-hidden
+        >
           <span className="whitespace-nowrap font-display text-[clamp(4.5rem,11vw,10rem)] font-black uppercase leading-none text-crimson/[0.06]">
             Competitions
           </span>
         </div>
-        <div className="pointer-events-none absolute right-10 top-1/2 z-[1] hidden w-[min(320px,21vw)] -translate-y-1/2 opacity-20 xl:block" aria-hidden>
-          <img src={birdAsset.url} alt="" className="h-auto w-full object-contain object-right [mask-image:linear-gradient(to_left,black_55%,transparent_95%)]" />
+        <div
+          className="pointer-events-none absolute right-10 top-1/2 z-[1] hidden w-[min(320px,21vw)] -translate-y-1/2 opacity-20 xl:block"
+          aria-hidden
+        >
+          <img
+            src={birdAsset.url}
+            alt=""
+            className="h-auto w-full object-contain object-right [mask-image:linear-gradient(to_left,black_55%,transparent_95%)]"
+          />
         </div>
 
         <div className="relative z-10 mx-auto max-w-4xl text-center">
@@ -221,7 +226,8 @@ function CompetitionsPage() {
             Explore Our <span className="text-crimson">Competitions</span>
           </h1>
           <p className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
-            Championships and judged challenges from the Learn with Leaders family. Explore the rules, rounds, awards, and registration for every open competition.
+            Championships and judged challenges from the Learn with Leaders family. Explore the
+            rules, rounds, awards, and registration for every open competition.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <a
@@ -241,9 +247,17 @@ function CompetitionsPage() {
           </div>
         </div>
 
-        <div className="pointer-events-none absolute left-8 top-1/2 hidden h-32 w-1 -translate-y-1/2 bg-crimson/20 lg:block" aria-hidden />
-        <div className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 lg:block" aria-hidden>
-          <span className="mono-label text-crimson/35 [writing-mode:vertical-rl]">Learn with Leaders</span>
+        <div
+          className="pointer-events-none absolute left-8 top-1/2 hidden h-32 w-1 -translate-y-1/2 bg-crimson/20 lg:block"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 lg:block"
+          aria-hidden
+        >
+          <span className="mono-label text-crimson/35 [writing-mode:vertical-rl]">
+            Learn with Leaders
+          </span>
         </div>
       </section>
 
@@ -278,8 +292,8 @@ function CompetitionsPage() {
                 Onward Competitions
               </h3>
               <p className="text-[0.85rem] leading-relaxed text-ink-soft">
-                Debate, public speaking and academic challenges hosted by Onward,
-                the communications arm of Learn with Leaders.
+                Debate, public speaking and academic challenges hosted by Onward, the communications
+                arm of Learn with Leaders.
               </p>
               <span className="mono-label mt-auto inline-flex items-center gap-1.5 text-crimson">
                 View competitions
@@ -300,8 +314,8 @@ function CompetitionsPage() {
                 FinLit Competition
               </h3>
               <p className="text-[0.85rem] leading-relaxed text-ink-soft">
-                Finance and investing challenges hosted by FinLit, the financial
-                literacy arm of Learn with Leaders.
+                Finance and investing challenges hosted by FinLit, the financial literacy arm of
+                Learn with Leaders.
               </p>
               <span className="mono-label mt-auto inline-flex items-center gap-1.5 text-crimson">
                 View competition
@@ -313,8 +327,8 @@ function CompetitionsPage() {
 
         <div className="mt-10 flex flex-wrap items-center gap-4 rounded-2xl border border-gold-line/50 bg-wash p-6">
           <p className="text-[0.9rem] text-ink-soft">
-            Not sure which competition fits? Filter the whole catalogue by
-            competitions, or let the quiz match one to your child's interests.
+            Not sure which competition fits? Filter the whole catalogue by competitions, or let the
+            quiz match one to your child's interests.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
