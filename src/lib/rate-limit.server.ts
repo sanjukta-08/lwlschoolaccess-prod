@@ -15,6 +15,7 @@ import { createHash } from "node:crypto";
  * for local/non-Cloudflare environments.
  */
 export function clientIpFrom(request: Request | undefined): string {
+  console.log("[ratelimit-debug] has request:", !!request, "cf:", !!request?.headers.get("cf-connecting-ip"), "xff:", !!request?.headers.get("x-forwarded-for"));
   try {
     if (!request) return "unknown";
     const cf = request.headers.get("cf-connecting-ip");
