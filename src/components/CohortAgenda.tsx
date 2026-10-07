@@ -21,11 +21,7 @@ type Entry = { p: Programme; c: Cohort };
 const monthOf = (iso: string) =>
   parseISO(iso).toLocaleDateString("en-GB", { month: "long", year: "numeric" });
 
-export function CohortAgenda({
-  entries,
-}: {
-  entries: Entry[];
-}) {
+export function CohortAgenda({ entries }: { entries: Entry[] }) {
   if (!entries.length) {
     return (
       <p className="py-6 text-center text-[0.9rem] text-ink-faint">

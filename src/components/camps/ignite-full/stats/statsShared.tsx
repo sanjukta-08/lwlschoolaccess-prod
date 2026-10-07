@@ -1,9 +1,14 @@
 import { useState, useEffect, useRef } from "react";
-const gallery1 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/2dc784e3-da37-4aa6-b30a-61beed922036/gallery-1.jpg";
-const gallery3 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/c3d70322-aa80-42aa-9803-935209274551/gallery-3.jpg";
-const gallery8 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/51591cb6-d428-42c2-a634-cf55d0ab91d7/gallery-8.jpg";
-const gallery5 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/569a8982-544e-44e5-8bd1-2361873b382a/gallery-5.jpg";
-const gallery6 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/97d2b70e-10d8-4b05-a24b-38858b12ab6c/gallery-6.jpg";
+const gallery1 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/2dc784e3-da37-4aa6-b30a-61beed922036/gallery-1.jpg";
+const gallery3 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/c3d70322-aa80-42aa-9803-935209274551/gallery-3.jpg";
+const gallery8 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/51591cb6-d428-42c2-a634-cf55d0ab91d7/gallery-8.jpg";
+const gallery5 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/569a8982-544e-44e5-8bd1-2361873b382a/gallery-5.jpg";
+const gallery6 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/97d2b70e-10d8-4b05-a24b-38858b12ab6c/gallery-6.jpg";
 
 export const ACCENT = "#c23b22";
 export const BG = "#cbcc02";
@@ -32,8 +37,13 @@ export const useCountUp = (target: number, duration = 1500) => {
     const el = ref.current;
     if (!el) return;
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry?.isIntersecting) { setStarted(true); observer.disconnect(); } },
-      { threshold: 0.3 }
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setStarted(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 },
     );
     observer.observe(el);
     return () => observer.disconnect();

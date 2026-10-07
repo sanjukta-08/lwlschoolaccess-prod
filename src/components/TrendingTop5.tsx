@@ -24,11 +24,8 @@ type Props = {
 export function TrendingTop5({ state, variant = "section" }: Props) {
   const filteredMatches = state ? new Map(getMatches(state).map((m) => [m.p.id, m])) : null;
   const activeInterest =
-    state && state.interest !== "all"
-      ? TRACKS[state.interest as keyof typeof TRACKS]
-      : null;
-  const activeType =
-    state && state.type !== "all" ? TYPES[state.type as keyof typeof TYPES] : null;
+    state && state.interest !== "all" ? TRACKS[state.interest as keyof typeof TRACKS] : null;
+  const activeType = state && state.type !== "all" ? TYPES[state.type as keyof typeof TYPES] : null;
 
   const picks = TRENDING.map(({ id, why }) => {
     const filtered = filteredMatches?.get(id);
@@ -62,11 +59,7 @@ export function TrendingTop5({ state, variant = "section" }: Props) {
         </header>
 
         <ol
-          className={
-            variant === "rail"
-              ? "grid gap-3"
-              : "grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
-          }
+          className={variant === "rail" ? "grid gap-3" : "grid gap-3 sm:grid-cols-2 lg:grid-cols-3"}
         >
           {picks.slice(0, 3).map(({ p, next, why }, i) => {
             const track = TRACKS[p.tracks[0]!];
@@ -91,9 +84,7 @@ export function TrendingTop5({ state, variant = "section" }: Props) {
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
-                        <b className="text-[0.94rem] leading-snug font-bold text-ink">
-                          {p.name}
-                        </b>
+                        <b className="text-[0.94rem] leading-snug font-bold text-ink">{p.name}</b>
                       </div>
                     </div>
                     {i === 0 ? (
@@ -139,11 +130,12 @@ export function TrendingTop5({ state, variant = "section" }: Props) {
             🔥 Trending now
           </span>
           <h2 className="mt-3 font-display text-[clamp(1.75rem,4vw,2.6rem)] font-extrabold leading-tight">
-            {titleLead} {titleNoun} to <em className="text-crimson-deep font-extrabold">start with</em>
+            {titleLead} {titleNoun} to{" "}
+            <em className="text-crimson-deep font-extrabold">start with</em>
           </h2>
           <p className="mx-auto mt-2 max-w-[40em] text-[0.92rem] text-ink-soft">
-            If you&apos;re not sure where to begin, these are the ones most families choose
-            first - strong mentors, clear outcomes, and a next cohort you can still join.
+            If you&apos;re not sure where to begin, these are the ones most families choose first -
+            strong mentors, clear outcomes, and a next cohort you can still join.
           </p>
         </header>
 
@@ -180,9 +172,7 @@ export function TrendingTop5({ state, variant = "section" }: Props) {
                   </div>
                   <div className="text-right">
                     <div className="mono-label text-ink-faint">Next start</div>
-                    <div className="text-[0.9rem] font-bold text-ink">
-                      {fmtShort(next.d)}
-                    </div>
+                    <div className="text-[0.9rem] font-bold text-ink">{fmtShort(next.d)}</div>
                     <div className="font-serif text-[1rem] font-semibold">{fee.e}</div>
                   </div>
                   <div className="flex items-center gap-2">

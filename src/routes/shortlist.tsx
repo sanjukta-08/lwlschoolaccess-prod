@@ -99,16 +99,14 @@ function ShortlistPage() {
         }
         subtitle={
           <>
-            Save anything you're considering, put the dates in your family calendar, and
-            send the list to a parent to decide together. No account needed.
+            Save anything you're considering, put the dates in your family calendar, and send the
+            list to a parent to decide together. No account needed.
           </>
         }
       />
 
       <main className="page-shell pb-20">
         <header className="pt-2">
-
-
           {rows.length ? (
             <div className="mt-5 flex flex-wrap items-center gap-2.5">
               <button
@@ -250,7 +248,7 @@ function ShortlistPage() {
             </Link>
           </section>
         )}
-      <SiteFooter />
+        <SiteFooter />
       </main>
     </div>
   );

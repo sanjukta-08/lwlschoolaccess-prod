@@ -1,9 +1,12 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-const heroPoster = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/ad772eb1-f28b-44e5-92d3-92b081548d8b/hero-cambridge.jpg";
-const logo = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/6dff8ed0-1edc-466d-95a8-8a418c9bee74/logofv-2.png";
-const ecLogo = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/afce3599-77f5-4ac4-a4ec-2ece9e7084e5/cambridge-ec-logo-white.png";
+const heroPoster =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/ad772eb1-f28b-44e5-92d3-92b081548d8b/hero-cambridge.jpg";
+const logo =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/6dff8ed0-1edc-466d-95a8-8a418c9bee74/logofv-2.png";
+const ecLogo =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/afce3599-77f5-4ac4-a4ec-2ece9e7084e5/cambridge-ec-logo-white.png";
 
 const HeroSection = ({ applyUrl }: { applyUrl: string }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -14,11 +17,15 @@ const HeroSection = ({ applyUrl }: { applyUrl: string }) => {
     video.muted = true;
     video.defaultMuted = true;
     const tryPlay = async () => {
-      try { await video.play(); } catch {}
+      try {
+        await video.play();
+      } catch {}
     };
     void tryPlay();
     const handlePause = () => {
-      setTimeout(() => { if (video.paused) void tryPlay(); }, 100);
+      setTimeout(() => {
+        if (video.paused) void tryPlay();
+      }, 100);
     };
     video.addEventListener("pause", handlePause);
     return () => video.removeEventListener("pause", handlePause);
@@ -37,7 +44,12 @@ const HeroSection = ({ applyUrl }: { applyUrl: string }) => {
         poster={heroPoster}
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src={"https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/c043fbe7-cf40-4c2e-835d-61b3847acf64/hero-bg.mp4"} type="video/mp4" />
+        <source
+          src={
+            "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/c043fbe7-cf40-4c2e-835d-61b3847acf64/hero-bg.mp4"
+          }
+          type="video/mp4"
+        />
       </video>
 
       {/* Dark overlay */}
@@ -46,7 +58,6 @@ const HeroSection = ({ applyUrl }: { applyUrl: string }) => {
       {/* Hero Content */}
       <div className="relative z-10 container mx-auto px-6 lg:px-12 pt-44 pb-32">
         <div className="max-w-3xl">
-
           {/* EC Logo */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -54,7 +65,11 @@ const HeroSection = ({ applyUrl }: { applyUrl: string }) => {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="mb-6"
           >
-            <img src={ecLogo} alt="Entrepreneurship Centre – University of Cambridge Judge Business School" className="h-16 md:h-20 w-auto" />
+            <img
+              src={ecLogo}
+              alt="Entrepreneurship Centre – University of Cambridge Judge Business School"
+              className="h-16 md:h-20 w-auto"
+            />
           </motion.div>
 
           {/* Summer School Tag */}
@@ -74,8 +89,7 @@ const HeroSection = ({ applyUrl }: { applyUrl: string }) => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white leading-[1.1] mb-6"
           >
-            IGNITE Young Minds{" "}
-            <span className="italic">Programme</span>
+            IGNITE Young Minds <span className="italic">Programme</span>
           </motion.h1>
 
           {/* Institution Line */}

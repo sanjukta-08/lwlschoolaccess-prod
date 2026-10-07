@@ -28,7 +28,11 @@ const offeringItems: { label: string; interest: TrackKey | "all"; description?: 
   { label: TRACKS.fin.label, interest: "fin", description: "Fellowships, programs & competitions" },
   { label: TRACKS.ai.label, interest: "ai", description: "Fellowships, programs & competitions" },
   { label: TRACKS.res.label, interest: "res", description: "Fellowships, programs & competitions" },
-  { label: TRACKS.lead.label, interest: "lead", description: "Fellowships, programs & competitions" },
+  {
+    label: TRACKS.lead.label,
+    interest: "lead",
+    description: "Fellowships, programs & competitions",
+  },
   { label: TRACKS.sat.label, interest: "sat", description: "Fellowships, programs & competitions" },
 ];
 
@@ -119,7 +123,6 @@ export function SiteHeader() {
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link
-
             to="/competitions"
             activeProps={{ className: "bg-wash text-ink" }}
             className="flex cursor-pointer flex-col items-start rounded-xl px-3 py-2 text-left text-[0.85rem] font-semibold text-ink-soft no-underline outline-none transition-colors hover:bg-wash hover:text-ink focus:bg-wash focus:text-ink"
@@ -132,7 +135,6 @@ export function SiteHeader() {
           </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
-
     </DropdownMenu>
   );
 
@@ -190,16 +192,13 @@ export function SiteHeader() {
             Competitions
           </Link>
         </div>
-
       ) : null}
     </div>
   );
 
   const nav = (mobile = false) => {
     const cls = mobile ? mobileLinkCls : linkCls;
-    const active = mobile
-      ? { className: "bg-gold-soft text-ink" }
-      : { className: activeCls };
+    const active = mobile ? { className: "bg-gold-soft text-ink" } : { className: activeCls };
     return (
       <>
         {mobile ? offeringsMobile : offeringsDesktop}
@@ -212,12 +211,7 @@ export function SiteHeader() {
         <Link to="/competitions" className={cls} activeProps={active} onClick={close}>
           Competitions
         </Link>
-        <Link
-          to="/masterclasses"
-          className={cls}
-          activeProps={active}
-          onClick={close}
-        >
+        <Link to="/masterclasses" className={cls} activeProps={active} onClick={close}>
           Masterclasses
         </Link>
 

@@ -36,15 +36,7 @@ function DocLink({ href, label }: { href: string; label: string }) {
   );
 }
 
-function CohortRow({
-  p,
-  c,
-  others,
-}: {
-  p: Programme;
-  c: Cohort;
-  others?: Cohort[];
-}) {
+function CohortRow({ p, c, others }: { p: Programme; c: Cohort; others?: Cohort[] }) {
   const track = TRACKS[p.tracks[0]!];
   const [lo, hi] = cohortGrades(p, c);
   const fee = feeOf(p, c);
@@ -70,10 +62,7 @@ function CohortRow({
       </span>
 
       <span className="min-w-0 flex-1">
-        <span
-          className="mono-label block text-[0.66rem]"
-          style={{ color: track.color }}
-        >
+        <span className="mono-label block text-[0.66rem]" style={{ color: track.color }}>
           {track.label} · {TYPE_NAME[p.type]}
         </span>
         <b className="mt-0.5 block text-[0.98rem] font-bold text-ink">{p.name}</b>
@@ -130,11 +119,7 @@ function CohortRow({
   );
 }
 
-export function MonthSections({
-  groups,
-}: {
-  groups: MonthGroup[];
-}) {
+export function MonthSections({ groups }: { groups: MonthGroup[] }) {
   return (
     <div>
       {groups.map((g) => (
@@ -156,11 +141,7 @@ export function MonthSections({
   );
 }
 
-export function TypeSections({
-  groups,
-}: {
-  groups: TypeGroup[];
-}) {
+export function TypeSections({ groups }: { groups: TypeGroup[] }) {
   return (
     <div>
       {groups.map((g) => (
@@ -176,12 +157,7 @@ export function TypeSections({
           </div>
           <div className="flex flex-col gap-2">
             {g.rows.map((r) => (
-              <CohortRow
-                key={r.p.id}
-                p={r.p}
-                c={r.next}
-                others={r.others}
-              />
+              <CohortRow key={r.p.id} p={r.p} c={r.next} others={r.others} />
             ))}
           </div>
         </section>

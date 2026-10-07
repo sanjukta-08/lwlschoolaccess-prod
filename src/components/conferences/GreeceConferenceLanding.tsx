@@ -1,9 +1,27 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Award, CalendarDays, ChevronLeft, ChevronRight, Clock, DollarSign, GraduationCap, Globe2, MapPin, Mic2, Network, Users } from "lucide-react";
+import {
+  Award,
+  CalendarDays,
+  ChevronLeft,
+  ChevronRight,
+  Clock,
+  DollarSign,
+  GraduationCap,
+  Globe2,
+  MapPin,
+  Mic2,
+  Network,
+  Users,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { Programme } from "@/lib/programmes";
-import { conferenceDateLabel, conferenceGrades, conferenceLocation, conferencePrice } from "@/lib/conferences";
+import {
+  conferenceDateLabel,
+  conferenceGrades,
+  conferenceLocation,
+  conferencePrice,
+} from "@/lib/conferences";
 import hero from "@/assets/conferences/hwmun-greece.jpg.asset.json";
 import acsCampus from "@/assets/conferences/source/hwmun-greece-acs-campus.jpg.asset.json";
 import flags from "@/assets/conferences/source/hwmun-greece-flags.jpg.asset.json";
@@ -22,32 +40,360 @@ import committeeCsocd from "@/assets/conferences/source/hwmun-greece-committee-c
 import committeeLegal from "@/assets/conferences/source/hwmun-greece-committee-legal.jpg.asset.json";
 
 const pillars = [
-  [pillarSubstantive.url, "Substantive Excellence", "Twenty simulated UN committees, an engaged dais, and rigorous debate on the world's most pressing challenges."],
-  [pillarCultural.url, "Cultural Connection", "The WorldMUN Spirit encourages friendship, cooperation, and deeper understanding across borders."],
-  [pillarDelegate.url, "Delegate Experience", "Dynamic diplomacy and meaningful connections create an unforgettable international journey."],
+  [
+    pillarSubstantive.url,
+    "Substantive Excellence",
+    "Twenty simulated UN committees, an engaged dais, and rigorous debate on the world's most pressing challenges.",
+  ],
+  [
+    pillarCultural.url,
+    "Cultural Connection",
+    "The WorldMUN Spirit encourages friendship, cooperation, and deeper understanding across borders.",
+  ],
+  [
+    pillarDelegate.url,
+    "Delegate Experience",
+    "Dynamic diplomacy and meaningful connections create an unforgettable international journey.",
+  ],
 ] as const;
-const objectives = ["Promote Global Awareness & Diplomacy", "Foster Cross-Cultural Understanding", "Develop Leadership & Communication", "Simulate Real-World Decision-Making", "Inspire Civic Engagement"];
-const benefits = [[Globe2,"Global Perspective"],[Users,"Leadership & Teamwork"],[Network,"International Network"],[Mic2,"Negotiation & Public Speaking"],[Award,"A Harvard Credential"]] as const;
-const committeeImages = [committeeDisec.url,committeeEcofin.url,committeeSochum.url,committeeSpecpol.url,committeeCsocd.url,committeeLegal.url];
-const committeeNames = ["Disarmament and International Security Committee", "Economic and Financial Committee", "Social, Humanitarian and Cultural Committee", "Special Political and Decolonization Committee", "Commission for Social Development", "Legal Committee"];
-const days = [["Day 1","Registration, opening ceremony, and committee sessions"],["Day 2","A full day of committee debate and diplomacy"],["Day 3","Final resolutions and closing ceremony"]] as const;
+const objectives = [
+  "Promote Global Awareness & Diplomacy",
+  "Foster Cross-Cultural Understanding",
+  "Develop Leadership & Communication",
+  "Simulate Real-World Decision-Making",
+  "Inspire Civic Engagement",
+];
+const benefits = [
+  [Globe2, "Global Perspective"],
+  [Users, "Leadership & Teamwork"],
+  [Network, "International Network"],
+  [Mic2, "Negotiation & Public Speaking"],
+  [Award, "A Harvard Credential"],
+] as const;
+const committeeImages = [
+  committeeDisec.url,
+  committeeEcofin.url,
+  committeeSochum.url,
+  committeeSpecpol.url,
+  committeeCsocd.url,
+  committeeLegal.url,
+];
+const committeeNames = [
+  "Disarmament and International Security Committee",
+  "Economic and Financial Committee",
+  "Social, Humanitarian and Cultural Committee",
+  "Special Political and Decolonization Committee",
+  "Commission for Social Development",
+  "Legal Committee",
+];
+const days = [
+  ["Day 1", "Registration, opening ceremony, and committee sessions"],
+  ["Day 2", "A full day of committee debate and diplomacy"],
+  ["Day 3", "Final resolutions and closing ceremony"],
+] as const;
 
 export function GreeceConferenceLanding({ conference }: { conference: Programme }) {
   const [day, setDay] = useState(0);
   const currentDay = days[day] ?? days[0];
-  return <div className="min-h-dvh bg-[#faf8f5] text-[#1c263d]">
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-[#d8d0c3] bg-[#faf8f5]/95 backdrop-blur"><div className="mx-auto flex max-w-[1500px] items-center justify-between px-6 py-2 lg:px-10"><Link to="/conferences"><img src={harvardLogo.url} alt="Harvard WorldMUN" className="h-16 w-16 object-contain md:h-20 md:w-20" /></Link><nav className="hidden gap-10 text-sm md:flex"><a href="#about">About</a><a href="#details">Details</a><a href="#benefits">Benefits</a><a href="#schedule">Schedule</a><a href="#committees">Committees</a></nav><Button asChild className="rounded-full bg-[#a32836] px-7 text-white hover:bg-[#84202c]"><a href={conference.apply} target="_blank" rel="noopener noreferrer">Apply Now</a></Button></div></header>
-    <main>
-      <section className="relative min-h-[760px] overflow-hidden pt-24"><img src={hero.url} alt={conference.name} className="absolute inset-0 h-full w-full object-cover object-right" /><div className="absolute inset-0 bg-gradient-to-r from-[#faf8f5] via-[#faf8f5]/85 to-transparent"/><div className="relative z-10 flex min-h-[650px] max-w-[1500px] items-center px-8 md:px-16 lg:px-24"><div className="max-w-2xl"><h1 className="text-5xl font-medium leading-[0.95] text-[#a32836] md:text-7xl lg:text-8xl">Harvard World<br/>Model United Nations</h1><div className="mt-8 h-[3px] w-20 bg-[#bf913a]"/><p className="mt-8 max-w-lg text-lg leading-relaxed text-black">A premier international relations simulation hosted in Athens—the birthplace of democracy.</p><Button asChild size="lg" className="mt-10 rounded-full bg-[#a32836] px-8 text-white hover:bg-[#84202c]"><a href={conference.apply} target="_blank" rel="noopener noreferrer">Apply Now →</a></Button></div></div><div className="relative z-10 mx-8 mb-10 flex items-center justify-center gap-6 border border-[#d8d0c3] bg-white/90 p-6 backdrop-blur"><span className="text-xs uppercase text-neutral-500">Hosted by</span><img src={acsLogo.url} alt="ACS Athens" className="h-20 object-contain"/></div></section>
-      <section className="bg-[#a32836] text-white"><dl className="mx-auto grid max-w-[1500px] grid-cols-2 divide-x divide-white/15 md:grid-cols-4">{[["2,000+","Global delegates"],["110+","Countries"],["20","UN committees"],["3","Days in Athens"]].map(([n,l])=><div key={l} className="px-6 py-6 text-center"><dt className="text-3xl">{n}</dt><dd className="mt-1 text-xs uppercase text-white/70">{l}</dd></div>)}</dl></section>
-      <section id="about" className="scroll-mt-24 py-20"><div className="mx-auto grid max-w-[1500px] gap-12 px-6 md:grid-cols-12 lg:px-10"><div className="md:col-span-5"><p className="text-xs uppercase text-[#a32836]">— About the conference</p><h2 className="mt-6 text-4xl leading-tight text-[#a32836] md:text-5xl">It's more than a conference.<br/>It's a global movement.</h2></div><div className="space-y-6 text-lg leading-relaxed md:col-span-7"><p><strong>{conference.name}</strong> {conference.about}</p><p>Organized by Harvard University students with a local host team, WorldMUN combines academic excellence with cultural exchange and impactful diplomacy.</p></div></div></section>
-      <section className="bg-[#a32836] py-20 text-white"><div className="mx-auto grid max-w-[1500px] gap-12 px-6 lg:grid-cols-12 lg:px-10"><div className="lg:col-span-4"><p className="text-xs uppercase text-white/80">— The WorldMUN Experience</p><h2 className="mt-6 text-5xl">The Three Pillars</h2></div><div className="space-y-10 lg:col-span-8">{pillars.map(([image,title,body],i)=><article key={title} className="grid items-center gap-6 border-t border-white/20 pt-6 md:grid-cols-12"><img src={image} alt={title} className="h-56 w-full object-cover md:col-span-5"/><div className="md:col-span-7"><span className="text-2xl text-white/60">0{i+1}</span><h3 className="mt-2 text-3xl">{title}</h3><p className="mt-3 text-lg leading-relaxed text-white/80">{body}</p></div></article>)}</div></div></section>
-      <section id="details" className="scroll-mt-24 py-20"><div className="mx-auto max-w-[1500px] px-6 lg:px-10"><p className="text-xs uppercase text-[#a32836]">— Programme details</p><h2 className="mt-5 text-5xl text-[#a32836]">Conference Details.</h2><div className="mt-12 grid gap-10 lg:grid-cols-12"><img src={acsCampus.url} alt="ACS Athens campus" className="h-full min-h-[420px] w-full border-8 border-white object-cover shadow-xl lg:col-span-5"/><div className="grid gap-5 sm:grid-cols-2 lg:col-span-7">{[[MapPin,"In-person at",conferenceLocation(conference)],[DollarSign,"Conference Fee",conferencePrice(conference)],[CalendarDays,"Conference Dates",conferenceDateLabel(conference)],[Clock,"Duration",conference.dur],[GraduationCap,"Eligibility",conferenceGrades(conference)],[Award,"Certification","Harvard WorldMUN participation certificate"]].map(([Icon,label,value])=>{const I=Icon as typeof MapPin;return <article key={String(label)} className="flex gap-4 border border-[#d8d0c3] bg-white p-6 shadow-sm"><I className="mt-1 h-6 w-6 text-[#a32836]"/><div><h3 className="text-xl text-[#a32836]">{String(label)}</h3><p className="mt-3 leading-relaxed">{String(value)}</p></div></article>})}</div></div></div></section>
-      <section className="bg-[#eee9e0] py-20"><div className="mx-auto max-w-[1500px] px-6 lg:px-10"><h2 className="text-5xl text-[#a32836]">Designed with purpose.<br/>Delivered with rigour.</h2><div className="mt-12 grid gap-6 md:grid-cols-3">{objectives.map((title,i)=><article key={title} className="border border-[#d8d0c3] bg-[#faf8f5] p-8"><span className="text-3xl text-[#a32836]">0{i+1}</span><h3 className="mt-4 text-2xl">{title}</h3></article>)}</div><img src={flags.url} alt="International flags" className="mt-10 aspect-[21/9] w-full object-cover"/></div></section>
-      <section id="benefits" className="scroll-mt-24 bg-[#a32836] py-20 text-white"><div className="mx-auto max-w-[1500px] px-6 lg:px-10"><h2 className="max-w-3xl text-5xl">What every delegate takes home from Athens.</h2><div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{benefits.map(([Icon,title],i)=><article key={title} className="border border-white/30 p-9 text-center"><Icon className="mx-auto h-10 w-10"/><h3 className="mt-6 text-2xl">{title}</h3><span className="mt-4 block text-white/40">0{i+1}</span></article>)}</div></div></section>
-      {conference.cohorts.length && currentDay ? <section id="schedule" className="relative min-h-[620px] overflow-hidden"><img src={scheduleImage.url} alt="Santorini" className="absolute inset-0 h-full w-full object-cover"/><div className="absolute inset-0 bg-gradient-to-l from-[#f5f1ea] via-[#f5f1ea]/90 to-transparent"/><div className="relative ml-auto max-w-3xl px-8 py-20"><p className="text-xs uppercase text-[#a32836]">— Tentative schedule</p><h2 className="mt-6 text-5xl text-[#a32836]">Three days.<br/>One unforgettable assembly.</h2><div className="mt-8 flex gap-2">{days.map((d,i)=><Button key={d[0]} onClick={()=>setDay(i)} variant={i===day?"default":"outline"} className={i===day?"bg-[#a32836] text-white":"border-[#a32836] text-[#a32836]"}>{d[0]}</Button>)}</div><div className="mt-8 border-l-4 border-[#a32836] bg-white p-8 shadow"><h3 className="text-2xl text-[#a32836]">{currentDay[0]}</h3><p className="mt-3 text-lg">{currentDay[1]}</p><div className="mt-5 flex gap-3"><Button size="icon" variant="outline" onClick={()=>setDay((day+days.length-1)%days.length)}><ChevronLeft/></Button><Button size="icon" variant="outline" onClick={()=>setDay((day+1)%days.length)}><ChevronRight/></Button></div></div></div></section>:null}
-      <section id="committees" className="scroll-mt-24 bg-[#a32836] py-20 text-white"><div className="mx-auto max-w-[1500px] px-6 lg:px-10"><h2 className="text-5xl">Committees</h2><div className="mt-12 grid gap-6 md:grid-cols-2">{committeeNames.map((name,i)=><article key={name} className="overflow-hidden rounded-2xl bg-[#faf8f5] text-[#1c263d] md:flex"><img src={committeeImages[i]} alt={name} className="h-56 w-full object-cover md:h-auto md:w-2/5"/><div className="p-7"><h3 className="text-xl text-[#a32836]">{name}</h3><p className="mt-4 text-sm leading-relaxed">A focused forum for research, debate, negotiation, and collaborative resolutions.</p></div></article>)}</div></div></section>
-      <section className="relative overflow-hidden py-20 text-center"><span className="pointer-events-none absolute inset-0 text-[22vw] leading-none text-[#a32836]/5">HMUN</span><div className="relative mx-auto max-w-4xl px-6"><p className="text-xs uppercase text-[#a32836]">— Applications open —</p><h2 className="mt-8 text-5xl text-[#a32836]">Take your seat at the table where the next generation of leaders is forged.</h2><Button asChild size="lg" className="mt-10 bg-[#a32836] px-10 text-white hover:bg-[#84202c]"><a href={conference.apply} target="_blank" rel="noopener noreferrer">Apply Now →</a></Button><p className="mt-6 text-sm text-neutral-600">{conferenceLocation(conference)} · {conferenceDateLabel(conference)}</p><div className="mt-12 flex justify-center gap-16"><img src={lwlLogo.url} alt="Learn with Leaders" className="h-14 object-contain"/><img src={harvardLogo.url} alt="Harvard WorldMUN" className="h-14 object-contain"/></div></div></section>
-    </main>
-  </div>;
+  return (
+    <div className="min-h-dvh bg-[#faf8f5] text-[#1c263d]">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-[#d8d0c3] bg-[#faf8f5]/95 backdrop-blur">
+        <div className="mx-auto flex max-w-[1500px] items-center justify-between px-6 py-2 lg:px-10">
+          <Link to="/conferences">
+            <img
+              src={harvardLogo.url}
+              alt="Harvard WorldMUN"
+              className="h-16 w-16 object-contain md:h-20 md:w-20"
+            />
+          </Link>
+          <nav className="hidden gap-10 text-sm md:flex">
+            <a href="#about">About</a>
+            <a href="#details">Details</a>
+            <a href="#benefits">Benefits</a>
+            <a href="#schedule">Schedule</a>
+            <a href="#committees">Committees</a>
+          </nav>
+          <Button asChild className="rounded-full bg-[#a32836] px-7 text-white hover:bg-[#84202c]">
+            <a href={conference.apply} target="_blank" rel="noopener noreferrer">
+              Apply Now
+            </a>
+          </Button>
+        </div>
+      </header>
+      <main>
+        <section className="relative min-h-[760px] overflow-hidden pt-24">
+          <img
+            src={hero.url}
+            alt={conference.name}
+            className="absolute inset-0 h-full w-full object-cover object-right"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#faf8f5] via-[#faf8f5]/85 to-transparent" />
+          <div className="relative z-10 flex min-h-[650px] max-w-[1500px] items-center px-8 md:px-16 lg:px-24">
+            <div className="max-w-2xl">
+              <h1 className="text-5xl font-medium leading-[0.95] text-[#a32836] md:text-7xl lg:text-8xl">
+                Harvard World
+                <br />
+                Model United Nations
+              </h1>
+              <div className="mt-8 h-[3px] w-20 bg-[#bf913a]" />
+              <p className="mt-8 max-w-lg text-lg leading-relaxed text-black">
+                A premier international relations simulation hosted in Athens—the birthplace of
+                democracy.
+              </p>
+              <Button
+                asChild
+                size="lg"
+                className="mt-10 rounded-full bg-[#a32836] px-8 text-white hover:bg-[#84202c]"
+              >
+                <a href={conference.apply} target="_blank" rel="noopener noreferrer">
+                  Apply Now →
+                </a>
+              </Button>
+            </div>
+          </div>
+          <div className="relative z-10 mx-8 mb-10 flex items-center justify-center gap-6 border border-[#d8d0c3] bg-white/90 p-6 backdrop-blur">
+            <span className="text-xs uppercase text-neutral-500">Hosted by</span>
+            <img src={acsLogo.url} alt="ACS Athens" className="h-20 object-contain" />
+          </div>
+        </section>
+        <section className="bg-[#a32836] text-white">
+          <dl className="mx-auto grid max-w-[1500px] grid-cols-2 divide-x divide-white/15 md:grid-cols-4">
+            {[
+              ["2,000+", "Global delegates"],
+              ["110+", "Countries"],
+              ["20", "UN committees"],
+              ["3", "Days in Athens"],
+            ].map(([n, l]) => (
+              <div key={l} className="px-6 py-6 text-center">
+                <dt className="text-3xl">{n}</dt>
+                <dd className="mt-1 text-xs uppercase text-white/70">{l}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+        <section id="about" className="scroll-mt-24 py-20">
+          <div className="mx-auto grid max-w-[1500px] gap-12 px-6 md:grid-cols-12 lg:px-10">
+            <div className="md:col-span-5">
+              <p className="text-xs uppercase text-[#a32836]">— About the conference</p>
+              <h2 className="mt-6 text-4xl leading-tight text-[#a32836] md:text-5xl">
+                It's more than a conference.
+                <br />
+                It's a global movement.
+              </h2>
+            </div>
+            <div className="space-y-6 text-lg leading-relaxed md:col-span-7">
+              <p>
+                <strong>{conference.name}</strong> {conference.about}
+              </p>
+              <p>
+                Organized by Harvard University students with a local host team, WorldMUN combines
+                academic excellence with cultural exchange and impactful diplomacy.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section className="bg-[#a32836] py-20 text-white">
+          <div className="mx-auto grid max-w-[1500px] gap-12 px-6 lg:grid-cols-12 lg:px-10">
+            <div className="lg:col-span-4">
+              <p className="text-xs uppercase text-white/80">— The WorldMUN Experience</p>
+              <h2 className="mt-6 text-5xl">The Three Pillars</h2>
+            </div>
+            <div className="space-y-10 lg:col-span-8">
+              {pillars.map(([image, title, body], i) => (
+                <article
+                  key={title}
+                  className="grid items-center gap-6 border-t border-white/20 pt-6 md:grid-cols-12"
+                >
+                  <img src={image} alt={title} className="h-56 w-full object-cover md:col-span-5" />
+                  <div className="md:col-span-7">
+                    <span className="text-2xl text-white/60">0{i + 1}</span>
+                    <h3 className="mt-2 text-3xl">{title}</h3>
+                    <p className="mt-3 text-lg leading-relaxed text-white/80">{body}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section id="details" className="scroll-mt-24 py-20">
+          <div className="mx-auto max-w-[1500px] px-6 lg:px-10">
+            <p className="text-xs uppercase text-[#a32836]">— Programme details</p>
+            <h2 className="mt-5 text-5xl text-[#a32836]">Conference Details.</h2>
+            <div className="mt-12 grid gap-10 lg:grid-cols-12">
+              <img
+                src={acsCampus.url}
+                alt="ACS Athens campus"
+                className="h-full min-h-[420px] w-full border-8 border-white object-cover shadow-xl lg:col-span-5"
+              />
+              <div className="grid gap-5 sm:grid-cols-2 lg:col-span-7">
+                {[
+                  [MapPin, "In-person at", conferenceLocation(conference)],
+                  [DollarSign, "Conference Fee", conferencePrice(conference)],
+                  [CalendarDays, "Conference Dates", conferenceDateLabel(conference)],
+                  [Clock, "Duration", conference.dur],
+                  [GraduationCap, "Eligibility", conferenceGrades(conference)],
+                  [Award, "Certification", "Harvard WorldMUN participation certificate"],
+                ].map(([Icon, label, value]) => {
+                  const I = Icon as typeof MapPin;
+                  return (
+                    <article
+                      key={String(label)}
+                      className="flex gap-4 border border-[#d8d0c3] bg-white p-6 shadow-sm"
+                    >
+                      <I className="mt-1 h-6 w-6 text-[#a32836]" />
+                      <div>
+                        <h3 className="text-xl text-[#a32836]">{String(label)}</h3>
+                        <p className="mt-3 leading-relaxed">{String(value)}</p>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="bg-[#eee9e0] py-20">
+          <div className="mx-auto max-w-[1500px] px-6 lg:px-10">
+            <h2 className="text-5xl text-[#a32836]">
+              Designed with purpose.
+              <br />
+              Delivered with rigour.
+            </h2>
+            <div className="mt-12 grid gap-6 md:grid-cols-3">
+              {objectives.map((title, i) => (
+                <article key={title} className="border border-[#d8d0c3] bg-[#faf8f5] p-8">
+                  <span className="text-3xl text-[#a32836]">0{i + 1}</span>
+                  <h3 className="mt-4 text-2xl">{title}</h3>
+                </article>
+              ))}
+            </div>
+            <img
+              src={flags.url}
+              alt="International flags"
+              className="mt-10 aspect-[21/9] w-full object-cover"
+            />
+          </div>
+        </section>
+        <section id="benefits" className="scroll-mt-24 bg-[#a32836] py-20 text-white">
+          <div className="mx-auto max-w-[1500px] px-6 lg:px-10">
+            <h2 className="max-w-3xl text-5xl">What every delegate takes home from Athens.</h2>
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {benefits.map(([Icon, title], i) => (
+                <article key={title} className="border border-white/30 p-9 text-center">
+                  <Icon className="mx-auto h-10 w-10" />
+                  <h3 className="mt-6 text-2xl">{title}</h3>
+                  <span className="mt-4 block text-white/40">0{i + 1}</span>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+        {conference.cohorts.length && currentDay ? (
+          <section id="schedule" className="relative min-h-[620px] overflow-hidden">
+            <img
+              src={scheduleImage.url}
+              alt="Santorini"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-l from-[#f5f1ea] via-[#f5f1ea]/90 to-transparent" />
+            <div className="relative ml-auto max-w-3xl px-8 py-20">
+              <p className="text-xs uppercase text-[#a32836]">— Tentative schedule</p>
+              <h2 className="mt-6 text-5xl text-[#a32836]">
+                Three days.
+                <br />
+                One unforgettable assembly.
+              </h2>
+              <div className="mt-8 flex gap-2">
+                {days.map((d, i) => (
+                  <Button
+                    key={d[0]}
+                    onClick={() => setDay(i)}
+                    variant={i === day ? "default" : "outline"}
+                    className={
+                      i === day ? "bg-[#a32836] text-white" : "border-[#a32836] text-[#a32836]"
+                    }
+                  >
+                    {d[0]}
+                  </Button>
+                ))}
+              </div>
+              <div className="mt-8 border-l-4 border-[#a32836] bg-white p-8 shadow">
+                <h3 className="text-2xl text-[#a32836]">{currentDay[0]}</h3>
+                <p className="mt-3 text-lg">{currentDay[1]}</p>
+                <div className="mt-5 flex gap-3">
+                  <Button
+                    size="icon"
+                    variant="outline"
+                    onClick={() => setDay((day + days.length - 1) % days.length)}
+                  >
+                    <ChevronLeft />
+                  </Button>
+                  <Button
+                    size="icon"
+                    variant="outline"
+                    onClick={() => setDay((day + 1) % days.length)}
+                  >
+                    <ChevronRight />
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </section>
+        ) : null}
+        <section id="committees" className="scroll-mt-24 bg-[#a32836] py-20 text-white">
+          <div className="mx-auto max-w-[1500px] px-6 lg:px-10">
+            <h2 className="text-5xl">Committees</h2>
+            <div className="mt-12 grid gap-6 md:grid-cols-2">
+              {committeeNames.map((name, i) => (
+                <article
+                  key={name}
+                  className="overflow-hidden rounded-2xl bg-[#faf8f5] text-[#1c263d] md:flex"
+                >
+                  <img
+                    src={committeeImages[i]}
+                    alt={name}
+                    className="h-56 w-full object-cover md:h-auto md:w-2/5"
+                  />
+                  <div className="p-7">
+                    <h3 className="text-xl text-[#a32836]">{name}</h3>
+                    <p className="mt-4 text-sm leading-relaxed">
+                      A focused forum for research, debate, negotiation, and collaborative
+                      resolutions.
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section className="relative overflow-hidden py-20 text-center">
+          <span className="pointer-events-none absolute inset-0 text-[22vw] leading-none text-[#a32836]/5">
+            HMUN
+          </span>
+          <div className="relative mx-auto max-w-4xl px-6">
+            <p className="text-xs uppercase text-[#a32836]">— Applications open —</p>
+            <h2 className="mt-8 text-5xl text-[#a32836]">
+              Take your seat at the table where the next generation of leaders is forged.
+            </h2>
+            <Button
+              asChild
+              size="lg"
+              className="mt-10 bg-[#a32836] px-10 text-white hover:bg-[#84202c]"
+            >
+              <a href={conference.apply} target="_blank" rel="noopener noreferrer">
+                Apply Now →
+              </a>
+            </Button>
+            <p className="mt-6 text-sm text-neutral-600">
+              {conferenceLocation(conference)} · {conferenceDateLabel(conference)}
+            </p>
+            <div className="mt-12 flex justify-center gap-16">
+              <img src={lwlLogo.url} alt="Learn with Leaders" className="h-14 object-contain" />
+              <img src={harvardLogo.url} alt="Harvard WorldMUN" className="h-14 object-contain" />
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
 }

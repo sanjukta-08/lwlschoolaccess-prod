@@ -1,6 +1,8 @@
 import { Bed, UtensilsCrossed, ShieldCheck, Bus } from "lucide-react";
-const hillsideGarden = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/fbfca66c-706f-4d8f-ac30-b033333514ac/hillside-garden.jpg";
-const clareRoom = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/81824a19-0ea5-4079-b875-5b71317ddb4d/clare-room.jpg";
+const hillsideGarden =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/fbfca66c-706f-4d8f-ac30-b033333514ac/hillside-garden.jpg";
+const clareRoom =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/81824a19-0ea5-4079-b875-5b71317ddb4d/clare-room.jpg";
 
 export const accomData = {
   eyebrow: "Accommodation",

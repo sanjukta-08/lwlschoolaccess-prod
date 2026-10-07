@@ -82,8 +82,7 @@ function InternshipsPage() {
         eyebrow="Join us · Learn with Leaders"
         title={
           <>
-            Sponsorship roles{" "}
-            <em className="text-crimson-deep">- Competitions</em>
+            Sponsorship roles <em className="text-crimson-deep">- Competitions</em>
           </>
         }
         subtitle="Help us bring world-class student competitions to life. Work remotely with a global team, build partnerships with leading brands, and grow a career in sponsorships, sales and education."

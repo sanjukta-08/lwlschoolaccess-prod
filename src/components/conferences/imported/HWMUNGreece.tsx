@@ -1,10 +1,27 @@
 import { useEffect, useState } from "react";
 import type { Programme } from "@/lib/programmes";
-import { conferenceDateLabel, conferenceGrades, conferenceLocation, conferencePrice } from "@/lib/conferences";
+import {
+  conferenceDateLabel,
+  conferenceGrades,
+  conferenceLocation,
+  conferencePrice,
+} from "@/lib/conferences";
 import { Link } from "@tanstack/react-router";
 import {
-  Users, CalendarDays, Clock, GraduationCap, Wallet, Award,
-  ChevronLeft, ChevronRight, Globe, Users2, Network, Mic, Lightbulb, BadgeCheck,
+  Users,
+  CalendarDays,
+  Clock,
+  GraduationCap,
+  Wallet,
+  Award,
+  ChevronLeft,
+  ChevronRight,
+  Globe,
+  Users2,
+  Network,
+  Mic,
+  Lightbulb,
+  BadgeCheck,
 } from "lucide-react";
 import "@/hwmun-greece-imported.css";
 
@@ -44,7 +61,6 @@ const committeeCsocd = committeeCsocdAsset.url;
 const committeeLegal = committeeLegalAsset.url;
 const lwlLogo = lwlLogoAsset.url;
 
-
 function Nav({ apply }: { apply: string }) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -63,17 +79,33 @@ function Nav({ apply }: { apply: string }) {
     >
       <div className="mx-auto max-w-[1500px] px-6 lg:px-10 py-2 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <img src={harvardLogo} alt="Harvard WorldMUN" className="h-16 w-16 md:h-20 md:w-20 object-contain" />
+          <img
+            src={harvardLogo}
+            alt="Harvard WorldMUN"
+            className="h-16 w-16 md:h-20 md:w-20 object-contain"
+          />
         </div>
         <nav className="hidden md:flex items-center gap-10 text-[15px] text-foreground">
-          <a href="#about" className="hover:text-primary transition">About</a>
-          <a href="#details" className="hover:text-primary transition">Details</a>
-          <a href="#benefits" className="hover:text-primary transition">Benefits</a>
-          <a href="#schedule" className="hover:text-primary transition">Schedule</a>
-          <a href="#committees" className="hover:text-primary transition">Committees</a>
+          <a href="#about" className="hover:text-primary transition">
+            About
+          </a>
+          <a href="#details" className="hover:text-primary transition">
+            Details
+          </a>
+          <a href="#benefits" className="hover:text-primary transition">
+            Benefits
+          </a>
+          <a href="#schedule" className="hover:text-primary transition">
+            Schedule
+          </a>
+          <a href="#committees" className="hover:text-primary transition">
+            Committees
+          </a>
         </nav>
         <a
-          href={apply} target="_blank" rel="noopener noreferrer"
+          href={apply}
+          target="_blank"
+          rel="noopener noreferrer"
           className="hidden sm:inline-flex items-center gap-2 bg-secondary text-secondary-foreground rounded-full px-7 py-3 text-sm font-medium tracking-wide hover:bg-secondary/90 transition"
         >
           Apply Now
@@ -111,12 +143,14 @@ function Hero({ apply }: { apply: string }) {
           </h1>
           <div className="mt-8 h-[3px] w-20 bg-[hsl(var(--hwmun-gold))]" />
           <p className="mt-8 max-w-lg text-base md:text-lg text-black leading-relaxed font-light">
-            A premier international relations simulation gathering over 2,000 delegates from
-            more than 110 countries. Hosted in Athens — the birthplace of democracy.
+            A premier international relations simulation gathering over 2,000 delegates from more
+            than 110 countries. Hosted in Athens — the birthplace of democracy.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <a
-              href={apply} target="_blank" rel="noopener noreferrer"
+              href={apply}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-secondary text-secondary-foreground rounded-full px-8 py-4 text-sm font-medium tracking-wide hover:bg-secondary/90 transition"
             >
               Apply Now <span aria-hidden>→</span>
@@ -127,7 +161,9 @@ function Hero({ apply }: { apply: string }) {
 
       <div className="relative z-10 pl-8 md:pl-16 lg:pl-24 xl:pl-32 pr-6 md:pr-16 lg:pr-24 xl:pr-32 pb-10">
         <div className="bg-card/90 backdrop-blur-sm border border-border rounded-sm shadow-[var(--shadow-soft)] py-6 px-8 flex flex-col md:flex-row items-center justify-center gap-6">
-          <div className="text-[11px] tracking-[0.3em] uppercase text-muted-foreground">Hosted by</div>
+          <div className="text-[11px] tracking-[0.3em] uppercase text-muted-foreground">
+            Hosted by
+          </div>
           <img src={acsLogo} alt="ACS Athens" className="h-20 md:h-24 object-contain" />
         </div>
       </div>
@@ -173,16 +209,18 @@ function About() {
         </div>
         <div className="md:col-span-7 space-y-6 text-[19px] md:text-xl leading-relaxed text-foreground/85 font-light">
           <p>
-            <strong className="font-medium text-foreground">Harvard World Model United Nations Greece</strong>{" "}
-            is a premier international relations simulation designed to inspire and empower
-            students to become global leaders. Organized annually by Harvard University students
-            in partnership with a local host team, the conference gathers over 2,000 delegates
-            from more than 110 countries.
+            <strong className="font-medium text-foreground">
+              Harvard World Model United Nations Greece
+            </strong>{" "}
+            is a premier international relations simulation designed to inspire and empower students
+            to become global leaders. Organized annually by Harvard University students in
+            partnership with a local host team, the conference gathers over 2,000 delegates from
+            more than 110 countries.
           </p>
           <p>
-            This program offers a unique blend of high-level debate, cultural immersion, and
-            social engagement — creating an environment where diverse perspectives are not only
-            heard, but celebrated.
+            This program offers a unique blend of high-level debate, cultural immersion, and social
+            engagement — creating an environment where diverse perspectives are not only heard, but
+            celebrated.
           </p>
           <p>
             Recognized for its academic rigor and vibrant international community,{" "}
@@ -231,8 +269,8 @@ function Pillars() {
                 The Three <em className="not-italic italic font-light text-white/80">Pillars</em>
               </h2>
               <p className="text-white/85 text-lg md:text-xl leading-relaxed max-w-sm font-light">
-                An unforgettable diplomatic journey, built on three foundational
-                principles that shape every delegate's experience.
+                An unforgettable diplomatic journey, built on three foundational principles that
+                shape every delegate's experience.
               </p>
               <div className="hidden lg:block pt-6">
                 <div className="h-[3px] w-20 bg-white/40" />
@@ -314,7 +352,12 @@ function Details({ conference }: { conference: Programme }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-stretch">
           <div className="lg:col-span-5 flex flex-col">
             <div className="relative flex-1 min-h-[420px] overflow-hidden border-8 border-card shadow-[var(--shadow-elegant)]">
-              <img src={acsCampus} alt="ACS Athens campus" className="w-full h-full object-cover" loading="lazy" />
+              <img
+                src={acsCampus}
+                alt="ACS Athens campus"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
               <div className="absolute inset-0 bg-[hsl(var(--hwmun-navy)/0.05)] mix-blend-multiply" />
             </div>
             <p className="mt-4 font-serif italic text-sm text-muted-foreground text-center">
@@ -335,7 +378,9 @@ function Details({ conference }: { conference: Programme }) {
                   <div className="font-serif text-lg md:text-xl font-medium text-primary pb-1.5 border-b border-primary/30">
                     {label}
                   </div>
-                  <p className="font-sans text-base text-foreground/80 mt-3 leading-relaxed">{value}</p>
+                  <p className="font-sans text-base text-foreground/80 mt-3 leading-relaxed">
+                    {value}
+                  </p>
                 </div>
               </div>
             ))}
@@ -348,14 +393,29 @@ function Details({ conference }: { conference: Programme }) {
 
 function Objectives() {
   const list: [string, string][] = [
-    ["Promote Global Awareness & Diplomacy", "Encourage delegates to explore pressing international issues through the lens of diplomacy and cooperation."],
-    ["Foster Cross-Cultural Understanding", "Create an inclusive environment that celebrates cultural diversity and builds friendships across borders."],
-    ["Develop Leadership & Communication", "Enhance abilities in negotiation, public speaking, collaboration, and critical thinking through committee sessions."],
-    ["Simulate Real-World Decision-Making", "Provide realistic simulations of UN bodies to help students understand the complexity of global governance."],
-    ["Inspire Civic Engagement", "Empower young leaders to return to their communities with a deeper sense of civic duty and commitment to change."],
+    [
+      "Promote Global Awareness & Diplomacy",
+      "Encourage delegates to explore pressing international issues through the lens of diplomacy and cooperation.",
+    ],
+    [
+      "Foster Cross-Cultural Understanding",
+      "Create an inclusive environment that celebrates cultural diversity and builds friendships across borders.",
+    ],
+    [
+      "Develop Leadership & Communication",
+      "Enhance abilities in negotiation, public speaking, collaboration, and critical thinking through committee sessions.",
+    ],
+    [
+      "Simulate Real-World Decision-Making",
+      "Provide realistic simulations of UN bodies to help students understand the complexity of global governance.",
+    ],
+    [
+      "Inspire Civic Engagement",
+      "Empower young leaders to return to their communities with a deeper sense of civic duty and commitment to change.",
+    ],
   ];
   const perPage = 3;
-  const pages: typeof list[] = [];
+  const pages: (typeof list)[] = [];
   for (let i = 0; i < list.length; i += perPage) {
     const slice = list.slice(i, i + perPage);
     while (slice.length < perPage) {
@@ -384,34 +444,54 @@ function Objectives() {
               <span className="rule mr-3" /> Conference Objectives
             </div>
             <h2 className="mt-6 font-serif text-secondary text-4xl md:text-5xl leading-[1.05] tracking-tight">
-              Designed with purpose.<br />Delivered with rigor.
+              Designed with purpose.
+              <br />
+              Delivered with rigor.
             </h2>
           </div>
           <div className="flex items-center gap-3">
-            <button type="button" onClick={prev} aria-label="Previous"
-              className="w-12 h-12 rounded-full border border-primary/30 bg-background flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
+            <button
+              type="button"
+              onClick={prev}
+              aria-label="Previous"
+              className="w-12 h-12 rounded-full border border-primary/30 bg-background flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+            >
               <ChevronLeft className="w-5 h-5" />
             </button>
-            <button type="button" onClick={next} aria-label="Next"
-              className="w-12 h-12 rounded-full border border-primary/30 bg-background flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
+            <button
+              type="button"
+              onClick={next}
+              aria-label="Next"
+              className="w-12 h-12 rounded-full border border-primary/30 bg-background flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+            >
               <ChevronRight className="w-5 h-5" />
             </button>
           </div>
         </div>
 
         <div className="mt-12 md:mt-16 overflow-hidden">
-          <div className="flex transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${page * 100}%)` }}>
+          <div
+            className="flex transition-transform duration-700 ease-in-out"
+            style={{ transform: `translateX(-${page * 100}%)` }}
+          >
             {pages.map((group, gIdx) => (
               <div key={gIdx} className="w-full shrink-0 grid grid-cols-1 md:grid-cols-3 gap-6">
                 {group.map(([title, body], i) => {
                   const originalIndex = list.findIndex(([t]) => t === title);
                   return (
-                    <article key={`${gIdx}-${i}`} className="bg-background border border-border p-8 md:p-10">
+                    <article
+                      key={`${gIdx}-${i}`}
+                      className="bg-background border border-border p-8 md:p-10"
+                    >
                       <div className="font-serif text-3xl text-primary tabular-nums">
                         {String(originalIndex + 1).padStart(2, "0")}
                       </div>
-                      <h3 className="mt-4 font-serif text-2xl text-foreground leading-snug">{title}</h3>
-                      <p className="mt-3 text-[15px] leading-relaxed text-foreground/75 font-light">{body}</p>
+                      <h3 className="mt-4 font-serif text-2xl text-foreground leading-snug">
+                        {title}
+                      </h3>
+                      <p className="mt-3 text-[15px] leading-relaxed text-foreground/75 font-light">
+                        {body}
+                      </p>
                     </article>
                   );
                 })}
@@ -422,14 +502,24 @@ function Objectives() {
 
         <div className="mt-8 flex justify-center gap-2">
           {pages.map((_, i) => (
-            <button key={i} type="button" onClick={() => setPage(i)} aria-label={`Go to page ${i + 1}`}
-              className={`h-1.5 rounded-full transition-all ${i === page ? "w-8 bg-primary" : "w-4 bg-primary/25"}`} />
+            <button
+              key={i}
+              type="button"
+              onClick={() => setPage(i)}
+              aria-label={`Go to page ${i + 1}`}
+              className={`h-1.5 rounded-full transition-all ${i === page ? "w-8 bg-primary" : "w-4 bg-primary/25"}`}
+            />
           ))}
         </div>
       </div>
 
       <div className="mx-auto max-w-[1500px] px-6 lg:px-10 mt-8 md:mt-10">
-        <img src={flags} alt="International flags" loading="lazy" className="w-full aspect-[21/9] object-cover" />
+        <img
+          src={flags}
+          alt="International flags"
+          loading="lazy"
+          className="w-full aspect-[21/9] object-cover"
+        />
       </div>
     </section>
   );
@@ -437,15 +527,42 @@ function Objectives() {
 
 function Benefits() {
   const list: [string, string, typeof Globe][] = [
-    ["Global Perspective", "A deeper understanding of global challenges and international institutions.", Globe],
-    ["Leadership & Teamwork", "Lead, compromise, and collaborate effectively in high-pressure multicultural settings.", Users2],
-    ["International Network", "Build lifelong connections with peers from over 100 countries.", Network],
-    ["Negotiation & Public Speaking", "Strengthen persuasive communication and diplomacy through resolutions.", Mic],
-    ["Confidence & Critical Thinking", "Sharpen creative problem-solving and the ability to think on one's feet.", Lightbulb],
-    ["A Harvard Credential", "Earn an official Certificate of Participation from Harvard WorldMUN.", BadgeCheck],
+    [
+      "Global Perspective",
+      "A deeper understanding of global challenges and international institutions.",
+      Globe,
+    ],
+    [
+      "Leadership & Teamwork",
+      "Lead, compromise, and collaborate effectively in high-pressure multicultural settings.",
+      Users2,
+    ],
+    [
+      "International Network",
+      "Build lifelong connections with peers from over 100 countries.",
+      Network,
+    ],
+    [
+      "Negotiation & Public Speaking",
+      "Strengthen persuasive communication and diplomacy through resolutions.",
+      Mic,
+    ],
+    [
+      "Confidence & Critical Thinking",
+      "Sharpen creative problem-solving and the ability to think on one's feet.",
+      Lightbulb,
+    ],
+    [
+      "A Harvard Credential",
+      "Earn an official Certificate of Participation from Harvard WorldMUN.",
+      BadgeCheck,
+    ],
   ];
   return (
-    <section id="benefits" className="relative py-14 md:py-20 bg-primary text-primary-foreground overflow-hidden">
+    <section
+      id="benefits"
+      className="relative py-14 md:py-20 bg-primary text-primary-foreground overflow-hidden"
+    >
       <div className="pointer-events-none absolute -top-32 -left-32 w-[28rem] h-[28rem] rounded-full border border-primary-foreground/20" />
       <div className="pointer-events-none absolute -bottom-40 -right-40 w-[36rem] h-[36rem] rounded-full border border-primary-foreground/15" />
       <div className="pointer-events-none absolute top-1/3 right-10 w-2 h-2 rounded-full bg-primary-foreground/60" />
@@ -462,8 +579,10 @@ function Benefits() {
         </div>
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {list.map(([title, body, Icon], i) => (
-            <div key={title}
-              className="relative bg-primary-foreground/[0.04] border border-white/30 backdrop-blur-sm rounded-md p-8 md:p-10 flex flex-col items-center text-center hover:border-white/60 hover:-translate-y-0.5 transition-all duration-300 overflow-hidden">
+            <div
+              key={title}
+              className="relative bg-primary-foreground/[0.04] border border-white/30 backdrop-blur-sm rounded-md p-8 md:p-10 flex flex-col items-center text-center hover:border-white/60 hover:-translate-y-0.5 transition-all duration-300 overflow-hidden"
+            >
               <span className="pointer-events-none absolute -top-6 -right-2 font-serif text-[7rem] leading-none text-primary-foreground/[0.06] select-none">
                 {String(i + 1).padStart(2, "0")}
               </span>
@@ -476,7 +595,9 @@ function Benefits() {
               </div>
               <h3 className="mt-6 font-serif text-2xl text-primary-foreground">{title}</h3>
               <span className="mt-4 block w-10 h-px bg-primary-foreground/60" />
-              <p className="mt-4 text-[15px] leading-relaxed text-primary-foreground/75 font-light">{body}</p>
+              <p className="mt-4 text-[15px] leading-relaxed text-primary-foreground/75 font-light">
+                {body}
+              </p>
             </div>
           ))}
         </div>
@@ -486,9 +607,14 @@ function Benefits() {
 }
 
 function Schedule() {
-  const days: { name: string; range: string; rows: { time: string; label: string; Icon: typeof Users }[] }[] = [
+  const days: {
+    name: string;
+    range: string;
+    rows: { time: string; label: string; Icon: typeof Users }[];
+  }[] = [
     {
-      name: "Day 1", range: "8:00 am — 4:00 pm",
+      name: "Day 1",
+      range: "8:00 am — 4:00 pm",
       rows: [
         { time: "08:00 am — 09:00 am", label: "Registrations", Icon: Users },
         { time: "09:15 am — 11:00 am", label: "Opening Ceremony", Icon: Award },
@@ -500,7 +626,8 @@ function Schedule() {
       ],
     },
     {
-      name: "Day 2", range: "9:00 am — 4:00 pm",
+      name: "Day 2",
+      range: "9:00 am — 4:00 pm",
       rows: [
         { time: "09:00 am — 10:45 am", label: "Committee Sessions", Icon: GraduationCap },
         { time: "11:00 am", label: "15 minutes feedback", Icon: Clock },
@@ -512,7 +639,8 @@ function Schedule() {
       ],
     },
     {
-      name: "Day 3", range: "9:00 am — 4:00 pm",
+      name: "Day 3",
+      range: "9:00 am — 4:00 pm",
       rows: [
         { time: "09:00 am — 10:45 am", label: "Committee Sessions", Icon: GraduationCap },
         { time: "11:00 am", label: "15 minute feedback", Icon: Clock },
@@ -537,7 +665,12 @@ function Schedule() {
   return (
     <section id="schedule" className="relative overflow-hidden">
       <div className="absolute inset-0">
-        <img src={santoriniSchedule} alt="" className="w-full h-full object-cover" style={{ transform: "scaleX(-1)" }} />
+        <img
+          src={santoriniSchedule}
+          alt=""
+          className="w-full h-full object-cover"
+          style={{ transform: "scaleX(-1)" }}
+        />
         <div className="absolute inset-0 bg-gradient-to-l from-[#f5f1ea] via-[#f5f1ea]/85 to-transparent" />
       </div>
 
@@ -548,7 +681,9 @@ function Schedule() {
             <span className="rule mr-3" /> Tentative Schedule
           </div>
           <h2 className="mt-6 font-serif text-secondary text-4xl md:text-5xl leading-[1.05] tracking-tight">
-            Three days.<br />One unforgettable assembly.
+            Three days.
+            <br />
+            One unforgettable assembly.
           </h2>
           <span className="mt-5 block w-16 h-px bg-accent" />
           <p className="mt-5 text-[15px] text-foreground/85 max-w-md leading-relaxed font-medium">
@@ -556,31 +691,50 @@ function Schedule() {
           </p>
 
           <div className="mt-6 flex items-center gap-2">
-            <button onClick={prev} aria-label="Previous day"
-              className="w-9 h-9 rounded-full border border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition">
+            <button
+              onClick={prev}
+              aria-label="Previous day"
+              className="w-9 h-9 rounded-full border border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition"
+            >
               <ChevronLeft className="w-4 h-4" />
             </button>
             {days.map((d, i) => (
-              <button key={d.name} onClick={() => setActive(i)}
+              <button
+                key={d.name}
+                onClick={() => setActive(i)}
                 className={`px-4 py-2 text-xs tracking-[0.18em] uppercase font-medium transition ${
-                  i === active ? "bg-primary text-primary-foreground" : "bg-background text-foreground/60 hover:text-primary"
-                }`}>
+                  i === active
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-background text-foreground/60 hover:text-primary"
+                }`}
+              >
                 {d.name}
               </button>
             ))}
-            <button onClick={next} aria-label="Next day"
-              className="w-9 h-9 rounded-full border border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition">
+            <button
+              onClick={next}
+              aria-label="Next day"
+              className="w-9 h-9 rounded-full border border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition"
+            >
               <ChevronRight className="w-4 h-4" />
             </button>
-            <span className="ml-2 text-[11px] tracking-[0.22em] uppercase text-muted-foreground">{current.range}</span>
+            <span className="ml-2 text-[11px] tracking-[0.22em] uppercase text-muted-foreground">
+              {current.range}
+            </span>
           </div>
 
           <div className="mt-5 overflow-hidden">
-            <div className="flex transition-transform duration-700 ease-out" style={{ transform: `translateX(-${active * 100}%)` }}>
+            <div
+              className="flex transition-transform duration-700 ease-out"
+              style={{ transform: `translateX(-${active * 100}%)` }}
+            >
               {days.map((d) => (
                 <ul key={d.name} className="w-full shrink-0 space-y-2">
                   {d.rows.map(({ time, label, Icon }) => (
-                    <li key={time + label} className="flex items-stretch bg-background shadow-[0_1px_2px_rgba(0,0,0,0.04)] overflow-hidden">
+                    <li
+                      key={time + label}
+                      className="flex items-stretch bg-background shadow-[0_1px_2px_rgba(0,0,0,0.04)] overflow-hidden"
+                    >
                       <span className="bg-primary text-primary-foreground text-[12px] tabular-nums font-semibold tracking-wide px-4 py-2.5 flex items-center justify-center w-[180px] shrink-0 text-center">
                         {time}
                       </span>
@@ -611,27 +765,80 @@ function Schedule() {
 
 function Committees() {
   const items = [
-    { img: committeeDisec, group: "GA", name: "Disarmament and International Security Committee (DISEC)", topic: "Cobalt Mining in the Congo", body: "DISEC will address the human cost of cobalt mining in the Democratic Republic of the Congo, where children and civilians are exploited under inhumane conditions. While cobalt is essential to the global tech economy, its extraction raises serious ethical and security concerns. Delegates will examine the international community's role in enabling these practices and propose multilateral solutions to regulate supply chains, protect vulnerable communities, and ensure ethical resource governance." },
-    { img: committeeEcofin, group: "GA", name: "Economic and Financial Committee (ECOFIN)", topic: "International Monetary Fund Bailouts and their Consequences", body: "ECOFIN will explore the effectiveness of IMF interventions in countries facing repeated financial crises. Through case studies of Pakistan, Egypt, and Côte d'Ivoire, delegates will assess whether IMF policies have fostered sustainable development or entrenched debt cycles. Using diverse economic metrics and methodologies, the committee will evaluate the long-term implications of IMF involvement and propose reforms to promote financial stability, equity, and accountability." },
-    { img: committeeSochum, group: "GA", name: "Social, Humanitarian, and Cultural Committee (SOCHUM)", topic: "Healthcare Treatment and Stigmas Surrounding its Provision", body: "SOCHUM will examine how cultural norms, legal restrictions, and economic barriers limit access to sexual and reproductive health and rights (SRHR) worldwide. With particular focus on marginalized populations, the committee will evaluate structural inequalities and propose inclusive policies that expand access to comprehensive SRHR education, services, and protections — especially in low-resource and conservative settings." },
-    { img: committeeSpecpol, group: "GA", name: "Special Political and Decolonization Committee (SPECPOL)", topic: "Protecting and Preserving Biodiversity", body: "SPECPOL will address the global biodiversity crisis, with wildlife populations declining by nearly 70% since 1970. Delegates will assess the root causes of ecosystem collapse — such as habitat destruction, climate change, and overexploitation — and debate solutions that reflect their nations' ecological and geopolitical interests. The committee will work to develop cooperative strategies for preserving global biodiversity and securing a sustainable future." },
-    { img: committeeCsocd, group: "ECOSOC/RB", name: "Commission for Social Development (CSocD)", topic: "Collectivized and Collaborative Action of Populations for the Sake of National Development", body: "CSocD will explore how local, community-led approaches can drive effective poverty reduction. Drawing on models like the Harlem Children's Zone, delegates will consider how systems-level interventions — coordinated across education, health, and economic support — can be adapted globally. The committee will assess the cultural, financial, and political challenges of implementing place-based strategies in diverse international contexts." },
-    { img: committeeLegal, group: "GA", name: "Legal Committee", topic: "Digital Learning and Educational Inequities", body: "The Legal Committee will investigate how disparities in digital access and literacy widen global educational inequalities. Delegates will examine the legal responsibilities of governments and institutions in ensuring digital inclusion, especially for underserved communities. Topics include teacher training, student access, funding, and data privacy. The committee will develop rights-based frameworks to support equitable digital learning worldwide." },
+    {
+      img: committeeDisec,
+      group: "GA",
+      name: "Disarmament and International Security Committee (DISEC)",
+      topic: "Cobalt Mining in the Congo",
+      body: "DISEC will address the human cost of cobalt mining in the Democratic Republic of the Congo, where children and civilians are exploited under inhumane conditions. While cobalt is essential to the global tech economy, its extraction raises serious ethical and security concerns. Delegates will examine the international community's role in enabling these practices and propose multilateral solutions to regulate supply chains, protect vulnerable communities, and ensure ethical resource governance.",
+    },
+    {
+      img: committeeEcofin,
+      group: "GA",
+      name: "Economic and Financial Committee (ECOFIN)",
+      topic: "International Monetary Fund Bailouts and their Consequences",
+      body: "ECOFIN will explore the effectiveness of IMF interventions in countries facing repeated financial crises. Through case studies of Pakistan, Egypt, and Côte d'Ivoire, delegates will assess whether IMF policies have fostered sustainable development or entrenched debt cycles. Using diverse economic metrics and methodologies, the committee will evaluate the long-term implications of IMF involvement and propose reforms to promote financial stability, equity, and accountability.",
+    },
+    {
+      img: committeeSochum,
+      group: "GA",
+      name: "Social, Humanitarian, and Cultural Committee (SOCHUM)",
+      topic: "Healthcare Treatment and Stigmas Surrounding its Provision",
+      body: "SOCHUM will examine how cultural norms, legal restrictions, and economic barriers limit access to sexual and reproductive health and rights (SRHR) worldwide. With particular focus on marginalized populations, the committee will evaluate structural inequalities and propose inclusive policies that expand access to comprehensive SRHR education, services, and protections — especially in low-resource and conservative settings.",
+    },
+    {
+      img: committeeSpecpol,
+      group: "GA",
+      name: "Special Political and Decolonization Committee (SPECPOL)",
+      topic: "Protecting and Preserving Biodiversity",
+      body: "SPECPOL will address the global biodiversity crisis, with wildlife populations declining by nearly 70% since 1970. Delegates will assess the root causes of ecosystem collapse — such as habitat destruction, climate change, and overexploitation — and debate solutions that reflect their nations' ecological and geopolitical interests. The committee will work to develop cooperative strategies for preserving global biodiversity and securing a sustainable future.",
+    },
+    {
+      img: committeeCsocd,
+      group: "ECOSOC/RB",
+      name: "Commission for Social Development (CSocD)",
+      topic:
+        "Collectivized and Collaborative Action of Populations for the Sake of National Development",
+      body: "CSocD will explore how local, community-led approaches can drive effective poverty reduction. Drawing on models like the Harlem Children's Zone, delegates will consider how systems-level interventions — coordinated across education, health, and economic support — can be adapted globally. The committee will assess the cultural, financial, and political challenges of implementing place-based strategies in diverse international contexts.",
+    },
+    {
+      img: committeeLegal,
+      group: "GA",
+      name: "Legal Committee",
+      topic: "Digital Learning and Educational Inequities",
+      body: "The Legal Committee will investigate how disparities in digital access and literacy widen global educational inequalities. Delegates will examine the legal responsibilities of governments and institutions in ensuring digital inclusion, especially for underserved communities. Topics include teacher training, student access, funding, and data privacy. The committee will develop rights-based frameworks to support equitable digital learning worldwide.",
+    },
   ];
 
   return (
-    <section id="committees" className="relative bg-secondary text-secondary-foreground pt-20 md:pt-28 pb-12 md:pb-16">
+    <section
+      id="committees"
+      className="relative bg-secondary text-secondary-foreground pt-20 md:pt-28 pb-12 md:pb-16"
+    >
       <div className="mx-auto max-w-[1500px] px-6 lg:px-10">
-        <h2 className="font-serif text-secondary-foreground text-4xl md:text-5xl leading-[1.05] tracking-tight">Committees</h2>
+        <h2 className="font-serif text-secondary-foreground text-4xl md:text-5xl leading-[1.05] tracking-tight">
+          Committees
+        </h2>
         <p className="mt-4 max-w-2xl text-secondary-foreground/80 text-[15px] leading-relaxed">
-          A curated selection of simulated bodies. The full roster of twenty is announced to accepted delegates.
+          A curated selection of simulated bodies. The full roster of twenty is announced to
+          accepted delegates.
         </p>
 
         <div className="mt-12 grid md:grid-cols-2 gap-6">
           {items.map((c, i) => (
-            <article key={c.name} className="bg-background rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
+            <article
+              key={c.name}
+              className="bg-background rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
+            >
               <div className={`md:w-2/5 shrink-0 ${i % 2 === 1 ? "md:order-2" : ""}`}>
-                <img src={c.img} alt={c.topic} loading="lazy" width={1024} height={768} className="w-full h-56 md:h-full object-cover" />
+                <img
+                  src={c.img}
+                  alt={c.topic}
+                  loading="lazy"
+                  width={1024}
+                  height={768}
+                  className="w-full h-56 md:h-full object-cover"
+                />
               </div>
               <div className="p-6 md:p-7 flex-1">
                 <h3 className="font-serif text-secondary text-[19px] leading-snug">
@@ -646,7 +853,9 @@ function Committees() {
           ))}
         </div>
 
-        <div className="mt-10 text-center text-secondary-foreground/80 italic text-sm tracking-wide">and many more…</div>
+        <div className="mt-10 text-center text-secondary-foreground/80 italic text-sm tracking-wide">
+          and many more…
+        </div>
       </div>
     </section>
   );
@@ -654,9 +863,17 @@ function Committees() {
 
 function CTA({ apply, conference }: { apply: string; conference: Programme }) {
   return (
-    <section id="register" className="relative pt-12 pb-8 md:pt-16 md:pb-10 bg-background text-foreground overflow-hidden">
-      <div aria-hidden className="pointer-events-none absolute inset-0 flex items-center justify-center select-none">
-        <span className="font-serif text-[22vw] md:text-[16vw] leading-none tracking-tighter text-secondary/[0.05]">HMUN</span>
+    <section
+      id="register"
+      className="relative pt-12 pb-8 md:pt-16 md:pb-10 bg-background text-foreground overflow-hidden"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 flex items-center justify-center select-none"
+      >
+        <span className="font-serif text-[22vw] md:text-[16vw] leading-none tracking-tighter text-secondary/[0.05]">
+          HMUN
+        </span>
       </div>
       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-32 bg-secondary/40" />
 
@@ -668,18 +885,23 @@ function CTA({ apply, conference }: { apply: string; conference: Programme }) {
         </div>
 
         <h2 className="mt-8 font-serif text-4xl md:text-5xl leading-[1.05] tracking-tight text-secondary">
-          Take your seat at the table where the<br />
+          Take your seat at the table where the
+          <br />
           <span className="italic text-primary">next generation of leaders</span> is forged.
         </h2>
 
         <p className="mt-8 mx-auto max-w-2xl text-[15px] md:text-base text-foreground/75 leading-relaxed">
-          Seats are allocated by school delegation and reviewed on a rolling basis. Submit
-          your interest to receive the official application and country assignment.
+          Seats are allocated by school delegation and reviewed on a rolling basis. Submit your
+          interest to receive the official application and country assignment.
         </p>
 
         <div className="mt-12 flex flex-col items-center gap-6">
-          <a href={apply} target="_blank" rel="noopener noreferrer"
-            className="group inline-flex items-center gap-4 bg-primary text-primary-foreground px-10 py-5 text-sm font-semibold tracking-[0.25em] uppercase hover:bg-primary/90 transition">
+          <a
+            href={apply}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-4 bg-primary text-primary-foreground px-10 py-5 text-sm font-semibold tracking-[0.25em] uppercase hover:bg-primary/90 transition"
+          >
             Apply Now
             <span className="transition-transform group-hover:translate-x-1">→</span>
           </a>
@@ -711,14 +933,22 @@ function PartnerLogos() {
 function Quote() {
   return (
     <section className="relative py-32 md:py-44 bg-secondary text-secondary-foreground overflow-hidden">
-      <img src={unity} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover opacity-20" />
+      <img
+        src={unity}
+        alt=""
+        aria-hidden
+        className="absolute inset-0 h-full w-full object-cover opacity-20"
+      />
       <div className="relative mx-auto max-w-5xl px-6 lg:px-10 text-center">
         <div className="font-serif text-accent text-6xl leading-none mb-6">“</div>
         <blockquote className="font-serif text-3xl md:text-5xl leading-[1.15] italic text-white">
-          One conference. Countless connections.<br />
+          One conference. Countless connections.
+          <br />
           <span className="text-accent not-italic">Infinite impact.</span>
         </blockquote>
-        <div className="mt-10 text-[11px] tracking-[0.3em] uppercase text-white/60">The WorldMUN Spirit</div>
+        <div className="mt-10 text-[11px] tracking-[0.3em] uppercase text-white/60">
+          The WorldMUN Spirit
+        </div>
       </div>
     </section>
   );

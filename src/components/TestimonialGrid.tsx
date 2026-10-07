@@ -2,12 +2,7 @@ import { useEffect, useState } from "react";
 
 import { Play, Quote } from "lucide-react";
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 
 import { FORMATS } from "@/lib/testimonials";
 import type { Testimonial } from "@/lib/testimonials";
@@ -38,9 +33,7 @@ const initialsOf = (name: string) =>
 
 const posterFor = (t: Extract<Testimonial, { format: "video" }>) =>
   t.video.poster ??
-  (t.video.fileId
-    ? `https://drive.google.com/thumbnail?id=${t.video.fileId}&sz=w800`
-    : undefined);
+  (t.video.fileId ? `https://drive.google.com/thumbnail?id=${t.video.fileId}&sz=w800` : undefined);
 
 function TrackChips({ tracks }: { tracks: TrackKey[] }) {
   return (
@@ -92,8 +85,7 @@ function CardShell({
             {t.name}
           </span>
           <span className="mono-label mt-0.5 block text-[0.6rem] text-gold-deep">
-            {t.voice === "parent" ? "Parent" : "Student"} ·{" "}
-            {FORMATS[t.format].short}
+            {t.voice === "parent" ? "Parent" : "Student"} · {FORMATS[t.format].short}
           </span>
         </span>
       </header>
@@ -121,11 +113,7 @@ function Card({ t, onOpen }: { t: Testimonial; onOpen: () => void }) {
       <CardShell
         t={t}
         onOpen={onOpen}
-        footer={
-          <span className="mono-label shrink-0 text-[0.6rem] text-crimson">
-            Watch
-          </span>
-        }
+        footer={<span className="mono-label shrink-0 text-[0.6rem] text-crimson">Watch</span>}
       >
         <span className="relative block aspect-[9/16] w-full overflow-hidden rounded-xl bg-ink/5">
           {poster ? (
@@ -195,13 +183,7 @@ function Card({ t, onOpen }: { t: Testimonial; onOpen: () => void }) {
   );
 }
 
-function Lightbox({
-  item,
-  onClose,
-}: {
-  item: Testimonial | null;
-  onClose: () => void;
-}) {
+function Lightbox({ item, onClose }: { item: Testimonial | null; onClose: () => void }) {
   useEffect(() => {
     if (!item) return;
     const onKey = (e: KeyboardEvent) => {
@@ -295,9 +277,7 @@ function Lightbox({
 
             <div className="mt-4 flex items-center justify-between gap-3 border-t border-line pt-3">
               <TrackChips tracks={item.tracks} />
-              <span className="mono-label text-[0.6rem] text-gold-deep">
-                {item.programme}
-              </span>
+              <span className="mono-label text-[0.6rem] text-gold-deep">{item.programme}</span>
             </div>
           </>
         ) : null}

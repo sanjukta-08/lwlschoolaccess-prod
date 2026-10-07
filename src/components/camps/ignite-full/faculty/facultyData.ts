@@ -1,10 +1,17 @@
-const annImg = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/21b503f1-bc86-4429-81cf-24982f108b19/faculty-ann-new.jpg";
-const moniqueImg = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/b5b366ae-14cb-4c62-9083-7239865cc3dd/faculty-monique-new.webp";
-const simonImg = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/862e2bb6-0b22-4998-a47e-09244371185a/faculty-simon.webp";
-const daniilImg = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/0257b9c7-eb68-47b8-964e-b30aa1706a86/faculty-daniil.webp";
-const hamidImg = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/8ce91bcd-2eaa-4f2b-bebf-55b9758ba4c0/faculty-hamid.webp";
-const michaelImg = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/6f4b5285-1601-48a1-bb3a-804ad5a23043/faculty-michael.webp";
-const andrewImg = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/04919109-3d4d-4948-9b3d-b778fb74723c/faculty-andrew.webp";
+const annImg =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/21b503f1-bc86-4429-81cf-24982f108b19/faculty-ann-new.jpg";
+const moniqueImg =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/b5b366ae-14cb-4c62-9083-7239865cc3dd/faculty-monique-new.webp";
+const simonImg =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/862e2bb6-0b22-4998-a47e-09244371185a/faculty-simon.webp";
+const daniilImg =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/0257b9c7-eb68-47b8-964e-b30aa1706a86/faculty-daniil.webp";
+const hamidImg =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/8ce91bcd-2eaa-4f2b-bebf-55b9758ba4c0/faculty-hamid.webp";
+const michaelImg =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/6f4b5285-1601-48a1-bb3a-804ad5a23043/faculty-michael.webp";
+const andrewImg =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/04919109-3d4d-4948-9b3d-b778fb74723c/faculty-andrew.webp";
 
 export type Faculty = {
   name: string;

@@ -70,9 +70,11 @@ export type GroupedSkill = { skill: string; family: SkillFamily; how: string };
 
 const HOW_VARIANTS: Record<SkillFamily, ((p: Programme) => string)[]> = {
   think: [
-    (p) => `Practised on live problems in every ${p.type === "comp" ? "round" : "session"} - never taught as theory.`,
+    (p) =>
+      `Practised on live problems in every ${p.type === "comp" ? "round" : "session"} - never taught as theory.`,
     () => "Mentors make your child justify each step out loud before moving on.",
-    (p) => `Applied to unfamiliar ${TRACKS[p.tracks[0]!].label.toLowerCase()} material, not rehearsed examples.`,
+    (p) =>
+      `Applied to unfamiliar ${TRACKS[p.tracks[0]!].label.toLowerCase()} material, not rehearsed examples.`,
   ],
   communicate: [
     () => "Rehearsed in front of a mentor and peers, then corrected on the spot.",
@@ -260,8 +262,6 @@ const derivedProjects = (p: Programme): SampleProject[] => {
       },
     ];
 
-
-
   return [
     {
       title: `Applied ${track} problem set`,
@@ -314,8 +314,7 @@ export const profileImpactFor = (p: Programme): ProfileImpact => {
   const typeP: (typeof TYPE_PROFILE)[TypeKey] = TYPE_PROFILE[p.type];
   const d = detailFor(p);
   const nextId = NEXT_BY_TRACK[t];
-  const next =
-    nextId && nextId !== p.id ? PROGRAMMES.find((o) => o.id === nextId) : undefined;
+  const next = nextId && nextId !== p.id ? PROGRAMMES.find((o) => o.id === nextId) : undefined;
 
   return {
     before: `"My child is interested in ${track.label.toLowerCase()}."`,

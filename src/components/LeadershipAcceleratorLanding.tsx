@@ -25,7 +25,8 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-const APPLY_URL = "https://apply.learnwithleaders.com/apply/leadership-entrepreneurship-acceletor-online";
+const APPLY_URL =
+  "https://apply.learnwithleaders.com/apply/leadership-entrepreneurship-acceletor-online";
 
 export function LeadershipAcceleratorLanding() {
   const p = DR_JOJO_PROGRAMME;
@@ -107,22 +108,26 @@ export function LeadershipAcceleratorLanding() {
     {
       icon: Presentation,
       title: "Venture Pitch Deck & Business Canvas",
-      description: "Students complete a full pitch deck and Business Model Canvas ready for university portfolio applications.",
+      description:
+        "Students complete a full pitch deck and Business Model Canvas ready for university portfolio applications.",
     },
     {
       icon: Award,
       title: "Official Certificate of Completion",
-      description: "Recognized Certificate awarded for completing the Pre-University Entrepreneurship & Venture Building Program.",
+      description:
+        "Recognized Certificate awarded for completing the Pre-University Entrepreneurship & Venture Building Program.",
     },
     {
       icon: Users,
       title: "Direct Mentorship from Dr. Jojo",
-      description: "Personalized guidance, live feedback on pitches, and leadership assessment throughout the 4 sessions.",
+      description:
+        "Personalized guidance, live feedback on pitches, and leadership assessment throughout the 4 sessions.",
     },
     {
       icon: Target,
       title: "Verifiable Profile Artefact",
-      description: "A standout project line for college admissions essays, LinkedIn, and extracurricular resumes.",
+      description:
+        "A standout project line for college admissions essays, LinkedIn, and extracurricular resumes.",
     },
   ];
 
@@ -172,19 +177,37 @@ export function LeadershipAcceleratorLanding() {
           {/* Left: LWL Brand Logo Only */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center no-underline">
-              <img src={logoAsset.url} alt="Learn with Leaders" className="h-9 sm:h-10 md:h-11 w-auto object-contain" />
+              <img
+                src={logoAsset.url}
+                alt="Learn with Leaders"
+                className="h-9 sm:h-10 md:h-11 w-auto object-contain"
+              />
             </Link>
           </div>
 
           {/* Center: Anchor Links */}
           <nav className="hidden lg:flex items-center gap-6 text-[0.86rem] font-bold text-ink-soft">
-            <a href="#about" className="hover:text-crimson-deep transition-colors no-underline">About</a>
-            <a href="#details" className="hover:text-crimson-deep transition-colors no-underline">Format</a>
-            <a href="#outcomes" className="hover:text-crimson-deep transition-colors no-underline">Outcomes</a>
-            <a href="#dr-jojo" className="hover:text-crimson-deep transition-colors no-underline">Faculty</a>
-            <a href="#schedule" className="hover:text-crimson-deep transition-colors no-underline">Schedule</a>
-            <a href="#pricing" className="hover:text-crimson-deep transition-colors no-underline">Pricing</a>
-            <a href="#faq" className="hover:text-crimson-deep transition-colors no-underline">FAQ</a>
+            <a href="#about" className="hover:text-crimson-deep transition-colors no-underline">
+              About
+            </a>
+            <a href="#details" className="hover:text-crimson-deep transition-colors no-underline">
+              Format
+            </a>
+            <a href="#outcomes" className="hover:text-crimson-deep transition-colors no-underline">
+              Outcomes
+            </a>
+            <a href="#dr-jojo" className="hover:text-crimson-deep transition-colors no-underline">
+              Faculty
+            </a>
+            <a href="#schedule" className="hover:text-crimson-deep transition-colors no-underline">
+              Schedule
+            </a>
+            <a href="#pricing" className="hover:text-crimson-deep transition-colors no-underline">
+              Pricing
+            </a>
+            <a href="#faq" className="hover:text-crimson-deep transition-colors no-underline">
+              FAQ
+            </a>
           </nav>
 
           {/* Right: Apply Now CTA */}
@@ -202,13 +225,27 @@ export function LeadershipAcceleratorLanding() {
 
         {/* Mobile Anchor Scroll Bar */}
         <div className="flex lg:hidden overflow-x-auto border-t border-line/60 px-4 py-2 gap-4 text-[0.78rem] font-bold text-ink-soft no-scrollbar">
-          <a href="#about" className="shrink-0 hover:text-crimson-deep no-underline">About</a>
-          <a href="#details" className="shrink-0 hover:text-crimson-deep no-underline">Format</a>
-          <a href="#outcomes" className="shrink-0 hover:text-crimson-deep no-underline">Outcomes</a>
-          <a href="#dr-jojo" className="shrink-0 hover:text-crimson-deep no-underline">Faculty</a>
-          <a href="#schedule" className="shrink-0 hover:text-crimson-deep no-underline">Schedule</a>
-          <a href="#pricing" className="shrink-0 hover:text-crimson-deep no-underline">Pricing</a>
-          <a href="#faq" className="shrink-0 hover:text-crimson-deep no-underline">FAQ</a>
+          <a href="#about" className="shrink-0 hover:text-crimson-deep no-underline">
+            About
+          </a>
+          <a href="#details" className="shrink-0 hover:text-crimson-deep no-underline">
+            Format
+          </a>
+          <a href="#outcomes" className="shrink-0 hover:text-crimson-deep no-underline">
+            Outcomes
+          </a>
+          <a href="#dr-jojo" className="shrink-0 hover:text-crimson-deep no-underline">
+            Faculty
+          </a>
+          <a href="#schedule" className="shrink-0 hover:text-crimson-deep no-underline">
+            Schedule
+          </a>
+          <a href="#pricing" className="shrink-0 hover:text-crimson-deep no-underline">
+            Pricing
+          </a>
+          <a href="#faq" className="shrink-0 hover:text-crimson-deep no-underline">
+            FAQ
+          </a>
         </div>
       </header>
 
@@ -248,8 +285,9 @@ export function LeadershipAcceleratorLanding() {
           </p>
 
           <p className="mx-auto mt-4 max-w-[54em] text-[clamp(1rem,2vw,1.12rem)] leading-relaxed text-ink-soft">
-            A transformative 4-day intensive pre-university program for high school students to build strategic leadership,
-            venture creation frameworks, business modeling, and executive pitch confidence.
+            A transformative 4-day intensive pre-university program for high school students to
+            build strategic leadership, venture creation frameworks, business modeling, and
+            executive pitch confidence.
           </p>
 
           {/* Action Buttons */}
@@ -273,8 +311,7 @@ export function LeadershipAcceleratorLanding() {
               Fee: EUR 350
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-gold-line/60 bg-gold/10 px-3.5 py-1.5 text-[0.78rem] font-bold text-gold-deep">
-              <Sparkles size={14} />
-              4 Days · 12 Hours Live
+              <Sparkles size={14} />4 Days · 12 Hours Live
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 px-3.5 py-1.5 text-[0.78rem] font-bold text-blue-700 dark:text-blue-400">
               <Video size={14} />
@@ -293,8 +330,12 @@ export function LeadershipAcceleratorLanding() {
                 <Calendar size={22} />
               </div>
               <div>
-                <span className="mono-label block text-[0.66rem] text-ink-faint uppercase font-bold tracking-wider">Start Date</span>
-                <b className="mt-0.5 block text-[0.92rem] font-extrabold text-ink whitespace-nowrap">10th April 2027</b>
+                <span className="mono-label block text-[0.66rem] text-ink-faint uppercase font-bold tracking-wider">
+                  Start Date
+                </span>
+                <b className="mt-0.5 block text-[0.92rem] font-extrabold text-ink whitespace-nowrap">
+                  10th April 2027
+                </b>
                 <small className="text-[0.74rem] text-ink-soft">4 Live Session Days</small>
               </div>
             </div>
@@ -304,8 +345,12 @@ export function LeadershipAcceleratorLanding() {
                 <Clock size={22} />
               </div>
               <div>
-                <span className="mono-label block text-[0.66rem] text-ink-faint uppercase font-bold tracking-wider">Session Duration</span>
-                <b className="mt-0.5 block text-[0.92rem] font-extrabold text-ink">3-Hour Sessions</b>
+                <span className="mono-label block text-[0.66rem] text-ink-faint uppercase font-bold tracking-wider">
+                  Session Duration
+                </span>
+                <b className="mt-0.5 block text-[0.92rem] font-extrabold text-ink">
+                  3-Hour Sessions
+                </b>
                 <small className="text-[0.74rem] text-ink-soft">Interactive &amp; Live</small>
               </div>
             </div>
@@ -315,9 +360,15 @@ export function LeadershipAcceleratorLanding() {
                 <Video size={22} />
               </div>
               <div>
-                <span className="mono-label block text-[0.66rem] text-ink-faint uppercase font-bold tracking-wider">Learning Mode</span>
-                <b className="mt-0.5 block text-[0.92rem] font-extrabold text-ink">Online via Zoom</b>
-                <small className="text-[0.74rem] text-ink-soft">Live Discussions &amp; Pitching</small>
+                <span className="mono-label block text-[0.66rem] text-ink-faint uppercase font-bold tracking-wider">
+                  Learning Mode
+                </span>
+                <b className="mt-0.5 block text-[0.92rem] font-extrabold text-ink">
+                  Online via Zoom
+                </b>
+                <small className="text-[0.74rem] text-ink-soft">
+                  Live Discussions &amp; Pitching
+                </small>
               </div>
             </div>
 
@@ -326,8 +377,12 @@ export function LeadershipAcceleratorLanding() {
                 <GraduationCap size={22} />
               </div>
               <div>
-                <span className="mono-label block text-[0.66rem] text-ink-faint uppercase font-bold tracking-wider">Audience &amp; Grades</span>
-                <b className="mt-0.5 block text-[0.92rem] font-extrabold text-ink">Mas Camarena School</b>
+                <span className="mono-label block text-[0.66rem] text-ink-faint uppercase font-bold tracking-wider">
+                  Audience &amp; Grades
+                </span>
+                <b className="mt-0.5 block text-[0.92rem] font-extrabold text-ink">
+                  Mas Camarena School
+                </b>
                 <small className="text-[0.74rem] text-ink-soft">Grades 8–12 (Ages 13–18)</small>
               </div>
             </div>
@@ -346,15 +401,12 @@ export function LeadershipAcceleratorLanding() {
             </span>
             <h2 className="font-display text-[clamp(2.2rem,4.8vw,3.6rem)] font-extrabold leading-[1.05] text-ink">
               Building Real Founders,{" "}
-              <span className="text-crimson-deep italic">
-                Not Just Learning Concepts
-              </span>
+              <span className="text-crimson-deep italic">Not Just Learning Concepts</span>
             </h2>
           </div>
 
           {/* Bento Grid Container */}
           <div className="grid gap-6">
-
             {/* TOP BENTO CARD: Hero Quote & Dr. Jojo Mentorship Statement */}
             <div className="group relative overflow-hidden rounded-3xl border-2 border-gold-line/70 bg-wash p-8 sm:p-10 shadow-soft transition-all duration-300 hover:border-gold-line hover:shadow-lift">
               <div className="relative z-10 grid gap-8 md:grid-cols-[1fr_260px] items-center">
@@ -363,13 +415,18 @@ export function LeadershipAcceleratorLanding() {
                     <Sparkles size={13} />
                     Transformative Entrepreneurship Experience
                   </span>
-                  
+
                   <blockquote className="font-serif text-[clamp(1.15rem,2.5vw,1.45rem)] font-extrabold text-crimson-deep leading-relaxed">
-                    &ldquo;It&apos;s a multi-day program where kids don&apos;t just learn about leadership — they build a real startup idea and pitch it live, to real mentors.&rdquo;
+                    &ldquo;It&apos;s a multi-day program where kids don&apos;t just learn about
+                    leadership — they build a real startup idea and pitch it live, to real
+                    mentors.&rdquo;
                   </blockquote>
 
                   <p className="text-[0.92rem] leading-relaxed text-ink-soft max-w-[720px]">
-                    It&apos;s run by Dr. Jojo. She&apos;s a former CEO, teaches at Harvard Business Impact and Hult, and spent 20+ years training leaders at places like Meta. But in the room, none of that matters — she makes it funny, fast, and safe enough that even the shyest student ends up standing up and pitching out loud.
+                    It&apos;s run by Dr. Jojo. She&apos;s a former CEO, teaches at Harvard Business
+                    Impact and Hult, and spent 20+ years training leaders at places like Meta. But
+                    in the room, none of that matters — she makes it funny, fast, and safe enough
+                    that even the shyest student ends up standing up and pitching out loud.
                   </p>
                 </div>
 
@@ -383,7 +440,9 @@ export function LeadershipAcceleratorLanding() {
                     />
                   </div>
                   <div>
-                    <b className="block text-[0.95rem] font-bold text-ink">Dr. Jojo O&apos;Driscoll-Kearney</b>
+                    <b className="block text-[0.95rem] font-bold text-ink">
+                      Dr. Jojo O&apos;Driscoll-Kearney
+                    </b>
                     <span className="text-[0.74rem] font-extrabold text-gold-deep uppercase tracking-wider block mt-0.5">
                       Program Lead &amp; Mentor
                     </span>
@@ -410,7 +469,9 @@ export function LeadershipAcceleratorLanding() {
                   </h3>
 
                   <p className="text-[0.88rem] leading-relaxed text-ink-soft">
-                    Students figure out their unique strengths and values, then learn how founders actually think — using the same Design Thinking process Stanford and IDEO use, with AI as their brainstorming partner.
+                    Students figure out their unique strengths and values, then learn how founders
+                    actually think — using the same Design Thinking process Stanford and IDEO use,
+                    with AI as their brainstorming partner.
                   </p>
                 </div>
 
@@ -433,7 +494,9 @@ export function LeadershipAcceleratorLanding() {
                   </h3>
 
                   <p className="text-[0.88rem] leading-relaxed text-ink-soft">
-                    Students form venture teams, learn how to influence and lead without needing a formal title, and practice presenting ideas with constructive mentor Q&amp;A and peer collaboration.
+                    Students form venture teams, learn how to influence and lead without needing a
+                    formal title, and practice presenting ideas with constructive mentor Q&amp;A and
+                    peer collaboration.
                   </p>
                 </div>
 
@@ -456,7 +519,9 @@ export function LeadershipAcceleratorLanding() {
                   </h3>
 
                   <p className="text-[0.88rem] leading-relaxed text-ink-soft">
-                    Students develop complete Business Model Canvases and executive pitch decks, gaining the confidence to present live startup ideas directly to mentors and faculty.
+                    Students develop complete Business Model Canvases and executive pitch decks,
+                    gaining the confidence to present live startup ideas directly to mentors and
+                    faculty.
                   </p>
                 </div>
 
@@ -481,28 +546,34 @@ export function LeadershipAcceleratorLanding() {
                   </h3>
 
                   <p className="text-[0.86rem] text-ink-soft leading-relaxed">
-                    Longer programs build in key University admission enhancers designed to create verifiable proof of student impact and initiative.
+                    Longer programs build in key University admission enhancers designed to create
+                    verifiable proof of student impact and initiative.
                   </p>
                 </div>
 
                 <div className="lg:col-span-8 grid gap-3 sm:grid-cols-2">
                   <div className="rounded-2xl border border-emerald-500/30 bg-paper p-4 shadow-soft">
-                    <b className="block text-[0.9rem] font-bold text-ink mb-1">Portfolio &amp; Deliverables</b>
+                    <b className="block text-[0.9rem] font-bold text-ink mb-1">
+                      Portfolio &amp; Deliverables
+                    </b>
                     <p className="text-[0.82rem] text-ink-soft leading-relaxed">
-                      Website design, commercials development, marketing plans &amp; change leadership models.
+                      Website design, commercials development, marketing plans &amp; change
+                      leadership models.
                     </p>
                   </div>
 
                   <div className="rounded-2xl border border-emerald-500/30 bg-paper p-4 shadow-soft">
-                    <b className="block text-[0.9rem] font-bold text-ink mb-1">Official Recommendations</b>
+                    <b className="block text-[0.9rem] font-bold text-ink mb-1">
+                      Official Recommendations
+                    </b>
                     <p className="text-[0.82rem] text-ink-soft leading-relaxed">
-                      References and recommendation letters for top performers signed directly by Dr. Jojo.
+                      References and recommendation letters for top performers signed directly by
+                      Dr. Jojo.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -552,8 +623,12 @@ export function LeadershipAcceleratorLanding() {
                     <Calendar size={18} />
                   </div>
                   <div>
-                    <span className="mono-label block text-[0.66rem] text-ink-faint uppercase font-bold tracking-wider">Program Dates</span>
-                    <b className="mt-0.5 block text-[0.9rem] font-extrabold text-crimson-deep">10, 11 &amp; 17, 18 April 2027</b>
+                    <span className="mono-label block text-[0.66rem] text-ink-faint uppercase font-bold tracking-wider">
+                      Program Dates
+                    </span>
+                    <b className="mt-0.5 block text-[0.9rem] font-extrabold text-crimson-deep">
+                      10, 11 &amp; 17, 18 April 2027
+                    </b>
                     <small className="text-[0.72rem] text-ink-soft">2 Consecutive Weekends</small>
                   </div>
                 </div>
@@ -563,8 +638,12 @@ export function LeadershipAcceleratorLanding() {
                     <Clock size={18} />
                   </div>
                   <div>
-                    <span className="mono-label block text-[0.66rem] text-ink-faint uppercase font-bold tracking-wider">Session Time</span>
-                    <b className="mt-0.5 block text-[0.9rem] font-extrabold text-ink">3 Hours / Session</b>
+                    <span className="mono-label block text-[0.66rem] text-ink-faint uppercase font-bold tracking-wider">
+                      Session Time
+                    </span>
+                    <b className="mt-0.5 block text-[0.9rem] font-extrabold text-ink">
+                      3 Hours / Session
+                    </b>
                     <small className="text-[0.72rem] text-ink-soft">12 Hours Live Learning</small>
                   </div>
                 </div>
@@ -574,9 +653,15 @@ export function LeadershipAcceleratorLanding() {
                     <Video size={18} />
                   </div>
                   <div>
-                    <span className="mono-label block text-[0.66rem] text-ink-faint uppercase font-bold tracking-wider">Learning Mode</span>
-                    <b className="mt-0.5 block text-[0.9rem] font-extrabold text-blue-700 dark:text-blue-400">Live via Zoom</b>
-                    <small className="text-[0.72rem] text-ink-soft">Interactive Masterclasses</small>
+                    <span className="mono-label block text-[0.66rem] text-ink-faint uppercase font-bold tracking-wider">
+                      Learning Mode
+                    </span>
+                    <b className="mt-0.5 block text-[0.9rem] font-extrabold text-blue-700 dark:text-blue-400">
+                      Live via Zoom
+                    </b>
+                    <small className="text-[0.72rem] text-ink-soft">
+                      Interactive Masterclasses
+                    </small>
                   </div>
                 </div>
 
@@ -585,8 +670,12 @@ export function LeadershipAcceleratorLanding() {
                     <GraduationCap size={18} />
                   </div>
                   <div>
-                    <span className="mono-label block text-[0.66rem] text-ink-faint uppercase font-bold tracking-wider">School &amp; Audience</span>
-                    <b className="mt-0.5 block text-[0.9rem] font-extrabold text-purple-700 dark:text-purple-400">Mas Camarena School</b>
+                    <span className="mono-label block text-[0.66rem] text-ink-faint uppercase font-bold tracking-wider">
+                      School &amp; Audience
+                    </span>
+                    <b className="mt-0.5 block text-[0.9rem] font-extrabold text-purple-700 dark:text-purple-400">
+                      Mas Camarena School
+                    </b>
                     <small className="text-[0.72rem] text-ink-soft">Grades 8–12 (Ages 13–18)</small>
                   </div>
                 </div>
@@ -617,12 +706,17 @@ export function LeadershipAcceleratorLanding() {
             {outcomes.map((o) => {
               const IconComponent = o.icon;
               return (
-                <div key={o.title} className="rounded-2xl border border-line bg-wash p-5 text-left shadow-soft">
+                <div
+                  key={o.title}
+                  className="rounded-2xl border border-line bg-wash p-5 text-left shadow-soft"
+                >
                   <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-crimson/10 text-crimson">
                     <IconComponent size={20} />
                   </div>
                   <b className="block text-[0.98rem] font-bold text-ink">{o.title}</b>
-                  <p className="mt-1.5 text-[0.84rem] text-ink-soft leading-relaxed">{o.description}</p>
+                  <p className="mt-1.5 text-[0.84rem] text-ink-soft leading-relaxed">
+                    {o.description}
+                  </p>
                 </div>
               );
             })}
@@ -677,7 +771,9 @@ export function LeadershipAcceleratorLanding() {
                 </div>
 
                 <p className="text-[0.88rem] leading-relaxed text-ink-soft">
-                  Former Chief Learning Officer at Meta with 20+ years of board, government, and C-suite advisory experience across 5 continents. Has trained over 50,000+ leaders worldwide.
+                  Former Chief Learning Officer at Meta with 20+ years of board, government, and
+                  C-suite advisory experience across 5 continents. Has trained over 50,000+ leaders
+                  worldwide.
                 </p>
 
                 {/* Key Badges */}
@@ -698,7 +794,8 @@ export function LeadershipAcceleratorLanding() {
 
                 {/* Quote */}
                 <div className="rounded-xl border-l-2 border-crimson bg-wash p-3 text-[0.84rem] italic text-ink mt-2">
-                  &ldquo;Young people don&apos;t need more lectures. They need someone to hand them the tools, name the problem, and step out of the way.&rdquo;
+                  &ldquo;Young people don&apos;t need more lectures. They need someone to hand them
+                  the tools, name the problem, and step out of the way.&rdquo;
                 </div>
               </div>
             </div>
@@ -733,11 +830,15 @@ export function LeadershipAcceleratorLanding() {
                 >
                   <div className="flex items-center justify-between gap-3 border-b border-line pb-4">
                     <div className="flex items-center gap-3">
-                      <span className={`inline-flex items-center justify-center rounded-xl p-2.5 ${s.badgeColor}`}>
+                      <span
+                        className={`inline-flex items-center justify-center rounded-xl p-2.5 ${s.badgeColor}`}
+                      >
                         <IconComp size={22} />
                       </span>
                       <div>
-                        <span className="mono-label text-[0.7rem] text-gold-deep font-bold uppercase">{s.day} · {s.duration}</span>
+                        <span className="mono-label text-[0.7rem] text-gold-deep font-bold uppercase">
+                          {s.day} · {s.duration}
+                        </span>
                         <h3 className="font-display text-[1.1rem] font-bold text-ink">{s.title}</h3>
                       </div>
                     </div>
@@ -761,7 +862,10 @@ export function LeadershipAcceleratorLanding() {
       </section>
 
       {/* --- PRICING & TUITION SECTION --- */}
-      <section id="pricing" className="py-16 border-b border-line bg-gradient-to-b from-paper via-wash to-paper relative overflow-hidden">
+      <section
+        id="pricing"
+        className="py-16 border-b border-line bg-gradient-to-b from-paper via-wash to-paper relative overflow-hidden"
+      >
         {/* Decorative background glow */}
         <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[400px] w-[700px] rounded-full bg-gradient-to-tr from-gold/15 via-crimson/10 to-transparent blur-3xl opacity-70" />
 
@@ -787,9 +891,7 @@ export function LeadershipAcceleratorLanding() {
                   <span className="font-display text-[clamp(2.8rem,5vw,3.8rem)] font-black text-ink leading-none">
                     EUR 350
                   </span>
-                  <span className="text-[0.92rem] font-bold text-ink-soft">
-                    / student
-                  </span>
+                  <span className="text-[0.92rem] font-bold text-ink-soft">/ student</span>
                 </div>
               </div>
             </div>
@@ -801,27 +903,43 @@ export function LeadershipAcceleratorLanding() {
               <ul className="grid gap-3 sm:grid-cols-2 text-[0.88rem] text-ink-soft">
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-emerald-600" />
-                  <span><strong>12 Hours Live</strong> interactive Zoom masterclasses across 4 session days</span>
+                  <span>
+                    <strong>12 Hours Live</strong> interactive Zoom masterclasses across 4 session
+                    days
+                  </span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-emerald-600" />
-                  <span><strong>Direct Mentorship</strong> &amp; live pitch review by Dr. Jojo O&apos;Driscoll-Kearney</span>
+                  <span>
+                    <strong>Direct Mentorship</strong> &amp; live pitch review by Dr. Jojo
+                    O&apos;Driscoll-Kearney
+                  </span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-emerald-600" />
-                  <span><strong>Business Model Canvas</strong> &amp; Executive Venture Pitch Deck frameworks</span>
+                  <span>
+                    <strong>Business Model Canvas</strong> &amp; Executive Venture Pitch Deck
+                    frameworks
+                  </span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-emerald-600" />
-                  <span><strong>Official Certificate</strong> of Completion from Learn with Leaders</span>
+                  <span>
+                    <strong>Official Certificate</strong> of Completion from Learn with Leaders
+                  </span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-emerald-600" />
-                  <span><strong>Letter of Recommendation</strong> opportunity for standout venture pitches</span>
+                  <span>
+                    <strong>Letter of Recommendation</strong> opportunity for standout venture
+                    pitches
+                  </span>
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-emerald-600" />
-                  <span><strong>School Cohort</strong> exclusive to Mas Camarena School (Grades 8–12)</span>
+                  <span>
+                    <strong>School Cohort</strong> exclusive to Mas Camarena School (Grades 8–12)
+                  </span>
                 </li>
               </ul>
             </div>

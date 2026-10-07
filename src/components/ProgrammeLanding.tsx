@@ -29,8 +29,7 @@ import {
   type Programme,
 } from "@/lib/programmes";
 
-const monthOf = (iso: string) =>
-  parseISO(iso).toLocaleDateString("en-GB", { month: "long" });
+const monthOf = (iso: string) => parseISO(iso).toLocaleDateString("en-GB", { month: "long" });
 
 export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
   const trackMeta = TRACKS[p.tracks[0]!];
@@ -46,10 +45,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
   const related = relatedProgrammes(p);
 
   return (
-    <main
-      className="pb-[92px]"
-      style={{ "--sp": track.color } as React.CSSProperties}
-    >
+    <main className="pb-[92px]" style={{ "--sp": track.color } as React.CSSProperties}>
       {/* Hero */}
       <section className="surface-track-strong border-b">
         <div className="page-shell pt-10 pb-11 text-center">
@@ -109,7 +105,6 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
             </p>
           ) : null}
 
-
           {next ? (
             <p className="mt-4 flex flex-wrap items-center justify-center gap-2 text-[0.78rem]">
               {countdownLabel(next.d) ? (
@@ -161,16 +156,14 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       {/* What they'll do */}
       <section id="overview" className="page-shell scroll-mt-32 pt-12">
         <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
-          What your child will{" "}
-          <em className="text-crimson-deep not-italic">actually do</em>
+          What your child will <em className="text-crimson-deep not-italic">actually do</em>
         </h2>
         <p className="mx-auto mt-2 max-w-[40em] text-center text-[0.92rem] text-ink-soft">
           Live, mentor-led sessions - worked problems and real output, not lectures.
         </p>
         <div className="mt-6 grid gap-3.5 sm:grid-cols-2">
           {d.doSteps.map((s, i) => {
-            const isLastOdd =
-              i === d.doSteps.length - 1 && d.doSteps.length % 2 === 1;
+            const isLastOdd = i === d.doSteps.length - 1 && d.doSteps.length % 2 === 1;
             return (
               <div
                 key={s.title}
@@ -206,8 +199,8 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
           Skills your child will <em className="text-crimson-deep not-italic">gain</em>
         </h2>
         <p className="mx-auto mt-2 max-w-none text-center text-[0.92rem] text-ink-soft lg:whitespace-nowrap">
-          Named, practised skills - grouped the way universities read them, tied to how
-          each is used in this {kind.toLowerCase()}.
+          Named, practised skills - grouped the way universities read them, tied to how each is used
+          in this {kind.toLowerCase()}.
         </p>
         <SkillMatrix programme={p} color={track.color} />
       </section>
@@ -218,8 +211,8 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
           Projects they <em className="text-crimson-deep not-italic">finish with</em>
         </h2>
         <p className="mx-auto mt-2 max-w-none text-center text-[0.92rem] text-ink-soft lg:whitespace-nowrap">
-          Sample briefs from recent cohorts - the actual work that comes out of the
-          programme, not a syllabus.
+          Sample briefs from recent cohorts - the actual work that comes out of the programme, not a
+          syllabus.
         </p>
         <ProjectShowcase programme={p} color={track.color} />
 
@@ -248,8 +241,8 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
           <em className="text-crimson-deep not-italic">university profile</em>
         </h2>
         <p className="mx-auto mt-2 max-w-none text-center text-[0.92rem] text-ink-soft lg:whitespace-nowrap">
-          The point isn't the certificate. It's the line a family can honestly write
-          afterwards - and the artefact sitting behind it.
+          The point isn't the certificate. It's the line a family can honestly write afterwards -
+          and the artefact sitting behind it.
         </p>
         <ProfileImpact programme={p} color={track.color} />
       </section>
@@ -263,17 +256,13 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
             <div>
               <b className="text-[1rem]">{p.badge}</b>
               <p className="mt-1 text-[0.86rem] text-ink-soft">
-                If it isn't right for your child after the first session, tell us - we
-                sort it out without forms or fuss.
+                If it isn't right for your child after the first session, tell us - we sort it out
+                without forms or fuss.
               </p>
             </div>
           </div>
         </section>
       ) : null}
-
-
-
-
 
       {/* Cohorts */}
       <section id="dates" className="page-shell scroll-mt-32 pt-12">
@@ -282,8 +271,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
         </h2>
         {cohorts.length === 0 ? (
           <p className="mt-6 text-center text-[0.9rem] text-ink-soft">
-            Dates for the next intake are being confirmed - the programme page has the
-            latest.
+            Dates for the next intake are being confirmed - the programme page has the latest.
           </p>
         ) : null}
         <div className="mx-auto mt-6 grid max-w-[1280px] gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -299,7 +287,9 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
                 <span className="block h-[3px] w-full bg-gradient-to-r from-gold-line via-gold to-gold-line" />
                 {isSoon(c.d) ? (
                   <span className="absolute top-3.5 right-3 inline-flex items-center gap-1 rounded-sm border-2 border-dashed border-gold/80 bg-gold-soft px-2.5 py-1 font-mono text-[0.62rem] font-bold tracking-[0.1em] text-gold-deep uppercase shadow-soft">
-                    <span aria-hidden className="text-[0.72rem]">✦</span>
+                    <span aria-hidden className="text-[0.72rem]">
+                      ✦
+                    </span>
                     Starting soon
                   </span>
                 ) : null}
@@ -323,8 +313,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
                       const cut = full.indexOf(" (");
                       const local = cut > -1 ? full.slice(0, cut) : full;
                       let original = cut > -1 ? full.slice(cut + 1) : "";
-                      if (original.startsWith("(") && !original.endsWith(")"))
-                        original += ")";
+                      if (original.startsWith("(") && !original.endsWith(")")) original += ")";
                       return (
                         <small className="block text-[0.78rem] text-ink-soft">
                           <span className="block">{local}</span>
@@ -395,8 +384,8 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
           })}
         </div>
         <p className="mt-3.5 text-center text-[0.8rem] text-ink-faint">
-          Session times shown in Dubai time (GMT+4) with US Eastern alongside. Fees are
-          correct at time of publishing - confirm on the programme page.
+          Session times shown in Dubai time (GMT+4) with US Eastern alongside. Fees are correct at
+          time of publishing - confirm on the programme page.
         </p>
 
         <div className="mt-10 grid gap-4 rounded-[20px] bg-wash px-7 py-6 sm:grid-cols-[auto_1fr] sm:items-center">
@@ -404,9 +393,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
             🎓
           </span>
           <div>
-            <b className="block font-serif text-[1.15rem] font-semibold">
-              {d.mentorTitle}
-            </b>
+            <b className="block font-serif text-[1.15rem] font-semibold">{d.mentorTitle}</b>
             <p className="mt-1 text-[0.88rem] text-ink-soft">{d.mentorBody}</p>
           </div>
         </div>
@@ -429,9 +416,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
                   +
                 </span>
               </summary>
-              <p className="border-t border-line px-5 py-4 text-[0.87rem] text-ink-soft">
-                {f.a}
-              </p>
+              <p className="border-t border-line px-5 py-4 text-[0.87rem] text-ink-soft">{f.a}</p>
             </details>
           ))}
         </div>
@@ -441,8 +426,7 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       {related.length > 0 ? (
         <section className="page-shell pt-14">
           <h2 className="text-center font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
-            Families looking at this also{" "}
-            <em className="text-crimson-deep not-italic">consider</em>
+            Families looking at this also <em className="text-crimson-deep not-italic">consider</em>
           </h2>
           <div className="mt-5 flex flex-wrap justify-center gap-3.5">
             {related.map((r) => {
@@ -481,13 +465,14 @@ export function ProgrammeLanding({ programme: p }: { programme: Programme }) {
       ) : null}
 
       {/* Sticky apply bar */}
-      <div data-compass-offset className="fixed inset-x-0 bottom-0 z-60 border-t border-line bg-paper shadow-[0_-8px_24px_-16px_rgba(28,34,48,0.35)]">
+      <div
+        data-compass-offset
+        className="fixed inset-x-0 bottom-0 z-60 border-t border-line bg-paper shadow-[0_-8px_24px_-16px_rgba(28,34,48,0.35)]"
+      >
         <div className="page-shell flex items-center justify-between gap-4 py-3">
           <div>
             <b className="font-serif text-[1.15rem] font-semibold">{fee.e}</b>
-            {discounted ? (
-              <s className="ml-1.5 text-[0.8rem] text-ink-faint">{fee.r}</s>
-            ) : null}
+            {discounted ? <s className="ml-1.5 text-[0.8rem] text-ink-faint">{fee.r}</s> : null}
             <small className="block text-[0.72rem] text-ink-faint">
               {discounted ? "Early bird · " : ""}
               {next ? `next cohort ${fmtShort(next.d)}` : "dates on request"}

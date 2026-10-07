@@ -4,7 +4,14 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { adminLeads, adminSetContacted } from "@/lib/admin-data.functions";
 import { AdminShell, fmtDateTime } from "@/components/admin/AdminShell";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { Checkbox } from "@/components/ui/checkbox";
 
 export const Route = createFileRoute("/admin/leads")({
@@ -25,12 +32,17 @@ function LeadsPage() {
   const fetchLeads = useServerFn(adminLeads);
   const setContacted = useServerFn(adminSetContacted);
   const [hide, setHide] = useState(false);
-  const { data, error, isLoading } = useQuery({ queryKey: ["admin", "leads"], queryFn: () => fetchLeads() });
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["admin", "leads"],
+    queryFn: () => fetchLeads(),
+  });
 
   const m = useMutation({
     mutationFn: (v: { id: string; contacted: boolean }) => setContacted({ data: v }),
     onMutate: (v) => {
-      qc.setQueryData<Lead[]>(["admin", "leads"], (old) => old?.map((l) => (l.id === v.id ? { ...l, contacted: v.contacted } : l)));
+      qc.setQueryData<Lead[]>(["admin", "leads"], (old) =>
+        old?.map((l) => (l.id === v.id ? { ...l, contacted: v.contacted } : l)),
+      );
     },
     onSettled: () => qc.invalidateQueries({ queryKey: ["admin", "leads"] }),
   });
@@ -62,7 +74,11 @@ function LeadsPage() {
           </TableHeader>
           <TableBody>
             {rows.length === 0 && (
-              <TableRow><TableCell colSpan={8} className="text-muted-foreground">No leads.</TableCell></TableRow>
+              <TableRow>
+                <TableCell colSpan={8} className="text-muted-foreground">
+                  No leads.
+                </TableCell>
+              </TableRow>
             )}
             {rows.map((l) => (
               <TableRow key={l.id}>
@@ -78,12 +94,24 @@ function LeadsPage() {
                 <TableCell className="break-all">{l.contact}</TableCell>
                 <TableCell>{l.grade ?? "–"}</TableCell>
                 <TableCell>
-                  {l.programmes.length ? <ul className="space-y-0.5">{l.programmes.map((p) => <li key={p}>{p}</li>)}</ul> : "–"}
+                  {l.programmes.length ? (
+                    <ul className="space-y-0.5">
+                      {l.programmes.map((p) => (
+                        <li key={p}>{p}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    "–"
+                  )}
                 </TableCell>
                 <TableCell className="max-w-xs whitespace-pre-wrap">{l.notes ?? "–"}</TableCell>
                 <TableCell>
                   {l.session_id && (
-                    <Link to="/admin/sessions/$id" params={{ id: l.session_id }} className="text-sm text-primary underline">
+                    <Link
+                      to="/admin/sessions/$id"
+                      params={{ id: l.session_id }}
+                      className="text-sm text-primary underline"
+                    >
                       Transcript
                     </Link>
                   )}
@@ -93,7 +121,9 @@ function LeadsPage() {
           </TableBody>
         </Table>
       )}
-      {m.isError && <p className="mt-3 text-destructive">Could not save that change — please retry.</p>}
+      {m.isError && (
+        <p className="mt-3 text-destructive">Could not save that change — please retry.</p>
+      )}
     </AdminShell>
   );
 }

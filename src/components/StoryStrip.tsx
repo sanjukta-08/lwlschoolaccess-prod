@@ -1,19 +1,11 @@
 import { DEFAULT_TESTIMONIAL_SEARCH } from "@/lib/testimonials";
 import { Link } from "@tanstack/react-router";
 import { LearnerQuotes } from "@/components/LearnerQuotes";
-import {
-  InstagramGlyph,
-  LinkedInGlyph,
-  StoryGallery,
-} from "@/components/StoryGallery";
+import { InstagramGlyph, LinkedInGlyph, StoryGallery } from "@/components/StoryGallery";
 import { VideoTestimonials } from "@/components/VideoTestimonials";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { CAMP_QUOTES, ONLINE_QUOTES } from "@/lib/learner-testimonials";
-import {
-  APPROVED_INSTAGRAM,
-  APPROVED_LINKEDIN,
-  VIDEO_TESTIMONIALS,
-} from "@/lib/social-proof";
+import { APPROVED_INSTAGRAM, APPROVED_LINKEDIN, VIDEO_TESTIMONIALS } from "@/lib/social-proof";
 import type { ReactNode } from "react";
 import { WingMark } from "@/components/WingMark";
 function SeeAll({ label }: { label: string }) {
@@ -56,9 +48,7 @@ function SectionHeader({
             {title}
           </h2>
         </div>
-        <p className="mt-1.5 max-w-[54em] text-[0.92rem] leading-relaxed text-ink-soft">
-          {sub}
-        </p>
+        <p className="mt-1.5 max-w-[54em] text-[0.92rem] leading-relaxed text-ink-soft">{sub}</p>
       </div>
       {action ? <div className="flex-shrink-0">{action}</div> : null}
     </div>
@@ -74,8 +64,8 @@ export default function StoryStrip() {
         icon={<LinkedInGlyph className="h-9 w-9" />}
         title={
           <>
-            In their <em className="text-crimson-deep font-extrabold">own words</em>, on their
-            own feeds
+            In their <em className="text-crimson-deep font-extrabold">own words</em>, on their own
+            feeds
           </>
         }
         sub="Real posts from students, parents and mentors after their cohort ended. Tap any one to read it in full."
@@ -98,10 +88,7 @@ export default function StoryStrip() {
             sub="Published papers, judged pitches and competition results, posted as they happened on Instagram."
           />
           <div className="mt-4">
-            <StoryGallery
-              stories={APPROVED_INSTAGRAM}
-              variant="marquee"
-            />
+            <StoryGallery stories={APPROVED_INSTAGRAM} variant="marquee" />
           </div>
         </div>
       ) : null}
@@ -146,7 +133,6 @@ export default function StoryStrip() {
           </div>
         </div>
       ) : null}
-
     </>
   );
 }

@@ -21,8 +21,8 @@ export function CounsellorCard() {
             Prefer to just <em className="text-crimson-deep">describe your child</em>?
           </h2>
           <p className="text-[0.92rem] text-ink-soft">
-            Tell our counsellor about their interests, personality and goals in your own
-            words - we&apos;ll suggest the programmes that fit best.
+            Tell our counsellor about their interests, personality and goals in your own words -
+            we&apos;ll suggest the programmes that fit best.
           </p>
           <div className="mt-4 flex flex-col gap-2">
             {EXAMPLES.map((eg) => (

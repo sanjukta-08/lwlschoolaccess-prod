@@ -39,16 +39,9 @@ export function ResultGroup({
       {compact ? (
         <div className="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-paper shadow-soft">
           {list.map((m) => (
-            <ProgrammeCard
-              key={m.p.id}
-              match={m}
-              compact
-              showType={showType}
-              region={region}
-            />
+            <ProgrammeCard key={m.p.id} match={m} compact showType={showType} region={region} />
           ))}
         </div>
-
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {list.map((m, i) => (

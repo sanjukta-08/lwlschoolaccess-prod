@@ -17,7 +17,11 @@ const FeeInclusionsSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="px-4 md:px-8 pt-10 md:pt-14 pb-16 md:pb-20 relative overflow-hidden" style={{ backgroundColor: 'hsl(40, 30%, 95%)' }}>
+    <section
+      ref={ref}
+      className="px-4 md:px-8 pt-10 md:pt-14 pb-16 md:pb-20 relative overflow-hidden"
+      style={{ backgroundColor: "hsl(40, 30%, 95%)" }}
+    >
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-8 left-8 w-24 h-24 border-t-2 border-l-2 border-primary/10 rounded-tl-sm" />
         <div className="absolute bottom-8 right-8 w-24 h-24 border-b-2 border-r-2 border-primary/10 rounded-br-sm" />
@@ -30,8 +34,12 @@ const FeeInclusionsSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-14"
         >
-          <p className="text-primary uppercase tracking-[0.3em] text-sm md:text-base font-sans mb-4">All-Inclusive Experience</p>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-ivory-foreground mb-6">Everything Included in Your Program Fee</h2>
+          <p className="text-primary uppercase tracking-[0.3em] text-sm md:text-base font-sans mb-4">
+            All-Inclusive Experience
+          </p>
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-ivory-foreground mb-6">
+            Everything Included in Your Program Fee
+          </h2>
           <div className="w-16 h-px bg-primary mx-auto" />
         </motion.div>
 
@@ -45,7 +53,9 @@ const FeeInclusionsSection = () => {
               className="text-center p-8 rounded-xl bg-white shadow-md hover:shadow-lg border border-muted/50 transition-shadow duration-300"
             >
               <span className="text-4xl mb-4 block">{item.icon}</span>
-              <p className="font-serif text-lg md:text-xl text-ivory-foreground font-semibold mb-2">{item.title}</p>
+              <p className="font-serif text-lg md:text-xl text-ivory-foreground font-semibold mb-2">
+                {item.title}
+              </p>
               <p className="font-sans text-sm text-muted-foreground">{item.desc}</p>
             </motion.div>
           ))}

@@ -3,12 +3,42 @@ import { useRef, useState, useCallback, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const programs = [
-  { title: "Critical Thinking & Public Speaking", description: "Develop and practice critical thinking, public speaking, networking and presentation skills through reflection, analysis, and feedback from distinguished mentors.", icon: "🎓" },
-  { title: "Real-World Leadership", description: "Gain a comprehensive understanding of leadership principles and the opportunity to apply them in real-world scenarios through case studies and team projects.", icon: "🌍" },
-  { title: "Global Perspectives", description: "Engage with students and mentors from diverse backgrounds and cultures, participate in international case studies, and develop a global mindset essential for today's interconnected world.", icon: "🤝" },
-  { title: "The Harvard Experience", description: "Experience the Harvard University campus firsthand — explore iconic buildings, picturesque landscapes, and vibrant student life with mentors at the forefront of their fields.", icon: "🏛" },
-  { title: "Community Impact Projects", description: "Collaborate with mentors to launch community initiatives addressing local issues, gaining practical skills and a deeper understanding of the real world.", icon: "💡" },
-  { title: "Student Leadership Development", description: "Access tools and resources to develop leadership abilities and skills for making a positive impact on your school and community.", icon: "⚡" },
+  {
+    title: "Critical Thinking & Public Speaking",
+    description:
+      "Develop and practice critical thinking, public speaking, networking and presentation skills through reflection, analysis, and feedback from distinguished mentors.",
+    icon: "🎓",
+  },
+  {
+    title: "Real-World Leadership",
+    description:
+      "Gain a comprehensive understanding of leadership principles and the opportunity to apply them in real-world scenarios through case studies and team projects.",
+    icon: "🌍",
+  },
+  {
+    title: "Global Perspectives",
+    description:
+      "Engage with students and mentors from diverse backgrounds and cultures, participate in international case studies, and develop a global mindset essential for today's interconnected world.",
+    icon: "🤝",
+  },
+  {
+    title: "The Harvard Experience",
+    description:
+      "Experience the Harvard University campus firsthand — explore iconic buildings, picturesque landscapes, and vibrant student life with mentors at the forefront of their fields.",
+    icon: "🏛",
+  },
+  {
+    title: "Community Impact Projects",
+    description:
+      "Collaborate with mentors to launch community initiatives addressing local issues, gaining practical skills and a deeper understanding of the real world.",
+    icon: "💡",
+  },
+  {
+    title: "Student Leadership Development",
+    description:
+      "Access tools and resources to develop leadership abilities and skills for making a positive impact on your school and community.",
+    icon: "⚡",
+  },
 ];
 
 const slides: (typeof programs)[] = [];
@@ -29,7 +59,13 @@ const ProgramOverview = () => {
 
   return (
     <section id="program" className="section-padding relative overflow-hidden bg-primary" ref={ref}>
-      <div className="absolute inset-0 pointer-events-none opacity-[0.06]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'40\' height=\'40\' viewBox=\'0 0 40 40\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M20 0v40M0 20h40\' stroke=\'%23ffffff\' stroke-width=\'0.5\' fill=\'none\'/%3E%3C/svg%3E")' }} />
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.06]"
+        style={{
+          backgroundImage:
+            "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0v40M0 20h40' stroke='%23ffffff' stroke-width='0.5' fill='none'/%3E%3C/svg%3E\")",
+        }}
+      />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
@@ -38,8 +74,12 @@ const ProgramOverview = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-14"
         >
-          <p className="text-primary-foreground/70 uppercase tracking-[0.3em] text-sm md:text-base font-sans mb-4">The Ivy-Inspired Experience</p>
-          <h2 className="font-serif text-4xl md:text-5xl text-primary-foreground mb-6">Program Overview</h2>
+          <p className="text-primary-foreground/70 uppercase tracking-[0.3em] text-sm md:text-base font-sans mb-4">
+            The Ivy-Inspired Experience
+          </p>
+          <h2 className="font-serif text-4xl md:text-5xl text-primary-foreground mb-6">
+            Program Overview
+          </h2>
           <div className="w-16 h-px bg-primary-foreground/40 mx-auto" />
         </motion.div>
 
@@ -62,17 +102,29 @@ const ProgramOverview = () => {
                   className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-8 flex flex-col items-center text-center"
                 >
                   <span className="text-4xl mb-5 block">{prog.icon}</span>
-                  <h3 className="font-serif text-xl md:text-2xl text-ivory-foreground mb-3">{prog.title}</h3>
-                  <p className="font-sans text-sm md:text-base text-ivory-foreground/70 leading-relaxed">{prog.description}</p>
+                  <h3 className="font-serif text-xl md:text-2xl text-ivory-foreground mb-3">
+                    {prog.title}
+                  </h3>
+                  <p className="font-sans text-sm md:text-base text-ivory-foreground/70 leading-relaxed">
+                    {prog.description}
+                  </p>
                 </motion.div>
               ))}
             </motion.div>
           </div>
 
-          <button onClick={prev} className="absolute -left-4 md:-left-14 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-primary-foreground/30 bg-primary-foreground/10 backdrop-blur-sm flex items-center justify-center text-primary-foreground/70 hover:text-primary-foreground hover:border-primary-foreground/60 transition-colors" aria-label="Previous">
+          <button
+            onClick={prev}
+            className="absolute -left-4 md:-left-14 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-primary-foreground/30 bg-primary-foreground/10 backdrop-blur-sm flex items-center justify-center text-primary-foreground/70 hover:text-primary-foreground hover:border-primary-foreground/60 transition-colors"
+            aria-label="Previous"
+          >
             <ChevronLeft className="w-5 h-5" />
           </button>
-          <button onClick={next} className="absolute -right-4 md:-right-14 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-primary-foreground/30 bg-primary-foreground/10 backdrop-blur-sm flex items-center justify-center text-primary-foreground/70 hover:text-primary-foreground hover:border-primary-foreground/60 transition-colors" aria-label="Next">
+          <button
+            onClick={next}
+            className="absolute -right-4 md:-right-14 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-primary-foreground/30 bg-primary-foreground/10 backdrop-blur-sm flex items-center justify-center text-primary-foreground/70 hover:text-primary-foreground hover:border-primary-foreground/60 transition-colors"
+            aria-label="Next"
+          >
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>

@@ -67,8 +67,7 @@ export function TestimonialFilters({
       label: FORMATS[search.format as keyof typeof FORMATS]?.label ?? search.format,
       clear: { format: "all" },
     });
-  if (search.q.trim())
-    chips.push({ label: `"${search.q.trim()}"`, clear: { q: "" } });
+  if (search.q.trim()) chips.push({ label: `"${search.q.trim()}"`, clear: { q: "" } });
 
   const showFooter = chips.length > 0 || !isDefaultTestimonialSearch(search);
 
@@ -97,20 +96,17 @@ export function TestimonialFilters({
             onChange={(e) => onChange({ programme: e.target.value })}
           >
             <option value="all">All programs</option>
-            {testimonialProgrammes().filter(
-              (p) => (facets.programme[p] ?? 0) > 0 || p === search.programme,
-            ).map((p) => (
-              <option key={p} value={p}>
-                {p}
-              </option>
-            ))}
+            {testimonialProgrammes()
+              .filter((p) => (facets.programme[p] ?? 0) > 0 || p === search.programme)
+              .map((p) => (
+                <option key={p} value={p}>
+                  {p}
+                </option>
+              ))}
           </select>
         </Field>
 
-        <Field
-          icon={<MessageSquareQuote className="h-3.5 w-3.5" />}
-          label="Format"
-        >
+        <Field icon={<MessageSquareQuote className="h-3.5 w-3.5" />} label="Format">
           <select
             className={fieldCls}
             value={search.format}

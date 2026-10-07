@@ -1,10 +1,17 @@
-const schedule1 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/8cc903e7-bd62-4c04-9442-7c82aebaee15/schedule-1.jpg";
-const schedule2 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/f594f07a-2e82-4622-8f60-3381013141a8/schedule-2.jpg";
-const schedule3 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/87412c6b-ec57-4bfd-a44a-16f0b39aaaf7/schedule-3.jpg";
-const schedule4 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/34cc81f3-3256-4336-974b-9bc7a3f478f3/schedule-4.jpg";
-const schedule5 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/8d1a989b-10a3-4650-b2dd-0204ed7e7966/schedule-5.jpg";
-const schedule6 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/b72514be-f216-4e05-b96a-6c767dbae053/schedule-6.jpg";
-const schedule7 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/240b0241-8eed-49cf-bc07-5b547951d710/schedule-7.jpg";
+const schedule1 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/8cc903e7-bd62-4c04-9442-7c82aebaee15/schedule-1.jpg";
+const schedule2 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/f594f07a-2e82-4622-8f60-3381013141a8/schedule-2.jpg";
+const schedule3 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/87412c6b-ec57-4bfd-a44a-16f0b39aaaf7/schedule-3.jpg";
+const schedule4 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/34cc81f3-3256-4336-974b-9bc7a3f478f3/schedule-4.jpg";
+const schedule5 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/8d1a989b-10a3-4650-b2dd-0204ed7e7966/schedule-5.jpg";
+const schedule6 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/b72514be-f216-4e05-b96a-6c767dbae053/schedule-6.jpg";
+const schedule7 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/240b0241-8eed-49cf-bc07-5b547951d710/schedule-7.jpg";
 
 export interface ScheduleItem {
   time: string;
@@ -23,22 +30,41 @@ export interface ScheduleDay {
 
 export const schedule: ScheduleDay[] = [
   {
-    day: "Day 1", label: "Sunday", shortLabel: "Sun", theme: "18 July – Sunday", image: schedule1, imagePosition: "center 40%",
+    day: "Day 1",
+    label: "Sunday",
+    shortLabel: "Sun",
+    theme: "18 July – Sunday",
+    image: schedule1,
+    imagePosition: "center 40%",
     items: [
       { time: "16:00 – 17:30", activity: "Welcome and Introduction, Ice Breaker" },
       { time: "18:00 – 19:00", activity: "Dinner" },
     ],
   },
   {
-    day: "Day 2", label: "Monday", shortLabel: "Mon", theme: "19 July – Monday", image: schedule2, imagePosition: "center 60%",
+    day: "Day 2",
+    label: "Monday",
+    shortLabel: "Mon",
+    theme: "19 July – Monday",
+    image: schedule2,
+    imagePosition: "center 60%",
     items: [
       { time: "08:00 – 09:00", activity: "Breakfast in College" },
-      { time: "09:00 – 10:30", activity: "Developing an Innovative Mindset: A Framework for Skill Development" },
+      {
+        time: "09:00 – 10:30",
+        activity: "Developing an Innovative Mindset: A Framework for Skill Development",
+      },
       { time: "10:30 – 11:00", activity: "Tea/Coffee Break" },
       { time: "11:00 – 11:45", activity: "Track One & Track Two" },
-      { time: "11:45 – 12:45", activity: "Creating the Future: An Innovation Workshop (Track One & Two)" },
+      {
+        time: "11:45 – 12:45",
+        activity: "Creating the Future: An Innovation Workshop (Track One & Two)",
+      },
       { time: "13:00 – 14:00", activity: "Lunch" },
-      { time: "14:00 – 16:00", activity: "Creating the Future: An Innovation Workshop (Track One & Two)" },
+      {
+        time: "14:00 – 16:00",
+        activity: "Creating the Future: An Innovation Workshop (Track One & Two)",
+      },
       { time: "16:00 – 16:30", activity: "Tea/Coffee Break" },
       { time: "16:30 – 18:00", activity: "Cultural Activity (Tour of Cambridge, Punting, etc.)" },
       { time: "18:30 – 19:30", activity: "Dinner" },
@@ -46,7 +72,12 @@ export const schedule: ScheduleDay[] = [
     ],
   },
   {
-    day: "Day 3", label: "Tuesday", shortLabel: "Tue", theme: "20 July – Tuesday", image: schedule3, imagePosition: "center 40%",
+    day: "Day 3",
+    label: "Tuesday",
+    shortLabel: "Tue",
+    theme: "20 July – Tuesday",
+    image: schedule3,
+    imagePosition: "center 40%",
     items: [
       { time: "08:00 – 09:00", activity: "Breakfast in College" },
       { time: "09:00 – 10:00", activity: "Reflection on the Workshop and Skills Used" },
@@ -62,10 +93,18 @@ export const schedule: ScheduleDay[] = [
     ],
   },
   {
-    day: "Day 4", label: "Wednesday", shortLabel: "Wed", theme: "21 July – Wednesday", image: schedule4, imagePosition: "center 25%",
+    day: "Day 4",
+    label: "Wednesday",
+    shortLabel: "Wed",
+    theme: "21 July – Wednesday",
+    image: schedule4,
+    imagePosition: "center 25%",
     items: [
       { time: "08:00 – 09:00", activity: "Breakfast in College" },
-      { time: "09:00 – 10:00", activity: "Track One & Two: Basics of Finance – Start-up Fundamentals" },
+      {
+        time: "09:00 – 10:00",
+        activity: "Track One & Two: Basics of Finance – Start-up Fundamentals",
+      },
       { time: "10:00 – 10:30", activity: "Tea/Coffee Break" },
       { time: "10:30 – 11:30", activity: "Track One & Two: What Goes into a Business Plan" },
       { time: "11:45 – 12:45", activity: "Guest Speaker / Sources of Funding for Start-ups" },
@@ -78,7 +117,12 @@ export const schedule: ScheduleDay[] = [
     ],
   },
   {
-    day: "Day 5", label: "Thursday", shortLabel: "Thu", theme: "22 July – Thursday", image: schedule5, imagePosition: "center 50%",
+    day: "Day 5",
+    label: "Thursday",
+    shortLabel: "Thu",
+    theme: "22 July – Thursday",
+    image: schedule5,
+    imagePosition: "center 50%",
     items: [
       { time: "08:00 – 09:00", activity: "Breakfast in College" },
       { time: "09:00 – 10:30", activity: "Track One & Two: Leadership and Influencing Skills" },
@@ -94,7 +138,12 @@ export const schedule: ScheduleDay[] = [
     ],
   },
   {
-    day: "Day 6", label: "Friday", shortLabel: "Fri", theme: "23 July – Friday", image: schedule6, imagePosition: "center 65%",
+    day: "Day 6",
+    label: "Friday",
+    shortLabel: "Fri",
+    theme: "23 July – Friday",
+    image: schedule6,
+    imagePosition: "center 65%",
     items: [
       { time: "08:00 – 09:00", activity: "Breakfast in College" },
       { time: "09:00 – 10:00", activity: "Designing Your Future – Career Focused Session" },
@@ -109,7 +158,12 @@ export const schedule: ScheduleDay[] = [
     ],
   },
   {
-    day: "Day 7", label: "Saturday", shortLabel: "Sat", theme: "24 July – Saturday", image: schedule7, imagePosition: "center 55%",
+    day: "Day 7",
+    label: "Saturday",
+    shortLabel: "Sat",
+    theme: "24 July – Saturday",
+    image: schedule7,
+    imagePosition: "center 55%",
     items: [
       { time: "08:00 – 10:00", activity: "Breakfast and Final Goodbyes" },
       { time: "10:30", activity: "Check-out" },

@@ -3,13 +3,7 @@ import type { Programme } from "@/lib/programmes";
 
 const ORDER: SkillFamily[] = ["think", "communicate", "build", "people"];
 
-export function SkillMatrix({
-  programme: p,
-  color,
-}: {
-  programme: Programme;
-  color: string;
-}) {
+export function SkillMatrix({ programme: p, color }: { programme: Programme; color: string }) {
   const skills = groupedSkills(p);
   const groups = ORDER.map((f) => ({
     family: f,

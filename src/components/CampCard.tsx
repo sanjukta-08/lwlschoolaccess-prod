@@ -45,9 +45,7 @@ export function CampCard({ camp }: { camp: Camp }) {
         </h3>
 
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.78rem] font-semibold">
-          <span className={dated ? "text-ink-soft" : "text-gold-deep"}>
-            {datesLabel(camp)}
-          </span>
+          <span className={dated ? "text-ink-soft" : "text-gold-deep"}>{datesLabel(camp)}</span>
           <span className="h-1 w-1 rounded-full bg-line" aria-hidden />
           <span className="text-ink-soft">{camp.durationLabel}</span>
         </div>

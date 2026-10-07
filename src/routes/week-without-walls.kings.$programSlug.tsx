@@ -65,7 +65,10 @@ function ProgramNotFound() {
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
           This Kings Week Without Walls program may have moved.
         </p>
-        <Link to="/week-without-walls/kings" className="mt-6 inline-flex border border-border px-5 py-3 text-xs font-bold uppercase tracking-[0.12em]">
+        <Link
+          to="/week-without-walls/kings"
+          className="mt-6 inline-flex border border-border px-5 py-3 text-xs font-bold uppercase tracking-[0.12em]"
+        >
           Explore all programs
         </Link>
       </div>

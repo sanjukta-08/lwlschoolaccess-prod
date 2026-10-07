@@ -8,8 +8,8 @@ export function PressStrip() {
           In the <em className="text-crimson-deep">press</em>
         </h2>
         <p className="mx-auto mt-2 max-w-[38em] text-center text-[0.9rem] text-ink-soft">
-          Coverage of what happens when school students are mentored by university
-          leaders - and asked to finish something.
+          Coverage of what happens when school students are mentored by university leaders - and
+          asked to finish something.
         </p>
 
         <div className="mt-7 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 border-y border-line py-5">

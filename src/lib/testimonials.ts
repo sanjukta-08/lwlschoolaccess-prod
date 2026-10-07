@@ -7,11 +7,7 @@ import { LEARNER_QUOTES, accentForQuote } from "@/lib/learner-testimonials";
 import type { LearnerQuote } from "@/lib/learner-testimonials";
 import { HANDWRITTEN_NOTES } from "@/lib/handwritten-notes";
 import type { HandwrittenNote } from "@/lib/handwritten-notes";
-import {
-  APPROVED_INSTAGRAM,
-  APPROVED_LINKEDIN,
-  VIDEO_TESTIMONIALS,
-} from "@/lib/social-proof";
+import { APPROVED_INSTAGRAM, APPROVED_LINKEDIN, VIDEO_TESTIMONIALS } from "@/lib/social-proof";
 import type { LinkedInStory, VideoTestimonial } from "@/lib/social-proof";
 import { PROGRAMMES, TRACKS } from "@/lib/programmes";
 import type { TrackKey } from "@/lib/programmes";
@@ -28,13 +24,7 @@ export const FORMATS: Record<Format, { label: string; short: string }> = {
   note: { label: "Handwritten notes", short: "Handwritten" },
 };
 
-export const FORMAT_ORDER: Format[] = [
-  "written",
-  "linkedin",
-  "instagram",
-  "video",
-  "note",
-];
+export const FORMAT_ORDER: Format[] = ["written", "linkedin", "instagram", "video", "note"];
 
 type Base = {
   id: string;
@@ -82,8 +72,7 @@ const RESEARCH_SCHOLARS = "Research Scholars Program";
 
 const CATALOGUE_NAMES = new Set(PROGRAMMES.map((p) => p.name));
 
-const catalogueIdFor = (label: string) =>
-  PROGRAMMES.find((p) => p.name === label)?.id;
+const catalogueIdFor = (label: string) => PROGRAMMES.find((p) => p.name === label)?.id;
 
 const tracksFor = (label: string, fallback: TrackKey[]): TrackKey[] => {
   const p = PROGRAMMES.find((x) => x.name === label);
@@ -99,9 +88,7 @@ const baseLabel = (label: string) =>
 
 /** Catalogue name for a feedback-sheet label, when one matches. */
 const canonicalProgramme = (label: string, programmeId?: string): string => {
-  const byId = programmeId
-    ? PROGRAMMES.find((p) => p.id === programmeId)?.name
-    : undefined;
+  const byId = programmeId ? PROGRAMMES.find((p) => p.id === programmeId)?.name : undefined;
   if (byId) return byId;
   const base = baseLabel(label);
   if (CATALOGUE_NAMES.has(base)) return base;
@@ -227,7 +214,6 @@ export function allTestimonials(): Testimonial[] {
 
 export const testimonialTotal = () => allTestimonials().length;
 
-
 /* ------------------------------------------------------------------ *
  * Filtering
  * ------------------------------------------------------------------ */
@@ -250,12 +236,7 @@ const isFormat = (v: string): v is Format => v in FORMATS;
 const isTrack = (v: string): v is TrackKey => v in TRACKS;
 
 export function isDefaultTestimonialSearch(s: TestimonialSearch) {
-  return (
-    s.track === "all" &&
-    s.programme === "all" &&
-    s.format === "all" &&
-    s.q.trim() === ""
-  );
+  return s.track === "all" && s.programme === "all" && s.format === "all" && s.q.trim() === "";
 }
 
 export function filterTestimonials(
@@ -296,9 +277,7 @@ export function testimonialFacets(s: TestimonialSearch) {
 
 /** Programme labels that actually have feedback, alphabetically. */
 export const testimonialProgrammes = (): string[] =>
-  [...new Set(allTestimonials().map((t) => t.programme))].sort((a, b) =>
-    a.localeCompare(b),
-  );
+  [...new Set(allTestimonials().map((t) => t.programme))].sort((a, b) => a.localeCompare(b));
 
 export const RESEARCH_SCHOLARS_LABEL = RESEARCH_SCHOLARS;
 

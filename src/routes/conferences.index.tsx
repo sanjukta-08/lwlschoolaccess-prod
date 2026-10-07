@@ -19,7 +19,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-
 const TITLE = "Harvard WorldMUN Conferences | Learn with Leaders";
 const DESC =
   "Explore live Harvard WorldMUN conference destinations, dates, eligibility, fees and application links with Learn with Leaders.";
@@ -90,18 +89,27 @@ function ConferencesHub() {
     );
   }, [conferences, search]);
 
-
   return (
     <div className="min-h-dvh bg-paper">
       <SiteHeader />
       <section className="relative isolate flex min-h-[19rem] items-center justify-center overflow-hidden border-b border-line bg-paper px-5 pb-10 pt-8 sm:min-h-[21rem] sm:px-8 lg:pb-12 lg:pt-10">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-0 hidden w-[68%] select-none items-center overflow-hidden pl-8 sm:flex" aria-hidden>
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0 z-0 hidden w-[68%] select-none items-center overflow-hidden pl-8 sm:flex"
+          aria-hidden
+        >
           <span className="whitespace-nowrap font-display text-[clamp(5.5rem,12vw,11rem)] font-black uppercase leading-none text-crimson/[0.06]">
             Conferences
           </span>
         </div>
-        <div className="pointer-events-none absolute right-10 top-1/2 z-[1] hidden w-[min(320px,21vw)] -translate-y-1/2 opacity-20 xl:block" aria-hidden>
-          <img src={birdAsset.url} alt="" className="h-auto w-full object-contain object-right [mask-image:linear-gradient(to_left,black_55%,transparent_95%)]" />
+        <div
+          className="pointer-events-none absolute right-10 top-1/2 z-[1] hidden w-[min(320px,21vw)] -translate-y-1/2 opacity-20 xl:block"
+          aria-hidden
+        >
+          <img
+            src={birdAsset.url}
+            alt=""
+            className="h-auto w-full object-contain object-right [mask-image:linear-gradient(to_left,black_55%,transparent_95%)]"
+          />
         </div>
 
         <div className="relative z-10 mx-auto max-w-4xl text-center">
@@ -109,7 +117,8 @@ function ConferencesHub() {
             Explore Our <span className="text-crimson">Conferences</span>
           </h1>
           <p className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
-            Connecting the next generation of global leaders with world-class academic institutions and global peers.
+            Connecting the next generation of global leaders with world-class academic institutions
+            and global peers.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <a
@@ -129,9 +138,17 @@ function ConferencesHub() {
           </div>
         </div>
 
-        <div className="pointer-events-none absolute left-8 top-1/2 hidden h-32 w-1 -translate-y-1/2 bg-crimson/20 lg:block" aria-hidden />
-        <div className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 lg:block" aria-hidden>
-          <span className="mono-label text-crimson/35 [writing-mode:vertical-rl]">Learn with Leaders</span>
+        <div
+          className="pointer-events-none absolute left-8 top-1/2 hidden h-32 w-1 -translate-y-1/2 bg-crimson/20 lg:block"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 lg:block"
+          aria-hidden
+        >
+          <span className="mono-label text-crimson/35 [writing-mode:vertical-rl]">
+            Learn with Leaders
+          </span>
         </div>
       </section>
 
@@ -151,7 +168,10 @@ function ConferencesHub() {
               Showing <span className="font-semibold text-ink">{filtered.length}</span> conferences
             </p>
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-ink-faint" aria-hidden />
+              <Search
+                className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-ink-faint"
+                aria-hidden
+              />
               <Input
                 type="text"
                 placeholder="Search conferences..."
@@ -190,12 +210,10 @@ function ConferencesHub() {
             </div>
           ) : (
             <div className="py-20 text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gold-soft">
-                  <Search className="h-8 w-8 text-gold-deep" aria-hidden />
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gold-soft">
+                <Search className="h-8 w-8 text-gold-deep" aria-hidden />
               </div>
-              <h3 className="mb-2 text-lg font-semibold text-ink">
-                No conferences found
-              </h3>
+              <h3 className="mb-2 text-lg font-semibold text-ink">No conferences found</h3>
               <p className="mb-4 text-ink-soft">Try adjusting your search terms</p>
               <Button variant="outline" onClick={() => setSearch("")}>
                 Clear search
@@ -208,13 +226,18 @@ function ConferencesHub() {
       {/* ---------- faqs ---------- */}
       <section className="border-t border-line bg-wash py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <SectionHeading eyebrow="Good to know" sub="Answers to common questions from students and families.">
+          <SectionHeading
+            eyebrow="Good to know"
+            sub="Answers to common questions from students and families."
+          >
             Frequently asked <em className="text-crimson-deep">questions</em>
           </SectionHeading>
           <Accordion type="single" collapsible className="mt-6 w-full">
             {conferenceFaqs.map((faq, i) => (
               <AccordionItem key={i} value={`faq-${i}`} className="border-line">
-                <AccordionTrigger className="text-left text-ink hover:text-crimson">{faq.question}</AccordionTrigger>
+                <AccordionTrigger className="text-left text-ink hover:text-crimson">
+                  {faq.question}
+                </AccordionTrigger>
                 <AccordionContent className="text-ink-soft">{faq.answer}</AccordionContent>
               </AccordionItem>
             ))}
@@ -225,5 +248,4 @@ function ConferencesHub() {
       <SiteFooter />
     </div>
   );
-
 }

@@ -1,12 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 
-import type {
-  Cohort,
-  MentorKey,
-  Programme,
-  TrackKey,
-  TypeKey,
-} from "./programmes";
+import type { Cohort, MentorKey, Programme, TrackKey, TypeKey } from "./programmes";
 
 /** A camp's live schedule, merged into the editorial camp records at runtime. */
 export type LiveCamp = {
@@ -126,7 +120,10 @@ const APPLY_PORTAL = "https://apply.learnwithleaders.com/apply";
 const LWL_PARTNER_SLUG = "learn-with-leaders";
 
 const applyLink = (
-  program: { apply_url?: string | null; program_url?: string | null; pay_slug?: string | null } | null | undefined,
+  program:
+    | { apply_url?: string | null; program_url?: string | null; pay_slug?: string | null }
+    | null
+    | undefined,
   partner: PartnerRow | undefined,
   ...fallbacks: (string | null | undefined)[]
 ): string => {
@@ -135,7 +132,6 @@ const applyLink = (
   }
   return firstUrl(program?.apply_url, ...fallbacks, ADVISOR)!;
 };
-
 
 const slugify = (s: string) =>
   s
@@ -166,11 +162,7 @@ const TRACK_RULES: [TrackKey, RegExp][] = [
 ];
 
 const deriveTrack = (row: ProgramRow): TrackKey => {
-  const hay = [
-    row.program_name,
-    (row.categories ?? []).join(" "),
-    row.short_description ?? "",
-  ]
+  const hay = [row.program_name, (row.categories ?? []).join(" "), row.short_description ?? ""]
     .join(" ")
     .toLowerCase();
   for (const [key, re] of TRACK_RULES) if (re.test(hay)) return key;
@@ -212,8 +204,7 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
     const { createClient } = await import("@supabase/supabase-js");
     const url = process.env["SUPABASE_URL"] ?? process.env["VITE_SUPABASE_URL"];
     const key =
-      process.env["SUPABASE_PUBLISHABLE_KEY"] ??
-      process.env["VITE_SUPABASE_PUBLISHABLE_KEY"];
+      process.env["SUPABASE_PUBLISHABLE_KEY"] ?? process.env["VITE_SUPABASE_PUBLISHABLE_KEY"];
     if (!url || !key) return { programmes: [], camps: [], generatedAt: isoToday() };
 
     const auth = {
@@ -226,39 +217,32 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
 
     const today = isoToday();
 
-    const [partnersRes, programsRes, cohortsRes, siteProgRes, siteCohortRes] =
-      await Promise.all([
-        pub.from("all_partners").select("id,partner_slug,org_name,website"),
-        pub
-          .from("all_programs")
-          .select(
-            "id,partner_id,program_name,short_description,description,categories,duration,eligibility_grades,sticker_price,early_bird_price,price_currency,program_url,apply_url,pay_slug,location,format,cover_image_url",
-          )
-          .eq("is_active", true),
-        pub
-          .from("all_cohorts")
-          .select(
-            "id,program_id,cohort_label,start_date,end_date,application_deadline,seats_total",
-          )
-          .gte("start_date", today)
-          .order("start_date", { ascending: true }),
-        site.from("site_programs").select("*").order("sort_order", { ascending: true }),
-        site.from("site_cohorts").select("*"),
-      ]);
+    const [partnersRes, programsRes, cohortsRes, siteProgRes, siteCohortRes] = await Promise.all([
+      pub.from("all_partners").select("id,partner_slug,org_name,website"),
+      pub
+        .from("all_programs")
+        .select(
+          "id,partner_id,program_name,short_description,description,categories,duration,eligibility_grades,sticker_price,early_bird_price,price_currency,program_url,apply_url,pay_slug,location,format,cover_image_url",
+        )
+        .eq("is_active", true),
+      pub
+        .from("all_cohorts")
+        .select("id,program_id,cohort_label,start_date,end_date,application_deadline,seats_total")
+        .gte("start_date", today)
+        .order("start_date", { ascending: true }),
+      site.from("site_programs").select("*").order("sort_order", { ascending: true }),
+      site.from("site_cohorts").select("*"),
+    ]);
 
     const partners = new Map<string, PartnerRow>(
       ((partnersRes.data ?? []) as PartnerRow[]).map((p) => [p.id, p]),
     );
     const programs = (programsRes.data ?? []) as ProgramRow[];
-    const dbCohorts = ((cohortsRes.data ?? []) as CohortRow[]).filter(
-      (c) => c.start_date,
-    );
+    const dbCohorts = ((cohortsRes.data ?? []) as CohortRow[]).filter((c) => c.start_date);
     const siteProgrammes = ((siteProgRes.data ?? []) as SiteProgramRow[]).filter(
       (r) => r.is_visible,
     );
-    const siteCohorts = ((siteCohortRes.data ?? []) as SiteCohortRow[]).filter(
-      (r) => r.is_visible,
-    );
+    const siteCohorts = ((siteCohortRes.data ?? []) as SiteCohortRow[]).filter((r) => r.is_visible);
 
     const programById = new Map(programs.map((p) => [p.id, p]));
     const cohortsByProgram = new Map<string, CohortRow[]>();
@@ -360,9 +344,7 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
           "On request",
         feeR:
           s.fee_regular ??
-          (db?.early_bird_price != null
-            ? money(db.sticker_price, db.price_currency)
-            : null),
+          (db?.early_bird_price != null ? money(db.sticker_price, db.price_currency) : null),
         ...(s.badge ? { badge: s.badge } : {}),
         site: firstUrl(db?.program_url, s.site_url, partner?.website, ADVISOR)!,
         apply: applyLink(db, partner, s.apply_url, db?.program_url, partner?.website),
@@ -399,8 +381,7 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
         about: db.description ?? db.short_description ?? "",
         dur: db.duration ?? "",
         time: TIME_TBC,
-        feeE:
-          money(db.early_bird_price ?? db.sticker_price, db.price_currency) ?? "On request",
+        feeE: money(db.early_bird_price ?? db.sticker_price, db.price_currency) ?? "On request",
         feeR: db.early_bird_price != null ? money(db.sticker_price, db.price_currency) : null,
         site: firstUrl(db.program_url, partner?.website, ADVISOR)!,
         apply: applyLink(db, partner, db.program_url, partner?.website),
@@ -415,7 +396,11 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
     }
 
     const { DR_JOJO_PROGRAMME } = await import("./programmes");
-    if (!programmes.some((p) => p.id === DR_JOJO_PROGRAMME.id || p.paySlug === DR_JOJO_PROGRAMME.paySlug)) {
+    if (
+      !programmes.some(
+        (p) => p.id === DR_JOJO_PROGRAMME.id || p.paySlug === DR_JOJO_PROGRAMME.paySlug,
+      )
+    ) {
       programmes.push(DR_JOJO_PROGRAMME);
     }
 

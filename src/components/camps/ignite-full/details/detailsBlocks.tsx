@@ -41,33 +41,59 @@ export const FeeBlock = ({
 
   return (
     <div className={`${styles} p-8 md:p-10 rounded-sm`}>
-      <p className={`text-[10px] uppercase tracking-[0.4em] font-body font-bold mb-2 ${muted}`}>Programme Fee</p>
+      <p className={`text-[10px] uppercase tracking-[0.4em] font-body font-bold mb-2 ${muted}`}>
+        Programme Fee
+      </p>
       <p className={`text-5xl md:text-6xl font-display font-bold leading-none ${accent}`}>{FEE}</p>
       <p className={`text-base font-body mt-2 ${muted}`}>per student</p>
       <div className={`h-px my-5 ${tone === "white" ? "bg-foreground/10" : "bg-white/15"}`} />
-      <p className={`text-[10px] uppercase tracking-[0.3em] font-body font-bold mb-1.5 ${muted}`}>Deadline</p>
+      <p className={`text-[10px] uppercase tracking-[0.3em] font-body font-bold mb-1.5 ${muted}`}>
+        Deadline
+      </p>
       <p className={`text-2xl md:text-3xl font-display font-bold ${accent}`}>{DEADLINE}</p>
-      <ApplyButton className="w-full mt-7" variant={tone === "white" ? "rust" : "white"} applyUrl={applyUrl} />
+      <ApplyButton
+        className="w-full mt-7"
+        variant={tone === "white" ? "rust" : "white"}
+        applyUrl={applyUrl}
+      />
     </div>
   );
 };
 
-export const DetailsGrid = ({ tone = "light", cols = 2 }: { tone?: "light" | "dark"; cols?: 2 | 4 }) => {
+export const DetailsGrid = ({
+  tone = "light",
+  cols = 2,
+}: {
+  tone?: "light" | "dark";
+  cols?: 2 | 4;
+}) => {
   const labelColor = tone === "dark" ? "text-white/55" : "text-cambridge-rust";
   const highlightColor = tone === "dark" ? "text-white" : "text-foreground";
   const subColor = tone === "dark" ? "text-white/55" : "text-foreground/50";
   const iconColor = tone === "dark" ? "text-cambridge-cream" : "text-cambridge-rust";
 
   return (
-    <div className={`grid ${cols === 4 ? "grid-cols-2 md:grid-cols-4" : "grid-cols-1 sm:grid-cols-2"} gap-5`}>
+    <div
+      className={`grid ${cols === 4 ? "grid-cols-2 md:grid-cols-4" : "grid-cols-1 sm:grid-cols-2"} gap-5`}
+    >
       {details.map((d) => {
         const Icon = d.icon;
         return (
           <div key={d.label}>
             <Icon size={26} className={`${iconColor} mb-3`} strokeWidth={1.5} />
-            <p className={`text-[10px] uppercase tracking-[0.3em] font-body font-bold ${labelColor} mb-1.5`}>{d.label}</p>
-            <p className={`text-base md:text-lg font-display font-bold leading-snug ${highlightColor}`}>{d.highlight}</p>
-            {d.sub && <p className={`text-xs font-body leading-relaxed mt-1 ${subColor}`}>{d.sub}</p>}
+            <p
+              className={`text-[10px] uppercase tracking-[0.3em] font-body font-bold ${labelColor} mb-1.5`}
+            >
+              {d.label}
+            </p>
+            <p
+              className={`text-base md:text-lg font-display font-bold leading-snug ${highlightColor}`}
+            >
+              {d.highlight}
+            </p>
+            {d.sub && (
+              <p className={`text-xs font-body leading-relaxed mt-1 ${subColor}`}>{d.sub}</p>
+            )}
           </div>
         );
       })}
@@ -75,7 +101,13 @@ export const DetailsGrid = ({ tone = "light", cols = 2 }: { tone?: "light" | "da
   );
 };
 
-export const IncludesBlock = ({ tone = "light", compact = false }: { tone?: "light" | "dark"; compact?: boolean }) => {
+export const IncludesBlock = ({
+  tone = "light",
+  compact = false,
+}: {
+  tone?: "light" | "dark";
+  compact?: boolean;
+}) => {
   const text = tone === "dark" ? "text-white" : "text-foreground";
   const muted = tone === "dark" ? "text-white/55" : "text-foreground/55";
   const border = tone === "dark" ? "border-white/10" : "border-foreground/8";
@@ -83,7 +115,9 @@ export const IncludesBlock = ({ tone = "light", compact = false }: { tone?: "lig
 
   return (
     <div>
-      <p className={`text-[10px] tracking-[0.3em] uppercase font-body font-bold ${accent} mb-4`}>What's Included</p>
+      <p className={`text-[10px] tracking-[0.3em] uppercase font-body font-bold ${accent} mb-4`}>
+        What's Included
+      </p>
       <div className={`grid ${compact ? "grid-cols-1" : "sm:grid-cols-2"} gap-x-6 gap-y-1.5`}>
         {feeIncludes.map((item) => (
           <div key={item} className={`flex items-start gap-2 py-1 text-sm font-body ${text}`}>
@@ -93,7 +127,11 @@ export const IncludesBlock = ({ tone = "light", compact = false }: { tone?: "lig
         ))}
       </div>
       <div className={`mt-5 pt-4 border-t ${border}`}>
-        <p className={`text-[10px] tracking-[0.3em] uppercase font-body font-semibold ${muted} mb-2`}>Not Included</p>
+        <p
+          className={`text-[10px] tracking-[0.3em] uppercase font-body font-semibold ${muted} mb-2`}
+        >
+          Not Included
+        </p>
         <div className="flex flex-wrap gap-x-5 gap-y-1.5">
           {feeExcludes.map((item) => (
             <div key={item} className={`flex items-center gap-1.5 text-xs font-body ${muted}`}>

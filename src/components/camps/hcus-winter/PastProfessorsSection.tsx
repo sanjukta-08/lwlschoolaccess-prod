@@ -29,8 +29,12 @@ const PastProfessorsSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <p className="text-primary uppercase tracking-[0.3em] text-sm md:text-base font-sans mb-4">Distinguished Faculty</p>
-          <h2 className="font-serif text-4xl md:text-5xl text-ivory-foreground mb-6">Former Program Lecturers</h2>
+          <p className="text-primary uppercase tracking-[0.3em] text-sm md:text-base font-sans mb-4">
+            Distinguished Faculty
+          </p>
+          <h2 className="font-serif text-4xl md:text-5xl text-ivory-foreground mb-6">
+            Former Program Lecturers
+          </h2>
           <div className="w-16 h-px bg-primary mx-auto" />
         </motion.div>
 
@@ -50,9 +54,15 @@ const PastProfessorsSection = () => {
               </div>
 
               <div className={`${i % 2 === 0 ? "md:text-left" : "md:text-right"} text-center`}>
-                <h3 className="font-serif text-2xl md:text-3xl text-ivory-foreground mb-1">{prof.name}</h3>
-                <p className="text-primary font-sans text-sm uppercase tracking-widest mb-5">{prof.title}</p>
-                <p className="font-sans text-[15px] md:text-base text-ivory-foreground/70 leading-relaxed">{prof.bio}</p>
+                <h3 className="font-serif text-2xl md:text-3xl text-ivory-foreground mb-1">
+                  {prof.name}
+                </h3>
+                <p className="text-primary font-sans text-sm uppercase tracking-widest mb-5">
+                  {prof.title}
+                </p>
+                <p className="font-sans text-[15px] md:text-base text-ivory-foreground/70 leading-relaxed">
+                  {prof.bio}
+                </p>
               </div>
             </motion.div>
           ))}

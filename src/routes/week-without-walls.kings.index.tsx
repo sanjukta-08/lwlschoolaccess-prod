@@ -4,7 +4,8 @@ import KingsWeekWithoutWalls from "@/components/week-without-walls/KingsWeekWith
 import { kingsFaqs } from "@/components/week-without-walls/kings-data";
 
 const TITLE = "Week Without Walls | Kings’ School Al Barsha · Learn with Leaders";
-const DESC = "Three immersive programs for Kings’ School Al Barsha students in Years 7–13, delivered on campus from 1–5 February 2027 by Learn with Leaders with HPAIR and FinLit AI.";
+const DESC =
+  "Three immersive programs for Kings’ School Al Barsha students in Years 7–13, delivered on campus from 1–5 February 2027 by Learn with Leaders with HPAIR and FinLit AI.";
 
 export const Route = createFileRoute("/week-without-walls/kings/")({
   staticData: { sitemap: true },

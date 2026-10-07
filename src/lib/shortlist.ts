@@ -1,13 +1,6 @@
 // Client-side shortlist ("Saved") state. No account needed: the list lives in
 // localStorage and can be shared with a parent through an encoded URL.
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { PROGRAMMES, parseISO, startOfToday, type Cohort, type Programme } from "./programmes";
 
 export type SavedItem = { id: string; d: string };
@@ -109,19 +102,14 @@ export function useShortlistState(): ShortlistApi {
     [items],
   );
 
-  const toggle = useCallback(
-    (id: string, d: string) => {
-      setItems((prev) => {
-        const exists = prev.some((i) => i.id === id && i.d === d);
-        const next = exists
-          ? prev.filter((i) => !(i.id === id && i.d === d))
-          : [...prev, { id, d }];
-        write(next);
-        return next;
-      });
-    },
-    [],
-  );
+  const toggle = useCallback((id: string, d: string) => {
+    setItems((prev) => {
+      const exists = prev.some((i) => i.id === id && i.d === d);
+      const next = exists ? prev.filter((i) => !(i.id === id && i.d === d)) : [...prev, { id, d }];
+      write(next);
+      return next;
+    });
+  }, []);
 
   const remove = useCallback((id: string, d: string) => {
     setItems((prev) => {

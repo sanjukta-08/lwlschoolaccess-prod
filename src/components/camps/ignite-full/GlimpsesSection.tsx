@@ -2,26 +2,46 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Volume2, VolumeX } from "lucide-react";
 
-const glimpses1 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/ed29d763-c3cb-46b7-a803-5913fcf9f51c/glimpses-1.jpg";
-const glimpses2 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/458ad0e4-5aa8-4e00-840c-9ba9cbc7d8b3/glimpses-2.jpg";
-const glimpses3 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/460e3e02-2fbb-457c-959e-04308fccac6b/glimpses-3.jpg";
-const glimpses4 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/aebc9fff-0428-42bf-8142-88f043256d9b/glimpses-4.jpg";
-const glimpses5 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/fb2c3ec8-461a-4626-87ec-aa87a3c1c147/glimpses-5.jpg";
-const glimpses6 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/5ed1255f-716c-44fe-83f5-836294cb159d/glimpses-6.jpg";
-const glimpses7 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/949ae562-0eb8-41c5-8522-751ef34d0798/glimpses-7.jpg";
-const glimpses8 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/4af61645-202b-41ab-8a9c-67548ecdce68/glimpses-8.jpg";
-const glimpses9 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/f49f1f3b-a733-462f-8270-ca05e0650171/glimpses-9.jpg";
-const glimpses10 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/8ee1a7a0-14ce-4732-acb4-045c05e6b73c/glimpses-10.jpg";
-const glimpses11 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/2d8c2f3d-994f-4dea-9fcf-1489dc3ab503/glimpses-11.jpg";
-const glimpses12 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/e6516e48-2662-4df1-bda1-166237140f96/glimpses-12.jpg";
-const glimpses13 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/e3ca73d1-aa96-4abb-9836-e30d8a8e1c41/glimpses-13.jpg";
-const glimpses14 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/a99dd7f6-fc3b-43d9-9f51-d2bb99daced5/glimpses-14.jpg";
-const glimpses15 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/34b546b1-46e0-48f8-a8ff-510e6374d1a4/glimpses-15.jpg";
-const glimpses16 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/86015dc2-1576-40a6-9db4-9bd9fb3760d2/glimpses-16.jpg";
-const glimpses17 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/fd2ecf73-aa2c-4db6-be60-0d5f6dbcb2a2/glimpses-17.jpg";
-const glimpses18 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/12fae8be-b457-4980-bfe1-f72a1e84ef92/glimpses-18.jpg";
-const glimpses19 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/1f68d402-a211-4a54-9d27-a3c46ea573e8/glimpses-19.jpg";
-const glimpses20 = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/dcc0e27e-4bae-4921-accb-1fc44ab48d1a/glimpses-20.jpg";
+const glimpses1 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/ed29d763-c3cb-46b7-a803-5913fcf9f51c/glimpses-1.jpg";
+const glimpses2 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/458ad0e4-5aa8-4e00-840c-9ba9cbc7d8b3/glimpses-2.jpg";
+const glimpses3 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/460e3e02-2fbb-457c-959e-04308fccac6b/glimpses-3.jpg";
+const glimpses4 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/aebc9fff-0428-42bf-8142-88f043256d9b/glimpses-4.jpg";
+const glimpses5 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/fb2c3ec8-461a-4626-87ec-aa87a3c1c147/glimpses-5.jpg";
+const glimpses6 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/5ed1255f-716c-44fe-83f5-836294cb159d/glimpses-6.jpg";
+const glimpses7 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/949ae562-0eb8-41c5-8522-751ef34d0798/glimpses-7.jpg";
+const glimpses8 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/4af61645-202b-41ab-8a9c-67548ecdce68/glimpses-8.jpg";
+const glimpses9 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/f49f1f3b-a733-462f-8270-ca05e0650171/glimpses-9.jpg";
+const glimpses10 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/8ee1a7a0-14ce-4732-acb4-045c05e6b73c/glimpses-10.jpg";
+const glimpses11 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/2d8c2f3d-994f-4dea-9fcf-1489dc3ab503/glimpses-11.jpg";
+const glimpses12 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/e6516e48-2662-4df1-bda1-166237140f96/glimpses-12.jpg";
+const glimpses13 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/e3ca73d1-aa96-4abb-9836-e30d8a8e1c41/glimpses-13.jpg";
+const glimpses14 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/a99dd7f6-fc3b-43d9-9f51-d2bb99daced5/glimpses-14.jpg";
+const glimpses15 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/34b546b1-46e0-48f8-a8ff-510e6374d1a4/glimpses-15.jpg";
+const glimpses16 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/86015dc2-1576-40a6-9db4-9bd9fb3760d2/glimpses-16.jpg";
+const glimpses17 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/fd2ecf73-aa2c-4db6-be60-0d5f6dbcb2a2/glimpses-17.jpg";
+const glimpses18 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/12fae8be-b457-4980-bfe1-f72a1e84ef92/glimpses-18.jpg";
+const glimpses19 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/1f68d402-a211-4a54-9d27-a3c46ea573e8/glimpses-19.jpg";
+const glimpses20 =
+  "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5e/assets-v1/dcc0e27e-4bae-4921-accb-1fc44ab48d1a/glimpses-20.jpg";
 
 const slides = [
   [glimpses8, glimpses10, glimpses1, glimpses4],
@@ -84,7 +104,8 @@ const GlimpsesSection = () => {
             Glimpses from <span className="italic">Past Programmes</span>
           </h2>
           <p className="mt-4 text-white/70 font-body text-lg max-w-2xl mx-auto">
-            Workshops, friendships, adventures, and celebrations — every cohort writes its own story.
+            Workshops, friendships, adventures, and celebrations — every cohort writes its own
+            story.
           </p>
         </motion.div>
 
@@ -103,10 +124,7 @@ const GlimpsesSection = () => {
                 className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4"
               >
                 {currentSlides.map((src, i) => (
-                  <div
-                    key={i}
-                    className="aspect-[4/3] rounded-xl overflow-hidden relative group"
-                  >
+                  <div key={i} className="aspect-[4/3] rounded-xl overflow-hidden relative group">
                     <img
                       src={src}
                       alt={`IGNITE programme moment ${current * 4 + i + 1}`}
@@ -139,7 +157,10 @@ const GlimpsesSection = () => {
             {slides.map((_, i) => (
               <button
                 key={i}
-                onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
+                onClick={() => {
+                  setDirection(i > current ? 1 : -1);
+                  setCurrent(i);
+                }}
                 className={`h-2 rounded-full transition-all duration-300 ${
                   i === current ? "w-8 bg-white" : "w-2 bg-white/40"
                 }`}

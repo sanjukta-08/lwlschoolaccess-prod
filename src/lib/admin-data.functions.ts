@@ -13,9 +13,13 @@ async function db() {
 /** id → "Name (Platform)" using the same catalogue rows Compass searches, with a
  * fallback to the raw catalogue for programmes no longer listable. */
 async function nameLookup(): Promise<Map<string, string>> {
-  const [cat, mcs] = await Promise.all([loadCatalogue(), listPublicMasterclasses().catch(() => [])]);
+  const [cat, mcs] = await Promise.all([
+    loadCatalogue(),
+    listPublicMasterclasses().catch(() => []),
+  ]);
   const map = new Map<string, string>();
-  for (const p of cat.programmes) map.set(p.id, `${p.name} (${p.partnerName ?? "Learn with Leaders"})`);
+  for (const p of cat.programmes)
+    map.set(p.id, `${p.name} (${p.partnerName ?? "Learn with Leaders"})`);
   for (const r of buildRows(cat, mcs)) {
     const p = toPublic(r);
     map.set(p.id, `${p.name} (${p.platform})`);
@@ -32,13 +36,20 @@ export const adminStats = createServerFn({ method: "GET" }).handler(async () => 
     d.from("concierge_sessions").select("id", { count: "exact", head: true }),
     d.from("concierge_messages").select("id", { count: "exact", head: true }),
     d.from("concierge_leads").select("id", { count: "exact", head: true }),
-    d.from("concierge_sessions").select("created_at").gte("created_at", since.toISOString()).limit(10000),
+    d
+      .from("concierge_sessions")
+      .select("created_at")
+      .gte("created_at", since.toISOString())
+      .limit(10000),
   ]);
   const sessions = s.count ?? 0;
   const leads = l.count ?? 0;
   const byDay: { day: string; count: number }[] = [];
   for (let i = 0; i < 14; i++) {
-    byDay.push({ day: new Date(since.getTime() + i * 86400000).toISOString().slice(0, 10), count: 0 });
+    byDay.push({
+      day: new Date(since.getTime() + i * 86400000).toISOString().slice(0, 10),
+      count: 0,
+    });
   }
   for (const r of (recent.data ?? []) as { created_at: string }[]) {
     const e = byDay.find((b) => b.day === r.created_at.slice(0, 10));
@@ -57,8 +68,11 @@ export const adminLeads = createServerFn({ method: "GET" }).handler(async () => 
   await requireAdmin();
   const d = await db();
   const [{ data, error }, names] = await Promise.all([
-    d.from("concierge_leads")
-      .select("id, session_id, name, contact, grade, interested_program_ids, notes, contacted, created_at")
+    d
+      .from("concierge_leads")
+      .select(
+        "id, session_id, name, contact, grade, interested_program_ids, notes, contacted, created_at",
+      )
       .order("created_at", { ascending: false })
       .limit(500),
     nameLookup(),
@@ -107,9 +121,13 @@ export const adminSessions = createServerFn({ method: "GET" }).handler(async () 
     const { data: msgs } = await d
       .from("concierge_messages")
       .select("session_id")
-      .in("session_id", list.map((s) => s.id))
+      .in(
+        "session_id",
+        list.map((s) => s.id),
+      )
       .limit(20000);
-    for (const m of (msgs ?? []) as { session_id: string }[]) counts.set(m.session_id, (counts.get(m.session_id) ?? 0) + 1);
+    for (const m of (msgs ?? []) as { session_id: string }[])
+      counts.set(m.session_id, (counts.get(m.session_id) ?? 0) + 1);
   }
   return list.map((s) => ({
     id: s.id as string,
@@ -128,11 +146,13 @@ export const adminTranscript = createServerFn({ method: "GET" })
     await requireAdmin();
     const d = await db();
     const [sess, msgs, names] = await Promise.all([
-      d.from("concierge_sessions")
+      d
+        .from("concierge_sessions")
         .select("id, created_at, source_page, utm_source, utm_medium, utm_campaign")
         .eq("id", data.id)
         .maybeSingle(),
-      d.from("concierge_messages")
+      d
+        .from("concierge_messages")
         .select("id, role, content, surfaced_program_ids, created_at")
         .eq("session_id", data.id)
         .order("created_at", { ascending: true })
@@ -142,15 +162,22 @@ export const adminTranscript = createServerFn({ method: "GET" })
     if (!sess.data) return null;
     return {
       session: sess.data as {
-        id: string; created_at: string; source_page: string | null;
-        utm_source: string | null; utm_medium: string | null; utm_campaign: string | null;
+        id: string;
+        created_at: string;
+        source_page: string | null;
+        utm_source: string | null;
+        utm_medium: string | null;
+        utm_campaign: string | null;
       },
       messages: ((msgs.data ?? []) as any[]).map((m) => ({
         id: m.id as string,
         role: m.role as string,
         content: (m.content ?? "") as string,
         created_at: m.created_at as string,
-        surfaced: ((m.surfaced_program_ids ?? []) as string[]).map((id) => ({ id, name: names.get(id) ?? id })),
+        surfaced: ((m.surfaced_program_ids ?? []) as string[]).map((id) => ({
+          id,
+          name: names.get(id) ?? id,
+        })),
       })),
     };
   });

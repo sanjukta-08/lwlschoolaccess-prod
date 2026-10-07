@@ -2,14 +2,7 @@
 // Source of truth: "Online Programs - Filter Categories" (18 programmes, 7 interest
 // categories, one category per programme).
 
-export type TrackKey =
-  | "med"
-  | "law"
-  | "fin"
-  | "ai"
-  | "res"
-  | "lead"
-  | "sat";
+export type TrackKey = "med" | "law" | "fin" | "ai" | "res" | "lead" | "sat";
 export type TypeKey = "fel" | "prog" | "comp" | "conf";
 export type MentorKey = "harvard" | "hpair" | "yale" | "ivy";
 export type Fee = { e: string; r: string | null };
@@ -64,40 +57,41 @@ export type Programme = {
   cohorts: Cohort[];
 };
 
-export const TRACKS: Record<TrackKey, { label: string; short: string; ic: string; color: string }> = {
-  med: { label: "Medicine & Healthcare", short: "Medicine", ic: "🩺", color: "var(--track-med)" },
-  law: {
-    label: "Law, Debate & Communication",
-    short: "Law & Debate",
-    ic: "⚖️",
-    color: "var(--track-law)",
-  },
-  fin: { label: "Finance & Investing", short: "Finance", ic: "📈", color: "var(--track-fin)" },
-  ai: {
-    label: "AI, Technology & Entrepreneurship",
-    short: "AI & Entrepreneurship",
-    ic: "🤖",
-    color: "var(--track-ai)",
-  },
-  res: {
-    label: "Research & Academic Writing",
-    short: "Research",
-    ic: "🔬",
-    color: "var(--track-res)",
-  },
-  lead: {
-    label: "Leadership & Global Affairs",
-    short: "Leadership",
-    ic: "🌍",
-    color: "var(--track-lead)",
-  },
-  sat: {
-    label: "Test Prep & College Readiness",
-    short: "Test Prep",
-    ic: "✏️",
-    color: "var(--track-sat)",
-  },
-};
+export const TRACKS: Record<TrackKey, { label: string; short: string; ic: string; color: string }> =
+  {
+    med: { label: "Medicine & Healthcare", short: "Medicine", ic: "🩺", color: "var(--track-med)" },
+    law: {
+      label: "Law, Debate & Communication",
+      short: "Law & Debate",
+      ic: "⚖️",
+      color: "var(--track-law)",
+    },
+    fin: { label: "Finance & Investing", short: "Finance", ic: "📈", color: "var(--track-fin)" },
+    ai: {
+      label: "AI, Technology & Entrepreneurship",
+      short: "AI & Entrepreneurship",
+      ic: "🤖",
+      color: "var(--track-ai)",
+    },
+    res: {
+      label: "Research & Academic Writing",
+      short: "Research",
+      ic: "🔬",
+      color: "var(--track-res)",
+    },
+    lead: {
+      label: "Leadership & Global Affairs",
+      short: "Leadership",
+      ic: "🌍",
+      color: "var(--track-lead)",
+    },
+    sat: {
+      label: "Test Prep & College Readiness",
+      short: "Test Prep",
+      ic: "✏️",
+      color: "var(--track-sat)",
+    },
+  };
 
 export const MENTORS: Record<MentorKey, { label: string; short: string }> = {
   harvard: { label: "Harvard mentors", short: "Harvard" },
@@ -138,7 +132,8 @@ export const DR_JOJO_PROGRAMME: Programme = {
   mentor: "ivy",
   g: [8, 12],
   tag: "4-Day Live Accelerator for Mas Camarena School, Spain Students",
-  about: "A high-impact pre-university entrepreneurship and venture building program led by Dr. Jojo O'Driscoll-Kearney (Harvard Business Impact Faculty & Hult Professor, ex-Meta CLO) for Mas Camarena School students in Spain.",
+  about:
+    "A high-impact pre-university entrepreneurship and venture building program led by Dr. Jojo O'Driscoll-Kearney (Harvard Business Impact Faculty & Hult Professor, ex-Meta CLO) for Mas Camarena School students in Spain.",
   dur: "4 Days (3-Hour Sessions)",
   time: "3-hour live sessions on Zoom",
   feeE: "EUR 350",
@@ -164,7 +159,11 @@ export const PROGRAMMES: Programme[] = [DR_JOJO_PROGRAMME];
 export const setCatalogue = (list: Programme[]) => {
   PROGRAMMES.length = 0;
   PROGRAMMES.push(...list);
-  if (!PROGRAMMES.some((p) => p.id === DR_JOJO_PROGRAMME.id || p.paySlug === DR_JOJO_PROGRAMME.paySlug)) {
+  if (
+    !PROGRAMMES.some(
+      (p) => p.id === DR_JOJO_PROGRAMME.id || p.paySlug === DR_JOJO_PROGRAMME.paySlug,
+    )
+  ) {
     PROGRAMMES.push(DR_JOJO_PROGRAMME);
   }
 };
@@ -197,8 +196,7 @@ export const fmtLong = (iso: string) =>
 export const fmtShort = (iso: string) =>
   parseISO(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short" });
 
-export const cohortGrades = (p: Programme, c?: Cohort): [number, number] =>
-  (c && c.g) || p.g;
+export const cohortGrades = (p: Programme, c?: Cohort): [number, number] => (c && c.g) || p.g;
 
 export const feeOf = (p: Programme, c?: Cohort): Fee =>
   c && c.fee ? c.fee : { e: p.feeE, r: p.feeR };
@@ -230,8 +228,9 @@ export const durationKey = (p: Programme): DurationKey => {
 
 /** Programmes with past cohorts removed (empty programmes dropped). */
 export const upcomingProgrammes = (): Programme[] =>
-  PROGRAMMES.map((p) => ({ ...p, cohorts: p.cohorts.filter((c) => !isPast(c.d)) }))
-    .filter((p) => p.cohorts.length > 0);
+  PROGRAMMES.map((p) => ({ ...p, cohorts: p.cohorts.filter((c) => !isPast(c.d)) })).filter(
+    (p) => p.cohorts.length > 0,
+  );
 
 /**
  * Sessions are published in US Eastern. Most families reading this are in the
@@ -286,9 +285,18 @@ export const TYPE_IC: Record<TypeKey, string> = {
 
 /** Editorially chosen flagships - the five a parent should look at first. */
 export const TRENDING: { id: string; why: string }[] = [
-  { id: "fdf", why: "The most asked-about pathway for future medics - clinical cases, live mentors, capstone." },
-  { id: "ail", why: "Build and ship a real AI product; the fastest-moving skill on any application." },
-  { id: "flf", why: "Moot court and legal reasoning - ideal first step for a law-curious teenager." },
+  {
+    id: "fdf",
+    why: "The most asked-about pathway for future medics - clinical cases, live mentors, capstone.",
+  },
+  {
+    id: "ail",
+    why: "Build and ship a real AI product; the fastest-moving skill on any application.",
+  },
+  {
+    id: "flf",
+    why: "Moot court and legal reasoning - ideal first step for a law-curious teenager.",
+  },
   { id: "rpf", why: "Ivy League mentors and a published, citable research paper in eight weeks." },
   { id: "finlit", why: "Investing, valuation and fraud detection - finance fluency that lasts." },
 ];

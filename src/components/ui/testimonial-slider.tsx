@@ -21,10 +21,7 @@ interface TestimonialSliderProps {
   className?: string;
 }
 
-export const TestimonialSlider = ({
-  contributors,
-  className,
-}: TestimonialSliderProps) => {
+export const TestimonialSlider = ({ contributors, className }: TestimonialSliderProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState<"left" | "right">("right");
 
@@ -45,9 +42,7 @@ export const TestimonialSlider = ({
     setCurrentIndex(index);
   };
 
-  const thumbnailContributors = contributors
-    .filter((_, i) => i !== currentIndex)
-    .slice(0, 3);
+  const thumbnailContributors = contributors.filter((_, i) => i !== currentIndex).slice(0, 3);
 
   const imageVariants = {
     enter: (direction: "left" | "right") => ({
@@ -76,7 +71,6 @@ export const TestimonialSlider = ({
   return (
     <div className={cn("w-full", className)}>
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center">
-        
         {/* Left Column: Meta and Thumbnails */}
         <div className="md:col-span-2 flex flex-row md:flex-col justify-between md:justify-start gap-4 md:gap-8">
           <div className="flex flex-row md:flex-col items-center md:items-start gap-2">
@@ -84,8 +78,10 @@ export const TestimonialSlider = ({
               {String(currentIndex + 1).padStart(2, "0")} /{" "}
               {String(contributors.length).padStart(2, "0")}
             </span>
-            <span className="hidden md:block text-xs uppercase tracking-widest text-gray-500 md:writing-mode-vertical md:rotate-180"
-              style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
+            <span
+              className="hidden md:block text-xs uppercase tracking-widest text-gray-500 md:writing-mode-vertical md:rotate-180"
+              style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+            >
               Contributors
             </span>
           </div>
@@ -93,9 +89,7 @@ export const TestimonialSlider = ({
           {/* Thumbnail Navigation */}
           <div className="flex flex-row md:flex-col gap-2">
             {thumbnailContributors.map((contributor) => {
-              const originalIndex = contributors.findIndex(
-                (c) => c.id === contributor.id
-              );
+              const originalIndex = contributors.findIndex((c) => c.id === contributor.id);
               return (
                 <button
                   key={contributor.id}

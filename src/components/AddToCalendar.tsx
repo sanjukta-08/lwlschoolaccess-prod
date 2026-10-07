@@ -1,11 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { Cohort, Programme } from "@/lib/programmes";
-import {
-  downloadIcs,
-  googleCalendarUrl,
-  icsFileName,
-  outlookCalendarUrl,
-} from "@/lib/ics";
+import { downloadIcs, googleCalendarUrl, icsFileName, outlookCalendarUrl } from "@/lib/ics";
 
 type Props = {
   p: Programme;

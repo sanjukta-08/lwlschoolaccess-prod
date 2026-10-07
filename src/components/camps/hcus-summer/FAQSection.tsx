@@ -1,4 +1,9 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { FAQSchema } from "@/components/seo/FAQSchema";
 
 const faqs = [
@@ -81,7 +86,9 @@ const FAQSection = () => (
     <FAQSchema faqs={faqs.map((f) => ({ question: f.q, answer: f.a }))} />
     <div className="max-w-5xl mx-auto">
       <div className="text-center mb-12">
-        <p className="text-[#9b1c1c] font-body text-sm tracking-[0.3em] uppercase mb-4">Have Questions?</p>
+        <p className="text-[#9b1c1c] font-body text-sm tracking-[0.3em] uppercase mb-4">
+          Have Questions?
+        </p>
         <h2 className="font-serif-display text-4xl sm:text-5xl font-bold text-[#0f1a2b]">
           Frequently Asked Questions
         </h2>
@@ -98,7 +105,9 @@ const FAQSection = () => (
               {f.q}
             </AccordionTrigger>
             <AccordionContent className="bg-white px-6 py-5">
-              <p className="text-[#0f1a2b] font-body text-sm leading-relaxed whitespace-pre-line">{f.a}</p>
+              <p className="text-[#0f1a2b] font-body text-sm leading-relaxed whitespace-pre-line">
+                {f.a}
+              </p>
             </AccordionContent>
           </AccordionItem>
         ))}

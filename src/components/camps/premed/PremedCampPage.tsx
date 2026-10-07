@@ -60,7 +60,8 @@ const BOOK_MEETING_URL = CALENDLY_BOOKING_URL;
  * link comes from the shared catalogue; read at render so hydration wins.
  */
 const applyUrl = () =>
-  campBySlug("premed-horizons-harvard")?.applyUrl ?? "https://apply.learnwithleaders.com/apply/premed-academy";
+  campBySlug("premed-horizons-harvard")?.applyUrl ??
+  "https://apply.learnwithleaders.com/apply/premed-academy";
 
 const mentors = [
   {
@@ -107,9 +108,6 @@ const mentors = [
   },
 ];
 
-
-
-
 const days = [
   {
     num: "01",
@@ -154,8 +152,7 @@ const days = [
     num: "04",
     title: "Building the Future",
     question: "How is innovation transforming healthcare?",
-    summary:
-      "Students engage with the technologies reshaping medicine — from AI to biotech.",
+    summary: "Students engage with the technologies reshaping medicine — from AI to biotech.",
     icon: Microscope,
     courses: [
       "Data Science & AI for Health",
@@ -266,9 +263,7 @@ const outcomes = [
   },
 ];
 
-
 export default function PremedCampPage() {
-
   return (
     <div className="min-h-screen bg-cream text-ink">
       {/* NAV */}
@@ -284,10 +279,18 @@ export default function PremedCampPage() {
             />
           </a>
           <nav className="hidden gap-8 text-base font-medium text-ink md:flex">
-            <a href="#program" className="hover:text-crimson transition-colors">Program</a>
-            <a href="#schedule" className="hover:text-crimson transition-colors">Schedule</a>
-            <a href="#capstone" className="hover:text-crimson transition-colors">Capstone</a>
-            <a href="#outcomes" className="hover:text-crimson transition-colors">Outcomes</a>
+            <a href="#program" className="hover:text-crimson transition-colors">
+              Program
+            </a>
+            <a href="#schedule" className="hover:text-crimson transition-colors">
+              Schedule
+            </a>
+            <a href="#capstone" className="hover:text-crimson transition-colors">
+              Capstone
+            </a>
+            <a href="#outcomes" className="hover:text-crimson transition-colors">
+              Outcomes
+            </a>
           </nav>
           <div className="flex items-center gap-3">
             <a
@@ -343,23 +346,24 @@ export default function PremedCampPage() {
             </h1>
 
             <p className="mx-auto mt-10 max-w-[56rem] text-xl leading-snug text-paper/90 md:text-2xl">
-              A pre-collegiate program for students ready to explore medicine, innovation, and policy — and their own role in shaping what comes next.
+              A pre-collegiate program for students ready to explore medicine, innovation, and
+              policy — and their own role in shaping what comes next.
             </p>
-
 
             <a
               href="#program"
               className="mx-auto mt-14 inline-flex flex-col items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-paper/80 hover:text-paper transition-colors"
             >
               Explore Program
-              <span className="inline-flex h-10 w-6 items-end justify-center rounded-full border border-paper/30 pb-2" aria-hidden>
+              <span
+                className="inline-flex h-10 w-6 items-end justify-center rounded-full border border-paper/30 pb-2"
+                aria-hidden
+              >
                 <span className="inline-block h-2 w-0.5 animate-bounce rounded-full bg-crimson" />
               </span>
             </a>
           </div>
         </div>
-
-        
       </section>
 
       {/* STATS — kinetic ticker */}
@@ -393,10 +397,8 @@ export default function PremedCampPage() {
         </div>
       </section>
 
-
       {/* PROGRAM VISION */}
       <VisionSection />
-
 
       {/* TIMELINE — five-day journey */}
       <section aria-label="Five-day timeline" className="relative bg-paper">
@@ -412,8 +414,7 @@ export default function PremedCampPage() {
               </h2>
             </div>
             <p className="max-w-sm text-base leading-relaxed text-ink md:text-lg">
-              A guided progression from understanding the body to leading
-              change across systems.
+              A guided progression from understanding the body to leading change across systems.
             </p>
           </div>
 
@@ -479,8 +480,6 @@ export default function PremedCampPage() {
         </div>
       </section>
 
-
-
       {/* FRAMEWORK — three pillars in their own section */}
       <section id="framework" className="relative bg-ink text-paper">
         <div className="mx-auto max-w-[1500px] px-5 py-24 lg:px-10 lg:py-32">
@@ -495,8 +494,8 @@ export default function PremedCampPage() {
                 <span className="text-crimson italic">around you.</span>
               </h2>
               <p className="mt-8 max-w-md text-base leading-relaxed text-paper/70 md:text-lg">
-                Three pillars define how the Academy works — who it serves, how
-                it unfolds, and what students carry forward.
+                Three pillars define how the Academy works — who it serves, how it unfolds, and what
+                students carry forward.
               </p>
             </div>
 
@@ -527,9 +526,7 @@ export default function PremedCampPage() {
                       <div className="text-xs font-semibold uppercase tracking-[0.3em] text-paper/70">
                         {c.k}
                       </div>
-                      <p className="mt-4 text-lg leading-relaxed text-paper/90 md:text-xl">
-                        {c.v}
-                      </p>
+                      <p className="mt-4 text-lg leading-relaxed text-paper/90 md:text-xl">{c.v}</p>
                     </div>
                   </li>
                 ))}
@@ -577,9 +574,8 @@ export default function PremedCampPage() {
           {/* Right: content */}
           <div className="border-t border-paper/15 p-8 lg:border-l lg:border-t-0 lg:p-16">
             <p className="max-w-lg text-lg leading-relaxed text-paper/85 md:text-xl">
-              Working in teams, students identify a major healthcare challenge
-              and develop an innovative solution — from problem analysis through
-              a final pitch.
+              Working in teams, students identify a major healthcare challenge and develop an
+              innovative solution — from problem analysis through a final pitch.
             </p>
 
             <div className="mt-14">
@@ -632,12 +628,8 @@ export default function PremedCampPage() {
                 key={d}
                 className="flex flex-col justify-between rounded-2xl bg-paper p-6 text-ink"
               >
-                <span className="font-display text-4xl text-crimson">
-                  0{i + 1}
-                </span>
-                <span className="mt-6 text-xl font-semibold leading-tight">
-                  {d}
-                </span>
+                <span className="font-display text-4xl text-crimson">0{i + 1}</span>
+                <span className="mt-6 text-xl font-semibold leading-tight">{d}</span>
                 <span className="mt-4 text-[10px] font-semibold uppercase tracking-widest text-ink/50">
                   Phase {i + 1}
                 </span>
@@ -670,9 +662,7 @@ export default function PremedCampPage() {
                 <article
                   key={`${o.title}-${i}`}
                   className={`flex w-[80vw] max-w-[360px] flex-col justify-between rounded-[2rem] p-8 md:w-[380px] md:p-10 ${
-                    isAccent
-                      ? "bg-ink text-paper"
-                      : "bg-paper text-ink border border-ink/10"
+                    isAccent ? "bg-ink text-paper" : "bg-paper text-ink border border-ink/10"
                   }`}
                 >
                   <div>
@@ -697,9 +687,7 @@ export default function PremedCampPage() {
 
                   <span
                     className={`mt-8 inline-block self-start rounded-full border px-4 py-2 text-[10px] font-semibold uppercase tracking-widest ${
-                      isAccent
-                        ? "border-paper/25 text-paper/85"
-                        : "border-ink/10 text-ink/60"
+                      isAccent ? "border-paper/25 text-paper/85" : "border-ink/10 text-ink/60"
                     }`}
                   >
                     {o.keyword}
@@ -726,18 +714,14 @@ export default function PremedCampPage() {
               </h2>
             </div>
             <p className="col-span-12 self-end text-sm leading-relaxed text-ink/75 md:col-span-5 md:text-base">
-              Current Harvard undergraduates from HUGEM guide every session —
-              sharing research, campus life, and the questions that shaped
-              their own journeys.
+              Current Harvard undergraduates from HUGEM guide every session — sharing research,
+              campus life, and the questions that shaped their own journeys.
             </p>
           </div>
 
           <MentorCarousel />
         </div>
       </section>
-
-
-
 
       {/* QUOTE — call to belief */}
       <section className="relative overflow-hidden bg-crimson text-crimson-foreground">
@@ -763,7 +747,8 @@ export default function PremedCampPage() {
           <div className="grid grid-cols-12 gap-6">
             <div className="col-span-12 lg:col-span-10 lg:col-start-2">
               <blockquote className="font-display text-[2.2rem] leading-[1.08] md:text-[3.5rem] lg:text-[4.5rem]">
-                Students explore how they can contribute to building a healthier future for all — as innovators, leaders, and changemakers.
+                Students explore how they can contribute to building a healthier future for all — as
+                innovators, leaders, and changemakers.
               </blockquote>
               <div className="mt-12 flex items-center gap-5">
                 <span className="inline-block h-px w-20 bg-paper/40" />
@@ -813,7 +798,6 @@ export default function PremedCampPage() {
           </div>
         </div>
 
-
         <footer className="border-t border-paper/15">
           <div className="mx-auto flex max-w-[1500px] flex-col items-center px-5 py-14 text-center lg:px-10">
             <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-paper/60">
@@ -848,7 +832,6 @@ export default function PremedCampPage() {
             </p>
           </div>
         </footer>
-
       </section>
     </div>
   );
@@ -913,7 +896,9 @@ function CampDetailsSection() {
                 <dt className="text-[10px] font-semibold uppercase tracking-[0.3em] text-paper/60">
                   {item.label}
                 </dt>
-                <dd className="mt-2 font-display text-xl leading-tight md:text-2xl">{item.value}</dd>
+                <dd className="mt-2 font-display text-xl leading-tight md:text-2xl">
+                  {item.value}
+                </dd>
               </div>
             ))}
           </dl>
@@ -930,9 +915,7 @@ function CampDetailsSection() {
               <h3 className="mt-4 font-display text-6xl leading-none tracking-tight text-ink md:text-7xl lg:text-8xl">
                 1500 USD
               </h3>
-              <p className="mt-6 max-w-sm text-lg leading-relaxed text-ink/70">
-                per student
-              </p>
+              <p className="mt-6 max-w-sm text-lg leading-relaxed text-ink/70">per student</p>
               <a
                 href={applyUrl()}
                 target="_blank"
@@ -1035,15 +1018,11 @@ function MentorCarousel() {
               />
             </div>
             <div className="mt-4">
-              <h3 className="font-display text-2xl leading-tight">
-                {m.name}
-              </h3>
+              <h3 className="font-display text-2xl leading-tight">{m.name}</h3>
               <p className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-crimson">
                 {m.role}
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-ink/80">
-                {m.bio}
-              </p>
+              <p className="mt-3 text-sm leading-relaxed text-ink/80">{m.bio}</p>
             </div>
           </article>
         ))}
@@ -1077,19 +1056,17 @@ const visionContent = {
   ),
   paragraphs: [
     <>
-      It will be shaped by innovators, researchers, entrepreneurs, policymakers,
-      technologists, and healthcare leaders working together to tackle
-      humanity's <span className="text-crimson">greatest challenges.</span>
+      It will be shaped by innovators, researchers, entrepreneurs, policymakers, technologists, and
+      healthcare leaders working together to tackle humanity's{" "}
+      <span className="text-crimson">greatest challenges.</span>
     </>,
     <>
-      The HUGEM Pre-Med Academy introduces students to the biological
-      foundations of health, the realities of modern healthcare systems, and
-      the innovations transforming medicine.
+      The HUGEM Pre-Med Academy introduces students to the biological foundations of health, the
+      realities of modern healthcare systems, and the innovations transforming medicine.
     </>,
     <>
-      Through interdisciplinary learning and collaborative problem-solving,
-      students explore how they can contribute to building a healthier future
-      for all.
+      Through interdisciplinary learning and collaborative problem-solving, students explore how
+      they can contribute to building a healthier future for all.
     </>,
   ],
 };
@@ -1128,7 +1105,6 @@ function LayoutSplit() {
   );
 }
 
-
 function VisionSection() {
   return (
     <section id="program" className="relative isolate overflow-hidden bg-ink">
@@ -1148,7 +1124,6 @@ function VisionSection() {
 }
 
 function ScheduleSection() {
-
   return (
     <section
       id="schedule"
@@ -1168,8 +1143,7 @@ function ScheduleSection() {
           </div>
           <div className="col-span-12 md:col-span-5 md:pt-4">
             <p className="text-base leading-relaxed text-paper/80 md:text-lg">
-              Each morning opens with a question. Each afternoon builds toward
-              the capstone.
+              Each morning opens with a question. Each afternoon builds toward the capstone.
             </p>
             <div className="mt-6 inline-flex items-center gap-3 bg-paper px-5 py-3 text-xs font-semibold uppercase tracking-[0.25em] text-ink">
               <span>Scroll to move through the week.</span>
@@ -1224,7 +1198,8 @@ function OutingsSection() {
             Step outside the classroom.
           </h2>
           <p className="max-w-md text-lg leading-relaxed text-ink/70">
-            Visit the institutions and landmarks that shape the Boston area's reputation as a global center of learning and culture.
+            Visit the institutions and landmarks that shape the Boston area's reputation as a global
+            center of learning and culture.
           </p>
         </div>
 
@@ -1289,9 +1264,7 @@ function ScheduleLayoutDossier() {
               </div>
 
               <p className="mt-6 text-lg italic text-paper/90">"{d.question}"</p>
-              <p className="mt-4 text-base leading-relaxed text-paper/75">
-                {d.summary}
-              </p>
+              <p className="mt-4 text-base leading-relaxed text-paper/75">{d.summary}</p>
 
               {d.tags && (
                 <div className="mt-6 flex flex-wrap gap-1.5">
@@ -1315,9 +1288,7 @@ function ScheduleLayoutDossier() {
                     <span className="font-display text-xs text-paper/70">
                       {String(ci + 1).padStart(2, "0")}
                     </span>
-                    <span className="text-sm leading-snug text-paper/90">
-                      {c}
-                    </span>
+                    <span className="text-sm leading-snug text-paper/90">{c}</span>
                   </li>
                 ))}
               </ul>

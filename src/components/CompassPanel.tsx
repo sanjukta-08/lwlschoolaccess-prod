@@ -99,7 +99,11 @@ function CompareTable({ items }: { items: CompassResult[] }) {
           <tr className="border-b border-gold-line bg-gold-soft">
             <th scope="col" className="w-[4.5rem] p-2" />
             {items.map((r) => (
-              <th key={r.id} scope="col" className="p-2 align-top text-[0.78rem] leading-snug font-bold text-ink">
+              <th
+                key={r.id}
+                scope="col"
+                className="p-2 align-top text-[0.78rem] leading-snug font-bold text-ink"
+              >
                 {r.name}
               </th>
             ))}
@@ -122,7 +126,10 @@ function CompareTable({ items }: { items: CompassResult[] }) {
             <th scope="row" className="p-2" />
             {items.map((r) => (
               <td key={r.id} className="space-y-1.5 p-2 align-top">
-                <a href={withUtm(r.view_url)} className="block font-semibold text-crimson underline-offset-2 hover:underline">
+                <a
+                  href={withUtm(r.view_url)}
+                  className="block font-semibold text-crimson underline-offset-2 hover:underline"
+                >
                   View
                 </a>
                 {r.apply_url ? (
@@ -181,12 +188,26 @@ function SharePanel({ summary }: { summary: string }) {
   return (
     <div className="border-b border-line bg-paper px-4 py-3">
       <div className="flex gap-2">
-        <Button type="button" variant="outline" size="sm" className="flex-1" onClick={() => void copy()}>
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          className="flex-1"
+          onClick={() => void copy()}
+        >
           {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
           {copied ? "Copied" : "Copy summary"}
         </Button>
-        <Button asChild size="sm" className="flex-1 bg-crimson text-primary-foreground hover:bg-crimson-deep">
-          <a href={`https://wa.me/?text=${encodeURIComponent(summary)}`} target="_blank" rel="noreferrer">
+        <Button
+          asChild
+          size="sm"
+          className="flex-1 bg-crimson text-primary-foreground hover:bg-crimson-deep"
+        >
+          <a
+            href={`https://wa.me/?text=${encodeURIComponent(summary)}`}
+            target="_blank"
+            rel="noreferrer"
+          >
             Share on WhatsApp <ArrowUpRight className="h-3.5 w-3.5" />
           </a>
         </Button>
@@ -411,7 +432,8 @@ function CompassPanel() {
             </p>
           ) : (
             <p className="mt-2 text-center text-[0.65rem] text-muted-foreground">
-              Conversations are saved so our team can follow up on your questions — please avoid sharing sensitive personal details.
+              Conversations are saved so our team can follow up on your questions — please avoid
+              sharing sensitive personal details.
             </p>
           )}
         </div>

@@ -3,7 +3,14 @@ import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
 import { adminSessions } from "@/lib/admin-data.functions";
 import { AdminShell, fmtDateTime } from "@/components/admin/AdminShell";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 export const Route = createFileRoute("/admin/sessions/")({
   staticData: { sitemap: false },
@@ -19,10 +26,15 @@ export const Route = createFileRoute("/admin/sessions/")({
 function SessionsPage() {
   const navigate = useNavigate();
   const fetchSessions = useServerFn(adminSessions);
-  const { data, error, isLoading } = useQuery({ queryKey: ["admin", "sessions"], queryFn: () => fetchSessions() });
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["admin", "sessions"],
+    queryFn: () => fetchSessions(),
+  });
   return (
     <AdminShell title="Conversations">
-      <p className="mb-4 text-sm text-muted-foreground">Most recent 100. Click a row to read the transcript.</p>
+      <p className="mb-4 text-sm text-muted-foreground">
+        Most recent 100. Click a row to read the transcript.
+      </p>
       {error && <p className="text-destructive">Could not load conversations.</p>}
       {isLoading ? (
         <p className="text-muted-foreground">Loading…</p>
@@ -45,7 +57,9 @@ function SessionsPage() {
                 className="cursor-pointer"
                 tabIndex={0}
                 onClick={() => navigate({ to: "/admin/sessions/$id", params: { id: s.id } })}
-                onKeyDown={(e) => e.key === "Enter" && navigate({ to: "/admin/sessions/$id", params: { id: s.id } })}
+                onKeyDown={(e) =>
+                  e.key === "Enter" && navigate({ to: "/admin/sessions/$id", params: { id: s.id } })
+                }
               >
                 <TableCell className="whitespace-nowrap">{fmtDateTime(s.created_at)}</TableCell>
                 <TableCell className="break-all">{s.source_page ?? "–"}</TableCell>

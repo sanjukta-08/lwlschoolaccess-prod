@@ -31,7 +31,13 @@ const countryData: CountryData[] = [
   // Caucasus / Middle East
   { name: "Georgia", coordinates: [43.36, 42.32], labelDx: 10, labelDy: -8, anchor: "start" },
   { name: "Armenia", coordinates: [45.04, 40.07], labelDx: 12, labelDy: 4, anchor: "start" },
-  { name: "Saudi Arabia", coordinates: [45.08, 23.89], labelDx: -4, labelDy: -14, anchor: "middle" },
+  {
+    name: "Saudi Arabia",
+    coordinates: [45.08, 23.89],
+    labelDx: -4,
+    labelDy: -14,
+    anchor: "middle",
+  },
   { name: "Jordan", coordinates: [36.24, 30.59], labelDx: 10, labelDy: -8, anchor: "start" },
   { name: "Qatar", coordinates: [51.18, 25.35], labelDx: -14, labelDy: 6, anchor: "end" },
   { name: "UAE", coordinates: [53.85, 23.42], labelDx: 14, labelDy: 14, anchor: "start" },
@@ -57,7 +63,6 @@ const countryData: CountryData[] = [
   { name: "Philippines", coordinates: [121.77, 12.88], labelDx: 14, labelDy: 10, anchor: "start" },
   { name: "Indonesia", coordinates: [117.0, -2.5], labelDx: 12, labelDy: 8, anchor: "start" },
   { name: "Japan", coordinates: [138.25, 36.2], labelDx: 12, labelDy: -6, anchor: "start" },
-
 ];
 
 const MARKER_SIZE = 3.5;
@@ -76,7 +81,13 @@ const HCUSWorldMapChart = memo(() => {
         >
           <defs>
             <filter id="hcus-tag-shadow" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="0" dy="0.5" stdDeviation="0.8" floodColor="#000" floodOpacity="0.1" />
+              <feDropShadow
+                dx="0"
+                dy="0.5"
+                stdDeviation="0.8"
+                floodColor="#000"
+                floodOpacity="0.1"
+              />
             </filter>
           </defs>
 
@@ -150,12 +161,7 @@ const HCUSWorldMapChart = memo(() => {
                 >
                   {label}
                 </text>
-                <circle
-                  r={MARKER_SIZE}
-                  fill="#f1b537"
-                  stroke="hsl(0, 0%, 100%)"
-                  strokeWidth={1}
-                />
+                <circle r={MARKER_SIZE} fill="#f1b537" stroke="hsl(0, 0%, 100%)" strokeWidth={1} />
               </Marker>
             );
           })}

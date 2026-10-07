@@ -98,9 +98,8 @@ function CalendarPage() {
                 Every <em className="text-crimson-deep">start date</em>, in one calendar
               </h1>
               <p className="mx-auto mt-2.5 max-w-[54em] text-[0.94rem] text-ink-soft">
-                Filter by subject, format or month, then tap any row to open the program
-                page. Session times are shown in Dubai time (GMT+4) with US Eastern
-                alongside.
+                Filter by subject, format or month, then tap any row to open the program page.
+                Session times are shown in Dubai time (GMT+4) with US Eastern alongside.
               </p>
             </div>
 
@@ -142,7 +141,6 @@ function CalendarPage() {
         </div>
       </div>
 
-
       <CalendarControls
         state={state}
         onChange={update}
@@ -157,8 +155,7 @@ function CalendarPage() {
         <SavedStrip />
         {!entries.length ? (
           <p className="py-14 text-center text-[0.92rem] text-ink-faint">
-            Nothing matches those filters - try clearing one, or search for something
-            broader.
+            Nothing matches those filters - try clearing one, or search for something broader.
           </p>
         ) : byMonth ? (
           <MonthSections groups={months} />
@@ -177,7 +174,6 @@ function CalendarPage() {
       </section>
 
       <SiteFooter />
-
     </div>
   );
 }

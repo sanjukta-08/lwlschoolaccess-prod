@@ -13,7 +13,7 @@ export type TypeProfile = {
 export const TYPE_PROFILE: Record<TypeKey, TypeProfile> = {
   fel: {
     purpose:
-      "Depth. A fellowship is the spine of a profile - several weeks with one mentor, one field and one finished piece of work at the end. This is what turns \"interested in medicine\" into evidence.",
+      'Depth. A fellowship is the spine of a profile - several weeks with one mentor, one field and one finished piece of work at the end. This is what turns "interested in medicine" into evidence.',
     skills: [
       "Reading primary sources",
       "Structured problem solving",
@@ -105,7 +105,8 @@ export const TRACK_PROFILE: Record<TrackKey, TrackProfile> = {
     outcome: "A working prototype, a public repo and a two-minute demo video.",
   },
   res: {
-    story: "The strongest single signal available to a school student: published, citable research.",
+    story:
+      "The strongest single signal available to a school student: published, citable research.",
     skills: ["Literature review", "Method design", "Academic citation"],
     outcome: "A published paper with a permanent link, plus a supervisor's letter.",
   },
@@ -115,7 +116,8 @@ export const TRACK_PROFILE: Record<TrackKey, TrackProfile> = {
     outcome: "A led initiative with numbers attached and letters from those involved.",
   },
   sat: {
-    story: "The floor beneath everything else: scores that keep the door open at selective schools.",
+    story:
+      "The floor beneath everything else: scores that keep the door open at selective schools.",
     skills: ["Timed technique", "Error analysis", "Study planning"],
     outcome: "A target score reached with a documented practice trajectory.",
   },

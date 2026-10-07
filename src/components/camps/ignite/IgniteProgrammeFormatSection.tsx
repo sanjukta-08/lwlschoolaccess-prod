@@ -1,13 +1,13 @@
-import { motion } from 'framer-motion';
-import cjbsInterior from '@/assets/cambridge/cjbs-interior.png';
+import { motion } from "framer-motion";
+import cjbsInterior from "@/assets/cambridge/cjbs-interior.png";
 
 const bulletPoints = [
-  'Interactive teaching sessions',
-  'Immersive workshops',
-  'Engaging presentations',
-  'Practical group work with a facilitators',
-  'Extra-curricular activities such as tour of Cambridge, punting and visiting world famous museums will be offered in the late afternoons',
-  'Topical guest speaker sessions and sessions with University of Cambridge students will provide opportunities to learn about student life and routes to studying in Cambridge, supported by a specific career focused session.',
+  "Interactive teaching sessions",
+  "Immersive workshops",
+  "Engaging presentations",
+  "Practical group work with a facilitators",
+  "Extra-curricular activities such as tour of Cambridge, punting and visiting world famous museums will be offered in the late afternoons",
+  "Topical guest speaker sessions and sessions with University of Cambridge students will provide opportunities to learn about student life and routes to studying in Cambridge, supported by a specific career focused session.",
 ];
 
 export const IgniteProgrammeFormatSection = () => {

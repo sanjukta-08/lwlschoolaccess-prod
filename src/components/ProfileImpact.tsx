@@ -4,13 +4,7 @@ import { slugOf } from "@/lib/programme-slug";
 import { profileImpactFor } from "@/lib/programme-proof";
 import { TYPE_NAME, type Programme } from "@/lib/programmes";
 
-export function ProfileImpact({
-  programme: p,
-  color,
-}: {
-  programme: Programme;
-  color: string;
-}) {
+export function ProfileImpact({ programme: p, color }: { programme: Programme; color: string }) {
   const impact = profileImpactFor(p);
 
   return (
@@ -38,9 +32,7 @@ export function ProfileImpact({
             After {p.name}
           </span>
           <p className="mt-2 font-serif text-[1.05rem]">{impact.after}</p>
-          <p className="mt-2 text-[0.8rem] text-ink-faint">
-            A line with an artefact behind it.
-          </p>
+          <p className="mt-2 text-[0.8rem] text-ink-faint">A line with an artefact behind it.</p>
         </div>
       </div>
 
@@ -53,9 +45,7 @@ export function ProfileImpact({
           <p className="mt-3 text-[0.88rem] text-ink-soft">{impact.story}</p>
         </div>
         <div>
-          <span className="mono-label block text-ink-faint">
-            What a university can verify
-          </span>
+          <span className="mono-label block text-ink-faint">What a university can verify</span>
           <ul className="mt-2.5 flex list-none flex-col gap-2 p-0">
             {impact.verifiable.map((v) => (
               <li key={v} className="flex items-start gap-2 text-[0.85rem]">

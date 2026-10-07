@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 const objectives = [
   "Problem solving and creative thinking",
@@ -8,7 +8,7 @@ const objectives = [
   "Personal leadership and influencing skills",
   "Good communication skills and the confidence to pitch ideas and work with feedback",
   "The importance of setting SMART goals and acting on these",
-  "How to build valuable connections and networks"
+  "How to build valuable connections and networks",
 ];
 
 export const IgniteLearningObjectives = () => {
@@ -27,11 +27,11 @@ export const IgniteLearningObjectives = () => {
             viewport={{ once: true }}
             className="border-l-4 border-[#2B7CB3] pl-6 md:pl-8"
           >
-            
             <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-8">
-              As the students are supported to develop an entrepreneurial mindset and will work to develop and appreciate 
-              the following skills and competencies associated with this mindset. Whether they value these skills for their 
-              future career planning and/or the development of their own ideas for new venture creation.
+              As the students are supported to develop an entrepreneurial mindset and will work to
+              develop and appreciate the following skills and competencies associated with this
+              mindset. Whether they value these skills for their future career planning and/or the
+              development of their own ideas for new venture creation.
             </p>
 
             <ul className="space-y-3 mb-8">
@@ -51,9 +51,10 @@ export const IgniteLearningObjectives = () => {
             </ul>
 
             <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-              The programme will be grounded in the{' '}
-              <span className="text-[#C5B82A] font-semibold">University of Cambridge</span>{' '}
-              ecosystem, offering students the chance to meet current students, visit some of the colleges and experience Cambridge.
+              The programme will be grounded in the{" "}
+              <span className="text-[#C5B82A] font-semibold">University of Cambridge</span>{" "}
+              ecosystem, offering students the chance to meet current students, visit some of the
+              colleges and experience Cambridge.
             </p>
           </motion.div>
 
@@ -69,7 +70,7 @@ export const IgniteLearningObjectives = () => {
               {/* Decorative circles */}
               <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-[#C5B82A]/20 -translate-y-1/2 translate-x-1/4" />
               <div className="absolute bottom-0 left-0 w-24 h-24 rounded-full bg-[#2B7CB3]/20 translate-y-1/4 -translate-x-1/4" />
-              
+
               {/* Stats card */}
               <div className="relative bg-muted/50 rounded-2xl p-8 border border-border">
                 <div className="text-center space-y-6">

@@ -70,6 +70,5 @@ export const regionOptions = () => [
   ...REGION_ORDER.map((k) => ({ value: k, label: REGIONS[k].short })),
 ];
 
-
 export const regionLabel = (region: string) =>
   region in REGIONS ? REGIONS[region as RegionKey].label : "anywhere in the world";

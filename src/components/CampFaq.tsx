@@ -13,9 +13,7 @@ export function CampFaq({ items }: { items: { q: string; a: string }[] }) {
               <span className="hidden group-open:inline">–</span>
             </span>
           </summary>
-          <p className="px-5 pt-3.5 pb-4.5 text-[0.88rem] leading-relaxed text-ink-soft">
-            {f.a}
-          </p>
+          <p className="px-5 pt-3.5 pb-4.5 text-[0.88rem] leading-relaxed text-ink-soft">{f.a}</p>
         </details>
       ))}
     </div>

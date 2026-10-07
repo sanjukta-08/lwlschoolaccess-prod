@@ -1,15 +1,15 @@
-import { motion } from 'framer-motion';
-import kingsCollege from '@/assets/cambridge/kings-college.jpg';
-import judgeGateSign from '@/assets/cambridge/judge-gate-sign.jpeg';
-import judgeBanners from '@/assets/cambridge/judge-banners.jpg';
-import cambridgeWalk from '@/assets/cambridge/cambridge-walk.jpg';
+import { motion } from "framer-motion";
+import kingsCollege from "@/assets/cambridge/kings-college.jpg";
+import judgeGateSign from "@/assets/cambridge/judge-gate-sign.jpeg";
+import judgeBanners from "@/assets/cambridge/judge-banners.jpg";
+import cambridgeWalk from "@/assets/cambridge/cambridge-walk.jpg";
 
 const activities = [
   "Campus Tour of Cambridge covering its history and notable sights",
   "Punting",
   "Excursion to Cambridge Museums",
   "Variety of daily evening activities (Tenpin bowling, sports, quiz)",
-  "College Dinner"
+  "College Dinner",
 ];
 
 export const IgniteActivitiesSection = () => {
@@ -36,9 +36,11 @@ export const IgniteActivitiesSection = () => {
           viewport={{ once: true }}
           className="text-center text-gray-700 max-w-3xl mx-auto mb-12"
         >
-          Certified tour guides from <span className="text-[#8B1538] font-semibold">University of Cambridge</span> will 
-          lead excursions in Cambridge and other destinations. Together with your fellow students, you will enjoy an 
-          inspirational and fun programme of activities such as punting, trips to Cambridge, sports, and more.
+          Certified tour guides from{" "}
+          <span className="text-[#8B1538] font-semibold">University of Cambridge</span> will lead
+          excursions in Cambridge and other destinations. Together with your fellow students, you
+          will enjoy an inspirational and fun programme of activities such as punting, trips to
+          Cambridge, sports, and more.
         </motion.p>
 
         {/* Image Collage */}
@@ -56,7 +58,7 @@ export const IgniteActivitiesSection = () => {
               className="w-full h-full object-cover"
             />
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -70,7 +72,7 @@ export const IgniteActivitiesSection = () => {
               className="w-full h-48 object-cover"
             />
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -84,7 +86,7 @@ export const IgniteActivitiesSection = () => {
               className="w-full h-48 md:h-64 object-cover"
             />
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -99,7 +101,6 @@ export const IgniteActivitiesSection = () => {
             />
           </motion.div>
         </div>
-
 
         {/* Activities Description */}
         <motion.div

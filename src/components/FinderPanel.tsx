@@ -12,15 +12,7 @@ import {
 import { regionOptions } from "@/lib/regions";
 import { DEFAULT_FIT } from "@/lib/fit";
 import { Link } from "@tanstack/react-router";
-import {
-  CalendarDays,
-  Clock,
-  Compass,
-  Globe,
-  GraduationCap,
-  Search,
-} from "lucide-react";
-
+import { CalendarDays, Clock, Compass, Globe, GraduationCap, Search } from "lucide-react";
 
 type Props = {
   state: FinderSearch;
@@ -69,14 +61,11 @@ export function FinderPanel({
     </label>
   );
 
-
   const counter = (
     <div className="flex flex-wrap items-center justify-between gap-3">
       <span className="font-mono text-[0.78rem] text-ink-soft">
-        <strong className="text-[0.92rem] font-semibold text-crimson">
-          {resultCount}
-        </strong>{" "}
-        options · {cohortCount} cohorts
+        <strong className="text-[0.92rem] font-semibold text-crimson">{resultCount}</strong> options
+        · {cohortCount} cohorts
       </span>
       {!isDefaultSearch(state) ? (
         <button
@@ -156,12 +145,10 @@ export function FinderPanel({
           </div>
         </div>
 
-
         <div className="mt-3.5 border-t border-line pt-3">{counter}</div>
       </div>
     );
   }
-
 
   if (layout === "rail") {
     return (
@@ -171,9 +158,7 @@ export function FinderPanel({
           search={DEFAULT_FIT}
           className="block border-b border-line bg-gold/8 px-4 py-3 no-underline transition-colors hover:bg-gold/14"
         >
-          <b className="block text-[0.85rem] font-bold text-ink">
-            Not sure where to start?
-          </b>
+          <b className="block text-[0.85rem] font-bold text-ink">Not sure where to start?</b>
           <small className="block text-[0.75rem] text-ink-soft">
             Answer 5 questions → 3 matched programmes
           </small>
@@ -252,15 +237,11 @@ export function FinderPanel({
                       aria-pressed={pressed}
                       onClick={() => onChange({ type: key })}
                       className={`flex items-center justify-between rounded-lg px-2.5 py-[7px] text-left text-[0.8rem] font-semibold transition-colors ${
-                        pressed
-                          ? "bg-ink text-paper"
-                          : "text-ink-soft hover:bg-wash hover:text-ink"
+                        pressed ? "bg-ink text-paper" : "text-ink-soft hover:bg-wash hover:text-ink"
                       }`}
                     >
                       <span>
-                        {key === "all"
-                          ? "All formats"
-                          : TYPES[key as keyof typeof TYPES].label}
+                        {key === "all" ? "All formats" : TYPES[key as keyof typeof TYPES].label}
                       </span>
                       <small
                         className={`font-mono text-[0.68rem] font-medium ${
@@ -281,7 +262,6 @@ export function FinderPanel({
       </div>
     );
   }
-
 
   return (
     <div className="rounded-3xl border border-line bg-paper p-[clamp(22px,4vw,34px)] shadow-lift">
@@ -324,9 +304,7 @@ export function FinderPanel({
         <div className="w-full max-w-[420px]">{search}</div>
       </div>
 
-      <p className="mono-label mt-5 mb-3.5 text-center text-ink-faint">
-        Pick a subject
-      </p>
+      <p className="mono-label mt-5 mb-3.5 text-center text-ink-faint">Pick a subject</p>
 
       <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
         <Tile
@@ -357,9 +335,7 @@ export function FinderPanel({
                 aria-pressed={pressed}
                 onClick={() => onChange({ type: key })}
                 className={`rounded-full px-4 py-[7px] text-[0.8rem] font-semibold whitespace-nowrap transition-all ${
-                  pressed
-                    ? "bg-ink text-paper shadow-soft"
-                    : "text-ink-soft hover:text-ink"
+                  pressed ? "bg-ink text-paper shadow-soft" : "text-ink-soft hover:text-ink"
                 }`}
               >
                 {key === "all" ? "All types" : TYPES[key as keyof typeof TYPES].label}
@@ -401,7 +377,6 @@ function Field({
   );
 }
 
-
 function BoxSelect({
   value,
   onChange,
@@ -420,7 +395,6 @@ function BoxSelect({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className="w-full min-w-0 cursor-pointer appearance-none overflow-hidden rounded-lg border border-line bg-wash px-3 py-2 pr-8 text-[0.85rem] font-semibold text-ellipsis whitespace-nowrap text-ink focus:border-crimson/40 focus:outline-none"
-
       >
         {options.map((o) => (
           <option key={o.value} value={o.value}>

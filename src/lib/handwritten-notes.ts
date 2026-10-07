@@ -29,8 +29,7 @@ export const HANDWRITTEN_NOTES: HandwrittenNote[] = [
     name: "Faris Salim Al-Harthi",
     quote:
       "Thank you so much Dr. Jojo. We appreciate your mentorship. I am so happy that I chose this course.",
-    transcript:
-      "I have learned a lot of things that I will hopefully use in the future.",
+    transcript: "I have learned a lot of things that I will hopefully use in the future.",
     tilt: "-rotate-2",
     programme: "Communication & Leadership Programme",
     tracks: ["law", "lead"],
@@ -39,8 +38,7 @@ export const HANDWRITTEN_NOTES: HandwrittenNote[] = [
     id: "note-fatima",
     src: fatima.url,
     name: "Fatima",
-    quote:
-      "You're pretty inside out. Thank you prof Jojo, I really appreciate you supporting me.",
+    quote: "You're pretty inside out. Thank you prof Jojo, I really appreciate you supporting me.",
     transcript:
       "Being with me, calming me and understanding my anxiety. You're such a good role-model and I hope to join your other workshops.",
     tilt: "rotate-2",
@@ -51,8 +49,7 @@ export const HANDWRITTEN_NOTES: HandwrittenNote[] = [
     id: "note-retaj",
     src: retaj.url,
     name: "Retaj Al-Hussein",
-    quote:
-      "Dr. Jojo, thank you for coming - you really inspired me to keep going even if I fail.",
+    quote: "Dr. Jojo, thank you for coming - you really inspired me to keep going even if I fail.",
     transcript:
       "Hearing it from you, a very successful person, changed my view. Thank you to all the teachers and people who helped make this programme possible.",
     tilt: "-rotate-1",
@@ -87,8 +84,7 @@ export const HANDWRITTEN_NOTES: HandwrittenNote[] = [
     id: "note-hoor",
     src: hoor.url,
     name: "Hoor Khalid",
-    quote:
-      "She's been so kind and patient. She made this programme fun and exciting.",
+    quote: "She's been so kind and patient. She made this programme fun and exciting.",
     transcript:
       "I'm really thankful to experience this - written by a student on behalf of her cohort.",
     tilt: "rotate-2",
@@ -99,8 +95,7 @@ export const HANDWRITTEN_NOTES: HandwrittenNote[] = [
     id: "note-marya",
     src: marya.url,
     name: "Marya Mohamed Ali",
-    quote:
-      "Thank you for teaching me in this programme and everything you did for us.",
+    quote: "Thank you for teaching me in this programme and everything you did for us.",
     transcript:
       "I wish you the best day and a good flight - and a good thanks for the certificate today.",
     tilt: "rotate-1",
@@ -113,8 +108,7 @@ export const HANDWRITTEN_NOTES: HandwrittenNote[] = [
     name: "A cohort graduate",
     quote:
       "Thank you prof Jojo for coming out of your way for us despite the challenges you faced.",
-    transcript:
-      "Your guidance, patience and kindness will forever be remembered.",
+    transcript: "Your guidance, patience and kindness will forever be remembered.",
     tilt: "-rotate-2",
     programme: "Communication & Leadership Programme",
     tracks: ["lead"],

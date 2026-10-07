@@ -28,20 +28,10 @@ export function WingMark({
   );
 }
 
-
 /** Wing centred in a hairline rule - the headline / section signature. */
-export function WingRule({
-  className = "",
-  tone = "gold",
-}: {
-  className?: string;
-  tone?: Tone;
-}) {
+export function WingRule({ className = "", tone = "gold" }: { className?: string; tone?: Tone }) {
   return (
-    <div
-      className={`flex items-center justify-center gap-3 ${className}`}
-      aria-hidden
-    >
+    <div className={`flex items-center justify-center gap-3 ${className}`} aria-hidden>
       <span className="gold-rule h-px w-14" />
       <WingMark size={18} tone={tone} />
       <span className="gold-rule h-px w-14" />

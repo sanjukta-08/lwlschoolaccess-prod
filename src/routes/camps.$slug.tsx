@@ -76,9 +76,7 @@ function CampNotFound() {
       <SiteHeader />
       <div className="page-shell py-24 text-center">
         <h1 className="font-serif text-[2rem] font-medium">We could not find that camp</h1>
-        <p className="mt-3 text-ink-soft">
-          It may have been renamed or the intake has closed.
-        </p>
+        <p className="mt-3 text-ink-soft">It may have been renamed or the intake has closed.</p>
         <Link
           to="/camps"
           className="mono-label mt-6 inline-block bg-crimson px-7 py-3.5 text-paper no-underline"
@@ -145,9 +143,7 @@ function CampPage() {
             {camp.name}
           </h1>
           <p className="font-serif text-[1.25rem] text-crimson-deep">at {camp.host}</p>
-          {camp.hostedBy ? (
-            <p className="mono-label text-ink-faint">{camp.hostedBy}</p>
-          ) : null}
+          {camp.hostedBy ? <p className="mono-label text-ink-faint">{camp.hostedBy}</p> : null}
 
           <p className="max-w-[36em] text-[1rem] leading-relaxed text-ink-soft">{camp.lede}</p>
 
@@ -294,8 +290,8 @@ function CampPage() {
               ))}
             </ul>
             <p className="mt-5 text-[0.85rem] text-ink-faint italic">
-              Fees are confirmed on application. Sibling and school-group rates are
-              available - ask an advisor before you book.
+              Fees are confirmed on application. Sibling and school-group rates are available - ask
+              an advisor before you book.
             </p>
           </div>
         </div>
@@ -378,7 +374,10 @@ function CampPage() {
       <SiteFooter />
 
       {/* ---------- sticky apply bar ---------- */}
-      <div data-compass-offset className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-paper/95 px-4 py-3 shadow-lift backdrop-blur-sm md:hidden">
+      <div
+        data-compass-offset
+        className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-paper/95 px-4 py-3 shadow-lift backdrop-blur-sm md:hidden"
+      >
         <div className="flex items-center justify-between gap-3">
           <div className="min-w-0">
             <div className="truncate text-[0.85rem] font-bold text-ink">{camp.name}</div>

@@ -1,13 +1,14 @@
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 const termsData = [
   {
     number: 1,
     content: (
       <>
-        <strong>Check-in</strong> at the allocated college accommodation is on the{' '}
-        <strong>arrival day (2:00 PM)</strong> and <strong>check-out</strong> is on the{' '}
-        <strong>departure day (10:00 AM)</strong>. Arrival is Sunday 18 July 2027 and departure is Saturday 24 July 2027.
+        <strong>Check-in</strong> at the allocated college accommodation is on the{" "}
+        <strong>arrival day (2:00 PM)</strong> and <strong>check-out</strong> is on the{" "}
+        <strong>departure day (10:00 AM)</strong>. Arrival is Sunday 18 July 2027 and departure is
+        Saturday 24 July 2027.
       </>
     ),
   },
@@ -15,7 +16,9 @@ const termsData = [
     number: 2,
     content: (
       <>
-        On the arrival day, the fee includes dinner only. From the second full day onwards, all three meals - breakfast, lunch, and dinner - are covered. On the departure day, only breakfast is provided.
+        On the arrival day, the fee includes dinner only. From the second full day onwards, all
+        three meals - breakfast, lunch, and dinner - are covered. On the departure day, only
+        breakfast is provided.
       </>
     ),
   },
@@ -23,8 +26,9 @@ const termsData = [
     number: 3,
     content: (
       <>
-        The fee covers airport pickup on the <strong>arrival day</strong> and airport drop off on the{' '}
-        <strong>departure day</strong>. (The exact pick-up location and timings to be confirmed closer to the programme dates).
+        The fee covers airport pickup on the <strong>arrival day</strong> and airport drop off on
+        the <strong>departure day</strong>. (The exact pick-up location and timings to be confirmed
+        closer to the programme dates).
       </>
     ),
   },
@@ -33,7 +37,9 @@ const termsData = [
     number: 4,
     content: (
       <>
-        The fee does not cover <strong>airfare, visa charges, or individual expenses</strong> like sightseeing, travel on account of personal reasons, and any other expenses not directly related to the programme.
+        The fee does not cover <strong>airfare, visa charges, or individual expenses</strong> like
+        sightseeing, travel on account of personal reasons, and any other expenses not directly
+        related to the programme.
       </>
     ),
   },
@@ -41,8 +47,12 @@ const termsData = [
     number: 5,
     content: (
       <>
-        In the case of a teacher or guardian accompanying a group of students, they are permitted to drop off the students at the campus. However,{' '}
-        <strong>classroom access during the programme will be limited to the registered participants only</strong>.
+        In the case of a teacher or guardian accompanying a group of students, they are permitted to
+        drop off the students at the campus. However,{" "}
+        <strong>
+          classroom access during the programme will be limited to the registered participants only
+        </strong>
+        .
       </>
     ),
   },
@@ -50,8 +60,12 @@ const termsData = [
     number: 6,
     content: (
       <>
-        <strong>Students are responsible for obtaining any necessary visas or permits required to enter and stay in the United Kingdom for the entire duration of the programme, if applicable.</strong>{' '}
-        It is essential to ensure all visa requirements are fulfilled well in advance of the programme start date.
+        <strong>
+          Students are responsible for obtaining any necessary visas or permits required to enter
+          and stay in the United Kingdom for the entire duration of the programme, if applicable.
+        </strong>{" "}
+        It is essential to ensure all visa requirements are fulfilled well in advance of the
+        programme start date.
       </>
     ),
   },
@@ -59,8 +73,12 @@ const termsData = [
     number: 7,
     content: (
       <>
-        Once the student completes the fee payment,{' '}
-        <strong>an invitation letter would be shared with the student to support the visa application process</strong>.
+        Once the student completes the fee payment,{" "}
+        <strong>
+          an invitation letter would be shared with the student to support the visa application
+          process
+        </strong>
+        .
       </>
     ),
   },
@@ -91,12 +109,8 @@ export const IgniteTermsSection = () => {
         >
           {termsData.map((term) => (
             <li key={term.number} className="flex gap-3">
-              <span className="text-gray-900 font-bold shrink-0">
-                {term.number}.
-              </span>
-              <p className="text-gray-700 leading-relaxed">
-                {term.content}
-              </p>
+              <span className="text-gray-900 font-bold shrink-0">{term.number}.</span>
+              <p className="text-gray-700 leading-relaxed">{term.content}</p>
             </li>
           ))}
         </motion.ol>

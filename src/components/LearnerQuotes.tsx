@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import birdAsset from "@/assets/lwl-bird-bg.png.asset.json";
 import { accentForQuote } from "@/lib/learner-testimonials";
 import type { LearnerQuote } from "@/lib/learner-testimonials";
@@ -73,9 +68,7 @@ function QuoteCard({
         <span className="block truncate font-serif text-[1.15rem] font-semibold leading-tight text-ink">
           {q.name}
         </span>
-        <span className="mono-label mt-1 block text-[0.62rem] text-gold-deep">
-          {q.role}
-        </span>
+        <span className="mono-label mt-1 block text-[0.62rem] text-gold-deep">{q.role}</span>
       </header>
 
       <p className="relative z-10 my-4 line-clamp-5 font-serif text-[1.12rem] italic leading-[1.4] text-ink">
@@ -100,16 +93,7 @@ function QuoteCard({
   );
 }
 
-
-
-
-function QuoteLightbox({
-  quote,
-  onClose,
-}: {
-  quote: LearnerQuote | null;
-  onClose: () => void;
-}) {
+function QuoteLightbox({ quote, onClose }: { quote: LearnerQuote | null; onClose: () => void }) {
   return (
     <Dialog open={quote !== null} onOpenChange={(o) => (o ? null : onClose())}>
       <DialogContent className="max-w-[42rem]">
@@ -127,9 +111,7 @@ function QuoteLightbox({
                 {quote.more ? "" : "”"}
               </p>
               {quote.more ? (
-                <p className="mt-3 text-[0.92rem] leading-relaxed text-ink-soft">
-                  {quote.more}”
-                </p>
+                <p className="mt-3 text-[0.92rem] leading-relaxed text-ink-soft">{quote.more}”</p>
               ) : null}
             </div>
           </>
@@ -165,10 +147,7 @@ function QuoteMarquee({
   useEffect(() => {
     if (paused || !canSlide) return;
     const interval = Math.max(4000, (duration * 1000) / Math.max(1, quotes.length));
-    const id = window.setInterval(
-      () => setStart((s) => (s + 1) % quotes.length),
-      interval,
-    );
+    const id = window.setInterval(() => setStart((s) => (s + 1) % quotes.length), interval);
     return () => window.clearInterval(id);
   }, [duration, paused, canSlide, quotes.length]);
 
@@ -222,7 +201,6 @@ function QuoteMarquee({
   );
 }
 
-
 export function LearnerQuotes({
   quotes,
   variant = "marquee",
@@ -254,7 +232,6 @@ export function LearnerQuotes({
             />
           ))}
         </div>
-
       )}
       <QuoteLightbox quote={open} onClose={() => setOpen(null)} />
     </>

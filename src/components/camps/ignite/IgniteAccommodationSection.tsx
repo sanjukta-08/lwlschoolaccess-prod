@@ -1,8 +1,8 @@
-import { motion } from 'framer-motion';
-import { Building2, MapPin, Users, UtensilsCrossed, ShieldCheck, CalendarDays } from 'lucide-react';
-import clareMemorialCourt from '@/assets/cambridge/clare-memorial-court.jpg';
-import clareCommonRoom from '@/assets/cambridge/clare-common-room.jpg';
-import clareStudentRoom from '@/assets/cambridge/clare-student-room.jpg';
+import { motion } from "framer-motion";
+import { Building2, MapPin, Users, UtensilsCrossed, ShieldCheck, CalendarDays } from "lucide-react";
+import clareMemorialCourt from "@/assets/cambridge/clare-memorial-court.jpg";
+import clareCommonRoom from "@/assets/cambridge/clare-common-room.jpg";
+import clareStudentRoom from "@/assets/cambridge/clare-student-room.jpg";
 
 const amenities = [
   { icon: Building2, label: "Furnished Single & Twin Rooms" },
@@ -30,10 +30,13 @@ export const IgniteAccommodationSection = () => {
               ACCOMMODATION
             </p>
             <h2 className="font-georgia font-bold text-3xl md:text-4xl mb-6">
-              Clare College,<br />Cambridge
+              Clare College,
+              <br />
+              Cambridge
             </h2>
             <p className="text-white/80 mb-2">
-              Trinity Lane, Cambridge<br />
+              Trinity Lane, Cambridge
+              <br />
               CB2 1TL, United Kingdom
             </p>
             <a
@@ -48,20 +51,18 @@ export const IgniteAccommodationSection = () => {
             <div className="mb-8">
               <h3 className="text-[#C5B82A] font-bold text-lg mb-3">OUR HERITAGE</h3>
               <p className="text-white/80 text-sm leading-relaxed">
-                Founded in 1326, Clare College is the second-oldest surviving college 
-                at the University of Cambridge. Its stunning medieval architecture and 
-                beautiful gardens provide an inspiring setting for academic excellence 
-                and personal growth.
+                Founded in 1326, Clare College is the second-oldest surviving college at the
+                University of Cambridge. Its stunning medieval architecture and beautiful gardens
+                provide an inspiring setting for academic excellence and personal growth.
               </p>
             </div>
 
             <div>
               <h3 className="text-[#C5B82A] font-bold text-lg mb-3">YOUR STAY</h3>
               <p className="text-white/80 text-sm leading-relaxed">
-                During the programme, students reside in Clare College's historic 
-                accommodation. Experience authentic Cambridge college life with 
-                comfortable rooms, communal dining in the Great Hall, and access 
-                to beautiful college grounds.
+                During the programme, students reside in Clare College's historic accommodation.
+                Experience authentic Cambridge college life with comfortable rooms, communal dining
+                in the Great Hall, and access to beautiful college grounds.
               </p>
             </div>
           </motion.div>
@@ -83,7 +84,7 @@ export const IgniteAccommodationSection = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              
+
               {/* Two Smaller Images */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="overflow-hidden">

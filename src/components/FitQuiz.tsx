@@ -262,7 +262,9 @@ function ResultView({ result, onRestart }: { result: FitResult; onRestart: () =>
   if (!result.picks.length) {
     return (
       <div className="rounded-2xl border border-line bg-paper p-8 text-center shadow-soft">
-        <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">No civil-hour match yet</h2>
+        <h2 className="font-serif text-[clamp(1.5rem,3.6vw,2.1rem)] font-medium">
+          No civil-hour match yet
+        </h2>
         <p className="mt-2 text-[0.92rem] text-ink-soft">
           Nothing lands well for that grade and timezone combination. Browse the full calendar or
           speak to a counsellor.

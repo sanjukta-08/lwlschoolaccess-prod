@@ -120,9 +120,7 @@ function ProgrammeNotFound() {
     <div className="min-h-screen bg-paper">
       <SiteHeader />
       <main className="mx-auto max-w-[760px] px-5 py-24 text-center">
-        <h1 className="font-serif text-[2rem] font-semibold">
-          We couldn't find that program
-        </h1>
+        <h1 className="font-serif text-[2rem] font-semibold">We couldn't find that program</h1>
         <p className="mt-3 text-ink-soft">
           It may have been renamed or retired. Browse the full catalogue instead.
         </p>

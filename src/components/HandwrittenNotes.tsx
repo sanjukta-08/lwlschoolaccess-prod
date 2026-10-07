@@ -83,8 +83,6 @@ export default function HandwrittenNotes() {
         &nbsp;HOVER TO PAUSE, TAP ANY NOTE TO READ IT
       </p>
 
-
-
       {active ? (
         <div
           role="dialog"

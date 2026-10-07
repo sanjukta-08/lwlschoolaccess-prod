@@ -36,8 +36,7 @@ export const listPublicMasterclasses = createServerFn({ method: "GET" }).handler
     const { createClient } = await import("@supabase/supabase-js");
     const url = process.env["SUPABASE_URL"] ?? process.env["VITE_SUPABASE_URL"];
     const key =
-      process.env["SUPABASE_PUBLISHABLE_KEY"] ??
-      process.env["VITE_SUPABASE_PUBLISHABLE_KEY"];
+      process.env["SUPABASE_PUBLISHABLE_KEY"] ?? process.env["VITE_SUPABASE_PUBLISHABLE_KEY"];
     if (!url || !key) return [];
 
     const supabase = createClient(url, key, {
@@ -57,9 +56,7 @@ export const listPublicMasterclasses = createServerFn({ method: "GET" }).handler
     return ((data ?? []) as unknown[]).map((r) => {
       const row = r as Record<string, unknown>;
       const outcomes = Array.isArray(row["learning_outcomes"])
-        ? (row["learning_outcomes"] as unknown[]).filter(
-            (x): x is string => typeof x === "string",
-          )
+        ? (row["learning_outcomes"] as unknown[]).filter((x): x is string => typeof x === "string")
         : [];
       return { ...(row as object), learning_outcomes: outcomes } as PublicMasterclass;
     });
