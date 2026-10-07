@@ -56,10 +56,10 @@ export async function withinRateLimit(route: RouteKey, ip: string): Promise<bool
   if (ip === "unknown") return true;
   try {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const db = (
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      supabaseAdmin as unknown as { schema: (s: string) => { from: (t: string) => any } }
-    ).schema("lwl_site");
+    const db = // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (supabaseAdmin as unknown as { schema: (s: string) => { from: (t: string) => any } }).schema(
+        "lwl_site",
+      );
     const { windowMs, max } = LIMITS[route];
     const ipHash = hashIp(ip);
     const since = new Date(Date.now() - windowMs).toISOString();
