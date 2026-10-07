@@ -1,0 +1,19 @@
+-- Audit finding (2026-10-07, Low): the anon SELECT policy on public.all_mentors
+-- is `USING (true)` -- every row is RLS-readable, including any inactive/
+-- unapproved mentor, with exposure limited only by a column grant allowlist
+-- (id, full_name, bio, university, image_url) and app-level `.eq("is_active", true)`
+-- filtering in src/lib/compass.server.ts. That's defense in depth for the one
+-- known caller, not row-level security.
+--
+-- This narrows the policy itself to match the filtering every current caller
+-- already applies. Pure narrowing: no legitimate caller reads inactive mentor
+-- rows today, so this changes nothing for them.
+--
+-- This table also carries separate write policies tied to an LMS system's and
+-- a finance system's admin roles, plus a read policy for authenticated/
+-- onward_writer -- none of those are touched. Only the anon SELECT policy
+-- changes here.
+--
+-- Applied live on 2026-10-07 via ALTER POLICY (in place, no drop) rather than
+-- drop+create, so there is never a moment with no anon policy on this table.
+alter policy all_mentors_public_read on public.all_mentors using (is_active);

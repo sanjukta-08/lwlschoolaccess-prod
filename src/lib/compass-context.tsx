@@ -237,7 +237,10 @@ export function CompassProvider({ children }: { children: ReactNode }) {
             utm: getUtm(),
           },
         });
-        setSessionId(response.sessionId);
+        // Empty when Compass declined to start a new session (rate limited) --
+        // keep whatever session id we already had (or none) rather than
+        // adopting "" and sending an invalid id on the next call.
+        if (response.sessionId) setSessionId(response.sessionId);
         setLimitReached(response.limitReached);
         setMessages((current) => [
           ...current,

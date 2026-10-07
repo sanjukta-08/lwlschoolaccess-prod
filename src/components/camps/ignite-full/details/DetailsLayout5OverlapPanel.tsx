@@ -2,7 +2,7 @@ const bg = "https://dd255978-1758-4a46-bebd-24780505eaa2.lovableproject.com/__l5
 import { DetailsGrid, FeeBlock, IncludesBlock } from "./detailsBlocks";
 
 /** Layout 5: Image as banner, content panel overlaps upward */
-const DetailsLayout5OverlapPanel = () => (
+const DetailsLayout5OverlapPanel = ({ applyUrl }: { applyUrl?: string }) => (
   <div className="relative">
     <div className="relative h-[380px] md:h-[460px] rounded-lg overflow-hidden">
       <img src={bg} alt="King's College Cambridge" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
@@ -15,7 +15,7 @@ const DetailsLayout5OverlapPanel = () => (
           <IncludesBlock />
         </div>
       </div>
-      <FeeBlock tone="rust" />
+      <FeeBlock tone="rust" applyUrl={applyUrl} />
     </div>
   </div>
 );

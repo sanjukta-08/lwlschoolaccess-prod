@@ -5,6 +5,7 @@ import { CAMPS } from "@/lib/camps";
 import { ensureCatalogue } from "@/lib/catalogue";
 import { PROGRAMMES } from "@/lib/programmes";
 import { conferenceSlugOf, slugOf } from "@/lib/programme-slug";
+import { kingsPrograms } from "@/components/week-without-walls/kings-data";
 import {
   isSitemapRouteIncluded,
   sitemapPathForLocation,
@@ -63,6 +64,20 @@ export const Route = createFileRoute("/sitemap.xml")({
               hash: "",
             });
             const path = sitemapPathForLocation(router, location, campsRouteId);
+            if (path) entries.push({ path });
+          }
+        }
+
+        const kingsProgramRouteId = "/week-without-walls/kings/$programSlug";
+        if (isSitemapRouteIncluded(router.routesById[kingsProgramRouteId])) {
+          for (const program of kingsPrograms) {
+            const location = router.buildLocation({
+              to: kingsProgramRouteId,
+              params: { programSlug: program.slug },
+              search: () => ({}),
+              hash: "",
+            });
+            const path = sitemapPathForLocation(router, location, kingsProgramRouteId);
             if (path) entries.push({ path });
           }
         }

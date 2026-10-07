@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
+import DOMPurify from "isomorphic-dompurify";
 import { Button } from "@/components/ui/button";
 
 type CarouselOptions = { selector: string; mobile: number; tablet: number; desktop: number; interval?: number };
@@ -129,6 +130,13 @@ function useNativeInteractions(rootRef: React.RefObject<HTMLDivElement | null>, 
 export function LegacyCampPage({ className, html, css, applyUrl, carousels = [] }: LegacyCampPageProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const stableCarousels = useMemo(() => carousels, [JSON.stringify(carousels)]);
+  // This is imported third-party marketing HTML (Geneva/Salamanca/Pre-Law/
+  // Pre-Med), not authored in this repo. Nothing dangerous is in it today, but
+  // nothing guarded this injection point against a future content refresh
+  // introducing a <script>, an inline event handler, or a javascript: URL.
+  // DOMPurify's default profile keeps the Bootstrap/data-bs-target/aria-*
+  // markup useNativeInteractions depends on -- it only strips executable content.
+  const safeHtml = useMemo(() => DOMPurify.sanitize(html), [html]);
   useNativeInteractions(rootRef, applyUrl, stableCarousels);
 
   return (
@@ -146,7 +154,7 @@ export function LegacyCampPage({ className, html, css, applyUrl, carousels = [] 
       <Button asChild variant="secondary" size="sm" className="fixed left-4 top-4 z-[1200] shadow-lg">
         <Link to="/camps"><ArrowLeft className="size-4" /> All camps</Link>
       </Button>
-      <div dangerouslySetInnerHTML={{ __html: html }} />
+      <div dangerouslySetInnerHTML={{ __html: safeHtml }} />
     </div>
   );
 }

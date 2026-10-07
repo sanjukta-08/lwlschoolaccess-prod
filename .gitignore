@@ -8,6 +8,9 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+# Bun (bunfig.toml) is this project's package manager; bun.lock is the lockfile
+# of record and stays tracked. Don't let a plain `npm install` reintroduce this.
+package-lock.json
 dist
 dist-ssr
 .output

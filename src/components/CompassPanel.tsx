@@ -409,7 +409,11 @@ function CompassPanel() {
             <p className="mt-2 text-center text-xs text-muted-foreground">
               This conversation has reached its message limit.
             </p>
-          ) : null}
+          ) : (
+            <p className="mt-2 text-center text-[0.65rem] text-muted-foreground">
+              Conversations are saved so our team can follow up on your questions — please avoid sharing sensitive personal details.
+            </p>
+          )}
         </div>
       </SheetContent>
     </Sheet>

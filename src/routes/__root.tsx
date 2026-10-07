@@ -105,7 +105,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Learn with Leaders runs live, mentored programs, competitions, internships and camps for students in Grades 5-12.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://lwlschoolaccess.com/og-image.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://lwlschoolaccess.com/og-image.jpg" },
     ],
     links: [
       {

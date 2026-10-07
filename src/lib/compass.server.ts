@@ -71,8 +71,9 @@ const leadSchema = z.object({
   notes: nz(z.string()),
 });
 
-export async function runCompass(input: Input): Promise<CompassReply> {
+export async function runCompass(input: Input, clientIp: string): Promise<CompassReply> {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  const { withinRateLimit } = await import("./rate-limit.server");
   // lwl_site isn't in the generated public types.
   const db = (supabaseAdmin as unknown as { schema: (s: string) => any }).schema("lwl_site");
 
@@ -83,6 +84,18 @@ export async function runCompass(input: Input): Promise<CompassReply> {
     if (!data) sessionId = undefined;
   }
   if (!sessionId) {
+    // Caps new-session creation per visitor. Without this, the per-session
+    // MAX_MESSAGES cap below is meaningless -- a client-supplied sessionId is
+    // free to mint, so a script could otherwise get a fresh budget every call.
+    if (!(await withinRateLimit("compass_session", clientIp))) {
+      return {
+        sessionId: "",
+        reply: `Compass is getting a lot of use right now — please try again in a little while, or book a free call with an advisor: ${ADVISOR}`,
+        results: [],
+        leadCaptured: false,
+        limitReached: true,
+      };
+    }
     const { data, error } = await db
       .from("concierge_sessions")
       .insert({
@@ -108,6 +121,19 @@ export async function runCompass(input: Input): Promise<CompassReply> {
     return {
       sessionId: sid,
       reply: `We've reached the limit for this conversation. For more help, book a free call with an advisor: ${ADVISOR}`,
+      results: [],
+      leadCaptured,
+      limitReached: true,
+    };
+  }
+
+  // Aggregate cap across ALL of this visitor's sessions -- this is what
+  // actually stops the "mint a new session every call" workaround, since the
+  // per-session count above resets to zero for each new session.
+  if (!(await withinRateLimit("compass_message", clientIp))) {
+    return {
+      sessionId: sid,
+      reply: `Compass has hit its usage limit for now — please try again later, or book a free call with an advisor: ${ADVISOR}`,
       results: [],
       leadCaptured,
       limitReached: true,

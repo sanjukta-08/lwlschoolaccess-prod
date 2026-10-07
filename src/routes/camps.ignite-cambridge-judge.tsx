@@ -49,7 +49,7 @@ function IgnitePage() {
       <StatsGallery />
       <AboutSection />
       <ObjectivesSection />
-      <SummerSchoolDetails />
+      <SummerSchoolDetails applyUrl={applyUrl} />
       <ScheduleSection />
       <AccommodationSection />
       <ActivitiesSection />

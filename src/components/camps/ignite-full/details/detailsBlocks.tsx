@@ -1,9 +1,17 @@
 import { Check, X } from "lucide-react";
 import { details, feeIncludes, feeExcludes, FEE, DEADLINE, APPLY_URL } from "./detailsData";
 
-export const ApplyButton = ({ className = "", variant = "white" }: { className?: string; variant?: "white" | "rust" }) => (
+export const ApplyButton = ({
+  className = "",
+  variant = "white",
+  applyUrl = APPLY_URL,
+}: {
+  className?: string;
+  variant?: "white" | "rust";
+  applyUrl?: string;
+}) => (
   <a
-    href={APPLY_URL}
+    href={applyUrl}
     target="_blank"
     rel="noopener noreferrer"
     className={`inline-block text-center py-3.5 px-8 font-body font-bold text-xs uppercase tracking-[0.15em] rounded-sm transition ${
@@ -16,7 +24,13 @@ export const ApplyButton = ({ className = "", variant = "white" }: { className?:
   </a>
 );
 
-export const FeeBlock = ({ tone = "rust" }: { tone?: "rust" | "dark" | "white" }) => {
+export const FeeBlock = ({
+  tone = "rust",
+  applyUrl,
+}: {
+  tone?: "rust" | "dark" | "white";
+  applyUrl?: string;
+}) => {
   const styles = {
     rust: "bg-cambridge-rust text-white",
     dark: "bg-foreground text-white",
@@ -33,7 +47,7 @@ export const FeeBlock = ({ tone = "rust" }: { tone?: "rust" | "dark" | "white" }
       <div className={`h-px my-5 ${tone === "white" ? "bg-foreground/10" : "bg-white/15"}`} />
       <p className={`text-[10px] uppercase tracking-[0.3em] font-body font-bold mb-1.5 ${muted}`}>Deadline</p>
       <p className={`text-2xl md:text-3xl font-display font-bold ${accent}`}>{DEADLINE}</p>
-      <ApplyButton className="w-full mt-7" variant={tone === "white" ? "rust" : "white"} />
+      <ApplyButton className="w-full mt-7" variant={tone === "white" ? "rust" : "white"} applyUrl={applyUrl} />
     </div>
   );
 };

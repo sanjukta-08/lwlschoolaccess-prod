@@ -1,4 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
+import { getWebRequest } from "@tanstack/react-start/server";
 import { AnswersSchema, ResultSchema, promptFor } from "./fit-prompt";
 import { fitCandidates, fitPayload, rulesResult, validateFitSearch, type FitResult } from "./fit";
 
@@ -12,6 +13,13 @@ export const recommendProgrammes = createServerFn({ method: "POST" })
     const fallback = rulesResult(answers, cands);
     const key = process.env["LOVABLE_API_KEY"];
     if (!key) return fallback;
+
+    // No session concept here at all (unlike Compass), so this was the easier
+    // of the two public AI endpoints to script into an unbounded bill. Over
+    // the limit -> degrade to the free rules-based result instead of erroring.
+    const { clientIpFrom, withinRateLimit } = await import("./rate-limit.server");
+    const clientIp = clientIpFrom(getWebRequest());
+    if (!(await withinRateLimit("recommend", clientIp))) return fallback;
 
     try {
       const { createLovableAiGatewayProvider } = await import("./ai-gateway.server");
