@@ -44,23 +44,25 @@ function useNativeInteractions(
     const cleanups: Array<() => void> = [];
     // The navbar toggler is handled separately below; binding it here too made
     // each tap open and immediately close the mobile menu.
-    root.querySelectorAll<HTMLButtonElement>("[data-bs-target]:not(.navbar-toggler)").forEach((button) => {
-      const targetSelector = button.dataset["bsTarget"];
-      if (!targetSelector?.startsWith("#")) return;
-      const target = root.querySelector<HTMLElement>(targetSelector);
-      if (!target) return;
-      const click = () => {
-        const parent = button.closest(".accordion");
-        parent?.querySelectorAll<HTMLElement>(".accordion-collapse.show").forEach((open) => {
-          if (open !== target) open.classList.remove("show");
-        });
-        target.classList.toggle("show");
-        button.classList.toggle("collapsed", !target.classList.contains("show"));
-        button.setAttribute("aria-expanded", String(target.classList.contains("show")));
-      };
-      button.addEventListener("click", click);
-      cleanups.push(() => button.removeEventListener("click", click));
-    });
+    root
+      .querySelectorAll<HTMLButtonElement>("[data-bs-target]:not(.navbar-toggler)")
+      .forEach((button) => {
+        const targetSelector = button.dataset["bsTarget"];
+        if (!targetSelector?.startsWith("#")) return;
+        const target = root.querySelector<HTMLElement>(targetSelector);
+        if (!target) return;
+        const click = () => {
+          const parent = button.closest(".accordion");
+          parent?.querySelectorAll<HTMLElement>(".accordion-collapse.show").forEach((open) => {
+            if (open !== target) open.classList.remove("show");
+          });
+          target.classList.toggle("show");
+          button.classList.toggle("collapsed", !target.classList.contains("show"));
+          button.setAttribute("aria-expanded", String(target.classList.contains("show")));
+        };
+        button.addEventListener("click", click);
+        cleanups.push(() => button.removeEventListener("click", click));
+      });
 
     // Static-snapshot FAQs: buttons with aria-expanded but no data-bs-target toggle
     // the sibling answer panel (max-h-0 opacity-0 <-> max-h-96 opacity-100).
