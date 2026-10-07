@@ -169,7 +169,15 @@ export function LegacyCampPage({
   // introducing a <script>, an inline event handler, or a javascript: URL.
   // DOMPurify's default profile keeps the Bootstrap/data-bs-target/aria-*
   // markup useNativeInteractions depends on -- it only strips executable content.
-  const safeHtml = useMemo(() => DOMPurify.sanitize(html), [html]);
+  // On the server worker the browser build of DOMPurify has no DOM and no
+  // sanitize(); fall back to stripping <script> tags so SSR never crashes.
+  const safeHtml = useMemo(
+    () =>
+      typeof DOMPurify?.sanitize === "function"
+        ? DOMPurify.sanitize(html)
+        : html.replace(/<script[\s\S]*?<\/script>/gi, ""),
+    [html],
+  );
   useNativeInteractions(rootRef, applyUrl, stableCarousels);
 
   return (

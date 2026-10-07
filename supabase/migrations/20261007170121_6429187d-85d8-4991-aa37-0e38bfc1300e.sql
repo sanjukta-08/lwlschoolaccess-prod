@@ -1,0 +1,1 @@
+grant all on lwl_site.ai_rate_limit_hits to service_role;
