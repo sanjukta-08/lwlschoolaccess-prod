@@ -2108,6 +2108,7 @@ export type Database = {
           registration_last_reminder_at: string | null
           registration_reminder_count: number
           registration_status: string
+          scholarship_code: string | null
           school_name: string | null
           source_flow: string
           state: string | null
@@ -2158,6 +2159,7 @@ export type Database = {
           registration_last_reminder_at?: string | null
           registration_reminder_count?: number
           registration_status?: string
+          scholarship_code?: string | null
           school_name?: string | null
           source_flow?: string
           state?: string | null
@@ -2208,6 +2210,7 @@ export type Database = {
           registration_last_reminder_at?: string | null
           registration_reminder_count?: number
           registration_status?: string
+          scholarship_code?: string | null
           school_name?: string | null
           source_flow?: string
           state?: string | null
