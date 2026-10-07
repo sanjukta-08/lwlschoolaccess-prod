@@ -42,7 +42,9 @@ function useNativeInteractions(
     normalizeStudentLinks(root, applyUrl);
 
     const cleanups: Array<() => void> = [];
-    root.querySelectorAll<HTMLButtonElement>("[data-bs-target]").forEach((button) => {
+    // The navbar toggler is handled separately below; binding it here too made
+    // each tap open and immediately close the mobile menu.
+    root.querySelectorAll<HTMLButtonElement>("[data-bs-target]:not(.navbar-toggler)").forEach((button) => {
       const targetSelector = button.dataset["bsTarget"];
       if (!targetSelector?.startsWith("#")) return;
       const target = root.querySelector<HTMLElement>(targetSelector);
