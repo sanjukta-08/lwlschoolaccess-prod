@@ -8,7 +8,7 @@ export const ApplyButton = ({
 }: {
   className?: string;
   variant?: "white" | "rust";
-  applyUrl?: string;
+  applyUrl?: string | undefined;
 }) => (
   <a
     href={applyUrl}
@@ -29,7 +29,7 @@ export const FeeBlock = ({
   applyUrl,
 }: {
   tone?: "rust" | "dark" | "white";
-  applyUrl?: string;
+  applyUrl?: string | undefined;
 }) => {
   const styles = {
     rust: "bg-cambridge-rust text-white",

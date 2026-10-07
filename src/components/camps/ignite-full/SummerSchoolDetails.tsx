@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import DetailsLayout5OverlapPanel from "./details/DetailsLayout5OverlapPanel";
 
-const SummerSchoolDetails = ({ applyUrl }: { applyUrl?: string }) => (
+const SummerSchoolDetails = ({ applyUrl }: { applyUrl?: string | undefined }) => (
   <section id="details" className="pt-12 pb-28 overflow-hidden" style={{ backgroundColor: "#cbcc02" }}>
     <div className="container mx-auto px-4 lg:px-8">
       <motion.div
