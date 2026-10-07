@@ -300,21 +300,8 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
         });
       }
 
-      // Batches we publish that the shared calendar has not picked up yet.
-      for (const o of code ? (siteCohortsByCode.get(code) ?? []) : []) {
-        if (!o.start_date || o.start_date < today) continue;
-        if (out.has(o.start_date)) continue;
-        out.set(o.start_date, {
-          d: o.start_date,
-          ...(o.label ? { label: o.label } : {}),
-          ...(o.session_time ? { time: o.session_time } : {}),
-          ...(o.elig ? { elig: o.elig } : {}),
-          ...(o.flyer_url ? { flyer: o.flyer_url } : {}),
-          ...(o.brochure_url ? { brochure: o.brochure_url } : {}),
-          ...(o.fee_early ? { fee: { e: o.fee_early, r: o.fee_regular ?? null } } : {}),
-        });
-      }
-
+      // Dates come only from the shared catalogue; our extras never add a batch.
+      void code;
       void programmeTime;
       return Array.from(out.values()).sort((a, b) => a.d.localeCompare(b.d));
     };
@@ -326,7 +313,9 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
 
     for (const s of siteProgrammes) {
       const db = s.program_id ? (programById.get(s.program_id) ?? null) : null;
-      if (s.program_id) usedProgramIds.add(s.program_id);
+      // Only show programmes that are live in the shared catalogue.
+      if (!db) continue;
+      usedProgramIds.add(db.id);
       const partner = db?.partner_id ? partners.get(db.partner_id) : undefined;
       const cohorts = buildCohorts(s.code, db?.id ?? null, s.session_time ?? TIME_TBC);
 
