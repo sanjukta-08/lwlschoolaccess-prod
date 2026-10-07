@@ -49,6 +49,52 @@ function useNativeInteractions(rootRef: React.RefObject<HTMLDivElement | null>, 
       cleanups.push(() => button.removeEventListener("click", click));
     });
 
+    // Static-snapshot FAQs: buttons with aria-expanded but no data-bs-target toggle
+    // the sibling answer panel (max-h-0 opacity-0 <-> max-h-96 opacity-100).
+    root.querySelectorAll<HTMLButtonElement>('button[aria-expanded]:not([data-bs-target])').forEach((button) => {
+      const panel = button.parentElement?.querySelector<HTMLElement>(":scope > div.overflow-hidden");
+      if (!panel) return;
+      const icon = button.querySelector<HTMLElement>("svg");
+      const badge = button.querySelector<HTMLElement>("span:has(svg)");
+      const click = () => {
+        const open = button.getAttribute("aria-expanded") === "true";
+        button.setAttribute("aria-expanded", String(!open));
+        panel.classList.toggle("max-h-0", open);
+        panel.classList.toggle("opacity-0", open);
+        panel.classList.toggle("max-h-96", !open);
+        panel.classList.toggle("opacity-100", !open);
+        icon?.classList.toggle("rotate-45", !open);
+        badge?.classList.toggle("border-crimson", !open);
+        badge?.classList.toggle("bg-crimson", !open);
+        badge?.classList.toggle("text-paper", !open);
+      };
+      button.addEventListener("click", click);
+      cleanups.push(() => button.removeEventListener("click", click));
+    });
+
+    // Static-snapshot mentor carousels: "Scroll mentors left/right" buttons scroll
+    // the nearest overflow-x-auto container.
+    root.querySelectorAll<HTMLButtonElement>('button[aria-label^="Scroll mentors"]').forEach((button) => {
+      const dir = button.getAttribute("aria-label")?.includes("left") ? -1 : 1;
+      const scroller = button.parentElement?.querySelector<HTMLElement>(".overflow-x-auto");
+      if (!scroller) return;
+      const click = () => scroller.scrollBy({ left: dir * scroller.clientWidth * 0.8, behavior: "smooth" });
+      button.addEventListener("click", click);
+      cleanups.push(() => button.removeEventListener("click", click));
+      const update = () => {
+        const canScroll = scroller.scrollWidth > scroller.clientWidth + 8;
+        button.classList.toggle("pointer-events-none", !canScroll);
+        button.classList.toggle("opacity-0", !canScroll);
+      };
+      update();
+      scroller.addEventListener("scroll", update);
+      window.addEventListener("resize", update);
+      cleanups.push(() => {
+        scroller.removeEventListener("scroll", update);
+        window.removeEventListener("resize", update);
+      });
+    });
+
     const navButton = root.querySelector<HTMLButtonElement>(".navbar-toggler");
     const navTarget = root.querySelector<HTMLElement>(".navbar-collapse");
     if (navButton && navTarget) {
