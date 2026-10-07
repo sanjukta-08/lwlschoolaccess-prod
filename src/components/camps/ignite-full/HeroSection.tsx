@@ -19,7 +19,9 @@ const HeroSection = ({ applyUrl }: { applyUrl: string }) => {
     const tryPlay = async () => {
       try {
         await video.play();
-      } catch {}
+      } catch {
+        // autoplay blocked; ignore
+      }
     };
     void tryPlay();
     const handlePause = () => {

@@ -39,7 +39,6 @@ const facultyTestimonialsData = [
 const FacultyCinematicSlider = () => {
   const [active, setActive] = useState(0);
   const current = facultyTestimonialsData[active];
-  if (!current) return null;
   const prev = useCallback(
     () =>
       setActive((a) => (a - 1 + facultyTestimonialsData.length) % facultyTestimonialsData.length),
@@ -51,6 +50,8 @@ const FacultyCinematicSlider = () => {
     const timer = setInterval(next, 6000);
     return () => clearInterval(timer);
   }, [next]);
+
+  if (!current) return null;
 
   return (
     <div className="relative bg-card rounded-2xl shadow-prestigious py-12 px-8 md:py-16 md:px-20 overflow-hidden min-h-[340px] flex items-center">

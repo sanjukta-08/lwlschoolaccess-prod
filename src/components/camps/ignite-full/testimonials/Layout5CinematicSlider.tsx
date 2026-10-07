@@ -6,7 +6,6 @@ import { studentTestimonials } from "./testimonialData";
 const Layout5CinematicSlider = () => {
   const [active, setActive] = useState(0);
   const current = studentTestimonials[active];
-  if (!current) return null;
   const prev = useCallback(
     () => setActive((a) => (a - 1 + studentTestimonials.length) % studentTestimonials.length),
     [],
@@ -17,6 +16,8 @@ const Layout5CinematicSlider = () => {
     const timer = setInterval(next, 6000);
     return () => clearInterval(timer);
   }, [next]);
+
+  if (!current) return null;
 
   return (
     <div className="relative bg-card rounded-2xl shadow-prestigious py-12 px-8 md:py-16 md:px-20 overflow-hidden min-h-[340px] flex items-center">
