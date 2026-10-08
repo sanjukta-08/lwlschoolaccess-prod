@@ -128,7 +128,11 @@ export function SiteFooter({ note }: { note?: string }) {
         </div>
 
         <p className="mt-12 border-t border-paper/10 pt-6 text-[0.75rem] text-paper/50">
-          © Learn with Leaders.{" "}
+          © 2026 Learn with Leaders.{" "}
+          <Link to="/privacy" className="text-paper/70 underline hover:text-paper">
+            Privacy Policy
+          </Link>
+          .{" "}
           {note ??
             "Program details and fees correct at time of publishing; confirm on each program page. Session times are US Eastern, shown with approximate Dubai (GMT+4) equivalents."}
         </p>
