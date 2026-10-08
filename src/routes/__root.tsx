@@ -140,6 +140,19 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
+        <style>{`
+          #prerender-content,
+          [id*="prerender"],
+          [id*="bot-content"] {
+            display: none !important;
+          }
+
+          html,
+          body,
+          #root {
+            background-color: var(--paper, #ffffff);
+          }
+        `}</style>
         <HeadContent />
       </head>
       <body>
