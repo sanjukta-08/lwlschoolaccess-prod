@@ -37,6 +37,13 @@ export function AdminShell({ title, children }: { title: string; children: React
           >
             Conversations
           </Link>
+          <Link
+            to="/admin/deletion"
+            className={nav}
+            activeProps={{ className: "text-sm text-foreground font-medium" }}
+          >
+            Deletion requests
+          </Link>
         </div>
         <button
           onClick={async () => {
