@@ -5,6 +5,7 @@ import { AdminShell, fmtDateTime } from "@/components/admin/AdminShell";
 import { deletePersonalData, findPersonalData } from "@/lib/admin-deletion.functions";
 
 export const Route = createFileRoute("/admin/deletion")({
+  staticData: { sitemap: false },
   head: () => ({
     meta: [
       { title: "Deletion requests · Admin" },
