@@ -31,6 +31,7 @@ import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as WeekWithoutWallsRouteImport } from './routes/week-without-walls'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminDeletionRouteImport } from './routes/admin.deletion'
 import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as CampsIndexRouteImport } from './routes/camps.index'
@@ -164,6 +165,11 @@ const WeekWithoutWallsRoute = WeekWithoutWallsRouteImport.update({
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminDeletionRoute = AdminDeletionRouteImport.update({
+  id: '/deletion',
+  path: '/deletion',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminLeadsRoute = AdminLeadsRouteImport.update({
@@ -314,6 +320,7 @@ export interface FileRoutesByFullPath {
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
   '/week-without-walls': typeof WeekWithoutWallsRouteWithChildren
+  '/admin/deletion': typeof AdminDeletionRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/login': typeof AdminLoginRoute
   '/camps/$slug': typeof CampsSlugRoute
@@ -357,6 +364,7 @@ export interface FileRoutesByTo {
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
   '/week-without-walls': typeof WeekWithoutWallsRouteWithChildren
+  '/admin/deletion': typeof AdminDeletionRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/login': typeof AdminLoginRoute
   '/camps/$slug': typeof CampsSlugRoute
@@ -404,6 +412,7 @@ export interface FileRoutesById {
   '/stories': typeof StoriesRoute
   '/testimonials': typeof TestimonialsRoute
   '/week-without-walls': typeof WeekWithoutWallsRouteWithChildren
+  '/admin/deletion': typeof AdminDeletionRoute
   '/admin/leads': typeof AdminLeadsRoute
   '/admin/login': typeof AdminLoginRoute
   '/camps/$slug': typeof CampsSlugRoute
@@ -453,6 +462,7 @@ export interface FileRouteTypes {
     | '/stories'
     | '/testimonials'
     | '/week-without-walls'
+    | '/admin/deletion'
     | '/admin/leads'
     | '/admin/login'
     | '/camps/$slug'
@@ -496,6 +506,7 @@ export interface FileRouteTypes {
     | '/stories'
     | '/testimonials'
     | '/week-without-walls'
+    | '/admin/deletion'
     | '/admin/leads'
     | '/admin/login'
     | '/camps/$slug'
@@ -542,6 +553,7 @@ export interface FileRouteTypes {
     | '/stories'
     | '/testimonials'
     | '/week-without-walls'
+    | '/admin/deletion'
     | '/admin/leads'
     | '/admin/login'
     | '/camps/$slug'
@@ -752,6 +764,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/deletion': {
+      id: '/admin/deletion'
+      path: '/deletion'
+      fullPath: '/admin/deletion'
+      preLoaderRoute: typeof AdminDeletionRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/leads': {
       id: '/admin/leads'
       path: '/leads'
@@ -917,6 +936,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AdminRouteChildren {
+  AdminDeletionRoute: typeof AdminDeletionRoute
   AdminLeadsRoute: typeof AdminLeadsRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -925,6 +945,7 @@ interface AdminRouteChildren {
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminDeletionRoute: AdminDeletionRoute,
   AdminLeadsRoute: AdminLeadsRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminIndexRoute: AdminIndexRoute,
