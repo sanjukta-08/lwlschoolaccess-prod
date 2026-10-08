@@ -91,14 +91,14 @@ const SECTIONS: { id: string; title: string; body: React.ReactNode }[] = [
         <ul>
           <li>
             <strong>Visit information.</strong> We record the pages you view, the website that sent
-            you, and basic device and browser details. This is linked to a random visitor ID kept
+            you, basic device and browser details, and your internet address with the approximate
+            location (country, region, city) it suggests. This is linked to a random visitor ID kept
             in your browser, and to the campaign tags in the link you arrived on (such as
             utm_source or an ad click ID).
           </li>
           <li>
-            <strong>Usage limits.</strong> To stop misuse of Compass and the fit quiz, we keep a
-            scrambled (hashed) form of your internet address for a short time. We don't store the
-            address itself.
+            <strong>Usage limits.</strong> To stop misuse of Compass and the fit quiz, we also keep a
+            scrambled (hashed) form of your internet address for 30 days.
           </li>
         </ul>
         <p>We don't use Google Analytics, Meta Pixel, Hotjar or any advertising trackers on this site.</p>
@@ -257,12 +257,16 @@ const SECTIONS: { id: string; title: string; body: React.ReactNode }[] = [
             Compass conversations where you left contact details: 24 months after the last
             message.
           </li>
-          <li>Page-view and visitor-ID records: 13 months.</li>
         </ul>
         <p>
           Deleted data may stay in our database backups for a limited time before those backups
           are overwritten. You can ask us to delete your information sooner using the details in
           "Contact us".
+        </p>
+        <p>
+          Page-view and visitor-ID records are held in the Learn with Leaders group's shared
+          visitor-tracking system, which serves all of our platforms. They are not yet deleted on
+          a fixed schedule; you can ask us to delete them at any time.
         </p>
       </>
     ),
