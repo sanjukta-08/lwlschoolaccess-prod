@@ -23,6 +23,7 @@ import { Route as FinderRouteImport } from './routes/finder'
 import { Route as FitRouteImport } from './routes/fit'
 import { Route as InternshipsRouteImport } from './routes/internships'
 import { Route as MasterclassesRouteImport } from './routes/masterclasses'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProfileBuildingRouteImport } from './routes/profile-building'
 import { Route as ShortlistRouteImport } from './routes/shortlist'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -123,6 +124,11 @@ const InternshipsRoute = InternshipsRouteImport.update({
 const MasterclassesRoute = MasterclassesRouteImport.update({
   id: '/masterclasses',
   path: '/masterclasses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileBuildingRoute = ProfileBuildingRouteImport.update({
@@ -301,6 +307,7 @@ export interface FileRoutesByFullPath {
   '/fit': typeof FitRoute
   '/internships': typeof InternshipsRouteWithChildren
   '/masterclasses': typeof MasterclassesRoute
+  '/privacy': typeof PrivacyRoute
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -343,6 +350,7 @@ export interface FileRoutesByTo {
   '/finder': typeof FinderRoute
   '/fit': typeof FitRoute
   '/masterclasses': typeof MasterclassesRoute
+  '/privacy': typeof PrivacyRoute
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -389,6 +397,7 @@ export interface FileRoutesById {
   '/fit': typeof FitRoute
   '/internships': typeof InternshipsRouteWithChildren
   '/masterclasses': typeof MasterclassesRoute
+  '/privacy': typeof PrivacyRoute
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -437,6 +446,7 @@ export interface FileRouteTypes {
     | '/fit'
     | '/internships'
     | '/masterclasses'
+    | '/privacy'
     | '/profile-building'
     | '/shortlist'
     | '/sitemap.xml'
@@ -479,6 +489,7 @@ export interface FileRouteTypes {
     | '/finder'
     | '/fit'
     | '/masterclasses'
+    | '/privacy'
     | '/profile-building'
     | '/shortlist'
     | '/sitemap.xml'
@@ -524,6 +535,7 @@ export interface FileRouteTypes {
     | '/fit'
     | '/internships'
     | '/masterclasses'
+    | '/privacy'
     | '/profile-building'
     | '/shortlist'
     | '/sitemap.xml'
@@ -571,6 +583,7 @@ export interface RootRouteChildren {
   FitRoute: typeof FitRoute
   InternshipsRoute: typeof InternshipsRouteWithChildren
   MasterclassesRoute: typeof MasterclassesRoute
+  PrivacyRoute: typeof PrivacyRoute
   ProfileBuildingRoute: typeof ProfileBuildingRoute
   ShortlistRoute: typeof ShortlistRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -681,6 +694,13 @@ declare module '@tanstack/react-router' {
       path: '/masterclasses'
       fullPath: '/masterclasses'
       preLoaderRoute: typeof MasterclassesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/profile-building': {
@@ -1011,6 +1031,7 @@ const rootRouteChildren: RootRouteChildren = {
   FitRoute: FitRoute,
   InternshipsRoute: InternshipsRouteWithChildren,
   MasterclassesRoute: MasterclassesRoute,
+  PrivacyRoute: PrivacyRoute,
   ProfileBuildingRoute: ProfileBuildingRoute,
   ShortlistRoute: ShortlistRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
