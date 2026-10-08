@@ -7,6 +7,19 @@ const DESC =
   "How Learn with Leaders handles information on lwlschoolaccess.com: quiz answers, saved programmes, Compass messages, advisor bookings, local storage and your choices.";
 const URL = "https://lwlschoolaccess.com/privacy";
 const EMAIL = "team@learnwithleaders.com";
+const PARTNER_SITES = [
+  "apply.learnwithleaders.com",
+  "futuredoctorsprogram.com",
+  "futurelawyersprogram.com",
+  "sirluthercenter.com",
+  "joinfinlit.com",
+  "joinonwards.com",
+  "purposeplaybook.ai",
+  "satinstinct.com",
+  "thresholdeo.com",
+  "studentform.ivycomp.com",
+  "studentform.ivyolympiad.com",
+];
 
 export const Route = createFileRoute("/privacy")({
   staticData: { sitemap: true },
@@ -63,7 +76,7 @@ const SECTIONS: { id: string; title: string; body: React.ReactNode }[] = [
             <strong>Saved programmes.</strong> Your shortlist is stored in your own browser, not on
             our servers. If you choose to share it, the list is encoded into the link you send.
           </li>
-          <li>
+          <li id="compass" className="scroll-mt-28">
             <strong>Messages to Compass.</strong> What you type to our Compass assistant is sent
             to our server and to an AI service to write a reply. We store the conversation and how
             you reached the site (for example, the campaign link you used). If you choose to leave
@@ -152,7 +165,8 @@ const SECTIONS: { id: string; title: string; body: React.ReactNode }[] = [
           </li>
           <li>
             <strong>Lovable</strong>: hosts this website and provides the AI service behind
-            Compass and the fit quiz.
+            Compass and the fit quiz. Through Lovable, Compass messages are processed by an
+            OpenAI model and fit quiz answers by a Google Gemini model.
           </li>
           <li>
             <strong>Supabase</strong>: our database, which holds the programme catalogue, Compass
@@ -172,10 +186,15 @@ const SECTIONS: { id: string; title: string; body: React.ReactNode }[] = [
           </li>
         </ul>
         <p>
-          The "Apply", "Reserve a seat" and payment pages are not on this site. They are on our
-          application portal at apply.learnwithleaders.com, or on partner programme websites,
-          each with its own privacy policy.
+          The "Apply", "Reserve a free seat" and payment pages are not on this site. Each of the
+          following websites has its own privacy policy, which applies to anything you enter
+          there:
         </p>
+        <ul>
+          {PARTNER_SITES.map((d) => (
+            <li key={d}>{d}</li>
+          ))}
+        </ul>
       </>
     ),
   },
@@ -227,7 +246,10 @@ const SECTIONS: { id: string; title: string; body: React.ReactNode }[] = [
     title: "How long we keep information",
     body: (
       <p>
-        We keep information only as long as we need it for the purposes above, then delete it.
+        At the moment we have no automatic deletion schedule for Compass conversations, contact
+        details left in Compass, page-view and visitor-ID records, or scrambled internet
+        addresses. They are kept until we delete them or you ask us to. You can ask us to delete
+        your information at any time using the details in "Contact us".
       </p>
     ),
   },

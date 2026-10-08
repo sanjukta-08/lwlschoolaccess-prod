@@ -426,6 +426,14 @@ function CompassPanel() {
               />
             </PromptInputFooter>
           </PromptInput>
+          <p className="mt-1.5 text-center text-[0.68rem] leading-snug text-muted-foreground">
+            Chats are{" "}
+            <a href="/privacy#compass" className="underline hover:text-ink">
+              saved
+            </a>{" "}
+            so our advisors can follow up. Please don't share sensitive information. Students
+            under 18, please ask a parent first.
+          </p>
           {limitReached ? (
             <p className="mt-2 text-center text-xs text-muted-foreground">
               This conversation has reached its message limit.
