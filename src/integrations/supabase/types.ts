@@ -810,6 +810,45 @@ export type Database = {
         }
         Relationships: []
       }
+      data_fix_log: {
+        Row: {
+          batch: string
+          column_name: string
+          fixed_at: string
+          id: number
+          new_value: string | null
+          old_row: Json
+          old_value: string | null
+          reason: string
+          row_id: string
+          table_name: string
+        }
+        Insert: {
+          batch: string
+          column_name: string
+          fixed_at?: string
+          id?: number
+          new_value?: string | null
+          old_row: Json
+          old_value?: string | null
+          reason: string
+          row_id: string
+          table_name: string
+        }
+        Update: {
+          batch?: string
+          column_name?: string
+          fixed_at?: string
+          id?: number
+          new_value?: string | null
+          old_row?: Json
+          old_value?: string | null
+          reason?: string
+          row_id?: string
+          table_name?: string
+        }
+        Relationships: []
+      }
       doctors_applications: {
         Row: {
           agreed_to_terms: boolean
