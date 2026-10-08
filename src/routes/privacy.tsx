@@ -91,14 +91,14 @@ const SECTIONS: { id: string; title: string; body: React.ReactNode }[] = [
         <ul>
           <li>
             <strong>Visit information.</strong> We record the pages you view, the website that sent
-            you, and basic device and browser details. This is linked to a random visitor ID kept
+            you, basic device and browser details, and your internet address with the approximate
+            location (country, region, city) it suggests. This is linked to a random visitor ID kept
             in your browser, and to the campaign tags in the link you arrived on (such as
             utm_source or an ad click ID).
           </li>
           <li>
-            <strong>Usage limits.</strong> To stop misuse of Compass and the fit quiz, we keep a
-            scrambled (hashed) form of your internet address for a short time. We don't store the
-            address itself.
+            <strong>Usage limits.</strong> To stop misuse of Compass and the fit quiz, we also keep a
+            scrambled (hashed) form of your internet address for 30 days.
           </li>
         </ul>
         <p>We don't use Google Analytics, Meta Pixel, Hotjar or any advertising trackers on this site.</p>
@@ -164,9 +164,12 @@ const SECTIONS: { id: string; title: string; body: React.ReactNode }[] = [
             <strong>Calendly</strong>: booking advisor calls.
           </li>
           <li>
-            <strong>Lovable</strong>: hosts this website and provides the AI service behind
-            Compass and the fit quiz. Through Lovable, Compass messages are processed by an
-            OpenAI model and fit quiz answers by a Google Gemini model.
+            <strong>Lovable</strong>: hosts this website. Fit quiz answers are sent through
+            Lovable's AI Gateway to Google (Gemini), and Compass messages are sent through it to
+            OpenAI, to produce suggestions and replies. See the privacy policies of{" "}
+            <A href="https://lovable.dev/privacy">Lovable</A>,{" "}
+            <A href="https://policies.google.com/privacy">Google</A> and{" "}
+            <A href="https://openai.com/policies/privacy-policy">OpenAI</A>.
           </li>
           <li>
             <strong>Supabase</strong>: our database, which holds the programme catalogue, Compass
@@ -245,12 +248,27 @@ const SECTIONS: { id: string; title: string; body: React.ReactNode }[] = [
     id: "how-long-we-keep-it",
     title: "How long we keep information",
     body: (
-      <p>
-        At the moment we have no automatic deletion schedule for Compass conversations, contact
-        details left in Compass, page-view and visitor-ID records, or scrambled internet
-        addresses. They are kept until we delete them or you ask us to. You can ask us to delete
-        your information at any time using the details in "Contact us".
-      </p>
+      <>
+        <p>Records are deleted automatically every day once they reach these ages:</p>
+        <ul>
+          <li>Scrambled internet addresses (usage limits): 30 days.</li>
+          <li>Compass conversations where no contact details were left: 90 days.</li>
+          <li>
+            Compass conversations where you left contact details: 24 months after the last
+            message.
+          </li>
+        </ul>
+        <p>
+          Deleted data may stay in our database backups for a limited time before those backups
+          are overwritten. You can ask us to delete your information sooner using the details in
+          "Contact us".
+        </p>
+        <p>
+          Page-view and visitor-ID records are held in the Learn with Leaders group's shared
+          visitor-tracking system, which serves all of our platforms. They are not yet deleted on
+          a fixed schedule; you can ask us to delete them at any time.
+        </p>
+      </>
     ),
   },
   {
