@@ -689,3 +689,9 @@ body :is(h1, h2, h3, h4, h5, h6) *:not(svg, svg *, [class*="icon"], [class*=" fa
   font-family: "Bricolage Grotesque Variable", "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif !important;
   font-style: normal !important;
 }
+
+.privacy-prose h2 { margin-top: 2.5rem; margin-bottom: 0.75rem; font-size: 1.5rem; font-weight: 700; }
+.privacy-prose h3 { margin-top: 1.25rem; margin-bottom: 0.5rem; font-size: 1.1rem; font-weight: 700; color: var(--color-ink); }
+.privacy-prose p { margin-top: 0.75rem; line-height: 1.7; }
+.privacy-prose ul { margin-top: 0.75rem; padding-left: 1.25rem; list-style: disc; line-height: 1.7; }
+.privacy-prose li + li { margin-top: 0.4rem; }
