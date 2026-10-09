@@ -120,8 +120,8 @@ function HomePage() {
               </span>
             </div>
 
-            <h1 className="mx-auto max-w-[950px] font-display text-[clamp(2.5rem,7vw,5.2rem)] leading-[0.96] font-extrabold tracking-tight text-ink">
-              <span className="block whitespace-nowrap">Where ambitious students</span>
+            <h1 className="mx-auto max-w-[950px] font-display text-[clamp(2.25rem,7vw,5.2rem)] leading-[0.96] font-extrabold text-ink">
+              <span className="block sm:whitespace-nowrap">Where ambitious students</span>
               <span className="mt-2 block bg-gradient-to-r from-crimson via-crimson-deep to-gold-deep bg-clip-text text-transparent font-extrabold">
                 learn with leaders
               </span>

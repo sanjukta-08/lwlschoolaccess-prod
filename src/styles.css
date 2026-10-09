@@ -682,12 +682,12 @@
    script or decorative serif faces (including imported pages).
    Icon fonts and monospace labels are left alone.
    ============================================================ */
-body :where(*):not(.fa, .fas, .far, .fab, .fa-solid, .fa-brands, .fa-regular, [class^="fa-"], [class*=" fa-"], [class*="icon"], code, pre, kbd, .font-mono, .mono-label, svg, svg *) {
+body :where(*):not(.admin-shell, .admin-shell *, .fa, .fas, .far, .fab, .fa-solid, .fa-brands, .fa-regular, [class^="fa-"], [class*=" fa-"], [class*="icon"], code, pre, kbd, .font-mono, .mono-label, svg, svg *) {
   font-family: "Poppins", ui-sans-serif, system-ui, sans-serif !important;
   font-style: normal !important;
 }
-body :is(h1, h2, h3, h4, h5, h6, .font-display, .font-serif, .font-serif-display, .font-georgia, .font-script),
-body :is(h1, h2, h3, h4, h5, h6) *:not(svg, svg *, [class*="icon"], [class*=" fa-"]) {
+body :is(h1, h2, h3, h4, h5, h6, .font-display, .font-serif, .font-serif-display, .font-georgia, .font-script):not(.admin-shell, .admin-shell *),
+body :is(h1, h2, h3, h4, h5, h6):not(.admin-shell, .admin-shell *) *:not(svg, svg *, [class*="icon"], [class*=" fa-"]) {
   font-family: "Poppins", ui-sans-serif, system-ui, sans-serif !important;
   font-style: normal !important;
 }
