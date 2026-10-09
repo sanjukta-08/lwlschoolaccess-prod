@@ -1,5 +1,7 @@
-import figtreeWoff from "@fontsource-variable/figtree/files/figtree-latin-wght-normal.woff2?url";
-import bricolageWoff from "@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url";
+import poppinsRegularWoff from "@fontsource/poppins/files/poppins-latin-400-normal.woff2?url";
+import poppinsMediumWoff from "@fontsource/poppins/files/poppins-latin-500-normal.woff2?url";
+import poppinsSemiboldWoff from "@fontsource/poppins/files/poppins-latin-600-normal.woff2?url";
+import poppinsBoldWoff from "@fontsource/poppins/files/poppins-latin-700-normal.woff2?url";
 import plexMonoWoff from "@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff2?url";
 import type { ErrorComponentProps } from "@tanstack/react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -113,8 +115,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:image", content: "https://lwlschoolaccess.com/og-image.jpg" },
     ],
     links: [
-      { rel: "preload", href: figtreeWoff, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
-      { rel: "preload", href: bricolageWoff, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
+      { rel: "preload", href: poppinsRegularWoff, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
+      { rel: "preload", href: poppinsMediumWoff, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
+      { rel: "preload", href: poppinsSemiboldWoff, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
+      { rel: "preload", href: poppinsBoldWoff, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
       { rel: "preload", href: plexMonoWoff, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",

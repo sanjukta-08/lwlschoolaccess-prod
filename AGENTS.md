@@ -15,3 +15,4 @@
 - Compass frontend: one session-only conversation lives in the root `CompassProvider`; its sheet code lazy-loads on first open so every page and Finder trigger share one state without initial bundle cost.
 - Admin gate: shared password (LWL_ADMIN_PANEL_PASSWORD) + encrypted httpOnly session (LWL_ADMIN_SESSION_SECRET) in admin-auth.server.ts; every admin data server fn calls requireAdmin() — route guard is UX only.
 - Critical first-paint safeguards live inline at the start of the root document head so publishing-injected fallback content is hidden before external CSS loads.
+- Public typography uses locally bundled font weights with root-level preloads to avoid external-font delays and late metric swaps.
