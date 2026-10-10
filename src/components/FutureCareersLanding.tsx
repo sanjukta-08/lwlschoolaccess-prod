@@ -1,5 +1,4 @@
 import {
-  BriefcaseBusiness,
   CalendarDays,
   Clock3,
   GraduationCap,
@@ -80,7 +79,7 @@ function ReserveButton({ className = "" }: { className?: string }) {
   );
 }
 
-function Kicker({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
+function Kicker({ children }: { children: React.ReactNode; light?: boolean }) {
   return (
     <div className="fc-kicker">
       <img src={birdAsset.url} alt="" aria-hidden="true" />
