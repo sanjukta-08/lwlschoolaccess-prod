@@ -87,7 +87,7 @@
 .fc-hero-robot {
   position: absolute;
   right: clamp(4px, 1.2vw, 20px);
-  bottom: 0;
+  bottom: clamp(10px, 1.4vh, 18px);
   height: var(--fc-robot-h);
   z-index: 2;
   pointer-events: none;
@@ -329,6 +329,7 @@
     padding-block: clamp(20px, 4vh, 44px) calc(var(--fc-robot-h) * 0.45 + 16px);
   }
   .fc-hero-inner { flex: 1; display: flex; flex-direction: column; justify-content: center; width: 100%; }
-  .fc-hero-robot { right: clamp(4px, 1vw, 18px); bottom: 0; }
-  .fc-meta { padding-right: calc(var(--fc-robot-h) * 1.05); }
+  .fc-hero-robot { right: clamp(4px, 1vw, 18px); bottom: clamp(10px, 1.4vh, 18px); }
+  /* Keep the info line centred on the page; cap its width symmetrically so it clears the robot */
+  .fc-meta { max-width: calc(100% - var(--fc-robot-h) * 1.15); margin-inline: auto; }
 }
