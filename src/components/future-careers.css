@@ -47,7 +47,7 @@
 .fc-nav a:hover { color: var(--fc-crimson); }
 
 .fc-hero {
-  --fc-robot-h: clamp(120px, 11vw, 160px);
+  --fc-robot-h: clamp(130px, 12vw, 175px);
   position: relative;
   overflow: hidden;
   background:
