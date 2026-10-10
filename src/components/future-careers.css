@@ -244,3 +244,8 @@
 }
 .fc-reviews-title { white-space: nowrap; }
 @media (max-width: 640px) { .fc-reviews-title { white-space: normal; } }
+
+/* Subheading above the notes: keep it on one line wherever it can fit readably */
+@media (min-width: 900px) {
+  .fc-reviews-intro { max-width: none; white-space: nowrap; font-size: clamp(16px, 1.8vw, 21px); }
+}
