@@ -352,3 +352,10 @@
   /* Keep the info line centred on the page; cap its width symmetrically so it clears the robot */
   .fc-meta { max-width: min(100%, max(300px, calc(100vw - var(--fc-robot-h) * 2.6 - 40px))); margin-inline: auto; }
 }
+
+/* Short laptop screens: trim the type a little so the hero still lands in exactly one screen */
+@media (min-width: 1100px) and (max-height: 800px) {
+  .fc-hero h1 { font-size: 70px; }
+  .fc-hero-summary { font-size: 1em; }
+  .fc-meta { gap: .45em .9em; }
+}
