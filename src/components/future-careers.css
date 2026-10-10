@@ -153,7 +153,6 @@
 .fc-review figcaption { margin-top: auto; }
 .fc-review figcaption b, .fc-review figcaption span { display: block; }
 .fc-review figcaption span { color: var(--fc-muted); font-size: 15px; }
-.fc-review-link { display: inline-block; margin-top: 26px; color: var(--fc-crimson); font-size: 20px; font-weight: 700; text-underline-offset: 6px; }
 .fc-review.fc-note { min-height: 0; gap: 16px; padding: 14px 14px 18px; transform: rotate(-1.2deg); transition: transform 0.3s ease; }
 .fc-review.fc-note:nth-child(2n) { transform: rotate(1.2deg); }
 .fc-review.fc-note:nth-child(3n) { transform: rotate(-0.5deg); }
