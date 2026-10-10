@@ -46,7 +46,7 @@
 .fc-nav a { color: var(--fc-ink); font-size: 17px; font-weight: 600; padding-block: 12px; text-decoration: none; }
 .fc-nav a:hover { color: var(--fc-crimson); }
 
-.fc-hero { position: relative; overflow: hidden; background: var(--fc-wash); padding-block: clamp(44px, 6vw, 88px); }
+.fc-hero { position: relative; overflow: hidden; background: var(--fc-wash); padding-block: clamp(16px, 2vw, 28px) clamp(44px, 6vw, 88px); }
 .fc-grain { position: absolute; inset: 0; opacity: .3; mix-blend-mode: multiply; pointer-events: none; background-size: 256px 256px; }
 .fc-hero-inner { position: relative; z-index: 2; }
 .fc-hero-body { display: block; }
