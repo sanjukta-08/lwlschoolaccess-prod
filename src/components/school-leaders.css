@@ -45,7 +45,7 @@
 .sl-hero-grid { display: flex; flex-wrap: wrap; align-items: center; gap: 48px 64px; }
 .sl-hero-copy { flex: 1 1 540px; min-width: 0; display: flex; flex-direction: column; gap: 22px; }
 .sl-hero-copy .sl-kicker { margin-bottom: 0; }
-.sl-hero h1 { font-size: clamp(40px, 4.6vw, 58px); line-height: 1.05; }
+.sl-hero h1 { font-size: clamp(38px, 4.2vw, 54px); line-height: 1.05; }
 .sl-hero h1 em { display: block; }
 .sl-lead { display: flex; flex-direction: column; gap: 2px; }
 .sl-lead strong { font-size: 19px; }
