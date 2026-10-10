@@ -119,9 +119,9 @@ export function FutureCareersLanding() {
                   <span>Free live masterclass</span>
                 </div>
                 <h1>
-                  <span>Future Careers</span>
+                  <span>Future Careers in the</span>
                   <span>
-                    in the <em className="fc-underline">Age of AI</em>
+                    <em className="fc-underline">Age of AI</em>
                   </span>
                 </h1>
                 <div className="fc-hero-lead">Led by Dr Jojo O'Driscoll-Kearney</div>

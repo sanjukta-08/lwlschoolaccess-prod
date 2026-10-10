@@ -212,6 +212,7 @@
   .fc-header-logo { height: 38px; }
   .fc-header .fc-btn { padding-inline: 16px; font-size: 14px; }
   .fc-hero h1 > span { white-space: normal; }
+  .fc-hero h1 > span + span { white-space: nowrap; }
   .fc-title { font-size: 1.95rem; }
   .fc-body-copy { font-size: 18px; }
   .fc-meta { gap: .75em; }
