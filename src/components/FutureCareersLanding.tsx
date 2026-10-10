@@ -322,11 +322,15 @@ export function FutureCareersLanding() {
             <h2 className="fc-title fc-reviews-intro">What students wrote <em>afterwards</em></h2>
             <p className="fc-body-copy fc-reviews-intro">Handwritten notes to Dr Jojo from students on her Communication & Leadership Programme.</p>
             <div className="fc-reviews">
-              {reviews.map(([quote, name, role]) => (
-                <figure className="fc-review" key={name}>
-                  <div className="fc-quote-mark" aria-hidden="true">“</div>
-                  <blockquote>{quote}</blockquote>
-                  <figcaption><b>{name}</b><span>{role}</span></figcaption>
+              {HANDWRITTEN_NOTES.map((note) => (
+                <figure className="fc-review fc-note" key={note.id}>
+                  <img
+                    className="fc-note-img"
+                    src={note.src}
+                    alt={`Handwritten thank-you note from ${note.name}`}
+                    loading="lazy"
+                  />
+                  <figcaption><b>{note.name}</b><span>{note.programme}</span></figcaption>
                 </figure>
               ))}
             </div>
