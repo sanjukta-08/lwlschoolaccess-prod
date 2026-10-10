@@ -40,38 +40,7 @@ const outcomes = [
   "Put your questions to Dr Jojo live",
 ];
 
-const reviews = [
-  [
-    "Dr. Jojo, thank you for coming - you really inspired me to keep going even if I fail.",
-    "Retaj Al-Hussein",
-    "Student · Communication & Leadership Programme",
-  ],
-  [
-    "Thank you so much Dr. Jojo. We appreciate your mentorship. I am so happy that I chose this course.",
-    "Faris Salim Al-Harthi",
-    "Student · Communication & Leadership Programme",
-  ],
-  [
-    "Thank you for teaching me in this programme. I learned to be confident while doing a pitch.",
-    "Maria Plummer",
-    "Student · Communication & Leadership Programme",
-  ],
-  [
-    "She's been so kind and patient. She made this programme fun and exciting.",
-    "Hoor Khalid",
-    "Student · Communication & Leadership Programme",
-  ],
-  [
-    "Dr. Jojo, you did a great job. I'm very happy that I joined the course and recommended my friend Faris.",
-    "Luqman Al-Habsi",
-    "Student · Communication & Leadership Programme",
-  ],
-  [
-    "Thank you prof Jojo for coming out of your way for us despite the challenges you faced.",
-    "A cohort graduate",
-    "Communication & Leadership Programme",
-  ],
-];
+import { HANDWRITTEN_NOTES } from "@/lib/handwritten-notes";
 
 function ReserveButton({ className = "" }: { className?: string }) {
   if (RESERVATION_URL) {

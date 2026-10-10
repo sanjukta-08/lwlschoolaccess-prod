@@ -48,7 +48,6 @@ import { Route as ConferencesIndexRouteImport } from './routes/conferences.index
 import { Route as ConferencesSlugRouteImport } from './routes/conferences.$slug'
 import { Route as InternshipsIndexRouteImport } from './routes/internships.index'
 import { Route as MasterclassesIndexRouteImport } from './routes/masterclasses.index'
-import { Route as MasterclassesFutureCareersAgeOfAiRouteImport } from './routes/masterclasses.future-careers-age-of-ai'
 import { Route as ProgrammesSlugRouteImport } from './routes/programmes.$slug'
 import { Route as WeekWithoutWallsKingsRouteImport } from './routes/week-without-walls.kings'
 import { Route as AdminSessionsIndexRouteImport } from './routes/admin.sessions.index'
@@ -262,12 +261,6 @@ const MasterclassesIndexRoute = MasterclassesIndexRouteImport.update({
   path: '/',
   getParentRoute: () => MasterclassesRoute,
 } as any)
-const MasterclassesFutureCareersAgeOfAiRoute =
-  MasterclassesFutureCareersAgeOfAiRouteImport.update({
-    id: '/future-careers-age-of-ai',
-    path: '/future-careers-age-of-ai',
-    getParentRoute: () => MasterclassesRoute,
-  } as any)
 const ProgrammesSlugRoute = ProgrammesSlugRouteImport.update({
   id: '/programmes/$slug',
   path: '/programmes/$slug',
@@ -353,7 +346,6 @@ export interface FileRoutesByFullPath {
   '/camps/premed-horizons-harvard': typeof CampsPremedHorizonsHarvardRoute
   '/conference/$slug': typeof ConferenceSlugRoute
   '/conferences/$slug': typeof ConferencesSlugRoute
-  '/masterclasses/future-careers-age-of-ai': typeof MasterclassesFutureCareersAgeOfAiRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/week-without-walls/kings': typeof WeekWithoutWallsKingsRouteWithChildren
   '/admin/': typeof AdminIndexRoute
@@ -399,7 +391,6 @@ export interface FileRoutesByTo {
   '/camps/premed-horizons-harvard': typeof CampsPremedHorizonsHarvardRoute
   '/conference/$slug': typeof ConferenceSlugRoute
   '/conferences/$slug': typeof ConferencesSlugRoute
-  '/masterclasses/future-careers-age-of-ai': typeof MasterclassesFutureCareersAgeOfAiRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/admin': typeof AdminIndexRoute
   '/camps': typeof CampsIndexRoute
@@ -450,7 +441,6 @@ export interface FileRoutesById {
   '/camps/premed-horizons-harvard': typeof CampsPremedHorizonsHarvardRoute
   '/conference/$slug': typeof ConferenceSlugRoute
   '/conferences/$slug': typeof ConferencesSlugRoute
-  '/masterclasses/future-careers-age-of-ai': typeof MasterclassesFutureCareersAgeOfAiRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/week-without-walls/kings': typeof WeekWithoutWallsKingsRouteWithChildren
   '/admin/': typeof AdminIndexRoute
@@ -503,7 +493,6 @@ export interface FileRouteTypes {
     | '/camps/premed-horizons-harvard'
     | '/conference/$slug'
     | '/conferences/$slug'
-    | '/masterclasses/future-careers-age-of-ai'
     | '/programmes/$slug'
     | '/week-without-walls/kings'
     | '/admin/'
@@ -549,7 +538,6 @@ export interface FileRouteTypes {
     | '/camps/premed-horizons-harvard'
     | '/conference/$slug'
     | '/conferences/$slug'
-    | '/masterclasses/future-careers-age-of-ai'
     | '/programmes/$slug'
     | '/admin'
     | '/camps'
@@ -599,7 +587,6 @@ export interface FileRouteTypes {
     | '/camps/premed-horizons-harvard'
     | '/conference/$slug'
     | '/conferences/$slug'
-    | '/masterclasses/future-careers-age-of-ai'
     | '/programmes/$slug'
     | '/week-without-walls/kings'
     | '/admin/'
@@ -920,13 +907,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MasterclassesIndexRouteImport
       parentRoute: typeof MasterclassesRoute
     }
-    '/masterclasses/future-careers-age-of-ai': {
-      id: '/masterclasses/future-careers-age-of-ai'
-      path: '/future-careers-age-of-ai'
-      fullPath: '/masterclasses/future-careers-age-of-ai'
-      preLoaderRoute: typeof MasterclassesFutureCareersAgeOfAiRouteImport
-      parentRoute: typeof MasterclassesRoute
-    }
     '/programmes/$slug': {
       id: '/programmes/$slug'
       path: '/programmes/$slug'
@@ -1069,13 +1049,10 @@ const InternshipsRouteWithChildren = InternshipsRoute._addFileChildren(
 )
 
 interface MasterclassesRouteChildren {
-  MasterclassesFutureCareersAgeOfAiRoute: typeof MasterclassesFutureCareersAgeOfAiRoute
   MasterclassesIndexRoute: typeof MasterclassesIndexRoute
 }
 
 const MasterclassesRouteChildren: MasterclassesRouteChildren = {
-  MasterclassesFutureCareersAgeOfAiRoute:
-    MasterclassesFutureCareersAgeOfAiRoute,
   MasterclassesIndexRoute: MasterclassesIndexRoute,
 }
 
