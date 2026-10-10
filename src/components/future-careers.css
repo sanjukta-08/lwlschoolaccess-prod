@@ -364,7 +364,8 @@
 }
 @media (min-width: 1100px) and (max-height: 740px) {
   .fc-hero h1 { font-size: 64px; }
-  .fc-meta { gap: 3px; }
+  .fc-hero-summary { font-size: .95em; }
+  .fc-meta { gap: 2px; }
 }
 
 /* Laptop widths where the info line has little room: stack the five facts into one tidy centred list */
