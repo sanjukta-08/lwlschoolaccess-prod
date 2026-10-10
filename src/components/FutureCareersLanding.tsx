@@ -16,7 +16,6 @@ import jojoAsset from "@/assets/future-careers/dr-jojo.jpg.asset.json";
 import darkLogoAsset from "@/assets/future-careers/lwl-dark-logo.png.asset.json";
 import lightLogoAsset from "@/assets/future-careers/lwl-light-logo.png.asset.json";
 import birdAsset from "@/assets/future-careers/lwl-bird.png.asset.json";
-import grainAsset from "@/assets/future-careers/paper-grain.png.asset.json";
 import graduationGroupAsset from "@/assets/future-careers/graduation-group.jpg.asset.json";
 import graduationStageAsset from "@/assets/future-careers/graduation-stage.png.asset.json";
 import jojoRedAsset from "@/assets/future-careers/dr-jojo-red.jpg.asset.json";
@@ -101,17 +100,6 @@ export function FutureCareersLanding() {
 
       <main>
         <section className="fc-hero">
-          <div
-            className="fc-grain"
-            aria-hidden="true"
-            style={{ backgroundImage: `url(${grainAsset.url})` }}
-          />
-          <div className="fc-hero-decor" aria-hidden="true">
-            <span className="fc-orb fc-orb-a" />
-            <span className="fc-orb fc-orb-b" />
-            <span className="fc-ring fc-ring-a" />
-            <span className="fc-ring fc-ring-b" />
-          </div>
           <div className="fc-shell fc-hero-inner">
             <div className="fc-hero-body">
               <div className="fc-hero-copy">
@@ -121,7 +109,7 @@ export function FutureCareersLanding() {
                 <h1>
                   <span>Future Careers in the</span>
                   <span>
-                    <em className="fc-underline">Age of AI</em>
+                    <em>Age of AI</em>
                   </span>
                 </h1>
                 <div className="fc-hero-lead">Led by Dr Jojo O'Driscoll-Kearney</div>
@@ -145,15 +133,6 @@ export function FutureCareersLanding() {
                   <span><Users size={22} color="var(--fc-crimson)" />Parents welcome</span>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="fc-hero-strip" aria-hidden="true">
-            <div className="fc-hero-strip-track">
-              {[0, 1].map((copy) => (
-                <span key={copy} className="fc-hero-strip-set">
-                  Medicine · Law · Finance · Engineering · Entrepreneurship · Design · Media · Technology ·&nbsp;
-                </span>
-              ))}
             </div>
           </div>
         </section>
