@@ -367,7 +367,7 @@ export function FutureCareersLanding() {
             <div className="fc-faq-list">
               <div className="fc-faq"><h3>Is it really free?</h3><p>Yes. There is no cost to attend.</p></div>
               <div className="fc-faq"><h3>What do I need?</h3><p>A laptop or phone, and a notebook.</p></div>
-              <div className="fc-faq"><h3>Where does it happen?</h3><p>Live online on <span className="fc-platform">zoom</span>. You will receive the link by email after registering.</p></div>
+              <div className="fc-faq"><h3>Where does it happen?</h3><p>Live online on Zoom. You will receive the link by email after registering.</p></div>
               <div className="fc-faq"><h3>Can parents join?</h3><p>Yes, parents and guardians are welcome.</p></div>
               <div className="fc-faq"><h3>What if I cannot make it live?</h3><p>Register anyway and we will send the recording.</p></div>
             </div>
