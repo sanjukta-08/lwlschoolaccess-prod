@@ -49,7 +49,7 @@
 .fc-nav a:hover { color: var(--fc-crimson); }
 
 .fc-hero {
-  --fc-robot-h: clamp(150px, 14vw, 200px);
+  --fc-robot-h: clamp(165px, 15.5vw, 220px);
   position: relative;
   overflow: hidden;
   background:
@@ -334,7 +334,7 @@
 /* Wide screens: hero fills the viewport below the nav; robot scales with screen height, flush bottom-right */
 @media (min-width: 1100px) {
   .fc-hero {
-    --fc-robot-h: clamp(250px, 40vh, 430px);
+    --fc-robot-h: clamp(290px, 47vh, 500px);
     min-height: calc(100svh - 78px);
     display: flex;
     flex-direction: column;
