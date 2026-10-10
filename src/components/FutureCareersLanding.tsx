@@ -110,12 +110,8 @@ export function FutureCareersLanding() {
           <div className="fc-hero-decor" aria-hidden="true">
             <span className="fc-orb fc-orb-a" />
             <span className="fc-orb fc-orb-b" />
-            <span className="fc-hero-icon fc-icon-1"><HeartPulse /></span>
-            <span className="fc-hero-icon fc-icon-2"><Scale /></span>
-            <span className="fc-hero-icon fc-icon-3"><TrendingUp /></span>
-            <span className="fc-hero-icon fc-icon-4"><GraduationCap /></span>
-            <span className="fc-hero-icon fc-icon-5"><Lightbulb /></span>
-            <span className="fc-hero-icon fc-icon-6"><Sparkles /></span>
+            <span className="fc-ring fc-ring-a" />
+            <span className="fc-ring fc-ring-b" />
           </div>
           <div className="fc-shell fc-hero-inner">
             <div className="fc-hero-body">
