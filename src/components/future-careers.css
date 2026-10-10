@@ -92,7 +92,7 @@
   z-index: 2;
   pointer-events: none;
 }
-.fc-hero-robot img { display: block; height: 100%; width: auto; }
+.fc-hero-robot img { display: block; height: 100%; width: auto; filter: drop-shadow(0 14px 22px rgb(133 21 38 / .26)) drop-shadow(0 3px 6px rgb(133 21 38 / .18)); }
 .fc-hero-inner { position: relative; z-index: 3; }
 .fc-hero-body { display: block; }
 .fc-hero-copy { position: relative; z-index: 3; width: min(100%, 1000px); margin-inline: auto; text-align: center; }
