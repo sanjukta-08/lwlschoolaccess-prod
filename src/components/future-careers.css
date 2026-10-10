@@ -343,5 +343,5 @@
   .fc-hero-inner { flex: 1; display: flex; flex-direction: column; justify-content: center; width: 100%; }
   .fc-hero-robot { right: clamp(4px, 1vw, 18px); bottom: 0; }
   /* Keep the info line centred on the page; cap its width symmetrically so it clears the robot */
-  .fc-meta { max-width: max(430px, calc(100% - var(--fc-robot-h) * 1.75)); margin-inline: auto; }
+  .fc-meta { max-width: min(100%, max(300px, calc(100vw - var(--fc-robot-h) * 2.6 - 40px))); margin-inline: auto; }
 }
