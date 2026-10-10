@@ -13,7 +13,6 @@ import {
   Users,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroAsset from "@/assets/future-careers/hero.jpg.asset.json";
 import jojoAsset from "@/assets/future-careers/dr-jojo.jpg.asset.json";
 import darkLogoAsset from "@/assets/future-careers/lwl-dark-logo.png.asset.json";
 import lightLogoAsset from "@/assets/future-careers/lwl-light-logo.png.asset.json";
@@ -107,6 +106,16 @@ export function FutureCareersLanding() {
             aria-hidden="true"
             style={{ backgroundImage: `url(${grainAsset.url})` }}
           />
+          <div className="fc-hero-decor" aria-hidden="true">
+            <span className="fc-orb fc-orb-a" />
+            <span className="fc-orb fc-orb-b" />
+            <span className="fc-hero-icon fc-icon-1"><HeartPulse /></span>
+            <span className="fc-hero-icon fc-icon-2"><Scale /></span>
+            <span className="fc-hero-icon fc-icon-3"><TrendingUp /></span>
+            <span className="fc-hero-icon fc-icon-4"><GraduationCap /></span>
+            <span className="fc-hero-icon fc-icon-5"><Lightbulb /></span>
+            <span className="fc-hero-icon fc-icon-6"><Sparkles /></span>
+          </div>
           <div className="fc-shell fc-hero-inner">
             <div className="fc-hero-body">
               <div className="fc-hero-copy">
@@ -142,12 +151,6 @@ export function FutureCareersLanding() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="fc-hero-photo">
-            <img
-              src={heroAsset.url}
-              alt="A student in a crimson hoodie looking up at glowing AI icons for healthcare, technology, creativity, business, education and research"
-            />
           </div>
         </section>
 
