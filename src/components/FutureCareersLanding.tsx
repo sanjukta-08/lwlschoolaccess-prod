@@ -20,7 +20,7 @@ import graduationStageAsset from "@/assets/future-careers/graduation-stage.png.a
 import jojoRedAsset from "@/assets/future-careers/dr-jojo-red.jpg.asset.json";
 import awardAsset from "@/assets/future-careers/award-ceremony.jpg.asset.json";
 import schoolsClassAsset from "@/assets/future-careers/for-schools-classroom.png.asset.json";
-import aiRobotAsset from "@/assets/future-careers/ai-robot.png";
+import aiRobotAsset from "@/assets/future-careers/robot-friendly.png.asset.json";
 import "@fontsource/lato/latin-400.css";
 import "@fontsource/lato/latin-700.css";
 import "@fontsource/playfair-display/latin-400.css";
