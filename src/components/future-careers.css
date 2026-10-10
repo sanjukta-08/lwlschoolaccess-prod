@@ -162,7 +162,7 @@
 .fc-review.fc-note figcaption span { font-size: 14px; }
 .fc-audiences { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 .fc-audience { border: 0; border-radius: 12px; overflow: hidden; background: #fff; }
-.fc-audience-body { padding: clamp(28px, 4vw, 48px); }
+.fc-audience-body { padding: clamp(28px, 4vw, 48px); text-align: center; }
 .fc-audience:nth-child(2) { background: var(--fc-ink); color: #fff; }
 .fc-audience-label { color: var(--fc-crimson); font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
 .fc-audience:nth-child(2) .fc-audience-label { color: var(--fc-gold-light); }
@@ -247,4 +247,10 @@
 /* Subheading above the notes: keep it on one line wherever it can fit readably */
 @media (min-width: 900px) {
   .fc-reviews-intro { max-width: none; white-space: nowrap; font-size: clamp(16px, 1.8vw, 21px); }
+}
+
+/* Who it is for / For schools: heading stays on one line and the card text is centred */
+@media (min-width: 1000px) {
+  .fc-audience-body { padding-inline: clamp(20px, 2.4vw, 34px); }
+  .fc-audience h3 { white-space: nowrap; font-size: clamp(1.25rem, calc(2.6vw - 8px), 1.65rem); }
 }
