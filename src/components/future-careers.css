@@ -72,7 +72,7 @@
 .fc-about-copy { flex: 1 1 420px; min-width: 0; align-self: center; }
 .fc-about-copy p { max-width: 27em; margin: 16px 0 0; }
 .fc-about-photo { flex: 1 0 100%; margin-top: 6px; }
-.fc-about-photo img { aspect-ratio: 21/7; object-position: 50% 38%; }
+.fc-about-grid .fc-about-photo img { aspect-ratio: auto; height: clamp(220px, 22vw, 340px); object-fit: cover; object-position: 50% 32%; }
 .fc-details { flex: 1 1 400px; max-width: 480px; padding: clamp(18px, 2vw, 26px); border: 1px solid var(--fc-line); border-top: 3px solid var(--fc-gold); border-radius: 0 0 12px 12px; background: var(--fc-wash); box-shadow: 0 30px 56px -40px rgb(29 20 23 / .35); box-sizing: border-box; }
 .fc-details h3 { margin: 0 0 4px; font-size: 21px; }
 .fc-detail { display: grid; grid-template-columns: 40px 1fr; align-items: center; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--fc-line); }
