@@ -287,3 +287,10 @@
   .future-careers-page :is(.fc-hero-copy > *, .fc-badge svg, .fc-orb, .fc-hero-icon, .fc-watch .fc-play) { animation: none !important; transition: none !important; }
   .fc-hero-copy > * { opacity: 1 !important; transform: none !important; }
 }
+
+/* Phones: keep only the two corner icons and tuck them clear of the text */
+@media (max-width: 999px) {
+  .fc-hero-icon.fc-icon-2, .fc-hero-icon.fc-icon-4 { display: none; }
+  .fc-hero-icon.fc-icon-1 { left: 4%; top: 10%; }
+  .fc-hero-icon.fc-icon-3 { right: 4%; top: 8%; }
+}
