@@ -158,7 +158,7 @@
 .fc-review.fc-note:nth-child(2n) { transform: rotate(1.2deg); }
 .fc-review.fc-note:nth-child(3n) { transform: rotate(-0.5deg); }
 .fc-review.fc-note:hover { transform: rotate(0deg); }
-.fc-note-img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: 1px solid #ede5d3; border-radius: 6px; background: #fff; }
+.fc-note-img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: 1.5px solid #cbbda0; border-radius: 6px; background: #fff; }
 .fc-review.fc-note figcaption b { font-size: 17px; }
 .fc-review.fc-note figcaption span { font-size: 14px; }
 .fc-audiences { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
