@@ -155,6 +155,13 @@
 .fc-review figcaption b, .fc-review figcaption span { display: block; }
 .fc-review figcaption span { color: var(--fc-muted); font-size: 15px; }
 .fc-review-link { display: inline-block; margin-top: 26px; color: var(--fc-crimson); font-size: 20px; font-weight: 700; text-underline-offset: 6px; }
+.fc-review.fc-note { min-height: 0; gap: 16px; padding: 14px 14px 18px; transform: rotate(-1.2deg); transition: transform 0.3s ease; }
+.fc-review.fc-note:nth-child(2n) { transform: rotate(1.2deg); }
+.fc-review.fc-note:nth-child(3n) { transform: rotate(-0.5deg); }
+.fc-review.fc-note:hover { transform: rotate(0deg); }
+.fc-note-img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: 1px solid #ede5d3; border-radius: 6px; background: #fff; }
+.fc-review.fc-note figcaption b { font-size: 17px; }
+.fc-review.fc-note figcaption span { font-size: 14px; }
 .fc-audiences { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 .fc-audience { padding: clamp(28px, 4vw, 48px); border: 1px solid var(--fc-line); border-radius: 12px; background: #fff; }
 .fc-audience:nth-child(2) { background: var(--fc-ink); color: #fff; }
