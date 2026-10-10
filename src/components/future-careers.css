@@ -82,7 +82,7 @@
   width: clamp(280px, 36vw, 480px);
   aspect-ratio: 1;
   border-radius: 50%;
-  background: radial-gradient(circle, rgb(242 212 139 / .7) 0%, rgb(242 212 139 / .28) 40%, transparent 66%);
+  background: radial-gradient(circle, rgb(242 212 139 / .42) 0%, rgb(242 212 139 / .16) 40%, transparent 66%);
 }
 .fc-hero-robot {
   position: absolute;
@@ -92,7 +92,7 @@
   z-index: 2;
   pointer-events: none;
 }
-.fc-hero-robot img { display: block; height: 100%; width: auto; filter: drop-shadow(0 14px 22px rgb(133 21 38 / .26)) drop-shadow(0 3px 6px rgb(133 21 38 / .18)); }
+.fc-hero-robot img { display: block; height: 100%; width: auto; filter: drop-shadow(0 0 1px rgb(133 21 38 / .5)) drop-shadow(0 16px 24px rgb(133 21 38 / .3)) drop-shadow(0 4px 8px rgb(133 21 38 / .22)); }
 .fc-hero-inner { position: relative; z-index: 3; }
 .fc-hero-body { display: block; }
 .fc-hero-copy { position: relative; z-index: 3; width: min(100%, 1000px); margin-inline: auto; text-align: center; }
