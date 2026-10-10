@@ -193,7 +193,7 @@
 
 @media (max-width: 999px) {
   .fc-hero h1 { font-size: clamp(2.5rem, 8.6vw, 4.2rem); }
-  .fc-icon-5, .fc-icon-6 { display: none; }
+  .fc-hero-icon.fc-icon-5, .fc-hero-icon.fc-icon-6 { display: none; }
   .fc-industries { grid-template-columns: repeat(3, 1fr); }
   .fc-outcomes { grid-template-columns: repeat(2, 1fr); }
 }
