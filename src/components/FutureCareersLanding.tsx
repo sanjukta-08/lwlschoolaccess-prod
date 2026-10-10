@@ -1,0 +1,397 @@
+import {
+  BriefcaseBusiness,
+  CalendarDays,
+  Clock3,
+  GraduationCap,
+  HeartPulse,
+  Lightbulb,
+  Monitor,
+  Play,
+  Scale,
+  Sparkles,
+  Tag,
+  TrendingUp,
+  Users,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import heroAsset from "@/assets/future-careers/hero.jpg.asset.json";
+import jojoAsset from "@/assets/future-careers/dr-jojo.jpg.asset.json";
+import darkLogoAsset from "@/assets/future-careers/lwl-dark-logo.png.asset.json";
+import lightLogoAsset from "@/assets/future-careers/lwl-light-logo.png.asset.json";
+import birdAsset from "@/assets/future-careers/lwl-bird.png.asset.json";
+import grainAsset from "@/assets/future-careers/paper-grain.png.asset.json";
+import "@/components/future-careers.css";
+
+const RESERVATION_URL = "";
+
+const outcomes = [
+  "Explore how AI is reshaping major industries",
+  "Discover emerging careers you have not heard of yet",
+  "Learn which leadership skills AI cannot replace",
+  "Put your questions to Dr Jojo live",
+];
+
+const reviews = [
+  [
+    "Dr. Jojo, thank you for coming - you really inspired me to keep going even if I fail.",
+    "Retaj Al-Hussein",
+    "Student · Communication & Leadership Programme",
+  ],
+  [
+    "Thank you so much Dr. Jojo. We appreciate your mentorship. I am so happy that I chose this course.",
+    "Faris Salim Al-Harthi",
+    "Student · Communication & Leadership Programme",
+  ],
+  [
+    "Thank you for teaching me in this programme. I learned to be confident while doing a pitch.",
+    "Maria Plummer",
+    "Student · Communication & Leadership Programme",
+  ],
+  [
+    "She's been so kind and patient. She made this programme fun and exciting.",
+    "Hoor Khalid",
+    "Student · Communication & Leadership Programme",
+  ],
+  [
+    "Dr. Jojo, you did a great job. I'm very happy that I joined the course and recommended my friend Faris.",
+    "Luqman Al-Habsi",
+    "Student · Communication & Leadership Programme",
+  ],
+  [
+    "Thank you prof Jojo for coming out of your way for us despite the challenges you faced.",
+    "A cohort graduate",
+    "Communication & Leadership Programme",
+  ],
+];
+
+function ReserveButton({ className = "" }: { className?: string }) {
+  if (RESERVATION_URL) {
+    return (
+      <Button asChild className={`fc-btn ${className}`}>
+        <a href={RESERVATION_URL}>Reserve my place →</a>
+      </Button>
+    );
+  }
+
+  return (
+    <Button type="button" className={`fc-btn ${className}`} aria-disabled="true">
+      Reserve my place →
+    </Button>
+  );
+}
+
+function Kicker({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
+  return (
+    <div className="fc-kicker">
+      <img src={birdAsset.url} alt="" aria-hidden="true" />
+      <span>{children}</span>
+    </div>
+  );
+}
+
+function Detail({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+  return (
+    <div className="fc-detail">
+      <div className="fc-detail-icon" aria-hidden="true">
+        {icon}
+      </div>
+      <div>
+        <div className="fc-detail-label">{label}</div>
+        <div className="fc-detail-value">{value}</div>
+      </div>
+    </div>
+  );
+}
+
+export function FutureCareersLanding() {
+  return (
+    <div id="top" className="future-careers-page">
+      <header className="fc-header">
+        <div className="fc-shell fc-header-inner">
+          <a href="#top" aria-label="Learn with Leaders, back to top">
+            <img className="fc-header-logo" src={darkLogoAsset.url} alt="Learn with Leaders" />
+          </a>
+          <nav className="fc-nav" aria-label="Page sections">
+            <a href="#about">About</a>
+            <a href="#challenge">The challenge</a>
+            <a href="#dr-jojo">Dr Jojo</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#faq">FAQ</a>
+          </nav>
+          <ReserveButton />
+        </div>
+      </header>
+
+      <main>
+        <section className="fc-hero">
+          <div
+            className="fc-grain"
+            aria-hidden="true"
+            style={{ backgroundImage: `url(${grainAsset.url})` }}
+          />
+          <div className="fc-shell fc-hero-inner">
+            <div className="fc-hero-body">
+              <div className="fc-hero-copy">
+                <div className="fc-badge">
+                  <Sparkles size={18} fill="currentColor" aria-hidden="true" />
+                  <span>Free live masterclass</span>
+                </div>
+                <h1>
+                  <span>Future Careers</span>
+                  <span>
+                    in the <em className="fc-underline">Age of AI</em>
+                  </span>
+                </h1>
+                <div className="fc-hero-lead">Led by Dr Jojo O'Driscoll-Kearney</div>
+                <div className="fc-hero-role">Harvard Business Impact faculty · Hult Professor</div>
+                <p className="fc-hero-summary">
+                  A 60-minute live session on how AI is reshaping work, the careers now emerging,
+                  and the leadership skills you will need.
+                </p>
+                <div className="fc-hero-actions">
+                  <ReserveButton />
+                  <a className="fc-watch" href="#watch">
+                    <span className="fc-play" aria-hidden="true">
+                      <Play size={17} fill="currentColor" />
+                    </span>
+                    <span>Watch Dr Jojo</span>
+                  </a>
+                </div>
+                <div className="fc-meta">
+                  <span><Clock3 size={22} color="var(--fc-crimson)" />60 minutes</span>
+                  <span><Monitor size={22} color="var(--fc-crimson)" />Live online</span>
+                  <span><Users size={22} color="var(--fc-crimson)" />Parents welcome</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="fc-hero-photo">
+            <img
+              src={heroAsset.url}
+              alt="A student in a crimson hoodie looking up at glowing AI icons for healthcare, technology, creativity, business, education and research"
+            />
+          </div>
+        </section>
+
+        <section id="about" className="fc-section">
+          <div className="fc-shell fc-about-grid">
+            <div className="fc-about-copy">
+              <Kicker>Free live masterclass</Kicker>
+              <h2 className="fc-title">About this <em>programme</em></h2>
+              <p className="fc-body-copy">
+                Future Careers in the Age of AI is a free, 60-minute live online masterclass for
+                Transition Year and senior-cycle students, led by Dr Jojo O'Driscoll-Kearney.
+              </p>
+              <p className="fc-body-copy">
+                It looks at how AI is reshaping work, the careers now emerging, and the leadership
+                skills you will need. No prior AI knowledge is needed, parents and guardians are
+                welcome, and a recording is sent to everyone who registers.
+              </p>
+            </div>
+            <div className="fc-details">
+              <h3>Masterclass details</h3>
+              <Detail icon={<CalendarDays size={24} />} label="Date" value="Friday 20 November 2026" />
+              <Detail icon={<Clock3 size={24} />} label="Time" value="4:30 pm Irish time" />
+              <Detail icon={<Monitor size={24} />} label="Learning mode" value="Live online, from home" />
+              <Detail icon={<Users size={24} />} label="Audience" value="TY and senior-cycle students" />
+              <Detail icon={<Tag size={24} />} label="Fee" value="Free" />
+              <ReserveButton />
+            </div>
+          </div>
+        </section>
+
+        <section id="why" className="fc-section fc-wash">
+          <div className="fc-shell">
+            <Kicker>Why this matters</Kicker>
+            <div className="fc-why-head">
+              <h2 className="fc-title">The jobs today's students will hold are being <em>rewritten now.</em></h2>
+              <p className="fc-body-copy">
+                Medicine, law, finance, engineering and entrepreneurship will all look different by
+                the time they graduate. This session helps students see what is changing and where they fit.
+              </p>
+            </div>
+            <div className="fc-industries">
+              <div className="fc-industry"><span><HeartPulse /></span><strong>Medicine</strong></div>
+              <div className="fc-industry"><span><Scale /></span><strong>Law</strong></div>
+              <div className="fc-industry"><span><TrendingUp /></span><strong>Finance</strong></div>
+              <div className="fc-industry"><span><GraduationCap /></span><strong>Engineering</strong></div>
+              <div className="fc-industry"><span><Lightbulb /></span><strong>Entrepreneurship</strong></div>
+            </div>
+          </div>
+        </section>
+
+        <section className="fc-section">
+          <div className="fc-shell">
+            <Kicker>In 60 minutes</Kicker>
+            <h2 className="fc-title">What you will <em>do</em></h2>
+            <div className="fc-outcomes">
+              {outcomes.map((outcome, index) => (
+                <div className="fc-outcome" key={outcome}>
+                  <div className="fc-outcome-number">{String(index + 1).padStart(2, "0")}</div>
+                  <p>{outcome}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="challenge" className="fc-section fc-challenge">
+          <div className="fc-shell fc-challenge-grid">
+            <div className="fc-challenge-copy">
+              <Kicker light>The challenge</Kicker>
+              <h2>
+                <span>Invent a career</span>
+                <span>that <em>does not</em></span>
+                <span><em>exist yet.</em></span>
+              </h2>
+              <p>Name it, and tell us the real-world problem it solves. You will get the chance to share your idea live.</p>
+              <div className="fc-prize">[What the best ideas win or lead to]</div>
+            </div>
+            <div className="fc-career-wrap" aria-hidden="true">
+              <div className="fc-career-card">
+                <div className="fc-career-top"><span>Career card</span><img src={birdAsset.url} alt="" width="24" height="24" /></div>
+                <div className="fc-career-field">Name it</div>
+                <div className="fc-career-line">Your idea here</div>
+                <div className="fc-career-field">The real-world problem it solves</div>
+                <div className="fc-career-line" />
+                <div className="fc-career-line" />
+                <div className="fc-career-field">Share it live</div>
+                <div className="fc-career-line">Friday 20 November</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="dr-jojo" className="fc-section">
+          <div className="fc-shell">
+            <Kicker>Your masterclass lead</Kicker>
+            <h2 className="fc-title">Dr Jojo <em>O'Driscoll-Kearney</em></h2>
+            <p style={{ marginTop: 14, fontSize: 20, fontWeight: 700 }}>
+              Dean of Programmes, Learn with Leaders <span style={{ color: "var(--fc-muted)", fontWeight: 400 }}>· Harvard Business Impact faculty · Hult Professor</span>
+            </p>
+            <div className="fc-mentor-grid">
+              <div className="fc-mentor-image-col">
+                <div className="fc-mentor-image">
+                  <img src={jojoAsset.url} alt="Portrait of Dr Jojo O'Driscoll-Kearney" />
+                  <div className="fc-mentor-tag"><b>Dean of Programmes</b><span>Learn with Leaders</span></div>
+                </div>
+                <div className="fc-credentials">
+                  <span>PhD Leadership</span><span>Oxford MBA-F</span><span>Harvard Org. Psychology</span><span>WEF Council Member</span>
+                </div>
+              </div>
+              <div className="fc-mentor-copy">
+                <div className="fc-quote-mark" aria-hidden="true">“</div>
+                <blockquote>Young people don't need more lectures. They need someone to hand them the tools, name the problem, and step out of the way.</blockquote>
+                <p className="fc-body-copy">Dr Jojo O'Driscoll-Kearney is an Irish leadership educator with more than twenty years of experience across five continents. She has trained more than 50,000 leaders worldwide.</p>
+                <div className="fc-stats">
+                  <div className="fc-stat"><strong>20+</strong><span>years of experience</span></div>
+                  <div className="fc-stat"><strong>5</strong><span>continents</span></div>
+                  <div className="fc-stat"><strong>50,000+</strong><span>leaders trained</span></div>
+                </div>
+                <div className="fc-history">
+                  <div><b>Majid Al Futtaim</b><span>Former Chief Learning Officer</span></div>
+                  <div><b>Meta</b><span>Led global learning</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="watch" className="fc-section fc-wash">
+          <div className="fc-shell">
+            <Kicker>Watch and read</Kicker>
+            <h2 className="fc-title">Dr Jojo <em>in conversation</em></h2>
+            <div className="fc-watch-grid">
+              <div className="fc-video-col">
+                <a className="fc-video" href="#watch" aria-label="Watch the iVentiv interview on YouTube">
+                  <img src={jojoAsset.url} alt="" />
+                  <span className="fc-play"><Play size={26} fill="currentColor" /></span>
+                </a>
+                <h3>Change Ecosystems, Rapid Reskilling, and Leaders of the Future</h3>
+                <p>iVentiv interview with Jay Moore, former Chief Learning Officer at GE · <a href="#watch">Watch on YouTube →</a></p>
+              </div>
+              <div className="fc-featured">
+                <div className="fc-featured-label">Featured in</div>
+                <a className="fc-feature" href="#watch"><strong>Chief Learning Officer →</strong><span>Learning Insights: Jo Kearney champions impactful, science-based learning · May 2024</span></a>
+                <a className="fc-feature" href="#watch"><strong>Chief Talent Officer →</strong><span>Talent Insights: Jojo Kearney shapes global talent management with communication and empathy · September 2024</span></a>
+                <a className="fc-feature" href="#watch"><strong>Peoplefirst HR Magazine →</strong><span>Hot Seat interview</span></a>
+                <a className="fc-feature" href="#watch"><strong>Harvard Extension School →</strong><span>Career Path Spotlight webinar: Consulting and Organizational Development</span></a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="reviews" className="fc-section">
+          <div className="fc-shell">
+            <Kicker>Thank-you notes · Students</Kicker>
+            <h2 className="fc-title fc-reviews-intro">What students wrote <em>afterwards</em></h2>
+            <p className="fc-body-copy fc-reviews-intro">Handwritten notes to Dr Jojo from students on her Communication & Leadership Programme.</p>
+            <div className="fc-reviews">
+              {reviews.map(([quote, name, role]) => (
+                <figure className="fc-review" key={name}>
+                  <div className="fc-quote-mark" aria-hidden="true">“</div>
+                  <blockquote>{quote}</blockquote>
+                  <figcaption><b>{name}</b><span>{role}</span></figcaption>
+                </figure>
+              ))}
+            </div>
+            <a className="fc-review-link" href="#reviews">Read every note and all learner feedback →</a>
+          </div>
+        </section>
+
+        <section className="fc-section fc-wash">
+          <div className="fc-shell fc-audiences">
+            <div className="fc-audience">
+              <div className="fc-audience-label">Who it is for</div>
+              <h3>Transition Year and senior-cycle students</h3>
+              <p>No prior AI knowledge needed. Parents and guardians are welcome to join.</p>
+            </div>
+            <div className="fc-audience">
+              <div className="fc-audience-label">For schools</div>
+              <h3>Nothing for the school to organise</h3>
+              <p>Share this page with your students and parents through your newsletter or school app. Students register individually and join from home.</p>
+              <p>Questions: <a href="mailto:team@learnwithleaders.com">team@learnwithleaders.com</a></p>
+            </div>
+          </div>
+        </section>
+
+        <section id="faq" className="fc-section">
+          <div className="fc-shell fc-faq-grid">
+            <div className="fc-faq-heading">
+              <Kicker>Frequently asked questions</Kicker>
+              <h2 className="fc-title">Good to <em>know</em></h2>
+            </div>
+            <div className="fc-faq-list">
+              <div className="fc-faq"><h3>Is it really free?</h3><p>Yes. There is no cost to attend.</p></div>
+              <div className="fc-faq"><h3>What do I need?</h3><p>A laptop or phone, and a notebook.</p></div>
+              <div className="fc-faq"><h3>Where does it happen?</h3><p>Live online on <span className="fc-platform">[platform]</span>. You will receive the link by email after registering.</p></div>
+              <div className="fc-faq"><h3>Can parents join?</h3><p>Yes, parents and guardians are welcome.</p></div>
+              <div className="fc-faq"><h3>What if I cannot make it live?</h3><p>Register anyway and we will send the recording.</p></div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="fc-footer">
+        <div className="fc-shell fc-footer-grid">
+          <div className="fc-footer-brand">
+            <img src={lightLogoAsset.url} alt="Learn with Leaders" />
+            <p>Running programmes for young people since 2004, with schools in over 100 countries.</p>
+          </div>
+          <div className="fc-footer-links">
+            <b>Why us</b>
+            <a href="https://www.learnwithleaders.com">About Learn with Leaders</a>
+            <a href="https://www.learnwithleaders.com">Testimonials</a>
+            <a href="https://www.learnwithleaders.com">Programme finder</a>
+          </div>
+          <div className="fc-footer-links">
+            <b>Talk to us</b>
+            <a href="mailto:team@learnwithleaders.com">team@learnwithleaders.com</a>
+            <a href="https://www.learnwithleaders.com">Book a call</a>
+            <a href="https://www.learnwithleaders.com">www.learnwithleaders.com</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
