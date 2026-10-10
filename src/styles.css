@@ -245,12 +245,12 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  :is(h1, h2, h3, h4, h5, h6) {
+  :is(h1, h2, h3, h4, h5, h6):not(.sl-page *) {
     font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
     font-style: normal !important;
   }
 
-  :is(h1, h2, h3, h4, h5, h6) :is(em, i) {
+  :is(h1, h2, h3, h4, h5, h6):not(.sl-page *) :is(em, i) {
     font-style: normal !important;
   }
 
@@ -682,12 +682,12 @@
    script or decorative serif faces (including imported pages).
    Icon fonts and monospace labels are left alone.
    ============================================================ */
-body :where(*):not(.admin-shell, .admin-shell *, .future-careers-page, .future-careers-page *, .fa, .fas, .far, .fab, .fa-solid, .fa-brands, .fa-regular, [class^="fa-"], [class*=" fa-"], [class*="icon"], code, pre, kbd, .font-mono, .mono-label, svg, svg *) {
+body :where(*):not(.admin-shell, .admin-shell *, .future-careers-page, .future-careers-page *, .sl-page, .sl-page *, .fa, .fas, .far, .fab, .fa-solid, .fa-brands, .fa-regular, [class^="fa-"], [class*=" fa-"], [class*="icon"], code, pre, kbd, .font-mono, .mono-label, svg, svg *) {
   font-family: "Poppins", ui-sans-serif, system-ui, sans-serif !important;
   font-style: normal !important;
 }
-body :is(h1, h2, h3, h4, h5, h6, .font-display, .font-serif, .font-serif-display, .font-georgia, .font-script):not(.admin-shell, .admin-shell *, .future-careers-page *),
-body :is(h1, h2, h3, h4, h5, h6):not(.admin-shell, .admin-shell *, .future-careers-page *) *:not(svg, svg *, [class*="icon"], [class*=" fa-"]) {
+body :is(h1, h2, h3, h4, h5, h6, .font-display, .font-serif, .font-serif-display, .font-georgia, .font-script):not(.admin-shell, .admin-shell *, .future-careers-page *, .sl-page *),
+body :is(h1, h2, h3, h4, h5, h6):not(.admin-shell, .admin-shell *, .future-careers-page *, .sl-page *) *:not(svg, svg *, [class*="icon"], [class*=" fa-"]) {
   font-family: "Poppins", ui-sans-serif, system-ui, sans-serif !important;
   font-style: normal !important;
 }
