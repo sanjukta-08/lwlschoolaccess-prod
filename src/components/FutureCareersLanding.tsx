@@ -308,12 +308,12 @@ export function FutureCareersLanding() {
             <h2 className="fc-title">Dr Jojo <em>in conversation</em></h2>
             <div className="fc-watch-grid">
               <div className="fc-video-col">
-                <a className="fc-video" href="#watch" aria-label="Watch the iVentiv interview on YouTube">
+                <a className="fc-video" href="https://www.youtube.com/watch?v=ZBnrvbMuM5U" target="_blank" rel="noopener noreferrer" aria-label="Watch the iVentiv interview on YouTube">
                   <img src={jojoAsset.url} alt="" />
                   <span className="fc-play"><Play size={26} fill="currentColor" /></span>
                 </a>
                 <h3>Change Ecosystems, Rapid Reskilling, and Leaders of the Future</h3>
-                <p>iVentiv interview with Jay Moore, former Chief Learning Officer at GE · <a href="#watch">Watch on YouTube →</a></p>
+                <p>iVentiv interview with Jay Moore, former Chief Learning Officer at GE · <a href="https://www.youtube.com/watch?v=ZBnrvbMuM5U" target="_blank" rel="noopener noreferrer">Watch on YouTube →</a></p>
               </div>
               <div className="fc-featured">
                 <div className="fc-featured-label">Featured in</div>
