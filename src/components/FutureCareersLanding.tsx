@@ -102,10 +102,8 @@ export function FutureCareersLanding() {
       <main>
         <section className="fc-hero">
           <div className="fc-hero-bg" aria-hidden="true">
-            <span className="fc-hero-halo" />
-            <span className="fc-hero-arc-wide" />
-            <span className="fc-hero-arc" />
-          </div>
+        <span className="fc-hero-halo" />
+      </div>
           <div className="fc-shell fc-hero-inner">
             <div className="fc-hero-body">
               <div className="fc-hero-copy">
