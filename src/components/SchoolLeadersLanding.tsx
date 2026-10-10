@@ -265,8 +265,8 @@ export function SchoolLeadersLanding() {
           <div>
             <div className="sl-label">Why us</div>
             <Link to="/about">About Learn with Leaders</Link>
-            <Link to="/testimonials">Testimonials</Link>
-            <Link to="/finder">Programme finder</Link>
+            <Link to="/testimonials" search={{} as never}>Testimonials</Link>
+            <Link to="/finder" search={{} as never}>Programme finder</Link>
           </div>
           <div>
             <div className="sl-label">Talk to us</div>

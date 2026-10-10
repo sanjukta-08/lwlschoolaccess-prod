@@ -151,3 +151,9 @@
   .sl-btn { width: 100%; }
   .sl-nav .sl-btn { width: auto; }
 }
+
+/* Win over the site-wide Poppins rules on this page only. */
+.sl-page, .sl-page :is(p, a, span, li, div, dt, dd, strong, figcaption, nav) { font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif !important; }
+.sl-page :is(h1, h2, h3, blockquote, .sl-num, .sl-video-text strong),
+.sl-page :is(h1, h2, h3) :is(em, span) { font-family: var(--sl-serif) !important; }
+.sl-page :is(h1, h2, h3) em, .sl-page .sl-quote { font-style: italic !important; }
