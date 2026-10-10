@@ -319,8 +319,16 @@
 .fc-closing-inner .fc-title { max-width: 820px; margin: 0; }
 .fc-closing-meta { margin: 0; color: var(--fc-muted, #5a4a46); }
 
-/* Wide screens: larger robot, flush in the bottom-right corner */
+/* Wide screens: hero fills the viewport below the nav; robot scales with screen height, flush bottom-right */
 @media (min-width: 1100px) {
-  .fc-hero { --fc-robot-h: clamp(170px, 14.5vw, 230px); }
+  .fc-hero {
+    --fc-robot-h: clamp(220px, 34vh, 360px);
+    min-height: calc(100svh - 78px);
+    display: flex;
+    flex-direction: column;
+    padding-block: clamp(20px, 4vh, 44px) calc(var(--fc-robot-h) * 0.45 + 16px);
+  }
+  .fc-hero-inner { flex: 1; display: flex; flex-direction: column; justify-content: center; width: 100%; }
   .fc-hero-robot { right: clamp(4px, 1vw, 18px); bottom: 0; }
+  .fc-meta { padding-right: calc(var(--fc-robot-h) * 1.05); }
 }
