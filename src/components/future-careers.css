@@ -293,4 +293,5 @@
 }
 
 /* For schools card: the classroom photo is portrait, so frame the screen and teacher */
-.fc-audience-photo--class { object-position: 50% 32%; }
+/* The classroom photo is a tall portrait; frame it on the teacher and the seated students. */
+.fc-audience-photo--class { object-position: 50% 53%; }
