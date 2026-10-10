@@ -47,14 +47,14 @@
 .fc-nav a:hover { color: var(--fc-crimson); }
 
 .fc-hero {
-  --fc-robot-h: clamp(118px, 12vw, 168px);
+  --fc-robot-h: clamp(96px, 9.5vw, 132px);
   position: relative;
   overflow: hidden;
   background:
     radial-gradient(120% 84% at 50% 118%, rgb(198 161 54 / .30) 0%, rgb(198 161 54 / .12) 42%, transparent 68%),
     radial-gradient(90% 60% at 50% 136%, rgb(165 28 48 / .18) 0%, transparent 64%),
     linear-gradient(180deg, #fff 0%, var(--fc-wash) 40%, #f4e4dd 100%);
-  padding-block: 18px calc(var(--fc-robot-h) + clamp(14px, 2vw, 24px));
+  padding-block: 18px calc(var(--fc-robot-h) + clamp(40px, 4vw, 46px));
   border-bottom: 1px solid var(--fc-line);
 }
 .fc-hero::before {
@@ -87,7 +87,7 @@
 .fc-hero-robot {
   position: absolute;
   right: clamp(14px, 3.5vw, 64px);
-  bottom: -4px;
+  bottom: clamp(12px, 1.4vw, 18px);
   height: var(--fc-robot-h);
   z-index: 2;
   pointer-events: none;
