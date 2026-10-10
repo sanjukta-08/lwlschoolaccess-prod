@@ -294,3 +294,6 @@
   .fc-hero-icon.fc-icon-1 { left: 4%; top: 10%; }
   .fc-hero-icon.fc-icon-3 { right: 4%; top: 8%; }
 }
+
+/* For schools card: the classroom photo is portrait, so frame the screen and teacher */
+.fc-audience-photo--class { object-position: 50% 32%; }

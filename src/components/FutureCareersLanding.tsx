@@ -22,6 +22,7 @@ import graduationGroupAsset from "@/assets/future-careers/graduation-group.jpg.a
 import graduationStageAsset from "@/assets/future-careers/graduation-stage.png.asset.json";
 import jojoRedAsset from "@/assets/future-careers/dr-jojo-red.jpg.asset.json";
 import awardAsset from "@/assets/future-careers/award-ceremony.jpg.asset.json";
+import schoolsClassAsset from "@/assets/future-careers/for-schools-classroom.png.asset.json";
 import "@fontsource/lato/latin-400.css";
 import "@fontsource/lato/latin-700.css";
 import "@fontsource/playfair-display/latin-400.css";
@@ -347,9 +348,9 @@ export function FutureCareersLanding() {
             </div>
             <div className="fc-audience">
               <img
-                className="fc-audience-photo"
-                src={graduationGroupAsset.url}
-                alt="Students in graduation gowns on stage at a Learn with Leaders ceremony"
+                className="fc-audience-photo fc-audience-photo--class"
+                src={schoolsClassAsset.url}
+                alt="A teacher presenting to students with laptops in a modern classroom with a large wall screen"
               />
               <div className="fc-audience-body">
                 <div className="fc-audience-label">For schools</div>
