@@ -212,3 +212,9 @@
   .fc-review { min-height: 0; }
   .fc-footer-grid { flex-direction: column; }
 }
+
+/* Wide screens: let the layout breathe out instead of leaving large empty margins */
+@media (min-width: 1440px) {
+  .fc-shell { max-width: min(92vw, 1680px); }
+  .fc-hero-copy { width: min(44vw, 700px); }
+}
