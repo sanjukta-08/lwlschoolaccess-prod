@@ -157,14 +157,16 @@ export function FutureCareersLanding() {
               <Kicker>Free live masterclass</Kicker>
               <h2 className="fc-title">About this <em>programme</em></h2>
               <p className="fc-body-copy">
-                Future Careers in the Age of AI is a free, 60-minute live online masterclass for
-                Transition Year and senior-cycle students, led by Dr Jojo O'Driscoll-Kearney.
+                A free, 60-minute live online masterclass for Transition Year and senior-cycle
+                students, led by Dr Jojo O'Driscoll-Kearney, on how AI is reshaping work and the
+                leadership skills you will need. No prior AI knowledge needed.
               </p>
-              <p className="fc-body-copy">
-                It looks at how AI is reshaping work, the careers now emerging, and the leadership
-                skills you will need. No prior AI knowledge is needed, parents and guardians are
-                welcome, and a recording is sent to everyone who registers.
-              </p>
+              <figure className="fc-photo fc-about-photo">
+                <img
+                  src={graduationGroupAsset.url}
+                  alt="Learn with Leaders students in graduation gowns holding their certificates on stage in front of the Harvard crest"
+                />
+              </figure>
             </div>
             <div className="fc-details">
               <h3>Masterclass details</h3>
@@ -175,14 +177,6 @@ export function FutureCareersLanding() {
               <Detail icon={<Tag size={24} />} label="Fee" value="Free" />
               <ReserveButton />
             </div>
-          </div>
-          <div className="fc-shell">
-            <figure className="fc-photo">
-              <img
-                src={graduationGroupAsset.url}
-                alt="Learn with Leaders students in graduation gowns holding their certificates on stage in front of the Harvard crest"
-              />
-            </figure>
           </div>
         </section>
 
@@ -264,14 +258,11 @@ export function FutureCareersLanding() {
             <div className="fc-mentor-grid">
               <div className="fc-mentor-image-col">
                 <div className="fc-mentor-image">
-                  <img src={jojoAsset.url} alt="Portrait of Dr Jojo O'Driscoll-Kearney" />
+                  <img src={jojoRedAsset.url} alt="Portrait of Dr Jojo O'Driscoll-Kearney" />
                   <div className="fc-mentor-tag"><b>Dean of Programmes</b><span>Learn with Leaders</span></div>
                 </div>
                 <div className="fc-credentials">
                   <span>PhD Leadership</span><span>Oxford MBA-F</span><span>Harvard Org. Psychology</span><span>WEF Council Member</span>
-                </div>
-                <div className="fc-mentor-image fc-mentor-image-alt">
-                  <img src={jojoRedAsset.url} alt="Portrait of Dr Jojo O'Driscoll-Kearney" />
                 </div>
               </div>
               <div className="fc-mentor-copy">
@@ -319,7 +310,7 @@ export function FutureCareersLanding() {
         <section id="reviews" className="fc-section">
           <div className="fc-shell">
             <Kicker>Thank-you notes · Students</Kicker>
-            <h2 className="fc-title fc-reviews-intro">What students wrote <em>afterwards</em></h2>
+            <h2 className="fc-title fc-reviews-title">What students wrote <em>afterwards</em></h2>
             <p className="fc-body-copy fc-reviews-intro">Handwritten notes to Dr Jojo from students on her Communication & Leadership Programme.</p>
             <div className="fc-reviews">
               {HANDWRITTEN_NOTES.map((note) => (
@@ -343,8 +334,8 @@ export function FutureCareersLanding() {
             <div className="fc-audience">
               <img
                 className="fc-audience-photo"
-                src={graduationGroupAsset.url}
-                alt="Students in graduation gowns on stage at a Learn with Leaders ceremony"
+                src={awardAsset.url}
+                alt="Dr Jojo receiving an award at the Majid Al Futtaim Leadership Development Programmes ceremony"
               />
               <div className="fc-audience-label">Who it is for</div>
               <h3>Transition Year and senior-cycle students</h3>
@@ -353,8 +344,8 @@ export function FutureCareersLanding() {
             <div className="fc-audience">
               <img
                 className="fc-audience-photo"
-                src={awardAsset.url}
-                alt="Dr Jojo receiving an award at the Majid Al Futtaim Leadership Development Programmes ceremony"
+                src={graduationGroupAsset.url}
+                alt="Students in graduation gowns on stage at a Learn with Leaders ceremony"
               />
               <div className="fc-audience-label">For schools</div>
               <h3>Nothing for the school to organise</h3>
