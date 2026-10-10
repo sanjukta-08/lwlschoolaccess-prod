@@ -330,4 +330,5 @@
   }
   .fc-hero-inner { flex: 1; display: flex; flex-direction: column; justify-content: center; width: 100%; }
   .fc-hero-robot { right: clamp(4px, 1vw, 18px); bottom: 0; }
+  .fc-meta { padding-right: calc(var(--fc-robot-h) * 1.05); }
 }
