@@ -227,6 +227,8 @@
   .fc-history span { display: block; margin-top: 4px; }
   .fc-review { min-height: 0; }
   .fc-footer-grid { flex-direction: column; }
+  .fc-credentials { flex-wrap: wrap; white-space: normal; justify-content: center; row-gap: 8px; }
+  .fc-credentials span { font-size: 14px; padding: 6px 12px; }
 }
 
 /* Wide screens: let the layout breathe out instead of leaving large empty margins */
