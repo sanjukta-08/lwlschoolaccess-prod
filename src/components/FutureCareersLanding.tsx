@@ -21,6 +21,7 @@ import graduationStageAsset from "@/assets/future-careers/graduation-stage.png.a
 import jojoRedAsset from "@/assets/future-careers/dr-jojo-red.jpg.asset.json";
 import awardAsset from "@/assets/future-careers/award-ceremony.jpg.asset.json";
 import schoolsClassAsset from "@/assets/future-careers/for-schools-classroom.png.asset.json";
+import aiRobotAsset from "@/assets/future-careers/ai-robot.png";
 import "@fontsource/lato/latin-400.css";
 import "@fontsource/lato/latin-700.css";
 import "@fontsource/playfair-display/latin-400.css";
@@ -100,6 +101,9 @@ export function FutureCareersLanding() {
 
       <main>
         <section className="fc-hero">
+          <div className="fc-hero-bg" aria-hidden="true">
+        <span className="fc-hero-halo" />
+      </div>
           <div className="fc-shell fc-hero-inner">
             <div className="fc-hero-body">
               <div className="fc-hero-copy">
@@ -134,6 +138,16 @@ export function FutureCareersLanding() {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="fc-hero-robot" aria-hidden="true">
+            <img
+              src={aiRobotAsset}
+              alt=""
+              width={1024}
+              height={1024}
+              loading="eager"
+              decoding="async"
+            />
           </div>
         </section>
 
