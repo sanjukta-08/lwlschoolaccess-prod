@@ -149,6 +149,15 @@ export function FutureCareersLanding() {
               </div>
             </div>
           </div>
+          <div className="fc-hero-strip" aria-hidden="true">
+            <div className="fc-hero-strip-track">
+              {[0, 1].map((copy) => (
+                <span key={copy} className="fc-hero-strip-set">
+                  Medicine · Law · Finance · Engineering · Entrepreneurship · Design · Media · Technology ·&nbsp;
+                </span>
+              ))}
+            </div>
+          </div>
         </section>
 
         <section id="about" className="fc-section">
