@@ -46,10 +46,78 @@
 .fc-nav a { color: var(--fc-ink); font-size: 17px; font-weight: 600; padding-block: 12px; text-decoration: none; }
 .fc-nav a:hover { color: var(--fc-crimson); }
 
-.fc-hero { position: relative; overflow: hidden; background: var(--fc-wash); padding-block: 28px 42px; border-bottom: 1px solid var(--fc-line); }
-.fc-hero-inner { position: relative; z-index: 2; }
+.fc-hero {
+  --fc-robot-h: clamp(158px, 17vw, 214px);
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 84% at 50% 118%, rgb(198 161 54 / .30) 0%, rgb(198 161 54 / .12) 42%, transparent 68%),
+    radial-gradient(90% 60% at 50% 136%, rgb(165 28 48 / .18) 0%, transparent 64%),
+    linear-gradient(180deg, #fff 0%, var(--fc-wash) 40%, #f4e4dd 100%);
+  padding-block: 20px calc(var(--fc-robot-h) + clamp(26px, 5vw, 46px));
+  border-bottom: 1px solid var(--fc-line);
+}
+.fc-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: radial-gradient(circle, rgb(165 28 48 / .16) 1px, transparent 1.4px);
+  background-size: 30px 30px;
+  -webkit-mask-image: radial-gradient(84% 68% at 50% 114%, #000 0%, rgb(0 0 0 / .45) 44%, transparent 78%);
+  mask-image: radial-gradient(84% 68% at 50% 114%, #000 0%, rgb(0 0 0 / .45) 44%, transparent 78%);
+}
+.fc-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 52%, #000 78%);
+  mask-image: linear-gradient(to bottom, transparent 0%, transparent 52%, #000 78%);
+}
+.fc-hero-halo {
+  position: absolute;
+  left: 50%;
+  bottom: -14%;
+  width: clamp(320px, 42vw, 560px);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(242 212 139 / .7) 0%, rgb(242 212 139 / .28) 40%, transparent 66%);
+}
+.fc-hero-arc {
+  position: absolute;
+  left: 50%;
+  bottom: -9%;
+  width: clamp(300px, 38vw, 500px);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border: 1px solid rgb(198 161 54 / .5);
+  border-radius: 50%;
+}
+.fc-hero-arc-wide {
+  position: absolute;
+  left: 50%;
+  bottom: -22%;
+  width: clamp(520px, 66vw, 900px);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border: 1px solid rgb(198 161 54 / .32);
+  border-radius: 50%;
+}
+.fc-hero-robot {
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  height: var(--fc-robot-h);
+  transform: translateX(-50%);
+  z-index: 2;
+  pointer-events: none;
+}
+.fc-hero-robot img { display: block; height: 100%; width: auto; }
+.fc-hero-inner { position: relative; z-index: 3; }
 .fc-hero-body { display: block; }
-.fc-hero-copy { position: relative; z-index: 2; width: min(100%, 1000px); margin-inline: auto; text-align: center; }
+.fc-hero-copy { position: relative; z-index: 3; width: min(100%, 1000px); margin-inline: auto; text-align: center; }
 .fc-badge { display: inline-block; color: var(--fc-crimson); font-size: 13px; font-weight: 700; letter-spacing: 0; line-height: 1.4; text-transform: uppercase; }
 .fc-hero h1 { margin: 18px 0 0; font-size: 80px; font-weight: 700; line-height: 1.1; }
 .fc-hero h1 > span { display: block; white-space: nowrap; }
@@ -208,7 +276,7 @@
   .fc-header-inner { min-height: 68px; }
   .fc-header-logo { height: 38px; }
   .fc-header .fc-btn { padding-inline: 16px; font-size: 14px; }
-  .fc-hero { padding-block: 24px 32px; }
+  .fc-hero { padding-block: 24px calc(var(--fc-robot-h) + 26px); }
   .fc-hero h1 { font-size: 30px; }
   .fc-hero-lead { font-size: 18px; }
   .fc-hero-role { font-size: 14px; }
