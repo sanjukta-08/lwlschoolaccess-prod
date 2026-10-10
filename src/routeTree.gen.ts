@@ -53,6 +53,7 @@ import { Route as WeekWithoutWallsKingsRouteImport } from './routes/week-without
 import { Route as AdminSessionsIndexRouteImport } from './routes/admin.sessions.index'
 import { Route as AdminSessionsIdRouteImport } from './routes/admin.sessions.$id'
 import { Route as ApiPublicTrackRelayRouteImport } from './routes/api/public/track-relay'
+import { Route as MasterclassLeadersAgeOfAiRouteImport } from './routes/masterclass.leaders.age-of-ai'
 import { Route as MasterclassStudentsAgeOfAiRouteImport } from './routes/masterclass.students.age-of-ai'
 import { Route as OurOfferingsConferencesSlugRouteImport } from './routes/our-offerings.conferences.$slug'
 import { Route as WeekWithoutWallsKingsIndexRouteImport } from './routes/week-without-walls.kings.index'
@@ -286,6 +287,12 @@ const ApiPublicTrackRelayRoute = ApiPublicTrackRelayRouteImport.update({
   path: '/api/public/track-relay',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MasterclassLeadersAgeOfAiRoute =
+  MasterclassLeadersAgeOfAiRouteImport.update({
+    id: '/masterclass/leaders/age-of-ai',
+    path: '/masterclass/leaders/age-of-ai',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const MasterclassStudentsAgeOfAiRoute =
   MasterclassStudentsAgeOfAiRouteImport.update({
     id: '/masterclass/students/age-of-ai',
@@ -355,6 +362,7 @@ export interface FileRoutesByFullPath {
   '/masterclasses/': typeof MasterclassesIndexRoute
   '/admin/sessions/$id': typeof AdminSessionsIdRoute
   '/api/public/track-relay': typeof ApiPublicTrackRelayRoute
+  '/masterclass/leaders/age-of-ai': typeof MasterclassLeadersAgeOfAiRoute
   '/masterclass/students/age-of-ai': typeof MasterclassStudentsAgeOfAiRoute
   '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
   '/week-without-walls/kings/$programSlug': typeof WeekWithoutWallsKingsProgramSlugRoute
@@ -399,6 +407,7 @@ export interface FileRoutesByTo {
   '/masterclasses': typeof MasterclassesIndexRoute
   '/admin/sessions/$id': typeof AdminSessionsIdRoute
   '/api/public/track-relay': typeof ApiPublicTrackRelayRoute
+  '/masterclass/leaders/age-of-ai': typeof MasterclassLeadersAgeOfAiRoute
   '/masterclass/students/age-of-ai': typeof MasterclassStudentsAgeOfAiRoute
   '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
   '/week-without-walls/kings/$programSlug': typeof WeekWithoutWallsKingsProgramSlugRoute
@@ -450,6 +459,7 @@ export interface FileRoutesById {
   '/masterclasses/': typeof MasterclassesIndexRoute
   '/admin/sessions/$id': typeof AdminSessionsIdRoute
   '/api/public/track-relay': typeof ApiPublicTrackRelayRoute
+  '/masterclass/leaders/age-of-ai': typeof MasterclassLeadersAgeOfAiRoute
   '/masterclass/students/age-of-ai': typeof MasterclassStudentsAgeOfAiRoute
   '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
   '/week-without-walls/kings/$programSlug': typeof WeekWithoutWallsKingsProgramSlugRoute
@@ -502,6 +512,7 @@ export interface FileRouteTypes {
     | '/masterclasses/'
     | '/admin/sessions/$id'
     | '/api/public/track-relay'
+    | '/masterclass/leaders/age-of-ai'
     | '/masterclass/students/age-of-ai'
     | '/our-offerings/conferences/$slug'
     | '/week-without-walls/kings/$programSlug'
@@ -546,6 +557,7 @@ export interface FileRouteTypes {
     | '/masterclasses'
     | '/admin/sessions/$id'
     | '/api/public/track-relay'
+    | '/masterclass/leaders/age-of-ai'
     | '/masterclass/students/age-of-ai'
     | '/our-offerings/conferences/$slug'
     | '/week-without-walls/kings/$programSlug'
@@ -596,6 +608,7 @@ export interface FileRouteTypes {
     | '/masterclasses/'
     | '/admin/sessions/$id'
     | '/api/public/track-relay'
+    | '/masterclass/leaders/age-of-ai'
     | '/masterclass/students/age-of-ai'
     | '/our-offerings/conferences/$slug'
     | '/week-without-walls/kings/$programSlug'
@@ -628,6 +641,7 @@ export interface RootRouteChildren {
   ConferenceSlugRoute: typeof ConferenceSlugRoute
   ProgrammesSlugRoute: typeof ProgrammesSlugRoute
   ApiPublicTrackRelayRoute: typeof ApiPublicTrackRelayRoute
+  MasterclassLeadersAgeOfAiRoute: typeof MasterclassLeadersAgeOfAiRoute
   MasterclassStudentsAgeOfAiRoute: typeof MasterclassStudentsAgeOfAiRoute
   OurOfferingsConferencesSlugRoute: typeof OurOfferingsConferencesSlugRoute
 }
@@ -942,6 +956,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicTrackRelayRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/masterclass/leaders/age-of-ai': {
+      id: '/masterclass/leaders/age-of-ai'
+      path: '/masterclass/leaders/age-of-ai'
+      fullPath: '/masterclass/leaders/age-of-ai'
+      preLoaderRoute: typeof MasterclassLeadersAgeOfAiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/masterclass/students/age-of-ai': {
       id: '/masterclass/students/age-of-ai'
       path: '/masterclass/students/age-of-ai'
@@ -1112,6 +1133,7 @@ const rootRouteChildren: RootRouteChildren = {
   ConferenceSlugRoute: ConferenceSlugRoute,
   ProgrammesSlugRoute: ProgrammesSlugRoute,
   ApiPublicTrackRelayRoute: ApiPublicTrackRelayRoute,
+  MasterclassLeadersAgeOfAiRoute: MasterclassLeadersAgeOfAiRoute,
   MasterclassStudentsAgeOfAiRoute: MasterclassStudentsAgeOfAiRoute,
   OurOfferingsConferencesSlugRoute: OurOfferingsConferencesSlugRoute,
 }
