@@ -147,8 +147,8 @@
 .fc-feature span { display: block; margin-top: 6px; color: var(--fc-body); font-size: 17px; }
 
 .fc-reviews-intro { max-width: 32em; }
-.fc-reviews { margin-top: clamp(20px, 2.2vw, 30px); display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.fc-review { min-height: 245px; display: flex; flex-direction: column; gap: 22px; margin: 0; padding: 30px; border: 1px solid #ede5d3; border-radius: 10px; background: #fefdf8; box-sizing: border-box; }
+.fc-reviews { margin-top: clamp(20px, 2.2vw, 30px); display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(30px, 3vw, 46px); }
+.fc-review { min-height: 245px; display: flex; flex-direction: column; gap: 22px; margin: 0; padding: 30px; border: 1.5px solid #cbbda0; border-radius: 10px; background: #fefdf8; box-shadow: 0 10px 26px -18px rgba(60, 30, 20, 0.35); box-sizing: border-box; }
 .fc-review blockquote { margin: 0; font-size: 22px; line-height: 1.4; }
 .fc-review figcaption { margin-top: auto; }
 .fc-review figcaption b, .fc-review figcaption span { display: block; }
