@@ -110,12 +110,8 @@ export function FutureCareersLanding() {
           <div className="fc-hero-decor" aria-hidden="true">
             <span className="fc-orb fc-orb-a" />
             <span className="fc-orb fc-orb-b" />
-            <span className="fc-hero-icon fc-icon-1"><HeartPulse /></span>
-            <span className="fc-hero-icon fc-icon-2"><Scale /></span>
-            <span className="fc-hero-icon fc-icon-3"><TrendingUp /></span>
-            <span className="fc-hero-icon fc-icon-4"><GraduationCap /></span>
-            <span className="fc-hero-icon fc-icon-5"><Lightbulb /></span>
-            <span className="fc-hero-icon fc-icon-6"><Sparkles /></span>
+            <span className="fc-ring fc-ring-a" />
+            <span className="fc-ring fc-ring-b" />
           </div>
           <div className="fc-shell fc-hero-inner">
             <div className="fc-hero-body">
@@ -151,6 +147,15 @@ export function FutureCareersLanding() {
                   <span><Users size={22} color="var(--fc-crimson)" />Parents welcome</span>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="fc-hero-strip" aria-hidden="true">
+            <div className="fc-hero-strip-track">
+              {[0, 1].map((copy) => (
+                <span key={copy} className="fc-hero-strip-set">
+                  Medicine · Law · Finance · Engineering · Entrepreneurship · Design · Media · Technology ·&nbsp;
+                </span>
+              ))}
             </div>
           </div>
         </section>
