@@ -47,7 +47,7 @@
 .fc-nav a:hover { color: var(--fc-crimson); }
 
 .fc-hero {
-  --fc-robot-h: clamp(130px, 12vw, 175px);
+  --fc-robot-h: clamp(150px, 14vw, 200px);
   position: relative;
   overflow: hidden;
   background:
@@ -322,14 +322,14 @@
 /* Wide screens: hero fills the viewport below the nav; robot scales with screen height, flush bottom-right */
 @media (min-width: 1100px) {
   .fc-hero {
-    --fc-robot-h: clamp(220px, 34vh, 360px);
+    --fc-robot-h: clamp(250px, 40vh, 430px);
     min-height: calc(100svh - 78px);
     display: flex;
     flex-direction: column;
-    padding-block: clamp(20px, 4vh, 44px) calc(var(--fc-robot-h) * 0.45 + 16px);
+    padding-block: clamp(20px, 4vh, 44px) clamp(12px, 2vh, 20px);
   }
   .fc-hero-inner { flex: 1; display: flex; flex-direction: column; justify-content: center; width: 100%; }
   .fc-hero-robot { right: clamp(4px, 1vw, 18px); bottom: 0; }
   /* Keep the info line centred on the page; cap its width symmetrically so it clears the robot */
-  .fc-meta { max-width: calc(100% - var(--fc-robot-h) * 1.4); margin-inline: auto; }
+  .fc-meta { max-width: calc(100% - var(--fc-robot-h) * 1.75); margin-inline: auto; }
 }
