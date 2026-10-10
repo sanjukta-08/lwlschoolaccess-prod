@@ -170,22 +170,22 @@ export function FutureCareersLanding() {
                 students, led by Dr Jojo O'Driscoll-Kearney, on how AI is reshaping work and the
                 leadership skills you will need. No prior AI knowledge needed.
               </p>
-              <figure className="fc-photo fc-about-photo">
-                <img
-                  src={graduationGroupAsset.url}
-                  alt="Learn with Leaders students in graduation gowns holding their certificates on stage in front of the Harvard crest"
-                />
-              </figure>
             </div>
             <div className="fc-details">
               <h3>Masterclass details</h3>
-              <Detail icon={<CalendarDays size={24} />} label="Date" value="Friday 20 November 2026" />
-              <Detail icon={<Clock3 size={24} />} label="Time" value="4:30 pm Irish time" />
-              <Detail icon={<Monitor size={24} />} label="Learning mode" value="Live online, from home" />
-              <Detail icon={<Users size={24} />} label="Audience" value="TY and senior-cycle students" />
-              <Detail icon={<Tag size={24} />} label="Fee" value="Free" />
+              <Detail icon={<CalendarDays size={22} />} label="Date" value="Friday 20 November 2026" />
+              <Detail icon={<Clock3 size={22} />} label="Time" value="4:30 pm Irish time" />
+              <Detail icon={<Monitor size={22} />} label="Learning mode" value="Live online, from home" />
+              <Detail icon={<Users size={22} />} label="Audience" value="TY and senior-cycle students" />
+              <Detail icon={<Tag size={22} />} label="Fee" value="Free" />
               <ReserveButton />
             </div>
+            <figure className="fc-photo fc-about-photo">
+              <img
+                src={graduationGroupAsset.url}
+                alt="Learn with Leaders students in graduation gowns holding their certificates on stage in front of the Harvard crest"
+              />
+            </figure>
           </div>
         </section>
 
