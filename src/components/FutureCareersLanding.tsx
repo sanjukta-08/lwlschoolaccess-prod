@@ -7,7 +7,6 @@ import {
   Monitor,
   Play,
   Scale,
-  Sparkles,
   Tag,
   TrendingUp,
   Users,
@@ -117,7 +116,6 @@ export function FutureCareersLanding() {
             <div className="fc-hero-body">
               <div className="fc-hero-copy">
                 <div className="fc-badge">
-                  <Sparkles size={18} fill="currentColor" aria-hidden="true" />
                   <span>Free live masterclass</span>
                 </div>
                 <h1>
