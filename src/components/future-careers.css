@@ -228,17 +228,10 @@
   .fc-shell { max-width: min(92vw, 1680px); }
 }
 .fc-mentor-image > img { object-position: 50% 22%; }
-.fc-about-grid { align-items: stretch; }
 .fc-details { display: flex; flex-direction: column; }
 .fc-details .fc-btn { margin-top: auto; }
-.fc-about-photo { margin-top: 24px; }
-@media (min-width: 1000px) {
-  .fc-about-copy { display: flex; flex-direction: column; }
-  .fc-about-copy > .fc-kicker,
-  .fc-about-copy > .fc-title,
-  .fc-about-copy > p { flex: 0 0 auto; }
-  .fc-about-photo { flex: 1 0 auto; display: flex; min-height: 260px; }
-  .fc-about-photo img { height: 100%; aspect-ratio: auto; object-fit: cover; }
+@media (max-width: 640px) {
+  .fc-about-photo img { aspect-ratio: 16/8; }
 }
 .fc-reviews-title { white-space: nowrap; }
 @media (max-width: 640px) { .fc-reviews-title { white-space: normal; } }
