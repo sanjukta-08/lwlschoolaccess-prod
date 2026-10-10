@@ -47,14 +47,14 @@
 .fc-nav a:hover { color: var(--fc-crimson); }
 
 .fc-hero {
-  --fc-robot-h: clamp(96px, 9.5vw, 132px);
+  --fc-robot-h: clamp(130px, 12vw, 175px);
   position: relative;
   overflow: hidden;
   background:
     radial-gradient(120% 84% at 50% 118%, rgb(198 161 54 / .30) 0%, rgb(198 161 54 / .12) 42%, transparent 68%),
     radial-gradient(90% 60% at 50% 136%, rgb(165 28 48 / .18) 0%, transparent 64%),
     linear-gradient(180deg, #fff 0%, var(--fc-wash) 40%, #f4e4dd 100%);
-  padding-block: 18px calc(var(--fc-robot-h) + clamp(40px, 4vw, 46px));
+  padding-block: 18px calc(var(--fc-robot-h) + clamp(18px, 2vw, 26px));
   border-bottom: 1px solid var(--fc-line);
 }
 .fc-hero::before {
@@ -86,7 +86,7 @@
 }
 .fc-hero-robot {
   position: absolute;
-  right: clamp(14px, 3.5vw, 64px);
+  right: clamp(4px, 1.2vw, 20px);
   bottom: 0;
   height: var(--fc-robot-h);
   z-index: 2;
@@ -319,10 +319,8 @@
 .fc-closing-inner .fc-title { max-width: 820px; margin: 0; }
 .fc-closing-meta { margin: 0; color: var(--fc-muted, #5a4a46); }
 
-/* Wide screens: robot sits up in the right-hand free space; no reserved bottom strip */
+/* Wide screens: larger robot, flush in the bottom-right corner */
 @media (min-width: 1100px) {
-  .fc-hero { --fc-robot-h: clamp(200px, 17vw, 280px); padding-block: 18px 30px; }
-  .fc-hero-robot { bottom: auto; top: 50%; transform: translateY(-38%); right: clamp(16px, 3vw, 60px); }
-  .fc-hero-halo { bottom: auto; top: 50%; transform: translateY(-50%); }
-  .fc-hero-bg { -webkit-mask-image: none; mask-image: none; }
+  .fc-hero { --fc-robot-h: clamp(170px, 14.5vw, 230px); }
+  .fc-hero-robot { right: clamp(4px, 1vw, 18px); bottom: 0; }
 }
