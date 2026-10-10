@@ -234,6 +234,12 @@ export function FutureCareersLanding() {
               <div className="fc-industry"><span><GraduationCap /></span><strong>Engineering</strong></div>
               <div className="fc-industry"><span><Lightbulb /></span><strong>Entrepreneurship</strong></div>
             </div>
+            <figure className="fc-photo">
+              <img
+                src={graduationStageAsset.url}
+                alt="A graduating class of Learn with Leaders students on stage with their certificates in front of the Harvard crest"
+              />
+            </figure>
           </div>
         </section>
 
@@ -249,12 +255,6 @@ export function FutureCareersLanding() {
                 </div>
               ))}
             </div>
-            <figure className="fc-photo">
-              <img
-                src={graduationStageAsset.url}
-                alt="A graduating class of Learn with Leaders students on stage with their certificates in front of the Harvard crest"
-              />
-            </figure>
           </div>
         </section>
 
