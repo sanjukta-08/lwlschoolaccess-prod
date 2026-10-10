@@ -162,7 +162,7 @@
 .fc-review.fc-note figcaption span { font-size: 14px; }
 .fc-audiences { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 .fc-audience { border: 0; border-radius: 12px; overflow: hidden; background: #fff; }
-.fc-audience-body { padding: clamp(28px, 4vw, 48px); }
+.fc-audience-body { padding: clamp(28px, 4vw, 48px); text-align: center; }
 .fc-audience:nth-child(2) { background: var(--fc-ink); color: #fff; }
 .fc-audience-label { color: var(--fc-crimson); font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
 .fc-audience:nth-child(2) .fc-audience-label { color: var(--fc-gold-light); }
