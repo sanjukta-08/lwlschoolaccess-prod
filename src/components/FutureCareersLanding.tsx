@@ -9,8 +9,7 @@ import {
   Scale,
   Tag,
   TrendingUp,
-  Users,
-} from "lucide-react";
+  Users, Award, Video } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import jojoAsset from "@/assets/future-careers/dr-jojo.jpg.asset.json";
 import darkLogoAsset from "@/assets/future-careers/lwl-dark-logo.png.asset.json";
@@ -108,7 +107,7 @@ export function FutureCareersLanding() {
             <div className="fc-hero-body">
               <div className="fc-hero-copy">
                 <div className="fc-badge">
-                  <span>Free live masterclass</span>
+                  <span>Free live masterclass · Grades 8 to 12</span>
                 </div>
                 <h1>
                   <span>Future Careers in the</span>
@@ -135,6 +134,8 @@ export function FutureCareersLanding() {
                   <span><Clock3 size={22} color="var(--fc-crimson)" />60 minutes</span>
                   <span><Monitor size={22} color="var(--fc-crimson)" />Live online</span>
                   <span><Users size={22} color="var(--fc-crimson)" />Parents welcome</span>
+                  <span><Award size={22} color="var(--fc-crimson)" />Certificate of participation</span>
+                  <span><Video size={22} color="var(--fc-crimson)" />Recording sent to all who register</span>
                 </div>
               </div>
             </div>
@@ -164,8 +165,8 @@ export function FutureCareersLanding() {
                 <Kicker>Free live masterclass</Kicker>
                 <h2 className="fc-title">About this <em>programme</em></h2>
                 <p className="fc-body-copy">
-                  A free, 60-minute live online masterclass for Transition Year and senior-cycle
-                  students, led by Dr Jojo O'Driscoll-Kearney, on how AI is reshaping work and the
+                  A free, 60-minute live online masterclass for students in Grades 8 to
+                  12, led by Dr Jojo O'Driscoll-Kearney, on how AI is reshaping work and the
                   leadership skills you will need. No prior AI knowledge needed.
                 </p>
                 <ReserveButton />
@@ -175,7 +176,7 @@ export function FutureCareersLanding() {
               <Detail icon={<CalendarDays size={20} />} label="Date" value="Friday 20 November 2026" />
               <Detail icon={<Clock3 size={20} />} label="Time" value="4:30 pm Irish time" />
               <Detail icon={<Monitor size={20} />} label="Learning mode" value="Live online, from home" />
-              <Detail icon={<Users size={20} />} label="Audience" value="TY and senior-cycle students" />
+              <Detail icon={<Users size={20} />} label="Audience" value="Grades 8 to 12" />
               <Detail icon={<Tag size={20} />} label="Fee" value="Free" />
             </div>
           </div>
@@ -232,7 +233,6 @@ export function FutureCareersLanding() {
                 <span><em>exist yet.</em></span>
               </h2>
               <p>Name it, and tell us the real-world problem it solves. You will get the chance to share your idea live.</p>
-              <div className="fc-prize">[What the best ideas win or lead to]</div>
             </div>
             <div className="fc-career-wrap" aria-hidden="true">
               <div className="fc-career-card">
@@ -341,7 +341,7 @@ export function FutureCareersLanding() {
               />
               <div className="fc-audience-body">
                 <div className="fc-audience-label">Who it is for</div>
-                <h3>Transition Year and senior-cycle students</h3>
+                <h3>Students in Grades 8 to 12</h3>
                 <p>No prior AI knowledge needed. Parents and guardians are welcome to join.</p>
               </div>
             </div>
@@ -372,8 +372,17 @@ export function FutureCareersLanding() {
               <div className="fc-faq"><h3>What do I need?</h3><p>A laptop or phone, and a notebook.</p></div>
               <div className="fc-faq"><h3>Where does it happen?</h3><p>Live online on Zoom. You will receive the link by email after registering.</p></div>
               <div className="fc-faq"><h3>Can parents join?</h3><p>Yes, parents and guardians are welcome.</p></div>
+              <div className="fc-faq"><h3>Will I get a certificate?</h3><p>Yes. Every student who joins live receives a certificate of participation by email.</p></div>
               <div className="fc-faq"><h3>What if I cannot make it live?</h3><p>Register anyway and we will send the recording.</p></div>
             </div>
+          </div>
+        </section>
+
+        <section className="fc-section fc-closing">
+          <div className="fc-shell fc-closing-inner">
+            <h2 className="fc-title">Your future career may not exist yet. <em>Come and imagine it.</em></h2>
+            <p className="fc-closing-meta">Friday 20 November 2026 · 4:30 pm to 5:30 pm Irish time · Live online · Free</p>
+            <ReserveButton />
           </div>
         </section>
       </main>

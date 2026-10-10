@@ -314,3 +314,9 @@
 /* For schools card: the classroom photo is portrait, so frame the screen and teacher */
 /* The classroom photo is a tall portrait; frame it on the teacher and the seated students. */
 .fc-audience-photo--class { object-position: 50% 53%; }
+
+.fc-meta { flex-wrap: wrap; justify-content: center; }
+.fc-closing { background: var(--fc-wash); border-top: 1px solid var(--fc-line); }
+.fc-closing-inner { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.fc-closing-inner .fc-title { max-width: 820px; margin: 0; }
+.fc-closing-meta { margin: 0; color: var(--fc-muted, #5a4a46); }
