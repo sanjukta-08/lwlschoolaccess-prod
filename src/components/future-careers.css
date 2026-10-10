@@ -49,7 +49,7 @@
 .fc-nav a:hover { color: var(--fc-crimson); }
 
 .fc-hero {
-  --fc-robot-h: clamp(150px, 14vw, 200px);
+  --fc-robot-h: clamp(165px, 15.5vw, 220px);
   position: relative;
   overflow: hidden;
   background:
@@ -334,7 +334,7 @@
 /* Wide screens: hero fills the viewport below the nav; robot scales with screen height, flush bottom-right */
 @media (min-width: 1100px) {
   .fc-hero {
-    --fc-robot-h: clamp(250px, 40vh, 430px);
+    --fc-robot-h: clamp(290px, 47vh, 500px);
     min-height: calc(100svh - 78px);
     display: flex;
     flex-direction: column;
@@ -342,6 +342,41 @@
   }
   .fc-hero-inner { flex: 1; display: flex; flex-direction: column; justify-content: center; width: 100%; }
   .fc-hero-robot { right: clamp(4px, 1vw, 18px); bottom: 0; }
+  /* Solid so the robot's hand reads as passing behind the button instead of across its text */
+  .fc-hero-actions .fc-watch { background: #fff; box-shadow: 0 12px 26px -18px rgb(29 20 23 / .45); }
+  /* Stack the two calls and tighten the vertical rhythm: keeps the robot's raised hand clear of the buttons */
+  .fc-hero-actions { flex-direction: column; align-items: center; gap: 12px; margin-top: 10px; }
+  .fc-hero-lead { margin-top: 10px; }
+  .fc-hero-summary { margin-top: 10px; }
+  .fc-meta { margin-top: 10px; }
   /* Keep the info line centred on the page; cap its width symmetrically so it clears the robot */
-  .fc-meta { max-width: calc(100% - var(--fc-robot-h) * 1.75); margin-inline: auto; }
+  .fc-meta { max-width: min(100%, max(300px, calc(100vw - var(--fc-robot-h) * 2.6 - 40px))); margin-inline: auto; }
+}
+
+/* Short laptop screens: trim the type a little so the hero still lands in exactly one screen */
+@media (min-width: 1100px) and (max-height: 800px) {
+  .fc-hero h1 { font-size: 70px; }
+  .fc-hero-summary { font-size: 1em; }
+  .fc-meta { gap: .45em .9em; }
+}
+@media (min-width: 1100px) and (max-height: 760px) {
+  .fc-hero { padding-block: 14px 10px; }
+}
+@media (min-width: 1100px) and (max-height: 740px) {
+  .fc-hero { padding-block: 12px 6px; }
+  .fc-hero h1 { font-size: 64px; }
+  .fc-hero-summary { font-size: .95em; }
+  .fc-meta { gap: 2px; }
+}
+
+/* Laptop widths where the info line has little room: stack the five facts into one tidy centred list */
+@media (min-width: 1100px) and (max-width: 1500px) {
+  .fc-meta { flex-direction: column; align-items: flex-start; width: max-content; max-width: 100%; gap: 5px; }
+}
+
+/* This page's hero robot stands in the bottom-right corner, so the Compass button
+   waits in the opposite corner instead of standing on top of it. */
+html.fc-campaign [data-compass-launcher] { right: auto !important; left: 1rem; }
+@media (min-width: 640px) {
+  html.fc-campaign [data-compass-launcher] { left: 1.5rem; }
 }
