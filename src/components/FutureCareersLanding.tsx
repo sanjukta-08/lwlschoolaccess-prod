@@ -19,6 +19,12 @@ import darkLogoAsset from "@/assets/future-careers/lwl-dark-logo.png.asset.json"
 import lightLogoAsset from "@/assets/future-careers/lwl-light-logo.png.asset.json";
 import birdAsset from "@/assets/future-careers/lwl-bird.png.asset.json";
 import grainAsset from "@/assets/future-careers/paper-grain.png.asset.json";
+import "@fontsource/lato/latin-400.css";
+import "@fontsource/lato/latin-700.css";
+import "@fontsource/playfair-display/latin-400.css";
+import "@fontsource/playfair-display/latin-600.css";
+import "@fontsource/playfair-display/latin-700.css";
+import "@fontsource/playfair-display/latin-400-italic.css";
 import "@/components/future-careers.css";
 
 const RESERVATION_URL = "";
