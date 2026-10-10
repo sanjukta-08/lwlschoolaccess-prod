@@ -245,12 +245,12 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  :is(h1, h2, h3, h4, h5, h6) {
+  :is(h1, h2, h3, h4, h5, h6):not(.sl-page *) {
     font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
     font-style: normal !important;
   }
 
-  :is(h1, h2, h3, h4, h5, h6) :is(em, i) {
+  :is(h1, h2, h3, h4, h5, h6):not(.sl-page *) :is(em, i) {
     font-style: normal !important;
   }
 
