@@ -165,6 +165,10 @@
 .fc-audience:nth-child(2) p { color: #efe6e0; }
 .fc-audience a { color: var(--fc-gold-light); }
 
+.fc-photo { margin: clamp(22px, 2.4vw, 34px) 0 0; }
+.fc-photo img { display: block; width: 100%; aspect-ratio: 16/8; object-fit: cover; border-radius: 10px; }
+.fc-mentor-image-alt img { object-position: 50% 22%; }
+.fc-audience-photo { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; margin-bottom: 24px; }
 .fc-faq-grid { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 28px 48px; }
 .fc-faq-heading { flex: 1 1 300px; }
 .fc-faq-list { flex: 2 1 520px; max-width: 680px; border-top: 1px solid var(--fc-line); }
@@ -205,6 +209,7 @@
   .fc-industries { grid-template-columns: repeat(2, 1fr); }
   .fc-outcomes, .fc-reviews, .fc-audiences { grid-template-columns: 1fr; }
   .fc-challenge h2 { font-size: 2.3rem; }
+  .fc-photo img { aspect-ratio: 4/3; }
   .fc-career-wrap { width: 100%; }
   .fc-mentor-image-col { padding-right: 14px; }
   .fc-history div { display: block; }

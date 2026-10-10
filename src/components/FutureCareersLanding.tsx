@@ -19,6 +19,10 @@ import darkLogoAsset from "@/assets/future-careers/lwl-dark-logo.png.asset.json"
 import lightLogoAsset from "@/assets/future-careers/lwl-light-logo.png.asset.json";
 import birdAsset from "@/assets/future-careers/lwl-bird.png.asset.json";
 import grainAsset from "@/assets/future-careers/paper-grain.png.asset.json";
+import graduationGroupAsset from "@/assets/future-careers/graduation-group.jpg.asset.json";
+import graduationStageAsset from "@/assets/future-careers/graduation-stage.png.asset.json";
+import jojoRedAsset from "@/assets/future-careers/dr-jojo-red.jpg.asset.json";
+import awardAsset from "@/assets/future-careers/award-ceremony.jpg.asset.json";
 import "@fontsource/lato/latin-400.css";
 import "@fontsource/lato/latin-700.css";
 import "@fontsource/playfair-display/latin-400.css";
@@ -203,6 +207,14 @@ export function FutureCareersLanding() {
               <ReserveButton />
             </div>
           </div>
+          <div className="fc-shell">
+            <figure className="fc-photo">
+              <img
+                src={graduationGroupAsset.url}
+                alt="Learn with Leaders students in graduation gowns holding their certificates on stage in front of the Harvard crest"
+              />
+            </figure>
+          </div>
         </section>
 
         <section id="why" className="fc-section fc-wash">
@@ -222,6 +234,12 @@ export function FutureCareersLanding() {
               <div className="fc-industry"><span><GraduationCap /></span><strong>Engineering</strong></div>
               <div className="fc-industry"><span><Lightbulb /></span><strong>Entrepreneurship</strong></div>
             </div>
+            <figure className="fc-photo">
+              <img
+                src={graduationStageAsset.url}
+                alt="A graduating class of Learn with Leaders students on stage with their certificates in front of the Harvard crest"
+              />
+            </figure>
           </div>
         </section>
 
@@ -282,6 +300,9 @@ export function FutureCareersLanding() {
                 </div>
                 <div className="fc-credentials">
                   <span>PhD Leadership</span><span>Oxford MBA-F</span><span>Harvard Org. Psychology</span><span>WEF Council Member</span>
+                </div>
+                <div className="fc-mentor-image fc-mentor-image-alt">
+                  <img src={jojoRedAsset.url} alt="Portrait of Dr Jojo O'Driscoll-Kearney" />
                 </div>
               </div>
               <div className="fc-mentor-copy">
@@ -347,11 +368,21 @@ export function FutureCareersLanding() {
         <section className="fc-section fc-wash">
           <div className="fc-shell fc-audiences">
             <div className="fc-audience">
+              <img
+                className="fc-audience-photo"
+                src={graduationGroupAsset.url}
+                alt="Students in graduation gowns on stage at a Learn with Leaders ceremony"
+              />
               <div className="fc-audience-label">Who it is for</div>
               <h3>Transition Year and senior-cycle students</h3>
               <p>No prior AI knowledge needed. Parents and guardians are welcome to join.</p>
             </div>
             <div className="fc-audience">
+              <img
+                className="fc-audience-photo"
+                src={awardAsset.url}
+                alt="Dr Jojo receiving an award at the Majid Al Futtaim Leadership Development Programmes ceremony"
+              />
               <div className="fc-audience-label">For schools</div>
               <h3>Nothing for the school to organise</h3>
               <p>Share this page with your students and parents through your newsletter or school app. Students register individually and join from home.</p>
