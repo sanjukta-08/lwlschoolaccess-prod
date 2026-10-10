@@ -10,6 +10,7 @@ import {
   Tag,
   TrendingUp,
   Users, Award, Video } from "lucide-react";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import jojoAsset from "@/assets/future-careers/dr-jojo.jpg.asset.json";
 import darkLogoAsset from "@/assets/future-careers/lwl-dark-logo.png.asset.json";
@@ -80,6 +81,13 @@ function Detail({ icon, label, value }: { icon: React.ReactNode; label: string; 
 }
 
 export function FutureCareersLanding() {
+  // The hero robot stands in the bottom-right corner, so on this page the Compass
+  // button moves to the opposite corner instead of standing on top of it.
+  useEffect(() => {
+    document.documentElement.classList.add("fc-campaign");
+    return () => document.documentElement.classList.remove("fc-campaign");
+  }, []);
+
   return (
     <div id="top" className="future-careers-page">
       <header className="fc-header">
