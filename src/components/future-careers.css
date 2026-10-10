@@ -248,3 +248,9 @@
 @media (min-width: 900px) {
   .fc-reviews-intro { max-width: none; white-space: nowrap; font-size: clamp(16px, 1.8vw, 21px); }
 }
+
+/* Who it is for / For schools: heading stays on one line and the card text is centred */
+@media (min-width: 1000px) {
+  .fc-audience-body { padding-inline: clamp(20px, 2.4vw, 34px); }
+  .fc-audience h3 { white-space: nowrap; font-size: clamp(1.25rem, calc(2.6vw - 8px), 1.65rem); }
+}
