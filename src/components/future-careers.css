@@ -161,7 +161,8 @@
 .fc-review.fc-note figcaption b { font-size: 17px; }
 .fc-review.fc-note figcaption span { font-size: 14px; }
 .fc-audiences { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-.fc-audience { padding: clamp(28px, 4vw, 48px); border: 1px solid var(--fc-line); border-radius: 12px; background: #fff; }
+.fc-audience { border: 0; border-radius: 12px; overflow: hidden; background: #fff; }
+.fc-audience-body { padding: clamp(28px, 4vw, 48px); }
 .fc-audience:nth-child(2) { background: var(--fc-ink); color: #fff; }
 .fc-audience-label { color: var(--fc-crimson); font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
 .fc-audience:nth-child(2) .fc-audience-label { color: var(--fc-gold-light); }
@@ -173,7 +174,7 @@
 .fc-photo { margin: clamp(22px, 2.4vw, 34px) 0 0; }
 .fc-photo img { display: block; width: 100%; aspect-ratio: 16/8; object-fit: cover; border-radius: 10px; }
 .fc-mentor-image-alt img { object-position: 50% 22%; }
-.fc-audience-photo { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 8px; margin-bottom: 24px; }
+.fc-audience-photo { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 0; margin-bottom: 0; }
 .fc-faq-grid { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 28px 48px; }
 .fc-faq-heading { flex: 1 1 300px; }
 .fc-faq-list { flex: 2 1 520px; max-width: 680px; border-top: 1px solid var(--fc-line); }

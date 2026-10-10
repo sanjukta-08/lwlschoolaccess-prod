@@ -336,9 +336,11 @@ export function FutureCareersLanding() {
                 src={awardAsset.url}
                 alt="Dr Jojo receiving an award at the Majid Al Futtaim Leadership Development Programmes ceremony"
               />
-              <div className="fc-audience-label">Who it is for</div>
-              <h3>Transition Year and senior-cycle students</h3>
-              <p>No prior AI knowledge needed. Parents and guardians are welcome to join.</p>
+              <div className="fc-audience-body">
+                <div className="fc-audience-label">Who it is for</div>
+                <h3>Transition Year and senior-cycle students</h3>
+                <p>No prior AI knowledge needed. Parents and guardians are welcome to join.</p>
+              </div>
             </div>
             <div className="fc-audience">
               <img
@@ -346,10 +348,12 @@ export function FutureCareersLanding() {
                 src={graduationGroupAsset.url}
                 alt="Students in graduation gowns on stage at a Learn with Leaders ceremony"
               />
-              <div className="fc-audience-label">For schools</div>
-              <h3>Nothing for the school to organise</h3>
-              <p>Share this page with your students and parents through your newsletter or school app. Students register individually and join from home.</p>
-              <p>Questions: <a href="mailto:team@learnwithleaders.com">team@learnwithleaders.com</a></p>
+              <div className="fc-audience-body">
+                <div className="fc-audience-label">For schools</div>
+                <h3>Nothing for the school to organise</h3>
+                <p>Share this page with your students and parents through your newsletter or school app. Students register individually and join from home.</p>
+                <p>Questions: <a href="mailto:team@learnwithleaders.com">team@learnwithleaders.com</a></p>
+              </div>
             </div>
           </div>
         </section>
