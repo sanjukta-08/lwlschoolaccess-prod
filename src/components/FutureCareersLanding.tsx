@@ -192,19 +192,21 @@ export function FutureCareersLanding() {
                 the time they graduate. This session helps students see what is changing and where they fit.
               </p>
             </div>
-            <div className="fc-industries">
+            <div className="fc-why-grid">
+              <figure className="fc-why-photo">
+                <img
+                  src={graduationStageAsset.url}
+                  alt="A graduating class of Learn with Leaders students on stage with their certificates in front of the Harvard crest"
+                />
+              </figure>
+              <div className="fc-industries">
               <div className="fc-industry"><span><HeartPulse /></span><strong>Medicine</strong></div>
               <div className="fc-industry"><span><Scale /></span><strong>Law</strong></div>
               <div className="fc-industry"><span><TrendingUp /></span><strong>Finance</strong></div>
               <div className="fc-industry"><span><GraduationCap /></span><strong>Engineering</strong></div>
               <div className="fc-industry"><span><Lightbulb /></span><strong>Entrepreneurship</strong></div>
+              </div>
             </div>
-            <figure className="fc-photo">
-              <img
-                src={graduationStageAsset.url}
-                alt="A graduating class of Learn with Leaders students on stage with their certificates in front of the Harvard crest"
-              />
-            </figure>
           </div>
         </section>
 
