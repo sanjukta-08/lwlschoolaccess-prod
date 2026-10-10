@@ -325,7 +325,6 @@ export function FutureCareersLanding() {
                 </figure>
               ))}
             </div>
-            <a className="fc-review-link" href="#reviews">Read every note and all learner feedback →</a>
           </div>
         </section>
 
