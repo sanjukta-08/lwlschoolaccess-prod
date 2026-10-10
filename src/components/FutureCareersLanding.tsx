@@ -142,7 +142,7 @@ export function FutureCareersLanding() {
           </div>
           <div className="fc-hero-robot" aria-hidden="true">
             <img
-              src={aiRobotAsset}
+              src={aiRobotAsset.url}
               alt=""
               width={1024}
               height={1024}

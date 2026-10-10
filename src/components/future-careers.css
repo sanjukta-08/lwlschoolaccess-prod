@@ -86,7 +86,7 @@
 }
 .fc-hero-robot {
   position: absolute;
-  right: clamp(14px, 3.5vw, 64px);
+  right: clamp(4px, 1.2vw, 20px);
   bottom: 0;
   height: var(--fc-robot-h);
   z-index: 2;
