@@ -284,15 +284,13 @@
 @keyframes fc-underline-in { from { transform: rotate(-1deg) scaleX(0); } to { transform: rotate(-1deg) scaleX(1); } }
 
 @media (prefers-reduced-motion: reduce) {
-  .future-careers-page :is(.fc-hero-copy > *, .fc-badge svg, .fc-orb, .fc-hero-icon, .fc-watch .fc-play) { animation: none !important; transition: none !important; }
+  .future-careers-page :is(.fc-hero-copy > *, .fc-badge svg, .fc-orb, .fc-ring, .fc-hero-strip-track, .fc-watch .fc-play) { animation: none !important; transition: none !important; }
   .fc-hero-copy > * { opacity: 1 !important; transform: none !important; }
 }
 
-/* Phones: keep only the two corner icons and tuck them clear of the text */
+/* Phones: hide the rings so they never sit behind the text */
 @media (max-width: 999px) {
-  .fc-hero-icon.fc-icon-2, .fc-hero-icon.fc-icon-4 { display: none; }
-  .fc-hero-icon.fc-icon-1 { left: 4%; top: 10%; }
-  .fc-hero-icon.fc-icon-3 { right: 4%; top: 8%; }
+  .fc-ring { display: none; }
 }
 
 /* For schools card: the classroom photo is portrait, so frame the screen and teacher */
