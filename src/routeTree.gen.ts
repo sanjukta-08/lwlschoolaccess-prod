@@ -47,6 +47,8 @@ import { Route as ConferenceSlugRouteImport } from './routes/conference.$slug'
 import { Route as ConferencesIndexRouteImport } from './routes/conferences.index'
 import { Route as ConferencesSlugRouteImport } from './routes/conferences.$slug'
 import { Route as InternshipsIndexRouteImport } from './routes/internships.index'
+import { Route as MasterclassesIndexRouteImport } from './routes/masterclasses.index'
+import { Route as MasterclassesFutureCareersAgeOfAiRouteImport } from './routes/masterclasses.future-careers-age-of-ai'
 import { Route as ProgrammesSlugRouteImport } from './routes/programmes.$slug'
 import { Route as WeekWithoutWallsKingsRouteImport } from './routes/week-without-walls.kings'
 import { Route as AdminSessionsIndexRouteImport } from './routes/admin.sessions.index'
@@ -254,6 +256,17 @@ const InternshipsIndexRoute = InternshipsIndexRouteImport.update({
   path: '/',
   getParentRoute: () => InternshipsRoute,
 } as any)
+const MasterclassesIndexRoute = MasterclassesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => MasterclassesRoute,
+} as any)
+const MasterclassesFutureCareersAgeOfAiRoute =
+  MasterclassesFutureCareersAgeOfAiRouteImport.update({
+    id: '/future-careers-age-of-ai',
+    path: '/future-careers-age-of-ai',
+    getParentRoute: () => MasterclassesRoute,
+  } as any)
 const ProgrammesSlugRoute = ProgrammesSlugRouteImport.update({
   id: '/programmes/$slug',
   path: '/programmes/$slug',
@@ -312,7 +325,7 @@ export interface FileRoutesByFullPath {
   '/finder': typeof FinderRoute
   '/fit': typeof FitRoute
   '/internships': typeof InternshipsRouteWithChildren
-  '/masterclasses': typeof MasterclassesRoute
+  '/masterclasses': typeof MasterclassesRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
@@ -333,12 +346,14 @@ export interface FileRoutesByFullPath {
   '/camps/premed-horizons-harvard': typeof CampsPremedHorizonsHarvardRoute
   '/conference/$slug': typeof ConferenceSlugRoute
   '/conferences/$slug': typeof ConferencesSlugRoute
+  '/masterclasses/future-careers-age-of-ai': typeof MasterclassesFutureCareersAgeOfAiRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/week-without-walls/kings': typeof WeekWithoutWallsKingsRouteWithChildren
   '/admin/': typeof AdminIndexRoute
   '/camps/': typeof CampsIndexRoute
   '/conferences/': typeof ConferencesIndexRoute
   '/internships/': typeof InternshipsIndexRoute
+  '/masterclasses/': typeof MasterclassesIndexRoute
   '/admin/sessions/$id': typeof AdminSessionsIdRoute
   '/api/public/track-relay': typeof ApiPublicTrackRelayRoute
   '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
@@ -356,7 +371,6 @@ export interface FileRoutesByTo {
   '/explore': typeof ExploreRoute
   '/finder': typeof FinderRoute
   '/fit': typeof FitRoute
-  '/masterclasses': typeof MasterclassesRoute
   '/privacy': typeof PrivacyRoute
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
@@ -377,11 +391,13 @@ export interface FileRoutesByTo {
   '/camps/premed-horizons-harvard': typeof CampsPremedHorizonsHarvardRoute
   '/conference/$slug': typeof ConferenceSlugRoute
   '/conferences/$slug': typeof ConferencesSlugRoute
+  '/masterclasses/future-careers-age-of-ai': typeof MasterclassesFutureCareersAgeOfAiRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/admin': typeof AdminIndexRoute
   '/camps': typeof CampsIndexRoute
   '/conferences': typeof ConferencesIndexRoute
   '/internships': typeof InternshipsIndexRoute
+  '/masterclasses': typeof MasterclassesIndexRoute
   '/admin/sessions/$id': typeof AdminSessionsIdRoute
   '/api/public/track-relay': typeof ApiPublicTrackRelayRoute
   '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
@@ -404,7 +420,7 @@ export interface FileRoutesById {
   '/finder': typeof FinderRoute
   '/fit': typeof FitRoute
   '/internships': typeof InternshipsRouteWithChildren
-  '/masterclasses': typeof MasterclassesRoute
+  '/masterclasses': typeof MasterclassesRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
@@ -425,12 +441,14 @@ export interface FileRoutesById {
   '/camps/premed-horizons-harvard': typeof CampsPremedHorizonsHarvardRoute
   '/conference/$slug': typeof ConferenceSlugRoute
   '/conferences/$slug': typeof ConferencesSlugRoute
+  '/masterclasses/future-careers-age-of-ai': typeof MasterclassesFutureCareersAgeOfAiRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
   '/week-without-walls/kings': typeof WeekWithoutWallsKingsRouteWithChildren
   '/admin/': typeof AdminIndexRoute
   '/camps/': typeof CampsIndexRoute
   '/conferences/': typeof ConferencesIndexRoute
   '/internships/': typeof InternshipsIndexRoute
+  '/masterclasses/': typeof MasterclassesIndexRoute
   '/admin/sessions/$id': typeof AdminSessionsIdRoute
   '/api/public/track-relay': typeof ApiPublicTrackRelayRoute
   '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
@@ -475,12 +493,14 @@ export interface FileRouteTypes {
     | '/camps/premed-horizons-harvard'
     | '/conference/$slug'
     | '/conferences/$slug'
+    | '/masterclasses/future-careers-age-of-ai'
     | '/programmes/$slug'
     | '/week-without-walls/kings'
     | '/admin/'
     | '/camps/'
     | '/conferences/'
     | '/internships/'
+    | '/masterclasses/'
     | '/admin/sessions/$id'
     | '/api/public/track-relay'
     | '/our-offerings/conferences/$slug'
@@ -498,7 +518,6 @@ export interface FileRouteTypes {
     | '/explore'
     | '/finder'
     | '/fit'
-    | '/masterclasses'
     | '/privacy'
     | '/profile-building'
     | '/shortlist'
@@ -519,11 +538,13 @@ export interface FileRouteTypes {
     | '/camps/premed-horizons-harvard'
     | '/conference/$slug'
     | '/conferences/$slug'
+    | '/masterclasses/future-careers-age-of-ai'
     | '/programmes/$slug'
     | '/admin'
     | '/camps'
     | '/conferences'
     | '/internships'
+    | '/masterclasses'
     | '/admin/sessions/$id'
     | '/api/public/track-relay'
     | '/our-offerings/conferences/$slug'
@@ -566,12 +587,14 @@ export interface FileRouteTypes {
     | '/camps/premed-horizons-harvard'
     | '/conference/$slug'
     | '/conferences/$slug'
+    | '/masterclasses/future-careers-age-of-ai'
     | '/programmes/$slug'
     | '/week-without-walls/kings'
     | '/admin/'
     | '/camps/'
     | '/conferences/'
     | '/internships/'
+    | '/masterclasses/'
     | '/admin/sessions/$id'
     | '/api/public/track-relay'
     | '/our-offerings/conferences/$slug'
@@ -594,7 +617,7 @@ export interface RootRouteChildren {
   FinderRoute: typeof FinderRoute
   FitRoute: typeof FitRoute
   InternshipsRoute: typeof InternshipsRouteWithChildren
-  MasterclassesRoute: typeof MasterclassesRoute
+  MasterclassesRoute: typeof MasterclassesRouteWithChildren
   PrivacyRoute: typeof PrivacyRoute
   ProfileBuildingRoute: typeof ProfileBuildingRoute
   ShortlistRoute: typeof ShortlistRoute
@@ -876,6 +899,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InternshipsIndexRouteImport
       parentRoute: typeof InternshipsRoute
     }
+    '/masterclasses/': {
+      id: '/masterclasses/'
+      path: '/'
+      fullPath: '/masterclasses/'
+      preLoaderRoute: typeof MasterclassesIndexRouteImport
+      parentRoute: typeof MasterclassesRoute
+    }
+    '/masterclasses/future-careers-age-of-ai': {
+      id: '/masterclasses/future-careers-age-of-ai'
+      path: '/future-careers-age-of-ai'
+      fullPath: '/masterclasses/future-careers-age-of-ai'
+      preLoaderRoute: typeof MasterclassesFutureCareersAgeOfAiRouteImport
+      parentRoute: typeof MasterclassesRoute
+    }
     '/programmes/$slug': {
       id: '/programmes/$slug'
       path: '/programmes/$slug'
@@ -1010,6 +1047,21 @@ const InternshipsRouteWithChildren = InternshipsRoute._addFileChildren(
   InternshipsRouteChildren,
 )
 
+interface MasterclassesRouteChildren {
+  MasterclassesFutureCareersAgeOfAiRoute: typeof MasterclassesFutureCareersAgeOfAiRoute
+  MasterclassesIndexRoute: typeof MasterclassesIndexRoute
+}
+
+const MasterclassesRouteChildren: MasterclassesRouteChildren = {
+  MasterclassesFutureCareersAgeOfAiRoute:
+    MasterclassesFutureCareersAgeOfAiRoute,
+  MasterclassesIndexRoute: MasterclassesIndexRoute,
+}
+
+const MasterclassesRouteWithChildren = MasterclassesRoute._addFileChildren(
+  MasterclassesRouteChildren,
+)
+
 interface WeekWithoutWallsKingsRouteChildren {
   WeekWithoutWallsKingsProgramSlugRoute: typeof WeekWithoutWallsKingsProgramSlugRoute
   WeekWithoutWallsKingsIndexRoute: typeof WeekWithoutWallsKingsIndexRoute
@@ -1051,7 +1103,7 @@ const rootRouteChildren: RootRouteChildren = {
   FinderRoute: FinderRoute,
   FitRoute: FitRoute,
   InternshipsRoute: InternshipsRouteWithChildren,
-  MasterclassesRoute: MasterclassesRoute,
+  MasterclassesRoute: MasterclassesRouteWithChildren,
   PrivacyRoute: PrivacyRoute,
   ProfileBuildingRoute: ProfileBuildingRoute,
   ShortlistRoute: ShortlistRoute,

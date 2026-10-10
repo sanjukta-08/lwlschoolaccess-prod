@@ -16,3 +16,4 @@
 - Admin gate: shared password (LWL_ADMIN_PANEL_PASSWORD) + encrypted httpOnly session (LWL_ADMIN_SESSION_SECRET) in admin-auth.server.ts; every admin data server fn calls requireAdmin() — route guard is UX only.
 - Critical first-paint safeguards live inline at the start of the root document head so publishing-injected fallback content is hidden before external CSS loads.
 - Public typography uses locally bundled font weights with root-level preloads to avoid external-font delays and late metric swaps.
+- Standalone campaign pages may use route-scoped typography and design tokens so their approved source artwork is reproduced without changing the public site theme.
