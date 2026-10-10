@@ -193,8 +193,7 @@
 .fc-footer-links a { color: #fff; font-size: 18px; padding-block: 8px; text-underline-offset: 4px; }
 
 @media (max-width: 999px) {
-  .fc-hero h1 { font-size: clamp(2.5rem, 8.6vw, 4.2rem); }
-  .fc-hero-icon.fc-icon-5, .fc-hero-icon.fc-icon-6 { display: none; }
+  .fc-hero h1 { font-size: clamp(2.4rem, 10vw, 4.2rem); }
   .fc-industries { grid-template-columns: repeat(3, 1fr); }
   .fc-outcomes { grid-template-columns: repeat(2, 1fr); }
 }
