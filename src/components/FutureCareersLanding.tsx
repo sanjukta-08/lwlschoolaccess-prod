@@ -11,6 +11,7 @@ import {
   TrendingUp,
   Users, Award, Video } from "lucide-react";
 import { useEffect } from "react";
+import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import jojoAsset from "@/assets/future-careers/dr-jojo.jpg.asset.json";
 import darkLogoAsset from "@/assets/future-careers/lwl-dark-logo.png.asset.json";
@@ -366,6 +367,7 @@ export function FutureCareersLanding() {
                 <h3>Nothing for the school to organise</h3>
                 <p>Share this page with your students and parents through your newsletter or school app. Students register individually and join from home.</p>
                 <p>Questions: <a href="mailto:team@learnwithleaders.com">team@learnwithleaders.com</a></p>
+                <p><Link to="/masterclass/leaders/age-of-ai">School leaders: see the masterclass for you →</Link></p>
               </div>
             </div>
           </div>
