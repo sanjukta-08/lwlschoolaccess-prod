@@ -359,3 +359,6 @@
   .fc-hero-summary { font-size: 1em; }
   .fc-meta { gap: .45em .9em; }
 }
+@media (min-width: 1100px) and (max-height: 760px) {
+  .fc-hero { padding-block: 14px 10px; }
+}
