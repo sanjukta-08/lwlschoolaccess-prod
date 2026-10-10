@@ -248,9 +248,6 @@ export function FutureCareersLanding() {
                   <img src={jojoRedAsset.url} alt="Portrait of Dr Jojo O'Driscoll-Kearney" />
                   <div className="fc-mentor-tag"><b>Dean of Programmes</b><span>Learn with Leaders</span></div>
                 </div>
-                <div className="fc-credentials">
-                  <span>PhD Leadership</span><span>Oxford MBA-F</span><span>Harvard Org. Psychology</span><span>WEF Council Member</span>
-                </div>
               </div>
               <div className="fc-mentor-copy">
                 <div className="fc-quote-mark" aria-hidden="true">“</div>
