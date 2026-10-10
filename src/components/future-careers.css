@@ -319,10 +319,8 @@
 .fc-closing-inner .fc-title { max-width: 820px; margin: 0; }
 .fc-closing-meta { margin: 0; color: var(--fc-muted, #5a4a46); }
 
-/* Wide screens: robot sits up in the right-hand free space; no reserved bottom strip */
+/* Wide screens: larger robot, flush in the bottom-right corner */
 @media (min-width: 1100px) {
-  .fc-hero { --fc-robot-h: clamp(200px, 17vw, 280px); padding-block: 18px 30px; }
-  .fc-hero-robot { bottom: auto; top: 50%; transform: translateY(-38%); right: clamp(16px, 3vw, 60px); }
-  .fc-hero-halo { bottom: auto; top: 50%; transform: translateY(-50%); }
-  .fc-hero-bg { -webkit-mask-image: none; mask-image: none; }
+  .fc-hero { --fc-robot-h: clamp(200px, 17vw, 280px); }
+  .fc-hero-robot { right: clamp(4px, 1vw, 18px); bottom: 0; }
 }
