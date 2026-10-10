@@ -321,18 +321,20 @@ export function FutureCareersLanding() {
             <Kicker>Thank-you notes · Students</Kicker>
             <h2 className="fc-title fc-reviews-title">What students wrote <em>afterwards</em></h2>
             <p className="fc-body-copy fc-reviews-intro">Handwritten notes to Dr Jojo from students on her Communication & Leadership Programme.</p>
-            <div className="fc-reviews">
-              {HANDWRITTEN_NOTES.map((note) => (
-                <figure className="fc-review fc-note" key={note.id}>
-                  <img
-                    className="fc-note-img"
-                    src={note.src}
-                    alt={`Handwritten thank-you note from ${note.name}`}
-                    loading="lazy"
-                  />
-                  <figcaption><b>{note.name}</b><span>{note.programme}</span></figcaption>
-                </figure>
-              ))}
+            <div className="fc-reviews-marquee">
+              <div className="fc-reviews-track">
+                {[...HANDWRITTEN_NOTES, ...HANDWRITTEN_NOTES].map((note, i) => (
+                  <figure className="fc-review fc-note" key={`${note.id}-${i}`} aria-hidden={i >= HANDWRITTEN_NOTES.length}>
+                    <img
+                      className="fc-note-img"
+                      src={note.src}
+                      alt={`Handwritten thank-you note from ${note.name}`}
+                      loading="lazy"
+                    />
+                    <figcaption><b>{note.name}</b><span>{note.programme}</span></figcaption>
+                  </figure>
+                ))}
+              </div>
             </div>
           </div>
         </section>
