@@ -261,7 +261,7 @@ export function FutureCareersLanding() {
                 <div className="fc-career-line" />
                 <div className="fc-career-line" />
                 <div className="fc-career-field">Share it live</div>
-                <div className="fc-career-line">Friday 20 November</div>
+                <div className="fc-career-line fc-career-date">Friday 20 November</div>
               </div>
             </div>
           </div>
