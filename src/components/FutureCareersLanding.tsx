@@ -264,6 +264,9 @@ export function FutureCareersLanding() {
                 </div>
               </div>
             </div>
+            <div className="fc-credentials">
+              <span>PhD Leadership</span><span>Oxford MBA-F</span><span>Harvard Org. Psychology</span><span>WEF Council Member</span>
+            </div>
           </div>
         </section>
 
