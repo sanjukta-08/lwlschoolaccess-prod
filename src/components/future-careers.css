@@ -231,10 +231,12 @@
   .fc-shell { max-width: min(92vw, 1680px); }
 }
 .fc-mentor-image > img { object-position: 50% 22%; }
-.fc-details { display: flex; flex-direction: column; }
-.fc-details .fc-btn { margin-top: auto; }
+@media (max-width: 900px) {
+  .fc-details-strip { grid-template-columns: repeat(2, 1fr); }
+  .fc-details-strip .fc-detail:last-child { grid-column: 1 / -1; }
+}
 @media (max-width: 640px) {
-  .fc-about-photo img { aspect-ratio: 16/8; }
+  .fc-about-photo img { height: clamp(200px, 52vw, 260px); }
 }
 .fc-reviews-title { white-space: nowrap; }
 @media (max-width: 640px) { .fc-reviews-title { white-space: normal; } }
