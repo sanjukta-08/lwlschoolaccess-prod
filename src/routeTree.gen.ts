@@ -47,6 +47,7 @@ import { Route as ConferenceSlugRouteImport } from './routes/conference.$slug'
 import { Route as ConferencesIndexRouteImport } from './routes/conferences.index'
 import { Route as ConferencesSlugRouteImport } from './routes/conferences.$slug'
 import { Route as InternshipsIndexRouteImport } from './routes/internships.index'
+import { Route as MasterclassesIndexRouteImport } from './routes/masterclasses.index'
 import { Route as MasterclassesFutureCareersAgeOfAiRouteImport } from './routes/masterclasses.future-careers-age-of-ai'
 import { Route as ProgrammesSlugRouteImport } from './routes/programmes.$slug'
 import { Route as WeekWithoutWallsKingsRouteImport } from './routes/week-without-walls.kings'
@@ -255,6 +256,11 @@ const InternshipsIndexRoute = InternshipsIndexRouteImport.update({
   path: '/',
   getParentRoute: () => InternshipsRoute,
 } as any)
+const MasterclassesIndexRoute = MasterclassesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => MasterclassesRoute,
+} as any)
 const MasterclassesFutureCareersAgeOfAiRoute =
   MasterclassesFutureCareersAgeOfAiRouteImport.update({
     id: '/future-careers-age-of-ai',
@@ -347,6 +353,7 @@ export interface FileRoutesByFullPath {
   '/camps/': typeof CampsIndexRoute
   '/conferences/': typeof ConferencesIndexRoute
   '/internships/': typeof InternshipsIndexRoute
+  '/masterclasses/': typeof MasterclassesIndexRoute
   '/admin/sessions/$id': typeof AdminSessionsIdRoute
   '/api/public/track-relay': typeof ApiPublicTrackRelayRoute
   '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
@@ -364,7 +371,6 @@ export interface FileRoutesByTo {
   '/explore': typeof ExploreRoute
   '/finder': typeof FinderRoute
   '/fit': typeof FitRoute
-  '/masterclasses': typeof MasterclassesRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/profile-building': typeof ProfileBuildingRoute
   '/shortlist': typeof ShortlistRoute
@@ -391,6 +397,7 @@ export interface FileRoutesByTo {
   '/camps': typeof CampsIndexRoute
   '/conferences': typeof ConferencesIndexRoute
   '/internships': typeof InternshipsIndexRoute
+  '/masterclasses': typeof MasterclassesIndexRoute
   '/admin/sessions/$id': typeof AdminSessionsIdRoute
   '/api/public/track-relay': typeof ApiPublicTrackRelayRoute
   '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
@@ -441,6 +448,7 @@ export interface FileRoutesById {
   '/camps/': typeof CampsIndexRoute
   '/conferences/': typeof ConferencesIndexRoute
   '/internships/': typeof InternshipsIndexRoute
+  '/masterclasses/': typeof MasterclassesIndexRoute
   '/admin/sessions/$id': typeof AdminSessionsIdRoute
   '/api/public/track-relay': typeof ApiPublicTrackRelayRoute
   '/our-offerings/conferences/$slug': typeof OurOfferingsConferencesSlugRoute
@@ -492,6 +500,7 @@ export interface FileRouteTypes {
     | '/camps/'
     | '/conferences/'
     | '/internships/'
+    | '/masterclasses/'
     | '/admin/sessions/$id'
     | '/api/public/track-relay'
     | '/our-offerings/conferences/$slug'
@@ -509,7 +518,6 @@ export interface FileRouteTypes {
     | '/explore'
     | '/finder'
     | '/fit'
-    | '/masterclasses'
     | '/privacy'
     | '/profile-building'
     | '/shortlist'
@@ -536,6 +544,7 @@ export interface FileRouteTypes {
     | '/camps'
     | '/conferences'
     | '/internships'
+    | '/masterclasses'
     | '/admin/sessions/$id'
     | '/api/public/track-relay'
     | '/our-offerings/conferences/$slug'
@@ -585,6 +594,7 @@ export interface FileRouteTypes {
     | '/camps/'
     | '/conferences/'
     | '/internships/'
+    | '/masterclasses/'
     | '/admin/sessions/$id'
     | '/api/public/track-relay'
     | '/our-offerings/conferences/$slug'
@@ -889,6 +899,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InternshipsIndexRouteImport
       parentRoute: typeof InternshipsRoute
     }
+    '/masterclasses/': {
+      id: '/masterclasses/'
+      path: '/'
+      fullPath: '/masterclasses/'
+      preLoaderRoute: typeof MasterclassesIndexRouteImport
+      parentRoute: typeof MasterclassesRoute
+    }
     '/masterclasses/future-careers-age-of-ai': {
       id: '/masterclasses/future-careers-age-of-ai'
       path: '/future-careers-age-of-ai'
@@ -1032,11 +1049,13 @@ const InternshipsRouteWithChildren = InternshipsRoute._addFileChildren(
 
 interface MasterclassesRouteChildren {
   MasterclassesFutureCareersAgeOfAiRoute: typeof MasterclassesFutureCareersAgeOfAiRoute
+  MasterclassesIndexRoute: typeof MasterclassesIndexRoute
 }
 
 const MasterclassesRouteChildren: MasterclassesRouteChildren = {
   MasterclassesFutureCareersAgeOfAiRoute:
     MasterclassesFutureCareersAgeOfAiRoute,
+  MasterclassesIndexRoute: MasterclassesIndexRoute,
 }
 
 const MasterclassesRouteWithChildren = MasterclassesRoute._addFileChildren(
