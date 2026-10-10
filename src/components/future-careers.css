@@ -371,5 +371,5 @@
 
 /* Laptop widths where the info line has little room: stack the five facts into one tidy centred list */
 @media (min-width: 1100px) and (max-width: 1500px) {
-  .fc-meta { flex-direction: column; align-items: center; gap: 5px; }
+  .fc-meta { flex-direction: column; align-items: flex-start; width: max-content; max-width: 100%; gap: 5px; }
 }
