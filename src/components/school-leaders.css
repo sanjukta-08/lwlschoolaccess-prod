@@ -157,3 +157,4 @@
 .sl-page :is(h1, h2, h3, blockquote, .sl-num, .sl-video-text strong),
 .sl-page :is(h1, h2, h3) :is(em, span) { font-family: var(--sl-serif) !important; }
 .sl-page :is(h1, h2, h3) em, .sl-page .sl-quote { font-style: italic !important; }
+.sl-page.sl-page em, .sl-page.sl-page :is(h1, h2, h3) em { font-family: var(--sl-serif) !important; font-style: italic !important; font-weight: 600; }
