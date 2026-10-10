@@ -230,7 +230,10 @@
   .fc-hero-copy { width: min(44vw, 700px); }
 }
 .fc-mentor-image > img { object-position: 50% 22%; }
-.fc-about-grid { align-items: flex-start; }
+.fc-about-grid { align-items: stretch; }
+.fc-details { display: flex; flex-direction: column; }
+.fc-details h3 { flex: 0 0 auto; }
+.fc-details .fc-btn { margin-top: auto; }
 .fc-about-photo { margin-top: 24px; }
 .fc-reviews-title { white-space: nowrap; }
 @media (max-width: 640px) { .fc-reviews-title { white-space: normal; } }
