@@ -159,31 +159,32 @@ export function FutureCareersLanding() {
         </section>
 
         <section id="about" className="fc-section">
-          <div className="fc-shell fc-about-grid">
-            <div className="fc-about-copy">
-              <Kicker>Free live masterclass</Kicker>
-              <h2 className="fc-title">About this <em>programme</em></h2>
-              <p className="fc-body-copy">
-                A free, 60-minute live online masterclass for Transition Year and senior-cycle
-                students, led by Dr Jojo O'Driscoll-Kearney, on how AI is reshaping work and the
-                leadership skills you will need. No prior AI knowledge needed.
-              </p>
+          <div className="fc-shell">
+            <div className="fc-about-grid">
+              <figure className="fc-photo fc-about-photo">
+                <img
+                  src={graduationGroupAsset.url}
+                  alt="Learn with Leaders students in graduation gowns holding their certificates on stage in front of the Harvard crest"
+                />
+              </figure>
+              <div className="fc-about-copy">
+                <Kicker>Free live masterclass</Kicker>
+                <h2 className="fc-title">About this <em>programme</em></h2>
+                <p className="fc-body-copy">
+                  A free, 60-minute live online masterclass for Transition Year and senior-cycle
+                  students, led by Dr Jojo O'Driscoll-Kearney, on how AI is reshaping work and the
+                  leadership skills you will need. No prior AI knowledge needed.
+                </p>
+                <ReserveButton />
+              </div>
             </div>
-            <div className="fc-details">
-              <h3>Masterclass details</h3>
-              <Detail icon={<CalendarDays size={22} />} label="Date" value="Friday 20 November 2026" />
-              <Detail icon={<Clock3 size={22} />} label="Time" value="4:30 pm Irish time" />
-              <Detail icon={<Monitor size={22} />} label="Learning mode" value="Live online, from home" />
-              <Detail icon={<Users size={22} />} label="Audience" value="TY and senior-cycle students" />
-              <Detail icon={<Tag size={22} />} label="Fee" value="Free" />
-              <ReserveButton />
+            <div className="fc-details-strip" aria-label="Masterclass details">
+              <Detail icon={<CalendarDays size={20} />} label="Date" value="Friday 20 November 2026" />
+              <Detail icon={<Clock3 size={20} />} label="Time" value="4:30 pm Irish time" />
+              <Detail icon={<Monitor size={20} />} label="Learning mode" value="Live online, from home" />
+              <Detail icon={<Users size={20} />} label="Audience" value="TY and senior-cycle students" />
+              <Detail icon={<Tag size={20} />} label="Fee" value="Free" />
             </div>
-            <figure className="fc-photo fc-about-photo">
-              <img
-                src={graduationGroupAsset.url}
-                alt="Learn with Leaders students in graduation gowns holding their certificates on stage in front of the Harvard crest"
-              />
-            </figure>
           </div>
         </section>
 
