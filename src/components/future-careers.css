@@ -342,8 +342,8 @@
   }
   .fc-hero-inner { flex: 1; display: flex; flex-direction: column; justify-content: center; width: 100%; }
   .fc-hero-robot { right: clamp(4px, 1vw, 18px); bottom: 0; }
-  /* Stack the two calls so the robot's outstretched arm never reaches the buttons */
-  .fc-hero-actions { flex-direction: column; align-items: center; gap: 12px; }
+  /* Solid so the robot's hand reads as passing behind the button instead of across its text */
+  .fc-hero-actions .fc-watch { background: #fff; box-shadow: 0 12px 26px -18px rgb(29 20 23 / .45); }
   /* Keep the info line centred on the page; cap its width symmetrically so it clears the robot */
   .fc-meta { max-width: min(100%, max(300px, calc(100vw - var(--fc-robot-h) * 2.6 - 40px))); margin-inline: auto; }
 }
