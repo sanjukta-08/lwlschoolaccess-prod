@@ -118,8 +118,8 @@
 .fc-mentor-tag { position: absolute; z-index: 2; left: -12px; bottom: -34px; padding: 16px 22px 18px; border-top: 3px solid var(--fc-gold); border-radius: 0 0 6px 6px; background: #fff; box-shadow: 0 22px 44px -20px rgb(29 20 23 / .4); }
 .fc-mentor-tag b { display: block; color: var(--fc-crimson); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
 .fc-mentor-tag span { display: block; margin-top: 5px; font: 400 22px/1.18 "Playfair Display", serif; }
-.fc-credentials { display: flex; flex-wrap: wrap; gap: 10px; }
-.fc-credentials span { padding: 7px 15px; border: 1px solid var(--fc-line); border-radius: 999px; background: var(--fc-wash); font-size: 16px; font-weight: 600; }
+.fc-credentials { margin-top: 6px; display: flex; flex-wrap: nowrap; justify-content: center; align-items: center; gap: 10px; white-space: nowrap; }
+.fc-credentials span { padding: 7px 15px; border: 1px solid var(--fc-line); border-radius: 999px; background: var(--fc-wash); font-size: 16px; font-weight: 600; white-space: nowrap; }
 .fc-mentor-copy { flex: 1 1 460px; min-width: 0; }
 .fc-mentor-copy blockquote { margin: 0; font-size: clamp(1.6rem, 2.7vw, 2.4rem); line-height: 1.26; }
 .fc-quote-mark { height: 36px; color: var(--fc-gold); font: 400 100px/.62 "Playfair Display", serif; }
