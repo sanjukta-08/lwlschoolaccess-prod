@@ -95,14 +95,20 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
   const db = (supabaseAdmin as unknown as { schema: (s: string) => any }).schema("lwl_site");
 
   // --- session -------------------------------------------------------
+  // A caller-supplied sessionId is only honoured when it also matches the
+  // visitor's IP hash recorded at creation -- otherwise anyone holding (or
+  // guessing) a session UUID could read its lead status or write messages
+  // into another visitor's conversation. Mismatch -> start a fresh session.
+  const { hashIp } = await import("./rate-limit.server");
+  const ipHash = hashIp(clientIp);
   let sessionId = input.sessionId;
   if (sessionId) {
     const { data } = await db
       .from("concierge_sessions")
-      .select("id")
+      .select("id, ip_hash")
       .eq("id", sessionId)
       .maybeSingle();
-    if (!data) sessionId = undefined;
+    if (!data || (data.ip_hash && data.ip_hash !== ipHash)) sessionId = undefined;
   }
   if (!sessionId) {
     // Caps new-session creation per visitor. Without this, the per-session
