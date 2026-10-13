@@ -126,6 +126,7 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
     const { data, error } = await db
       .from("concierge_sessions")
       .insert({
+        ip_hash: ipHash,
         source_page: input.sourcePage ?? null,
         utm_source: input.utm?.utm_source ?? null,
         utm_medium: input.utm?.utm_medium ?? null,
@@ -465,9 +466,21 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
     headers: { "Lovable-API-Key": key, "X-Lovable-AIG-SDK": "vercel-ai-sdk" },
   });
 
-  const messages: ModelMessage[] = input.messages
-    .slice(-MAX_MESSAGES)
-    .map((m) => ({ role: m.role, content: m.content }));
+  // The model's conversation history comes from the server's own message log,
+  // never from the caller -- a client could otherwise fabricate assistant
+  // turns to steer the model. The caller supplies only the new user message.
+  const { data: stored } = await db
+    .from("concierge_messages")
+    .select("role, content")
+    .eq("session_id", sid)
+    .in("role", ["user", "assistant"])
+    .order("created_at", { ascending: true })
+    .limit(MAX_MESSAGES);
+  const history: ModelMessage[] = ((stored ?? []) as { role: string; content: string }[]).map(
+    (m) => ({ role: m.role as "user" | "assistant", content: m.content }),
+  );
+  const messages: ModelMessage[] =
+    last.role === "user" ? [...history, { role: "user", content: last.content }] : history;
 
   // --- grounding: options already shown earlier in this session --------
   // Prior tool results are not replayed in the text-only history, so give the
