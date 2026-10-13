@@ -29,9 +29,10 @@ async function registryClient() {
   return supabaseAdmin;
 }
 
-/** Every sender/platform currently cleared to send. */
+/** Every sender/platform currently cleared to send. Admin-only: the table lists staff names. */
 export const listUtmMediums = createServerFn({ method: "GET" }).handler(
   async (): Promise<UtmMedium[]> => {
+    await requireAdmin();
     const supabase = await registryClient();
     const { data, error } = await supabase
       .from("all_utm_mediums")
