@@ -10,7 +10,7 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "14.5"
+    PostgrestVersion: "14.4"
   }
   public: {
     Tables: {
@@ -2122,6 +2122,7 @@ export type Database = {
           country: string | null
           created_at: string
           currency: string | null
+          form_data: Json
           form_template_id: string | null
           grade: string | null
           id: string
@@ -2159,6 +2160,7 @@ export type Database = {
           student_mobile: string | null
           student_name: string
           submission_token: string
+          updated_at: string
           utm_campaign: string | null
           utm_medium: string | null
           utm_source: string | null
@@ -2173,6 +2175,7 @@ export type Database = {
           country?: string | null
           created_at?: string
           currency?: string | null
+          form_data?: Json
           form_template_id?: string | null
           grade?: string | null
           id?: string
@@ -2210,6 +2213,7 @@ export type Database = {
           student_mobile?: string | null
           student_name: string
           submission_token?: string
+          updated_at?: string
           utm_campaign?: string | null
           utm_medium?: string | null
           utm_source?: string | null
@@ -2224,6 +2228,7 @@ export type Database = {
           country?: string | null
           created_at?: string
           currency?: string | null
+          form_data?: Json
           form_template_id?: string | null
           grade?: string | null
           id?: string
@@ -2261,6 +2266,7 @@ export type Database = {
           student_mobile?: string | null
           student_name?: string
           submission_token?: string
+          updated_at?: string
           utm_campaign?: string | null
           utm_medium?: string | null
           utm_source?: string | null
@@ -4109,6 +4115,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      is_finance_admin: { Args: { _uid: string }; Returns: boolean }
       normalize_grade_level: { Args: { input: string }; Returns: string }
       normalize_place_name: { Args: { input: string }; Returns: string }
       research_role: { Args: { _user_id: string }; Returns: string }
