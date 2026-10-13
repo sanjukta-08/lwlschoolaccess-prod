@@ -27,7 +27,7 @@ export function clientIpFrom(request: Request | undefined): string {
   }
 }
 
-function hashIp(ip: string): string {
+export function hashIp(ip: string): string {
   const pepper = process.env["LWL_RATE_LIMIT_PEPPER"] ?? "lwl-rate-limit-default-pepper";
   return createHash("sha256").update(`${pepper}:${ip}`).digest("hex");
 }

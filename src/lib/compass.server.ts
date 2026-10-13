@@ -95,14 +95,20 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
   const db = (supabaseAdmin as unknown as { schema: (s: string) => any }).schema("lwl_site");
 
   // --- session -------------------------------------------------------
+  // A caller-supplied sessionId is only honoured when it also matches the
+  // visitor's IP hash recorded at creation -- otherwise anyone holding (or
+  // guessing) a session UUID could read its lead status or write messages
+  // into another visitor's conversation. Mismatch -> start a fresh session.
+  const { hashIp } = await import("./rate-limit.server");
+  const ipHash = hashIp(clientIp);
   let sessionId = input.sessionId;
   if (sessionId) {
     const { data } = await db
       .from("concierge_sessions")
-      .select("id")
+      .select("id, ip_hash")
       .eq("id", sessionId)
       .maybeSingle();
-    if (!data) sessionId = undefined;
+    if (!data || (data.ip_hash && data.ip_hash !== ipHash)) sessionId = undefined;
   }
   if (!sessionId) {
     // Caps new-session creation per visitor. Without this, the per-session
@@ -120,6 +126,7 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
     const { data, error } = await db
       .from("concierge_sessions")
       .insert({
+        ip_hash: ipHash,
         source_page: input.sourcePage ?? null,
         utm_source: input.utm?.utm_source ?? null,
         utm_medium: input.utm?.utm_medium ?? null,
@@ -459,9 +466,26 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
     headers: { "Lovable-API-Key": key, "X-Lovable-AIG-SDK": "vercel-ai-sdk" },
   });
 
-  const messages: ModelMessage[] = input.messages
-    .slice(-MAX_MESSAGES)
-    .map((m) => ({ role: m.role, content: m.content }));
+  // The model's conversation history comes from the server's own message log,
+  // never from the caller -- a client could otherwise fabricate assistant
+  // turns to steer the model. The caller supplies only the new user message.
+  const { data: stored } = await db
+    .from("concierge_messages")
+    .select("role, content")
+    .eq("session_id", sid)
+    .in("role", ["user", "assistant"])
+    .order("created_at", { ascending: true })
+    .limit(MAX_MESSAGES);
+  const history: ModelMessage[] = ((stored ?? []) as { role: string; content: string }[]).map(
+    (m) => ({ role: m.role as "user" | "assistant", content: m.content }),
+  );
+  // The new user message was already inserted into the log above, so it is
+  // normally the last history row; append it only if that insert was lost.
+  const tail = history[history.length - 1];
+  const messages: ModelMessage[] =
+    last.role === "user" && !(tail?.role === "user" && tail.content === last.content)
+      ? [...history, { role: "user", content: last.content }]
+      : history;
 
   // --- grounding: options already shown earlier in this session --------
   // Prior tool results are not replayed in the text-only history, so give the
