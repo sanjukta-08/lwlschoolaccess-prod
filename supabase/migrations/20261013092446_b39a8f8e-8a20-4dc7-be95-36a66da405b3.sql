@@ -1,0 +1,1 @@
+ALTER TABLE lwl_site.concierge_sessions ADD COLUMN IF NOT EXISTS ip_hash text;
