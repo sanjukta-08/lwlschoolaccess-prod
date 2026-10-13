@@ -12,7 +12,11 @@
     "format": "prettier --write ."
   },
   "overrides": {
-    "rolldown": "1.2.1"
+    "rolldown": "1.2.1",
+    "undici": "^7.29.1",
+    "d3-color": "^3.1.0",
+    "source-map-js": "^1.2.2",
+    "js-yaml": "^4.3.2"
   },
   "dependencies": {
     "@ai-sdk/openai": "^4.0.78",
