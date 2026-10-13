@@ -11,6 +11,7 @@
  * Read-only from this project: new mediums/sources are added in the Console.
  */
 import { createServerFn } from "@tanstack/react-start";
+import { requireAdmin } from "./admin-auth.server";
 
 export type UtmMedium = {
   medium_slug: string;
