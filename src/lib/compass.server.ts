@@ -479,8 +479,13 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
   const history: ModelMessage[] = ((stored ?? []) as { role: string; content: string }[]).map(
     (m) => ({ role: m.role as "user" | "assistant", content: m.content }),
   );
+  // The new user message was already inserted into the log above, so it is
+  // normally the last history row; append it only if that insert was lost.
+  const tail = history[history.length - 1];
   const messages: ModelMessage[] =
-    last.role === "user" ? [...history, { role: "user", content: last.content }] : history;
+    last.role === "user" && !(tail?.role === "user" && tail.content === last.content)
+      ? [...history, { role: "user", content: last.content }]
+      : history;
 
   // --- grounding: options already shown earlier in this session --------
   // Prior tool results are not replayed in the text-only history, so give the
