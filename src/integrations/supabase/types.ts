@@ -3537,6 +3537,9 @@ export type Database = {
           school: string | null
           state: string | null
           student_dob: string | null
+          utm_campaign: string | null
+          utm_medium: string | null
+          utm_source: string | null
         }
         Insert: {
           city?: string | null
@@ -3558,6 +3561,9 @@ export type Database = {
           school?: string | null
           state?: string | null
           student_dob?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
         }
         Update: {
           city?: string | null
@@ -3579,6 +3585,9 @@ export type Database = {
           school?: string | null
           state?: string | null
           student_dob?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
         }
         Relationships: []
       }
