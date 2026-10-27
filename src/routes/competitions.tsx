@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
 import { useHydratedCatalogue } from "@/lib/catalogue";
 import { DEFAULT_SEARCH } from "@/lib/finder";
+import { withUtm } from "@/lib/utm";
 import { slugOf } from "@/lib/programme-slug";
 import { TRACKS, fmtLong, upcomingProgrammes, type Programme } from "@/lib/programmes";
 import imgFinanceMarkets from "@/assets/competitions/finance-markets.jpg";
@@ -114,18 +115,35 @@ const partnerFromUrl = (url: string): string => {
   }
 };
 
+/** Competitions whose cards open the competition's own site in a new tab. */
+const externalCompetitionUrl = (p: Programme): string | null => {
+  const n = p.name.toLowerCase();
+  if (isAiFoundersChallenge(p)) return "https://joinonwards.com/competitions";
+  if (n.includes("pre-med") || n.includes("pre med") || n.includes("premed"))
+    return "https://futuredoctorsprogram.com/competition";
+  if (n.includes("wolves")) return "https://joinfinlit.com/competition";
+  if (n.includes("moot")) return "https://futurelawyersprogram.com/moot-court";
+  if (n.includes("yale") && n.includes("essay"))
+    return "https://www.learnwithleaders.com/competitions/the-yale-international-relations-essay-competition/";
+  if (n.includes("huso") || n.includes("science olympiad")) {
+    if (n.includes("india"))
+      return "https://www.learnwithleaders.com/competitions/harvard-undergraduate-science-olympiad-india/";
+    if (n.includes("middle east") || n.includes("middleeast"))
+      return "https://www.learnwithleaders.com/competitions/harvard-undergraduate-science-olympiad-middleeast/";
+  }
+  return null;
+};
+
 const nextCohort = (p: Programme) => [...p.cohorts].sort((a, b) => a.d.localeCompare(b.d))[0];
 
 function CompetitionCard({ p }: { p: Programme }) {
   const partner = partnerFromUrl(p.apply);
   const next = nextCohort(p);
-  return (
-    <li className="h-full">
-      <Link
-        to="/programmes/$slug"
-        params={{ slug: slugOf(p) }}
-        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-paper no-underline shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold-line hover:shadow-lift"
-      >
+  const external = externalCompetitionUrl(p);
+  const cardClass =
+    "group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-paper no-underline shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold-line hover:shadow-lift";
+  const body = (
+    <>
         <div className="relative aspect-[16/9] w-full overflow-hidden bg-wash">
           <img
             src={imageFor(p)}
@@ -187,7 +205,27 @@ function CompetitionCard({ p }: { p: Programme }) {
             </span>
           </div>
         </div>
-      </Link>
+    </>
+  );
+  return (
+    <li className="h-full">
+      {external ? (
+        <a
+          href={external}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={cardClass}
+          onClick={(e) => {
+            e.currentTarget.href = withUtm(external);
+          }}
+        >
+          {body}
+        </a>
+      ) : (
+        <Link to="/programmes/$slug" params={{ slug: slugOf(p) }} className={cardClass}>
+          {body}
+        </Link>
+      )}
     </li>
   );
 }
