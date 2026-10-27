@@ -144,7 +144,6 @@ function CompetitionCard({ p }: { p: Programme }) {
     "group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-paper no-underline shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold-line hover:shadow-lift";
   const body = (
     <>
-      >
         <div className="relative aspect-[16/9] w-full overflow-hidden bg-wash">
           <img
             src={imageFor(p)}
