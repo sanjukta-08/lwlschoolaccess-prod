@@ -90,15 +90,19 @@ export async function startSession() {
       }
     }
 
-    // Real session-duration numbers: heartbeat while the tab lives, final
-    // beacon on close.
+    // Real session-duration numbers: light heartbeat every 5 minutes while
+    // the tab lives, plus one final beacon when the tab is hidden or closed.
     window.setInterval(() => {
       const id = readSessionId();
       if (id) void call("session_heartbeat", { session_id: id });
-    }, 20_000);
-    window.addEventListener("beforeunload", () => {
+    }, 5 * 60_000);
+    // Send the final beacon once per hide; re-arm when the tab is visible again.
+    let endingSent = false;
+    const sendEnding = () => {
+      if (endingSent) return;
       const id = readSessionId();
       if (!id) return;
+      endingSent = true;
       try {
         navigator.sendBeacon(
           ENDPOINT,
@@ -112,7 +116,12 @@ export async function startSession() {
       } catch {
         /* ignore */
       }
+    };
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "hidden") sendEnding();
+      else endingSent = false;
     });
+    window.addEventListener("pagehide", sendEnding);
 
     while (queue.length) {
       const q = queue.shift()!;
