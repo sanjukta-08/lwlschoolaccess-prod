@@ -25,6 +25,16 @@ const isAiFoundersChallenge = (p: Programme): boolean => {
   return n.includes("ai founder") || n.includes("founders challenge");
 };
 
+/** Competitions hidden from this page for now (still in the catalogue). */
+const isHiddenCompetition = (p: Programme): boolean => {
+  const n = p.name.toLowerCase();
+  return (
+    n.includes("next generation finance") ||
+    n.includes("creating livelihoods") ||
+    n.includes("junior venture challenge")
+  );
+};
+
 const firstDate = (p: Programme): string =>
   [...p.cohorts].map((c) => c.d).sort()[0] ?? "9999-12-31";
 
@@ -85,7 +95,7 @@ export const Route = createFileRoute("/competitions")({
           name: "Learn with Leaders competitions",
           itemListElement: upcomingProgrammes()
             .filter(
-              (p) => p.type === "comp" && !p.name.toLowerCase().includes("next generation finance"),
+              (p) => p.type === "comp" && !isHiddenCompetition(p),
             )
             .sort(sortCompetitions)
             .map((p, i) => ({
@@ -121,6 +131,7 @@ const externalCompetitionUrl = (p: Programme): string | null => {
   if (isAiFoundersChallenge(p)) return "https://joinonwards.com/competitions";
   if (n.includes("pre-med") || n.includes("pre med") || n.includes("premed"))
     return "https://futuredoctorsprogram.com/competition";
+  if (n.includes("future career challenge")) return "https://joinfuturedge.com/";
   if (n.includes("wolves")) return "https://joinfinlit.com/competition";
   if (n.includes("moot")) return "https://futurelawyersprogram.com/moot-court";
   if (n.includes("yale") && n.includes("essay"))
@@ -233,7 +244,7 @@ function CompetitionCard({ p }: { p: Programme }) {
 function CompetitionsPage() {
   useHydratedCatalogue();
   const competitions = upcomingProgrammes()
-    .filter((p) => p.type === "comp" && !p.name.toLowerCase().includes("next generation finance"))
+    .filter((p) => p.type === "comp" && !isHiddenCompetition(p))
     .sort(sortCompetitions);
 
   return (
