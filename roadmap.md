@@ -1,5 +1,8 @@
 # Roadmap
 
+- [ ] Complete remaining SEO/AEO/GEO readiness checks without domain cutover; Google connection deferred by user.
+- [ ] Audit every competition page and outbound registration link against live database catalogue values; correct site wiring and report external blockers.
+
 - [x] Audit existing learnwithleaders.com search signals and legacy URLs using live HTML and Google Search Console.
 - [x] Correct search-only metadata issues without changing visible content or design; verify all 123 sitemap pages and eight preservation tests.
 - [ ] Preserve unmapped legacy pages/resources before domain cutover — blocked by missing legacy CMS/file export or independently addressable legacy hosting configuration; Yale/HUSO, summer editions, mentor profiles and PDFs must remain available.
