@@ -7,7 +7,7 @@ describe("database-owned competition destinations", () => {
     ["huso-india", "https://studentform.ivyolympiad.com/register/india"],
     ["huso-middle-east", "https://studentform.ivyolympiad.com/register/middle-east"],
     ["yale-global-essay-competition", "https://studentform.ivycomp.com/"],
-  ]) {
+  ] as const) {
     it(`preserves the catalogue registration URL for ${slug}`, () => {
       assert.equal(catalogueApplyUrl({ pay_slug: slug, apply_url: url }, "learn-with-leaders"), url);
     });
