@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
@@ -43,12 +44,14 @@ export const Route = createFileRoute("/masterclasses/")({
   staticData: { sitemap: true },
   loader: ({ context }) => context.queryClient.ensureQueryData(masterclassQuery),
   head: () => ({
+    links: [{ rel: "canonical", href: canonicalUrl("/masterclasses") }],
     meta: [
       { title: TITLE },
       { name: "description", content: DESC },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: canonicalUrl("/masterclasses") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),

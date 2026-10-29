@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "@/components/PageHero";
 import { RoleCard } from "@/components/RoleCard";
@@ -22,10 +23,10 @@ export const Route = createFileRoute("/internships/")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://lwlschoolaccess.com/internships" },
+      { property: "og:url", content: canonicalUrl("/internships") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://lwlschoolaccess.com/internships" }],
+    links: [{ rel: "canonical", href: canonicalUrl("/internships") }],
     scripts: [
       {
         type: "application/ld+json",
@@ -36,39 +37,6 @@ export const Route = createFileRoute("/internships/")({
           url: "https://www.learnwithleaders.com/",
           sameAs: ["https://www.linkedin.com/company/learn-with-leaders/"],
         }),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify(
-          ROLES.map((role) => ({
-            "@context": "https://schema.org",
-            "@type": "JobPosting",
-            title: role.title,
-            description: role.about,
-            datePosted: "2026-08-27",
-            employmentType: role.type === "Full Time" ? "FULL_TIME" : "INTERN",
-            jobLocation: {
-              "@type": "Place",
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Remote",
-                addressRegion: "",
-                addressCountry: "",
-              },
-            },
-            jobLocationType: "TELECOMMUTE",
-            hiringOrganization: {
-              "@type": "Organization",
-              name: "Learn with Leaders",
-              url: "https://www.learnwithleaders.com/",
-            },
-            applicationContact: {
-              "@type": "ContactPoint",
-              email: "careers@learnwithleaders.com",
-              contactType: "recruitment",
-            },
-          })),
-        ),
       },
     ],
   }),

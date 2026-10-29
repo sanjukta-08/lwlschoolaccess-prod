@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/PageHero";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -6,6 +7,7 @@ import { GuidedFinder } from "@/components/GuidedFinder";
 export const Route = createFileRoute("/explore")({
   staticData: { sitemap: true },
   head: () => ({
+    links: [{ rel: "canonical", href: canonicalUrl("/explore") }],
     meta: [
       { title: "Explore programs by type - Learn with Leaders" },
       {
@@ -20,6 +22,7 @@ export const Route = createFileRoute("/explore")({
           "Pick a program type, a grade and a subject - see every matching program in three steps.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: canonicalUrl("/explore") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),

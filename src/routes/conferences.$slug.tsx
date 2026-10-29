@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ensureCatalogue } from "@/lib/catalogue";
 import { conferenceBySlug } from "@/lib/programme-slug";
@@ -23,7 +24,7 @@ export const Route = createFileRoute("/conferences/$slug")({
     if (!conference) throw notFound();
     return { conference };
   },
-  head: ({ loaderData }) => {
+  head: ({ loaderData, params }) => {
     if (!loaderData)
       return {
         meta: [
@@ -32,6 +33,7 @@ export const Route = createFileRoute("/conferences/$slug")({
         ],
       };
     const { conference } = loaderData;
+    const url = canonicalUrl(`/conferences/${encodeURIComponent(params.slug)}`);
     const title = `${conference.name} | Learn with Leaders`;
     const description =
       `${conference.tag || conference.about} ${conferenceDateLabel(conference)} in ${conferenceLocation(conference)}.`.slice(
@@ -45,8 +47,10 @@ export const Route = createFileRoute("/conferences/$slug")({
         { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:type", content: "article" },
+        { property: "og:url", content: url },
         { name: "twitter:card", content: "summary_large_image" },
       ],
+      links: [{ rel: "canonical", href: url }],
       scripts: [
         {
           type: "application/ld+json",
@@ -64,7 +68,7 @@ export const Route = createFileRoute("/conferences/$slug")({
             location: { "@type": "Place", name: conferenceLocation(conference) },
             organizer: { "@type": "Organization", name: "Learn with Leaders" },
             image: conferenceImage(conference),
-            url: conference.apply,
+            url,
           }),
         },
       ],

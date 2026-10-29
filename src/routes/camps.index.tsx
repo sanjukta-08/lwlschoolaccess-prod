@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -29,12 +30,14 @@ const DESC =
 export const Route = createFileRoute("/camps/")({
   staticData: { sitemap: true },
   head: () => ({
+    links: [{ rel: "canonical", href: canonicalUrl("/camps") }],
     meta: [
       { title: TITLE },
       { name: "description", content: DESC },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: canonicalUrl("/camps") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     scripts: [

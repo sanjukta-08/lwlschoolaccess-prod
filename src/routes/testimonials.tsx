@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import { Link, createFileRoute, stripSearchParams, useNavigate } from "@tanstack/react-router";
 
 import { SiteHeader } from "@/components/SiteHeader";
@@ -40,9 +41,10 @@ export const Route = createFileRoute("/testimonials")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: canonicalUrl("/testimonials") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/testimonials" }],
+    links: [{ rel: "canonical", href: canonicalUrl("/testimonials") }],
     scripts: [
       {
         type: "application/ld+json",

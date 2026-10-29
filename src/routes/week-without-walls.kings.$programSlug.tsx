@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import KingsWWWProgramDetail from "@/components/week-without-walls/KingsWWWProgramDetail";
@@ -20,6 +21,7 @@ export const Route = createFileRoute("/week-without-walls/kings/$programSlug")({
       };
     }
     const { program } = loaderData;
+    const url = canonicalUrl(`/week-without-walls/kings/${encodeURIComponent(program.slug)}`);
     const title = `${program.title} | Week Without Walls at Kings’ School Al Barsha`;
     const description = `${program.description} ${sharedFacts.dates} at Kings’ School Al Barsha.`;
     return {
@@ -29,15 +31,17 @@ export const Route = createFileRoute("/week-without-walls/kings/$programSlug")({
         { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:type", content: "article" },
+        { property: "og:url", content: url },
         { name: "twitter:card", content: "summary_large_image" },
       ],
-      links: [{ rel: "canonical", href: `/week-without-walls/kings/${program.slug}` }],
+      links: [{ rel: "canonical", href: url }],
       scripts: [
         {
           type: "application/ld+json",
           children: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Course",
+            url,
             name: program.title,
             description,
             provider: { "@type": "Organization", name: "Learn with Leaders" },

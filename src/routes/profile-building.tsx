@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/PageHero";
 import { ProfileTypeBlocks } from "@/components/ProfileTypeBlocks";
@@ -15,12 +16,14 @@ const DESC =
 export const Route = createFileRoute("/profile-building")({
   staticData: { sitemap: true },
   head: () => ({
+    links: [{ rel: "canonical", href: canonicalUrl("/profile-building") }],
     meta: [
       { title: TITLE },
       { name: "description", content: DESC },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "article" },
+      { property: "og:url", content: canonicalUrl("/profile-building") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     scripts: [

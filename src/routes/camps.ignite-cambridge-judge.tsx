@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { ensureCatalogue } from "@/lib/catalogue";
 import { campBySlug } from "@/lib/camps";
@@ -36,10 +37,11 @@ export const Route = createFileRoute("/camps/ignite-cambridge-judge")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "article" },
+      { property: "og:url", content: canonicalUrl("/camps/ignite-cambridge-judge") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
-      { rel: "canonical", href: "https://lwlschoolaccess.com/camps/ignite-cambridge-judge" },
+      { rel: "canonical", href: canonicalUrl("/camps/ignite-cambridge-judge") },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       {
         rel: "stylesheet",

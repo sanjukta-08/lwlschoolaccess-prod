@@ -1,11 +1,11 @@
+import { canonicalUrl } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
 
 const TITLE = "Privacy Policy | Learn with Leaders";
 const DESC =
-  "How Learn with Leaders handles information on lwlschoolaccess.com: quiz answers, saved programmes, Compass messages, advisor bookings, local storage and your choices.";
-const URL = "https://lwlschoolaccess.com/privacy";
+  "How Learn with Leaders handles information on its website: quiz answers, saved programmes, Compass messages, advisor bookings, local storage and your choices.";
 const EMAIL = "team@learnwithleaders.com";
 const PARTNER_SITES = [
   "apply.learnwithleaders.com",
@@ -30,10 +30,10 @@ export const Route = createFileRoute("/privacy")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "article" },
-      { property: "og:url", content: URL },
+      { property: "og:url", content: canonicalUrl("/privacy") },
       { name: "twitter:card", content: "summary" },
     ],
-    links: [{ rel: "canonical", href: URL }],
+    links: [{ rel: "canonical", href: canonicalUrl("/privacy") }],
   }),
   component: PrivacyPage,
 });

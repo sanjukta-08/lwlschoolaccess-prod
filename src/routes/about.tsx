@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/PageHero";
 import { AboutLwl } from "@/components/AboutLwl";
@@ -22,10 +23,10 @@ export const Route = createFileRoute("/about")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/about" },
+      { property: "og:url", content: canonicalUrl("/about") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/about" }],
+    links: [{ rel: "canonical", href: canonicalUrl("/about") }],
     scripts: [
       {
         type: "application/ld+json",

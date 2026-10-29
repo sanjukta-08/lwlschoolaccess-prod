@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, CalendarDays, GraduationCap, Trophy } from "lucide-react";
 
@@ -82,10 +83,10 @@ export const Route = createFileRoute("/competitions")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://lwlschoolaccess.com/competitions" },
+      { property: "og:url", content: canonicalUrl("/competitions") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://lwlschoolaccess.com/competitions" }],
+    links: [{ rel: "canonical", href: canonicalUrl("/competitions") }],
     scripts: [
       {
         type: "application/ld+json",
@@ -102,7 +103,7 @@ export const Route = createFileRoute("/competitions")({
               "@type": "ListItem",
               position: i + 1,
               name: p.name,
-              url: `https://lwlschoolaccess.com/programmes/${slugOf(p)}`,
+              url: canonicalUrl(`/programmes/${slugOf(p)}`),
             })),
         }),
       },

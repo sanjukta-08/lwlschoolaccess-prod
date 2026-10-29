@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import ZoomBadge from "@/components/ZoomBadge";
 import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
 import { stripSearchParams } from "@tanstack/react-router";
@@ -72,10 +73,10 @@ export const Route = createFileRoute("/finder")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://lwlschoolaccess.com/finder" },
+      { property: "og:url", content: canonicalUrl("/finder") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://lwlschoolaccess.com/finder" }],
+    links: [{ rel: "canonical", href: canonicalUrl("/finder") }],
   }),
   component: FinderPage,
 });

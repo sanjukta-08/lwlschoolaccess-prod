@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 
 import KingsWeekWithoutWalls from "@/components/week-without-walls/KingsWeekWithoutWalls";
@@ -16,9 +17,10 @@ export const Route = createFileRoute("/week-without-walls/kings/")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: canonicalUrl("/week-without-walls/kings") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/week-without-walls/kings" }],
+    links: [{ rel: "canonical", href: canonicalUrl("/week-without-walls/kings") }],
     scripts: [
       {
         type: "application/ld+json",
