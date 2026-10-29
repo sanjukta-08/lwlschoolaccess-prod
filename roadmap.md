@@ -1,5 +1,9 @@
 # Roadmap
 
+- [ ] Complete requested pre-launch security review — quick scan completed; deep code scan running, awaiting completion notification.
+- [ ] Fix verified production dependency advisories (DOMPurify, undici and Zod), then recheck dependencies and affected flows.
+- [ ] Fix actionable security findings owned by this site, validate changes and report unresolved launch risks; preserve other platforms' tables and user-ignored findings.
+
 - [x] Complete available SEO/AEO/GEO readiness checks without domain cutover; verify 123 sitemap pages and descriptive share titles.
 - [ ] Google Search Console verification and sitemap submission — deferred by user; connection required.
 - [x] Audit eight listed competition pages and 12 catalogue competition application links; correct database URL precedence, remove name-based card URLs and use database partner names.
