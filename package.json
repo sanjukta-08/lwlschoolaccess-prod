@@ -18,7 +18,8 @@
     "source-map-js": "^1.2.2",
     "js-yaml": "^4.3.2",
     "dompurify": "^3.4.17",
-    "zod": "^4.6.6"
+    "zod": "^4.6.6",
+    "seroval": "^1.6.11"
   },
   "dependencies": {
     "@ai-sdk/openai": "^4.0.78",
