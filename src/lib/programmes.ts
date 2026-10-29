@@ -44,6 +44,8 @@ export type Programme = {
   feeR: string | null;
   badge?: string;
   site: string;
+  /** Exact official programme page from all_programs.program_url, without homepage fallbacks. */
+  officialSite?: string;
   apply: string;
   /** Stable catalogue identifier used by dedicated experience routes. */
   paySlug?: string;

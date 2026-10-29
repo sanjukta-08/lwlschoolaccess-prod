@@ -1,6 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 
 import type { Cohort, MentorKey, Programme, TrackKey, TypeKey } from "./programmes";
+import { catalogueApplyUrl } from "./catalogue-links";
 
 /** A camp's live schedule, merged into the editorial camp records at runtime. */
 export type LiveCamp = {
@@ -107,7 +108,8 @@ const TIME_TBC = "Live session times confirmed on registration";
 /**
  * Shared Catalogue SOP v2 apply-link contract.
  *
- * LWL's own programmes resolve on the Application Portal by `pay_slug`:
+ * Preserve the shared programme's authored apply_url, including externally
+ * operated LWL competitions. If absent, LWL programmes resolve by `pay_slug`:
  *   https://apply.learnwithleaders.com/apply/{pay_slug}
  *
  * `pay_slug` is the master programme identifier, stable across cohorts. The
@@ -116,9 +118,6 @@ const TIME_TBC = "Live session times confirmed on registration";
  *
  * External partners route to their own `apply_url` / `program_url` verbatim.
  */
-const APPLY_PORTAL = "https://apply.learnwithleaders.com/apply";
-const LWL_PARTNER_SLUG = "learn-with-leaders";
-
 const applyLink = (
   program:
     | { apply_url?: string | null; program_url?: string | null; pay_slug?: string | null }
@@ -127,10 +126,7 @@ const applyLink = (
   partner: PartnerRow | undefined,
   ...fallbacks: (string | null | undefined)[]
 ): string => {
-  if (partner?.partner_slug === LWL_PARTNER_SLUG && program?.pay_slug) {
-    return `${APPLY_PORTAL}/${encodeURIComponent(program.pay_slug)}`;
-  }
-  return firstUrl(program?.apply_url, ...fallbacks, ADVISOR)!;
+  return catalogueApplyUrl(program, partner?.partner_slug, ...fallbacks);
 };
 
 const slugify = (s: string) =>
@@ -348,6 +344,7 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
         ...(s.badge ? { badge: s.badge } : {}),
         site: firstUrl(db?.program_url, s.site_url, partner?.website, ADVISOR)!,
         apply: applyLink(db, partner, s.apply_url, db?.program_url, partner?.website),
+        ...(db.program_url ? { officialSite: db.program_url.trim() } : {}),
         ...(db?.pay_slug ? { paySlug: db.pay_slug } : {}),
         ...(db?.location ? { location: db.location } : {}),
         ...(db?.format ? { format: db.format } : {}),
@@ -385,6 +382,7 @@ export const loadCatalogue = createServerFn({ method: "GET" }).handler(
         feeR: db.early_bird_price != null ? money(db.sticker_price, db.price_currency) : null,
         site: firstUrl(db.program_url, partner?.website, ADVISOR)!,
         apply: applyLink(db, partner, db.program_url, partner?.website),
+        ...(db.program_url ? { officialSite: db.program_url.trim() } : {}),
         ...(db.pay_slug ? { paySlug: db.pay_slug } : {}),
         ...(db.location ? { location: db.location } : {}),
         ...(db.format ? { format: db.format } : {}),
