@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { getRouterInstance } from "@tanstack/react-start";
+import { PUBLIC_SITE_URL } from "@/lib/seo";
 
 import { CAMPS } from "@/lib/camps";
 import { ensureCatalogue } from "@/lib/catalogue";
@@ -14,7 +15,7 @@ import {
   type SitemapEntry,
 } from "@/lib/sitemap";
 
-const BASE_URL = "https://lwlschoolaccess.com";
+const BASE_URL = PUBLIC_SITE_URL;
 
 export const Route = createFileRoute("/sitemap.xml")({
   staticData: { sitemap: false },

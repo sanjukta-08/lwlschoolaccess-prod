@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import { SiteHeader } from "@/components/SiteHeader";
@@ -29,14 +30,14 @@ export const Route = createFileRoute("/programmes/$slug")({
     }
     const d = detailFor(p);
     const kind = TYPE_NAME[p.type];
-    const track = TRACKS[p.tracks[0]!].label;
+    const track = TRACKS[p.tracks[0] ?? "lead"].label;
     const next = p.cohorts.find((c) => !isPast(c.d)) ?? p.cohorts[0];
     const fee = feeOf(p, next);
     const title = `${p.name} - ${kind} for Grades ${p.g[0]}–${p.g[1]} | Learn with Leaders`;
     const description = `${p.tag} ${p.dur}. ${
       next ? `Next cohort ${fmtLong(next.d)}. ` : ""
     }From ${fee.e}.`.slice(0, 158);
-    const url = `/programmes/${params.slug}`;
+    const url = canonicalUrl(`/programmes/${encodeURIComponent(params.slug)}`);
 
     return {
       meta: [
@@ -64,14 +65,11 @@ export const Route = createFileRoute("/programmes/$slug")({
             },
             educationalLevel: `Grades ${p.g[0]}–${p.g[1]}`,
             teaches: [...d.skills, ...profileImpactFor(p).verifiable],
-            educationalCredentialAwarded: d.project.title,
-            timeRequired: p.dur,
-            url: p.site,
-            syllabusSections: projectsFor(p).map((pr) => ({
-              "@type": "Syllabus",
+            url,
+            hasPart: projectsFor(p).map((pr) => ({
+              "@type": "CreativeWork",
               name: pr.title,
               description: `${pr.question} Output: ${pr.output}`,
-              timeRequired: pr.timeline,
             })),
             hasCourseInstance: p.cohorts
               .filter((c) => !isPast(c.d))

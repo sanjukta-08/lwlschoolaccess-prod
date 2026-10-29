@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { Search, X } from "lucide-react";
@@ -58,12 +59,14 @@ export const Route = createFileRoute("/conferences/")({
     return { conferences: PROGRAMMES.filter((p) => p.type === "conf") };
   },
   head: () => ({
+    links: [{ rel: "canonical", href: canonicalUrl("/conferences") }],
     meta: [
       { title: TITLE },
       { name: "description", content: DESC },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: canonicalUrl("/conferences") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),

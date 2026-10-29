@@ -1,8 +1,8 @@
 # Roadmap
 
-- [ ] Audit existing learnwithleaders.com search signals and legacy URLs.
-- [ ] Correct search-only metadata issues without changing visible content or design.
-- [ ] Confirm domain migration scope and preserve or map legacy URLs before domain cutover.
+- [x] Audit existing learnwithleaders.com search signals and legacy URLs using live HTML and Google Search Console.
+- [x] Correct search-only metadata issues without changing visible content or design; verify all 123 sitemap pages and eight preservation tests.
+- [ ] Preserve unmapped legacy pages/resources before domain cutover — blocked by missing legacy CMS/file export or independently addressable legacy hosting configuration; Yale/HUSO, summer editions, mentor profiles and PDFs must remain available.
 
 - [x] Build the approved session-only Compass frontend globally.
 - [x] Add the Finder inline Compass prompt.

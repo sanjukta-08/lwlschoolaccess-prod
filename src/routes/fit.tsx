@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/PageHero";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -8,6 +9,7 @@ export const Route = createFileRoute("/fit")({
   staticData: { sitemap: true },
   validateSearch: validateFitSearch,
   head: () => ({
+    links: [{ rel: "canonical", href: canonicalUrl("/fit") }],
     meta: [
       { title: "Find the right program for your child - Learn with Leaders" },
       {
@@ -21,6 +23,7 @@ export const Route = createFileRoute("/fit")({
         content: "Five questions, three matched programs, and the exact outcome each one ends in.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: canonicalUrl("/fit") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),

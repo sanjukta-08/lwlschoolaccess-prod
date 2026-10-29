@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { ensureCatalogue } from "@/lib/catalogue";
 import { campBySlug } from "@/lib/camps";
@@ -24,10 +25,11 @@ export const Route = createFileRoute("/camps/prelaw-horizons-harvard")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "article" },
+      { property: "og:url", content: canonicalUrl("/camps/prelaw-horizons-harvard") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
-      { rel: "canonical", href: "https://lwlschoolaccess.com/camps/prelaw-horizons-harvard" },
+      { rel: "canonical", href: canonicalUrl("/camps/prelaw-horizons-harvard") },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

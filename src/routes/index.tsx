@@ -1,3 +1,4 @@
+import { canonicalUrl, organizationSchema } from "@/lib/seo";
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { DEFAULT_FIT } from "@/lib/fit";
 import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
@@ -47,12 +48,18 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://lwlschoolaccess.com/" },
-      { property: "og:image", content: "https://lwlschoolaccess.com/og-image.jpg" },
+      { property: "og:url", content: canonicalUrl("/") },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: "https://lwlschoolaccess.com/og-image.jpg" },
     ],
-    links: [{ rel: "canonical", href: "https://lwlschoolaccess.com/" }],
+    scripts: [
+      { type: "application/ld+json", children: JSON.stringify(organizationSchema) },
+      { type: "application/ld+json", children: JSON.stringify({
+        "@context": "https://schema.org", "@type": "WebSite",
+        "@id": `${canonicalUrl("/")}#website`, name: "Learn with Leaders",
+        url: canonicalUrl("/"), publisher: { "@id": organizationSchema["@id"] },
+      }) },
+    ],
+    links: [{ rel: "canonical", href: canonicalUrl("/") }],
   }),
   component: HomePage,
 });

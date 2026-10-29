@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { ensureCatalogue } from "@/lib/catalogue";
 import { campBySlug } from "@/lib/camps";
@@ -32,12 +33,13 @@ export const Route = createFileRoute("/camps/future-sustainability-innovators-ge
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "article" },
+      { property: "og:url", content: canonicalUrl("/camps/future-sustainability-innovators-geneva") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {
         rel: "canonical",
-        href: "https://lwlschoolaccess.com/camps/future-sustainability-innovators-geneva",
+        href: canonicalUrl("/camps/future-sustainability-innovators-geneva"),
       },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },

@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ensureCatalogue } from "@/lib/catalogue";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -18,7 +19,7 @@ export const Route = createFileRoute("/camps/$slug")({
     if (!camp) throw notFound();
     return { camp };
   },
-  head: ({ loaderData }) => {
+  head: ({ loaderData, params }) => {
     if (!loaderData) {
       return {
         meta: [
@@ -28,6 +29,7 @@ export const Route = createFileRoute("/camps/$slug")({
       };
     }
     const c = loaderData.camp;
+    const url = canonicalUrl(`/camps/${encodeURIComponent(params.slug)}`);
     const title = `${c.name} at ${c.host} | Learn with Leaders`;
     const desc = `${c.promise} ${c.gradeBand}. ${c.durationLabel} in ${c.city}, ${c.country}. ${datesLabel(c)}.`;
     return {
@@ -37,14 +39,17 @@ export const Route = createFileRoute("/camps/$slug")({
         { property: "og:title", content: title },
         { property: "og:description", content: desc },
         { property: "og:type", content: "article" },
+        { property: "og:url", content: url },
         { name: "twitter:card", content: "summary_large_image" },
       ],
+      links: [{ rel: "canonical", href: url }],
       scripts: [
         {
           type: "application/ld+json",
           children: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Course",
+            url,
             name: c.name,
             description: desc,
             provider: { "@type": "Organization", name: "Learn with Leaders" },

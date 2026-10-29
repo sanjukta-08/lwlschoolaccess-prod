@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { ensureCatalogue } from "@/lib/catalogue";
 import { DR_JOJO_PROGRAMME } from "@/lib/programmes";
@@ -21,9 +22,10 @@ export const Route = createFileRoute("/entrepreneurship-venturebuilding-program"
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/entrepreneurship-venturebuilding-program" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:url", content: canonicalUrl("/entrepreneurship-venturebuilding-program") },
     ],
-    links: [{ rel: "canonical", href: "/entrepreneurship-venturebuilding-program" }],
+    links: [{ rel: "canonical", href: canonicalUrl("/entrepreneurship-venturebuilding-program") }],
   }),
   component: LeadershipAcceleratorPage,
 });

@@ -17,3 +17,5 @@
 - Critical first-paint safeguards live inline at the start of the root document head so publishing-injected fallback content is hidden before external CSS loads.
 - Public typography uses locally bundled font weights with root-level preloads to avoid external-font delays and late metric swaps.
 - Standalone campaign pages may use route-scoped typography and design tokens so their approved source artwork is reproduced without changing the public site theme.
+- Search URLs use the shared SEO origin setting; keep the currently published origin until the verified legacy-domain cutover, so canonicals, sitemap and robots stay aligned without changing outbound application links.
+- Legacy URL redirects are exact, evidence-backed mappings and preserve query strings; unmapped pages and assets must remain on the existing host until exported, so indexed content is not silently redirected to unrelated pages.

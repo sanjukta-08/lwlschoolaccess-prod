@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { stripSearchParams } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
@@ -33,12 +34,14 @@ export const Route = createFileRoute("/calendar-month")({
   validateSearch: (search: Record<string, unknown>) => validateFinderSearch(search),
   search: { middlewares: [stripSearchParams(DEFAULT_SEARCH)] },
   head: () => ({
+    links: [{ rel: "canonical", href: canonicalUrl("/calendar-month") }],
     meta: [
       { title: TITLE },
       { name: "description", content: DESC },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: canonicalUrl("/calendar-month") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),

@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { ensureCatalogue } from "@/lib/catalogue";
 import Navbar from "@/components/camps/hcus-summer/Navbar";
@@ -40,9 +41,10 @@ export const Route = createFileRoute("/camps/hcus-young-global-leaders-summer")(
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "article" },
+      { property: "og:url", content: canonicalUrl("/camps/hcus-young-global-leaders-summer") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: CAMP_PAGE_FONT_LINKS,
+    links: [{ rel: "canonical", href: canonicalUrl("/camps/hcus-young-global-leaders-summer") }, ...CAMP_PAGE_FONT_LINKS],
   }),
   component: HcusSummerCampPage,
 });

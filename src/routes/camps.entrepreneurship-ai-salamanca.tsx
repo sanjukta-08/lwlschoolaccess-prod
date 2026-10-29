@@ -1,3 +1,4 @@
+import { canonicalUrl } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { ensureCatalogue } from "@/lib/catalogue";
 import { campBySlug } from "@/lib/camps";
@@ -24,10 +25,11 @@ export const Route = createFileRoute("/camps/entrepreneurship-ai-salamanca")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "article" },
+      { property: "og:url", content: canonicalUrl("/camps/entrepreneurship-ai-salamanca") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
-      { rel: "canonical", href: "https://lwlschoolaccess.com/camps/entrepreneurship-ai-salamanca" },
+      { rel: "canonical", href: canonicalUrl("/camps/entrepreneurship-ai-salamanca") },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       {
         rel: "stylesheet",
