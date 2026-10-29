@@ -52,6 +52,43 @@ Replacing DNS/hosting now would remove indexed content the app does not contain.
 
 ## Limitations and research sources
 
+## Follow-up readiness check — 29 October 2026
+
+- Rechecked all 123 current sitemap pages in preview: HTTP 200, exactly one nonempty title, description, canonical, Open Graph title/description/type/URL and Twitter card; canonical destinations remain on `https://lwlschoolaccess.com`.
+- Added explicit homepage Twitter title/description and descriptive root fallback titles. No visible design/content, tracking or domain changes were made for search readiness.
+- All 15 search-preservation and catalogue-link regression tests pass. Preview build reports OK.
+- Google Search Console connection was explicitly deferred by the user. Verification, sitemap submission and current Google indexing/performance checks remain uncompleted in this project; an existing verification tag alone is not proof of completed setup.
+- SEO/AEO/GEO foundations are ready in preview; Google ranking, answer-engine inclusion and AI citations are not guaranteed. No extra crawler-only text or speculative llms.txt was added.
+- Legacy resource export/preservation remains a prerequisite for a future domain cutover, not an available action today. Do not switch the live domain yet.
+- These follow-up metadata edits and competition corrections reach the published site only after its next publish.
+
+### Competition link audit
+
+- Read shared programme, cohort and partner records and compared both published and preview competition cards. All eight currently listed competitions have the correct official programme page saved in `all_programs.program_url`.
+- Removed name-based competition destination overrides; cards now follow that exact field. Partner labels now read `all_partners.org_name` instead of guessing from URL hostnames. Existing exclusions and date ordering remain unchanged.
+- Fixed a shared application resolver that was replacing authored HUSO India, HUSO Middle East and Yale registration URLs with derived LWL Portal URLs. Shared `apply_url` now takes precedence; only absent links use LWL pay-slug derivation. No shared database rows were changed.
+- Clicked all eight competition cards and all 12 active competition-classified catalogue detail application links, including competitions currently excluded from the competition listing and HCUS without an upcoming cohort. Confirmed all eight listed competition registration pages render the correct form; visitor attribution survived our outbound clicks. No forms were submitted and payment/application completion was not tested.
+- Active shared programme audit: 104 rows, no missing application URLs or partners. 69 lack `program_url`; 14 editorial application URLs and 17 editorial site URLs differ from shared data. Shared catalogue URLs remain authoritative; these differences were not written back to the database or substituted for shared URLs.
+
+| Listed competition | Registration verified |
+| --- | --- |
+| Moot Court | `https://futurelawyersprogram.com/moot-court/apply` |
+| HUSO Middle East | `https://studentform.ivyolympiad.com/register/middle-east` |
+| HUSO India | `https://studentform.ivyolympiad.com/register/india` |
+| Global Pre-Med | `https://futuredoctorsprogram.com/competition/apply` |
+| Onward AI Founders | `https://www.joinonwards.com/competitions/register` (partner redirects to non-www) |
+| Global Future Career | `https://apply.learnwithleaders.com/apply/global-future-career-challenge` |
+| Wolves of Wall Street | `https://joinfinlit.com/competition/apply` |
+| Yale Global Essay | `https://studentform.ivycomp.com/` |
+
+### Remaining external-owner issues
+
+- FinLit's Wolves landing page contains additional application links to `/apply` and `/fellowship#apply`, alongside correct competition CTAs. Those URLs are on the partner website, not this project's cards or application links. Review their context with FinLit before changing the partner page.
+- Onward's actual `/competitions/register` page works; its form offers February/June/October 2027 seasons, while the shared catalogue includes a November 2026 intake. The partner page shows a February 15 deadline versus February 12 in that shared cohort and conflicting USD 100/USD 60 fee labels. Reconcile in the owning partner/Console; do not invent new URLs here. `/competitions/apply` is not the saved catalogue destination and must not replace `/competitions/register`.
+- Wolves registration copy says eight weeks, while the catalogue/card duration is 12 weeks; programme identity and application URL match, but content must be reconciled by FinLit/Console.
+- HCUS Debating Championship's saved Portal application URL reports inactive. It has no upcoming cohort, so it is not on the eight-card competitions listing or upcoming Finder/calendar results. The saved active programme flag/Portal availability requires owner reconciliation.
+- Partner-site onward forwarding after our outgoing click was not verified for every subsequent click. This project cannot guarantee other websites retain attribution.
+
 - Existing `/robots.txt`, `/sitemap.xml`, `/sitemap_index.xml` and `/wp-sitemap.xml` redirect to homepage HTML. This is not valid XML and provides no complete historic inventory.
 - The public page sample and Google performance response are not a full historical crawl. No guarantee of rankings, AI citations, or instant Google re-crawl is possible.
 - Semrush US estimates (121 monthly organic visits, 128 keywords) are estimates, not measured traffic; direct Google data is stronger for this migration. Backlink estimates show 11,840 links/2,701 referring domains and many low-quality directory links. No disavow action was taken; no manual-action status was verified.

@@ -91,7 +91,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Learn with Leaders" },
+      { title: "Learn with Leaders — Student Programmes, Competitions & Camps" },
       {
         name: "description",
         content:
@@ -103,7 +103,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "Learn with Leaders" },
       { property: "og:site_name", content: "Learn with Leaders" },
-      { property: "og:title", content: "Learn with Leaders" },
+      { property: "og:title", content: "Learn with Leaders — Student Programmes, Competitions & Camps" },
       {
         property: "og:description",
         content:

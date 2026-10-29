@@ -50,6 +50,8 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: canonicalUrl("/") },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: TITLE },
+      { name: "twitter:description", content: DESC },
     ],
     scripts: [
       { type: "application/ld+json", children: JSON.stringify(organizationSchema) },

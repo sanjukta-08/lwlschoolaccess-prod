@@ -7,6 +7,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { CALENDLY_BOOKING_URL } from "@/lib/calendly";
 import { useHydratedCatalogue } from "@/lib/catalogue";
+import { competitionDestination } from "@/lib/catalogue-links";
 import { DEFAULT_SEARCH } from "@/lib/finder";
 import { withUtm } from "@/lib/utm";
 import { slugOf } from "@/lib/programme-slug";
@@ -103,7 +104,7 @@ export const Route = createFileRoute("/competitions")({
               "@type": "ListItem",
               position: i + 1,
               name: p.name,
-              url: canonicalUrl(`/programmes/${slugOf(p)}`),
+              url: competitionDestination(p) ?? canonicalUrl(`/programmes/${slugOf(p)}`),
             })),
         }),
       },
@@ -112,46 +113,12 @@ export const Route = createFileRoute("/competitions")({
   component: CompetitionsPage,
 });
 
-/** Human partner label from a competition URL (Onward, FinLit, LWL…). */
-const partnerFromUrl = (url: string): string => {
-  try {
-    const host = new URL(url).hostname.replace(/^www\./, "");
-    if (host.includes("onward")) return "Onward";
-    if (host.includes("finlit")) return "FinLit";
-    if (host.includes("learnwithleaders") || host === "docs.google.com")
-      return "Learn with Leaders";
-    return host.split(".")[0]!.replace(/^./, (c) => c.toUpperCase());
-  } catch {
-    return "Learn with Leaders";
-  }
-};
-
-/** Competitions whose cards open the competition's own site in a new tab. */
-const externalCompetitionUrl = (p: Programme): string | null => {
-  const n = p.name.toLowerCase();
-  if (isAiFoundersChallenge(p)) return "https://joinonwards.com/competitions";
-  if (n.includes("pre-med") || n.includes("pre med") || n.includes("premed"))
-    return "https://futuredoctorsprogram.com/competition";
-  if (n.includes("future career challenge")) return "https://joinfuturedge.com/";
-  if (n.includes("wolves")) return "https://joinfinlit.com/competition";
-  if (n.includes("moot")) return "https://futurelawyersprogram.com/moot-court";
-  if (n.includes("yale") && n.includes("essay"))
-    return "https://www.learnwithleaders.com/competitions/the-yale-international-relations-essay-competition/";
-  if (n.includes("huso") || n.includes("science olympiad")) {
-    if (n.includes("india"))
-      return "https://www.learnwithleaders.com/competitions/harvard-undergraduate-science-olympiad-india/";
-    if (n.includes("middle east") || n.includes("middleeast"))
-      return "https://www.learnwithleaders.com/competitions/harvard-undergraduate-science-olympiad-middleeast/";
-  }
-  return null;
-};
-
 const nextCohort = (p: Programme) => [...p.cohorts].sort((a, b) => a.d.localeCompare(b.d))[0];
 
 function CompetitionCard({ p }: { p: Programme }) {
-  const partner = partnerFromUrl(p.apply);
+  const partner = p.partnerName;
   const next = nextCohort(p);
-  const external = externalCompetitionUrl(p);
+  const external = competitionDestination(p);
   const cardClass =
     "group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-paper no-underline shadow-soft transition-all hover:-translate-y-0.5 hover:border-gold-line hover:shadow-lift";
   const body = (

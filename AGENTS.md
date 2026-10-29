@@ -19,3 +19,4 @@
 - Standalone campaign pages may use route-scoped typography and design tokens so their approved source artwork is reproduced without changing the public site theme.
 - Search URLs use the shared SEO origin setting; keep the currently published origin until the verified legacy-domain cutover, so canonicals, sitemap and robots stay aligned without changing outbound application links.
 - Legacy URL redirects are exact, evidence-backed mappings and preserve query strings; unmapped pages and assets must remain on the existing host until exported, so indexed content is not silently redirected to unrelated pages.
+- Catalogue links use shared `all_programs.apply_url` first, with LWL pay-slug derivation only when absent; competition cards use `program_url` and database partner names, not name-based URL overrides, to preserve externally operated registration destinations.
