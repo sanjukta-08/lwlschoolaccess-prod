@@ -1,0 +1,184 @@
+[
+  {
+    "source_path": "/about-us/",
+    "target_path": "/about",
+    "status": "confirmed",
+    "evidence": "Same organisation/about intent; replacement is rewritten, not verbatim.",
+    "legacy_url": "https://www.learnwithleaders.com/about-us/",
+    "legacy_title": "About us - Learn with leaders",
+    "legacy_http_status": 200,
+    "target_live_url": "https://lwlschoolaccess.com/about/",
+    "target_title": "About Learn with Leaders - press, schools and student stories",
+    "target_http_status": 200
+  },
+  {
+    "source_path": "/our-offerings/competitions/",
+    "target_path": "/competitions",
+    "status": "confirmed",
+    "evidence": "Same competition directory intent.",
+    "legacy_url": "https://www.learnwithleaders.com/our-offerings/competitions/",
+    "legacy_title": "Competitions - Learn with leaders",
+    "legacy_http_status": 200,
+    "target_live_url": "https://lwlschoolaccess.com/competitions/",
+    "target_title": "Competitions - Learn with Leaders",
+    "target_http_status": 200
+  },
+  {
+    "source_path": "/our-offerings/camps/",
+    "target_path": "/camps",
+    "status": "confirmed",
+    "evidence": "Same camp directory intent.",
+    "legacy_url": "https://www.learnwithleaders.com/our-offerings/camps/",
+    "legacy_title": "Camps - Learn with leaders",
+    "legacy_http_status": 200,
+    "target_live_url": "https://lwlschoolaccess.com/camps/",
+    "target_title": "Summer & Winter Camps at Harvard, Cambridge, Geneva | Learn with Leaders",
+    "target_http_status": 200
+  },
+  {
+    "source_path": "/our-offerings/conference/",
+    "target_path": "/conferences",
+    "status": "confirmed",
+    "evidence": "Same conference directory intent.",
+    "legacy_url": "https://www.learnwithleaders.com/our-offerings/conference/",
+    "legacy_title": "Conferences - Learn with leaders",
+    "legacy_http_status": 200,
+    "target_live_url": "https://lwlschoolaccess.com/conferences/",
+    "target_title": "Harvard WorldMUN Conferences | Learn with Leaders",
+    "target_http_status": 200
+  },
+  {
+    "source_path": "/camps/hucswintercamp/",
+    "target_path": "/camps/hcus-young-global-leaders-winter",
+    "status": "confirmed",
+    "evidence": "HCUS Young Global Leaders Winter at Harvard; both 3–10 and 10–17 January 2027, 8 days, same leadership programme.",
+    "legacy_url": "https://www.learnwithleaders.com/camps/hucswintercamp/",
+    "legacy_title": "Harvard College Union Society â Young Global Leaders Program",
+    "legacy_http_status": 200,
+    "target_live_url": "https://lwlschoolaccess.com/camps/hcus-young-global-leaders-winter/",
+    "target_title": "HCUS Young Global Leaders Winter Camp at Harvard University | Learn with Leaders",
+    "target_http_status": 200
+  },
+  {
+    "source_path": "/camps/hcusociety/",
+    "target_path": "/camps/hcus-young-global-leaders-summer",
+    "status": "blocked",
+    "evidence": "Legacy summer 2027: 27 June–4 July and 4–11 July, two cohorts. Target summer 2026: 21–28 June, 28 June–5 July, 5–12 July, three cohorts; deadline 30 May 2026 vs legacy 15 March 2027. Misleading edition replacement.",
+    "legacy_url": "https://www.learnwithleaders.com/camps/hcusociety/",
+    "legacy_title": "Harvard College Union Society â Young Global Leaders Program",
+    "legacy_http_status": 200,
+    "target_live_url": "https://lwlschoolaccess.com/camps/hcus-young-global-leaders-summer/",
+    "target_title": "HCUS Young Global Leaders Summer Camp at Harvard University | Learn with Leaders",
+    "target_http_status": 200
+  },
+  {
+    "source_path": "/camps/prelaw-horizons-program/",
+    "target_path": "/camps/prelaw-horizons-harvard",
+    "status": "confirmed_with_caveat",
+    "evidence": "Same HUGEM Pre-Law Horizons, Harvard, six-day day programme 11–16 January 2027, legal theory/history/international law/public service. Deadline differs: legacy 30 November 2026 vs target 31 October 2026. Not an edition merge.",
+    "legacy_url": "https://www.learnwithleaders.com/camps/prelaw-horizons-program/",
+    "legacy_title": "Pre-Law Horizons Program â HUGEM",
+    "legacy_http_status": 200,
+    "target_live_url": "https://lwlschoolaccess.com/camps/prelaw-horizons-harvard/",
+    "target_title": "Pre-Law Horizons Program at Harvard University | Learn with Leaders",
+    "target_http_status": 200
+  },
+  {
+    "source_path": "/camps/premed-horizons-program/",
+    "target_path": "/camps/premed-horizons-harvard",
+    "status": "confirmed_with_caveat",
+    "evidence": "Same HUGEM Pre-Med Horizons, Harvard, six-day day camp 4–9 January 2027, medicine/innovation/policy and capstone. Deadline differs: legacy 30 November 2026 vs target 31 October 2026. Not an edition merge.",
+    "legacy_url": "https://www.learnwithleaders.com/camps/premed-horizons-program/",
+    "legacy_title": "Pre-Med Camp at Harvard University â HUGEM",
+    "legacy_http_status": 200,
+    "target_live_url": "https://lwlschoolaccess.com/camps/premed-horizons-harvard/",
+    "target_title": "Pre-Med Horizons Program at Harvard University | Learn with Leaders",
+    "target_http_status": 200
+  },
+  {
+    "source_path": "/camps/cambridgesummercamp/",
+    "target_path": "/camps/ignite-cambridge-judge",
+    "status": "confirmed_with_caveat",
+    "evidence": "Same IGNITE Young Minds Cambridge Judge Entrepreneurship Centre summer school, 18–24 July 2027, ages 15–18, entrepreneurship/AI/leadership. Target additionally says 19–24 July in one summary. Legacy twin sharing at Murray Edwards vs target single occupancy. Identity/edition matches, but logistics not identical.",
+    "legacy_url": "https://www.learnwithleaders.com/camps/cambridgesummercamp/",
+    "legacy_title": "IGNITE Young Minds 2027 | Cambridge Summer School",
+    "legacy_http_status": 200,
+    "target_live_url": "https://lwlschoolaccess.com/camps/ignite-cambridge-judge/",
+    "target_title": "IGNITE Young Minds at Cambridge Judge | Learn with Leaders",
+    "target_http_status": 200
+  },
+  {
+    "source_path": "/camps/salamancaspaincamp/",
+    "target_path": "/camps/entrepreneurship-ai-salamanca",
+    "status": "confirmed",
+    "evidence": "Same University of Salamanca entrepreneurship/AI curriculum, December 2026 programme; preserve actual copy rather than relying on old generic title.",
+    "legacy_url": "https://www.learnwithleaders.com/camps/salamancaspaincamp/",
+    "legacy_title": "Vniversidad D Salamanca",
+    "legacy_http_status": 200,
+    "target_live_url": "https://lwlschoolaccess.com/camps/entrepreneurship-ai-salamanca/",
+    "target_title": "Entrepreneurship Powered by AI — Salamanca Camp",
+    "target_http_status": 200
+  },
+  {
+    "source_path": "/camps/genevacamp/",
+    "target_path": "/camps/future-sustainability-innovators-geneva",
+    "status": "confirmed_with_caveat",
+    "evidence": "Same Future Sustainability Innovators winter programme, Geneva/SDG Solution Space, 13–19 December 2026, ages 13–17. Target omits legacy GBP 3500 price and changes 30 November deadline to to-be-announced.",
+    "legacy_url": "https://www.learnwithleaders.com/camps/genevacamp/",
+    "legacy_title": "Future Sustainability Innovators Program",
+    "legacy_http_status": 200,
+    "target_live_url": "https://lwlschoolaccess.com/camps/future-sustainability-innovators-geneva/",
+    "target_title": "Future Sustainability Innovators Program — Geneva",
+    "target_http_status": 200
+  },
+  {
+    "source_path": "/camps/genevasummercamp/",
+    "target_path": "/camps/future-sustainability-innovators-geneva",
+    "status": "blocked",
+    "evidence": "Legacy explicitly Summer Camp 11–17 July 2027, deadline 26 June 2027; target explicitly Winter Camp 13–19 December 2026. Same programme family does not justify season/edition merge.",
+    "legacy_url": "https://www.learnwithleaders.com/camps/genevasummercamp/",
+    "legacy_title": "Future Sustainability Innovators Program",
+    "legacy_http_status": 200,
+    "target_live_url": "https://lwlschoolaccess.com/camps/future-sustainability-innovators-geneva/",
+    "target_title": "Future Sustainability Innovators Program — Geneva",
+    "target_http_status": 200
+  },
+  {
+    "source_path": "/competitions/the-yale-international-relations-essay-competition/",
+    "target_path": "/programmes/yale-global-essay-writing-competition",
+    "status": "blocked",
+    "evidence": "Same programme/region and current edition in introductory copy, but generic replacement detail is not content-equivalent. Preserve legacy page and resources; directory currently links back to same legacy path, which would resolve on replacement site.",
+    "losses": [
+      "2025 and 2026 finalists/winners resources",
+      "Register/login and full submission instructions, detailed webinar schedule",
+      "USD 25 early fee and 15 November 2026 early deadline; target calls USD 50 early-bird",
+      "Target introduces unsupported published-paper/permanent-link/supervisor-letter outcome"
+    ]
+  },
+  {
+    "source_path": "/competitions/harvard-undergraduate-science-olympiad-india/",
+    "target_path": "/programmes/huso-india",
+    "status": "blocked",
+    "evidence": "Same programme/region and current edition in introductory copy, but generic replacement detail is not content-equivalent. Preserve legacy page and resources; directory currently links back to same legacy path, which would resolve on replacement site.",
+    "losses": [
+      "2025–26 Top 100 PDF and named past winners",
+      "Separate student and school registration, exact category exam times and UK-year equivalents",
+      "Actual registration deadline (India 31 October, Middle East 1 November 2026); target says Decide by 4 November",
+      "Detailed awards, scholarship/camp prizes, mentors, testimonials and FAQs",
+      "Target generic leadership/essay-entry/live-Zoom copy misrepresents STEM exam and in-person bootcamp"
+    ]
+  },
+  {
+    "source_path": "/competitions/harvard-undergraduate-science-olympiad-middleeast/",
+    "target_path": "/programmes/huso-middle-east",
+    "status": "blocked",
+    "evidence": "Same programme/region and current edition in introductory copy, but generic replacement detail is not content-equivalent. Preserve legacy page and resources; directory currently links back to same legacy path, which would resolve on replacement site.",
+    "losses": [
+      "2025–26 Top 100 PDF and named past winners",
+      "Separate student and school registration, exact category exam times and UK-year equivalents",
+      "Actual registration deadline (India 31 October, Middle East 1 November 2026); target says Decide by 4 November",
+      "Detailed awards, scholarship/camp prizes, mentors, testimonials and FAQs",
+      "Target generic leadership/essay-entry/live-Zoom copy misrepresents STEM exam and in-person bootcamp"
+    ]
+  }
+]
