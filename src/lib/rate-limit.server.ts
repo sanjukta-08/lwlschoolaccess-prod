@@ -32,13 +32,15 @@ export function hashIp(ip: string): string {
   return createHash("sha256").update(`${pepper}:${ip}`).digest("hex");
 }
 
-type RouteKey = "compass_session" | "compass_message" | "recommend";
+type RouteKey = "compass_session" | "compass_message" | "compass_global" | "recommend";
 
 const LIMITS: Record<RouteKey, { windowMs: number; max: number }> = {
   // New Compass conversations started per visitor per 10 minutes.
   compass_session: { windowMs: 10 * 60_000, max: 4 },
   // Compass turns (any session) per visitor per hour -- the real cost cap.
-  compass_message: { windowMs: 60 * 60_000, max: 60 },
+  compass_message: { windowMs: 60 * 60_000, max: 30 },
+  // Site-wide Compass turns per day across ALL visitors -- hard spend ceiling.
+  compass_global: { windowMs: 24 * 60 * 60_000, max: 3000 },
   // "Find your fit" quiz calls per visitor per hour.
   recommend: { windowMs: 60 * 60_000, max: 20 },
 };
