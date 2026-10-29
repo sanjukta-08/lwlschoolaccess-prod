@@ -1,7 +1,9 @@
 # Roadmap
 
-- [ ] Complete remaining SEO/AEO/GEO readiness checks without domain cutover; Google connection deferred by user.
-- [ ] Audit every competition page and outbound registration link against live database catalogue values; correct site wiring and report external blockers.
+- [x] Complete available SEO/AEO/GEO readiness checks without domain cutover; verify 123 sitemap pages and descriptive share titles.
+- [ ] Google Search Console verification and sitemap submission — deferred by user; connection required.
+- [x] Audit eight listed competition pages and 12 catalogue competition application links; correct database URL precedence, remove name-based card URLs and use database partner names.
+- [ ] Reconcile external competition content/availability — blocked on FinLit, Onward and Portal/Console owners (secondary FinLit links, Onward intakes/fees/deadlines, Wolves duration, inactive undated HCUS).
 
 - [x] Audit existing learnwithleaders.com search signals and legacy URLs using live HTML and Google Search Console.
 - [x] Correct search-only metadata issues without changing visible content or design; verify all 123 sitemap pages and eight preservation tests.
