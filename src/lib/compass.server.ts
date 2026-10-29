@@ -162,7 +162,10 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
   // Aggregate cap across ALL of this visitor's sessions -- this is what
   // actually stops the "mint a new session every call" workaround, since the
   // per-session count above resets to zero for each new session.
-  if (!(await withinRateLimit("compass_message", clientIp))) {
+  if (
+    !(await withinRateLimit("compass_message", clientIp)) ||
+    !(await withinRateLimit("compass_global", "site-wide"))
+  ) {
     return {
       sessionId: sid,
       reply: `Compass has hit its usage limit for now — please try again later, or book a free call with an advisor: ${ADVISOR}`,
@@ -535,7 +538,7 @@ export async function runCompass(input: Input, clientIp: string): Promise<Compas
       system: SYSTEM(leadCaptured) + grounding,
       messages,
       tools,
-      stopWhen: stepCountIs(50),
+      stopWhen: stepCountIs(8),
       providerOptions: {
         openai: {
           forceReasoning: true,
