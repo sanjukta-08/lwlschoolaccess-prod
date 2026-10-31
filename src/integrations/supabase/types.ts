@@ -1107,6 +1107,7 @@ export type Database = {
           stripe_customer_id: string | null
           student_dob: string | null
           student_email: string | null
+          student_id: string | null
           student_name: string
           student_phone: string | null
           submission_token: string
@@ -1146,6 +1147,7 @@ export type Database = {
           stripe_customer_id?: string | null
           student_dob?: string | null
           student_email?: string | null
+          student_id?: string | null
           student_name: string
           student_phone?: string | null
           submission_token?: string
@@ -1185,6 +1187,7 @@ export type Database = {
           stripe_customer_id?: string | null
           student_dob?: string | null
           student_email?: string | null
+          student_id?: string | null
           student_name?: string
           student_phone?: string | null
           submission_token?: string
@@ -2178,210 +2181,6 @@ export type Database = {
           name?: string
           platform_slug?: string
           scopes?: string[]
-        }
-        Relationships: []
-      }
-      prelaw_applications: {
-        Row: {
-          additional_info: string | null
-          amount: number | null
-          country: string | null
-          created_at: string | null
-          currency: string | null
-          current_age: number | null
-          current_class: string | null
-          date_of_birth: string | null
-          gender: string | null
-          has_us_visa: string | null
-          id: string
-          parent_guardian_email: string | null
-          parent_guardian_mobile_number: string | null
-          parent_guardian_name: string | null
-          payment_date: string | null
-          payment_id: string | null
-          program_code: string | null
-          scholarship_code: string | null
-          school_counsellor_email: string | null
-          school_counsellor_name: string | null
-          school_name: string | null
-          school_years: number | null
-          state_province_region_city: string | null
-          student_email: string | null
-          student_first_name: string | null
-          student_last_name: string | null
-          student_middle_name: string | null
-          student_mobile_number: string | null
-          submitted_at: string | null
-          updated_at: string | null
-          why_lawyer: string | null
-        }
-        Insert: {
-          additional_info?: string | null
-          amount?: number | null
-          country?: string | null
-          created_at?: string | null
-          currency?: string | null
-          current_age?: number | null
-          current_class?: string | null
-          date_of_birth?: string | null
-          gender?: string | null
-          has_us_visa?: string | null
-          id: string
-          parent_guardian_email?: string | null
-          parent_guardian_mobile_number?: string | null
-          parent_guardian_name?: string | null
-          payment_date?: string | null
-          payment_id?: string | null
-          program_code?: string | null
-          scholarship_code?: string | null
-          school_counsellor_email?: string | null
-          school_counsellor_name?: string | null
-          school_name?: string | null
-          school_years?: number | null
-          state_province_region_city?: string | null
-          student_email?: string | null
-          student_first_name?: string | null
-          student_last_name?: string | null
-          student_middle_name?: string | null
-          student_mobile_number?: string | null
-          submitted_at?: string | null
-          updated_at?: string | null
-          why_lawyer?: string | null
-        }
-        Update: {
-          additional_info?: string | null
-          amount?: number | null
-          country?: string | null
-          created_at?: string | null
-          currency?: string | null
-          current_age?: number | null
-          current_class?: string | null
-          date_of_birth?: string | null
-          gender?: string | null
-          has_us_visa?: string | null
-          id?: string
-          parent_guardian_email?: string | null
-          parent_guardian_mobile_number?: string | null
-          parent_guardian_name?: string | null
-          payment_date?: string | null
-          payment_id?: string | null
-          program_code?: string | null
-          scholarship_code?: string | null
-          school_counsellor_email?: string | null
-          school_counsellor_name?: string | null
-          school_name?: string | null
-          school_years?: number | null
-          state_province_region_city?: string | null
-          student_email?: string | null
-          student_first_name?: string | null
-          student_last_name?: string | null
-          student_middle_name?: string | null
-          student_mobile_number?: string | null
-          submitted_at?: string | null
-          updated_at?: string | null
-          why_lawyer?: string | null
-        }
-        Relationships: []
-      }
-      premed_applications: {
-        Row: {
-          additional_info: string | null
-          amount: number | null
-          country: string | null
-          created_at: string | null
-          currency: string | null
-          current_age: number | null
-          current_class: string | null
-          date_of_birth: string | null
-          gender: string | null
-          has_us_visa: string | null
-          id: string
-          parent_guardian_email: string | null
-          parent_guardian_mobile_number: string | null
-          parent_guardian_name: string | null
-          payment_date: string | null
-          payment_id: string | null
-          program_code: string | null
-          scholarship_code: string | null
-          school_counsellor_email: string | null
-          school_counsellor_name: string | null
-          school_name: string | null
-          school_years: number | null
-          state_province_region_city: string | null
-          student_email: string | null
-          student_first_name: string | null
-          student_last_name: string | null
-          student_middle_name: string | null
-          student_mobile_number: string | null
-          submitted_at: string | null
-          updated_at: string | null
-          why_doctor: string | null
-        }
-        Insert: {
-          additional_info?: string | null
-          amount?: number | null
-          country?: string | null
-          created_at?: string | null
-          currency?: string | null
-          current_age?: number | null
-          current_class?: string | null
-          date_of_birth?: string | null
-          gender?: string | null
-          has_us_visa?: string | null
-          id: string
-          parent_guardian_email?: string | null
-          parent_guardian_mobile_number?: string | null
-          parent_guardian_name?: string | null
-          payment_date?: string | null
-          payment_id?: string | null
-          program_code?: string | null
-          scholarship_code?: string | null
-          school_counsellor_email?: string | null
-          school_counsellor_name?: string | null
-          school_name?: string | null
-          school_years?: number | null
-          state_province_region_city?: string | null
-          student_email?: string | null
-          student_first_name?: string | null
-          student_last_name?: string | null
-          student_middle_name?: string | null
-          student_mobile_number?: string | null
-          submitted_at?: string | null
-          updated_at?: string | null
-          why_doctor?: string | null
-        }
-        Update: {
-          additional_info?: string | null
-          amount?: number | null
-          country?: string | null
-          created_at?: string | null
-          currency?: string | null
-          current_age?: number | null
-          current_class?: string | null
-          date_of_birth?: string | null
-          gender?: string | null
-          has_us_visa?: string | null
-          id?: string
-          parent_guardian_email?: string | null
-          parent_guardian_mobile_number?: string | null
-          parent_guardian_name?: string | null
-          payment_date?: string | null
-          payment_id?: string | null
-          program_code?: string | null
-          scholarship_code?: string | null
-          school_counsellor_email?: string | null
-          school_counsellor_name?: string | null
-          school_name?: string | null
-          school_years?: number | null
-          state_province_region_city?: string | null
-          student_email?: string | null
-          student_first_name?: string | null
-          student_last_name?: string | null
-          student_middle_name?: string | null
-          student_mobile_number?: string | null
-          submitted_at?: string | null
-          updated_at?: string | null
-          why_doctor?: string | null
         }
         Relationships: []
       }
