@@ -1,0 +1,20 @@
+name: Sync to Prod
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sync:
+    if: github.repository == 'sanjukta-08/lwlschoolaccess-dev'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push code to prod repo
+        env:
+          PROD_TOKEN: ${{ secrets.PROD_REPO_TOKEN }}
+        run: |
+          git remote add prod https://x-access-token:${PROD_TOKEN}@github.com/sanjukta-08/lwlschoolaccess-prod.git
+          git push prod HEAD:main --force
